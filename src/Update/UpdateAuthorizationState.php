@@ -28,7 +28,7 @@ class UpdateAuthorizationState extends Update
     public static function fromArray(array $array): UpdateAuthorizationState
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['authorization_state']),
+            authorizationState: TdSchemaRegistry::fromArray($array['authorization_state']),
         );
     }
 
@@ -48,7 +48,7 @@ class UpdateAuthorizationState extends Update
     {
         return [
             '@type'               => static::TYPE_NAME,
-            'authorization_state' => $this->authorizationState->typeSerialize(),
+            'authorization_state' => $this->authorizationState->jsonSerialize(),
         ];
     }
 }

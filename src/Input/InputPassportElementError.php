@@ -19,10 +19,6 @@ class InputPassportElementError extends TdObject
 
     public function __construct(
         /**
-         * Type of Telegram Passport element that has the error.
-         */
-        protected PassportElementType             $type,
-        /**
          * Error message.
          */
         protected string                          $message,
@@ -30,14 +26,18 @@ class InputPassportElementError extends TdObject
          * Error source.
          */
         protected InputPassportElementErrorSource $source,
+        /**
+         * Type of Telegram Passport element that has the error.
+         */
+        protected PassportElementType             $type,
     ) {}
 
     public static function fromArray(array $array): InputPassportElementError
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['type']),
-            $array['message'],
-            TdSchemaRegistry::fromArray($array['source']),
+            message: $array['message'],
+            source : TdSchemaRegistry::fromArray($array['source']),
+            type   : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -81,9 +81,9 @@ class InputPassportElementError extends TdObject
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'type'    => $this->type->typeSerialize(),
             'message' => $this->message,
-            'source'  => $this->source->typeSerialize(),
+            'source'  => $this->source->jsonSerialize(),
+            'type'    => $this->type->jsonSerialize(),
         ];
     }
 }

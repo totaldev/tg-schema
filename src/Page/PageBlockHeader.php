@@ -28,7 +28,7 @@ class PageBlockHeader extends PageBlock
     public static function fromArray(array $array): PageBlockHeader
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['header']),
+            header: TdSchemaRegistry::fromArray($array['header']),
         );
     }
 
@@ -48,7 +48,7 @@ class PageBlockHeader extends PageBlock
     {
         return [
             '@type'  => static::TYPE_NAME,
-            'header' => $this->header->typeSerialize(),
+            'header' => $this->header->jsonSerialize(),
         ];
     }
 }

@@ -22,6 +22,14 @@ class UpdateUnreadChatCount extends Update
          */
         protected ChatList $chatList,
         /**
+         * Total number of chats marked as unread.
+         */
+        protected int      $markedAsUnreadCount,
+        /**
+         * Total number of unmuted chats marked as unread.
+         */
+        protected int      $markedAsUnreadUnmutedCount,
+        /**
          * Approximate total number of chats in the chat list.
          */
         protected int      $totalCount,
@@ -33,14 +41,6 @@ class UpdateUnreadChatCount extends Update
          * Total number of unread unmuted chats.
          */
         protected int      $unreadUnmutedCount,
-        /**
-         * Total number of chats marked as unread.
-         */
-        protected int      $markedAsUnreadCount,
-        /**
-         * Total number of unmuted chats marked as unread.
-         */
-        protected int      $markedAsUnreadUnmutedCount,
     ) {
         parent::__construct();
     }
@@ -48,12 +48,12 @@ class UpdateUnreadChatCount extends Update
     public static function fromArray(array $array): UpdateUnreadChatCount
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['chat_list']),
-            $array['total_count'],
-            $array['unread_count'],
-            $array['unread_unmuted_count'],
-            $array['marked_as_unread_count'],
-            $array['marked_as_unread_unmuted_count'],
+            chatList                  : TdSchemaRegistry::fromArray($array['chat_list']),
+            markedAsUnreadCount       : $array['marked_as_unread_count'],
+            markedAsUnreadUnmutedCount: $array['marked_as_unread_unmuted_count'],
+            totalCount                : $array['total_count'],
+            unreadCount               : $array['unread_count'],
+            unreadUnmutedCount        : $array['unread_unmuted_count'],
         );
     }
 
@@ -133,12 +133,12 @@ class UpdateUnreadChatCount extends Update
     {
         return [
             '@type'                          => static::TYPE_NAME,
-            'chat_list'                      => $this->chatList->typeSerialize(),
+            'chat_list'                      => $this->chatList->jsonSerialize(),
+            'marked_as_unread_count'         => $this->markedAsUnreadCount,
+            'marked_as_unread_unmuted_count' => $this->markedAsUnreadUnmutedCount,
             'total_count'                    => $this->totalCount,
             'unread_count'                   => $this->unreadCount,
             'unread_unmuted_count'           => $this->unreadUnmutedCount,
-            'marked_as_unread_count'         => $this->markedAsUnreadCount,
-            'marked_as_unread_unmuted_count' => $this->markedAsUnreadUnmutedCount,
         ];
     }
 }

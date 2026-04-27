@@ -19,13 +19,13 @@ class InputMessageText extends InputMessageContent
 
     public function __construct(
         /**
-         * Formatted text to be sent; 0-getOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually.
-         */
-        protected FormattedText       $text,
-        /**
          * True, if a chat message draft must be deleted.
          */
         protected bool                $clearDraft,
+        /**
+         * Formatted text to be sent; 0-getOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually.
+         */
+        protected FormattedText       $text,
         /**
          * Options to be used for generation of a link preview; may be null if none; pass null to use default link preview options.
          */
@@ -37,9 +37,9 @@ class InputMessageText extends InputMessageContent
     public static function fromArray(array $array): InputMessageText
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['text']),
-            $array['clear_draft'],
-            isset($array['link_preview_options']) ? TdSchemaRegistry::fromArray($array['link_preview_options']) : null,
+            clearDraft        : $array['clear_draft'],
+            linkPreviewOptions: (isset($array['link_preview_options']) ? TdSchemaRegistry::fromArray($array['link_preview_options']) : null),
+            text              : TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -83,9 +83,9 @@ class InputMessageText extends InputMessageContent
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'text'                 => $this->text->typeSerialize(),
             'clear_draft'          => $this->clearDraft,
-            'link_preview_options' => $this->linkPreviewOptions ?? null,
+            'link_preview_options' => (null !== $this->linkPreviewOptions ? $this->linkPreviewOptions->jsonSerialize() : null),
+            'text'                 => $this->text->jsonSerialize(),
         ];
     }
 }

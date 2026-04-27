@@ -32,8 +32,8 @@ class UpdateOption extends Update
     public static function fromArray(array $array): UpdateOption
     {
         return new static(
-            $array['name'],
-            TdSchemaRegistry::fromArray($array['value']),
+            name : $array['name'],
+            value: TdSchemaRegistry::fromArray($array['value']),
         );
     }
 
@@ -66,7 +66,7 @@ class UpdateOption extends Update
         return [
             '@type' => static::TYPE_NAME,
             'name'  => $this->name,
-            'value' => $this->value->typeSerialize(),
+            'value' => $this->value->jsonSerialize(),
         ];
     }
 }

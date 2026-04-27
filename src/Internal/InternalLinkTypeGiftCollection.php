@@ -16,13 +16,13 @@ class InternalLinkTypeGiftCollection extends InternalLinkType
 
     public function __construct(
         /**
-         * Username of the owner of the gift collection.
-         */
-        protected string $giftOwnerUsername,
-        /**
          * Gift collection identifier.
          */
         protected int    $collectionId,
+        /**
+         * Username of the owner of the gift collection.
+         */
+        protected string $giftOwnerUsername,
     ) {
         parent::__construct();
     }
@@ -30,8 +30,8 @@ class InternalLinkTypeGiftCollection extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeGiftCollection
     {
         return new static(
-            $array['gift_owner_username'],
-            $array['collection_id'],
+            collectionId     : $array['collection_id'],
+            giftOwnerUsername: $array['gift_owner_username'],
         );
     }
 
@@ -63,8 +63,8 @@ class InternalLinkTypeGiftCollection extends InternalLinkType
     {
         return [
             '@type'               => static::TYPE_NAME,
-            'gift_owner_username' => $this->giftOwnerUsername,
             'collection_id'       => $this->collectionId,
+            'gift_owner_username' => $this->giftOwnerUsername,
         ];
     }
 }

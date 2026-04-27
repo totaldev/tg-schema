@@ -19,17 +19,33 @@ class MessageUpgradedGift extends MessageContent
 
     public function __construct(
         /**
+         * True, if the gift can be transferred to another owner; only for the receiver of the gift.
+         */
+        protected bool               $canBeTransferred,
+        /**
+         * Number of Telegram Stars that must be paid to drop original details of the upgraded gift; 0 if not available; only for the receiver of the gift.
+         */
+        protected int                $dropOriginalDetailsStarCount,
+        /**
+         * Point in time (Unix timestamp) when the gift can be transferred to the TON blockchain as an NFT; can be in the past; 0 if NFT export isn't possible; only for the receiver of the gift.
+         */
+        protected int                $exportDate,
+        /**
          * The gift.
          */
         protected UpgradedGift       $gift,
         /**
-         * Sender of the gift; may be null for anonymous gifts.
+         * True, if the gift is displayed on the user's or the channel's profile page; only for the receiver of the gift.
          */
-        protected ?MessageSender     $senderId,
+        protected bool               $isSaved,
         /**
-         * Receiver of the gift.
+         * Point in time (Unix timestamp) when the gift can be resold to another user; can be in the past; 0 if the gift can't be resold; only for the receiver of the gift.
          */
-        protected MessageSender      $receiverId,
+        protected int                $nextResaleDate,
+        /**
+         * Point in time (Unix timestamp) when the gift can be transferred to another owner; can be in the past; 0 if the gift can be transferred immediately or transfer isn't possible; only for the receiver of the gift.
+         */
+        protected int                $nextTransferDate,
         /**
          * Origin of the upgraded gift.
          */
@@ -39,37 +55,21 @@ class MessageUpgradedGift extends MessageContent
          */
         protected string             $receivedGiftId,
         /**
-         * True, if the gift is displayed on the user's or the channel's profile page; only for the receiver of the gift.
+         * Receiver of the gift.
          */
-        protected bool               $isSaved,
+        protected MessageSender      $receiverId,
         /**
-         * True, if the gift can be transferred to another owner; only for the receiver of the gift.
+         * Sender of the gift; may be null for anonymous gifts.
          */
-        protected bool               $canBeTransferred,
-        /**
-         * True, if the gift has already been transferred to another owner; only for the receiver of the gift.
-         */
-        protected bool               $wasTransferred,
+        protected ?MessageSender     $senderId,
         /**
          * Number of Telegram Stars that must be paid to transfer the upgraded gift; only for the receiver of the gift.
          */
         protected int                $transferStarCount,
         /**
-         * Number of Telegram Stars that must be paid to drop original details of the upgraded gift; 0 if not available; only for the receiver of the gift.
+         * True, if the gift has already been transferred to another owner; only for the receiver of the gift.
          */
-        protected int                $dropOriginalDetailsStarCount,
-        /**
-         * Point in time (Unix timestamp) when the gift can be transferred to another owner; can be in the past; 0 if the gift can be transferred immediately or transfer isn't possible; only for the receiver of the gift.
-         */
-        protected int                $nextTransferDate,
-        /**
-         * Point in time (Unix timestamp) when the gift can be resold to another user; can be in the past; 0 if the gift can't be resold; only for the receiver of the gift.
-         */
-        protected int                $nextResaleDate,
-        /**
-         * Point in time (Unix timestamp) when the gift can be transferred to the TON blockchain as an NFT; can be in the past; 0 if NFT export isn't possible; only for the receiver of the gift.
-         */
-        protected int                $exportDate,
+        protected bool               $wasTransferred,
     ) {
         parent::__construct();
     }
@@ -77,19 +77,19 @@ class MessageUpgradedGift extends MessageContent
     public static function fromArray(array $array): MessageUpgradedGift
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['gift']),
-            isset($array['sender_id']) ? TdSchemaRegistry::fromArray($array['sender_id']) : null,
-            TdSchemaRegistry::fromArray($array['receiver_id']),
-            TdSchemaRegistry::fromArray($array['origin']),
-            $array['received_gift_id'],
-            $array['is_saved'],
-            $array['can_be_transferred'],
-            $array['was_transferred'],
-            $array['transfer_star_count'],
-            $array['drop_original_details_star_count'],
-            $array['next_transfer_date'],
-            $array['next_resale_date'],
-            $array['export_date'],
+            canBeTransferred            : $array['can_be_transferred'],
+            dropOriginalDetailsStarCount: $array['drop_original_details_star_count'],
+            exportDate                  : $array['export_date'],
+            gift                        : TdSchemaRegistry::fromArray($array['gift']),
+            isSaved                     : $array['is_saved'],
+            nextResaleDate              : $array['next_resale_date'],
+            nextTransferDate            : $array['next_transfer_date'],
+            origin                      : TdSchemaRegistry::fromArray($array['origin']),
+            receivedGiftId              : $array['received_gift_id'],
+            receiverId                  : TdSchemaRegistry::fromArray($array['receiver_id']),
+            senderId                    : (isset($array['sender_id']) ? TdSchemaRegistry::fromArray($array['sender_id']) : null),
+            transferStarCount           : $array['transfer_star_count'],
+            wasTransferred              : $array['was_transferred'],
         );
     }
 
@@ -253,19 +253,19 @@ class MessageUpgradedGift extends MessageContent
     {
         return [
             '@type'                            => static::TYPE_NAME,
-            'gift'                             => $this->gift->typeSerialize(),
-            'sender_id'                        => $this->senderId ?? null,
-            'receiver_id'                      => $this->receiverId->typeSerialize(),
-            'origin'                           => $this->origin->typeSerialize(),
-            'received_gift_id'                 => $this->receivedGiftId,
-            'is_saved'                         => $this->isSaved,
             'can_be_transferred'               => $this->canBeTransferred,
-            'was_transferred'                  => $this->wasTransferred,
-            'transfer_star_count'              => $this->transferStarCount,
             'drop_original_details_star_count' => $this->dropOriginalDetailsStarCount,
-            'next_transfer_date'               => $this->nextTransferDate,
-            'next_resale_date'                 => $this->nextResaleDate,
             'export_date'                      => $this->exportDate,
+            'gift'                             => $this->gift->jsonSerialize(),
+            'is_saved'                         => $this->isSaved,
+            'next_resale_date'                 => $this->nextResaleDate,
+            'next_transfer_date'               => $this->nextTransferDate,
+            'origin'                           => $this->origin->jsonSerialize(),
+            'received_gift_id'                 => $this->receivedGiftId,
+            'receiver_id'                      => $this->receiverId->jsonSerialize(),
+            'sender_id'                        => (null !== $this->senderId ? $this->senderId->jsonSerialize() : null),
+            'transfer_star_count'              => $this->transferStarCount,
+            'was_transferred'                  => $this->wasTransferred,
         ];
     }
 }

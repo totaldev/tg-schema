@@ -25,7 +25,7 @@ class CheckChatFolderInviteLink extends TdFunction
     public static function fromArray(array $array): CheckChatFolderInviteLink
     {
         return new static(
-            $array['invite_link'],
+            inviteLink: $array['invite_link'],
         );
     }
 

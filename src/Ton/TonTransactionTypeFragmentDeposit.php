@@ -32,8 +32,8 @@ class TonTransactionTypeFragmentDeposit extends TonTransactionType
     public static function fromArray(array $array): TonTransactionTypeFragmentDeposit
     {
         return new static(
-            $array['is_gift'],
-            isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null,
+            isGift : $array['is_gift'],
+            sticker: (isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null),
         );
     }
 
@@ -66,7 +66,7 @@ class TonTransactionTypeFragmentDeposit extends TonTransactionType
         return [
             '@type'   => static::TYPE_NAME,
             'is_gift' => $this->isGift,
-            'sticker' => $this->sticker ?? null,
+            'sticker' => (null !== $this->sticker ? $this->sticker->jsonSerialize() : null),
         ];
     }
 }

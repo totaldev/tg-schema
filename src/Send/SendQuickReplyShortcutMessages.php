@@ -21,21 +21,21 @@ class SendQuickReplyShortcutMessages extends TdFunction
          */
         protected int $chatId,
         /**
-         * Unique identifier of the quick reply shortcut.
-         */
-        protected int $shortcutId,
-        /**
          * Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates.
          */
         protected int $sendingId,
+        /**
+         * Unique identifier of the quick reply shortcut.
+         */
+        protected int $shortcutId,
     ) {}
 
     public static function fromArray(array $array): SendQuickReplyShortcutMessages
     {
         return new static(
-            $array['chat_id'],
-            $array['shortcut_id'],
-            $array['sending_id'],
+            chatId    : $array['chat_id'],
+            sendingId : $array['sending_id'],
+            shortcutId: $array['shortcut_id'],
         );
     }
 
@@ -80,8 +80,8 @@ class SendQuickReplyShortcutMessages extends TdFunction
         return [
             '@type'       => static::TYPE_NAME,
             'chat_id'     => $this->chatId,
-            'shortcut_id' => $this->shortcutId,
             'sending_id'  => $this->sendingId,
+            'shortcut_id' => $this->shortcutId,
         ];
     }
 }

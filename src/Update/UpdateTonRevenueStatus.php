@@ -29,7 +29,7 @@ class UpdateTonRevenueStatus extends Update
     public static function fromArray(array $array): UpdateTonRevenueStatus
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['status']),
+            status: TdSchemaRegistry::fromArray($array['status']),
         );
     }
 
@@ -49,7 +49,7 @@ class UpdateTonRevenueStatus extends Update
     {
         return [
             '@type'  => static::TYPE_NAME,
-            'status' => $this->status->typeSerialize(),
+            'status' => $this->status->jsonSerialize(),
         ];
     }
 }

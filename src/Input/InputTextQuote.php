@@ -19,20 +19,20 @@ class InputTextQuote extends TdObject
 
     public function __construct(
         /**
-         * Text of the quote; 0-getOption("message_reply_quote_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed to be kept and must be kept in the quote.
-         */
-        protected FormattedText $text,
-        /**
          * Quote position in the original message in UTF-16 code units.
          */
         protected int           $position,
+        /**
+         * Text of the quote; 0-getOption("message_reply_quote_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed to be kept and must be kept in the quote.
+         */
+        protected FormattedText $text,
     ) {}
 
     public static function fromArray(array $array): InputTextQuote
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['text']),
-            $array['position'],
+            position: $array['position'],
+            text    : TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -64,8 +64,8 @@ class InputTextQuote extends TdObject
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'text'     => $this->text->typeSerialize(),
             'position' => $this->position,
+            'text'     => $this->text->jsonSerialize(),
         ];
     }
 }

@@ -30,8 +30,8 @@ class GetChatInviteLink extends TdFunction
     public static function fromArray(array $array): GetChatInviteLink
     {
         return new static(
-            $array['chat_id'],
-            $array['invite_link'],
+            chatId    : $array['chat_id'],
+            inviteLink: $array['invite_link'],
         );
     }
 

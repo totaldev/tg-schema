@@ -27,13 +27,13 @@ class GetChatJoinRequests extends TdFunction
          */
         protected string           $inviteLink,
         /**
-         * A query to search for in the first names, last names and usernames of the users to return.
-         */
-        protected string           $query,
-        /**
          * The maximum number of requests to join the chat to return.
          */
         protected int              $limit,
+        /**
+         * A query to search for in the first names, last names and usernames of the users to return.
+         */
+        protected string           $query,
         /**
          * A chat join request from which to return next requests; pass null to get results from the beginning.
          */
@@ -43,11 +43,11 @@ class GetChatJoinRequests extends TdFunction
     public static function fromArray(array $array): GetChatJoinRequests
     {
         return new static(
-            $array['chat_id'],
-            $array['invite_link'],
-            $array['query'],
-            isset($array['offset_request']) ? TdSchemaRegistry::fromArray($array['offset_request']) : null,
-            $array['limit'],
+            chatId       : $array['chat_id'],
+            inviteLink   : $array['invite_link'],
+            limit        : $array['limit'],
+            offsetRequest: (isset($array['offset_request']) ? TdSchemaRegistry::fromArray($array['offset_request']) : null),
+            query        : $array['query'],
         );
     }
 
@@ -117,9 +117,9 @@ class GetChatJoinRequests extends TdFunction
             '@type'          => static::TYPE_NAME,
             'chat_id'        => $this->chatId,
             'invite_link'    => $this->inviteLink,
-            'query'          => $this->query,
-            'offset_request' => $this->offsetRequest ?? null,
             'limit'          => $this->limit,
+            'offset_request' => (null !== $this->offsetRequest ? $this->offsetRequest->jsonSerialize() : null),
+            'query'          => $this->query,
         ];
     }
 }

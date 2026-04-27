@@ -15,13 +15,13 @@ class StarTransactionTypeChannelSubscriptionSale extends StarTransactionType
 
     public function __construct(
         /**
-         * Identifier of the user that bought the subscription.
-         */
-        protected int $userId,
-        /**
          * The number of seconds between consecutive Telegram Star debitings.
          */
         protected int $subscriptionPeriod,
+        /**
+         * Identifier of the user that bought the subscription.
+         */
+        protected int $userId,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class StarTransactionTypeChannelSubscriptionSale extends StarTransactionType
     public static function fromArray(array $array): StarTransactionTypeChannelSubscriptionSale
     {
         return new static(
-            $array['user_id'],
-            $array['subscription_period'],
+            subscriptionPeriod: $array['subscription_period'],
+            userId            : $array['user_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class StarTransactionTypeChannelSubscriptionSale extends StarTransactionType
     {
         return [
             '@type'               => static::TYPE_NAME,
-            'user_id'             => $this->userId,
             'subscription_period' => $this->subscriptionPeriod,
+            'user_id'             => $this->userId,
         ];
     }
 }

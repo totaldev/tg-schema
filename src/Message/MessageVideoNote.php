@@ -18,17 +18,17 @@ class MessageVideoNote extends MessageContent
 
     public function __construct(
         /**
-         * The video note description.
+         * True, if the video note thumbnail must be blurred and the video note must be shown only while tapped.
          */
-        protected VideoNote $videoNote,
+        protected bool      $isSecret,
         /**
          * True, if at least one of the recipients has viewed the video note.
          */
         protected bool      $isViewed,
         /**
-         * True, if the video note thumbnail must be blurred and the video note must be shown only while tapped.
+         * The video note description.
          */
-        protected bool      $isSecret,
+        protected VideoNote $videoNote,
     ) {
         parent::__construct();
     }
@@ -36,9 +36,9 @@ class MessageVideoNote extends MessageContent
     public static function fromArray(array $array): MessageVideoNote
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['video_note']),
-            $array['is_viewed'],
-            $array['is_secret'],
+            isSecret : $array['is_secret'],
+            isViewed : $array['is_viewed'],
+            videoNote: TdSchemaRegistry::fromArray($array['video_note']),
         );
     }
 
@@ -82,9 +82,9 @@ class MessageVideoNote extends MessageContent
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'video_note' => $this->videoNote->typeSerialize(),
-            'is_viewed'  => $this->isViewed,
             'is_secret'  => $this->isSecret,
+            'is_viewed'  => $this->isViewed,
+            'video_note' => $this->videoNote->jsonSerialize(),
         ];
     }
 }

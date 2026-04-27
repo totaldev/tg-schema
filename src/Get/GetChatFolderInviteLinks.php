@@ -25,7 +25,7 @@ class GetChatFolderInviteLinks extends TdFunction
     public static function fromArray(array $array): GetChatFolderInviteLinks
     {
         return new static(
-            $array['chat_folder_id'],
+            chatFolderId: $array['chat_folder_id'],
         );
     }
 

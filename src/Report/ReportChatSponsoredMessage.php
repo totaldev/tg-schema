@@ -33,9 +33,9 @@ class ReportChatSponsoredMessage extends TdFunction
     public static function fromArray(array $array): ReportChatSponsoredMessage
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            $array['option_id'],
+            chatId   : $array['chat_id'],
+            messageId: $array['message_id'],
+            optionId : $array['option_id'],
         );
     }
 

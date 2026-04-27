@@ -18,25 +18,25 @@ class LinkPreviewTypeEmbeddedAnimationPlayer extends LinkPreviewType
 
     public function __construct(
         /**
-         * URL of the external animation player.
+         * Duration of the animation, in seconds.
          */
-        protected string $url,
+        protected int    $duration,
+        /**
+         * Expected height of the embedded player.
+         */
+        protected int    $height,
         /**
          * Thumbnail of the animation; may be null if unknown.
          */
         protected ?Photo $thumbnail,
         /**
-         * Duration of the animation, in seconds.
+         * URL of the external animation player.
          */
-        protected int    $duration,
+        protected string $url,
         /**
          * Expected width of the embedded player.
          */
         protected int    $width,
-        /**
-         * Expected height of the embedded player.
-         */
-        protected int    $height,
     ) {
         parent::__construct();
     }
@@ -44,11 +44,11 @@ class LinkPreviewTypeEmbeddedAnimationPlayer extends LinkPreviewType
     public static function fromArray(array $array): LinkPreviewTypeEmbeddedAnimationPlayer
     {
         return new static(
-            $array['url'],
-            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
-            $array['duration'],
-            $array['width'],
-            $array['height'],
+            duration : $array['duration'],
+            height   : $array['height'],
+            thumbnail: (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
+            url      : $array['url'],
+            width    : $array['width'],
         );
     }
 
@@ -116,11 +116,11 @@ class LinkPreviewTypeEmbeddedAnimationPlayer extends LinkPreviewType
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'url'       => $this->url,
-            'thumbnail' => $this->thumbnail ?? null,
             'duration'  => $this->duration,
-            'width'     => $this->width,
             'height'    => $this->height,
+            'thumbnail' => (null !== $this->thumbnail ? $this->thumbnail->jsonSerialize() : null),
+            'url'       => $this->url,
+            'width'     => $this->width,
         ];
     }
 }

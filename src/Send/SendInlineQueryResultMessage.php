@@ -25,6 +25,10 @@ class SendInlineQueryResultMessage extends TdFunction
          */
         protected int                  $chatId,
         /**
+         * Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username").
+         */
+        protected bool                 $hideViaBot,
+        /**
          * Identifier of the inline query.
          */
         protected int                  $queryId,
@@ -33,33 +37,29 @@ class SendInlineQueryResultMessage extends TdFunction
          */
         protected string               $resultId,
         /**
-         * Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username").
+         * Options to be used to send the message; pass null to use default options.
          */
-        protected bool                 $hideViaBot,
-        /**
-         * Topic in which the message will be sent; pass null if none.
-         */
-        protected ?MessageTopic        $topicId = null,
+        protected ?MessageSendOptions  $options = null,
         /**
          * Information about the message or story to be replied; pass null if none.
          */
         protected ?InputMessageReplyTo $replyTo = null,
         /**
-         * Options to be used to send the message; pass null to use default options.
+         * Topic in which the message will be sent; pass null if none.
          */
-        protected ?MessageSendOptions  $options = null,
+        protected ?MessageTopic        $topicId = null,
     ) {}
 
     public static function fromArray(array $array): SendInlineQueryResultMessage
     {
         return new static(
-            $array['chat_id'],
-            isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null,
-            isset($array['reply_to']) ? TdSchemaRegistry::fromArray($array['reply_to']) : null,
-            isset($array['options']) ? TdSchemaRegistry::fromArray($array['options']) : null,
-            $array['query_id'],
-            $array['result_id'],
-            $array['hide_via_bot'],
+            chatId    : $array['chat_id'],
+            hideViaBot: $array['hide_via_bot'],
+            options   : (isset($array['options']) ? TdSchemaRegistry::fromArray($array['options']) : null),
+            queryId   : $array['query_id'],
+            replyTo   : (isset($array['reply_to']) ? TdSchemaRegistry::fromArray($array['reply_to']) : null),
+            resultId  : $array['result_id'],
+            topicId   : (isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null),
         );
     }
 
@@ -152,12 +152,12 @@ class SendInlineQueryResultMessage extends TdFunction
         return [
             '@type'        => static::TYPE_NAME,
             'chat_id'      => $this->chatId,
-            'topic_id'     => $this->topicId ?? null,
-            'reply_to'     => $this->replyTo ?? null,
-            'options'      => $this->options ?? null,
-            'query_id'     => $this->queryId,
-            'result_id'    => $this->resultId,
             'hide_via_bot' => $this->hideViaBot,
+            'options'      => (null !== $this->options ? $this->options->jsonSerialize() : null),
+            'query_id'     => $this->queryId,
+            'reply_to'     => (null !== $this->replyTo ? $this->replyTo->jsonSerialize() : null),
+            'result_id'    => $this->resultId,
+            'topic_id'     => (null !== $this->topicId ? $this->topicId->jsonSerialize() : null),
         ];
     }
 }

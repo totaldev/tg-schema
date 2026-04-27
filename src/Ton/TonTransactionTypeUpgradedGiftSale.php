@@ -18,14 +18,6 @@ class TonTransactionTypeUpgradedGiftSale extends TonTransactionType
 
     public function __construct(
         /**
-         * Identifier of the user that bought the gift.
-         */
-        protected int          $userId,
-        /**
-         * The gift.
-         */
-        protected UpgradedGift $gift,
-        /**
          * The number of Toncoins received by the Telegram for each 1000 Toncoins received by the seller of the gift.
          */
         protected int          $commissionPerMille,
@@ -33,6 +25,14 @@ class TonTransactionTypeUpgradedGiftSale extends TonTransactionType
          * The amount of Toncoins that were received by the Telegram; in the smallest units of the currency.
          */
         protected int          $commissionToncoinAmount,
+        /**
+         * The gift.
+         */
+        protected UpgradedGift $gift,
+        /**
+         * Identifier of the user that bought the gift.
+         */
+        protected int          $userId,
     ) {
         parent::__construct();
     }
@@ -40,10 +40,10 @@ class TonTransactionTypeUpgradedGiftSale extends TonTransactionType
     public static function fromArray(array $array): TonTransactionTypeUpgradedGiftSale
     {
         return new static(
-            $array['user_id'],
-            TdSchemaRegistry::fromArray($array['gift']),
-            $array['commission_per_mille'],
-            $array['commission_toncoin_amount'],
+            commissionPerMille     : $array['commission_per_mille'],
+            commissionToncoinAmount: $array['commission_toncoin_amount'],
+            gift                   : TdSchemaRegistry::fromArray($array['gift']),
+            userId                 : $array['user_id'],
         );
     }
 
@@ -99,10 +99,10 @@ class TonTransactionTypeUpgradedGiftSale extends TonTransactionType
     {
         return [
             '@type'                     => static::TYPE_NAME,
-            'user_id'                   => $this->userId,
-            'gift'                      => $this->gift->typeSerialize(),
             'commission_per_mille'      => $this->commissionPerMille,
             'commission_toncoin_amount' => $this->commissionToncoinAmount,
+            'gift'                      => $this->gift->jsonSerialize(),
+            'user_id'                   => $this->userId,
         ];
     }
 }

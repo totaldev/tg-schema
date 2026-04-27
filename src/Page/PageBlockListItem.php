@@ -32,8 +32,8 @@ class PageBlockListItem extends TdObject
     public static function fromArray(array $array): PageBlockListItem
     {
         return new static(
-            $array['label'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['page_blocks']),
+            label     : $array['label'],
+            pageBlocks: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['page_blocks']),
         );
     }
 
@@ -66,7 +66,7 @@ class PageBlockListItem extends TdObject
         return [
             '@type'       => static::TYPE_NAME,
             'label'       => $this->label,
-            'page_blocks' => array_map(static fn($x) => $x->typeSerialize(), $this->pageBlocks),
+            'page_blocks' => array_map(static fn($x) => $x->jsonSerialize(), $this->pageBlocks),
         ];
     }
 }

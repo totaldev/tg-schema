@@ -19,19 +19,19 @@ class UpdateDeleteMessages extends Update
          */
         protected int   $chatId,
         /**
-         * Identifiers of the deleted messages.
-         *
-         * @var int[]
+         * True, if the messages are deleted only from the cache and can possibly be retrieved again in the future.
          */
-        protected array $messageIds,
+        protected bool  $fromCache,
         /**
          * True, if the messages are permanently deleted by a user (as opposed to just becoming inaccessible).
          */
         protected bool  $isPermanent,
         /**
-         * True, if the messages are deleted only from the cache and can possibly be retrieved again in the future.
+         * Identifiers of the deleted messages.
+         *
+         * @var int[]
          */
-        protected bool  $fromCache,
+        protected array $messageIds,
     ) {
         parent::__construct();
     }
@@ -39,10 +39,10 @@ class UpdateDeleteMessages extends Update
     public static function fromArray(array $array): UpdateDeleteMessages
     {
         return new static(
-            $array['chat_id'],
-            $array['message_ids'],
-            $array['is_permanent'],
-            $array['from_cache'],
+            chatId     : $array['chat_id'],
+            fromCache  : $array['from_cache'],
+            isPermanent: $array['is_permanent'],
+            messageIds : $array['message_ids'],
         );
     }
 
@@ -99,9 +99,9 @@ class UpdateDeleteMessages extends Update
         return [
             '@type'        => static::TYPE_NAME,
             'chat_id'      => $this->chatId,
-            'message_ids'  => $this->messageIds,
-            'is_permanent' => $this->isPermanent,
             'from_cache'   => $this->fromCache,
+            'is_permanent' => $this->isPermanent,
+            'message_ids'  => $this->messageIds,
         ];
     }
 }

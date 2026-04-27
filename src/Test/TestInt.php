@@ -25,7 +25,7 @@ class TestInt extends TdObject
     public static function fromArray(array $array): TestInt
     {
         return new static(
-            $array['value'],
+            value: $array['value'],
         );
     }
 

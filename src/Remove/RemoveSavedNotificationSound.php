@@ -25,7 +25,7 @@ class RemoveSavedNotificationSound extends TdFunction
     public static function fromArray(array $array): RemoveSavedNotificationSound
     {
         return new static(
-            $array['notification_sound_id'],
+            notificationSoundId: $array['notification_sound_id'],
         );
     }
 

@@ -25,7 +25,7 @@ class InputChatThemeEmoji extends InputChatTheme
     public static function fromArray(array $array): InputChatThemeEmoji
     {
         return new static(
-            $array['name'],
+            name: $array['name'],
         );
     }
 

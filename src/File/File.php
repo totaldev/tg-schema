@@ -20,17 +20,13 @@ class File extends TdObject
 
     public function __construct(
         /**
-         * Unique file identifier.
-         */
-        protected int        $id,
-        /**
-         * File size, in bytes; 0 if unknown.
-         */
-        protected int        $size,
-        /**
          * Approximate file size in bytes in case the exact file size is unknown. Can be used to show download/upload progress.
          */
         protected int        $expectedSize,
+        /**
+         * Unique file identifier.
+         */
+        protected int        $id,
         /**
          * Information about the local copy of the file.
          */
@@ -39,16 +35,20 @@ class File extends TdObject
          * Information about the remote copy of the file.
          */
         protected RemoteFile $remote,
+        /**
+         * File size, in bytes; 0 if unknown.
+         */
+        protected int        $size,
     ) {}
 
     public static function fromArray(array $array): File
     {
         return new static(
-            $array['id'],
-            $array['size'],
-            $array['expected_size'],
-            TdSchemaRegistry::fromArray($array['local']),
-            TdSchemaRegistry::fromArray($array['remote']),
+            expectedSize: $array['expected_size'],
+            id          : $array['id'],
+            local       : TdSchemaRegistry::fromArray($array['local']),
+            remote      : TdSchemaRegistry::fromArray($array['remote']),
+            size        : $array['size'],
         );
     }
 
@@ -116,11 +116,11 @@ class File extends TdObject
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'id'            => $this->id,
-            'size'          => $this->size,
             'expected_size' => $this->expectedSize,
-            'local'         => $this->local->typeSerialize(),
-            'remote'        => $this->remote->typeSerialize(),
+            'id'            => $this->id,
+            'local'         => $this->local->jsonSerialize(),
+            'remote'        => $this->remote->jsonSerialize(),
+            'size'          => $this->size,
         ];
     }
 }

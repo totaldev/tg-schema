@@ -18,33 +18,33 @@ class UpdateNewPreCheckoutQuery extends Update
 
     public function __construct(
         /**
-         * Unique query identifier.
-         */
-        protected int        $id,
-        /**
-         * Identifier of the user who sent the query.
-         */
-        protected int        $senderUserId,
-        /**
          * Currency for the product price.
          */
         protected string     $currency,
         /**
-         * Total price for the product, in the smallest units of the currency.
+         * Unique query identifier.
          */
-        protected int        $totalAmount,
+        protected int        $id,
         /**
          * Invoice payload.
          */
         protected string     $invoicePayload,
         /**
+         * Information about the order; may be null.
+         */
+        protected ?OrderInfo $orderInfo,
+        /**
+         * Identifier of the user who sent the query.
+         */
+        protected int        $senderUserId,
+        /**
          * Identifier of a shipping option chosen by the user; may be empty if not applicable.
          */
         protected string     $shippingOptionId,
         /**
-         * Information about the order; may be null.
+         * Total price for the product, in the smallest units of the currency.
          */
-        protected ?OrderInfo $orderInfo,
+        protected int        $totalAmount,
     ) {
         parent::__construct();
     }
@@ -52,13 +52,13 @@ class UpdateNewPreCheckoutQuery extends Update
     public static function fromArray(array $array): UpdateNewPreCheckoutQuery
     {
         return new static(
-            $array['id'],
-            $array['sender_user_id'],
-            $array['currency'],
-            $array['total_amount'],
-            $array['invoice_payload'],
-            $array['shipping_option_id'],
-            isset($array['order_info']) ? TdSchemaRegistry::fromArray($array['order_info']) : null,
+            currency        : $array['currency'],
+            id              : $array['id'],
+            invoicePayload  : $array['invoice_payload'],
+            orderInfo       : (isset($array['order_info']) ? TdSchemaRegistry::fromArray($array['order_info']) : null),
+            senderUserId    : $array['sender_user_id'],
+            shippingOptionId: $array['shipping_option_id'],
+            totalAmount     : $array['total_amount'],
         );
     }
 
@@ -150,13 +150,13 @@ class UpdateNewPreCheckoutQuery extends Update
     {
         return [
             '@type'              => static::TYPE_NAME,
-            'id'                 => $this->id,
-            'sender_user_id'     => $this->senderUserId,
             'currency'           => $this->currency,
-            'total_amount'       => $this->totalAmount,
+            'id'                 => $this->id,
             'invoice_payload'    => $this->invoicePayload,
+            'order_info'         => (null !== $this->orderInfo ? $this->orderInfo->jsonSerialize() : null),
+            'sender_user_id'     => $this->senderUserId,
             'shipping_option_id' => $this->shippingOptionId,
-            'order_info'         => $this->orderInfo ?? null,
+            'total_amount'       => $this->totalAmount,
         ];
     }
 }

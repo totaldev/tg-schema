@@ -22,13 +22,13 @@ class UpdateMessageEdited extends Update
          */
         protected int          $chatId,
         /**
-         * Message identifier.
-         */
-        protected int          $messageId,
-        /**
          * Point in time (Unix timestamp) when the message was edited.
          */
         protected int          $editDate,
+        /**
+         * Message identifier.
+         */
+        protected int          $messageId,
         /**
          * New message reply markup; may be null.
          */
@@ -40,10 +40,10 @@ class UpdateMessageEdited extends Update
     public static function fromArray(array $array): UpdateMessageEdited
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            $array['edit_date'],
-            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
+            chatId     : $array['chat_id'],
+            editDate   : $array['edit_date'],
+            messageId  : $array['message_id'],
+            replyMarkup: (isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null),
         );
     }
 
@@ -100,9 +100,9 @@ class UpdateMessageEdited extends Update
         return [
             '@type'        => static::TYPE_NAME,
             'chat_id'      => $this->chatId,
-            'message_id'   => $this->messageId,
             'edit_date'    => $this->editDate,
-            'reply_markup' => $this->replyMarkup ?? null,
+            'message_id'   => $this->messageId,
+            'reply_markup' => (null !== $this->replyMarkup ? $this->replyMarkup->jsonSerialize() : null),
         ];
     }
 }

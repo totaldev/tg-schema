@@ -27,7 +27,7 @@ class MessageChatAddMembers extends MessageContent
     public static function fromArray(array $array): MessageChatAddMembers
     {
         return new static(
-            $array['member_user_ids'],
+            memberUserIds: $array['member_user_ids'],
         );
     }
 

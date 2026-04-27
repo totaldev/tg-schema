@@ -27,7 +27,7 @@ class SetBusinessLocation extends TdFunction
     public static function fromArray(array $array): SetBusinessLocation
     {
         return new static(
-            isset($array['location']) ? TdSchemaRegistry::fromArray($array['location']) : null,
+            location: (isset($array['location']) ? TdSchemaRegistry::fromArray($array['location']) : null),
         );
     }
 
@@ -47,7 +47,7 @@ class SetBusinessLocation extends TdFunction
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'location' => $this->location ?? null,
+            'location' => (null !== $this->location ? $this->location->jsonSerialize() : null),
         ];
     }
 }

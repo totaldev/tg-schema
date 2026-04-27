@@ -19,13 +19,13 @@ class UpdateFileAddedToDownloads extends Update
 
     public function __construct(
         /**
-         * The added file download.
-         */
-        protected FileDownload         $fileDownload,
-        /**
          * New number of being downloaded and recently downloaded files found.
          */
         protected DownloadedFileCounts $counts,
+        /**
+         * The added file download.
+         */
+        protected FileDownload         $fileDownload,
     ) {
         parent::__construct();
     }
@@ -33,8 +33,8 @@ class UpdateFileAddedToDownloads extends Update
     public static function fromArray(array $array): UpdateFileAddedToDownloads
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['file_download']),
-            TdSchemaRegistry::fromArray($array['counts']),
+            counts      : TdSchemaRegistry::fromArray($array['counts']),
+            fileDownload: TdSchemaRegistry::fromArray($array['file_download']),
         );
     }
 
@@ -66,8 +66,8 @@ class UpdateFileAddedToDownloads extends Update
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'file_download' => $this->fileDownload->typeSerialize(),
-            'counts'        => $this->counts->typeSerialize(),
+            'counts'        => $this->counts->jsonSerialize(),
+            'file_download' => $this->fileDownload->jsonSerialize(),
         ];
     }
 }

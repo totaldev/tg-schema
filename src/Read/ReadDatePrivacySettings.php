@@ -26,7 +26,7 @@ class ReadDatePrivacySettings extends TdObject
     public static function fromArray(array $array): ReadDatePrivacySettings
     {
         return new static(
-            $array['show_read_date'],
+            showReadDate: $array['show_read_date'],
         );
     }
 

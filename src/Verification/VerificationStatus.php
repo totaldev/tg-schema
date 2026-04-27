@@ -17,30 +17,30 @@ class VerificationStatus extends TdObject
 
     public function __construct(
         /**
-         * True, if the chat or the user is verified by Telegram.
+         * Identifier of the custom emoji to be shown as verification sign provided by a bot for the user; 0 if none.
          */
-        protected bool $isVerified,
-        /**
-         * True, if the chat or the user is marked as scam by Telegram.
-         */
-        protected bool $isScam,
+        protected int  $botVerificationIconCustomEmojiId,
         /**
          * True, if the chat or the user is marked as fake by Telegram.
          */
         protected bool $isFake,
         /**
-         * Identifier of the custom emoji to be shown as verification sign provided by a bot for the user; 0 if none.
+         * True, if the chat or the user is marked as scam by Telegram.
          */
-        protected int  $botVerificationIconCustomEmojiId,
+        protected bool $isScam,
+        /**
+         * True, if the chat or the user is verified by Telegram.
+         */
+        protected bool $isVerified,
     ) {}
 
     public static function fromArray(array $array): VerificationStatus
     {
         return new static(
-            $array['is_verified'],
-            $array['is_scam'],
-            $array['is_fake'],
-            $array['bot_verification_icon_custom_emoji_id'],
+            botVerificationIconCustomEmojiId: $array['bot_verification_icon_custom_emoji_id'],
+            isFake                          : $array['is_fake'],
+            isScam                          : $array['is_scam'],
+            isVerified                      : $array['is_verified'],
         );
     }
 
@@ -96,10 +96,10 @@ class VerificationStatus extends TdObject
     {
         return [
             '@type'                                 => static::TYPE_NAME,
-            'is_verified'                           => $this->isVerified,
-            'is_scam'                               => $this->isScam,
-            'is_fake'                               => $this->isFake,
             'bot_verification_icon_custom_emoji_id' => $this->botVerificationIconCustomEmojiId,
+            'is_fake'                               => $this->isFake,
+            'is_scam'                               => $this->isScam,
+            'is_verified'                           => $this->isVerified,
         ];
     }
 }

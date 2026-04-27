@@ -25,7 +25,7 @@ class TMeUrlTypeStickerSet extends TMeUrlType
     public static function fromArray(array $array): TMeUrlTypeStickerSet
     {
         return new static(
-            $array['sticker_set_id'],
+            stickerSetId: $array['sticker_set_id'],
         );
     }
 

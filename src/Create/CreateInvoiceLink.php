@@ -31,8 +31,8 @@ class CreateInvoiceLink extends TdFunction
     public static function fromArray(array $array): CreateInvoiceLink
     {
         return new static(
-            $array['business_connection_id'],
-            TdSchemaRegistry::fromArray($array['invoice']),
+            businessConnectionId: $array['business_connection_id'],
+            invoice             : TdSchemaRegistry::fromArray($array['invoice']),
         );
     }
 
@@ -65,7 +65,7 @@ class CreateInvoiceLink extends TdFunction
         return [
             '@type'                  => static::TYPE_NAME,
             'business_connection_id' => $this->businessConnectionId,
-            'invoice'                => $this->invoice->typeSerialize(),
+            'invoice'                => $this->invoice->jsonSerialize(),
         ];
     }
 }

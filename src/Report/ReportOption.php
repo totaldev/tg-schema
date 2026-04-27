@@ -29,8 +29,8 @@ class ReportOption extends TdObject
     public static function fromArray(array $array): ReportOption
     {
         return new static(
-            $array['id'],
-            $array['text'],
+            id  : $array['id'],
+            text: $array['text'],
         );
     }
 

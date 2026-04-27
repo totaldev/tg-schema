@@ -37,9 +37,9 @@ class UpdateGroupCallNewMessage extends Update
     public static function fromArray(array $array): UpdateGroupCallNewMessage
     {
         return new static(
-            $array['group_call_id'],
-            TdSchemaRegistry::fromArray($array['sender_id']),
-            TdSchemaRegistry::fromArray($array['text']),
+            groupCallId: $array['group_call_id'],
+            senderId   : TdSchemaRegistry::fromArray($array['sender_id']),
+            text       : TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -84,8 +84,8 @@ class UpdateGroupCallNewMessage extends Update
         return [
             '@type'         => static::TYPE_NAME,
             'group_call_id' => $this->groupCallId,
-            'sender_id'     => $this->senderId->typeSerialize(),
-            'text'          => $this->text->typeSerialize(),
+            'sender_id'     => $this->senderId->jsonSerialize(),
+            'text'          => $this->text->jsonSerialize(),
         ];
     }
 }

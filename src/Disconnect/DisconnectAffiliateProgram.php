@@ -32,8 +32,8 @@ class DisconnectAffiliateProgram extends TdFunction
     public static function fromArray(array $array): DisconnectAffiliateProgram
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['affiliate']),
-            $array['url'],
+            affiliate: TdSchemaRegistry::fromArray($array['affiliate']),
+            url      : $array['url'],
         );
     }
 
@@ -65,7 +65,7 @@ class DisconnectAffiliateProgram extends TdFunction
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'affiliate' => $this->affiliate->typeSerialize(),
+            'affiliate' => $this->affiliate->jsonSerialize(),
             'url'       => $this->url,
         ];
     }

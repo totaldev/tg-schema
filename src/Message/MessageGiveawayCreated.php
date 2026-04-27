@@ -26,7 +26,7 @@ class MessageGiveawayCreated extends MessageContent
     public static function fromArray(array $array): MessageGiveawayCreated
     {
         return new static(
-            $array['star_count'],
+            starCount: $array['star_count'],
         );
     }
 

@@ -21,13 +21,13 @@ class CreateGiftCollection extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the user or the channel chat that received the gifts.
-         */
-        protected MessageSender $ownerId,
-        /**
          * Name of the collection; 1-12 characters.
          */
         protected string        $name,
+        /**
+         * Identifier of the user or the channel chat that received the gifts.
+         */
+        protected MessageSender $ownerId,
         /**
          * Identifier of the gifts to add to the collection; 0-getOption("gift_collection_gift_count_max") identifiers.
          *
@@ -39,9 +39,9 @@ class CreateGiftCollection extends TdFunction
     public static function fromArray(array $array): CreateGiftCollection
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['owner_id']),
-            $array['name'],
-            $array['received_gift_ids'],
+            name           : $array['name'],
+            ownerId        : TdSchemaRegistry::fromArray($array['owner_id']),
+            receivedGiftIds: $array['received_gift_ids'],
         );
     }
 
@@ -85,8 +85,8 @@ class CreateGiftCollection extends TdFunction
     {
         return [
             '@type'             => static::TYPE_NAME,
-            'owner_id'          => $this->ownerId->typeSerialize(),
             'name'              => $this->name,
+            'owner_id'          => $this->ownerId->jsonSerialize(),
             'received_gift_ids' => $this->receivedGiftIds,
         ];
     }

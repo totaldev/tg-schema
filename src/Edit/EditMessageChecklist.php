@@ -24,13 +24,13 @@ class EditMessageChecklist extends TdFunction
          */
         protected int            $chatId,
         /**
-         * Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited.
-         */
-        protected int            $messageId,
-        /**
          * The new checklist. If some tasks were completed, this information will be kept.
          */
         protected InputChecklist $checklist,
+        /**
+         * Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited.
+         */
+        protected int            $messageId,
         /**
          * The new message reply markup; pass null if none; for bots only.
          */
@@ -40,10 +40,10 @@ class EditMessageChecklist extends TdFunction
     public static function fromArray(array $array): EditMessageChecklist
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
-            TdSchemaRegistry::fromArray($array['checklist']),
+            chatId     : $array['chat_id'],
+            checklist  : TdSchemaRegistry::fromArray($array['checklist']),
+            messageId  : $array['message_id'],
+            replyMarkup: (isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null),
         );
     }
 
@@ -100,9 +100,9 @@ class EditMessageChecklist extends TdFunction
         return [
             '@type'        => static::TYPE_NAME,
             'chat_id'      => $this->chatId,
+            'checklist'    => $this->checklist->jsonSerialize(),
             'message_id'   => $this->messageId,
-            'reply_markup' => $this->replyMarkup ?? null,
-            'checklist'    => $this->checklist->typeSerialize(),
+            'reply_markup' => (null !== $this->replyMarkup ? $this->replyMarkup->jsonSerialize() : null),
         ];
     }
 }

@@ -25,7 +25,7 @@ class AffiliateTypeChannel extends AffiliateType
     public static function fromArray(array $array): AffiliateTypeChannel
     {
         return new static(
-            $array['chat_id'],
+            chatId: $array['chat_id'],
         );
     }
 

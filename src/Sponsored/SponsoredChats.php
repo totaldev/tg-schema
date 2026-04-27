@@ -28,7 +28,7 @@ class SponsoredChats extends TdObject
     public static function fromArray(array $array): SponsoredChats
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['chats']),
+            chats: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['chats']),
         );
     }
 
@@ -48,7 +48,7 @@ class SponsoredChats extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            'chats' => array_map(static fn($x) => $x->typeSerialize(), $this->chats),
+            'chats' => array_map(static fn($x) => $x->jsonSerialize(), $this->chats),
         ];
     }
 }

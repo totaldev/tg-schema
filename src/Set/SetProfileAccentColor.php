@@ -29,8 +29,8 @@ class SetProfileAccentColor extends TdFunction
     public static function fromArray(array $array): SetProfileAccentColor
     {
         return new static(
-            $array['profile_accent_color_id'],
-            $array['profile_background_custom_emoji_id'],
+            profileAccentColorId          : $array['profile_accent_color_id'],
+            profileBackgroundCustomEmojiId: $array['profile_background_custom_emoji_id'],
         );
     }
 

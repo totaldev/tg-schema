@@ -31,8 +31,8 @@ class GetMessages extends TdFunction
     public static function fromArray(array $array): GetMessages
     {
         return new static(
-            $array['chat_id'],
-            $array['message_ids'],
+            chatId    : $array['chat_id'],
+            messageIds: $array['message_ids'],
         );
     }
 

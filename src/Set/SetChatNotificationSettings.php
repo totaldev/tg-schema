@@ -31,8 +31,8 @@ class SetChatNotificationSettings extends TdFunction
     public static function fromArray(array $array): SetChatNotificationSettings
     {
         return new static(
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['notification_settings']),
+            chatId              : $array['chat_id'],
+            notificationSettings: TdSchemaRegistry::fromArray($array['notification_settings']),
         );
     }
 
@@ -65,7 +65,7 @@ class SetChatNotificationSettings extends TdFunction
         return [
             '@type'                 => static::TYPE_NAME,
             'chat_id'               => $this->chatId,
-            'notification_settings' => $this->notificationSettings->typeSerialize(),
+            'notification_settings' => $this->notificationSettings->jsonSerialize(),
         ];
     }
 }

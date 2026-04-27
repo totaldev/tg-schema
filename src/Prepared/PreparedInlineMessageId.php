@@ -17,20 +17,20 @@ class PreparedInlineMessageId extends TdObject
 
     public function __construct(
         /**
-         * Unique identifier for the message.
-         */
-        protected string $id,
-        /**
          * Point in time (Unix timestamp) when the message can't be used anymore.
          */
         protected int    $expirationDate,
+        /**
+         * Unique identifier for the message.
+         */
+        protected string $id,
     ) {}
 
     public static function fromArray(array $array): PreparedInlineMessageId
     {
         return new static(
-            $array['id'],
-            $array['expiration_date'],
+            expirationDate: $array['expiration_date'],
+            id            : $array['id'],
         );
     }
 
@@ -62,8 +62,8 @@ class PreparedInlineMessageId extends TdObject
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'id'              => $this->id,
             'expiration_date' => $this->expirationDate,
+            'id'              => $this->id,
         ];
     }
 }

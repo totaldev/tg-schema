@@ -28,7 +28,7 @@ class UpgradedGiftOriginResale extends UpgradedGiftOrigin
     public static function fromArray(array $array): UpgradedGiftOriginResale
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['price']),
+            price: TdSchemaRegistry::fromArray($array['price']),
         );
     }
 
@@ -48,7 +48,7 @@ class UpgradedGiftOriginResale extends UpgradedGiftOrigin
     {
         return [
             '@type' => static::TYPE_NAME,
-            'price' => $this->price->typeSerialize(),
+            'price' => $this->price->jsonSerialize(),
         ];
     }
 }

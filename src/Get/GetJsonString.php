@@ -27,7 +27,7 @@ class GetJsonString extends TdFunction
     public static function fromArray(array $array): GetJsonString
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['json_value']),
+            jsonValue: TdSchemaRegistry::fromArray($array['json_value']),
         );
     }
 
@@ -47,7 +47,7 @@ class GetJsonString extends TdFunction
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'json_value' => $this->jsonValue->typeSerialize(),
+            'json_value' => $this->jsonValue->jsonSerialize(),
         ];
     }
 }

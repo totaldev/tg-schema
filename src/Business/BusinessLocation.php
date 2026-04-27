@@ -19,20 +19,20 @@ class BusinessLocation extends TdObject
 
     public function __construct(
         /**
-         * The location; may be null if not specified.
-         */
-        protected ?Location $location,
-        /**
          * Location address; 1-96 characters.
          */
         protected string    $address,
+        /**
+         * The location; may be null if not specified.
+         */
+        protected ?Location $location,
     ) {}
 
     public static function fromArray(array $array): BusinessLocation
     {
         return new static(
-            isset($array['location']) ? TdSchemaRegistry::fromArray($array['location']) : null,
-            $array['address'],
+            address : $array['address'],
+            location: (isset($array['location']) ? TdSchemaRegistry::fromArray($array['location']) : null),
         );
     }
 
@@ -64,8 +64,8 @@ class BusinessLocation extends TdObject
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'location' => $this->location ?? null,
             'address'  => $this->address,
+            'location' => (null !== $this->location ? $this->location->jsonSerialize() : null),
         ];
     }
 }

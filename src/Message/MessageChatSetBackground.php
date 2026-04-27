@@ -18,13 +18,13 @@ class MessageChatSetBackground extends MessageContent
 
     public function __construct(
         /**
-         * Identifier of the message with a previously set same background; 0 if none. Can be an identifier of a deleted message.
-         */
-        protected int            $oldBackgroundMessageId,
-        /**
          * The new background.
          */
         protected ChatBackground $background,
+        /**
+         * Identifier of the message with a previously set same background; 0 if none. Can be an identifier of a deleted message.
+         */
+        protected int            $oldBackgroundMessageId,
         /**
          * True, if the background was set only for self.
          */
@@ -36,9 +36,9 @@ class MessageChatSetBackground extends MessageContent
     public static function fromArray(array $array): MessageChatSetBackground
     {
         return new static(
-            $array['old_background_message_id'],
-            TdSchemaRegistry::fromArray($array['background']),
-            $array['only_for_self'],
+            background            : TdSchemaRegistry::fromArray($array['background']),
+            oldBackgroundMessageId: $array['old_background_message_id'],
+            onlyForSelf           : $array['only_for_self'],
         );
     }
 
@@ -82,8 +82,8 @@ class MessageChatSetBackground extends MessageContent
     {
         return [
             '@type'                     => static::TYPE_NAME,
+            'background'                => $this->background->jsonSerialize(),
             'old_background_message_id' => $this->oldBackgroundMessageId,
-            'background'                => $this->background->typeSerialize(),
             'only_for_self'             => $this->onlyForSelf,
         ];
     }

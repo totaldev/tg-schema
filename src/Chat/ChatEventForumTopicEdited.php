@@ -18,13 +18,13 @@ class ChatEventForumTopicEdited extends ChatEventAction
 
     public function __construct(
         /**
-         * Old information about the topic.
-         */
-        protected ForumTopicInfo $oldTopicInfo,
-        /**
          * New information about the topic.
          */
         protected ForumTopicInfo $newTopicInfo,
+        /**
+         * Old information about the topic.
+         */
+        protected ForumTopicInfo $oldTopicInfo,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class ChatEventForumTopicEdited extends ChatEventAction
     public static function fromArray(array $array): ChatEventForumTopicEdited
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['old_topic_info']),
-            TdSchemaRegistry::fromArray($array['new_topic_info']),
+            newTopicInfo: TdSchemaRegistry::fromArray($array['new_topic_info']),
+            oldTopicInfo: TdSchemaRegistry::fromArray($array['old_topic_info']),
         );
     }
 
@@ -65,8 +65,8 @@ class ChatEventForumTopicEdited extends ChatEventAction
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'old_topic_info' => $this->oldTopicInfo->typeSerialize(),
-            'new_topic_info' => $this->newTopicInfo->typeSerialize(),
+            'new_topic_info' => $this->newTopicInfo->jsonSerialize(),
+            'old_topic_info' => $this->oldTopicInfo->jsonSerialize(),
         ];
     }
 }

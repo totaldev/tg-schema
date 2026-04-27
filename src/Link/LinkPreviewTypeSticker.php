@@ -28,7 +28,7 @@ class LinkPreviewTypeSticker extends LinkPreviewType
     public static function fromArray(array $array): LinkPreviewTypeSticker
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['sticker']),
+            sticker: TdSchemaRegistry::fromArray($array['sticker']),
         );
     }
 
@@ -48,7 +48,7 @@ class LinkPreviewTypeSticker extends LinkPreviewType
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'sticker' => $this->sticker->typeSerialize(),
+            'sticker' => $this->sticker->jsonSerialize(),
         ];
     }
 }

@@ -28,7 +28,7 @@ class UpdatePoll extends Update
     public static function fromArray(array $array): UpdatePoll
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['poll']),
+            poll: TdSchemaRegistry::fromArray($array['poll']),
         );
     }
 
@@ -48,7 +48,7 @@ class UpdatePoll extends Update
     {
         return [
             '@type' => static::TYPE_NAME,
-            'poll'  => $this->poll->typeSerialize(),
+            'poll'  => $this->poll->jsonSerialize(),
         ];
     }
 }

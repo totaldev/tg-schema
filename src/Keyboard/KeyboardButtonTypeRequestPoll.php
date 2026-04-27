@@ -15,13 +15,13 @@ class KeyboardButtonTypeRequestPoll extends KeyboardButtonType
 
     public function __construct(
         /**
-         * If true, only regular polls must be allowed to create.
-         */
-        protected bool $forceRegular,
-        /**
          * If true, only polls in quiz mode must be allowed to create.
          */
         protected bool $forceQuiz,
+        /**
+         * If true, only regular polls must be allowed to create.
+         */
+        protected bool $forceRegular,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class KeyboardButtonTypeRequestPoll extends KeyboardButtonType
     public static function fromArray(array $array): KeyboardButtonTypeRequestPoll
     {
         return new static(
-            $array['force_regular'],
-            $array['force_quiz'],
+            forceQuiz   : $array['force_quiz'],
+            forceRegular: $array['force_regular'],
         );
     }
 
@@ -62,8 +62,8 @@ class KeyboardButtonTypeRequestPoll extends KeyboardButtonType
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'force_regular' => $this->forceRegular,
             'force_quiz'    => $this->forceQuiz,
+            'force_regular' => $this->forceRegular,
         ];
     }
 }

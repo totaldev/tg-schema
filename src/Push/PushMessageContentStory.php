@@ -29,8 +29,8 @@ class PushMessageContentStory extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentStory
     {
         return new static(
-            $array['is_mention'],
-            $array['is_pinned'],
+            isMention: $array['is_mention'],
+            isPinned : $array['is_pinned'],
         );
     }
 

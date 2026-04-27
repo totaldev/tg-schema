@@ -15,13 +15,13 @@ class ChatSourcePublicServiceAnnouncement extends ChatSource
 
     public function __construct(
         /**
-         * The type of the announcement.
-         */
-        protected string $type,
-        /**
          * The text of the announcement.
          */
         protected string $text,
+        /**
+         * The type of the announcement.
+         */
+        protected string $type,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class ChatSourcePublicServiceAnnouncement extends ChatSource
     public static function fromArray(array $array): ChatSourcePublicServiceAnnouncement
     {
         return new static(
-            $array['type'],
-            $array['text'],
+            text: $array['text'],
+            type: $array['type'],
         );
     }
 
@@ -62,8 +62,8 @@ class ChatSourcePublicServiceAnnouncement extends ChatSource
     {
         return [
             '@type' => static::TYPE_NAME,
-            'type'  => $this->type,
             'text'  => $this->text,
+            'type'  => $this->type,
         ];
     }
 }

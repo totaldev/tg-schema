@@ -18,13 +18,13 @@ class ChatEventMessageDeleted extends ChatEventAction
 
     public function __construct(
         /**
-         * Deleted message.
-         */
-        protected Message $message,
-        /**
          * True, if the message deletion can be reported via reportSupergroupAntiSpamFalsePositive.
          */
         protected bool    $canReportAntiSpamFalsePositive,
+        /**
+         * Deleted message.
+         */
+        protected Message $message,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class ChatEventMessageDeleted extends ChatEventAction
     public static function fromArray(array $array): ChatEventMessageDeleted
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['message']),
-            $array['can_report_anti_spam_false_positive'],
+            canReportAntiSpamFalsePositive: $array['can_report_anti_spam_false_positive'],
+            message                       : TdSchemaRegistry::fromArray($array['message']),
         );
     }
 
@@ -65,8 +65,8 @@ class ChatEventMessageDeleted extends ChatEventAction
     {
         return [
             '@type'                               => static::TYPE_NAME,
-            'message'                             => $this->message->typeSerialize(),
             'can_report_anti_spam_false_positive' => $this->canReportAntiSpamFalsePositive,
+            'message'                             => $this->message->jsonSerialize(),
         ];
     }
 }

@@ -17,25 +17,25 @@ class ToggleSupergroupIsForum extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the supergroup.
+         * New value of has_forum_tabs; ignored if is_forum is false.
          */
-        protected int  $supergroupId,
+        protected bool $hasForumTabs,
         /**
          * New value of is_forum.
          */
         protected bool $isForum,
         /**
-         * New value of has_forum_tabs; ignored if is_forum is false.
+         * Identifier of the supergroup.
          */
-        protected bool $hasForumTabs,
+        protected int  $supergroupId,
     ) {}
 
     public static function fromArray(array $array): ToggleSupergroupIsForum
     {
         return new static(
-            $array['supergroup_id'],
-            $array['is_forum'],
-            $array['has_forum_tabs'],
+            hasForumTabs: $array['has_forum_tabs'],
+            isForum     : $array['is_forum'],
+            supergroupId: $array['supergroup_id'],
         );
     }
 
@@ -79,9 +79,9 @@ class ToggleSupergroupIsForum extends TdFunction
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'supergroup_id'  => $this->supergroupId,
-            'is_forum'       => $this->isForum,
             'has_forum_tabs' => $this->hasForumTabs,
+            'is_forum'       => $this->isForum,
+            'supergroup_id'  => $this->supergroupId,
         ];
     }
 }

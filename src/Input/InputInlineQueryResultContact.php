@@ -19,13 +19,21 @@ class InputInlineQueryResultContact extends InputInlineQueryResult
 
     public function __construct(
         /**
+         * User contact.
+         */
+        protected Contact             $contact,
+        /**
          * Unique identifier of the query result.
          */
         protected string              $id,
         /**
-         * User contact.
+         * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact.
          */
-        protected Contact             $contact,
+        protected InputMessageContent $inputMessageContent,
+        /**
+         * Thumbnail height, if known.
+         */
+        protected int                 $thumbnailHeight,
         /**
          * URL of the result thumbnail, if it exists.
          */
@@ -34,14 +42,6 @@ class InputInlineQueryResultContact extends InputInlineQueryResult
          * Thumbnail width, if known.
          */
         protected int                 $thumbnailWidth,
-        /**
-         * Thumbnail height, if known.
-         */
-        protected int                 $thumbnailHeight,
-        /**
-         * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact.
-         */
-        protected InputMessageContent $inputMessageContent,
         /**
          * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null.
          */
@@ -53,13 +53,13 @@ class InputInlineQueryResultContact extends InputInlineQueryResult
     public static function fromArray(array $array): InputInlineQueryResultContact
     {
         return new static(
-            $array['id'],
-            TdSchemaRegistry::fromArray($array['contact']),
-            $array['thumbnail_url'],
-            $array['thumbnail_width'],
-            $array['thumbnail_height'],
-            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
-            TdSchemaRegistry::fromArray($array['input_message_content']),
+            contact            : TdSchemaRegistry::fromArray($array['contact']),
+            id                 : $array['id'],
+            inputMessageContent: TdSchemaRegistry::fromArray($array['input_message_content']),
+            replyMarkup        : (isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null),
+            thumbnailHeight    : $array['thumbnail_height'],
+            thumbnailUrl       : $array['thumbnail_url'],
+            thumbnailWidth     : $array['thumbnail_width'],
         );
     }
 
@@ -151,13 +151,13 @@ class InputInlineQueryResultContact extends InputInlineQueryResult
     {
         return [
             '@type'                 => static::TYPE_NAME,
+            'contact'               => $this->contact->jsonSerialize(),
             'id'                    => $this->id,
-            'contact'               => $this->contact->typeSerialize(),
+            'input_message_content' => $this->inputMessageContent->jsonSerialize(),
+            'reply_markup'          => (null !== $this->replyMarkup ? $this->replyMarkup->jsonSerialize() : null),
+            'thumbnail_height'      => $this->thumbnailHeight,
             'thumbnail_url'         => $this->thumbnailUrl,
             'thumbnail_width'       => $this->thumbnailWidth,
-            'thumbnail_height'      => $this->thumbnailHeight,
-            'reply_markup'          => $this->replyMarkup ?? null,
-            'input_message_content' => $this->inputMessageContent->typeSerialize(),
         ];
     }
 }

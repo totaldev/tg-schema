@@ -25,7 +25,7 @@ class ChatEventHasProtectedContentToggled extends ChatEventAction
     public static function fromArray(array $array): ChatEventHasProtectedContentToggled
     {
         return new static(
-            $array['has_protected_content'],
+            hasProtectedContent: $array['has_protected_content'],
         );
     }
 

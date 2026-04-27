@@ -25,7 +25,7 @@ class SetUpgradedGiftColors extends TdFunction
     public static function fromArray(array $array): SetUpgradedGiftColors
     {
         return new static(
-            $array['upgraded_gift_colors_id'],
+            upgradedGiftColorsId: $array['upgraded_gift_colors_id'],
         );
     }
 

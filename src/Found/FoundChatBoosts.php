@@ -19,10 +19,6 @@ class FoundChatBoosts extends TdObject
 
     public function __construct(
         /**
-         * Total number of boosts applied to the chat.
-         */
-        protected int    $totalCount,
-        /**
          * List of boosts.
          *
          * @var ChatBoost[]
@@ -32,14 +28,18 @@ class FoundChatBoosts extends TdObject
          * The offset for the next request. If empty, then there are no more results.
          */
         protected string $nextOffset,
+        /**
+         * Total number of boosts applied to the chat.
+         */
+        protected int    $totalCount,
     ) {}
 
     public static function fromArray(array $array): FoundChatBoosts
     {
         return new static(
-            $array['total_count'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['boosts']),
-            $array['next_offset'],
+            boosts    : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['boosts']),
+            nextOffset: $array['next_offset'],
+            totalCount: $array['total_count'],
         );
     }
 
@@ -83,9 +83,9 @@ class FoundChatBoosts extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'total_count' => $this->totalCount,
-            'boosts'      => array_map(static fn($x) => $x->typeSerialize(), $this->boosts),
+            'boosts'      => array_map(static fn($x) => $x->jsonSerialize(), $this->boosts),
             'next_offset' => $this->nextOffset,
+            'total_count' => $this->totalCount,
         ];
     }
 }

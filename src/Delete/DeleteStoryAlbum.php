@@ -29,8 +29,8 @@ class DeleteStoryAlbum extends TdFunction
     public static function fromArray(array $array): DeleteStoryAlbum
     {
         return new static(
-            $array['chat_id'],
-            $array['story_album_id'],
+            chatId      : $array['chat_id'],
+            storyAlbumId: $array['story_album_id'],
         );
     }
 

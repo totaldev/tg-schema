@@ -17,20 +17,20 @@ class ChatStatisticsInviterInfo extends TdObject
 
     public function __construct(
         /**
-         * User identifier.
-         */
-        protected int $userId,
-        /**
          * Number of new members invited by the user.
          */
         protected int $addedMemberCount,
+        /**
+         * User identifier.
+         */
+        protected int $userId,
     ) {}
 
     public static function fromArray(array $array): ChatStatisticsInviterInfo
     {
         return new static(
-            $array['user_id'],
-            $array['added_member_count'],
+            addedMemberCount: $array['added_member_count'],
+            userId          : $array['user_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class ChatStatisticsInviterInfo extends TdObject
     {
         return [
             '@type'              => static::TYPE_NAME,
-            'user_id'            => $this->userId,
             'added_member_count' => $this->addedMemberCount,
+            'user_id'            => $this->userId,
         ];
     }
 }

@@ -20,13 +20,13 @@ class ReorderGiftCollectionGifts extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the user or the channel chat that owns the collection.
-         */
-        protected MessageSender $ownerId,
-        /**
          * Identifier of the gift collection.
          */
         protected int           $collectionId,
+        /**
+         * Identifier of the user or the channel chat that owns the collection.
+         */
+        protected MessageSender $ownerId,
         /**
          * Identifier of the gifts to move to the beginning of the collection. All other gifts are placed in the current order after the specified gifts.
          *
@@ -38,9 +38,9 @@ class ReorderGiftCollectionGifts extends TdFunction
     public static function fromArray(array $array): ReorderGiftCollectionGifts
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['owner_id']),
-            $array['collection_id'],
-            $array['received_gift_ids'],
+            collectionId   : $array['collection_id'],
+            ownerId        : TdSchemaRegistry::fromArray($array['owner_id']),
+            receivedGiftIds: $array['received_gift_ids'],
         );
     }
 
@@ -84,8 +84,8 @@ class ReorderGiftCollectionGifts extends TdFunction
     {
         return [
             '@type'             => static::TYPE_NAME,
-            'owner_id'          => $this->ownerId->typeSerialize(),
             'collection_id'     => $this->collectionId,
+            'owner_id'          => $this->ownerId->jsonSerialize(),
             'received_gift_ids' => $this->receivedGiftIds,
         ];
     }

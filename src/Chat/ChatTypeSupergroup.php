@@ -15,13 +15,13 @@ class ChatTypeSupergroup extends ChatType
 
     public function __construct(
         /**
-         * Supergroup or channel identifier.
-         */
-        protected int  $supergroupId,
-        /**
          * True, if the supergroup is a channel.
          */
         protected bool $isChannel,
+        /**
+         * Supergroup or channel identifier.
+         */
+        protected int  $supergroupId,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class ChatTypeSupergroup extends ChatType
     public static function fromArray(array $array): ChatTypeSupergroup
     {
         return new static(
-            $array['supergroup_id'],
-            $array['is_channel'],
+            isChannel   : $array['is_channel'],
+            supergroupId: $array['supergroup_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class ChatTypeSupergroup extends ChatType
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'supergroup_id' => $this->supergroupId,
             'is_channel'    => $this->isChannel,
+            'supergroup_id' => $this->supergroupId,
         ];
     }
 }

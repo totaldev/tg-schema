@@ -31,8 +31,8 @@ class TranslateText extends TdFunction
     public static function fromArray(array $array): TranslateText
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['text']),
-            $array['to_language_code'],
+            text          : TdSchemaRegistry::fromArray($array['text']),
+            toLanguageCode: $array['to_language_code'],
         );
     }
 
@@ -64,7 +64,7 @@ class TranslateText extends TdFunction
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'text'             => $this->text->typeSerialize(),
+            'text'             => $this->text->jsonSerialize(),
             'to_language_code' => $this->toLanguageCode,
         ];
     }

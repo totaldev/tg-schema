@@ -27,7 +27,7 @@ class SetAccountTtl extends TdFunction
     public static function fromArray(array $array): SetAccountTtl
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['ttl']),
+            ttl: TdSchemaRegistry::fromArray($array['ttl']),
         );
     }
 
@@ -47,7 +47,7 @@ class SetAccountTtl extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'ttl'   => $this->ttl->typeSerialize(),
+            'ttl'   => $this->ttl->jsonSerialize(),
         ];
     }
 }

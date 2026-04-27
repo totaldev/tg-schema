@@ -17,20 +17,20 @@ class SetSupergroupStickerSet extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the supergroup.
-         */
-        protected int $supergroupId,
-        /**
          * New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set.
          */
         protected int $stickerSetId,
+        /**
+         * Identifier of the supergroup.
+         */
+        protected int $supergroupId,
     ) {}
 
     public static function fromArray(array $array): SetSupergroupStickerSet
     {
         return new static(
-            $array['supergroup_id'],
-            $array['sticker_set_id'],
+            stickerSetId: $array['sticker_set_id'],
+            supergroupId: $array['supergroup_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class SetSupergroupStickerSet extends TdFunction
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'supergroup_id'  => $this->supergroupId,
             'sticker_set_id' => $this->stickerSetId,
+            'supergroup_id'  => $this->supergroupId,
         ];
     }
 }

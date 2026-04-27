@@ -25,33 +25,29 @@ class Video extends TdObject
          */
         protected int            $duration,
         /**
-         * Video width; as defined by the sender.
-         */
-        protected int            $width,
-        /**
-         * Video height; as defined by the sender.
-         */
-        protected int            $height,
-        /**
          * Original name of the file; as defined by the sender.
          */
         protected string         $fileName,
-        /**
-         * MIME type of the file; as defined by the sender.
-         */
-        protected string         $mimeType,
         /**
          * True, if stickers were added to the video. The list of corresponding sticker sets can be received using getAttachedStickerSets.
          */
         protected bool           $hasStickers,
         /**
-         * True, if the video is expected to be streamed.
+         * Video height; as defined by the sender.
          */
-        protected bool           $supportsStreaming,
+        protected int            $height,
+        /**
+         * MIME type of the file; as defined by the sender.
+         */
+        protected string         $mimeType,
         /**
          * Video minithumbnail; may be null.
          */
         protected ?Minithumbnail $minithumbnail,
+        /**
+         * True, if the video is expected to be streamed.
+         */
+        protected bool           $supportsStreaming,
         /**
          * Video thumbnail in JPEG or MPEG4 format; as defined by the sender; may be null.
          */
@@ -60,21 +56,25 @@ class Video extends TdObject
          * File containing the video.
          */
         protected File           $video,
+        /**
+         * Video width; as defined by the sender.
+         */
+        protected int            $width,
     ) {}
 
     public static function fromArray(array $array): Video
     {
         return new static(
-            $array['duration'],
-            $array['width'],
-            $array['height'],
-            $array['file_name'],
-            $array['mime_type'],
-            $array['has_stickers'],
-            $array['supports_streaming'],
-            isset($array['minithumbnail']) ? TdSchemaRegistry::fromArray($array['minithumbnail']) : null,
-            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
-            TdSchemaRegistry::fromArray($array['video']),
+            duration         : $array['duration'],
+            fileName         : $array['file_name'],
+            hasStickers      : $array['has_stickers'],
+            height           : $array['height'],
+            mimeType         : $array['mime_type'],
+            minithumbnail    : (isset($array['minithumbnail']) ? TdSchemaRegistry::fromArray($array['minithumbnail']) : null),
+            supportsStreaming: $array['supports_streaming'],
+            thumbnail        : (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
+            video            : TdSchemaRegistry::fromArray($array['video']),
+            width            : $array['width'],
         );
     }
 
@@ -203,15 +203,15 @@ class Video extends TdObject
         return [
             '@type'              => static::TYPE_NAME,
             'duration'           => $this->duration,
-            'width'              => $this->width,
-            'height'             => $this->height,
             'file_name'          => $this->fileName,
-            'mime_type'          => $this->mimeType,
             'has_stickers'       => $this->hasStickers,
+            'height'             => $this->height,
+            'mime_type'          => $this->mimeType,
+            'minithumbnail'      => (null !== $this->minithumbnail ? $this->minithumbnail->jsonSerialize() : null),
             'supports_streaming' => $this->supportsStreaming,
-            'minithumbnail'      => $this->minithumbnail ?? null,
-            'thumbnail'          => $this->thumbnail ?? null,
-            'video'              => $this->video->typeSerialize(),
+            'thumbnail'          => (null !== $this->thumbnail ? $this->thumbnail->jsonSerialize() : null),
+            'video'              => $this->video->jsonSerialize(),
+            'width'              => $this->width,
         ];
     }
 }

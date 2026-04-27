@@ -19,20 +19,20 @@ class BotMediaPreview extends TdObject
 
     public function __construct(
         /**
-         * Point in time (Unix timestamp) when the preview was added or changed last time.
-         */
-        protected int          $date,
-        /**
          * Content of the preview.
          */
         protected StoryContent $content,
+        /**
+         * Point in time (Unix timestamp) when the preview was added or changed last time.
+         */
+        protected int          $date,
     ) {}
 
     public static function fromArray(array $array): BotMediaPreview
     {
         return new static(
-            $array['date'],
-            TdSchemaRegistry::fromArray($array['content']),
+            content: TdSchemaRegistry::fromArray($array['content']),
+            date   : $array['date'],
         );
     }
 
@@ -64,8 +64,8 @@ class BotMediaPreview extends TdObject
     {
         return [
             '@type'   => static::TYPE_NAME,
+            'content' => $this->content->jsonSerialize(),
             'date'    => $this->date,
-            'content' => $this->content->typeSerialize(),
         ];
     }
 }

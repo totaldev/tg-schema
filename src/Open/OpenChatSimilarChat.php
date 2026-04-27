@@ -29,8 +29,8 @@ class OpenChatSimilarChat extends TdFunction
     public static function fromArray(array $array): OpenChatSimilarChat
     {
         return new static(
-            $array['chat_id'],
-            $array['opened_chat_id'],
+            chatId      : $array['chat_id'],
+            openedChatId: $array['opened_chat_id'],
         );
     }
 

@@ -25,7 +25,7 @@ class PremiumSourceLink extends PremiumSource
     public static function fromArray(array $array): PremiumSourceLink
     {
         return new static(
-            $array['referrer'],
+            referrer: $array['referrer'],
         );
     }
 

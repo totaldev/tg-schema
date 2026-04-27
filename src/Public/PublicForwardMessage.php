@@ -28,7 +28,7 @@ class PublicForwardMessage extends PublicForward
     public static function fromArray(array $array): PublicForwardMessage
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['message']),
+            message: TdSchemaRegistry::fromArray($array['message']),
         );
     }
 
@@ -48,7 +48,7 @@ class PublicForwardMessage extends PublicForward
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'message' => $this->message->typeSerialize(),
+            'message' => $this->message->jsonSerialize(),
         ];
     }
 }

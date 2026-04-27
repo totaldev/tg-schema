@@ -17,13 +17,13 @@ class StoryContentVideo extends StoryContent
 
     public function __construct(
         /**
-         * The video in MPEG4 format.
-         */
-        protected StoryVideo  $video,
-        /**
          * Alternative version of the video in MPEG4 format, encoded with H.264 codec; may be null.
          */
         protected ?StoryVideo $alternativeVideo,
+        /**
+         * The video in MPEG4 format.
+         */
+        protected StoryVideo  $video,
     ) {
         parent::__construct();
     }
@@ -31,8 +31,8 @@ class StoryContentVideo extends StoryContent
     public static function fromArray(array $array): StoryContentVideo
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['video']),
-            isset($array['alternative_video']) ? TdSchemaRegistry::fromArray($array['alternative_video']) : null,
+            alternativeVideo: (isset($array['alternative_video']) ? TdSchemaRegistry::fromArray($array['alternative_video']) : null),
+            video           : TdSchemaRegistry::fromArray($array['video']),
         );
     }
 
@@ -64,8 +64,8 @@ class StoryContentVideo extends StoryContent
     {
         return [
             '@type'             => static::TYPE_NAME,
-            'video'             => $this->video->typeSerialize(),
-            'alternative_video' => $this->alternativeVideo ?? null,
+            'alternative_video' => (null !== $this->alternativeVideo ? $this->alternativeVideo->jsonSerialize() : null),
+            'video'             => $this->video->jsonSerialize(),
         ];
     }
 }

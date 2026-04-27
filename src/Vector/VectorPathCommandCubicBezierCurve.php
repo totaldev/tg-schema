@@ -18,10 +18,6 @@ class VectorPathCommandCubicBezierCurve extends VectorPathCommand
 
     public function __construct(
         /**
-         * The start control point of the curve.
-         */
-        protected Point $startControlPoint,
-        /**
          * The end control point of the curve.
          */
         protected Point $endControlPoint,
@@ -29,6 +25,10 @@ class VectorPathCommandCubicBezierCurve extends VectorPathCommand
          * The end point of the curve.
          */
         protected Point $endPoint,
+        /**
+         * The start control point of the curve.
+         */
+        protected Point $startControlPoint,
     ) {
         parent::__construct();
     }
@@ -36,9 +36,9 @@ class VectorPathCommandCubicBezierCurve extends VectorPathCommand
     public static function fromArray(array $array): VectorPathCommandCubicBezierCurve
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['start_control_point']),
-            TdSchemaRegistry::fromArray($array['end_control_point']),
-            TdSchemaRegistry::fromArray($array['end_point']),
+            endControlPoint  : TdSchemaRegistry::fromArray($array['end_control_point']),
+            endPoint         : TdSchemaRegistry::fromArray($array['end_point']),
+            startControlPoint: TdSchemaRegistry::fromArray($array['start_control_point']),
         );
     }
 
@@ -82,9 +82,9 @@ class VectorPathCommandCubicBezierCurve extends VectorPathCommand
     {
         return [
             '@type'               => static::TYPE_NAME,
-            'start_control_point' => $this->startControlPoint->typeSerialize(),
-            'end_control_point'   => $this->endControlPoint->typeSerialize(),
-            'end_point'           => $this->endPoint->typeSerialize(),
+            'end_control_point'   => $this->endControlPoint->jsonSerialize(),
+            'end_point'           => $this->endPoint->jsonSerialize(),
+            'start_control_point' => $this->startControlPoint->jsonSerialize(),
         ];
     }
 }

@@ -26,7 +26,7 @@ class ChatMemberStatusBanned extends ChatMemberStatus
     public static function fromArray(array $array): ChatMemberStatusBanned
     {
         return new static(
-            $array['banned_until_date'],
+            bannedUntilDate: $array['banned_until_date'],
         );
     }
 

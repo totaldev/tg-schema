@@ -28,7 +28,7 @@ class VideoChatStreams extends TdObject
     public static function fromArray(array $array): VideoChatStreams
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['streams']),
+            streams: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['streams']),
         );
     }
 
@@ -48,7 +48,7 @@ class VideoChatStreams extends TdObject
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'streams' => array_map(static fn($x) => $x->typeSerialize(), $this->streams),
+            'streams' => array_map(static fn($x) => $x->jsonSerialize(), $this->streams),
         ];
     }
 }

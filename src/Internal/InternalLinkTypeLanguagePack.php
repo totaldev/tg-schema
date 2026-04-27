@@ -26,7 +26,7 @@ class InternalLinkTypeLanguagePack extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeLanguagePack
     {
         return new static(
-            $array['language_pack_id'],
+            languagePackId: $array['language_pack_id'],
         );
     }
 

@@ -15,19 +15,19 @@ class UpdateGroupCallVerificationState extends Update
 
     public function __construct(
         /**
-         * Identifier of the group call.
-         */
-        protected int   $groupCallId,
-        /**
-         * The call state generation to which the emoji corresponds. If generation is different for two users, then their emoji may be also different.
-         */
-        protected int   $generation,
-        /**
          * Group call state fingerprint represented as 4 emoji; may be empty if the state isn't verified yet.
          *
          * @var string[]
          */
         protected array $emojis,
+        /**
+         * The call state generation to which the emoji corresponds. If generation is different for two users, then their emoji may be also different.
+         */
+        protected int   $generation,
+        /**
+         * Identifier of the group call.
+         */
+        protected int   $groupCallId,
     ) {
         parent::__construct();
     }
@@ -35,9 +35,9 @@ class UpdateGroupCallVerificationState extends Update
     public static function fromArray(array $array): UpdateGroupCallVerificationState
     {
         return new static(
-            $array['group_call_id'],
-            $array['generation'],
-            $array['emojis'],
+            emojis     : $array['emojis'],
+            generation : $array['generation'],
+            groupCallId: $array['group_call_id'],
         );
     }
 
@@ -81,9 +81,9 @@ class UpdateGroupCallVerificationState extends Update
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'group_call_id' => $this->groupCallId,
-            'generation'    => $this->generation,
             'emojis'        => $this->emojis,
+            'generation'    => $this->generation,
+            'group_call_id' => $this->groupCallId,
         ];
     }
 }

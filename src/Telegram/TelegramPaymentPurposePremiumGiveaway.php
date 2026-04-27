@@ -18,25 +18,25 @@ class TelegramPaymentPurposePremiumGiveaway extends TelegramPaymentPurpose
 
     public function __construct(
         /**
-         * Giveaway parameters.
+         * Paid amount, in the smallest units of the currency.
          */
-        protected GiveawayParameters $parameters,
+        protected int                $amount,
         /**
          * ISO 4217 currency code of the payment currency.
          */
         protected string             $currency,
         /**
-         * Paid amount, in the smallest units of the currency.
+         * Number of months the Telegram Premium subscription will be active for the users.
          */
-        protected int                $amount,
+        protected int                $monthCount,
+        /**
+         * Giveaway parameters.
+         */
+        protected GiveawayParameters $parameters,
         /**
          * Number of users which will be able to activate the gift codes.
          */
         protected int                $winnerCount,
-        /**
-         * Number of months the Telegram Premium subscription will be active for the users.
-         */
-        protected int                $monthCount,
     ) {
         parent::__construct();
     }
@@ -44,11 +44,11 @@ class TelegramPaymentPurposePremiumGiveaway extends TelegramPaymentPurpose
     public static function fromArray(array $array): TelegramPaymentPurposePremiumGiveaway
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['parameters']),
-            $array['currency'],
-            $array['amount'],
-            $array['winner_count'],
-            $array['month_count'],
+            amount     : $array['amount'],
+            currency   : $array['currency'],
+            monthCount : $array['month_count'],
+            parameters : TdSchemaRegistry::fromArray($array['parameters']),
+            winnerCount: $array['winner_count'],
         );
     }
 
@@ -116,11 +116,11 @@ class TelegramPaymentPurposePremiumGiveaway extends TelegramPaymentPurpose
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'parameters'   => $this->parameters->typeSerialize(),
-            'currency'     => $this->currency,
             'amount'       => $this->amount,
-            'winner_count' => $this->winnerCount,
+            'currency'     => $this->currency,
             'month_count'  => $this->monthCount,
+            'parameters'   => $this->parameters->jsonSerialize(),
+            'winner_count' => $this->winnerCount,
         ];
     }
 }

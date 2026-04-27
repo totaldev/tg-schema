@@ -18,17 +18,17 @@ class SearchPublicPosts extends TdFunction
 
     public function __construct(
         /**
-         * Query to search for.
+         * The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit.
          */
-        protected string $query,
+        protected int    $limit,
         /**
          * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
          */
         protected string $offset,
         /**
-         * The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit.
+         * Query to search for.
          */
-        protected int    $limit,
+        protected string $query,
         /**
          * The amount of Telegram Stars the user agreed to pay for the search; pass 0 for free searches.
          */
@@ -38,10 +38,10 @@ class SearchPublicPosts extends TdFunction
     public static function fromArray(array $array): SearchPublicPosts
     {
         return new static(
-            $array['query'],
-            $array['offset'],
-            $array['limit'],
-            $array['star_count'],
+            limit    : $array['limit'],
+            offset   : $array['offset'],
+            query    : $array['query'],
+            starCount: $array['star_count'],
         );
     }
 
@@ -97,9 +97,9 @@ class SearchPublicPosts extends TdFunction
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'query'      => $this->query,
-            'offset'     => $this->offset,
             'limit'      => $this->limit,
+            'offset'     => $this->offset,
+            'query'      => $this->query,
             'star_count' => $this->starCount,
         ];
     }

@@ -18,13 +18,13 @@ class UpdateDefaultBackground extends Update
 
     public function __construct(
         /**
-         * True, if default background for dark theme has changed.
-         */
-        protected bool        $forDarkTheme,
-        /**
          * The new default background; may be null.
          */
         protected ?Background $background,
+        /**
+         * True, if default background for dark theme has changed.
+         */
+        protected bool        $forDarkTheme,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class UpdateDefaultBackground extends Update
     public static function fromArray(array $array): UpdateDefaultBackground
     {
         return new static(
-            $array['for_dark_theme'],
-            isset($array['background']) ? TdSchemaRegistry::fromArray($array['background']) : null,
+            background  : (isset($array['background']) ? TdSchemaRegistry::fromArray($array['background']) : null),
+            forDarkTheme: $array['for_dark_theme'],
         );
     }
 
@@ -65,8 +65,8 @@ class UpdateDefaultBackground extends Update
     {
         return [
             '@type'          => static::TYPE_NAME,
+            'background'     => (null !== $this->background ? $this->background->jsonSerialize() : null),
             'for_dark_theme' => $this->forDarkTheme,
-            'background'     => $this->background ?? null,
         ];
     }
 }

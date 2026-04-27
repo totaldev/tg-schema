@@ -27,13 +27,13 @@ class GetInlineQueryResults extends TdFunction
          */
         protected int       $chatId,
         /**
-         * Text of the query.
-         */
-        protected string    $query,
-        /**
          * Offset of the first entry to return; use empty string to get the first chunk of results.
          */
         protected string    $offset,
+        /**
+         * Text of the query.
+         */
+        protected string    $query,
         /**
          * Location of the user; pass null if unknown or the bot doesn't need user's location.
          */
@@ -43,11 +43,11 @@ class GetInlineQueryResults extends TdFunction
     public static function fromArray(array $array): GetInlineQueryResults
     {
         return new static(
-            $array['bot_user_id'],
-            $array['chat_id'],
-            isset($array['user_location']) ? TdSchemaRegistry::fromArray($array['user_location']) : null,
-            $array['query'],
-            $array['offset'],
+            botUserId   : $array['bot_user_id'],
+            chatId      : $array['chat_id'],
+            offset      : $array['offset'],
+            query       : $array['query'],
+            userLocation: (isset($array['user_location']) ? TdSchemaRegistry::fromArray($array['user_location']) : null),
         );
     }
 
@@ -117,9 +117,9 @@ class GetInlineQueryResults extends TdFunction
             '@type'         => static::TYPE_NAME,
             'bot_user_id'   => $this->botUserId,
             'chat_id'       => $this->chatId,
-            'user_location' => $this->userLocation ?? null,
-            'query'         => $this->query,
             'offset'        => $this->offset,
+            'query'         => $this->query,
+            'user_location' => (null !== $this->userLocation ? $this->userLocation->jsonSerialize() : null),
         ];
     }
 }

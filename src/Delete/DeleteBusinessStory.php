@@ -29,8 +29,8 @@ class DeleteBusinessStory extends TdFunction
     public static function fromArray(array $array): DeleteBusinessStory
     {
         return new static(
-            $array['business_connection_id'],
-            $array['story_id'],
+            businessConnectionId: $array['business_connection_id'],
+            storyId             : $array['story_id'],
         );
     }
 

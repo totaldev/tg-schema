@@ -20,40 +20,40 @@ class SavedMessagesTopic extends TdObject
 
     public function __construct(
         /**
+         * A draft of a message in the topic; may be null if none.
+         */
+        protected ?DraftMessage          $draftMessage,
+        /**
          * Unique topic identifier.
          */
         protected int                    $id,
-        /**
-         * Type of the topic.
-         */
-        protected SavedMessagesTopicType $type,
         /**
          * True, if the topic is pinned.
          */
         protected bool                   $isPinned,
         /**
-         * A parameter used to determine order of the topic in the topic list. Topics must be sorted by the order in descending order.
-         */
-        protected int                    $order,
-        /**
          * Last message in the topic; may be null if none or unknown.
          */
         protected ?Message               $lastMessage,
         /**
-         * A draft of a message in the topic; may be null if none.
+         * A parameter used to determine order of the topic in the topic list. Topics must be sorted by the order in descending order.
          */
-        protected ?DraftMessage          $draftMessage,
+        protected int                    $order,
+        /**
+         * Type of the topic.
+         */
+        protected SavedMessagesTopicType $type,
     ) {}
 
     public static function fromArray(array $array): SavedMessagesTopic
     {
         return new static(
-            $array['id'],
-            TdSchemaRegistry::fromArray($array['type']),
-            $array['is_pinned'],
-            $array['order'],
-            isset($array['last_message']) ? TdSchemaRegistry::fromArray($array['last_message']) : null,
-            isset($array['draft_message']) ? TdSchemaRegistry::fromArray($array['draft_message']) : null,
+            draftMessage: (isset($array['draft_message']) ? TdSchemaRegistry::fromArray($array['draft_message']) : null),
+            id          : $array['id'],
+            isPinned    : $array['is_pinned'],
+            lastMessage : (isset($array['last_message']) ? TdSchemaRegistry::fromArray($array['last_message']) : null),
+            order       : $array['order'],
+            type        : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -133,12 +133,12 @@ class SavedMessagesTopic extends TdObject
     {
         return [
             '@type'         => static::TYPE_NAME,
+            'draft_message' => (null !== $this->draftMessage ? $this->draftMessage->jsonSerialize() : null),
             'id'            => $this->id,
-            'type'          => $this->type->typeSerialize(),
             'is_pinned'     => $this->isPinned,
+            'last_message'  => (null !== $this->lastMessage ? $this->lastMessage->jsonSerialize() : null),
             'order'         => $this->order,
-            'last_message'  => $this->lastMessage ?? null,
-            'draft_message' => $this->draftMessage ?? null,
+            'type'          => $this->type->jsonSerialize(),
         ];
     }
 }

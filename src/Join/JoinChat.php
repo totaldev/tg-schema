@@ -26,7 +26,7 @@ class JoinChat extends TdFunction
     public static function fromArray(array $array): JoinChat
     {
         return new static(
-            $array['chat_id'],
+            chatId: $array['chat_id'],
         );
     }
 

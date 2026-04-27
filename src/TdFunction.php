@@ -6,6 +6,4 @@
 
 namespace Totaldev\TgSchema;
 
-abstract class TdFunction extends TdObject
-{
-}
+abstract class TdFunction extends TdObject {}

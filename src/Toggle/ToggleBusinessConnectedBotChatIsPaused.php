@@ -29,8 +29,8 @@ class ToggleBusinessConnectedBotChatIsPaused extends TdFunction
     public static function fromArray(array $array): ToggleBusinessConnectedBotChatIsPaused
     {
         return new static(
-            $array['chat_id'],
-            $array['is_paused'],
+            chatId  : $array['chat_id'],
+            isPaused: $array['is_paused'],
         );
     }
 

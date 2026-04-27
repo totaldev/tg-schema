@@ -28,7 +28,7 @@ class UpdateDefaultPaidReactionType extends Update
     public static function fromArray(array $array): UpdateDefaultPaidReactionType
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['type']),
+            type: TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -48,7 +48,7 @@ class UpdateDefaultPaidReactionType extends Update
     {
         return [
             '@type' => static::TYPE_NAME,
-            'type'  => $this->type->typeSerialize(),
+            'type'  => $this->type->jsonSerialize(),
         ];
     }
 }

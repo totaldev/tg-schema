@@ -23,37 +23,21 @@ class Invoice extends TdObject
          */
         protected string $currency,
         /**
-         * A list of objects used to calculate the total price of the product.
-         *
-         * @var LabeledPricePart[]
+         * True, if the total price depends on the shipping method.
          */
-        protected array  $priceParts,
+        protected bool   $isFlexible,
         /**
-         * The number of seconds between consecutive Telegram Star debiting for subscription invoices; 0 if the invoice doesn't create subscription.
+         * True, if the payment is a test payment.
          */
-        protected int    $subscriptionPeriod,
+        protected bool   $isTest,
         /**
          * The maximum allowed amount of tip in the smallest units of the currency.
          */
         protected int    $maxTipAmount,
         /**
-         * Suggested amounts of tip in the smallest units of the currency.
-         *
-         * @var int[]
+         * True, if the user's email address is needed for payment.
          */
-        protected array  $suggestedTipAmounts,
-        /**
-         * An HTTP URL with terms of service for recurring payments. If non-empty, the invoice payment will result in recurring payments and the user must accept the terms of service before allowed to pay.
-         */
-        protected string $recurringPaymentTermsOfServiceUrl,
-        /**
-         * An HTTP URL with terms of service for non-recurring payments. If non-empty, then the user must accept the terms of service before allowed to pay.
-         */
-        protected string $termsOfServiceUrl,
-        /**
-         * True, if the payment is a test payment.
-         */
-        protected bool   $isTest,
+        protected bool   $needEmailAddress,
         /**
          * True, if the user's name is needed for payment.
          */
@@ -63,45 +47,61 @@ class Invoice extends TdObject
          */
         protected bool   $needPhoneNumber,
         /**
-         * True, if the user's email address is needed for payment.
-         */
-        protected bool   $needEmailAddress,
-        /**
          * True, if the user's shipping address is needed for payment.
          */
         protected bool   $needShippingAddress,
         /**
-         * True, if the user's phone number will be sent to the provider.
+         * A list of objects used to calculate the total price of the product.
+         *
+         * @var LabeledPricePart[]
          */
-        protected bool   $sendPhoneNumberToProvider,
+        protected array  $priceParts,
+        /**
+         * An HTTP URL with terms of service for recurring payments. If non-empty, the invoice payment will result in recurring payments and the user must accept the terms of service before allowed to pay.
+         */
+        protected string $recurringPaymentTermsOfServiceUrl,
         /**
          * True, if the user's email address will be sent to the provider.
          */
         protected bool   $sendEmailAddressToProvider,
         /**
-         * True, if the total price depends on the shipping method.
+         * True, if the user's phone number will be sent to the provider.
          */
-        protected bool   $isFlexible,
+        protected bool   $sendPhoneNumberToProvider,
+        /**
+         * The number of seconds between consecutive Telegram Star debiting for subscription invoices; 0 if the invoice doesn't create subscription.
+         */
+        protected int    $subscriptionPeriod,
+        /**
+         * Suggested amounts of tip in the smallest units of the currency.
+         *
+         * @var int[]
+         */
+        protected array  $suggestedTipAmounts,
+        /**
+         * An HTTP URL with terms of service for non-recurring payments. If non-empty, then the user must accept the terms of service before allowed to pay.
+         */
+        protected string $termsOfServiceUrl,
     ) {}
 
     public static function fromArray(array $array): Invoice
     {
         return new static(
-            $array['currency'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['price_parts']),
-            $array['subscription_period'],
-            $array['max_tip_amount'],
-            $array['suggested_tip_amounts'],
-            $array['recurring_payment_terms_of_service_url'],
-            $array['terms_of_service_url'],
-            $array['is_test'],
-            $array['need_name'],
-            $array['need_phone_number'],
-            $array['need_email_address'],
-            $array['need_shipping_address'],
-            $array['send_phone_number_to_provider'],
-            $array['send_email_address_to_provider'],
-            $array['is_flexible'],
+            currency                         : $array['currency'],
+            isFlexible                       : $array['is_flexible'],
+            isTest                           : $array['is_test'],
+            maxTipAmount                     : $array['max_tip_amount'],
+            needEmailAddress                 : $array['need_email_address'],
+            needName                         : $array['need_name'],
+            needPhoneNumber                  : $array['need_phone_number'],
+            needShippingAddress              : $array['need_shipping_address'],
+            priceParts                       : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['price_parts']),
+            recurringPaymentTermsOfServiceUrl: $array['recurring_payment_terms_of_service_url'],
+            sendEmailAddressToProvider       : $array['send_email_address_to_provider'],
+            sendPhoneNumberToProvider        : $array['send_phone_number_to_provider'],
+            subscriptionPeriod               : $array['subscription_period'],
+            suggestedTipAmounts              : $array['suggested_tip_amounts'],
+            termsOfServiceUrl                : $array['terms_of_service_url'],
         );
     }
 
@@ -290,20 +290,20 @@ class Invoice extends TdObject
         return [
             '@type'                                  => static::TYPE_NAME,
             'currency'                               => $this->currency,
-            'price_parts'                            => array_map(static fn($x) => $x->typeSerialize(), $this->priceParts),
-            'subscription_period'                    => $this->subscriptionPeriod,
-            'max_tip_amount'                         => $this->maxTipAmount,
-            'suggested_tip_amounts'                  => $this->suggestedTipAmounts,
-            'recurring_payment_terms_of_service_url' => $this->recurringPaymentTermsOfServiceUrl,
-            'terms_of_service_url'                   => $this->termsOfServiceUrl,
+            'is_flexible'                            => $this->isFlexible,
             'is_test'                                => $this->isTest,
+            'max_tip_amount'                         => $this->maxTipAmount,
+            'need_email_address'                     => $this->needEmailAddress,
             'need_name'                              => $this->needName,
             'need_phone_number'                      => $this->needPhoneNumber,
-            'need_email_address'                     => $this->needEmailAddress,
             'need_shipping_address'                  => $this->needShippingAddress,
-            'send_phone_number_to_provider'          => $this->sendPhoneNumberToProvider,
+            'price_parts'                            => array_map(static fn($x) => $x->jsonSerialize(), $this->priceParts),
+            'recurring_payment_terms_of_service_url' => $this->recurringPaymentTermsOfServiceUrl,
             'send_email_address_to_provider'         => $this->sendEmailAddressToProvider,
-            'is_flexible'                            => $this->isFlexible,
+            'send_phone_number_to_provider'          => $this->sendPhoneNumberToProvider,
+            'subscription_period'                    => $this->subscriptionPeriod,
+            'suggested_tip_amounts'                  => $this->suggestedTipAmounts,
+            'terms_of_service_url'                   => $this->termsOfServiceUrl,
         ];
     }
 }

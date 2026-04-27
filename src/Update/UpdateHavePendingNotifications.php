@@ -29,8 +29,8 @@ class UpdateHavePendingNotifications extends Update
     public static function fromArray(array $array): UpdateHavePendingNotifications
     {
         return new static(
-            $array['have_delayed_notifications'],
-            $array['have_unreceived_notifications'],
+            haveDelayedNotifications   : $array['have_delayed_notifications'],
+            haveUnreceivedNotifications: $array['have_unreceived_notifications'],
         );
     }
 

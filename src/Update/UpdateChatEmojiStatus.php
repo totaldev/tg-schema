@@ -32,8 +32,8 @@ class UpdateChatEmojiStatus extends Update
     public static function fromArray(array $array): UpdateChatEmojiStatus
     {
         return new static(
-            $array['chat_id'],
-            isset($array['emoji_status']) ? TdSchemaRegistry::fromArray($array['emoji_status']) : null,
+            chatId     : $array['chat_id'],
+            emojiStatus: (isset($array['emoji_status']) ? TdSchemaRegistry::fromArray($array['emoji_status']) : null),
         );
     }
 
@@ -66,7 +66,7 @@ class UpdateChatEmojiStatus extends Update
         return [
             '@type'        => static::TYPE_NAME,
             'chat_id'      => $this->chatId,
-            'emoji_status' => $this->emojiStatus ?? null,
+            'emoji_status' => (null !== $this->emojiStatus ? $this->emojiStatus->jsonSerialize() : null),
         ];
     }
 }

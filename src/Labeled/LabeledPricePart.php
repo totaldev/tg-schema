@@ -17,20 +17,20 @@ class LabeledPricePart extends TdObject
 
     public function __construct(
         /**
-         * Label for this portion of the product price.
-         */
-        protected string $label,
-        /**
          * Currency amount in the smallest units of the currency.
          */
         protected int    $amount,
+        /**
+         * Label for this portion of the product price.
+         */
+        protected string $label,
     ) {}
 
     public static function fromArray(array $array): LabeledPricePart
     {
         return new static(
-            $array['label'],
-            $array['amount'],
+            amount: $array['amount'],
+            label : $array['label'],
         );
     }
 
@@ -62,8 +62,8 @@ class LabeledPricePart extends TdObject
     {
         return [
             '@type'  => static::TYPE_NAME,
-            'label'  => $this->label,
             'amount' => $this->amount,
+            'label'  => $this->label,
         ];
     }
 }

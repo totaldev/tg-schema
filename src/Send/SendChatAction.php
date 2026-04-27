@@ -20,6 +20,10 @@ class SendChatAction extends TdFunction
 
     public function __construct(
         /**
+         * Unique identifier of business connection on behalf of which to send the request; for bots only.
+         */
+        protected string       $businessConnectionId,
+        /**
          * Chat identifier.
          */
         protected int          $chatId,
@@ -27,10 +31,6 @@ class SendChatAction extends TdFunction
          * Identifier of the topic in which the action is performed.
          */
         protected MessageTopic $topicId,
-        /**
-         * Unique identifier of business connection on behalf of which to send the request; for bots only.
-         */
-        protected string       $businessConnectionId,
         /**
          * The action description; pass null to cancel the currently active action.
          */
@@ -40,10 +40,10 @@ class SendChatAction extends TdFunction
     public static function fromArray(array $array): SendChatAction
     {
         return new static(
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['topic_id']),
-            $array['business_connection_id'],
-            isset($array['action']) ? TdSchemaRegistry::fromArray($array['action']) : null,
+            action              : (isset($array['action']) ? TdSchemaRegistry::fromArray($array['action']) : null),
+            businessConnectionId: $array['business_connection_id'],
+            chatId              : $array['chat_id'],
+            topicId             : TdSchemaRegistry::fromArray($array['topic_id']),
         );
     }
 
@@ -99,10 +99,10 @@ class SendChatAction extends TdFunction
     {
         return [
             '@type'                  => static::TYPE_NAME,
-            'chat_id'                => $this->chatId,
-            'topic_id'               => $this->topicId->typeSerialize(),
+            'action'                 => (null !== $this->action ? $this->action->jsonSerialize() : null),
             'business_connection_id' => $this->businessConnectionId,
-            'action'                 => $this->action ?? null,
+            'chat_id'                => $this->chatId,
+            'topic_id'               => $this->topicId->jsonSerialize(),
         ];
     }
 }

@@ -21,15 +21,15 @@ class ReportChat extends TdFunction
          */
         protected int    $chatId,
         /**
-         * Option identifier chosen by the user; leave empty for the initial request.
-         */
-        protected string $optionId,
-        /**
          * Identifiers of reported messages. Use messageProperties.can_report_chat to check whether the message can be reported.
          *
          * @var int[]
          */
         protected array  $messageIds,
+        /**
+         * Option identifier chosen by the user; leave empty for the initial request.
+         */
+        protected string $optionId,
         /**
          * Additional report details if asked by the server; 0-1024 characters; leave empty for the initial request.
          */
@@ -39,10 +39,10 @@ class ReportChat extends TdFunction
     public static function fromArray(array $array): ReportChat
     {
         return new static(
-            $array['chat_id'],
-            $array['option_id'],
-            $array['message_ids'],
-            $array['text'],
+            chatId    : $array['chat_id'],
+            messageIds: $array['message_ids'],
+            optionId  : $array['option_id'],
+            text      : $array['text'],
         );
     }
 
@@ -99,8 +99,8 @@ class ReportChat extends TdFunction
         return [
             '@type'       => static::TYPE_NAME,
             'chat_id'     => $this->chatId,
-            'option_id'   => $this->optionId,
             'message_ids' => $this->messageIds,
+            'option_id'   => $this->optionId,
             'text'        => $this->text,
         ];
     }

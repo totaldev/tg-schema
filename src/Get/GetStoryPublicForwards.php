@@ -18,30 +18,30 @@ class GetStoryPublicForwards extends TdFunction
 
     public function __construct(
         /**
-         * The identifier of the poster of the story.
+         * The maximum number of messages and stories to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit.
          */
-        protected int    $storyPosterChatId,
-        /**
-         * The identifier of the story.
-         */
-        protected int    $storyId,
+        protected int    $limit,
         /**
          * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
          */
         protected string $offset,
         /**
-         * The maximum number of messages and stories to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit.
+         * The identifier of the story.
          */
-        protected int    $limit,
+        protected int    $storyId,
+        /**
+         * The identifier of the poster of the story.
+         */
+        protected int    $storyPosterChatId,
     ) {}
 
     public static function fromArray(array $array): GetStoryPublicForwards
     {
         return new static(
-            $array['story_poster_chat_id'],
-            $array['story_id'],
-            $array['offset'],
-            $array['limit'],
+            limit            : $array['limit'],
+            offset           : $array['offset'],
+            storyId          : $array['story_id'],
+            storyPosterChatId: $array['story_poster_chat_id'],
         );
     }
 
@@ -97,10 +97,10 @@ class GetStoryPublicForwards extends TdFunction
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'story_poster_chat_id' => $this->storyPosterChatId,
-            'story_id'             => $this->storyId,
-            'offset'               => $this->offset,
             'limit'                => $this->limit,
+            'offset'               => $this->offset,
+            'story_id'             => $this->storyId,
+            'story_poster_chat_id' => $this->storyPosterChatId,
         ];
     }
 }

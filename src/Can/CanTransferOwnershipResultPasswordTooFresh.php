@@ -25,7 +25,7 @@ class CanTransferOwnershipResultPasswordTooFresh extends CanTransferOwnershipRes
     public static function fromArray(array $array): CanTransferOwnershipResultPasswordTooFresh
     {
         return new static(
-            $array['retry_after'],
+            retryAfter: $array['retry_after'],
         );
     }
 

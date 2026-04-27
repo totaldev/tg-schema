@@ -18,34 +18,6 @@ class Session extends TdObject
 
     public function __construct(
         /**
-         * Session identifier.
-         */
-        protected int         $id,
-        /**
-         * True, if this session is the current session.
-         */
-        protected bool        $isCurrent,
-        /**
-         * True, if a 2-step verification password is needed to complete authorization of the session.
-         */
-        protected bool        $isPasswordPending,
-        /**
-         * True, if the session wasn't confirmed from another session.
-         */
-        protected bool        $isUnconfirmed,
-        /**
-         * True, if incoming secret chats can be accepted by the session.
-         */
-        protected bool        $canAcceptSecretChats,
-        /**
-         * True, if incoming calls can be accepted by the session.
-         */
-        protected bool        $canAcceptCalls,
-        /**
-         * Session type based on the system and application version, which can be used to display a corresponding icon.
-         */
-        protected SessionType $type,
-        /**
          * Telegram API identifier, as provided by the application.
          */
         protected int         $apiId,
@@ -58,13 +30,53 @@ class Session extends TdObject
          */
         protected string      $applicationVersion,
         /**
-         * True, if the application is an official application or uses the api_id of an official application.
+         * True, if incoming calls can be accepted by the session.
          */
-        protected bool        $isOfficialApplication,
+        protected bool        $canAcceptCalls,
+        /**
+         * True, if incoming secret chats can be accepted by the session.
+         */
+        protected bool        $canAcceptSecretChats,
         /**
          * Model of the device the application has been run or is running on, as provided by the application.
          */
         protected string      $deviceModel,
+        /**
+         * Session identifier.
+         */
+        protected int         $id,
+        /**
+         * IP address from which the session was created, in human-readable format.
+         */
+        protected string      $ipAddress,
+        /**
+         * True, if this session is the current session.
+         */
+        protected bool        $isCurrent,
+        /**
+         * True, if the application is an official application or uses the api_id of an official application.
+         */
+        protected bool        $isOfficialApplication,
+        /**
+         * True, if a 2-step verification password is needed to complete authorization of the session.
+         */
+        protected bool        $isPasswordPending,
+        /**
+         * True, if the session wasn't confirmed from another session.
+         */
+        protected bool        $isUnconfirmed,
+        /**
+         * Point in time (Unix timestamp) when the session was last used.
+         */
+        protected int         $lastActiveDate,
+        /**
+         * A human-readable description of the location from which the session was created, based on the IP address.
+         */
+        protected string      $location,
+        /**
+         * Point in time (Unix timestamp) when the user has logged in.
+         */
+        protected int         $logInDate,
         /**
          * Operating system the application has been run or is running on, as provided by the application.
          */
@@ -74,44 +86,32 @@ class Session extends TdObject
          */
         protected string      $systemVersion,
         /**
-         * Point in time (Unix timestamp) when the user has logged in.
+         * Session type based on the system and application version, which can be used to display a corresponding icon.
          */
-        protected int         $logInDate,
-        /**
-         * Point in time (Unix timestamp) when the session was last used.
-         */
-        protected int         $lastActiveDate,
-        /**
-         * IP address from which the session was created, in human-readable format.
-         */
-        protected string      $ipAddress,
-        /**
-         * A human-readable description of the location from which the session was created, based on the IP address.
-         */
-        protected string      $location,
+        protected SessionType $type,
     ) {}
 
     public static function fromArray(array $array): Session
     {
         return new static(
-            $array['id'],
-            $array['is_current'],
-            $array['is_password_pending'],
-            $array['is_unconfirmed'],
-            $array['can_accept_secret_chats'],
-            $array['can_accept_calls'],
-            TdSchemaRegistry::fromArray($array['type']),
-            $array['api_id'],
-            $array['application_name'],
-            $array['application_version'],
-            $array['is_official_application'],
-            $array['device_model'],
-            $array['platform'],
-            $array['system_version'],
-            $array['log_in_date'],
-            $array['last_active_date'],
-            $array['ip_address'],
-            $array['location'],
+            apiId                : $array['api_id'],
+            applicationName      : $array['application_name'],
+            applicationVersion   : $array['application_version'],
+            canAcceptCalls       : $array['can_accept_calls'],
+            canAcceptSecretChats : $array['can_accept_secret_chats'],
+            deviceModel          : $array['device_model'],
+            id                   : $array['id'],
+            ipAddress            : $array['ip_address'],
+            isCurrent            : $array['is_current'],
+            isOfficialApplication: $array['is_official_application'],
+            isPasswordPending    : $array['is_password_pending'],
+            isUnconfirmed        : $array['is_unconfirmed'],
+            lastActiveDate       : $array['last_active_date'],
+            location             : $array['location'],
+            logInDate            : $array['log_in_date'],
+            platform             : $array['platform'],
+            systemVersion        : $array['system_version'],
+            type                 : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -335,24 +335,24 @@ class Session extends TdObject
     {
         return [
             '@type'                   => static::TYPE_NAME,
-            'id'                      => $this->id,
-            'is_current'              => $this->isCurrent,
-            'is_password_pending'     => $this->isPasswordPending,
-            'is_unconfirmed'          => $this->isUnconfirmed,
-            'can_accept_secret_chats' => $this->canAcceptSecretChats,
-            'can_accept_calls'        => $this->canAcceptCalls,
-            'type'                    => $this->type->typeSerialize(),
             'api_id'                  => $this->apiId,
             'application_name'        => $this->applicationName,
             'application_version'     => $this->applicationVersion,
-            'is_official_application' => $this->isOfficialApplication,
+            'can_accept_calls'        => $this->canAcceptCalls,
+            'can_accept_secret_chats' => $this->canAcceptSecretChats,
             'device_model'            => $this->deviceModel,
+            'id'                      => $this->id,
+            'ip_address'              => $this->ipAddress,
+            'is_current'              => $this->isCurrent,
+            'is_official_application' => $this->isOfficialApplication,
+            'is_password_pending'     => $this->isPasswordPending,
+            'is_unconfirmed'          => $this->isUnconfirmed,
+            'last_active_date'        => $this->lastActiveDate,
+            'location'                => $this->location,
+            'log_in_date'             => $this->logInDate,
             'platform'                => $this->platform,
             'system_version'          => $this->systemVersion,
-            'log_in_date'             => $this->logInDate,
-            'last_active_date'        => $this->lastActiveDate,
-            'ip_address'              => $this->ipAddress,
-            'location'                => $this->location,
+            'type'                    => $this->type->jsonSerialize(),
         ];
     }
 }

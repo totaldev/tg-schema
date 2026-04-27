@@ -25,7 +25,7 @@ class GetFileExtension extends TdFunction
     public static function fromArray(array $array): GetFileExtension
     {
         return new static(
-            $array['mime_type'],
+            mimeType: $array['mime_type'],
         );
     }
 

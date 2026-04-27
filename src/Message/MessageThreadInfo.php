@@ -23,6 +23,16 @@ class MessageThreadInfo extends TdObject
          */
         protected int               $chatId,
         /**
+         * A draft of a message in the message thread; may be null if none.
+         */
+        protected ?DraftMessage     $draftMessage,
+        /**
+         * The messages from which the thread starts. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id).
+         *
+         * @var Message[]
+         */
+        protected array             $messages,
+        /**
          * Message thread identifier, unique within the chat.
          */
         protected int               $messageThreadId,
@@ -34,27 +44,17 @@ class MessageThreadInfo extends TdObject
          * Approximate number of unread messages in the message thread.
          */
         protected int               $unreadMessageCount,
-        /**
-         * The messages from which the thread starts. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id).
-         *
-         * @var Message[]
-         */
-        protected array             $messages,
-        /**
-         * A draft of a message in the message thread; may be null if none.
-         */
-        protected ?DraftMessage     $draftMessage,
     ) {}
 
     public static function fromArray(array $array): MessageThreadInfo
     {
         return new static(
-            $array['chat_id'],
-            $array['message_thread_id'],
-            isset($array['reply_info']) ? TdSchemaRegistry::fromArray($array['reply_info']) : null,
-            $array['unread_message_count'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['messages']),
-            isset($array['draft_message']) ? TdSchemaRegistry::fromArray($array['draft_message']) : null,
+            chatId            : $array['chat_id'],
+            draftMessage      : (isset($array['draft_message']) ? TdSchemaRegistry::fromArray($array['draft_message']) : null),
+            messageThreadId   : $array['message_thread_id'],
+            messages          : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['messages']),
+            replyInfo         : (isset($array['reply_info']) ? TdSchemaRegistry::fromArray($array['reply_info']) : null),
+            unreadMessageCount: $array['unread_message_count'],
         );
     }
 
@@ -135,11 +135,11 @@ class MessageThreadInfo extends TdObject
         return [
             '@type'                => static::TYPE_NAME,
             'chat_id'              => $this->chatId,
+            'draft_message'        => (null !== $this->draftMessage ? $this->draftMessage->jsonSerialize() : null),
             'message_thread_id'    => $this->messageThreadId,
-            'reply_info'           => $this->replyInfo ?? null,
+            'messages'             => array_map(static fn($x) => $x->jsonSerialize(), $this->messages),
+            'reply_info'           => (null !== $this->replyInfo ? $this->replyInfo->jsonSerialize() : null),
             'unread_message_count' => $this->unreadMessageCount,
-            'messages'             => array_map(static fn($x) => $x->typeSerialize(), $this->messages),
-            'draft_message'        => $this->draftMessage ?? null,
         ];
     }
 }

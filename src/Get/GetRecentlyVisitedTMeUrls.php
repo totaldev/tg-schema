@@ -25,7 +25,7 @@ class GetRecentlyVisitedTMeUrls extends TdFunction
     public static function fromArray(array $array): GetRecentlyVisitedTMeUrls
     {
         return new static(
-            $array['referrer'],
+            referrer: $array['referrer'],
         );
     }
 

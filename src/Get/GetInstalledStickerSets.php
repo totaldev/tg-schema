@@ -27,7 +27,7 @@ class GetInstalledStickerSets extends TdFunction
     public static function fromArray(array $array): GetInstalledStickerSets
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['sticker_type']),
+            stickerType: TdSchemaRegistry::fromArray($array['sticker_type']),
         );
     }
 
@@ -47,7 +47,7 @@ class GetInstalledStickerSets extends TdFunction
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'sticker_type' => $this->stickerType->typeSerialize(),
+            'sticker_type' => $this->stickerType->jsonSerialize(),
         ];
     }
 }

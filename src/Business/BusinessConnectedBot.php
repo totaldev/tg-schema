@@ -34,9 +34,9 @@ class BusinessConnectedBot extends TdObject
     public static function fromArray(array $array): BusinessConnectedBot
     {
         return new static(
-            $array['bot_user_id'],
-            TdSchemaRegistry::fromArray($array['recipients']),
-            TdSchemaRegistry::fromArray($array['rights']),
+            botUserId : $array['bot_user_id'],
+            recipients: TdSchemaRegistry::fromArray($array['recipients']),
+            rights    : TdSchemaRegistry::fromArray($array['rights']),
         );
     }
 
@@ -81,8 +81,8 @@ class BusinessConnectedBot extends TdObject
         return [
             '@type'       => static::TYPE_NAME,
             'bot_user_id' => $this->botUserId,
-            'recipients'  => $this->recipients->typeSerialize(),
-            'rights'      => $this->rights->typeSerialize(),
+            'recipients'  => $this->recipients->jsonSerialize(),
+            'rights'      => $this->rights->jsonSerialize(),
         ];
     }
 }

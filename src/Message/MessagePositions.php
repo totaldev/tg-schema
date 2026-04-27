@@ -18,22 +18,22 @@ class MessagePositions extends TdObject
 
     public function __construct(
         /**
-         * Total number of messages found.
-         */
-        protected int   $totalCount,
-        /**
          * List of message positions.
          *
          * @var MessagePosition[]
          */
         protected array $positions,
+        /**
+         * Total number of messages found.
+         */
+        protected int   $totalCount,
     ) {}
 
     public static function fromArray(array $array): MessagePositions
     {
         return new static(
-            $array['total_count'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['positions']),
+            positions : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['positions']),
+            totalCount: $array['total_count'],
         );
     }
 
@@ -65,8 +65,8 @@ class MessagePositions extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
+            'positions'   => array_map(static fn($x) => $x->jsonSerialize(), $this->positions),
             'total_count' => $this->totalCount,
-            'positions'   => array_map(static fn($x) => $x->typeSerialize(), $this->positions),
         ];
     }
 }

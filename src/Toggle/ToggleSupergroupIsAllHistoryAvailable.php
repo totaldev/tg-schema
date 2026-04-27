@@ -17,20 +17,20 @@ class ToggleSupergroupIsAllHistoryAvailable extends TdFunction
 
     public function __construct(
         /**
-         * The identifier of the supergroup.
-         */
-        protected int  $supergroupId,
-        /**
          * The new value of is_all_history_available.
          */
         protected bool $isAllHistoryAvailable,
+        /**
+         * The identifier of the supergroup.
+         */
+        protected int  $supergroupId,
     ) {}
 
     public static function fromArray(array $array): ToggleSupergroupIsAllHistoryAvailable
     {
         return new static(
-            $array['supergroup_id'],
-            $array['is_all_history_available'],
+            isAllHistoryAvailable: $array['is_all_history_available'],
+            supergroupId         : $array['supergroup_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class ToggleSupergroupIsAllHistoryAvailable extends TdFunction
     {
         return [
             '@type'                    => static::TYPE_NAME,
-            'supergroup_id'            => $this->supergroupId,
             'is_all_history_available' => $this->isAllHistoryAvailable,
+            'supergroup_id'            => $this->supergroupId,
         ];
     }
 }

@@ -19,25 +19,25 @@ class Background extends TdObject
 
     public function __construct(
         /**
+         * Document with the background; may be null. Null only for filled and chat theme backgrounds.
+         */
+        protected ?Document      $document,
+        /**
          * Unique background identifier.
          */
         protected int            $id,
-        /**
-         * True, if this is one of default backgrounds.
-         */
-        protected bool           $isDefault,
         /**
          * True, if the background is dark and is recommended to be used with dark theme.
          */
         protected bool           $isDark,
         /**
+         * True, if this is one of default backgrounds.
+         */
+        protected bool           $isDefault,
+        /**
          * Unique background name.
          */
         protected string         $name,
-        /**
-         * Document with the background; may be null. Null only for filled and chat theme backgrounds.
-         */
-        protected ?Document      $document,
         /**
          * Type of the background.
          */
@@ -47,12 +47,12 @@ class Background extends TdObject
     public static function fromArray(array $array): Background
     {
         return new static(
-            $array['id'],
-            $array['is_default'],
-            $array['is_dark'],
-            $array['name'],
-            isset($array['document']) ? TdSchemaRegistry::fromArray($array['document']) : null,
-            TdSchemaRegistry::fromArray($array['type']),
+            document : (isset($array['document']) ? TdSchemaRegistry::fromArray($array['document']) : null),
+            id       : $array['id'],
+            isDark   : $array['is_dark'],
+            isDefault: $array['is_default'],
+            name     : $array['name'],
+            type     : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -132,12 +132,12 @@ class Background extends TdObject
     {
         return [
             '@type'      => static::TYPE_NAME,
+            'document'   => (null !== $this->document ? $this->document->jsonSerialize() : null),
             'id'         => $this->id,
-            'is_default' => $this->isDefault,
             'is_dark'    => $this->isDark,
+            'is_default' => $this->isDefault,
             'name'       => $this->name,
-            'document'   => $this->document ?? null,
-            'type'       => $this->type->typeSerialize(),
+            'type'       => $this->type->jsonSerialize(),
         ];
     }
 }

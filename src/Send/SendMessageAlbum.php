@@ -33,27 +33,27 @@ class SendMessageAlbum extends TdFunction
          */
         protected array                $inputMessageContents,
         /**
-         * Topic in which the messages will be sent; pass null if none.
+         * Options to be used to send the messages; pass null to use default options.
          */
-        protected ?MessageTopic        $topicId = null,
+        protected ?MessageSendOptions  $options = null,
         /**
          * Information about the message or story to be replied; pass null if none.
          */
         protected ?InputMessageReplyTo $replyTo = null,
         /**
-         * Options to be used to send the messages; pass null to use default options.
+         * Topic in which the messages will be sent; pass null if none.
          */
-        protected ?MessageSendOptions  $options = null,
+        protected ?MessageTopic        $topicId = null,
     ) {}
 
     public static function fromArray(array $array): SendMessageAlbum
     {
         return new static(
-            $array['chat_id'],
-            isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null,
-            isset($array['reply_to']) ? TdSchemaRegistry::fromArray($array['reply_to']) : null,
-            isset($array['options']) ? TdSchemaRegistry::fromArray($array['options']) : null,
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['input_message_contents']),
+            chatId              : $array['chat_id'],
+            inputMessageContents: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['input_message_contents']),
+            options             : (isset($array['options']) ? TdSchemaRegistry::fromArray($array['options']) : null),
+            replyTo             : (isset($array['reply_to']) ? TdSchemaRegistry::fromArray($array['reply_to']) : null),
+            topicId             : (isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null),
         );
     }
 
@@ -122,10 +122,10 @@ class SendMessageAlbum extends TdFunction
         return [
             '@type'                  => static::TYPE_NAME,
             'chat_id'                => $this->chatId,
-            'topic_id'               => $this->topicId ?? null,
-            'reply_to'               => $this->replyTo ?? null,
-            'options'                => $this->options ?? null,
-            'input_message_contents' => array_map(static fn($x) => $x->typeSerialize(), $this->inputMessageContents),
+            'input_message_contents' => array_map(static fn($x) => $x->jsonSerialize(), $this->inputMessageContents),
+            'options'                => (null !== $this->options ? $this->options->jsonSerialize() : null),
+            'reply_to'               => (null !== $this->replyTo ? $this->replyTo->jsonSerialize() : null),
+            'topic_id'               => (null !== $this->topicId ? $this->topicId->jsonSerialize() : null),
         ];
     }
 }

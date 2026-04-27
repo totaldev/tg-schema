@@ -17,25 +17,25 @@ class ChatStatisticsMessageSenderInfo extends TdObject
 
     public function __construct(
         /**
-         * User identifier.
+         * Average number of characters in sent messages; 0 if unknown.
          */
-        protected int $userId,
+        protected int $averageCharacterCount,
         /**
          * Number of sent messages.
          */
         protected int $sentMessageCount,
         /**
-         * Average number of characters in sent messages; 0 if unknown.
+         * User identifier.
          */
-        protected int $averageCharacterCount,
+        protected int $userId,
     ) {}
 
     public static function fromArray(array $array): ChatStatisticsMessageSenderInfo
     {
         return new static(
-            $array['user_id'],
-            $array['sent_message_count'],
-            $array['average_character_count'],
+            averageCharacterCount: $array['average_character_count'],
+            sentMessageCount     : $array['sent_message_count'],
+            userId               : $array['user_id'],
         );
     }
 
@@ -79,9 +79,9 @@ class ChatStatisticsMessageSenderInfo extends TdObject
     {
         return [
             '@type'                   => static::TYPE_NAME,
-            'user_id'                 => $this->userId,
-            'sent_message_count'      => $this->sentMessageCount,
             'average_character_count' => $this->averageCharacterCount,
+            'sent_message_count'      => $this->sentMessageCount,
+            'user_id'                 => $this->userId,
         ];
     }
 }

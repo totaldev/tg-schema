@@ -29,8 +29,8 @@ class Point extends TdObject
     public static function fromArray(array $array): Point
     {
         return new static(
-            $array['x'],
-            $array['y'],
+            x: $array['x'],
+            y: $array['y'],
         );
     }
 

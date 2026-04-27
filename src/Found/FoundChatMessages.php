@@ -19,10 +19,6 @@ class FoundChatMessages extends TdObject
 
     public function __construct(
         /**
-         * Approximate total number of messages found; -1 if unknown.
-         */
-        protected int   $totalCount,
-        /**
          * List of messages.
          *
          * @var Message[]
@@ -32,14 +28,18 @@ class FoundChatMessages extends TdObject
          * The offset for the next request. If 0, there are no more results.
          */
         protected int   $nextFromMessageId,
+        /**
+         * Approximate total number of messages found; -1 if unknown.
+         */
+        protected int   $totalCount,
     ) {}
 
     public static function fromArray(array $array): FoundChatMessages
     {
         return new static(
-            $array['total_count'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['messages']),
-            $array['next_from_message_id'],
+            messages         : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['messages']),
+            nextFromMessageId: $array['next_from_message_id'],
+            totalCount       : $array['total_count'],
         );
     }
 
@@ -83,9 +83,9 @@ class FoundChatMessages extends TdObject
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'total_count'          => $this->totalCount,
-            'messages'             => array_map(static fn($x) => $x->typeSerialize(), $this->messages),
+            'messages'             => array_map(static fn($x) => $x->jsonSerialize(), $this->messages),
             'next_from_message_id' => $this->nextFromMessageId,
+            'total_count'          => $this->totalCount,
         ];
     }
 }

@@ -26,7 +26,7 @@ class DeleteLanguagePack extends TdFunction
     public static function fromArray(array $array): DeleteLanguagePack
     {
         return new static(
-            $array['language_pack_id'],
+            languagePackId: $array['language_pack_id'],
         );
     }
 

@@ -22,13 +22,13 @@ class DeleteChatMessagesByDate extends TdFunction
          */
         protected int  $chatId,
         /**
-         * The minimum date of the messages to delete.
-         */
-        protected int  $minDate,
-        /**
          * The maximum date of the messages to delete.
          */
         protected int  $maxDate,
+        /**
+         * The minimum date of the messages to delete.
+         */
+        protected int  $minDate,
         /**
          * Pass true to delete chat messages for all users; private chats only.
          */
@@ -38,10 +38,10 @@ class DeleteChatMessagesByDate extends TdFunction
     public static function fromArray(array $array): DeleteChatMessagesByDate
     {
         return new static(
-            $array['chat_id'],
-            $array['min_date'],
-            $array['max_date'],
-            $array['revoke'],
+            chatId : $array['chat_id'],
+            maxDate: $array['max_date'],
+            minDate: $array['min_date'],
+            revoke : $array['revoke'],
         );
     }
 
@@ -98,8 +98,8 @@ class DeleteChatMessagesByDate extends TdFunction
         return [
             '@type'    => static::TYPE_NAME,
             'chat_id'  => $this->chatId,
-            'min_date' => $this->minDate,
             'max_date' => $this->maxDate,
+            'min_date' => $this->minDate,
             'revoke'   => $this->revoke,
         ];
     }

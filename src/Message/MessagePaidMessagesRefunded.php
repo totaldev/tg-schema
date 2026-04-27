@@ -29,8 +29,8 @@ class MessagePaidMessagesRefunded extends MessageContent
     public static function fromArray(array $array): MessagePaidMessagesRefunded
     {
         return new static(
-            $array['message_count'],
-            $array['star_count'],
+            messageCount: $array['message_count'],
+            starCount   : $array['star_count'],
         );
     }
 

@@ -19,10 +19,6 @@ class BusinessStartPage extends TdObject
 
     public function __construct(
         /**
-         * Title text of the start page.
-         */
-        protected string   $title,
-        /**
          * Message text of the start page.
          */
         protected string   $message,
@@ -30,14 +26,18 @@ class BusinessStartPage extends TdObject
          * Greeting sticker of the start page; may be null if none.
          */
         protected ?Sticker $sticker,
+        /**
+         * Title text of the start page.
+         */
+        protected string   $title,
     ) {}
 
     public static function fromArray(array $array): BusinessStartPage
     {
         return new static(
-            $array['title'],
-            $array['message'],
-            isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null,
+            message: $array['message'],
+            sticker: (isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null),
+            title  : $array['title'],
         );
     }
 
@@ -81,9 +81,9 @@ class BusinessStartPage extends TdObject
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'title'   => $this->title,
             'message' => $this->message,
-            'sticker' => $this->sticker ?? null,
+            'sticker' => (null !== $this->sticker ? $this->sticker->jsonSerialize() : null),
+            'title'   => $this->title,
         ];
     }
 }

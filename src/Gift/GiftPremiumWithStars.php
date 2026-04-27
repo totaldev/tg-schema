@@ -19,30 +19,30 @@ class GiftPremiumWithStars extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the user which will receive Telegram Premium.
+         * Number of months the Telegram Premium subscription will be active for the user.
          */
-        protected int           $userId,
+        protected int           $monthCount,
         /**
          * The number of Telegram Stars to pay for subscription.
          */
         protected int           $starCount,
         /**
-         * Number of months the Telegram Premium subscription will be active for the user.
-         */
-        protected int           $monthCount,
-        /**
          * Text to show to the user receiving Telegram Premium; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed.
          */
         protected FormattedText $text,
+        /**
+         * Identifier of the user which will receive Telegram Premium.
+         */
+        protected int           $userId,
     ) {}
 
     public static function fromArray(array $array): GiftPremiumWithStars
     {
         return new static(
-            $array['user_id'],
-            $array['star_count'],
-            $array['month_count'],
-            TdSchemaRegistry::fromArray($array['text']),
+            monthCount: $array['month_count'],
+            starCount : $array['star_count'],
+            text      : TdSchemaRegistry::fromArray($array['text']),
+            userId    : $array['user_id'],
         );
     }
 
@@ -98,10 +98,10 @@ class GiftPremiumWithStars extends TdFunction
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'user_id'     => $this->userId,
-            'star_count'  => $this->starCount,
             'month_count' => $this->monthCount,
-            'text'        => $this->text->typeSerialize(),
+            'star_count'  => $this->starCount,
+            'text'        => $this->text->jsonSerialize(),
+            'user_id'     => $this->userId,
         ];
     }
 }

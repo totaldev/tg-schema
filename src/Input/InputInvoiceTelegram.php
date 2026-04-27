@@ -28,7 +28,7 @@ class InputInvoiceTelegram extends InputInvoice
     public static function fromArray(array $array): InputInvoiceTelegram
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['purpose']),
+            purpose: TdSchemaRegistry::fromArray($array['purpose']),
         );
     }
 
@@ -48,7 +48,7 @@ class InputInvoiceTelegram extends InputInvoice
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'purpose' => $this->purpose->typeSerialize(),
+            'purpose' => $this->purpose->jsonSerialize(),
         ];
     }
 }

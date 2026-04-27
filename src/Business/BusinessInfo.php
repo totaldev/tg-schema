@@ -18,33 +18,33 @@ class BusinessInfo extends TdObject
 
     public function __construct(
         /**
-         * Location of the business; may be null if none.
+         * The away message; may be null if none or the Business account is not of the current user.
          */
-        protected ?BusinessLocation                $location,
-        /**
-         * Opening hours of the business; may be null if none. The hours are guaranteed to be valid and has already been split by week days.
-         */
-        protected ?BusinessOpeningHours            $openingHours,
-        /**
-         * Opening hours of the business in the local time; may be null if none. The hours are guaranteed to be valid and has already been split by week days. Local time zone identifier will be empty. An updateUserFullInfo update is not triggered when value of this field changes.
-         */
-        protected ?BusinessOpeningHours            $localOpeningHours,
-        /**
-         * Time left before the business will open the next time, in seconds; 0 if unknown. An updateUserFullInfo update is not triggered when value of this field changes.
-         */
-        protected int                              $nextOpenIn,
-        /**
-         * Time left before the business will close the next time, in seconds; 0 if unknown. An updateUserFullInfo update is not triggered when value of this field changes.
-         */
-        protected int                              $nextCloseIn,
+        protected ?BusinessAwayMessageSettings     $awayMessageSettings,
         /**
          * The greeting message; may be null if none or the Business account is not of the current user.
          */
         protected ?BusinessGreetingMessageSettings $greetingMessageSettings,
         /**
-         * The away message; may be null if none or the Business account is not of the current user.
+         * Opening hours of the business in the local time; may be null if none. The hours are guaranteed to be valid and has already been split by week days. Local time zone identifier will be empty. An updateUserFullInfo update is not triggered when value of this field changes.
          */
-        protected ?BusinessAwayMessageSettings     $awayMessageSettings,
+        protected ?BusinessOpeningHours            $localOpeningHours,
+        /**
+         * Location of the business; may be null if none.
+         */
+        protected ?BusinessLocation                $location,
+        /**
+         * Time left before the business will close the next time, in seconds; 0 if unknown. An updateUserFullInfo update is not triggered when value of this field changes.
+         */
+        protected int                              $nextCloseIn,
+        /**
+         * Time left before the business will open the next time, in seconds; 0 if unknown. An updateUserFullInfo update is not triggered when value of this field changes.
+         */
+        protected int                              $nextOpenIn,
+        /**
+         * Opening hours of the business; may be null if none. The hours are guaranteed to be valid and has already been split by week days.
+         */
+        protected ?BusinessOpeningHours            $openingHours,
         /**
          * Information about start page of the account; may be null if none.
          */
@@ -54,14 +54,14 @@ class BusinessInfo extends TdObject
     public static function fromArray(array $array): BusinessInfo
     {
         return new static(
-            isset($array['location']) ? TdSchemaRegistry::fromArray($array['location']) : null,
-            isset($array['opening_hours']) ? TdSchemaRegistry::fromArray($array['opening_hours']) : null,
-            isset($array['local_opening_hours']) ? TdSchemaRegistry::fromArray($array['local_opening_hours']) : null,
-            $array['next_open_in'],
-            $array['next_close_in'],
-            isset($array['greeting_message_settings']) ? TdSchemaRegistry::fromArray($array['greeting_message_settings']) : null,
-            isset($array['away_message_settings']) ? TdSchemaRegistry::fromArray($array['away_message_settings']) : null,
-            isset($array['start_page']) ? TdSchemaRegistry::fromArray($array['start_page']) : null,
+            awayMessageSettings    : (isset($array['away_message_settings']) ? TdSchemaRegistry::fromArray($array['away_message_settings']) : null),
+            greetingMessageSettings: (isset($array['greeting_message_settings']) ? TdSchemaRegistry::fromArray($array['greeting_message_settings']) : null),
+            localOpeningHours      : (isset($array['local_opening_hours']) ? TdSchemaRegistry::fromArray($array['local_opening_hours']) : null),
+            location               : (isset($array['location']) ? TdSchemaRegistry::fromArray($array['location']) : null),
+            nextCloseIn            : $array['next_close_in'],
+            nextOpenIn             : $array['next_open_in'],
+            openingHours           : (isset($array['opening_hours']) ? TdSchemaRegistry::fromArray($array['opening_hours']) : null),
+            startPage              : (isset($array['start_page']) ? TdSchemaRegistry::fromArray($array['start_page']) : null),
         );
     }
 
@@ -165,14 +165,14 @@ class BusinessInfo extends TdObject
     {
         return [
             '@type'                     => static::TYPE_NAME,
-            'location'                  => $this->location ?? null,
-            'opening_hours'             => $this->openingHours ?? null,
-            'local_opening_hours'       => $this->localOpeningHours ?? null,
-            'next_open_in'              => $this->nextOpenIn,
+            'away_message_settings'     => (null !== $this->awayMessageSettings ? $this->awayMessageSettings->jsonSerialize() : null),
+            'greeting_message_settings' => (null !== $this->greetingMessageSettings ? $this->greetingMessageSettings->jsonSerialize() : null),
+            'local_opening_hours'       => (null !== $this->localOpeningHours ? $this->localOpeningHours->jsonSerialize() : null),
+            'location'                  => (null !== $this->location ? $this->location->jsonSerialize() : null),
             'next_close_in'             => $this->nextCloseIn,
-            'greeting_message_settings' => $this->greetingMessageSettings ?? null,
-            'away_message_settings'     => $this->awayMessageSettings ?? null,
-            'start_page'                => $this->startPage ?? null,
+            'next_open_in'              => $this->nextOpenIn,
+            'opening_hours'             => (null !== $this->openingHours ? $this->openingHours->jsonSerialize() : null),
+            'start_page'                => (null !== $this->startPage ? $this->startPage->jsonSerialize() : null),
         ];
     }
 }

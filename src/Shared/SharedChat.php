@@ -23,6 +23,10 @@ class SharedChat extends TdObject
          */
         protected int    $chatId,
         /**
+         * Photo of the chat; for bots only; may be null.
+         */
+        protected ?Photo $photo,
+        /**
          * Title of the chat; for bots only.
          */
         protected string $title,
@@ -30,19 +34,15 @@ class SharedChat extends TdObject
          * Username of the chat; for bots only.
          */
         protected string $username,
-        /**
-         * Photo of the chat; for bots only; may be null.
-         */
-        protected ?Photo $photo,
     ) {}
 
     public static function fromArray(array $array): SharedChat
     {
         return new static(
-            $array['chat_id'],
-            $array['title'],
-            $array['username'],
-            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
+            chatId  : $array['chat_id'],
+            photo   : (isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null),
+            title   : $array['title'],
+            username: $array['username'],
         );
     }
 
@@ -99,9 +99,9 @@ class SharedChat extends TdObject
         return [
             '@type'    => static::TYPE_NAME,
             'chat_id'  => $this->chatId,
+            'photo'    => (null !== $this->photo ? $this->photo->jsonSerialize() : null),
             'title'    => $this->title,
             'username' => $this->username,
-            'photo'    => $this->photo ?? null,
         ];
     }
 }

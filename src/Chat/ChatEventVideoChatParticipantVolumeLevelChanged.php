@@ -32,8 +32,8 @@ class ChatEventVideoChatParticipantVolumeLevelChanged extends ChatEventAction
     public static function fromArray(array $array): ChatEventVideoChatParticipantVolumeLevelChanged
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['participant_id']),
-            $array['volume_level'],
+            participantId: TdSchemaRegistry::fromArray($array['participant_id']),
+            volumeLevel  : $array['volume_level'],
         );
     }
 
@@ -65,7 +65,7 @@ class ChatEventVideoChatParticipantVolumeLevelChanged extends ChatEventAction
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'participant_id' => $this->participantId->typeSerialize(),
+            'participant_id' => $this->participantId->jsonSerialize(),
             'volume_level'   => $this->volumeLevel,
         ];
     }

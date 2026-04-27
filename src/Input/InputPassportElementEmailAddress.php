@@ -25,7 +25,7 @@ class InputPassportElementEmailAddress extends InputPassportElement
     public static function fromArray(array $array): InputPassportElementEmailAddress
     {
         return new static(
-            $array['email_address'],
+            emailAddress: $array['email_address'],
         );
     }
 

@@ -28,7 +28,7 @@ class AvailableGifts extends TdObject
     public static function fromArray(array $array): AvailableGifts
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['gifts']),
+            gifts: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['gifts']),
         );
     }
 
@@ -48,7 +48,7 @@ class AvailableGifts extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            'gifts' => array_map(static fn($x) => $x->typeSerialize(), $this->gifts),
+            'gifts' => array_map(static fn($x) => $x->jsonSerialize(), $this->gifts),
         ];
     }
 }

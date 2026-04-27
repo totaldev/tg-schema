@@ -19,9 +19,21 @@ class Checklist extends TdObject
 
     public function __construct(
         /**
-         * Title of the checklist; may contain only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities.
+         * True, if the current user can add tasks to the list if they have Telegram Premium subscription.
          */
-        protected FormattedText $title,
+        protected bool          $canAddTasks,
+        /**
+         * True, if the current user can mark tasks as done or not done if they have Telegram Premium subscription.
+         */
+        protected bool          $canMarkTasksAsDone,
+        /**
+         * True, if users other than creator of the list can add tasks to the list.
+         */
+        protected bool          $othersCanAddTasks,
+        /**
+         * True, if users other than creator of the list can mark tasks as done or not done. If true, then the checklist is called "group checklist".
+         */
+        protected bool          $othersCanMarkTasksAsDone,
         /**
          * List of tasks in the checklist.
          *
@@ -29,32 +41,20 @@ class Checklist extends TdObject
          */
         protected array         $tasks,
         /**
-         * True, if users other than creator of the list can add tasks to the list.
+         * Title of the checklist; may contain only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities.
          */
-        protected bool          $othersCanAddTasks,
-        /**
-         * True, if the current user can add tasks to the list if they have Telegram Premium subscription.
-         */
-        protected bool          $canAddTasks,
-        /**
-         * True, if users other than creator of the list can mark tasks as done or not done. If true, then the checklist is called "group checklist".
-         */
-        protected bool          $othersCanMarkTasksAsDone,
-        /**
-         * True, if the current user can mark tasks as done or not done if they have Telegram Premium subscription.
-         */
-        protected bool          $canMarkTasksAsDone,
+        protected FormattedText $title,
     ) {}
 
     public static function fromArray(array $array): Checklist
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['title']),
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['tasks']),
-            $array['others_can_add_tasks'],
-            $array['can_add_tasks'],
-            $array['others_can_mark_tasks_as_done'],
-            $array['can_mark_tasks_as_done'],
+            canAddTasks             : $array['can_add_tasks'],
+            canMarkTasksAsDone      : $array['can_mark_tasks_as_done'],
+            othersCanAddTasks       : $array['others_can_add_tasks'],
+            othersCanMarkTasksAsDone: $array['others_can_mark_tasks_as_done'],
+            tasks                   : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['tasks']),
+            title                   : TdSchemaRegistry::fromArray($array['title']),
         );
     }
 
@@ -134,12 +134,12 @@ class Checklist extends TdObject
     {
         return [
             '@type'                         => static::TYPE_NAME,
-            'title'                         => $this->title->typeSerialize(),
-            'tasks'                         => array_map(static fn($x) => $x->typeSerialize(), $this->tasks),
-            'others_can_add_tasks'          => $this->othersCanAddTasks,
             'can_add_tasks'                 => $this->canAddTasks,
-            'others_can_mark_tasks_as_done' => $this->othersCanMarkTasksAsDone,
             'can_mark_tasks_as_done'        => $this->canMarkTasksAsDone,
+            'others_can_add_tasks'          => $this->othersCanAddTasks,
+            'others_can_mark_tasks_as_done' => $this->othersCanMarkTasksAsDone,
+            'tasks'                         => array_map(static fn($x) => $x->jsonSerialize(), $this->tasks),
+            'title'                         => $this->title->jsonSerialize(),
         ];
     }
 }

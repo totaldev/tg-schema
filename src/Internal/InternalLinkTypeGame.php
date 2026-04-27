@@ -30,8 +30,8 @@ class InternalLinkTypeGame extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeGame
     {
         return new static(
-            $array['bot_username'],
-            $array['game_short_name'],
+            botUsername  : $array['bot_username'],
+            gameShortName: $array['game_short_name'],
         );
     }
 

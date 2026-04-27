@@ -22,17 +22,17 @@ class DiceStickersSlotMachine extends DiceStickers
          */
         protected Sticker $background,
         /**
-         * The animated sticker with the lever animation. The lever animation must play once in the initial dice state.
+         * The animated sticker with the center reel.
          */
-        protected Sticker $lever,
+        protected Sticker $centerReel,
         /**
          * The animated sticker with the left reel.
          */
         protected Sticker $leftReel,
         /**
-         * The animated sticker with the center reel.
+         * The animated sticker with the lever animation. The lever animation must play once in the initial dice state.
          */
-        protected Sticker $centerReel,
+        protected Sticker $lever,
         /**
          * The animated sticker with the right reel.
          */
@@ -44,11 +44,11 @@ class DiceStickersSlotMachine extends DiceStickers
     public static function fromArray(array $array): DiceStickersSlotMachine
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['background']),
-            TdSchemaRegistry::fromArray($array['lever']),
-            TdSchemaRegistry::fromArray($array['left_reel']),
-            TdSchemaRegistry::fromArray($array['center_reel']),
-            TdSchemaRegistry::fromArray($array['right_reel']),
+            background: TdSchemaRegistry::fromArray($array['background']),
+            centerReel: TdSchemaRegistry::fromArray($array['center_reel']),
+            leftReel  : TdSchemaRegistry::fromArray($array['left_reel']),
+            lever     : TdSchemaRegistry::fromArray($array['lever']),
+            rightReel : TdSchemaRegistry::fromArray($array['right_reel']),
         );
     }
 
@@ -116,11 +116,11 @@ class DiceStickersSlotMachine extends DiceStickers
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'background'  => $this->background->typeSerialize(),
-            'lever'       => $this->lever->typeSerialize(),
-            'left_reel'   => $this->leftReel->typeSerialize(),
-            'center_reel' => $this->centerReel->typeSerialize(),
-            'right_reel'  => $this->rightReel->typeSerialize(),
+            'background'  => $this->background->jsonSerialize(),
+            'center_reel' => $this->centerReel->jsonSerialize(),
+            'left_reel'   => $this->leftReel->jsonSerialize(),
+            'lever'       => $this->lever->jsonSerialize(),
+            'right_reel'  => $this->rightReel->jsonSerialize(),
         ];
     }
 }

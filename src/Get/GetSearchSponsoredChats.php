@@ -25,7 +25,7 @@ class GetSearchSponsoredChats extends TdFunction
     public static function fromArray(array $array): GetSearchSponsoredChats
     {
         return new static(
-            $array['query'],
+            query: $array['query'],
         );
     }
 

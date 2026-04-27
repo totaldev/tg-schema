@@ -22,21 +22,21 @@ class Proxy extends TdObject
          */
         protected int       $id,
         /**
-         * Proxy server domain or IP address.
+         * True, if the proxy is enabled now.
          */
-        protected string    $server,
-        /**
-         * Proxy server port.
-         */
-        protected int       $port,
+        protected bool      $isEnabled,
         /**
          * Point in time (Unix timestamp) when the proxy was last used; 0 if never.
          */
         protected int       $lastUsedDate,
         /**
-         * True, if the proxy is enabled now.
+         * Proxy server port.
          */
-        protected bool      $isEnabled,
+        protected int       $port,
+        /**
+         * Proxy server domain or IP address.
+         */
+        protected string    $server,
         /**
          * Type of the proxy.
          */
@@ -46,12 +46,12 @@ class Proxy extends TdObject
     public static function fromArray(array $array): Proxy
     {
         return new static(
-            $array['id'],
-            $array['server'],
-            $array['port'],
-            $array['last_used_date'],
-            $array['is_enabled'],
-            TdSchemaRegistry::fromArray($array['type']),
+            id          : $array['id'],
+            isEnabled   : $array['is_enabled'],
+            lastUsedDate: $array['last_used_date'],
+            port        : $array['port'],
+            server      : $array['server'],
+            type        : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -132,11 +132,11 @@ class Proxy extends TdObject
         return [
             '@type'          => static::TYPE_NAME,
             'id'             => $this->id,
-            'server'         => $this->server,
-            'port'           => $this->port,
-            'last_used_date' => $this->lastUsedDate,
             'is_enabled'     => $this->isEnabled,
-            'type'           => $this->type->typeSerialize(),
+            'last_used_date' => $this->lastUsedDate,
+            'port'           => $this->port,
+            'server'         => $this->server,
+            'type'           => $this->type->jsonSerialize(),
         ];
     }
 }

@@ -18,30 +18,30 @@ class QuickReplyShortcut extends TdObject
 
     public function __construct(
         /**
-         * Unique shortcut identifier.
-         */
-        protected int               $id,
-        /**
-         * The name of the shortcut that can be used to use the shortcut.
-         */
-        protected string            $name,
-        /**
          * The first shortcut message.
          */
         protected QuickReplyMessage $firstMessage,
         /**
+         * Unique shortcut identifier.
+         */
+        protected int               $id,
+        /**
          * The total number of messages in the shortcut.
          */
         protected int               $messageCount,
+        /**
+         * The name of the shortcut that can be used to use the shortcut.
+         */
+        protected string            $name,
     ) {}
 
     public static function fromArray(array $array): QuickReplyShortcut
     {
         return new static(
-            $array['id'],
-            $array['name'],
-            TdSchemaRegistry::fromArray($array['first_message']),
-            $array['message_count'],
+            firstMessage: TdSchemaRegistry::fromArray($array['first_message']),
+            id          : $array['id'],
+            messageCount: $array['message_count'],
+            name        : $array['name'],
         );
     }
 
@@ -97,10 +97,10 @@ class QuickReplyShortcut extends TdObject
     {
         return [
             '@type'         => static::TYPE_NAME,
+            'first_message' => $this->firstMessage->jsonSerialize(),
             'id'            => $this->id,
-            'name'          => $this->name,
-            'first_message' => $this->firstMessage->typeSerialize(),
             'message_count' => $this->messageCount,
+            'name'          => $this->name,
         ];
     }
 }

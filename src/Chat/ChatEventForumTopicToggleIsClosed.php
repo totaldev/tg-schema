@@ -28,7 +28,7 @@ class ChatEventForumTopicToggleIsClosed extends ChatEventAction
     public static function fromArray(array $array): ChatEventForumTopicToggleIsClosed
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['topic_info']),
+            topicInfo: TdSchemaRegistry::fromArray($array['topic_info']),
         );
     }
 
@@ -48,7 +48,7 @@ class ChatEventForumTopicToggleIsClosed extends ChatEventAction
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'topic_info' => $this->topicInfo->typeSerialize(),
+            'topic_info' => $this->topicInfo->jsonSerialize(),
         ];
     }
 }

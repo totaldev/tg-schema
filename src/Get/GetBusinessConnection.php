@@ -25,7 +25,7 @@ class GetBusinessConnection extends TdFunction
     public static function fromArray(array $array): GetBusinessConnection
     {
         return new static(
-            $array['connection_id'],
+            connectionId: $array['connection_id'],
         );
     }
 

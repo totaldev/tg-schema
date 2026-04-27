@@ -28,7 +28,7 @@ class UpdateChatActiveStories extends Update
     public static function fromArray(array $array): UpdateChatActiveStories
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['active_stories']),
+            activeStories: TdSchemaRegistry::fromArray($array['active_stories']),
         );
     }
 
@@ -48,7 +48,7 @@ class UpdateChatActiveStories extends Update
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'active_stories' => $this->activeStories->typeSerialize(),
+            'active_stories' => $this->activeStories->jsonSerialize(),
         ];
     }
 }

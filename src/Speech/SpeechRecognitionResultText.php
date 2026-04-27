@@ -25,7 +25,7 @@ class SpeechRecognitionResultText extends SpeechRecognitionResult
     public static function fromArray(array $array): SpeechRecognitionResultText
     {
         return new static(
-            $array['text'],
+            text: $array['text'],
         );
     }
 

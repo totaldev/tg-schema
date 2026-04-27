@@ -18,13 +18,13 @@ class UpdateChatBusinessBotManageBar extends Update
 
     public function __construct(
         /**
-         * Chat identifier.
-         */
-        protected int                   $chatId,
-        /**
          * The new value of the business bot manage bar; may be null.
          */
         protected ?BusinessBotManageBar $businessBotManageBar,
+        /**
+         * Chat identifier.
+         */
+        protected int                   $chatId,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class UpdateChatBusinessBotManageBar extends Update
     public static function fromArray(array $array): UpdateChatBusinessBotManageBar
     {
         return new static(
-            $array['chat_id'],
-            isset($array['business_bot_manage_bar']) ? TdSchemaRegistry::fromArray($array['business_bot_manage_bar']) : null,
+            businessBotManageBar: (isset($array['business_bot_manage_bar']) ? TdSchemaRegistry::fromArray($array['business_bot_manage_bar']) : null),
+            chatId              : $array['chat_id'],
         );
     }
 
@@ -65,8 +65,8 @@ class UpdateChatBusinessBotManageBar extends Update
     {
         return [
             '@type'                   => static::TYPE_NAME,
+            'business_bot_manage_bar' => (null !== $this->businessBotManageBar ? $this->businessBotManageBar->jsonSerialize() : null),
             'chat_id'                 => $this->chatId,
-            'business_bot_manage_bar' => $this->businessBotManageBar ?? null,
         ];
     }
 }

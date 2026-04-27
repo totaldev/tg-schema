@@ -25,7 +25,7 @@ class CanBotSendMessages extends TdFunction
     public static function fromArray(array $array): CanBotSendMessages
     {
         return new static(
-            $array['bot_user_id'],
+            botUserId: $array['bot_user_id'],
         );
     }
 

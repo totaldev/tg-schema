@@ -31,8 +31,8 @@ class FoundAffiliateProgram extends TdObject
     public static function fromArray(array $array): FoundAffiliateProgram
     {
         return new static(
-            $array['bot_user_id'],
-            TdSchemaRegistry::fromArray($array['info']),
+            botUserId: $array['bot_user_id'],
+            info     : TdSchemaRegistry::fromArray($array['info']),
         );
     }
 
@@ -65,7 +65,7 @@ class FoundAffiliateProgram extends TdObject
         return [
             '@type'       => static::TYPE_NAME,
             'bot_user_id' => $this->botUserId,
-            'info'        => $this->info->typeSerialize(),
+            'info'        => $this->info->jsonSerialize(),
         ];
     }
 }

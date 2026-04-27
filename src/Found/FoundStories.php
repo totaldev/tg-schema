@@ -19,9 +19,9 @@ class FoundStories extends TdObject
 
     public function __construct(
         /**
-         * Approximate total number of stories found.
+         * The offset for the next request. If empty, then there are no more results.
          */
-        protected int    $totalCount,
+        protected string $nextOffset,
         /**
          * List of stories.
          *
@@ -29,17 +29,17 @@ class FoundStories extends TdObject
          */
         protected array  $stories,
         /**
-         * The offset for the next request. If empty, then there are no more results.
+         * Approximate total number of stories found.
          */
-        protected string $nextOffset,
+        protected int    $totalCount,
     ) {}
 
     public static function fromArray(array $array): FoundStories
     {
         return new static(
-            $array['total_count'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['stories']),
-            $array['next_offset'],
+            nextOffset: $array['next_offset'],
+            stories   : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['stories']),
+            totalCount: $array['total_count'],
         );
     }
 
@@ -83,9 +83,9 @@ class FoundStories extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'total_count' => $this->totalCount,
-            'stories'     => array_map(static fn($x) => $x->typeSerialize(), $this->stories),
             'next_offset' => $this->nextOffset,
+            'stories'     => array_map(static fn($x) => $x->jsonSerialize(), $this->stories),
+            'total_count' => $this->totalCount,
         ];
     }
 }

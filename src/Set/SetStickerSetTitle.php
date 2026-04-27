@@ -29,8 +29,8 @@ class SetStickerSetTitle extends TdFunction
     public static function fromArray(array $array): SetStickerSetTitle
     {
         return new static(
-            $array['name'],
-            $array['title'],
+            name : $array['name'],
+            title: $array['title'],
         );
     }
 

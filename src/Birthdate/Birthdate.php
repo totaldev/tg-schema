@@ -33,9 +33,9 @@ class Birthdate extends TdObject
     public static function fromArray(array $array): Birthdate
     {
         return new static(
-            $array['day'],
-            $array['month'],
-            $array['year'],
+            day  : $array['day'],
+            month: $array['month'],
+            year : $array['year'],
         );
     }
 

@@ -18,10 +18,6 @@ class PremiumStatePaymentOption extends TdObject
 
     public function __construct(
         /**
-         * Information about the payment option.
-         */
-        protected PremiumPaymentOption $paymentOption,
-        /**
          * True, if this is the currently used Telegram Premium subscription option.
          */
         protected bool                 $isCurrent,
@@ -33,15 +29,19 @@ class PremiumStatePaymentOption extends TdObject
          * Identifier of the last in-store transaction for the currently used option.
          */
         protected string               $lastTransactionId,
+        /**
+         * Information about the payment option.
+         */
+        protected PremiumPaymentOption $paymentOption,
     ) {}
 
     public static function fromArray(array $array): PremiumStatePaymentOption
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['payment_option']),
-            $array['is_current'],
-            $array['is_upgrade'],
-            $array['last_transaction_id'],
+            isCurrent        : $array['is_current'],
+            isUpgrade        : $array['is_upgrade'],
+            lastTransactionId: $array['last_transaction_id'],
+            paymentOption    : TdSchemaRegistry::fromArray($array['payment_option']),
         );
     }
 
@@ -97,10 +97,10 @@ class PremiumStatePaymentOption extends TdObject
     {
         return [
             '@type'               => static::TYPE_NAME,
-            'payment_option'      => $this->paymentOption->typeSerialize(),
             'is_current'          => $this->isCurrent,
             'is_upgrade'          => $this->isUpgrade,
             'last_transaction_id' => $this->lastTransactionId,
+            'payment_option'      => $this->paymentOption->jsonSerialize(),
         ];
     }
 }

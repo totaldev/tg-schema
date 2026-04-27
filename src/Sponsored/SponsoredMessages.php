@@ -32,8 +32,8 @@ class SponsoredMessages extends TdObject
     public static function fromArray(array $array): SponsoredMessages
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['messages']),
-            $array['messages_between'],
+            messages       : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['messages']),
+            messagesBetween: $array['messages_between'],
         );
     }
 
@@ -65,7 +65,7 @@ class SponsoredMessages extends TdObject
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'messages'         => array_map(static fn($x) => $x->typeSerialize(), $this->messages),
+            'messages'         => array_map(static fn($x) => $x->jsonSerialize(), $this->messages),
             'messages_between' => $this->messagesBetween,
         ];
     }

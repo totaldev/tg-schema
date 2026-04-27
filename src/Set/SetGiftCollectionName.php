@@ -20,10 +20,6 @@ class SetGiftCollectionName extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the user or the channel chat that owns the collection.
-         */
-        protected MessageSender $ownerId,
-        /**
          * Identifier of the gift collection.
          */
         protected int           $collectionId,
@@ -31,14 +27,18 @@ class SetGiftCollectionName extends TdFunction
          * New name of the collection; 1-12 characters.
          */
         protected string        $name,
+        /**
+         * Identifier of the user or the channel chat that owns the collection.
+         */
+        protected MessageSender $ownerId,
     ) {}
 
     public static function fromArray(array $array): SetGiftCollectionName
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['owner_id']),
-            $array['collection_id'],
-            $array['name'],
+            collectionId: $array['collection_id'],
+            name        : $array['name'],
+            ownerId     : TdSchemaRegistry::fromArray($array['owner_id']),
         );
     }
 
@@ -82,9 +82,9 @@ class SetGiftCollectionName extends TdFunction
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'owner_id'      => $this->ownerId->typeSerialize(),
             'collection_id' => $this->collectionId,
             'name'          => $this->name,
+            'owner_id'      => $this->ownerId->jsonSerialize(),
         ];
     }
 }

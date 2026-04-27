@@ -22,13 +22,13 @@ class RichTextIcon extends RichText
          */
         protected Document $document,
         /**
-         * Width of a bounding box in which the image must be shown; 0 if unknown.
-         */
-        protected int      $width,
-        /**
          * Height of a bounding box in which the image must be shown; 0 if unknown.
          */
         protected int      $height,
+        /**
+         * Width of a bounding box in which the image must be shown; 0 if unknown.
+         */
+        protected int      $width,
     ) {
         parent::__construct();
     }
@@ -36,9 +36,9 @@ class RichTextIcon extends RichText
     public static function fromArray(array $array): RichTextIcon
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['document']),
-            $array['width'],
-            $array['height'],
+            document: TdSchemaRegistry::fromArray($array['document']),
+            height  : $array['height'],
+            width   : $array['width'],
         );
     }
 
@@ -82,9 +82,9 @@ class RichTextIcon extends RichText
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'document' => $this->document->typeSerialize(),
-            'width'    => $this->width,
+            'document' => $this->document->jsonSerialize(),
             'height'   => $this->height,
+            'width'    => $this->width,
         ];
     }
 }

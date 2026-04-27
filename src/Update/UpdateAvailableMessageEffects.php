@@ -33,8 +33,8 @@ class UpdateAvailableMessageEffects extends Update
     public static function fromArray(array $array): UpdateAvailableMessageEffects
     {
         return new static(
-            $array['reaction_effect_ids'],
-            $array['sticker_effect_ids'],
+            reactionEffectIds: $array['reaction_effect_ids'],
+            stickerEffectIds : $array['sticker_effect_ids'],
         );
     }
 

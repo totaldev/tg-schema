@@ -24,85 +24,21 @@ class Supergroup extends TdObject
 
     public function __construct(
         /**
-         * Supergroup or channel identifier.
+         * Approximate boost level for the chat.
          */
-        protected int                 $id,
-        /**
-         * Usernames of the supergroup or channel; may be null.
-         */
-        protected ?Usernames          $usernames,
+        protected int                 $boostLevel,
         /**
          * Point in time (Unix timestamp) when the current user joined, or the point in time when the supergroup or channel was created, in case the user is not a member.
          */
         protected int                 $date,
         /**
-         * Status of the current user in the supergroup or channel; custom title will always be empty.
+         * True, if the supergroup or channel has non-expired stories available to the current user.
          */
-        protected ChatMemberStatus    $status,
-        /**
-         * Number of members in the supergroup or channel; 0 if unknown. Currently, it is guaranteed to be known only if the supergroup or channel was received through getChatSimilarChats, getChatsToPostStories, getCreatedPublicChats, getGroupsInCommon, getInactiveSupergroupChats, getRecommendedChats, getSuitableDiscussionChats, getUserPrivacySettingRules, getVideoChatAvailableParticipants, searchPublicChats, or in chatFolderInviteLinkInfo.missing_chat_ids, or in userFullInfo.personal_chat_id, or for chats with messages or stories from publicForwards and foundStories.
-         */
-        protected int                 $memberCount,
-        /**
-         * Approximate boost level for the chat.
-         */
-        protected int                 $boostLevel,
+        protected bool                $hasActiveStories,
         /**
          * True, if automatic translation of messages is enabled in the channel.
          */
         protected bool                $hasAutomaticTranslation,
-        /**
-         * True, if the channel has a discussion group, or the supergroup is the designated discussion group for a channel.
-         */
-        protected bool                $hasLinkedChat,
-        /**
-         * True, if the supergroup is connected to a location, i.e. the supergroup is a location-based supergroup.
-         */
-        protected bool                $hasLocation,
-        /**
-         * True, if messages sent to the channel contains name of the sender. This field is only applicable to channels.
-         */
-        protected bool                $signMessages,
-        /**
-         * True, if messages sent to the channel have information about the sender user. This field is only applicable to channels.
-         */
-        protected bool                $showMessageSender,
-        /**
-         * True, if users need to join the supergroup before they can send messages. May be false only for discussion supergroups and channel direct messages groups.
-         */
-        protected bool                $joinToSendMessages,
-        /**
-         * True, if all users directly joining the supergroup need to be approved by supergroup administrators. Can be true only for non-broadcast supergroups with username, location, or a linked chat.
-         */
-        protected bool                $joinByRequest,
-        /**
-         * True, if the slow mode is enabled in the supergroup.
-         */
-        protected bool                $isSlowModeEnabled,
-        /**
-         * True, if the supergroup is a channel.
-         */
-        protected bool                $isChannel,
-        /**
-         * True, if the supergroup is a broadcast group, i.e. only administrators can send messages and there is no limit on the number of members.
-         */
-        protected bool                $isBroadcastGroup,
-        /**
-         * True, if the supergroup is a forum with topics.
-         */
-        protected bool                $isForum,
-        /**
-         * True, if the supergroup is a direct message group for a channel chat.
-         */
-        protected bool                $isDirectMessagesGroup,
-        /**
-         * True, if the supergroup is a direct messages group for a channel chat that is administered by the current user.
-         */
-        protected bool                $isAdministeredDirectMessagesGroup,
-        /**
-         * Information about verification status of the supergroup or channel; may be null if none.
-         */
-        protected ?VerificationStatus $verificationStatus,
         /**
          * True, if the channel has direct messages group.
          */
@@ -112,52 +48,116 @@ class Supergroup extends TdObject
          */
         protected bool                $hasForumTabs,
         /**
-         * Information about the restrictions that must be applied to the corresponding supergroup or channel chat; may be null if none.
+         * True, if the channel has a discussion group, or the supergroup is the designated discussion group for a channel.
          */
-        protected ?RestrictionInfo    $restrictionInfo,
+        protected bool                $hasLinkedChat,
+        /**
+         * True, if the supergroup is connected to a location, i.e. the supergroup is a location-based supergroup.
+         */
+        protected bool                $hasLocation,
+        /**
+         * True, if the supergroup or channel has unread non-expired stories available to the current user.
+         */
+        protected bool                $hasUnreadActiveStories,
+        /**
+         * Supergroup or channel identifier.
+         */
+        protected int                 $id,
+        /**
+         * True, if the supergroup is a direct messages group for a channel chat that is administered by the current user.
+         */
+        protected bool                $isAdministeredDirectMessagesGroup,
+        /**
+         * True, if the supergroup is a broadcast group, i.e. only administrators can send messages and there is no limit on the number of members.
+         */
+        protected bool                $isBroadcastGroup,
+        /**
+         * True, if the supergroup is a channel.
+         */
+        protected bool                $isChannel,
+        /**
+         * True, if the supergroup is a direct message group for a channel chat.
+         */
+        protected bool                $isDirectMessagesGroup,
+        /**
+         * True, if the supergroup is a forum with topics.
+         */
+        protected bool                $isForum,
+        /**
+         * True, if the slow mode is enabled in the supergroup.
+         */
+        protected bool                $isSlowModeEnabled,
+        /**
+         * True, if all users directly joining the supergroup need to be approved by supergroup administrators. Can be true only for non-broadcast supergroups with username, location, or a linked chat.
+         */
+        protected bool                $joinByRequest,
+        /**
+         * True, if users need to join the supergroup before they can send messages. May be false only for discussion supergroups and channel direct messages groups.
+         */
+        protected bool                $joinToSendMessages,
+        /**
+         * Number of members in the supergroup or channel; 0 if unknown. Currently, it is guaranteed to be known only if the supergroup or channel was received through getChatSimilarChats, getChatsToPostStories, getCreatedPublicChats, getGroupsInCommon, getInactiveSupergroupChats, getRecommendedChats, getSuitableDiscussionChats, getUserPrivacySettingRules, getVideoChatAvailableParticipants, searchPublicChats, or in chatFolderInviteLinkInfo.missing_chat_ids, or in userFullInfo.personal_chat_id, or for chats with messages or stories from publicForwards and foundStories.
+         */
+        protected int                 $memberCount,
         /**
          * Number of Telegram Stars that must be paid by non-administrator users of the supergroup chat for each sent message.
          */
         protected int                 $paidMessageStarCount,
         /**
-         * True, if the supergroup or channel has non-expired stories available to the current user.
+         * Information about the restrictions that must be applied to the corresponding supergroup or channel chat; may be null if none.
          */
-        protected bool                $hasActiveStories,
+        protected ?RestrictionInfo    $restrictionInfo,
         /**
-         * True, if the supergroup or channel has unread non-expired stories available to the current user.
+         * True, if messages sent to the channel have information about the sender user. This field is only applicable to channels.
          */
-        protected bool                $hasUnreadActiveStories,
+        protected bool                $showMessageSender,
+        /**
+         * True, if messages sent to the channel contains name of the sender. This field is only applicable to channels.
+         */
+        protected bool                $signMessages,
+        /**
+         * Status of the current user in the supergroup or channel; custom title will always be empty.
+         */
+        protected ChatMemberStatus    $status,
+        /**
+         * Usernames of the supergroup or channel; may be null.
+         */
+        protected ?Usernames          $usernames,
+        /**
+         * Information about verification status of the supergroup or channel; may be null if none.
+         */
+        protected ?VerificationStatus $verificationStatus,
     ) {}
 
     public static function fromArray(array $array): Supergroup
     {
         return new static(
-            $array['id'],
-            isset($array['usernames']) ? TdSchemaRegistry::fromArray($array['usernames']) : null,
-            $array['date'],
-            TdSchemaRegistry::fromArray($array['status']),
-            $array['member_count'],
-            $array['boost_level'],
-            $array['has_automatic_translation'],
-            $array['has_linked_chat'],
-            $array['has_location'],
-            $array['sign_messages'],
-            $array['show_message_sender'],
-            $array['join_to_send_messages'],
-            $array['join_by_request'],
-            $array['is_slow_mode_enabled'],
-            $array['is_channel'],
-            $array['is_broadcast_group'],
-            $array['is_forum'],
-            $array['is_direct_messages_group'],
-            $array['is_administered_direct_messages_group'],
-            isset($array['verification_status']) ? TdSchemaRegistry::fromArray($array['verification_status']) : null,
-            $array['has_direct_messages_group'],
-            $array['has_forum_tabs'],
-            isset($array['restriction_info']) ? TdSchemaRegistry::fromArray($array['restriction_info']) : null,
-            $array['paid_message_star_count'],
-            $array['has_active_stories'],
-            $array['has_unread_active_stories'],
+            boostLevel                       : $array['boost_level'],
+            date                             : $array['date'],
+            hasActiveStories                 : $array['has_active_stories'],
+            hasAutomaticTranslation          : $array['has_automatic_translation'],
+            hasDirectMessagesGroup           : $array['has_direct_messages_group'],
+            hasForumTabs                     : $array['has_forum_tabs'],
+            hasLinkedChat                    : $array['has_linked_chat'],
+            hasLocation                      : $array['has_location'],
+            hasUnreadActiveStories           : $array['has_unread_active_stories'],
+            id                               : $array['id'],
+            isAdministeredDirectMessagesGroup: $array['is_administered_direct_messages_group'],
+            isBroadcastGroup                 : $array['is_broadcast_group'],
+            isChannel                        : $array['is_channel'],
+            isDirectMessagesGroup            : $array['is_direct_messages_group'],
+            isForum                          : $array['is_forum'],
+            isSlowModeEnabled                : $array['is_slow_mode_enabled'],
+            joinByRequest                    : $array['join_by_request'],
+            joinToSendMessages               : $array['join_to_send_messages'],
+            memberCount                      : $array['member_count'],
+            paidMessageStarCount             : $array['paid_message_star_count'],
+            restrictionInfo                  : (isset($array['restriction_info']) ? TdSchemaRegistry::fromArray($array['restriction_info']) : null),
+            showMessageSender                : $array['show_message_sender'],
+            signMessages                     : $array['sign_messages'],
+            status                           : TdSchemaRegistry::fromArray($array['status']),
+            usernames                        : (isset($array['usernames']) ? TdSchemaRegistry::fromArray($array['usernames']) : null),
+            verificationStatus               : (isset($array['verification_status']) ? TdSchemaRegistry::fromArray($array['verification_status']) : null),
         );
     }
 
@@ -477,32 +477,32 @@ class Supergroup extends TdObject
     {
         return [
             '@type'                                 => static::TYPE_NAME,
-            'id'                                    => $this->id,
-            'usernames'                             => $this->usernames ?? null,
-            'date'                                  => $this->date,
-            'status'                                => $this->status->typeSerialize(),
-            'member_count'                          => $this->memberCount,
             'boost_level'                           => $this->boostLevel,
+            'date'                                  => $this->date,
+            'has_active_stories'                    => $this->hasActiveStories,
             'has_automatic_translation'             => $this->hasAutomaticTranslation,
-            'has_linked_chat'                       => $this->hasLinkedChat,
-            'has_location'                          => $this->hasLocation,
-            'sign_messages'                         => $this->signMessages,
-            'show_message_sender'                   => $this->showMessageSender,
-            'join_to_send_messages'                 => $this->joinToSendMessages,
-            'join_by_request'                       => $this->joinByRequest,
-            'is_slow_mode_enabled'                  => $this->isSlowModeEnabled,
-            'is_channel'                            => $this->isChannel,
-            'is_broadcast_group'                    => $this->isBroadcastGroup,
-            'is_forum'                              => $this->isForum,
-            'is_direct_messages_group'              => $this->isDirectMessagesGroup,
-            'is_administered_direct_messages_group' => $this->isAdministeredDirectMessagesGroup,
-            'verification_status'                   => $this->verificationStatus ?? null,
             'has_direct_messages_group'             => $this->hasDirectMessagesGroup,
             'has_forum_tabs'                        => $this->hasForumTabs,
-            'restriction_info'                      => $this->restrictionInfo ?? null,
-            'paid_message_star_count'               => $this->paidMessageStarCount,
-            'has_active_stories'                    => $this->hasActiveStories,
+            'has_linked_chat'                       => $this->hasLinkedChat,
+            'has_location'                          => $this->hasLocation,
             'has_unread_active_stories'             => $this->hasUnreadActiveStories,
+            'id'                                    => $this->id,
+            'is_administered_direct_messages_group' => $this->isAdministeredDirectMessagesGroup,
+            'is_broadcast_group'                    => $this->isBroadcastGroup,
+            'is_channel'                            => $this->isChannel,
+            'is_direct_messages_group'              => $this->isDirectMessagesGroup,
+            'is_forum'                              => $this->isForum,
+            'is_slow_mode_enabled'                  => $this->isSlowModeEnabled,
+            'join_by_request'                       => $this->joinByRequest,
+            'join_to_send_messages'                 => $this->joinToSendMessages,
+            'member_count'                          => $this->memberCount,
+            'paid_message_star_count'               => $this->paidMessageStarCount,
+            'restriction_info'                      => (null !== $this->restrictionInfo ? $this->restrictionInfo->jsonSerialize() : null),
+            'show_message_sender'                   => $this->showMessageSender,
+            'sign_messages'                         => $this->signMessages,
+            'status'                                => $this->status->jsonSerialize(),
+            'usernames'                             => (null !== $this->usernames ? $this->usernames->jsonSerialize() : null),
+            'verification_status'                   => (null !== $this->verificationStatus ? $this->verificationStatus->jsonSerialize() : null),
         ];
     }
 }

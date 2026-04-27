@@ -29,8 +29,8 @@ class SavedCredentials extends TdObject
     public static function fromArray(array $array): SavedCredentials
     {
         return new static(
-            $array['id'],
-            $array['title'],
+            id   : $array['id'],
+            title: $array['title'],
         );
     }
 

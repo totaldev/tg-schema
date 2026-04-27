@@ -31,8 +31,8 @@ class InputChecklistTask extends TdObject
     public static function fromArray(array $array): InputChecklistTask
     {
         return new static(
-            $array['id'],
-            TdSchemaRegistry::fromArray($array['text']),
+            id  : $array['id'],
+            text: TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -65,7 +65,7 @@ class InputChecklistTask extends TdObject
         return [
             '@type' => static::TYPE_NAME,
             'id'    => $this->id,
-            'text'  => $this->text->typeSerialize(),
+            'text'  => $this->text->jsonSerialize(),
         ];
     }
 }

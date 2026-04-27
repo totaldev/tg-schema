@@ -17,20 +17,20 @@ class SearchHashtags extends TdFunction
 
     public function __construct(
         /**
-         * Hashtag prefix to search for.
-         */
-        protected string $prefix,
-        /**
          * The maximum number of hashtags to be returned.
          */
         protected int    $limit,
+        /**
+         * Hashtag prefix to search for.
+         */
+        protected string $prefix,
     ) {}
 
     public static function fromArray(array $array): SearchHashtags
     {
         return new static(
-            $array['prefix'],
-            $array['limit'],
+            limit : $array['limit'],
+            prefix: $array['prefix'],
         );
     }
 
@@ -62,8 +62,8 @@ class SearchHashtags extends TdFunction
     {
         return [
             '@type'  => static::TYPE_NAME,
-            'prefix' => $this->prefix,
             'limit'  => $this->limit,
+            'prefix' => $this->prefix,
         ];
     }
 }

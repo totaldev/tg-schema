@@ -25,7 +25,7 @@ class DeviceTokenBlackBerryPush extends DeviceToken
     public static function fromArray(array $array): DeviceTokenBlackBerryPush
     {
         return new static(
-            $array['token'],
+            token: $array['token'],
         );
     }
 

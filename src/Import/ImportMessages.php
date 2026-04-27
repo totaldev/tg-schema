@@ -19,6 +19,12 @@ class ImportMessages extends TdFunction
 
     public function __construct(
         /**
+         * Files used in the imported messages. Only inputFileLocal and inputFileGenerated are supported. The files must not be previously uploaded.
+         *
+         * @var InputFile[]
+         */
+        protected array     $attachedFiles,
+        /**
          * Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info member right.
          */
         protected int       $chatId,
@@ -26,20 +32,14 @@ class ImportMessages extends TdFunction
          * File with messages to import. Only inputFileLocal and inputFileGenerated are supported. The file must not be previously uploaded.
          */
         protected InputFile $messageFile,
-        /**
-         * Files used in the imported messages. Only inputFileLocal and inputFileGenerated are supported. The files must not be previously uploaded.
-         *
-         * @var InputFile[]
-         */
-        protected array     $attachedFiles,
     ) {}
 
     public static function fromArray(array $array): ImportMessages
     {
         return new static(
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['message_file']),
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['attached_files']),
+            attachedFiles: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['attached_files']),
+            chatId       : $array['chat_id'],
+            messageFile  : TdSchemaRegistry::fromArray($array['message_file']),
         );
     }
 
@@ -83,9 +83,9 @@ class ImportMessages extends TdFunction
     {
         return [
             '@type'          => static::TYPE_NAME,
+            'attached_files' => array_map(static fn($x) => $x->jsonSerialize(), $this->attachedFiles),
             'chat_id'        => $this->chatId,
-            'message_file'   => $this->messageFile->typeSerialize(),
-            'attached_files' => array_map(static fn($x) => $x->typeSerialize(), $this->attachedFiles),
+            'message_file'   => $this->messageFile->jsonSerialize(),
         ];
     }
 }

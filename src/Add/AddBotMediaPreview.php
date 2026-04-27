@@ -24,21 +24,21 @@ class AddBotMediaPreview extends TdFunction
          */
         protected int               $botUserId,
         /**
-         * A two-letter ISO 639-1 language code for which preview is added. If empty, then the preview will be shown to all users for whose languages there are no dedicated previews. If non-empty, then there must be an official language pack of the same name, which is returned by getLocalizationTargetInfo.
-         */
-        protected string            $languageCode,
-        /**
          * Content of the added preview.
          */
         protected InputStoryContent $content,
+        /**
+         * A two-letter ISO 639-1 language code for which preview is added. If empty, then the preview will be shown to all users for whose languages there are no dedicated previews. If non-empty, then there must be an official language pack of the same name, which is returned by getLocalizationTargetInfo.
+         */
+        protected string            $languageCode,
     ) {}
 
     public static function fromArray(array $array): AddBotMediaPreview
     {
         return new static(
-            $array['bot_user_id'],
-            $array['language_code'],
-            TdSchemaRegistry::fromArray($array['content']),
+            botUserId   : $array['bot_user_id'],
+            content     : TdSchemaRegistry::fromArray($array['content']),
+            languageCode: $array['language_code'],
         );
     }
 
@@ -83,8 +83,8 @@ class AddBotMediaPreview extends TdFunction
         return [
             '@type'         => static::TYPE_NAME,
             'bot_user_id'   => $this->botUserId,
+            'content'       => $this->content->jsonSerialize(),
             'language_code' => $this->languageCode,
-            'content'       => $this->content->typeSerialize(),
         ];
     }
 }

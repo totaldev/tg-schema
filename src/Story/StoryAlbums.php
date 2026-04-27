@@ -28,7 +28,7 @@ class StoryAlbums extends TdObject
     public static function fromArray(array $array): StoryAlbums
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['albums']),
+            albums: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['albums']),
         );
     }
 
@@ -48,7 +48,7 @@ class StoryAlbums extends TdObject
     {
         return [
             '@type'  => static::TYPE_NAME,
-            'albums' => array_map(static fn($x) => $x->typeSerialize(), $this->albums),
+            'albums' => array_map(static fn($x) => $x->jsonSerialize(), $this->albums),
         ];
     }
 }

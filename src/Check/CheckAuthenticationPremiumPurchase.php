@@ -18,20 +18,20 @@ class CheckAuthenticationPremiumPurchase extends TdFunction
 
     public function __construct(
         /**
-         * ISO 4217 currency code of the payment currency.
-         */
-        protected string $currency,
-        /**
          * Paid amount, in the smallest units of the currency.
          */
         protected int    $amount,
+        /**
+         * ISO 4217 currency code of the payment currency.
+         */
+        protected string $currency,
     ) {}
 
     public static function fromArray(array $array): CheckAuthenticationPremiumPurchase
     {
         return new static(
-            $array['currency'],
-            $array['amount'],
+            amount  : $array['amount'],
+            currency: $array['currency'],
         );
     }
 
@@ -63,8 +63,8 @@ class CheckAuthenticationPremiumPurchase extends TdFunction
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'currency' => $this->currency,
             'amount'   => $this->amount,
+            'currency' => $this->currency,
         ];
     }
 }

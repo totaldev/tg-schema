@@ -17,20 +17,20 @@ class SetApplicationVerificationToken extends TdFunction
 
     public function __construct(
         /**
-         * Unique identifier for the verification process as received from updateApplicationVerificationRequired or updateApplicationRecaptchaVerificationRequired.
-         */
-        protected int    $verificationId,
-        /**
          * Play Integrity API token for the Android application, or secret from push notification for the iOS application for application verification, or reCAPTCHA token for reCAPTCHA verifications; pass an empty string to abort verification and receive the error "VERIFICATION_FAILED" for the request.
          */
         protected string $token,
+        /**
+         * Unique identifier for the verification process as received from updateApplicationVerificationRequired or updateApplicationRecaptchaVerificationRequired.
+         */
+        protected int    $verificationId,
     ) {}
 
     public static function fromArray(array $array): SetApplicationVerificationToken
     {
         return new static(
-            $array['verification_id'],
-            $array['token'],
+            token         : $array['token'],
+            verificationId: $array['verification_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class SetApplicationVerificationToken extends TdFunction
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'verification_id' => $this->verificationId,
             'token'           => $this->token,
+            'verification_id' => $this->verificationId,
         ];
     }
 }

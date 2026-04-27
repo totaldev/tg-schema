@@ -25,7 +25,7 @@ class CallbackQueryPayloadGame extends CallbackQueryPayload
     public static function fromArray(array $array): CallbackQueryPayloadGame
     {
         return new static(
-            $array['game_short_name'],
+            gameShortName: $array['game_short_name'],
         );
     }
 

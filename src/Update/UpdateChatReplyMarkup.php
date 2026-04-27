@@ -30,8 +30,8 @@ class UpdateChatReplyMarkup extends Update
     public static function fromArray(array $array): UpdateChatReplyMarkup
     {
         return new static(
-            $array['chat_id'],
-            $array['reply_markup_message_id'],
+            chatId              : $array['chat_id'],
+            replyMarkupMessageId: $array['reply_markup_message_id'],
         );
     }
 

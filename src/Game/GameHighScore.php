@@ -21,21 +21,21 @@ class GameHighScore extends TdObject
          */
         protected int $position,
         /**
-         * User identifier.
-         */
-        protected int $userId,
-        /**
          * User score.
          */
         protected int $score,
+        /**
+         * User identifier.
+         */
+        protected int $userId,
     ) {}
 
     public static function fromArray(array $array): GameHighScore
     {
         return new static(
-            $array['position'],
-            $array['user_id'],
-            $array['score'],
+            position: $array['position'],
+            score   : $array['score'],
+            userId  : $array['user_id'],
         );
     }
 
@@ -80,8 +80,8 @@ class GameHighScore extends TdObject
         return [
             '@type'    => static::TYPE_NAME,
             'position' => $this->position,
-            'user_id'  => $this->userId,
             'score'    => $this->score,
+            'user_id'  => $this->userId,
         ];
     }
 }

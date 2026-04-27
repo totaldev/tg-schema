@@ -18,21 +18,21 @@ class PushMessageContentVideo extends PushMessageContent
 
     public function __construct(
         /**
-         * Message content; may be null.
-         */
-        protected ?Video $video,
-        /**
          * Video caption.
          */
         protected string $caption,
+        /**
+         * True, if the message is a pinned message with the specified content.
+         */
+        protected bool   $isPinned,
         /**
          * True, if the video is secret.
          */
         protected bool   $isSecret,
         /**
-         * True, if the message is a pinned message with the specified content.
+         * Message content; may be null.
          */
-        protected bool   $isPinned,
+        protected ?Video $video,
     ) {
         parent::__construct();
     }
@@ -40,10 +40,10 @@ class PushMessageContentVideo extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentVideo
     {
         return new static(
-            isset($array['video']) ? TdSchemaRegistry::fromArray($array['video']) : null,
-            $array['caption'],
-            $array['is_secret'],
-            $array['is_pinned'],
+            caption : $array['caption'],
+            isPinned: $array['is_pinned'],
+            isSecret: $array['is_secret'],
+            video   : (isset($array['video']) ? TdSchemaRegistry::fromArray($array['video']) : null),
         );
     }
 
@@ -99,10 +99,10 @@ class PushMessageContentVideo extends PushMessageContent
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'video'     => $this->video ?? null,
             'caption'   => $this->caption,
-            'is_secret' => $this->isSecret,
             'is_pinned' => $this->isPinned,
+            'is_secret' => $this->isSecret,
+            'video'     => (null !== $this->video ? $this->video->jsonSerialize() : null),
         ];
     }
 }

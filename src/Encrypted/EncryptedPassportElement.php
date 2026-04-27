@@ -20,17 +20,23 @@ class EncryptedPassportElement extends TdObject
 
     public function __construct(
         /**
-         * Type of Telegram Passport element.
-         */
-        protected PassportElementType $type,
-        /**
          * Encrypted JSON-encoded data about the user.
          */
         protected string              $data,
         /**
+         * List of attached files.
+         *
+         * @var DatedFile[]
+         */
+        protected array               $files,
+        /**
          * The front side of an identity document.
          */
         protected DatedFile           $frontSide,
+        /**
+         * Hash of the entire element.
+         */
+        protected string              $hash,
         /**
          * The reverse side of an identity document; may be null.
          */
@@ -46,33 +52,27 @@ class EncryptedPassportElement extends TdObject
          */
         protected array               $translation,
         /**
-         * List of attached files.
-         *
-         * @var DatedFile[]
+         * Type of Telegram Passport element.
          */
-        protected array               $files,
+        protected PassportElementType $type,
         /**
          * Unencrypted data, phone number or email address.
          */
         protected string              $value,
-        /**
-         * Hash of the entire element.
-         */
-        protected string              $hash,
     ) {}
 
     public static function fromArray(array $array): EncryptedPassportElement
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['type']),
-            $array['data'],
-            TdSchemaRegistry::fromArray($array['front_side']),
-            isset($array['reverse_side']) ? TdSchemaRegistry::fromArray($array['reverse_side']) : null,
-            isset($array['selfie']) ? TdSchemaRegistry::fromArray($array['selfie']) : null,
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['translation']),
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['files']),
-            $array['value'],
-            $array['hash'],
+            data       : $array['data'],
+            files      : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['files']),
+            frontSide  : TdSchemaRegistry::fromArray($array['front_side']),
+            hash       : $array['hash'],
+            reverseSide: (isset($array['reverse_side']) ? TdSchemaRegistry::fromArray($array['reverse_side']) : null),
+            selfie     : (isset($array['selfie']) ? TdSchemaRegistry::fromArray($array['selfie']) : null),
+            translation: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['translation']),
+            type       : TdSchemaRegistry::fromArray($array['type']),
+            value      : $array['value'],
         );
     }
 
@@ -188,15 +188,15 @@ class EncryptedPassportElement extends TdObject
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'type'         => $this->type->typeSerialize(),
             'data'         => $this->data,
-            'front_side'   => $this->frontSide->typeSerialize(),
-            'reverse_side' => $this->reverseSide ?? null,
-            'selfie'       => $this->selfie ?? null,
-            'translation'  => array_map(static fn($x) => $x->typeSerialize(), $this->translation),
-            'files'        => array_map(static fn($x) => $x->typeSerialize(), $this->files),
-            'value'        => $this->value,
+            'files'        => array_map(static fn($x) => $x->jsonSerialize(), $this->files),
+            'front_side'   => $this->frontSide->jsonSerialize(),
             'hash'         => $this->hash,
+            'reverse_side' => (null !== $this->reverseSide ? $this->reverseSide->jsonSerialize() : null),
+            'selfie'       => (null !== $this->selfie ? $this->selfie->jsonSerialize() : null),
+            'translation'  => array_map(static fn($x) => $x->jsonSerialize(), $this->translation),
+            'type'         => $this->type->jsonSerialize(),
+            'value'        => $this->value,
         ];
     }
 }

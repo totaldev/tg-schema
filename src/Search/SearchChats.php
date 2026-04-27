@@ -18,20 +18,20 @@ class SearchChats extends TdFunction
 
     public function __construct(
         /**
-         * Query to search for. If the query is empty, returns up to 50 recently found chats.
-         */
-        protected string $query,
-        /**
          * The maximum number of chats to be returned.
          */
         protected int    $limit,
+        /**
+         * Query to search for. If the query is empty, returns up to 50 recently found chats.
+         */
+        protected string $query,
     ) {}
 
     public static function fromArray(array $array): SearchChats
     {
         return new static(
-            $array['query'],
-            $array['limit'],
+            limit: $array['limit'],
+            query: $array['query'],
         );
     }
 
@@ -63,8 +63,8 @@ class SearchChats extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'query' => $this->query,
             'limit' => $this->limit,
+            'query' => $this->query,
         ];
     }
 }

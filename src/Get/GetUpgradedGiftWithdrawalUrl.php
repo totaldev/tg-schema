@@ -17,20 +17,20 @@ class GetUpgradedGiftWithdrawalUrl extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the gift.
-         */
-        protected string $receivedGiftId,
-        /**
          * The 2-step verification password of the current user.
          */
         protected string $password,
+        /**
+         * Identifier of the gift.
+         */
+        protected string $receivedGiftId,
     ) {}
 
     public static function fromArray(array $array): GetUpgradedGiftWithdrawalUrl
     {
         return new static(
-            $array['received_gift_id'],
-            $array['password'],
+            password      : $array['password'],
+            receivedGiftId: $array['received_gift_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class GetUpgradedGiftWithdrawalUrl extends TdFunction
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'received_gift_id' => $this->receivedGiftId,
             'password'         => $this->password,
+            'received_gift_id' => $this->receivedGiftId,
         ];
     }
 }

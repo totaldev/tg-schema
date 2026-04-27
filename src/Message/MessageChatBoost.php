@@ -25,7 +25,7 @@ class MessageChatBoost extends MessageContent
     public static function fromArray(array $array): MessageChatBoost
     {
         return new static(
-            $array['boost_count'],
+            boostCount: $array['boost_count'],
         );
     }
 

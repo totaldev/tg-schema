@@ -19,13 +19,13 @@ class AddFileToDownloads extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the file to download.
-         */
-        protected int $fileId,
-        /**
          * Chat identifier of the message with the file.
          */
         protected int $chatId,
+        /**
+         * Identifier of the file to download.
+         */
+        protected int $fileId,
         /**
          * Message identifier.
          */
@@ -39,10 +39,10 @@ class AddFileToDownloads extends TdFunction
     public static function fromArray(array $array): AddFileToDownloads
     {
         return new static(
-            $array['file_id'],
-            $array['chat_id'],
-            $array['message_id'],
-            $array['priority'],
+            chatId   : $array['chat_id'],
+            fileId   : $array['file_id'],
+            messageId: $array['message_id'],
+            priority : $array['priority'],
         );
     }
 
@@ -98,8 +98,8 @@ class AddFileToDownloads extends TdFunction
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'file_id'    => $this->fileId,
             'chat_id'    => $this->chatId,
+            'file_id'    => $this->fileId,
             'message_id' => $this->messageId,
             'priority'   => $this->priority,
         ];

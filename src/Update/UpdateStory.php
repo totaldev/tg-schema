@@ -28,7 +28,7 @@ class UpdateStory extends Update
     public static function fromArray(array $array): UpdateStory
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['story']),
+            story: TdSchemaRegistry::fromArray($array['story']),
         );
     }
 
@@ -48,7 +48,7 @@ class UpdateStory extends Update
     {
         return [
             '@type' => static::TYPE_NAME,
-            'story' => $this->story->typeSerialize(),
+            'story' => $this->story->jsonSerialize(),
         ];
     }
 }

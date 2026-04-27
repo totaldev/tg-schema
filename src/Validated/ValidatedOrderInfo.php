@@ -33,8 +33,8 @@ class ValidatedOrderInfo extends TdObject
     public static function fromArray(array $array): ValidatedOrderInfo
     {
         return new static(
-            $array['order_info_id'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['shipping_options']),
+            orderInfoId    : $array['order_info_id'],
+            shippingOptions: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['shipping_options']),
         );
     }
 
@@ -67,7 +67,7 @@ class ValidatedOrderInfo extends TdObject
         return [
             '@type'            => static::TYPE_NAME,
             'order_info_id'    => $this->orderInfoId,
-            'shipping_options' => array_map(static fn($x) => $x->typeSerialize(), $this->shippingOptions),
+            'shipping_options' => array_map(static fn($x) => $x->jsonSerialize(), $this->shippingOptions),
         ];
     }
 }

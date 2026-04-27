@@ -28,7 +28,7 @@ class TargetChatInternalLink extends TargetChat
     public static function fromArray(array $array): TargetChatInternalLink
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['link']),
+            link: TdSchemaRegistry::fromArray($array['link']),
         );
     }
 
@@ -48,7 +48,7 @@ class TargetChatInternalLink extends TargetChat
     {
         return [
             '@type' => static::TYPE_NAME,
-            'link'  => $this->link->typeSerialize(),
+            'link'  => $this->link->jsonSerialize(),
         ];
     }
 }

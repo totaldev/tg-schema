@@ -20,30 +20,30 @@ class AddedReaction extends TdObject
 
     public function __construct(
         /**
-         * Type of the reaction.
+         * Point in time (Unix timestamp) when the reaction was added.
          */
-        protected ReactionType  $type,
-        /**
-         * Identifier of the chat member, applied the reaction.
-         */
-        protected MessageSender $senderId,
+        protected int           $date,
         /**
          * True, if the reaction was added by the current user.
          */
         protected bool          $isOutgoing,
         /**
-         * Point in time (Unix timestamp) when the reaction was added.
+         * Identifier of the chat member, applied the reaction.
          */
-        protected int           $date,
+        protected MessageSender $senderId,
+        /**
+         * Type of the reaction.
+         */
+        protected ReactionType  $type,
     ) {}
 
     public static function fromArray(array $array): AddedReaction
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['type']),
-            TdSchemaRegistry::fromArray($array['sender_id']),
-            $array['is_outgoing'],
-            $array['date'],
+            date      : $array['date'],
+            isOutgoing: $array['is_outgoing'],
+            senderId  : TdSchemaRegistry::fromArray($array['sender_id']),
+            type      : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -99,10 +99,10 @@ class AddedReaction extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'type'        => $this->type->typeSerialize(),
-            'sender_id'   => $this->senderId->typeSerialize(),
-            'is_outgoing' => $this->isOutgoing,
             'date'        => $this->date,
+            'is_outgoing' => $this->isOutgoing,
+            'sender_id'   => $this->senderId->jsonSerialize(),
+            'type'        => $this->type->jsonSerialize(),
         ];
     }
 }

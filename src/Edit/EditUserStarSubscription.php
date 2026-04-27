@@ -17,25 +17,25 @@ class EditUserStarSubscription extends TdFunction
 
     public function __construct(
         /**
-         * User identifier.
+         * Pass true to cancel the subscription; pass false to allow the user to enable it.
          */
-        protected int    $userId,
+        protected bool   $isCanceled,
         /**
          * Telegram payment identifier of the subscription.
          */
         protected string $telegramPaymentChargeId,
         /**
-         * Pass true to cancel the subscription; pass false to allow the user to enable it.
+         * User identifier.
          */
-        protected bool   $isCanceled,
+        protected int    $userId,
     ) {}
 
     public static function fromArray(array $array): EditUserStarSubscription
     {
         return new static(
-            $array['user_id'],
-            $array['telegram_payment_charge_id'],
-            $array['is_canceled'],
+            isCanceled             : $array['is_canceled'],
+            telegramPaymentChargeId: $array['telegram_payment_charge_id'],
+            userId                 : $array['user_id'],
         );
     }
 
@@ -79,9 +79,9 @@ class EditUserStarSubscription extends TdFunction
     {
         return [
             '@type'                      => static::TYPE_NAME,
-            'user_id'                    => $this->userId,
-            'telegram_payment_charge_id' => $this->telegramPaymentChargeId,
             'is_canceled'                => $this->isCanceled,
+            'telegram_payment_charge_id' => $this->telegramPaymentChargeId,
+            'user_id'                    => $this->userId,
         ];
     }
 }

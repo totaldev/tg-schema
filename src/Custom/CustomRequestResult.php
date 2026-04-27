@@ -25,7 +25,7 @@ class CustomRequestResult extends TdObject
     public static function fromArray(array $array): CustomRequestResult
     {
         return new static(
-            $array['result'],
+            result: $array['result'],
         );
     }
 

@@ -17,65 +17,65 @@ class ChatAdministratorRights extends TdObject
 
     public function __construct(
         /**
-         * True, if the administrator can access the chat event log, get boost list, see hidden supergroup and channel members, report supergroup spam messages, ignore slow mode, and send messages to the chat without paying Telegram Stars. Implied by any other privilege; applicable to supergroups and channels only.
-         */
-        protected bool $canManageChat,
-        /**
          * True, if the administrator can change the chat title, photo, and other settings.
          */
         protected bool $canChangeInfo,
-        /**
-         * True, if the administrator can create channel posts, approve suggested channel posts, or view channel statistics; applicable to channels only.
-         */
-        protected bool $canPostMessages,
-        /**
-         * True, if the administrator can edit messages of other users and pin messages; applicable to channels only.
-         */
-        protected bool $canEditMessages,
         /**
          * True, if the administrator can delete messages of other users.
          */
         protected bool $canDeleteMessages,
         /**
-         * True, if the administrator can invite new users to the chat.
+         * True, if the administrator can delete stories posted by other users; applicable to supergroups and channels only.
          */
-        protected bool $canInviteUsers,
+        protected bool $canDeleteStories,
         /**
-         * True, if the administrator can restrict, ban, or unban chat members or view supergroup statistics; always true for channels.
+         * True, if the administrator can edit messages of other users and pin messages; applicable to channels only.
          */
-        protected bool $canRestrictMembers,
-        /**
-         * True, if the administrator can pin messages; applicable to basic groups and supergroups only.
-         */
-        protected bool $canPinMessages,
-        /**
-         * True, if the administrator can create, rename, close, reopen, hide, and unhide forum topics; applicable to forum supergroups only.
-         */
-        protected bool $canManageTopics,
-        /**
-         * True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that were directly or indirectly promoted by them.
-         */
-        protected bool $canPromoteMembers,
-        /**
-         * True, if the administrator can manage video chats.
-         */
-        protected bool $canManageVideoChats,
-        /**
-         * True, if the administrator can create new chat stories, or edit and delete posted stories; applicable to supergroups and channels only.
-         */
-        protected bool $canPostStories,
+        protected bool $canEditMessages,
         /**
          * True, if the administrator can edit stories posted by other users, post stories to the chat page, pin chat stories, and access story archive; applicable to supergroups and channels only.
          */
         protected bool $canEditStories,
         /**
-         * True, if the administrator can delete stories posted by other users; applicable to supergroups and channels only.
+         * True, if the administrator can invite new users to the chat.
          */
-        protected bool $canDeleteStories,
+        protected bool $canInviteUsers,
+        /**
+         * True, if the administrator can access the chat event log, get boost list, see hidden supergroup and channel members, report supergroup spam messages, ignore slow mode, and send messages to the chat without paying Telegram Stars. Implied by any other privilege; applicable to supergroups and channels only.
+         */
+        protected bool $canManageChat,
         /**
          * True, if the administrator can answer to channel direct messages; applicable to channels only.
          */
         protected bool $canManageDirectMessages,
+        /**
+         * True, if the administrator can create, rename, close, reopen, hide, and unhide forum topics; applicable to forum supergroups only.
+         */
+        protected bool $canManageTopics,
+        /**
+         * True, if the administrator can manage video chats.
+         */
+        protected bool $canManageVideoChats,
+        /**
+         * True, if the administrator can pin messages; applicable to basic groups and supergroups only.
+         */
+        protected bool $canPinMessages,
+        /**
+         * True, if the administrator can create channel posts, approve suggested channel posts, or view channel statistics; applicable to channels only.
+         */
+        protected bool $canPostMessages,
+        /**
+         * True, if the administrator can create new chat stories, or edit and delete posted stories; applicable to supergroups and channels only.
+         */
+        protected bool $canPostStories,
+        /**
+         * True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that were directly or indirectly promoted by them.
+         */
+        protected bool $canPromoteMembers,
+        /**
+         * True, if the administrator can restrict, ban, or unban chat members or view supergroup statistics; always true for channels.
+         */
+        protected bool $canRestrictMembers,
         /**
          * True, if the administrator isn't shown in the chat member list and sends messages anonymously; applicable to supergroups only.
          */
@@ -85,22 +85,22 @@ class ChatAdministratorRights extends TdObject
     public static function fromArray(array $array): ChatAdministratorRights
     {
         return new static(
-            $array['can_manage_chat'],
-            $array['can_change_info'],
-            $array['can_post_messages'],
-            $array['can_edit_messages'],
-            $array['can_delete_messages'],
-            $array['can_invite_users'],
-            $array['can_restrict_members'],
-            $array['can_pin_messages'],
-            $array['can_manage_topics'],
-            $array['can_promote_members'],
-            $array['can_manage_video_chats'],
-            $array['can_post_stories'],
-            $array['can_edit_stories'],
-            $array['can_delete_stories'],
-            $array['can_manage_direct_messages'],
-            $array['is_anonymous'],
+            canChangeInfo          : $array['can_change_info'],
+            canDeleteMessages      : $array['can_delete_messages'],
+            canDeleteStories       : $array['can_delete_stories'],
+            canEditMessages        : $array['can_edit_messages'],
+            canEditStories         : $array['can_edit_stories'],
+            canInviteUsers         : $array['can_invite_users'],
+            canManageChat          : $array['can_manage_chat'],
+            canManageDirectMessages: $array['can_manage_direct_messages'],
+            canManageTopics        : $array['can_manage_topics'],
+            canManageVideoChats    : $array['can_manage_video_chats'],
+            canPinMessages         : $array['can_pin_messages'],
+            canPostMessages        : $array['can_post_messages'],
+            canPostStories         : $array['can_post_stories'],
+            canPromoteMembers      : $array['can_promote_members'],
+            canRestrictMembers     : $array['can_restrict_members'],
+            isAnonymous            : $array['is_anonymous'],
         );
     }
 
@@ -300,21 +300,21 @@ class ChatAdministratorRights extends TdObject
     {
         return [
             '@type'                      => static::TYPE_NAME,
-            'can_manage_chat'            => $this->canManageChat,
             'can_change_info'            => $this->canChangeInfo,
-            'can_post_messages'          => $this->canPostMessages,
-            'can_edit_messages'          => $this->canEditMessages,
             'can_delete_messages'        => $this->canDeleteMessages,
-            'can_invite_users'           => $this->canInviteUsers,
-            'can_restrict_members'       => $this->canRestrictMembers,
-            'can_pin_messages'           => $this->canPinMessages,
-            'can_manage_topics'          => $this->canManageTopics,
-            'can_promote_members'        => $this->canPromoteMembers,
-            'can_manage_video_chats'     => $this->canManageVideoChats,
-            'can_post_stories'           => $this->canPostStories,
-            'can_edit_stories'           => $this->canEditStories,
             'can_delete_stories'         => $this->canDeleteStories,
+            'can_edit_messages'          => $this->canEditMessages,
+            'can_edit_stories'           => $this->canEditStories,
+            'can_invite_users'           => $this->canInviteUsers,
+            'can_manage_chat'            => $this->canManageChat,
             'can_manage_direct_messages' => $this->canManageDirectMessages,
+            'can_manage_topics'          => $this->canManageTopics,
+            'can_manage_video_chats'     => $this->canManageVideoChats,
+            'can_pin_messages'           => $this->canPinMessages,
+            'can_post_messages'          => $this->canPostMessages,
+            'can_post_stories'           => $this->canPostStories,
+            'can_promote_members'        => $this->canPromoteMembers,
+            'can_restrict_members'       => $this->canRestrictMembers,
             'is_anonymous'               => $this->isAnonymous,
         ];
     }

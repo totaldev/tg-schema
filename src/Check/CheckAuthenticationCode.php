@@ -25,7 +25,7 @@ class CheckAuthenticationCode extends TdFunction
     public static function fromArray(array $array): CheckAuthenticationCode
     {
         return new static(
-            $array['code'],
+            code: $array['code'],
         );
     }
 

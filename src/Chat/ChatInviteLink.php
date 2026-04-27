@@ -19,13 +19,9 @@ class ChatInviteLink extends TdObject
 
     public function __construct(
         /**
-         * Chat invite link.
+         * True, if the link only creates join request. If true, total number of joining members will be unlimited.
          */
-        protected string                   $inviteLink,
-        /**
-         * Name of the link.
-         */
-        protected string                   $name,
+        protected bool                     $createsJoinRequest,
         /**
          * User identifier of an administrator created the link.
          */
@@ -43,29 +39,13 @@ class ChatInviteLink extends TdObject
          */
         protected int                      $expirationDate,
         /**
-         * Information about subscription plan that is applied to the users joining the chat by the link; may be null if the link doesn't require subscription.
-         */
-        protected ?StarSubscriptionPricing $subscriptionPricing,
-        /**
-         * The maximum number of members, which can join the chat using the link simultaneously; 0 if not limited. Always 0 if the link requires approval.
-         */
-        protected int                      $memberLimit,
-        /**
-         * Number of chat members, which joined the chat using the link.
-         */
-        protected int                      $memberCount,
-        /**
          * Number of chat members, which joined the chat using the link, but have already left because of expired subscription; for subscription links only.
          */
         protected int                      $expiredMemberCount,
         /**
-         * Number of pending join requests created using this link.
+         * Chat invite link.
          */
-        protected int                      $pendingJoinRequestCount,
-        /**
-         * True, if the link only creates join request. If true, total number of joining members will be unlimited.
-         */
-        protected bool                     $createsJoinRequest,
+        protected string                   $inviteLink,
         /**
          * True, if the link is primary. Primary invite link can't have name, expiration date, or usage limit. There is exactly one primary invite link for each administrator with can_invite_users right at a given time.
          */
@@ -74,25 +54,45 @@ class ChatInviteLink extends TdObject
          * True, if the link was revoked.
          */
         protected bool                     $isRevoked,
+        /**
+         * Number of chat members, which joined the chat using the link.
+         */
+        protected int                      $memberCount,
+        /**
+         * The maximum number of members, which can join the chat using the link simultaneously; 0 if not limited. Always 0 if the link requires approval.
+         */
+        protected int                      $memberLimit,
+        /**
+         * Name of the link.
+         */
+        protected string                   $name,
+        /**
+         * Number of pending join requests created using this link.
+         */
+        protected int                      $pendingJoinRequestCount,
+        /**
+         * Information about subscription plan that is applied to the users joining the chat by the link; may be null if the link doesn't require subscription.
+         */
+        protected ?StarSubscriptionPricing $subscriptionPricing,
     ) {}
 
     public static function fromArray(array $array): ChatInviteLink
     {
         return new static(
-            $array['invite_link'],
-            $array['name'],
-            $array['creator_user_id'],
-            $array['date'],
-            $array['edit_date'],
-            $array['expiration_date'],
-            isset($array['subscription_pricing']) ? TdSchemaRegistry::fromArray($array['subscription_pricing']) : null,
-            $array['member_limit'],
-            $array['member_count'],
-            $array['expired_member_count'],
-            $array['pending_join_request_count'],
-            $array['creates_join_request'],
-            $array['is_primary'],
-            $array['is_revoked'],
+            createsJoinRequest     : $array['creates_join_request'],
+            creatorUserId          : $array['creator_user_id'],
+            date                   : $array['date'],
+            editDate               : $array['edit_date'],
+            expirationDate         : $array['expiration_date'],
+            expiredMemberCount     : $array['expired_member_count'],
+            inviteLink             : $array['invite_link'],
+            isPrimary              : $array['is_primary'],
+            isRevoked              : $array['is_revoked'],
+            memberCount            : $array['member_count'],
+            memberLimit            : $array['member_limit'],
+            name                   : $array['name'],
+            pendingJoinRequestCount: $array['pending_join_request_count'],
+            subscriptionPricing    : (isset($array['subscription_pricing']) ? TdSchemaRegistry::fromArray($array['subscription_pricing']) : null),
         );
     }
 
@@ -268,20 +268,20 @@ class ChatInviteLink extends TdObject
     {
         return [
             '@type'                      => static::TYPE_NAME,
-            'invite_link'                => $this->inviteLink,
-            'name'                       => $this->name,
+            'creates_join_request'       => $this->createsJoinRequest,
             'creator_user_id'            => $this->creatorUserId,
             'date'                       => $this->date,
             'edit_date'                  => $this->editDate,
             'expiration_date'            => $this->expirationDate,
-            'subscription_pricing'       => $this->subscriptionPricing ?? null,
-            'member_limit'               => $this->memberLimit,
-            'member_count'               => $this->memberCount,
             'expired_member_count'       => $this->expiredMemberCount,
-            'pending_join_request_count' => $this->pendingJoinRequestCount,
-            'creates_join_request'       => $this->createsJoinRequest,
+            'invite_link'                => $this->inviteLink,
             'is_primary'                 => $this->isPrimary,
             'is_revoked'                 => $this->isRevoked,
+            'member_count'               => $this->memberCount,
+            'member_limit'               => $this->memberLimit,
+            'name'                       => $this->name,
+            'pending_join_request_count' => $this->pendingJoinRequestCount,
+            'subscription_pricing'       => (null !== $this->subscriptionPricing ? $this->subscriptionPricing->jsonSerialize() : null),
         ];
     }
 }

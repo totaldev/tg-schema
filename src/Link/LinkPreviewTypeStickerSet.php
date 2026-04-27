@@ -30,7 +30,7 @@ class LinkPreviewTypeStickerSet extends LinkPreviewType
     public static function fromArray(array $array): LinkPreviewTypeStickerSet
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['stickers']),
+            stickers: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['stickers']),
         );
     }
 
@@ -50,7 +50,7 @@ class LinkPreviewTypeStickerSet extends LinkPreviewType
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'stickers' => array_map(static fn($x) => $x->typeSerialize(), $this->stickers),
+            'stickers' => array_map(static fn($x) => $x->jsonSerialize(), $this->stickers),
         ];
     }
 }

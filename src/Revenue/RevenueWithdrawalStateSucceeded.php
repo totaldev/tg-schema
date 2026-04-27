@@ -29,8 +29,8 @@ class RevenueWithdrawalStateSucceeded extends RevenueWithdrawalState
     public static function fromArray(array $array): RevenueWithdrawalStateSucceeded
     {
         return new static(
-            $array['date'],
-            $array['url'],
+            date: $array['date'],
+            url : $array['url'],
         );
     }
 

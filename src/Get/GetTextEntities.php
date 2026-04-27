@@ -26,7 +26,7 @@ class GetTextEntities extends TdFunction
     public static function fromArray(array $array): GetTextEntities
     {
         return new static(
-            $array['text'],
+            text: $array['text'],
         );
     }
 

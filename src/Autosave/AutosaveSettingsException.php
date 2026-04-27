@@ -31,8 +31,8 @@ class AutosaveSettingsException extends TdObject
     public static function fromArray(array $array): AutosaveSettingsException
     {
         return new static(
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['settings']),
+            chatId  : $array['chat_id'],
+            settings: TdSchemaRegistry::fromArray($array['settings']),
         );
     }
 
@@ -65,7 +65,7 @@ class AutosaveSettingsException extends TdObject
         return [
             '@type'    => static::TYPE_NAME,
             'chat_id'  => $this->chatId,
-            'settings' => $this->settings->typeSerialize(),
+            'settings' => $this->settings->jsonSerialize(),
         ];
     }
 }

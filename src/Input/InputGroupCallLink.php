@@ -25,7 +25,7 @@ class InputGroupCallLink extends InputGroupCall
     public static function fromArray(array $array): InputGroupCallLink
     {
         return new static(
-            $array['link'],
+            link: $array['link'],
         );
     }
 

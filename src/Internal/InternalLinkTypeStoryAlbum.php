@@ -16,13 +16,13 @@ class InternalLinkTypeStoryAlbum extends InternalLinkType
 
     public function __construct(
         /**
-         * Username of the owner of the story album.
-         */
-        protected string $storyAlbumOwnerUsername,
-        /**
          * Story album identifier.
          */
         protected int    $storyAlbumId,
+        /**
+         * Username of the owner of the story album.
+         */
+        protected string $storyAlbumOwnerUsername,
     ) {
         parent::__construct();
     }
@@ -30,8 +30,8 @@ class InternalLinkTypeStoryAlbum extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeStoryAlbum
     {
         return new static(
-            $array['story_album_owner_username'],
-            $array['story_album_id'],
+            storyAlbumId           : $array['story_album_id'],
+            storyAlbumOwnerUsername: $array['story_album_owner_username'],
         );
     }
 
@@ -63,8 +63,8 @@ class InternalLinkTypeStoryAlbum extends InternalLinkType
     {
         return [
             '@type'                      => static::TYPE_NAME,
-            'story_album_owner_username' => $this->storyAlbumOwnerUsername,
             'story_album_id'             => $this->storyAlbumId,
+            'story_album_owner_username' => $this->storyAlbumOwnerUsername,
         ];
     }
 }

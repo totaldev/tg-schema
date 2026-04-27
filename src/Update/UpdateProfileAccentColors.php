@@ -18,17 +18,17 @@ class UpdateProfileAccentColors extends Update
 
     public function __construct(
         /**
-         * Information about supported colors.
-         *
-         * @var ProfileAccentColor[]
-         */
-        protected array $colors,
-        /**
          * The list of accent color identifiers, which can be set through setProfileAccentColor and setChatProfileAccentColor. The colors must be shown in the specified order.
          *
          * @var int[]
          */
         protected array $availableAccentColorIds,
+        /**
+         * Information about supported colors.
+         *
+         * @var ProfileAccentColor[]
+         */
+        protected array $colors,
     ) {
         parent::__construct();
     }
@@ -36,8 +36,8 @@ class UpdateProfileAccentColors extends Update
     public static function fromArray(array $array): UpdateProfileAccentColors
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['colors']),
-            $array['available_accent_color_ids'],
+            availableAccentColorIds: $array['available_accent_color_ids'],
+            colors                 : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['colors']),
         );
     }
 
@@ -69,8 +69,8 @@ class UpdateProfileAccentColors extends Update
     {
         return [
             '@type'                      => static::TYPE_NAME,
-            'colors'                     => array_map(static fn($x) => $x->typeSerialize(), $this->colors),
             'available_accent_color_ids' => $this->availableAccentColorIds,
+            'colors'                     => array_map(static fn($x) => $x->jsonSerialize(), $this->colors),
         ];
     }
 }

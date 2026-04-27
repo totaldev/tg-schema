@@ -31,8 +31,8 @@ class InternalLinkTypePhoneNumberConfirmation extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypePhoneNumberConfirmation
     {
         return new static(
-            $array['hash'],
-            $array['phone_number'],
+            hash       : $array['hash'],
+            phoneNumber: $array['phone_number'],
         );
     }
 

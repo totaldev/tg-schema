@@ -21,21 +21,21 @@ class DownloadedFileCounts extends TdObject
          */
         protected int $activeCount,
         /**
-         * Number of paused file downloads found.
-         */
-        protected int $pausedCount,
-        /**
          * Number of completed file downloads found.
          */
         protected int $completedCount,
+        /**
+         * Number of paused file downloads found.
+         */
+        protected int $pausedCount,
     ) {}
 
     public static function fromArray(array $array): DownloadedFileCounts
     {
         return new static(
-            $array['active_count'],
-            $array['paused_count'],
-            $array['completed_count'],
+            activeCount   : $array['active_count'],
+            completedCount: $array['completed_count'],
+            pausedCount   : $array['paused_count'],
         );
     }
 
@@ -80,8 +80,8 @@ class DownloadedFileCounts extends TdObject
         return [
             '@type'           => static::TYPE_NAME,
             'active_count'    => $this->activeCount,
-            'paused_count'    => $this->pausedCount,
             'completed_count' => $this->completedCount,
+            'paused_count'    => $this->pausedCount,
         ];
     }
 }

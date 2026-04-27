@@ -15,17 +15,17 @@ class UpdateFileDownloads extends Update
 
     public function __construct(
         /**
-         * Total size of files in the file download list, in bytes.
+         * Total downloaded size of files in the file download list, in bytes.
          */
-        protected int $totalSize,
+        protected int $downloadedSize,
         /**
          * Total number of files in the file download list.
          */
         protected int $totalCount,
         /**
-         * Total downloaded size of files in the file download list, in bytes.
+         * Total size of files in the file download list, in bytes.
          */
-        protected int $downloadedSize,
+        protected int $totalSize,
     ) {
         parent::__construct();
     }
@@ -33,9 +33,9 @@ class UpdateFileDownloads extends Update
     public static function fromArray(array $array): UpdateFileDownloads
     {
         return new static(
-            $array['total_size'],
-            $array['total_count'],
-            $array['downloaded_size'],
+            downloadedSize: $array['downloaded_size'],
+            totalCount    : $array['total_count'],
+            totalSize     : $array['total_size'],
         );
     }
 
@@ -79,9 +79,9 @@ class UpdateFileDownloads extends Update
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'total_size'      => $this->totalSize,
-            'total_count'     => $this->totalCount,
             'downloaded_size' => $this->downloadedSize,
+            'total_count'     => $this->totalCount,
+            'total_size'      => $this->totalSize,
         ];
     }
 }

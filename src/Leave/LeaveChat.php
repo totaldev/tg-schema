@@ -25,7 +25,7 @@ class LeaveChat extends TdFunction
     public static function fromArray(array $array): LeaveChat
     {
         return new static(
-            $array['chat_id'],
+            chatId: $array['chat_id'],
         );
     }
 

@@ -19,35 +19,31 @@ class InputMessagePhoto extends InputMessageContent
 
     public function __construct(
         /**
-         * Photo to send. The photo must be at most 10 MB in size. The photo's width and height must not exceed 10000 in total. Width and height ratio must be at most 20.
-         */
-        protected InputFile                $photo,
-        /**
          * File identifiers of the stickers added to the photo, if applicable.
          *
          * @var int[]
          */
         protected array                    $addedStickerFileIds,
         /**
-         * Photo width.
+         * True, if the photo preview must be covered by a spoiler animation; not supported in secret chats.
          */
-        protected int                      $width,
+        protected bool                     $hasSpoiler,
         /**
          * Photo height.
          */
         protected int                      $height,
         /**
+         * Photo to send. The photo must be at most 10 MB in size. The photo's width and height must not exceed 10000 in total. Width and height ratio must be at most 20.
+         */
+        protected InputFile                $photo,
+        /**
          * True, if the caption must be shown above the photo; otherwise, the caption must be shown below the photo; not supported in secret chats.
          */
         protected bool                     $showCaptionAboveMedia,
         /**
-         * True, if the photo preview must be covered by a spoiler animation; not supported in secret chats.
+         * Photo width.
          */
-        protected bool                     $hasSpoiler,
-        /**
-         * Photo thumbnail to be sent; pass null to skip thumbnail uploading. The thumbnail is sent to the other party only in secret chats.
-         */
-        protected ?InputThumbnail          $thumbnail = null,
+        protected int                      $width,
         /**
          * Photo caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters.
          */
@@ -56,6 +52,10 @@ class InputMessagePhoto extends InputMessageContent
          * Photo self-destruct type; pass null if none; private chats only.
          */
         protected ?MessageSelfDestructType $selfDestructType = null,
+        /**
+         * Photo thumbnail to be sent; pass null to skip thumbnail uploading. The thumbnail is sent to the other party only in secret chats.
+         */
+        protected ?InputThumbnail          $thumbnail = null,
     ) {
         parent::__construct();
     }
@@ -63,15 +63,15 @@ class InputMessagePhoto extends InputMessageContent
     public static function fromArray(array $array): InputMessagePhoto
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['photo']),
-            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
-            $array['added_sticker_file_ids'],
-            $array['width'],
-            $array['height'],
-            isset($array['caption']) ? TdSchemaRegistry::fromArray($array['caption']) : null,
-            $array['show_caption_above_media'],
-            isset($array['self_destruct_type']) ? TdSchemaRegistry::fromArray($array['self_destruct_type']) : null,
-            $array['has_spoiler'],
+            addedStickerFileIds  : $array['added_sticker_file_ids'],
+            caption              : (isset($array['caption']) ? TdSchemaRegistry::fromArray($array['caption']) : null),
+            hasSpoiler           : $array['has_spoiler'],
+            height               : $array['height'],
+            photo                : TdSchemaRegistry::fromArray($array['photo']),
+            selfDestructType     : (isset($array['self_destruct_type']) ? TdSchemaRegistry::fromArray($array['self_destruct_type']) : null),
+            showCaptionAboveMedia: $array['show_caption_above_media'],
+            thumbnail            : (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
+            width                : $array['width'],
         );
     }
 
@@ -187,15 +187,15 @@ class InputMessagePhoto extends InputMessageContent
     {
         return [
             '@type'                    => static::TYPE_NAME,
-            'photo'                    => $this->photo->typeSerialize(),
-            'thumbnail'                => $this->thumbnail ?? null,
             'added_sticker_file_ids'   => $this->addedStickerFileIds,
-            'width'                    => $this->width,
-            'height'                   => $this->height,
-            'caption'                  => $this->caption ?? null,
-            'show_caption_above_media' => $this->showCaptionAboveMedia,
-            'self_destruct_type'       => $this->selfDestructType ?? null,
+            'caption'                  => (null !== $this->caption ? $this->caption->jsonSerialize() : null),
             'has_spoiler'              => $this->hasSpoiler,
+            'height'                   => $this->height,
+            'photo'                    => $this->photo->jsonSerialize(),
+            'self_destruct_type'       => (null !== $this->selfDestructType ? $this->selfDestructType->jsonSerialize() : null),
+            'show_caption_above_media' => $this->showCaptionAboveMedia,
+            'thumbnail'                => (null !== $this->thumbnail ? $this->thumbnail->jsonSerialize() : null),
+            'width'                    => $this->width,
         ];
     }
 }

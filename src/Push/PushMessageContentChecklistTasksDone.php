@@ -25,7 +25,7 @@ class PushMessageContentChecklistTasksDone extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentChecklistTasksDone
     {
         return new static(
-            $array['task_count'],
+            taskCount: $array['task_count'],
         );
     }
 

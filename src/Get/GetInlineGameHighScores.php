@@ -29,8 +29,8 @@ class GetInlineGameHighScores extends TdFunction
     public static function fromArray(array $array): GetInlineGameHighScores
     {
         return new static(
-            $array['inline_message_id'],
-            $array['user_id'],
+            inlineMessageId: $array['inline_message_id'],
+            userId         : $array['user_id'],
         );
     }
 

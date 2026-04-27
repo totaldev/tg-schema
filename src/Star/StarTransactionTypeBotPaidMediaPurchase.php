@@ -18,15 +18,15 @@ class StarTransactionTypeBotPaidMediaPurchase extends StarTransactionType
 
     public function __construct(
         /**
-         * Identifier of the bot or the business account user that sent the paid media.
-         */
-        protected int   $userId,
-        /**
          * The bought media if the transaction wasn't refunded.
          *
          * @var PaidMedia[]
          */
         protected array $media,
+        /**
+         * Identifier of the bot or the business account user that sent the paid media.
+         */
+        protected int   $userId,
     ) {
         parent::__construct();
     }
@@ -34,8 +34,8 @@ class StarTransactionTypeBotPaidMediaPurchase extends StarTransactionType
     public static function fromArray(array $array): StarTransactionTypeBotPaidMediaPurchase
     {
         return new static(
-            $array['user_id'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['media']),
+            media : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['media']),
+            userId: $array['user_id'],
         );
     }
 
@@ -67,8 +67,8 @@ class StarTransactionTypeBotPaidMediaPurchase extends StarTransactionType
     {
         return [
             '@type'   => static::TYPE_NAME,
+            'media'   => array_map(static fn($x) => $x->jsonSerialize(), $this->media),
             'user_id' => $this->userId,
-            'media'   => array_map(static fn($x) => $x->typeSerialize(), $this->media),
         ];
     }
 }

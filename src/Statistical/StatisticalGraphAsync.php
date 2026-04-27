@@ -25,7 +25,7 @@ class StatisticalGraphAsync extends StatisticalGraph
     public static function fromArray(array $array): StatisticalGraphAsync
     {
         return new static(
-            $array['token'],
+            token: $array['token'],
         );
     }
 

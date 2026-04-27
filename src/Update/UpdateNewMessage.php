@@ -28,7 +28,7 @@ class UpdateNewMessage extends Update
     public static function fromArray(array $array): UpdateNewMessage
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['message']),
+            message: TdSchemaRegistry::fromArray($array['message']),
         );
     }
 
@@ -48,7 +48,7 @@ class UpdateNewMessage extends Update
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'message' => $this->message->typeSerialize(),
+            'message' => $this->message->jsonSerialize(),
         ];
     }
 }

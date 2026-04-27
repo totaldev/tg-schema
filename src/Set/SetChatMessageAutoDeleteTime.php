@@ -30,8 +30,8 @@ class SetChatMessageAutoDeleteTime extends TdFunction
     public static function fromArray(array $array): SetChatMessageAutoDeleteTime
     {
         return new static(
-            $array['chat_id'],
-            $array['message_auto_delete_time'],
+            chatId               : $array['chat_id'],
+            messageAutoDeleteTime: $array['message_auto_delete_time'],
         );
     }
 

@@ -22,21 +22,21 @@ class TransferChatOwnership extends TdFunction
          */
         protected int    $chatId,
         /**
-         * Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user.
-         */
-        protected int    $userId,
-        /**
          * The 2-step verification password of the current user.
          */
         protected string $password,
+        /**
+         * Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user.
+         */
+        protected int    $userId,
     ) {}
 
     public static function fromArray(array $array): TransferChatOwnership
     {
         return new static(
-            $array['chat_id'],
-            $array['user_id'],
-            $array['password'],
+            chatId  : $array['chat_id'],
+            password: $array['password'],
+            userId  : $array['user_id'],
         );
     }
 
@@ -81,8 +81,8 @@ class TransferChatOwnership extends TdFunction
         return [
             '@type'    => static::TYPE_NAME,
             'chat_id'  => $this->chatId,
-            'user_id'  => $this->userId,
             'password' => $this->password,
+            'user_id'  => $this->userId,
         ];
     }
 }

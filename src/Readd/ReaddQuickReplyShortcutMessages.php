@@ -19,22 +19,22 @@ class ReaddQuickReplyShortcutMessages extends TdFunction
 
     public function __construct(
         /**
-         * Name of the target shortcut.
-         */
-        protected string $shortcutName,
-        /**
          * Identifiers of the quick reply messages to readd. Message identifiers must be in a strictly increasing order.
          *
          * @var int[]
          */
         protected array  $messageIds,
+        /**
+         * Name of the target shortcut.
+         */
+        protected string $shortcutName,
     ) {}
 
     public static function fromArray(array $array): ReaddQuickReplyShortcutMessages
     {
         return new static(
-            $array['shortcut_name'],
-            $array['message_ids'],
+            messageIds  : $array['message_ids'],
+            shortcutName: $array['shortcut_name'],
         );
     }
 
@@ -66,8 +66,8 @@ class ReaddQuickReplyShortcutMessages extends TdFunction
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'shortcut_name' => $this->shortcutName,
             'message_ids'   => $this->messageIds,
+            'shortcut_name' => $this->shortcutName,
         ];
     }
 }

@@ -28,7 +28,7 @@ class MessageGame extends MessageContent
     public static function fromArray(array $array): MessageGame
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['game']),
+            game: TdSchemaRegistry::fromArray($array['game']),
         );
     }
 
@@ -48,7 +48,7 @@ class MessageGame extends MessageContent
     {
         return [
             '@type' => static::TYPE_NAME,
-            'game'  => $this->game->typeSerialize(),
+            'game'  => $this->game->jsonSerialize(),
         ];
     }
 }

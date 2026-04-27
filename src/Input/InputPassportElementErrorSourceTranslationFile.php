@@ -25,7 +25,7 @@ class InputPassportElementErrorSourceTranslationFile extends InputPassportElemen
     public static function fromArray(array $array): InputPassportElementErrorSourceTranslationFile
     {
         return new static(
-            $array['file_hash'],
+            fileHash: $array['file_hash'],
         );
     }
 

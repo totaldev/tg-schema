@@ -23,21 +23,21 @@ class BotVerification extends TdObject
          */
         protected int           $botUserId,
         /**
-         * Identifier of the custom emoji that is used as the verification sign.
-         */
-        protected int           $iconCustomEmojiId,
-        /**
          * Custom description of verification reason set by the bot. Can contain only Mention, Hashtag, Cashtag, PhoneNumber, BankCardNumber, Url, and EmailAddress entities.
          */
         protected FormattedText $customDescription,
+        /**
+         * Identifier of the custom emoji that is used as the verification sign.
+         */
+        protected int           $iconCustomEmojiId,
     ) {}
 
     public static function fromArray(array $array): BotVerification
     {
         return new static(
-            $array['bot_user_id'],
-            $array['icon_custom_emoji_id'],
-            TdSchemaRegistry::fromArray($array['custom_description']),
+            botUserId        : $array['bot_user_id'],
+            customDescription: TdSchemaRegistry::fromArray($array['custom_description']),
+            iconCustomEmojiId: $array['icon_custom_emoji_id'],
         );
     }
 
@@ -82,8 +82,8 @@ class BotVerification extends TdObject
         return [
             '@type'                => static::TYPE_NAME,
             'bot_user_id'          => $this->botUserId,
+            'custom_description'   => $this->customDescription->jsonSerialize(),
             'icon_custom_emoji_id' => $this->iconCustomEmojiId,
-            'custom_description'   => $this->customDescription->typeSerialize(),
         ];
     }
 }

@@ -42,11 +42,11 @@ class CallServer extends TdObject
     public static function fromArray(array $array): CallServer
     {
         return new static(
-            $array['id'],
-            $array['ip_address'],
-            $array['ipv6_address'],
-            $array['port'],
-            TdSchemaRegistry::fromArray($array['type']),
+            id         : $array['id'],
+            ipAddress  : $array['ip_address'],
+            ipv6Address: $array['ipv6_address'],
+            port       : $array['port'],
+            type       : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -118,7 +118,7 @@ class CallServer extends TdObject
             'ip_address'   => $this->ipAddress,
             'ipv6_address' => $this->ipv6Address,
             'port'         => $this->port,
-            'type'         => $this->type->typeSerialize(),
+            'type'         => $this->type->jsonSerialize(),
         ];
     }
 }

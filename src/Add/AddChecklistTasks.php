@@ -37,9 +37,9 @@ class AddChecklistTasks extends TdFunction
     public static function fromArray(array $array): AddChecklistTasks
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['tasks']),
+            chatId   : $array['chat_id'],
+            messageId: $array['message_id'],
+            tasks    : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['tasks']),
         );
     }
 
@@ -85,7 +85,7 @@ class AddChecklistTasks extends TdFunction
             '@type'      => static::TYPE_NAME,
             'chat_id'    => $this->chatId,
             'message_id' => $this->messageId,
-            'tasks'      => array_map(static fn($x) => $x->typeSerialize(), $this->tasks),
+            'tasks'      => array_map(static fn($x) => $x->jsonSerialize(), $this->tasks),
         ];
     }
 }

@@ -22,17 +22,17 @@ class MessageReplyToMessage extends MessageReplyTo
          */
         protected int             $chatId,
         /**
-         * The identifier of the message; may be 0 if the replied message is in unknown chat.
-         */
-        protected int             $messageId,
-        /**
-         * Chosen quote from the replied message; may be null if none.
-         */
-        protected ?TextQuote      $quote,
-        /**
          * Identifier of the checklist task in the original message that was replied; 0 if none.
          */
         protected int             $checklistTaskId,
+        /**
+         * Media content of the message if the message was from another chat or topic; may be null for messages from the same chat and messages without media. Can be only one of the following types: messageAnimation, messageAudio, messageChecklist, messageContact, messageDice, messageDocument, messageGame, messageGiveaway, messageGiveawayWinners, messageInvoice, messageLocation, messagePaidMedia, messagePhoto, messagePoll, messageSticker, messageStory, messageText (for link preview), messageVenue, messageVideo, messageVideoNote, or messageVoiceNote.
+         */
+        protected ?MessageContent $content,
+        /**
+         * The identifier of the message; may be 0 if the replied message is in unknown chat.
+         */
+        protected int             $messageId,
         /**
          * Information about origin of the message if the message was from another chat or topic; may be null for messages from the same chat.
          */
@@ -42,9 +42,9 @@ class MessageReplyToMessage extends MessageReplyTo
          */
         protected int             $originSendDate,
         /**
-         * Media content of the message if the message was from another chat or topic; may be null for messages from the same chat and messages without media. Can be only one of the following types: messageAnimation, messageAudio, messageChecklist, messageContact, messageDice, messageDocument, messageGame, messageGiveaway, messageGiveawayWinners, messageInvoice, messageLocation, messagePaidMedia, messagePhoto, messagePoll, messageSticker, messageStory, messageText (for link preview), messageVenue, messageVideo, messageVideoNote, or messageVoiceNote.
+         * Chosen quote from the replied message; may be null if none.
          */
-        protected ?MessageContent $content,
+        protected ?TextQuote      $quote,
     ) {
         parent::__construct();
     }
@@ -52,13 +52,13 @@ class MessageReplyToMessage extends MessageReplyTo
     public static function fromArray(array $array): MessageReplyToMessage
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            isset($array['quote']) ? TdSchemaRegistry::fromArray($array['quote']) : null,
-            $array['checklist_task_id'],
-            isset($array['origin']) ? TdSchemaRegistry::fromArray($array['origin']) : null,
-            $array['origin_send_date'],
-            isset($array['content']) ? TdSchemaRegistry::fromArray($array['content']) : null,
+            chatId         : $array['chat_id'],
+            checklistTaskId: $array['checklist_task_id'],
+            content        : (isset($array['content']) ? TdSchemaRegistry::fromArray($array['content']) : null),
+            messageId      : $array['message_id'],
+            origin         : (isset($array['origin']) ? TdSchemaRegistry::fromArray($array['origin']) : null),
+            originSendDate : $array['origin_send_date'],
+            quote          : (isset($array['quote']) ? TdSchemaRegistry::fromArray($array['quote']) : null),
         );
     }
 
@@ -151,12 +151,12 @@ class MessageReplyToMessage extends MessageReplyTo
         return [
             '@type'             => static::TYPE_NAME,
             'chat_id'           => $this->chatId,
-            'message_id'        => $this->messageId,
-            'quote'             => $this->quote ?? null,
             'checklist_task_id' => $this->checklistTaskId,
-            'origin'            => $this->origin ?? null,
+            'content'           => (null !== $this->content ? $this->content->jsonSerialize() : null),
+            'message_id'        => $this->messageId,
+            'origin'            => (null !== $this->origin ? $this->origin->jsonSerialize() : null),
             'origin_send_date'  => $this->originSendDate,
-            'content'           => $this->content ?? null,
+            'quote'             => (null !== $this->quote ? $this->quote->jsonSerialize() : null),
         ];
     }
 }

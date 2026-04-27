@@ -18,13 +18,13 @@ class PushMessageContentVoiceNote extends PushMessageContent
 
     public function __construct(
         /**
-         * Message content; may be null.
-         */
-        protected ?VoiceNote $voiceNote,
-        /**
          * True, if the message is a pinned message with the specified content.
          */
         protected bool       $isPinned,
+        /**
+         * Message content; may be null.
+         */
+        protected ?VoiceNote $voiceNote,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class PushMessageContentVoiceNote extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentVoiceNote
     {
         return new static(
-            isset($array['voice_note']) ? TdSchemaRegistry::fromArray($array['voice_note']) : null,
-            $array['is_pinned'],
+            isPinned : $array['is_pinned'],
+            voiceNote: (isset($array['voice_note']) ? TdSchemaRegistry::fromArray($array['voice_note']) : null),
         );
     }
 
@@ -65,8 +65,8 @@ class PushMessageContentVoiceNote extends PushMessageContent
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'voice_note' => $this->voiceNote ?? null,
             'is_pinned'  => $this->isPinned,
+            'voice_note' => (null !== $this->voiceNote ? $this->voiceNote->jsonSerialize() : null),
         ];
     }
 }

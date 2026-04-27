@@ -15,33 +15,33 @@ class GiveawayInfoCompleted extends GiveawayInfo
 
     public function __construct(
         /**
-         * Point in time (Unix timestamp) when the giveaway was created.
+         * Number of winners, which activated their gift codes; for Telegram Premium giveaways only.
          */
-        protected int    $creationDate,
+        protected int    $activationCount,
         /**
          * Point in time (Unix timestamp) when the winners were selected. May be bigger than winners selection date specified in parameters of the giveaway.
          */
         protected int    $actualWinnersSelectionDate,
         /**
-         * True, if the giveaway was canceled and was fully refunded.
+         * Point in time (Unix timestamp) when the giveaway was created.
          */
-        protected bool   $wasRefunded,
+        protected int    $creationDate,
+        /**
+         * Telegram Premium gift code that was received by the current user; empty if the user isn't a winner in the giveaway or the giveaway isn't a Telegram Premium giveaway.
+         */
+        protected string $giftCode,
         /**
          * True, if the current user is a winner of the giveaway.
          */
         protected bool   $isWinner,
         /**
+         * True, if the giveaway was canceled and was fully refunded.
+         */
+        protected bool   $wasRefunded,
+        /**
          * Number of winners in the giveaway.
          */
         protected int    $winnerCount,
-        /**
-         * Number of winners, which activated their gift codes; for Telegram Premium giveaways only.
-         */
-        protected int    $activationCount,
-        /**
-         * Telegram Premium gift code that was received by the current user; empty if the user isn't a winner in the giveaway or the giveaway isn't a Telegram Premium giveaway.
-         */
-        protected string $giftCode,
         /**
          * The amount of Telegram Stars won by the current user; 0 if the user isn't a winner in the giveaway or the giveaway isn't a Telegram Star giveaway.
          */
@@ -53,14 +53,14 @@ class GiveawayInfoCompleted extends GiveawayInfo
     public static function fromArray(array $array): GiveawayInfoCompleted
     {
         return new static(
-            $array['creation_date'],
-            $array['actual_winners_selection_date'],
-            $array['was_refunded'],
-            $array['is_winner'],
-            $array['winner_count'],
-            $array['activation_count'],
-            $array['gift_code'],
-            $array['won_star_count'],
+            activationCount           : $array['activation_count'],
+            actualWinnersSelectionDate: $array['actual_winners_selection_date'],
+            creationDate              : $array['creation_date'],
+            giftCode                  : $array['gift_code'],
+            isWinner                  : $array['is_winner'],
+            wasRefunded               : $array['was_refunded'],
+            winnerCount               : $array['winner_count'],
+            wonStarCount              : $array['won_star_count'],
         );
     }
 
@@ -164,13 +164,13 @@ class GiveawayInfoCompleted extends GiveawayInfo
     {
         return [
             '@type'                         => static::TYPE_NAME,
-            'creation_date'                 => $this->creationDate,
-            'actual_winners_selection_date' => $this->actualWinnersSelectionDate,
-            'was_refunded'                  => $this->wasRefunded,
-            'is_winner'                     => $this->isWinner,
-            'winner_count'                  => $this->winnerCount,
             'activation_count'              => $this->activationCount,
+            'actual_winners_selection_date' => $this->actualWinnersSelectionDate,
+            'creation_date'                 => $this->creationDate,
             'gift_code'                     => $this->giftCode,
+            'is_winner'                     => $this->isWinner,
+            'was_refunded'                  => $this->wasRefunded,
+            'winner_count'                  => $this->winnerCount,
             'won_star_count'                => $this->wonStarCount,
         ];
     }

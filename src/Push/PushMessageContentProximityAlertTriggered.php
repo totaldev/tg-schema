@@ -25,7 +25,7 @@ class PushMessageContentProximityAlertTriggered extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentProximityAlertTriggered
     {
         return new static(
-            $array['distance'],
+            distance: $array['distance'],
         );
     }
 

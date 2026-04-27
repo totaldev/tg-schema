@@ -19,17 +19,17 @@ class AddProxy extends TdFunction
 
     public function __construct(
         /**
-         * Proxy server domain or IP address.
+         * Pass true to immediately enable the proxy.
          */
-        protected string    $server,
+        protected bool      $enable,
         /**
          * Proxy server port.
          */
         protected int       $port,
         /**
-         * Pass true to immediately enable the proxy.
+         * Proxy server domain or IP address.
          */
-        protected bool      $enable,
+        protected string    $server,
         /**
          * Proxy type.
          */
@@ -39,10 +39,10 @@ class AddProxy extends TdFunction
     public static function fromArray(array $array): AddProxy
     {
         return new static(
-            $array['server'],
-            $array['port'],
-            $array['enable'],
-            TdSchemaRegistry::fromArray($array['type']),
+            enable: $array['enable'],
+            port  : $array['port'],
+            server: $array['server'],
+            type  : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -98,10 +98,10 @@ class AddProxy extends TdFunction
     {
         return [
             '@type'  => static::TYPE_NAME,
-            'server' => $this->server,
-            'port'   => $this->port,
             'enable' => $this->enable,
-            'type'   => $this->type->typeSerialize(),
+            'port'   => $this->port,
+            'server' => $this->server,
+            'type'   => $this->type->jsonSerialize(),
         ];
     }
 }

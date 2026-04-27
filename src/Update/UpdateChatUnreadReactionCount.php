@@ -29,8 +29,8 @@ class UpdateChatUnreadReactionCount extends Update
     public static function fromArray(array $array): UpdateChatUnreadReactionCount
     {
         return new static(
-            $array['chat_id'],
-            $array['unread_reaction_count'],
+            chatId             : $array['chat_id'],
+            unreadReactionCount: $array['unread_reaction_count'],
         );
     }
 

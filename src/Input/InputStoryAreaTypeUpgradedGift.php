@@ -25,7 +25,7 @@ class InputStoryAreaTypeUpgradedGift extends InputStoryAreaType
     public static function fromArray(array $array): InputStoryAreaTypeUpgradedGift
     {
         return new static(
-            $array['gift_name'],
+            giftName: $array['gift_name'],
         );
     }
 

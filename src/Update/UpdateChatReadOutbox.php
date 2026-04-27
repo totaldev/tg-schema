@@ -29,8 +29,8 @@ class UpdateChatReadOutbox extends Update
     public static function fromArray(array $array): UpdateChatReadOutbox
     {
         return new static(
-            $array['chat_id'],
-            $array['last_read_outbox_message_id'],
+            chatId                 : $array['chat_id'],
+            lastReadOutboxMessageId: $array['last_read_outbox_message_id'],
         );
     }
 

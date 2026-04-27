@@ -25,7 +25,7 @@ class RichTextPlain extends RichText
     public static function fromArray(array $array): RichTextPlain
     {
         return new static(
-            $array['text'],
+            text: $array['text'],
         );
     }
 

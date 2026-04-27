@@ -25,7 +25,7 @@ class SetLogVerbosityLevel extends TdFunction
     public static function fromArray(array $array): SetLogVerbosityLevel
     {
         return new static(
-            $array['new_verbosity_level'],
+            newVerbosityLevel: $array['new_verbosity_level'],
         );
     }
 

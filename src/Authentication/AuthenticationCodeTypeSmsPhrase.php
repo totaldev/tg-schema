@@ -26,7 +26,7 @@ class AuthenticationCodeTypeSmsPhrase extends AuthenticationCodeType
     public static function fromArray(array $array): AuthenticationCodeTypeSmsPhrase
     {
         return new static(
-            $array['first_word'],
+            firstWord: $array['first_word'],
         );
     }
 

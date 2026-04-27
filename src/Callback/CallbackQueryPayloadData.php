@@ -25,7 +25,7 @@ class CallbackQueryPayloadData extends CallbackQueryPayload
     public static function fromArray(array $array): CallbackQueryPayloadData
     {
         return new static(
-            $array['data'],
+            data: $array['data'],
         );
     }
 

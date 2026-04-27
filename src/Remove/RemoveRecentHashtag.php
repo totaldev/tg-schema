@@ -25,7 +25,7 @@ class RemoveRecentHashtag extends TdFunction
     public static function fromArray(array $array): RemoveRecentHashtag
     {
         return new static(
-            $array['hashtag'],
+            hashtag: $array['hashtag'],
         );
     }
 

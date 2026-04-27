@@ -27,7 +27,7 @@ class UpdateSpeedLimitNotification extends Update
     public static function fromArray(array $array): UpdateSpeedLimitNotification
     {
         return new static(
-            $array['is_upload'],
+            isUpload: $array['is_upload'],
         );
     }
 

@@ -15,13 +15,13 @@ class PushMessageContentChecklist extends PushMessageContent
 
     public function __construct(
         /**
-         * Checklist title.
-         */
-        protected string $title,
-        /**
          * True, if the message is a pinned message with the specified content.
          */
         protected bool   $isPinned,
+        /**
+         * Checklist title.
+         */
+        protected string $title,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class PushMessageContentChecklist extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentChecklist
     {
         return new static(
-            $array['title'],
-            $array['is_pinned'],
+            isPinned: $array['is_pinned'],
+            title   : $array['title'],
         );
     }
 
@@ -62,8 +62,8 @@ class PushMessageContentChecklist extends PushMessageContent
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'title'     => $this->title,
             'is_pinned' => $this->isPinned,
+            'title'     => $this->title,
         ];
     }
 }

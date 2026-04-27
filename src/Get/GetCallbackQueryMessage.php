@@ -17,6 +17,10 @@ class GetCallbackQueryMessage extends TdFunction
 
     public function __construct(
         /**
+         * Identifier of the callback query.
+         */
+        protected int $callbackQueryId,
+        /**
          * Identifier of the chat the message belongs to.
          */
         protected int $chatId,
@@ -24,18 +28,14 @@ class GetCallbackQueryMessage extends TdFunction
          * Message identifier.
          */
         protected int $messageId,
-        /**
-         * Identifier of the callback query.
-         */
-        protected int $callbackQueryId,
     ) {}
 
     public static function fromArray(array $array): GetCallbackQueryMessage
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            $array['callback_query_id'],
+            callbackQueryId: $array['callback_query_id'],
+            chatId         : $array['chat_id'],
+            messageId      : $array['message_id'],
         );
     }
 
@@ -79,9 +79,9 @@ class GetCallbackQueryMessage extends TdFunction
     {
         return [
             '@type'             => static::TYPE_NAME,
+            'callback_query_id' => $this->callbackQueryId,
             'chat_id'           => $this->chatId,
             'message_id'        => $this->messageId,
-            'callback_query_id' => $this->callbackQueryId,
         ];
     }
 }

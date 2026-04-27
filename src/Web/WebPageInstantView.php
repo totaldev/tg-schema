@@ -20,42 +20,42 @@ class WebPageInstantView extends TdObject
 
     public function __construct(
         /**
+         * An internal link to be opened to leave feedback about the instant view.
+         */
+        protected InternalLinkType $feedbackLink,
+        /**
+         * True, if the instant view contains the full page. A network request might be needed to get the full instant view.
+         */
+        protected bool             $isFull,
+        /**
+         * True, if the instant view must be shown from right to left.
+         */
+        protected bool             $isRtl,
+        /**
          * Content of the instant view page.
          *
          * @var PageBlock[]
          */
         protected array            $pageBlocks,
         /**
-         * Number of the instant view views; 0 if unknown.
-         */
-        protected int              $viewCount,
-        /**
          * Version of the instant view; currently, can be 1 or 2.
          */
         protected int              $version,
         /**
-         * True, if the instant view must be shown from right to left.
+         * Number of the instant view views; 0 if unknown.
          */
-        protected bool             $isRtl,
-        /**
-         * True, if the instant view contains the full page. A network request might be needed to get the full instant view.
-         */
-        protected bool             $isFull,
-        /**
-         * An internal link to be opened to leave feedback about the instant view.
-         */
-        protected InternalLinkType $feedbackLink,
+        protected int              $viewCount,
     ) {}
 
     public static function fromArray(array $array): WebPageInstantView
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['page_blocks']),
-            $array['view_count'],
-            $array['version'],
-            $array['is_rtl'],
-            $array['is_full'],
-            TdSchemaRegistry::fromArray($array['feedback_link']),
+            feedbackLink: TdSchemaRegistry::fromArray($array['feedback_link']),
+            isFull      : $array['is_full'],
+            isRtl       : $array['is_rtl'],
+            pageBlocks  : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['page_blocks']),
+            version     : $array['version'],
+            viewCount   : $array['view_count'],
         );
     }
 
@@ -135,12 +135,12 @@ class WebPageInstantView extends TdObject
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'page_blocks'   => array_map(static fn($x) => $x->typeSerialize(), $this->pageBlocks),
-            'view_count'    => $this->viewCount,
-            'version'       => $this->version,
-            'is_rtl'        => $this->isRtl,
+            'feedback_link' => $this->feedbackLink->jsonSerialize(),
             'is_full'       => $this->isFull,
-            'feedback_link' => $this->feedbackLink->typeSerialize(),
+            'is_rtl'        => $this->isRtl,
+            'page_blocks'   => array_map(static fn($x) => $x->jsonSerialize(), $this->pageBlocks),
+            'version'       => $this->version,
+            'view_count'    => $this->viewCount,
         ];
     }
 }

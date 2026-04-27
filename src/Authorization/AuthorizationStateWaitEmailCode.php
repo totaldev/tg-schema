@@ -41,10 +41,10 @@ class AuthorizationStateWaitEmailCode extends AuthorizationState
     public static function fromArray(array $array): AuthorizationStateWaitEmailCode
     {
         return new static(
-            $array['allow_apple_id'],
-            $array['allow_google_id'],
-            TdSchemaRegistry::fromArray($array['code_info']),
-            isset($array['email_address_reset_state']) ? TdSchemaRegistry::fromArray($array['email_address_reset_state']) : null,
+            allowAppleId          : $array['allow_apple_id'],
+            allowGoogleId         : $array['allow_google_id'],
+            codeInfo              : TdSchemaRegistry::fromArray($array['code_info']),
+            emailAddressResetState: (isset($array['email_address_reset_state']) ? TdSchemaRegistry::fromArray($array['email_address_reset_state']) : null),
         );
     }
 
@@ -102,8 +102,8 @@ class AuthorizationStateWaitEmailCode extends AuthorizationState
             '@type'                     => static::TYPE_NAME,
             'allow_apple_id'            => $this->allowAppleId,
             'allow_google_id'           => $this->allowGoogleId,
-            'code_info'                 => $this->codeInfo->typeSerialize(),
-            'email_address_reset_state' => $this->emailAddressResetState ?? null,
+            'code_info'                 => $this->codeInfo->jsonSerialize(),
+            'email_address_reset_state' => (null !== $this->emailAddressResetState ? $this->emailAddressResetState->jsonSerialize() : null),
         ];
     }
 }

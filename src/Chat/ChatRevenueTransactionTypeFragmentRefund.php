@@ -25,7 +25,7 @@ class ChatRevenueTransactionTypeFragmentRefund extends ChatRevenueTransactionTyp
     public static function fromArray(array $array): ChatRevenueTransactionTypeFragmentRefund
     {
         return new static(
-            $array['refund_date'],
+            refundDate: $array['refund_date'],
         );
     }
 

@@ -18,13 +18,13 @@ class PushMessageContentVideoNote extends PushMessageContent
 
     public function __construct(
         /**
-         * Message content; may be null.
-         */
-        protected ?VideoNote $videoNote,
-        /**
          * True, if the message is a pinned message with the specified content.
          */
         protected bool       $isPinned,
+        /**
+         * Message content; may be null.
+         */
+        protected ?VideoNote $videoNote,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class PushMessageContentVideoNote extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentVideoNote
     {
         return new static(
-            isset($array['video_note']) ? TdSchemaRegistry::fromArray($array['video_note']) : null,
-            $array['is_pinned'],
+            isPinned : $array['is_pinned'],
+            videoNote: (isset($array['video_note']) ? TdSchemaRegistry::fromArray($array['video_note']) : null),
         );
     }
 
@@ -65,8 +65,8 @@ class PushMessageContentVideoNote extends PushMessageContent
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'video_note' => $this->videoNote ?? null,
             'is_pinned'  => $this->isPinned,
+            'video_note' => (null !== $this->videoNote ? $this->videoNote->jsonSerialize() : null),
         ];
     }
 }

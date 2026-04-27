@@ -21,31 +21,31 @@ class GetPollVoters extends TdFunction
          */
         protected int $chatId,
         /**
+         * The maximum number of voters to be returned; must be positive and can't be greater than 50. For optimal performance, the number of returned voters is chosen by TDLib and can be smaller than the specified limit, even if the end of the voter list has not been reached.
+         */
+        protected int $limit,
+        /**
          * Identifier of the message containing the poll.
          */
         protected int $messageId,
-        /**
-         * 0-based identifier of the answer option.
-         */
-        protected int $optionId,
         /**
          * Number of voters to skip in the result; must be non-negative.
          */
         protected int $offset,
         /**
-         * The maximum number of voters to be returned; must be positive and can't be greater than 50. For optimal performance, the number of returned voters is chosen by TDLib and can be smaller than the specified limit, even if the end of the voter list has not been reached.
+         * 0-based identifier of the answer option.
          */
-        protected int $limit,
+        protected int $optionId,
     ) {}
 
     public static function fromArray(array $array): GetPollVoters
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            $array['option_id'],
-            $array['offset'],
-            $array['limit'],
+            chatId   : $array['chat_id'],
+            limit    : $array['limit'],
+            messageId: $array['message_id'],
+            offset   : $array['offset'],
+            optionId : $array['option_id'],
         );
     }
 
@@ -114,10 +114,10 @@ class GetPollVoters extends TdFunction
         return [
             '@type'      => static::TYPE_NAME,
             'chat_id'    => $this->chatId,
-            'message_id' => $this->messageId,
-            'option_id'  => $this->optionId,
-            'offset'     => $this->offset,
             'limit'      => $this->limit,
+            'message_id' => $this->messageId,
+            'offset'     => $this->offset,
+            'option_id'  => $this->optionId,
         ];
     }
 }

@@ -15,13 +15,13 @@ class UpdatePaidMediaPurchased extends Update
 
     public function __construct(
         /**
-         * User identifier.
-         */
-        protected int    $userId,
-        /**
          * Bot-specified payload for the paid media.
          */
         protected string $payload,
+        /**
+         * User identifier.
+         */
+        protected int    $userId,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class UpdatePaidMediaPurchased extends Update
     public static function fromArray(array $array): UpdatePaidMediaPurchased
     {
         return new static(
-            $array['user_id'],
-            $array['payload'],
+            payload: $array['payload'],
+            userId : $array['user_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class UpdatePaidMediaPurchased extends Update
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'user_id' => $this->userId,
             'payload' => $this->payload,
+            'user_id' => $this->userId,
         ];
     }
 }

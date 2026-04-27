@@ -19,25 +19,25 @@ class BusinessGreetingMessageSettings extends TdObject
 
     public function __construct(
         /**
-         * Unique quick reply shortcut identifier for the greeting messages.
+         * The number of days after which a chat will be considered as inactive; currently, must be on of 7, 14, 21, or 28.
          */
-        protected int                $shortcutId,
+        protected int                $inactivityDays,
         /**
          * Chosen recipients of the greeting messages.
          */
         protected BusinessRecipients $recipients,
         /**
-         * The number of days after which a chat will be considered as inactive; currently, must be on of 7, 14, 21, or 28.
+         * Unique quick reply shortcut identifier for the greeting messages.
          */
-        protected int                $inactivityDays,
+        protected int                $shortcutId,
     ) {}
 
     public static function fromArray(array $array): BusinessGreetingMessageSettings
     {
         return new static(
-            $array['shortcut_id'],
-            TdSchemaRegistry::fromArray($array['recipients']),
-            $array['inactivity_days'],
+            inactivityDays: $array['inactivity_days'],
+            recipients    : TdSchemaRegistry::fromArray($array['recipients']),
+            shortcutId    : $array['shortcut_id'],
         );
     }
 
@@ -81,9 +81,9 @@ class BusinessGreetingMessageSettings extends TdObject
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'shortcut_id'     => $this->shortcutId,
-            'recipients'      => $this->recipients->typeSerialize(),
             'inactivity_days' => $this->inactivityDays,
+            'recipients'      => $this->recipients->jsonSerialize(),
+            'shortcut_id'     => $this->shortcutId,
         ];
     }
 }

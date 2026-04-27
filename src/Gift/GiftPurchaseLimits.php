@@ -17,20 +17,20 @@ class GiftPurchaseLimits extends TdObject
 
     public function __construct(
         /**
-         * The maximum number of times the gifts can be purchased.
-         */
-        protected int $totalCount,
-        /**
          * Number of remaining times the gift can be purchased.
          */
         protected int $remainingCount,
+        /**
+         * The maximum number of times the gifts can be purchased.
+         */
+        protected int $totalCount,
     ) {}
 
     public static function fromArray(array $array): GiftPurchaseLimits
     {
         return new static(
-            $array['total_count'],
-            $array['remaining_count'],
+            remainingCount: $array['remaining_count'],
+            totalCount    : $array['total_count'],
         );
     }
 
@@ -62,8 +62,8 @@ class GiftPurchaseLimits extends TdObject
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'total_count'     => $this->totalCount,
             'remaining_count' => $this->remainingCount,
+            'total_count'     => $this->totalCount,
         ];
     }
 }

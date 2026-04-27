@@ -27,7 +27,7 @@ class StoryInteractionTypeRepost extends StoryInteractionType
     public static function fromArray(array $array): StoryInteractionTypeRepost
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['story']),
+            story: TdSchemaRegistry::fromArray($array['story']),
         );
     }
 
@@ -47,7 +47,7 @@ class StoryInteractionTypeRepost extends StoryInteractionType
     {
         return [
             '@type' => static::TYPE_NAME,
-            'story' => $this->story->typeSerialize(),
+            'story' => $this->story->jsonSerialize(),
         ];
     }
 }

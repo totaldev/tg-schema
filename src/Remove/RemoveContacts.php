@@ -27,7 +27,7 @@ class RemoveContacts extends TdFunction
     public static function fromArray(array $array): RemoveContacts
     {
         return new static(
-            $array['user_ids'],
+            userIds: $array['user_ids'],
         );
     }
 

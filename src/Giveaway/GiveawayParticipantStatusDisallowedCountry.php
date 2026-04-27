@@ -25,7 +25,7 @@ class GiveawayParticipantStatusDisallowedCountry extends GiveawayParticipantStat
     public static function fromArray(array $array): GiveawayParticipantStatusDisallowedCountry
     {
         return new static(
-            $array['user_country_code'],
+            userCountryCode: $array['user_country_code'],
         );
     }
 

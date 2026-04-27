@@ -25,7 +25,7 @@ class GroupCallId extends TdObject
     public static function fromArray(array $array): GroupCallId
     {
         return new static(
-            $array['id'],
+            id: $array['id'],
         );
     }
 

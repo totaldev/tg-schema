@@ -25,7 +25,7 @@ class MessageTopicForum extends MessageTopic
     public static function fromArray(array $array): MessageTopicForum
     {
         return new static(
-            $array['forum_topic_id'],
+            forumTopicId: $array['forum_topic_id'],
         );
     }
 

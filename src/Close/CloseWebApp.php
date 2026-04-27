@@ -25,7 +25,7 @@ class CloseWebApp extends TdFunction
     public static function fromArray(array $array): CloseWebApp
     {
         return new static(
-            $array['web_app_launch_id'],
+            webAppLaunchId: $array['web_app_launch_id'],
         );
     }
 

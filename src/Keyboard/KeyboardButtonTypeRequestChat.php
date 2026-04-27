@@ -18,38 +18,6 @@ class KeyboardButtonTypeRequestChat extends KeyboardButtonType
 
     public function __construct(
         /**
-         * Unique button identifier.
-         */
-        protected int                      $id,
-        /**
-         * True, if the chat must be a channel; otherwise, a basic group or a supergroup chat is shared.
-         */
-        protected bool                     $chatIsChannel,
-        /**
-         * True, if the chat must or must not be a forum supergroup.
-         */
-        protected bool                     $restrictChatIsForum,
-        /**
-         * True, if the chat must be a forum supergroup; otherwise, the chat must not be a forum supergroup. Ignored if restrict_chat_is_forum is false.
-         */
-        protected bool                     $chatIsForum,
-        /**
-         * True, if the chat must or must not have a username.
-         */
-        protected bool                     $restrictChatHasUsername,
-        /**
-         * True, if the chat must have a username; otherwise, the chat must not have a username. Ignored if restrict_chat_has_username is false.
-         */
-        protected bool                     $chatHasUsername,
-        /**
-         * True, if the chat must be created by the current user.
-         */
-        protected bool                     $chatIsCreated,
-        /**
-         * Expected user administrator rights in the chat; may be null if they aren't restricted.
-         */
-        protected ?ChatAdministratorRights $userAdministratorRights,
-        /**
          * Expected bot administrator rights in the chat; may be null if they aren't restricted.
          */
         protected ?ChatAdministratorRights $botAdministratorRights,
@@ -57,6 +25,30 @@ class KeyboardButtonTypeRequestChat extends KeyboardButtonType
          * True, if the bot must be a member of the chat; for basic group and supergroup chats only.
          */
         protected bool                     $botIsMember,
+        /**
+         * True, if the chat must have a username; otherwise, the chat must not have a username. Ignored if restrict_chat_has_username is false.
+         */
+        protected bool                     $chatHasUsername,
+        /**
+         * True, if the chat must be a channel; otherwise, a basic group or a supergroup chat is shared.
+         */
+        protected bool                     $chatIsChannel,
+        /**
+         * True, if the chat must be created by the current user.
+         */
+        protected bool                     $chatIsCreated,
+        /**
+         * True, if the chat must be a forum supergroup; otherwise, the chat must not be a forum supergroup. Ignored if restrict_chat_is_forum is false.
+         */
+        protected bool                     $chatIsForum,
+        /**
+         * Unique button identifier.
+         */
+        protected int                      $id,
+        /**
+         * Pass true to request photo of the chat; bots only.
+         */
+        protected bool                     $requestPhoto,
         /**
          * Pass true to request title of the chat; bots only.
          */
@@ -66,9 +58,17 @@ class KeyboardButtonTypeRequestChat extends KeyboardButtonType
          */
         protected bool                     $requestUsername,
         /**
-         * Pass true to request photo of the chat; bots only.
+         * True, if the chat must or must not have a username.
          */
-        protected bool                     $requestPhoto,
+        protected bool                     $restrictChatHasUsername,
+        /**
+         * True, if the chat must or must not be a forum supergroup.
+         */
+        protected bool                     $restrictChatIsForum,
+        /**
+         * Expected user administrator rights in the chat; may be null if they aren't restricted.
+         */
+        protected ?ChatAdministratorRights $userAdministratorRights,
     ) {
         parent::__construct();
     }
@@ -76,19 +76,19 @@ class KeyboardButtonTypeRequestChat extends KeyboardButtonType
     public static function fromArray(array $array): KeyboardButtonTypeRequestChat
     {
         return new static(
-            $array['id'],
-            $array['chat_is_channel'],
-            $array['restrict_chat_is_forum'],
-            $array['chat_is_forum'],
-            $array['restrict_chat_has_username'],
-            $array['chat_has_username'],
-            $array['chat_is_created'],
-            isset($array['user_administrator_rights']) ? TdSchemaRegistry::fromArray($array['user_administrator_rights']) : null,
-            isset($array['bot_administrator_rights']) ? TdSchemaRegistry::fromArray($array['bot_administrator_rights']) : null,
-            $array['bot_is_member'],
-            $array['request_title'],
-            $array['request_username'],
-            $array['request_photo'],
+            botAdministratorRights : (isset($array['bot_administrator_rights']) ? TdSchemaRegistry::fromArray($array['bot_administrator_rights']) : null),
+            botIsMember            : $array['bot_is_member'],
+            chatHasUsername        : $array['chat_has_username'],
+            chatIsChannel          : $array['chat_is_channel'],
+            chatIsCreated          : $array['chat_is_created'],
+            chatIsForum            : $array['chat_is_forum'],
+            id                     : $array['id'],
+            requestPhoto           : $array['request_photo'],
+            requestTitle           : $array['request_title'],
+            requestUsername        : $array['request_username'],
+            restrictChatHasUsername: $array['restrict_chat_has_username'],
+            restrictChatIsForum    : $array['restrict_chat_is_forum'],
+            userAdministratorRights: (isset($array['user_administrator_rights']) ? TdSchemaRegistry::fromArray($array['user_administrator_rights']) : null),
         );
     }
 
@@ -252,19 +252,19 @@ class KeyboardButtonTypeRequestChat extends KeyboardButtonType
     {
         return [
             '@type'                      => static::TYPE_NAME,
-            'id'                         => $this->id,
-            'chat_is_channel'            => $this->chatIsChannel,
-            'restrict_chat_is_forum'     => $this->restrictChatIsForum,
-            'chat_is_forum'              => $this->chatIsForum,
-            'restrict_chat_has_username' => $this->restrictChatHasUsername,
-            'chat_has_username'          => $this->chatHasUsername,
-            'chat_is_created'            => $this->chatIsCreated,
-            'user_administrator_rights'  => $this->userAdministratorRights ?? null,
-            'bot_administrator_rights'   => $this->botAdministratorRights ?? null,
+            'bot_administrator_rights'   => (null !== $this->botAdministratorRights ? $this->botAdministratorRights->jsonSerialize() : null),
             'bot_is_member'              => $this->botIsMember,
+            'chat_has_username'          => $this->chatHasUsername,
+            'chat_is_channel'            => $this->chatIsChannel,
+            'chat_is_created'            => $this->chatIsCreated,
+            'chat_is_forum'              => $this->chatIsForum,
+            'id'                         => $this->id,
+            'request_photo'              => $this->requestPhoto,
             'request_title'              => $this->requestTitle,
             'request_username'           => $this->requestUsername,
-            'request_photo'              => $this->requestPhoto,
+            'restrict_chat_has_username' => $this->restrictChatHasUsername,
+            'restrict_chat_is_forum'     => $this->restrictChatIsForum,
+            'user_administrator_rights'  => (null !== $this->userAdministratorRights ? $this->userAdministratorRights->jsonSerialize() : null),
         ];
     }
 }

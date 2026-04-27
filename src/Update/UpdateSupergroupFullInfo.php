@@ -18,13 +18,13 @@ class UpdateSupergroupFullInfo extends Update
 
     public function __construct(
         /**
-         * Identifier of the supergroup or channel.
-         */
-        protected int                $supergroupId,
-        /**
          * New full information about the supergroup.
          */
         protected SupergroupFullInfo $supergroupFullInfo,
+        /**
+         * Identifier of the supergroup or channel.
+         */
+        protected int                $supergroupId,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class UpdateSupergroupFullInfo extends Update
     public static function fromArray(array $array): UpdateSupergroupFullInfo
     {
         return new static(
-            $array['supergroup_id'],
-            TdSchemaRegistry::fromArray($array['supergroup_full_info']),
+            supergroupFullInfo: TdSchemaRegistry::fromArray($array['supergroup_full_info']),
+            supergroupId      : $array['supergroup_id'],
         );
     }
 
@@ -65,8 +65,8 @@ class UpdateSupergroupFullInfo extends Update
     {
         return [
             '@type'                => static::TYPE_NAME,
+            'supergroup_full_info' => $this->supergroupFullInfo->jsonSerialize(),
             'supergroup_id'        => $this->supergroupId,
-            'supergroup_full_info' => $this->supergroupFullInfo->typeSerialize(),
         ];
     }
 }

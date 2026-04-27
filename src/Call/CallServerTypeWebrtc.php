@@ -15,21 +15,21 @@ class CallServerTypeWebrtc extends CallServerType
 
     public function __construct(
         /**
-         * Username to be used for authentication.
-         */
-        protected string $username,
-        /**
          * Authentication password.
          */
         protected string $password,
+        /**
+         * True, if the server supports STUN.
+         */
+        protected bool   $supportsStun,
         /**
          * True, if the server supports TURN.
          */
         protected bool   $supportsTurn,
         /**
-         * True, if the server supports STUN.
+         * Username to be used for authentication.
          */
-        protected bool   $supportsStun,
+        protected string $username,
     ) {
         parent::__construct();
     }
@@ -37,10 +37,10 @@ class CallServerTypeWebrtc extends CallServerType
     public static function fromArray(array $array): CallServerTypeWebrtc
     {
         return new static(
-            $array['username'],
-            $array['password'],
-            $array['supports_turn'],
-            $array['supports_stun'],
+            password    : $array['password'],
+            supportsStun: $array['supports_stun'],
+            supportsTurn: $array['supports_turn'],
+            username    : $array['username'],
         );
     }
 
@@ -96,10 +96,10 @@ class CallServerTypeWebrtc extends CallServerType
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'username'      => $this->username,
             'password'      => $this->password,
-            'supports_turn' => $this->supportsTurn,
             'supports_stun' => $this->supportsStun,
+            'supports_turn' => $this->supportsTurn,
+            'username'      => $this->username,
         ];
     }
 }

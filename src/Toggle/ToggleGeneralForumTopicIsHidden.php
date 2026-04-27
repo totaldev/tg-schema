@@ -29,8 +29,8 @@ class ToggleGeneralForumTopicIsHidden extends TdFunction
     public static function fromArray(array $array): ToggleGeneralForumTopicIsHidden
     {
         return new static(
-            $array['chat_id'],
-            $array['is_hidden'],
+            chatId  : $array['chat_id'],
+            isHidden: $array['is_hidden'],
         );
     }
 

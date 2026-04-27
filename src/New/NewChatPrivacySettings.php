@@ -29,8 +29,8 @@ class NewChatPrivacySettings extends TdObject
     public static function fromArray(array $array): NewChatPrivacySettings
     {
         return new static(
-            $array['allow_new_chats_from_unknown_users'],
-            $array['incoming_paid_message_star_count'],
+            allowNewChatsFromUnknownUsers: $array['allow_new_chats_from_unknown_users'],
+            incomingPaidMessageStarCount : $array['incoming_paid_message_star_count'],
         );
     }
 

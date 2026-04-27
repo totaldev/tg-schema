@@ -25,7 +25,7 @@ class OptionValueString extends OptionValue
     public static function fromArray(array $array): OptionValueString
     {
         return new static(
-            $array['value'],
+            value: $array['value'],
         );
     }
 

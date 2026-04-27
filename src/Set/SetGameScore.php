@@ -21,36 +21,36 @@ class SetGameScore extends TdFunction
          */
         protected int  $chatId,
         /**
-         * Identifier of the message.
-         */
-        protected int  $messageId,
-        /**
          * Pass true to edit the game message to include the current scoreboard.
          */
         protected bool $editMessage,
         /**
-         * User identifier.
+         * Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table.
          */
-        protected int  $userId,
+        protected bool $force,
+        /**
+         * Identifier of the message.
+         */
+        protected int  $messageId,
         /**
          * The new score.
          */
         protected int  $score,
         /**
-         * Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table.
+         * User identifier.
          */
-        protected bool $force,
+        protected int  $userId,
     ) {}
 
     public static function fromArray(array $array): SetGameScore
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            $array['edit_message'],
-            $array['user_id'],
-            $array['score'],
-            $array['force'],
+            chatId     : $array['chat_id'],
+            editMessage: $array['edit_message'],
+            force      : $array['force'],
+            messageId  : $array['message_id'],
+            score      : $array['score'],
+            userId     : $array['user_id'],
         );
     }
 
@@ -131,11 +131,11 @@ class SetGameScore extends TdFunction
         return [
             '@type'        => static::TYPE_NAME,
             'chat_id'      => $this->chatId,
-            'message_id'   => $this->messageId,
             'edit_message' => $this->editMessage,
-            'user_id'      => $this->userId,
-            'score'        => $this->score,
             'force'        => $this->force,
+            'message_id'   => $this->messageId,
+            'score'        => $this->score,
+            'user_id'      => $this->userId,
         ];
     }
 }

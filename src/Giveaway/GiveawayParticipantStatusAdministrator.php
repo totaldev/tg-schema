@@ -25,7 +25,7 @@ class GiveawayParticipantStatusAdministrator extends GiveawayParticipantStatus
     public static function fromArray(array $array): GiveawayParticipantStatusAdministrator
     {
         return new static(
-            $array['chat_id'],
+            chatId: $array['chat_id'],
         );
     }
 

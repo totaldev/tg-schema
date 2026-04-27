@@ -19,30 +19,30 @@ class ChatEvent extends TdObject
 
     public function __construct(
         /**
-         * Chat event identifier.
+         * The action.
          */
-        protected int             $id,
+        protected ChatEventAction $action,
         /**
          * Point in time (Unix timestamp) when the event happened.
          */
         protected int             $date,
         /**
+         * Chat event identifier.
+         */
+        protected int             $id,
+        /**
          * Identifier of the user or chat who performed the action.
          */
         protected MessageSender   $memberId,
-        /**
-         * The action.
-         */
-        protected ChatEventAction $action,
     ) {}
 
     public static function fromArray(array $array): ChatEvent
     {
         return new static(
-            $array['id'],
-            $array['date'],
-            TdSchemaRegistry::fromArray($array['member_id']),
-            TdSchemaRegistry::fromArray($array['action']),
+            action  : TdSchemaRegistry::fromArray($array['action']),
+            date    : $array['date'],
+            id      : $array['id'],
+            memberId: TdSchemaRegistry::fromArray($array['member_id']),
         );
     }
 
@@ -98,10 +98,10 @@ class ChatEvent extends TdObject
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'id'        => $this->id,
+            'action'    => $this->action->jsonSerialize(),
             'date'      => $this->date,
-            'member_id' => $this->memberId->typeSerialize(),
-            'action'    => $this->action->typeSerialize(),
+            'id'        => $this->id,
+            'member_id' => $this->memberId->jsonSerialize(),
         ];
     }
 }

@@ -26,7 +26,7 @@ class ProcessPushNotification extends TdFunction
     public static function fromArray(array $array): ProcessPushNotification
     {
         return new static(
-            $array['payload'],
+            payload: $array['payload'],
         );
     }
 

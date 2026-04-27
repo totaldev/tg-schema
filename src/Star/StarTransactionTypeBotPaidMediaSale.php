@@ -19,9 +19,9 @@ class StarTransactionTypeBotPaidMediaSale extends StarTransactionType
 
     public function __construct(
         /**
-         * Identifier of the user that bought the media.
+         * Information about the affiliate which received commission from the transaction; may be null if none.
          */
-        protected int            $userId,
+        protected ?AffiliateInfo $affiliate,
         /**
          * The bought media.
          *
@@ -33,9 +33,9 @@ class StarTransactionTypeBotPaidMediaSale extends StarTransactionType
          */
         protected string         $payload,
         /**
-         * Information about the affiliate which received commission from the transaction; may be null if none.
+         * Identifier of the user that bought the media.
          */
-        protected ?AffiliateInfo $affiliate,
+        protected int            $userId,
     ) {
         parent::__construct();
     }
@@ -43,10 +43,10 @@ class StarTransactionTypeBotPaidMediaSale extends StarTransactionType
     public static function fromArray(array $array): StarTransactionTypeBotPaidMediaSale
     {
         return new static(
-            $array['user_id'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['media']),
-            $array['payload'],
-            isset($array['affiliate']) ? TdSchemaRegistry::fromArray($array['affiliate']) : null,
+            affiliate: (isset($array['affiliate']) ? TdSchemaRegistry::fromArray($array['affiliate']) : null),
+            media    : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['media']),
+            payload  : $array['payload'],
+            userId   : $array['user_id'],
         );
     }
 
@@ -102,10 +102,10 @@ class StarTransactionTypeBotPaidMediaSale extends StarTransactionType
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'user_id'   => $this->userId,
-            'media'     => array_map(static fn($x) => $x->typeSerialize(), $this->media),
+            'affiliate' => (null !== $this->affiliate ? $this->affiliate->jsonSerialize() : null),
+            'media'     => array_map(static fn($x) => $x->jsonSerialize(), $this->media),
             'payload'   => $this->payload,
-            'affiliate' => $this->affiliate ?? null,
+            'user_id'   => $this->userId,
         ];
     }
 }

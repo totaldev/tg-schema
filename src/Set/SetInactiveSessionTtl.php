@@ -25,7 +25,7 @@ class SetInactiveSessionTtl extends TdFunction
     public static function fromArray(array $array): SetInactiveSessionTtl
     {
         return new static(
-            $array['inactive_session_ttl_days'],
+            inactiveSessionTtlDays: $array['inactive_session_ttl_days'],
         );
     }
 

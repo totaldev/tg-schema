@@ -33,9 +33,9 @@ class SetChatProfileAccentColor extends TdFunction
     public static function fromArray(array $array): SetChatProfileAccentColor
     {
         return new static(
-            $array['chat_id'],
-            $array['profile_accent_color_id'],
-            $array['profile_background_custom_emoji_id'],
+            chatId                        : $array['chat_id'],
+            profileAccentColorId          : $array['profile_accent_color_id'],
+            profileBackgroundCustomEmojiId: $array['profile_background_custom_emoji_id'],
         );
     }
 

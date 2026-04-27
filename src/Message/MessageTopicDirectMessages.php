@@ -25,7 +25,7 @@ class MessageTopicDirectMessages extends MessageTopic
     public static function fromArray(array $array): MessageTopicDirectMessages
     {
         return new static(
-            $array['direct_messages_chat_topic_id'],
+            directMessagesChatTopicId: $array['direct_messages_chat_topic_id'],
         );
     }
 

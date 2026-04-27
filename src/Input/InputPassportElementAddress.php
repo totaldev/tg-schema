@@ -28,7 +28,7 @@ class InputPassportElementAddress extends InputPassportElement
     public static function fromArray(array $array): InputPassportElementAddress
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['address']),
+            address: TdSchemaRegistry::fromArray($array['address']),
         );
     }
 
@@ -48,7 +48,7 @@ class InputPassportElementAddress extends InputPassportElement
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'address' => $this->address->typeSerialize(),
+            'address' => $this->address->jsonSerialize(),
         ];
     }
 }

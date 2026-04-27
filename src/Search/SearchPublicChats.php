@@ -26,7 +26,7 @@ class SearchPublicChats extends TdFunction
     public static function fromArray(array $array): SearchPublicChats
     {
         return new static(
-            $array['query'],
+            query: $array['query'],
         );
     }
 

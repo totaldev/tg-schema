@@ -29,8 +29,8 @@ class GiftUpgradePrice extends TdObject
     public static function fromArray(array $array): GiftUpgradePrice
     {
         return new static(
-            $array['date'],
-            $array['star_count'],
+            date     : $array['date'],
+            starCount: $array['star_count'],
         );
     }
 

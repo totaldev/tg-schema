@@ -39,10 +39,10 @@ class BackgroundTypePattern extends BackgroundType
     public static function fromArray(array $array): BackgroundTypePattern
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['fill']),
-            $array['intensity'],
-            $array['is_inverted'],
-            $array['is_moving'],
+            fill      : TdSchemaRegistry::fromArray($array['fill']),
+            intensity : $array['intensity'],
+            isInverted: $array['is_inverted'],
+            isMoving  : $array['is_moving'],
         );
     }
 
@@ -98,7 +98,7 @@ class BackgroundTypePattern extends BackgroundType
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'fill'        => $this->fill->typeSerialize(),
+            'fill'        => $this->fill->jsonSerialize(),
             'intensity'   => $this->intensity,
             'is_inverted' => $this->isInverted,
             'is_moving'   => $this->isMoving,

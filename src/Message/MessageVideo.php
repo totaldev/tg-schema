@@ -22,37 +22,19 @@ class MessageVideo extends MessageContent
 
     public function __construct(
         /**
-         * The video description.
-         */
-        protected Video         $video,
-        /**
          * Alternative qualities of the video.
          *
          * @var AlternativeVideo[]
          */
         protected array         $alternativeVideos,
         /**
-         * Available storyboards for the video.
-         *
-         * @var VideoStoryboard[]
-         */
-        protected array         $storyboards,
-        /**
-         * Cover of the video; may be null if none.
-         */
-        protected ?Photo        $cover,
-        /**
-         * Timestamp from which the video playing must start, in seconds.
-         */
-        protected int           $startTimestamp,
-        /**
          * Video caption.
          */
         protected FormattedText $caption,
         /**
-         * True, if the caption must be shown above the video; otherwise, the caption must be shown below the video.
+         * Cover of the video; may be null if none.
          */
-        protected bool          $showCaptionAboveMedia,
+        protected ?Photo        $cover,
         /**
          * True, if the video preview must be covered by a spoiler animation.
          */
@@ -61,6 +43,24 @@ class MessageVideo extends MessageContent
          * True, if the video thumbnail must be blurred and the video must be shown only while tapped.
          */
         protected bool          $isSecret,
+        /**
+         * True, if the caption must be shown above the video; otherwise, the caption must be shown below the video.
+         */
+        protected bool          $showCaptionAboveMedia,
+        /**
+         * Timestamp from which the video playing must start, in seconds.
+         */
+        protected int           $startTimestamp,
+        /**
+         * Available storyboards for the video.
+         *
+         * @var VideoStoryboard[]
+         */
+        protected array         $storyboards,
+        /**
+         * The video description.
+         */
+        protected Video         $video,
     ) {
         parent::__construct();
     }
@@ -68,15 +68,15 @@ class MessageVideo extends MessageContent
     public static function fromArray(array $array): MessageVideo
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['video']),
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['alternative_videos']),
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['storyboards']),
-            isset($array['cover']) ? TdSchemaRegistry::fromArray($array['cover']) : null,
-            $array['start_timestamp'],
-            TdSchemaRegistry::fromArray($array['caption']),
-            $array['show_caption_above_media'],
-            $array['has_spoiler'],
-            $array['is_secret'],
+            alternativeVideos    : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['alternative_videos']),
+            caption              : TdSchemaRegistry::fromArray($array['caption']),
+            cover                : (isset($array['cover']) ? TdSchemaRegistry::fromArray($array['cover']) : null),
+            hasSpoiler           : $array['has_spoiler'],
+            isSecret             : $array['is_secret'],
+            showCaptionAboveMedia: $array['show_caption_above_media'],
+            startTimestamp       : $array['start_timestamp'],
+            storyboards          : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['storyboards']),
+            video                : TdSchemaRegistry::fromArray($array['video']),
         );
     }
 
@@ -192,15 +192,15 @@ class MessageVideo extends MessageContent
     {
         return [
             '@type'                    => static::TYPE_NAME,
-            'video'                    => $this->video->typeSerialize(),
-            'alternative_videos'       => array_map(static fn($x) => $x->typeSerialize(), $this->alternativeVideos),
-            'storyboards'              => array_map(static fn($x) => $x->typeSerialize(), $this->storyboards),
-            'cover'                    => $this->cover ?? null,
-            'start_timestamp'          => $this->startTimestamp,
-            'caption'                  => $this->caption->typeSerialize(),
-            'show_caption_above_media' => $this->showCaptionAboveMedia,
+            'alternative_videos'       => array_map(static fn($x) => $x->jsonSerialize(), $this->alternativeVideos),
+            'caption'                  => $this->caption->jsonSerialize(),
+            'cover'                    => (null !== $this->cover ? $this->cover->jsonSerialize() : null),
             'has_spoiler'              => $this->hasSpoiler,
             'is_secret'                => $this->isSecret,
+            'show_caption_above_media' => $this->showCaptionAboveMedia,
+            'start_timestamp'          => $this->startTimestamp,
+            'storyboards'              => array_map(static fn($x) => $x->jsonSerialize(), $this->storyboards),
+            'video'                    => $this->video->jsonSerialize(),
         ];
     }
 }

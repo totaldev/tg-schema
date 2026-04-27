@@ -17,25 +17,25 @@ class GetStory extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the chat that posted the story.
+         * Pass true to get only locally available information without sending network requests.
          */
-        protected int  $storyPosterChatId,
+        protected bool $onlyLocal,
         /**
          * Story identifier.
          */
         protected int  $storyId,
         /**
-         * Pass true to get only locally available information without sending network requests.
+         * Identifier of the chat that posted the story.
          */
-        protected bool $onlyLocal,
+        protected int  $storyPosterChatId,
     ) {}
 
     public static function fromArray(array $array): GetStory
     {
         return new static(
-            $array['story_poster_chat_id'],
-            $array['story_id'],
-            $array['only_local'],
+            onlyLocal        : $array['only_local'],
+            storyId          : $array['story_id'],
+            storyPosterChatId: $array['story_poster_chat_id'],
         );
     }
 
@@ -79,9 +79,9 @@ class GetStory extends TdFunction
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'story_poster_chat_id' => $this->storyPosterChatId,
-            'story_id'             => $this->storyId,
             'only_local'           => $this->onlyLocal,
+            'story_id'             => $this->storyId,
+            'story_poster_chat_id' => $this->storyPosterChatId,
         ];
     }
 }

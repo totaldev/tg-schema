@@ -17,10 +17,6 @@ class ChatInviteLinkCount extends TdObject
 
     public function __construct(
         /**
-         * Administrator's user identifier.
-         */
-        protected int $userId,
-        /**
          * Number of active invite links.
          */
         protected int $inviteLinkCount,
@@ -28,14 +24,18 @@ class ChatInviteLinkCount extends TdObject
          * Number of revoked invite links.
          */
         protected int $revokedInviteLinkCount,
+        /**
+         * Administrator's user identifier.
+         */
+        protected int $userId,
     ) {}
 
     public static function fromArray(array $array): ChatInviteLinkCount
     {
         return new static(
-            $array['user_id'],
-            $array['invite_link_count'],
-            $array['revoked_invite_link_count'],
+            inviteLinkCount       : $array['invite_link_count'],
+            revokedInviteLinkCount: $array['revoked_invite_link_count'],
+            userId                : $array['user_id'],
         );
     }
 
@@ -79,9 +79,9 @@ class ChatInviteLinkCount extends TdObject
     {
         return [
             '@type'                     => static::TYPE_NAME,
-            'user_id'                   => $this->userId,
             'invite_link_count'         => $this->inviteLinkCount,
             'revoked_invite_link_count' => $this->revokedInviteLinkCount,
+            'user_id'                   => $this->userId,
         ];
     }
 }

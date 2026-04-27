@@ -21,21 +21,21 @@ class SetBotInfoDescription extends TdFunction
          */
         protected int    $botUserId,
         /**
-         * A two-letter ISO 639-1 language code. If empty, the description will be shown to all users for whose languages there is no dedicated description.
-         */
-        protected string $languageCode,
-        /**
          * New bot's description on the specified language.
          */
         protected string $description,
+        /**
+         * A two-letter ISO 639-1 language code. If empty, the description will be shown to all users for whose languages there is no dedicated description.
+         */
+        protected string $languageCode,
     ) {}
 
     public static function fromArray(array $array): SetBotInfoDescription
     {
         return new static(
-            $array['bot_user_id'],
-            $array['language_code'],
-            $array['description'],
+            botUserId   : $array['bot_user_id'],
+            description : $array['description'],
+            languageCode: $array['language_code'],
         );
     }
 
@@ -80,8 +80,8 @@ class SetBotInfoDescription extends TdFunction
         return [
             '@type'         => static::TYPE_NAME,
             'bot_user_id'   => $this->botUserId,
-            'language_code' => $this->languageCode,
             'description'   => $this->description,
+            'language_code' => $this->languageCode,
         ];
     }
 }

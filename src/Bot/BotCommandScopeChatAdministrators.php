@@ -25,7 +25,7 @@ class BotCommandScopeChatAdministrators extends BotCommandScope
     public static function fromArray(array $array): BotCommandScopeChatAdministrators
     {
         return new static(
-            $array['chat_id'],
+            chatId: $array['chat_id'],
         );
     }
 

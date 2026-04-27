@@ -15,13 +15,13 @@ class LogStreamFile extends LogStream
 
     public function __construct(
         /**
-         * Path to the file to where the internal TDLib log will be written.
-         */
-        protected string $path,
-        /**
          * The maximum size of the file to where the internal TDLib log is written before the file will automatically be rotated, in bytes.
          */
         protected int    $maxFileSize,
+        /**
+         * Path to the file to where the internal TDLib log will be written.
+         */
+        protected string $path,
         /**
          * Pass true to additionally redirect stderr to the log file. Ignored on Windows.
          */
@@ -33,9 +33,9 @@ class LogStreamFile extends LogStream
     public static function fromArray(array $array): LogStreamFile
     {
         return new static(
-            $array['path'],
-            $array['max_file_size'],
-            $array['redirect_stderr'],
+            maxFileSize   : $array['max_file_size'],
+            path          : $array['path'],
+            redirectStderr: $array['redirect_stderr'],
         );
     }
 
@@ -79,8 +79,8 @@ class LogStreamFile extends LogStream
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'path'            => $this->path,
             'max_file_size'   => $this->maxFileSize,
+            'path'            => $this->path,
             'redirect_stderr' => $this->redirectStderr,
         ];
     }

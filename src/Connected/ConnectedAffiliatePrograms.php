@@ -18,9 +18,9 @@ class ConnectedAffiliatePrograms extends TdObject
 
     public function __construct(
         /**
-         * The total number of affiliate programs that were connected to the affiliate.
+         * The offset for the next request. If empty, then there are no more results.
          */
-        protected int    $totalCount,
+        protected string $nextOffset,
         /**
          * The list of connected affiliate programs.
          *
@@ -28,17 +28,17 @@ class ConnectedAffiliatePrograms extends TdObject
          */
         protected array  $programs,
         /**
-         * The offset for the next request. If empty, then there are no more results.
+         * The total number of affiliate programs that were connected to the affiliate.
          */
-        protected string $nextOffset,
+        protected int    $totalCount,
     ) {}
 
     public static function fromArray(array $array): ConnectedAffiliatePrograms
     {
         return new static(
-            $array['total_count'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['programs']),
-            $array['next_offset'],
+            nextOffset: $array['next_offset'],
+            programs  : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['programs']),
+            totalCount: $array['total_count'],
         );
     }
 
@@ -82,9 +82,9 @@ class ConnectedAffiliatePrograms extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'total_count' => $this->totalCount,
-            'programs'    => array_map(static fn($x) => $x->typeSerialize(), $this->programs),
             'next_offset' => $this->nextOffset,
+            'programs'    => array_map(static fn($x) => $x->jsonSerialize(), $this->programs),
+            'total_count' => $this->totalCount,
         ];
     }
 }

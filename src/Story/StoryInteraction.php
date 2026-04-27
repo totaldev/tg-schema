@@ -24,13 +24,13 @@ class StoryInteraction extends TdObject
          */
         protected MessageSender        $actorId,
         /**
-         * Approximate point in time (Unix timestamp) when the interaction happened.
-         */
-        protected int                  $interactionDate,
-        /**
          * Block list to which the actor is added; may be null if none or for chat stories.
          */
         protected ?BlockList           $blockList,
+        /**
+         * Approximate point in time (Unix timestamp) when the interaction happened.
+         */
+        protected int                  $interactionDate,
         /**
          * Type of the interaction.
          */
@@ -40,10 +40,10 @@ class StoryInteraction extends TdObject
     public static function fromArray(array $array): StoryInteraction
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['actor_id']),
-            $array['interaction_date'],
-            isset($array['block_list']) ? TdSchemaRegistry::fromArray($array['block_list']) : null,
-            TdSchemaRegistry::fromArray($array['type']),
+            actorId        : TdSchemaRegistry::fromArray($array['actor_id']),
+            blockList      : (isset($array['block_list']) ? TdSchemaRegistry::fromArray($array['block_list']) : null),
+            interactionDate: $array['interaction_date'],
+            type           : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -99,10 +99,10 @@ class StoryInteraction extends TdObject
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'actor_id'         => $this->actorId->typeSerialize(),
+            'actor_id'         => $this->actorId->jsonSerialize(),
+            'block_list'       => (null !== $this->blockList ? $this->blockList->jsonSerialize() : null),
             'interaction_date' => $this->interactionDate,
-            'block_list'       => $this->blockList ?? null,
-            'type'             => $this->type->typeSerialize(),
+            'type'             => $this->type->jsonSerialize(),
         ];
     }
 }

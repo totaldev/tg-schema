@@ -25,7 +25,7 @@ class CanPostStoryResultWeeklyLimitExceeded extends CanPostStoryResult
     public static function fromArray(array $array): CanPostStoryResultWeeklyLimitExceeded
     {
         return new static(
-            $array['retry_after'],
+            retryAfter: $array['retry_after'],
         );
     }
 

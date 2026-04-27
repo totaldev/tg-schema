@@ -28,7 +28,7 @@ class UpdateForumTopicInfo extends Update
     public static function fromArray(array $array): UpdateForumTopicInfo
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['info']),
+            info: TdSchemaRegistry::fromArray($array['info']),
         );
     }
 
@@ -48,7 +48,7 @@ class UpdateForumTopicInfo extends Update
     {
         return [
             '@type' => static::TYPE_NAME,
-            'info'  => $this->info->typeSerialize(),
+            'info'  => $this->info->jsonSerialize(),
         ];
     }
 }

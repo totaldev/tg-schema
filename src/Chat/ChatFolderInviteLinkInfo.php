@@ -18,6 +18,12 @@ class ChatFolderInviteLinkInfo extends TdObject
 
     public function __construct(
         /**
+         * Identifiers of the chats from the link, which are added to the folder already.
+         *
+         * @var int[]
+         */
+        protected array          $addedChatIds,
+        /**
          * Basic information about the chat folder; chat folder identifier will be 0 if the user didn't have the chat folder yet.
          */
         protected ChatFolderInfo $chatFolderInfo,
@@ -27,20 +33,14 @@ class ChatFolderInviteLinkInfo extends TdObject
          * @var int[]
          */
         protected array          $missingChatIds,
-        /**
-         * Identifiers of the chats from the link, which are added to the folder already.
-         *
-         * @var int[]
-         */
-        protected array          $addedChatIds,
     ) {}
 
     public static function fromArray(array $array): ChatFolderInviteLinkInfo
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['chat_folder_info']),
-            $array['missing_chat_ids'],
-            $array['added_chat_ids'],
+            addedChatIds  : $array['added_chat_ids'],
+            chatFolderInfo: TdSchemaRegistry::fromArray($array['chat_folder_info']),
+            missingChatIds: $array['missing_chat_ids'],
         );
     }
 
@@ -84,9 +84,9 @@ class ChatFolderInviteLinkInfo extends TdObject
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'chat_folder_info' => $this->chatFolderInfo->typeSerialize(),
-            'missing_chat_ids' => $this->missingChatIds,
             'added_chat_ids'   => $this->addedChatIds,
+            'chat_folder_info' => $this->chatFolderInfo->jsonSerialize(),
+            'missing_chat_ids' => $this->missingChatIds,
         ];
     }
 }

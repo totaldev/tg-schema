@@ -15,13 +15,13 @@ class AuthenticationCodeTypeFragment extends AuthenticationCodeType
 
     public function __construct(
         /**
-         * URL to open to receive the code.
-         */
-        protected string $url,
-        /**
          * Length of the code.
          */
         protected int    $length,
+        /**
+         * URL to open to receive the code.
+         */
+        protected string $url,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class AuthenticationCodeTypeFragment extends AuthenticationCodeType
     public static function fromArray(array $array): AuthenticationCodeTypeFragment
     {
         return new static(
-            $array['url'],
-            $array['length'],
+            length: $array['length'],
+            url   : $array['url'],
         );
     }
 
@@ -62,8 +62,8 @@ class AuthenticationCodeTypeFragment extends AuthenticationCodeType
     {
         return [
             '@type'  => static::TYPE_NAME,
-            'url'    => $this->url,
             'length' => $this->length,
+            'url'    => $this->url,
         ];
     }
 }

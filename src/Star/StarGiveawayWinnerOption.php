@@ -17,6 +17,10 @@ class StarGiveawayWinnerOption extends TdObject
 
     public function __construct(
         /**
+         * True, if the option must be chosen by default.
+         */
+        protected bool $isDefault,
+        /**
          * The number of users that will be chosen as winners.
          */
         protected int  $winnerCount,
@@ -24,18 +28,14 @@ class StarGiveawayWinnerOption extends TdObject
          * The number of Telegram Stars that will be won by the winners of the giveaway.
          */
         protected int  $wonStarCount,
-        /**
-         * True, if the option must be chosen by default.
-         */
-        protected bool $isDefault,
     ) {}
 
     public static function fromArray(array $array): StarGiveawayWinnerOption
     {
         return new static(
-            $array['winner_count'],
-            $array['won_star_count'],
-            $array['is_default'],
+            isDefault   : $array['is_default'],
+            winnerCount : $array['winner_count'],
+            wonStarCount: $array['won_star_count'],
         );
     }
 
@@ -79,9 +79,9 @@ class StarGiveawayWinnerOption extends TdObject
     {
         return [
             '@type'          => static::TYPE_NAME,
+            'is_default'     => $this->isDefault,
             'winner_count'   => $this->winnerCount,
             'won_star_count' => $this->wonStarCount,
-            'is_default'     => $this->isDefault,
         ];
     }
 }

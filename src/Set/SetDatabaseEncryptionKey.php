@@ -25,7 +25,7 @@ class SetDatabaseEncryptionKey extends TdFunction
     public static function fromArray(array $array): SetDatabaseEncryptionKey
     {
         return new static(
-            $array['new_encryption_key'],
+            newEncryptionKey: $array['new_encryption_key'],
         );
     }
 

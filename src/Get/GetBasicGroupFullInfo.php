@@ -25,7 +25,7 @@ class GetBasicGroupFullInfo extends TdFunction
     public static function fromArray(array $array): GetBasicGroupFullInfo
     {
         return new static(
-            $array['basic_group_id'],
+            basicGroupId: $array['basic_group_id'],
         );
     }
 

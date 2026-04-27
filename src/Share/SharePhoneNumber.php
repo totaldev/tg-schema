@@ -25,7 +25,7 @@ class SharePhoneNumber extends TdFunction
     public static function fromArray(array $array): SharePhoneNumber
     {
         return new static(
-            $array['user_id'],
+            userId: $array['user_id'],
         );
     }
 

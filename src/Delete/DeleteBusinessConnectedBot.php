@@ -25,7 +25,7 @@ class DeleteBusinessConnectedBot extends TdFunction
     public static function fromArray(array $array): DeleteBusinessConnectedBot
     {
         return new static(
-            $array['bot_user_id'],
+            botUserId: $array['bot_user_id'],
         );
     }
 

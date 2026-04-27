@@ -25,7 +25,7 @@ class GetInternalLinkType extends TdFunction
     public static function fromArray(array $array): GetInternalLinkType
     {
         return new static(
-            $array['link'],
+            link: $array['link'],
         );
     }
 

@@ -25,7 +25,7 @@ class DeleteQuickReplyShortcut extends TdFunction
     public static function fromArray(array $array): DeleteQuickReplyShortcut
     {
         return new static(
-            $array['shortcut_id'],
+            shortcutId: $array['shortcut_id'],
         );
     }
 

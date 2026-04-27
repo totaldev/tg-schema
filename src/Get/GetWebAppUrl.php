@@ -23,21 +23,21 @@ class GetWebAppUrl extends TdFunction
          */
         protected int                  $botUserId,
         /**
-         * The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, or an empty string when the bot is opened from the side menu.
-         */
-        protected string               $url,
-        /**
          * Parameters to use to open the Web App.
          */
         protected WebAppOpenParameters $parameters,
+        /**
+         * The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, or an empty string when the bot is opened from the side menu.
+         */
+        protected string               $url,
     ) {}
 
     public static function fromArray(array $array): GetWebAppUrl
     {
         return new static(
-            $array['bot_user_id'],
-            $array['url'],
-            TdSchemaRegistry::fromArray($array['parameters']),
+            botUserId : $array['bot_user_id'],
+            parameters: TdSchemaRegistry::fromArray($array['parameters']),
+            url       : $array['url'],
         );
     }
 
@@ -82,8 +82,8 @@ class GetWebAppUrl extends TdFunction
         return [
             '@type'       => static::TYPE_NAME,
             'bot_user_id' => $this->botUserId,
+            'parameters'  => $this->parameters->jsonSerialize(),
             'url'         => $this->url,
-            'parameters'  => $this->parameters->typeSerialize(),
         ];
     }
 }

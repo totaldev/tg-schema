@@ -25,7 +25,7 @@ class InlineQueryResultsButtonTypeWebApp extends InlineQueryResultsButtonType
     public static function fromArray(array $array): InlineQueryResultsButtonTypeWebApp
     {
         return new static(
-            $array['url'],
+            url: $array['url'],
         );
     }
 

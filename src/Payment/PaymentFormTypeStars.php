@@ -25,7 +25,7 @@ class PaymentFormTypeStars extends PaymentFormType
     public static function fromArray(array $array): PaymentFormTypeStars
     {
         return new static(
-            $array['star_count'],
+            starCount: $array['star_count'],
         );
     }
 

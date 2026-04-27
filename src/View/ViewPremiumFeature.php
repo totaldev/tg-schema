@@ -27,7 +27,7 @@ class ViewPremiumFeature extends TdFunction
     public static function fromArray(array $array): ViewPremiumFeature
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['feature']),
+            feature: TdSchemaRegistry::fromArray($array['feature']),
         );
     }
 
@@ -47,7 +47,7 @@ class ViewPremiumFeature extends TdFunction
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'feature' => $this->feature->typeSerialize(),
+            'feature' => $this->feature->jsonSerialize(),
         ];
     }
 }

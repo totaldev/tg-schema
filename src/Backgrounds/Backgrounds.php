@@ -29,7 +29,7 @@ class Backgrounds extends TdObject
     public static function fromArray(array $array): Backgrounds
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['backgrounds']),
+            backgrounds: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['backgrounds']),
         );
     }
 
@@ -49,7 +49,7 @@ class Backgrounds extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'backgrounds' => array_map(static fn($x) => $x->typeSerialize(), $this->backgrounds),
+            'backgrounds' => array_map(static fn($x) => $x->jsonSerialize(), $this->backgrounds),
         ];
     }
 }

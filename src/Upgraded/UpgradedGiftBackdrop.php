@@ -18,6 +18,10 @@ class UpgradedGiftBackdrop extends TdObject
 
     public function __construct(
         /**
+         * Colors of the backdrop.
+         */
+        protected UpgradedGiftBackdropColors $colors,
+        /**
          * Unique identifier of the backdrop.
          */
         protected int                        $id,
@@ -25,10 +29,6 @@ class UpgradedGiftBackdrop extends TdObject
          * Name of the backdrop.
          */
         protected string                     $name,
-        /**
-         * Colors of the backdrop.
-         */
-        protected UpgradedGiftBackdropColors $colors,
         /**
          * The number of upgraded gifts that receive this backdrop for each 1000 gifts upgraded.
          */
@@ -38,10 +38,10 @@ class UpgradedGiftBackdrop extends TdObject
     public static function fromArray(array $array): UpgradedGiftBackdrop
     {
         return new static(
-            $array['id'],
-            $array['name'],
-            TdSchemaRegistry::fromArray($array['colors']),
-            $array['rarity_per_mille'],
+            colors        : TdSchemaRegistry::fromArray($array['colors']),
+            id            : $array['id'],
+            name          : $array['name'],
+            rarityPerMille: $array['rarity_per_mille'],
         );
     }
 
@@ -97,9 +97,9 @@ class UpgradedGiftBackdrop extends TdObject
     {
         return [
             '@type'            => static::TYPE_NAME,
+            'colors'           => $this->colors->jsonSerialize(),
             'id'               => $this->id,
             'name'             => $this->name,
-            'colors'           => $this->colors->typeSerialize(),
             'rarity_per_mille' => $this->rarityPerMille,
         ];
     }

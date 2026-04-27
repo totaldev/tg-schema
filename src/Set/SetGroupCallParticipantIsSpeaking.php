@@ -17,13 +17,13 @@ class SetGroupCallParticipantIsSpeaking extends TdFunction
 
     public function __construct(
         /**
-         * Group call identifier.
-         */
-        protected int  $groupCallId,
-        /**
          * Group call participant's synchronization audio source identifier, or 0 for the current user.
          */
         protected int  $audioSource,
+        /**
+         * Group call identifier.
+         */
+        protected int  $groupCallId,
         /**
          * Pass true if the user is speaking.
          */
@@ -33,9 +33,9 @@ class SetGroupCallParticipantIsSpeaking extends TdFunction
     public static function fromArray(array $array): SetGroupCallParticipantIsSpeaking
     {
         return new static(
-            $array['group_call_id'],
-            $array['audio_source'],
-            $array['is_speaking'],
+            audioSource: $array['audio_source'],
+            groupCallId: $array['group_call_id'],
+            isSpeaking : $array['is_speaking'],
         );
     }
 
@@ -79,8 +79,8 @@ class SetGroupCallParticipantIsSpeaking extends TdFunction
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'group_call_id' => $this->groupCallId,
             'audio_source'  => $this->audioSource,
+            'group_call_id' => $this->groupCallId,
             'is_speaking'   => $this->isSpeaking,
         ];
     }

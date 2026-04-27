@@ -18,13 +18,13 @@ class InlineQueryResultAudio extends InlineQueryResult
 
     public function __construct(
         /**
-         * Unique identifier of the query result.
-         */
-        protected string $id,
-        /**
          * Audio file.
          */
         protected Audio  $audio,
+        /**
+         * Unique identifier of the query result.
+         */
+        protected string $id,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class InlineQueryResultAudio extends InlineQueryResult
     public static function fromArray(array $array): InlineQueryResultAudio
     {
         return new static(
-            $array['id'],
-            TdSchemaRegistry::fromArray($array['audio']),
+            audio: TdSchemaRegistry::fromArray($array['audio']),
+            id   : $array['id'],
         );
     }
 
@@ -65,8 +65,8 @@ class InlineQueryResultAudio extends InlineQueryResult
     {
         return [
             '@type' => static::TYPE_NAME,
+            'audio' => $this->audio->jsonSerialize(),
             'id'    => $this->id,
-            'audio' => $this->audio->typeSerialize(),
         ];
     }
 }

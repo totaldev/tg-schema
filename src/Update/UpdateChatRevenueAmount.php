@@ -33,8 +33,8 @@ class UpdateChatRevenueAmount extends Update
     public static function fromArray(array $array): UpdateChatRevenueAmount
     {
         return new static(
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['revenue_amount']),
+            chatId       : $array['chat_id'],
+            revenueAmount: TdSchemaRegistry::fromArray($array['revenue_amount']),
         );
     }
 
@@ -67,7 +67,7 @@ class UpdateChatRevenueAmount extends Update
         return [
             '@type'          => static::TYPE_NAME,
             'chat_id'        => $this->chatId,
-            'revenue_amount' => $this->revenueAmount->typeSerialize(),
+            'revenue_amount' => $this->revenueAmount->jsonSerialize(),
         ];
     }
 }

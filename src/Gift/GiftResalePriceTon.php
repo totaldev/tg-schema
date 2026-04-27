@@ -25,7 +25,7 @@ class GiftResalePriceTon extends GiftResalePrice
     public static function fromArray(array $array): GiftResalePriceTon
     {
         return new static(
-            $array['toncoin_cent_count'],
+            toncoinCentCount: $array['toncoin_cent_count'],
         );
     }
 

@@ -26,7 +26,7 @@ class SynchronizeLanguagePack extends TdFunction
     public static function fromArray(array $array): SynchronizeLanguagePack
     {
         return new static(
-            $array['language_pack_id'],
+            languagePackId: $array['language_pack_id'],
         );
     }
 

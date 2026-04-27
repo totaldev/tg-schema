@@ -20,37 +20,25 @@ class UpgradedGift extends TdObject
 
     public function __construct(
         /**
+         * Backdrop of the upgraded gift.
+         */
+        protected UpgradedGiftBackdrop         $backdrop,
+        /**
+         * Colors that can be set for user's name, background of empty chat photo, replies to messages and link previews; may be null if none.
+         */
+        protected ?UpgradedGiftColors          $colors,
+        /**
+         * Address of the gift NFT in TON blockchain; may be empty if none. Append the address to getOption("ton_blockchain_explorer_url") to get a link with information about the address.
+         */
+        protected string                       $giftAddress,
+        /**
+         * Identifier of the user or the chat to which the upgraded gift was assigned from blockchain; may be null if none or unknown.
+         */
+        protected ?MessageSender               $hostId,
+        /**
          * Unique identifier of the gift.
          */
         protected int                          $id,
-        /**
-         * Unique identifier of the regular gift from which the gift was upgraded; may be 0 for short period of time for old gifts from database.
-         */
-        protected int                          $regularGiftId,
-        /**
-         * Identifier of the chat that published the gift; 0 if none.
-         */
-        protected int                          $publisherChatId,
-        /**
-         * The title of the upgraded gift.
-         */
-        protected string                       $title,
-        /**
-         * Unique name of the upgraded gift that can be used with internalLinkTypeUpgradedGift or sendResoldGift.
-         */
-        protected string                       $name,
-        /**
-         * Unique number of the upgraded gift among gifts upgraded from the same gift.
-         */
-        protected int                          $number,
-        /**
-         * Total number of gifts that were upgraded from the same gift.
-         */
-        protected int                          $totalUpgradedCount,
-        /**
-         * The maximum number of gifts that can be upgraded from the same gift.
-         */
-        protected int                          $maxUpgradedCount,
         /**
          * True, if the original gift could have been bought only by Telegram Premium subscribers.
          */
@@ -60,90 +48,102 @@ class UpgradedGift extends TdObject
          */
         protected bool                         $isThemeAvailable,
         /**
-         * Identifier of the chat for which the gift is used to set a theme; 0 if none or the gift isn't owned by the current user.
+         * The maximum number of gifts that can be upgraded from the same gift.
          */
-        protected int                          $usedThemeChatId,
-        /**
-         * Identifier of the user or the chat to which the upgraded gift was assigned from blockchain; may be null if none or unknown.
-         */
-        protected ?MessageSender               $hostId,
-        /**
-         * Identifier of the user or the chat that owns the upgraded gift; may be null if none or unknown.
-         */
-        protected ?MessageSender               $ownerId,
-        /**
-         * Address of the gift NFT owner in TON blockchain; may be empty if none. Append the address to getOption("ton_blockchain_explorer_url") to get a link with information about the address.
-         */
-        protected string                       $ownerAddress,
-        /**
-         * Name of the owner for the case when owner identifier and address aren't known.
-         */
-        protected string                       $ownerName,
-        /**
-         * Address of the gift NFT in TON blockchain; may be empty if none. Append the address to getOption("ton_blockchain_explorer_url") to get a link with information about the address.
-         */
-        protected string                       $giftAddress,
+        protected int                          $maxUpgradedCount,
         /**
          * Model of the upgraded gift.
          */
         protected UpgradedGiftModel            $model,
         /**
-         * Symbol of the upgraded gift.
+         * Unique name of the upgraded gift that can be used with internalLinkTypeUpgradedGift or sendResoldGift.
          */
-        protected UpgradedGiftSymbol           $symbol,
+        protected string                       $name,
         /**
-         * Backdrop of the upgraded gift.
+         * Unique number of the upgraded gift among gifts upgraded from the same gift.
          */
-        protected UpgradedGiftBackdrop         $backdrop,
+        protected int                          $number,
         /**
          * Information about the originally sent gift; may be null if unknown.
          */
         protected ?UpgradedGiftOriginalDetails $originalDetails,
         /**
-         * Colors that can be set for user's name, background of empty chat photo, replies to messages and link previews; may be null if none.
+         * Address of the gift NFT owner in TON blockchain; may be empty if none. Append the address to getOption("ton_blockchain_explorer_url") to get a link with information about the address.
          */
-        protected ?UpgradedGiftColors          $colors,
+        protected string                       $ownerAddress,
+        /**
+         * Identifier of the user or the chat that owns the upgraded gift; may be null if none or unknown.
+         */
+        protected ?MessageSender               $ownerId,
+        /**
+         * Name of the owner for the case when owner identifier and address aren't known.
+         */
+        protected string                       $ownerName,
+        /**
+         * Identifier of the chat that published the gift; 0 if none.
+         */
+        protected int                          $publisherChatId,
+        /**
+         * Unique identifier of the regular gift from which the gift was upgraded; may be 0 for short period of time for old gifts from database.
+         */
+        protected int                          $regularGiftId,
         /**
          * Resale parameters of the gift; may be null if resale isn't possible.
          */
         protected ?GiftResaleParameters        $resaleParameters,
         /**
-         * ISO 4217 currency code of the currency in which value of the gift is represented; may be empty if unavailable.
+         * Symbol of the upgraded gift.
          */
-        protected string                       $valueCurrency,
+        protected UpgradedGiftSymbol           $symbol,
+        /**
+         * The title of the upgraded gift.
+         */
+        protected string                       $title,
+        /**
+         * Total number of gifts that were upgraded from the same gift.
+         */
+        protected int                          $totalUpgradedCount,
+        /**
+         * Identifier of the chat for which the gift is used to set a theme; 0 if none or the gift isn't owned by the current user.
+         */
+        protected int                          $usedThemeChatId,
         /**
          * Estimated value of the gift; in the smallest units of the currency; 0 if unavailable.
          */
         protected int                          $valueAmount,
+        /**
+         * ISO 4217 currency code of the currency in which value of the gift is represented; may be empty if unavailable.
+         */
+        protected string                       $valueCurrency,
     ) {}
 
     public static function fromArray(array $array): UpgradedGift
     {
         return new static(
-            $array['id'],
-            $array['regular_gift_id'],
-            $array['publisher_chat_id'],
-            $array['title'],
-            $array['name'],
-            $array['number'],
-            $array['total_upgraded_count'],
-            $array['max_upgraded_count'],
-            $array['is_premium'],
-            $array['is_theme_available'],
-            $array['used_theme_chat_id'],
-            isset($array['host_id']) ? TdSchemaRegistry::fromArray($array['host_id']) : null,
-            isset($array['owner_id']) ? TdSchemaRegistry::fromArray($array['owner_id']) : null,
-            $array['owner_address'],
-            $array['owner_name'],
-            $array['gift_address'],
-            TdSchemaRegistry::fromArray($array['model']),
-            TdSchemaRegistry::fromArray($array['symbol']),
-            TdSchemaRegistry::fromArray($array['backdrop']),
-            isset($array['original_details']) ? TdSchemaRegistry::fromArray($array['original_details']) : null,
-            isset($array['colors']) ? TdSchemaRegistry::fromArray($array['colors']) : null,
-            isset($array['resale_parameters']) ? TdSchemaRegistry::fromArray($array['resale_parameters']) : null,
-            $array['value_currency'],
-            $array['value_amount'],
+            backdrop          : TdSchemaRegistry::fromArray($array['backdrop']),
+            colors            : (isset($array['colors']) ? TdSchemaRegistry::fromArray($array['colors']) : null),
+            giftAddress       : $array['gift_address'],
+            hostId            : (isset($array['host_id']) ? TdSchemaRegistry::fromArray($array['host_id']) : null),
+            id                : $array['id'],
+            isPremium         : $array['is_premium'],
+            isThemeAvailable  : $array['is_theme_available'],
+            maxUpgradedCount  : $array['max_upgraded_count'],
+            model             : TdSchemaRegistry::fromArray($array['model']),
+            name              : $array['name'],
+            number            : $array['number'],
+            originalDetails   : (isset($array['original_details']) ? TdSchemaRegistry::fromArray($array['original_details']) : null),
+            ownerAddress      : $array['owner_address'],
+            ownerId           : (isset($array['owner_id']) ? TdSchemaRegistry::fromArray($array['owner_id']) : null),
+            ownerName         : $array['owner_name'],
+            publisherChatId   : $array['publisher_chat_id'],
+            regularGiftId     : $array['regular_gift_id'],
+            resaleParameters  : (isset($array['resale_parameters']) ? TdSchemaRegistry::fromArray($array['resale_parameters']) : null),
+            symbol            : TdSchemaRegistry::fromArray($array['symbol']),
+            title             : $array['title'],
+            totalUpgradedCount: $array['total_upgraded_count'],
+            usedThemeChatId   : $array['used_theme_chat_id'],
+            valueAmount       : $array['value_amount'],
+            valueCurrency     : $array['value_currency'],
         );
     }
 
@@ -439,30 +439,30 @@ class UpgradedGift extends TdObject
     {
         return [
             '@type'                => static::TYPE_NAME,
+            'backdrop'             => $this->backdrop->jsonSerialize(),
+            'colors'               => (null !== $this->colors ? $this->colors->jsonSerialize() : null),
+            'gift_address'         => $this->giftAddress,
+            'host_id'              => (null !== $this->hostId ? $this->hostId->jsonSerialize() : null),
             'id'                   => $this->id,
-            'regular_gift_id'      => $this->regularGiftId,
-            'publisher_chat_id'    => $this->publisherChatId,
-            'title'                => $this->title,
-            'name'                 => $this->name,
-            'number'               => $this->number,
-            'total_upgraded_count' => $this->totalUpgradedCount,
-            'max_upgraded_count'   => $this->maxUpgradedCount,
             'is_premium'           => $this->isPremium,
             'is_theme_available'   => $this->isThemeAvailable,
-            'used_theme_chat_id'   => $this->usedThemeChatId,
-            'host_id'              => $this->hostId ?? null,
-            'owner_id'             => $this->ownerId ?? null,
+            'max_upgraded_count'   => $this->maxUpgradedCount,
+            'model'                => $this->model->jsonSerialize(),
+            'name'                 => $this->name,
+            'number'               => $this->number,
+            'original_details'     => (null !== $this->originalDetails ? $this->originalDetails->jsonSerialize() : null),
             'owner_address'        => $this->ownerAddress,
+            'owner_id'             => (null !== $this->ownerId ? $this->ownerId->jsonSerialize() : null),
             'owner_name'           => $this->ownerName,
-            'gift_address'         => $this->giftAddress,
-            'model'                => $this->model->typeSerialize(),
-            'symbol'               => $this->symbol->typeSerialize(),
-            'backdrop'             => $this->backdrop->typeSerialize(),
-            'original_details'     => $this->originalDetails ?? null,
-            'colors'               => $this->colors ?? null,
-            'resale_parameters'    => $this->resaleParameters ?? null,
-            'value_currency'       => $this->valueCurrency,
+            'publisher_chat_id'    => $this->publisherChatId,
+            'regular_gift_id'      => $this->regularGiftId,
+            'resale_parameters'    => (null !== $this->resaleParameters ? $this->resaleParameters->jsonSerialize() : null),
+            'symbol'               => $this->symbol->jsonSerialize(),
+            'title'                => $this->title,
+            'total_upgraded_count' => $this->totalUpgradedCount,
+            'used_theme_chat_id'   => $this->usedThemeChatId,
             'value_amount'         => $this->valueAmount,
+            'value_currency'       => $this->valueCurrency,
         ];
     }
 }

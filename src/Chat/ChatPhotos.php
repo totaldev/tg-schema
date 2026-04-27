@@ -18,22 +18,22 @@ class ChatPhotos extends TdObject
 
     public function __construct(
         /**
-         * Total number of photos.
-         */
-        protected int   $totalCount,
-        /**
          * List of photos.
          *
          * @var ChatPhoto[]
          */
         protected array $photos,
+        /**
+         * Total number of photos.
+         */
+        protected int   $totalCount,
     ) {}
 
     public static function fromArray(array $array): ChatPhotos
     {
         return new static(
-            $array['total_count'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['photos']),
+            photos    : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['photos']),
+            totalCount: $array['total_count'],
         );
     }
 
@@ -65,8 +65,8 @@ class ChatPhotos extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
+            'photos'      => array_map(static fn($x) => $x->jsonSerialize(), $this->photos),
             'total_count' => $this->totalCount,
-            'photos'      => array_map(static fn($x) => $x->typeSerialize(), $this->photos),
         ];
     }
 }

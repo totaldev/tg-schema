@@ -19,6 +19,14 @@ class EditProxy extends TdFunction
 
     public function __construct(
         /**
+         * Pass true to immediately enable the proxy.
+         */
+        protected bool      $enable,
+        /**
+         * Proxy server port.
+         */
+        protected int       $port,
+        /**
          * Proxy identifier.
          */
         protected int       $proxyId,
@@ -26,14 +34,6 @@ class EditProxy extends TdFunction
          * Proxy server domain or IP address.
          */
         protected string    $server,
-        /**
-         * Proxy server port.
-         */
-        protected int       $port,
-        /**
-         * Pass true to immediately enable the proxy.
-         */
-        protected bool      $enable,
         /**
          * Proxy type.
          */
@@ -43,11 +43,11 @@ class EditProxy extends TdFunction
     public static function fromArray(array $array): EditProxy
     {
         return new static(
-            $array['proxy_id'],
-            $array['server'],
-            $array['port'],
-            $array['enable'],
-            TdSchemaRegistry::fromArray($array['type']),
+            enable : $array['enable'],
+            port   : $array['port'],
+            proxyId: $array['proxy_id'],
+            server : $array['server'],
+            type   : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -115,11 +115,11 @@ class EditProxy extends TdFunction
     {
         return [
             '@type'    => static::TYPE_NAME,
+            'enable'   => $this->enable,
+            'port'     => $this->port,
             'proxy_id' => $this->proxyId,
             'server'   => $this->server,
-            'port'     => $this->port,
-            'enable'   => $this->enable,
-            'type'     => $this->type->typeSerialize(),
+            'type'     => $this->type->jsonSerialize(),
         ];
     }
 }

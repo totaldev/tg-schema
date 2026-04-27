@@ -17,13 +17,13 @@ class RichTextAnchorLink extends RichText
 
     public function __construct(
         /**
-         * The link text.
-         */
-        protected RichText $text,
-        /**
          * The anchor name. If the name is empty, the link must bring back to top.
          */
         protected string   $anchorName,
+        /**
+         * The link text.
+         */
+        protected RichText $text,
         /**
          * An HTTP URL, opening the anchor.
          */
@@ -35,9 +35,9 @@ class RichTextAnchorLink extends RichText
     public static function fromArray(array $array): RichTextAnchorLink
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['text']),
-            $array['anchor_name'],
-            $array['url'],
+            anchorName: $array['anchor_name'],
+            text      : TdSchemaRegistry::fromArray($array['text']),
+            url       : $array['url'],
         );
     }
 
@@ -81,8 +81,8 @@ class RichTextAnchorLink extends RichText
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'text'        => $this->text->typeSerialize(),
             'anchor_name' => $this->anchorName,
+            'text'        => $this->text->jsonSerialize(),
             'url'         => $this->url,
         ];
     }

@@ -18,40 +18,40 @@ class MessageLinkInfo extends TdObject
 
     public function __construct(
         /**
-         * True, if the link is a public link for a message or a forum topic in a chat.
-         */
-        protected bool          $isPublic,
-        /**
          * If found, identifier of the chat to which the link points, 0 otherwise.
          */
         protected int           $chatId,
         /**
-         * Identifier of the specific topic in which the message must be opened, or a topic to open if the message is missing; may be null if none.
+         * True, if the whole media album to which the message belongs is linked.
          */
-        protected ?MessageTopic $topicId,
+        protected bool          $forAlbum,
         /**
-         * If found, the linked message; may be null.
+         * True, if the link is a public link for a message or a forum topic in a chat.
          */
-        protected ?Message      $message,
+        protected bool          $isPublic,
         /**
          * Timestamp from which the video/audio/video note/voice note/story playing must start, in seconds; 0 if not specified. The media can be in the message content or in its link preview.
          */
         protected int           $mediaTimestamp,
         /**
-         * True, if the whole media album to which the message belongs is linked.
+         * If found, the linked message; may be null.
          */
-        protected bool          $forAlbum,
+        protected ?Message      $message,
+        /**
+         * Identifier of the specific topic in which the message must be opened, or a topic to open if the message is missing; may be null if none.
+         */
+        protected ?MessageTopic $topicId,
     ) {}
 
     public static function fromArray(array $array): MessageLinkInfo
     {
         return new static(
-            $array['is_public'],
-            $array['chat_id'],
-            isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null,
-            isset($array['message']) ? TdSchemaRegistry::fromArray($array['message']) : null,
-            $array['media_timestamp'],
-            $array['for_album'],
+            chatId        : $array['chat_id'],
+            forAlbum      : $array['for_album'],
+            isPublic      : $array['is_public'],
+            mediaTimestamp: $array['media_timestamp'],
+            message       : (isset($array['message']) ? TdSchemaRegistry::fromArray($array['message']) : null),
+            topicId       : (isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null),
         );
     }
 
@@ -131,12 +131,12 @@ class MessageLinkInfo extends TdObject
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'is_public'       => $this->isPublic,
             'chat_id'         => $this->chatId,
-            'topic_id'        => $this->topicId ?? null,
-            'message'         => $this->message ?? null,
-            'media_timestamp' => $this->mediaTimestamp,
             'for_album'       => $this->forAlbum,
+            'is_public'       => $this->isPublic,
+            'media_timestamp' => $this->mediaTimestamp,
+            'message'         => (null !== $this->message ? $this->message->jsonSerialize() : null),
+            'topic_id'        => (null !== $this->topicId ? $this->topicId->jsonSerialize() : null),
         ];
     }
 }

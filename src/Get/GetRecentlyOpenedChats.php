@@ -25,7 +25,7 @@ class GetRecentlyOpenedChats extends TdFunction
     public static function fromArray(array $array): GetRecentlyOpenedChats
     {
         return new static(
-            $array['limit'],
+            limit: $array['limit'],
         );
     }
 

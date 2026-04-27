@@ -25,7 +25,7 @@ class ClearAllDraftMessages extends TdFunction
     public static function fromArray(array $array): ClearAllDraftMessages
     {
         return new static(
-            $array['exclude_secret_chats'],
+            excludeSecretChats: $array['exclude_secret_chats'],
         );
     }
 

@@ -18,13 +18,13 @@ class Notification extends TdObject
 
     public function __construct(
         /**
-         * Unique persistent identifier of this notification.
-         */
-        protected int              $id,
-        /**
          * Notification date.
          */
         protected int              $date,
+        /**
+         * Unique persistent identifier of this notification.
+         */
+        protected int              $id,
         /**
          * True, if the notification was explicitly sent without sound.
          */
@@ -38,10 +38,10 @@ class Notification extends TdObject
     public static function fromArray(array $array): Notification
     {
         return new static(
-            $array['id'],
-            $array['date'],
-            $array['is_silent'],
-            TdSchemaRegistry::fromArray($array['type']),
+            date    : $array['date'],
+            id      : $array['id'],
+            isSilent: $array['is_silent'],
+            type    : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -97,10 +97,10 @@ class Notification extends TdObject
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'id'        => $this->id,
             'date'      => $this->date,
+            'id'        => $this->id,
             'is_silent' => $this->isSilent,
-            'type'      => $this->type->typeSerialize(),
+            'type'      => $this->type->jsonSerialize(),
         ];
     }
 }

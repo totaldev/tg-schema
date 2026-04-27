@@ -18,27 +18,27 @@ class InputPaidMedia extends TdObject
 
     public function __construct(
         /**
-         * Type of the media.
-         */
-        protected InputPaidMediaType $type,
-        /**
-         * Photo or video to be sent.
-         */
-        protected InputFile          $media,
-        /**
          * File identifiers of the stickers added to the media, if applicable.
          *
          * @var int[]
          */
         protected array              $addedStickerFileIds,
         /**
-         * Media width.
-         */
-        protected int                $width,
-        /**
          * Media height.
          */
         protected int                $height,
+        /**
+         * Photo or video to be sent.
+         */
+        protected InputFile          $media,
+        /**
+         * Type of the media.
+         */
+        protected InputPaidMediaType $type,
+        /**
+         * Media width.
+         */
+        protected int                $width,
         /**
          * Media thumbnail; pass null to skip thumbnail uploading.
          */
@@ -48,12 +48,12 @@ class InputPaidMedia extends TdObject
     public static function fromArray(array $array): InputPaidMedia
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['type']),
-            TdSchemaRegistry::fromArray($array['media']),
-            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
-            $array['added_sticker_file_ids'],
-            $array['width'],
-            $array['height'],
+            addedStickerFileIds: $array['added_sticker_file_ids'],
+            height             : $array['height'],
+            media              : TdSchemaRegistry::fromArray($array['media']),
+            thumbnail          : (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
+            type               : TdSchemaRegistry::fromArray($array['type']),
+            width              : $array['width'],
         );
     }
 
@@ -133,12 +133,12 @@ class InputPaidMedia extends TdObject
     {
         return [
             '@type'                  => static::TYPE_NAME,
-            'type'                   => $this->type->typeSerialize(),
-            'media'                  => $this->media->typeSerialize(),
-            'thumbnail'              => $this->thumbnail ?? null,
             'added_sticker_file_ids' => $this->addedStickerFileIds,
-            'width'                  => $this->width,
             'height'                 => $this->height,
+            'media'                  => $this->media->jsonSerialize(),
+            'thumbnail'              => (null !== $this->thumbnail ? $this->thumbnail->jsonSerialize() : null),
+            'type'                   => $this->type->jsonSerialize(),
+            'width'                  => $this->width,
         ];
     }
 }

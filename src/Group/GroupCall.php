@@ -18,91 +18,13 @@ class GroupCall extends TdObject
 
     public function __construct(
         /**
-         * Group call identifier.
-         */
-        protected int    $id,
-        /**
-         * Group call title; for video chats only.
-         */
-        protected string $title,
-        /**
-         * Invite link for the group call; for group calls that aren't bound to a chat. For video chats call getVideoChatInviteLink to get the link.
-         */
-        protected string $inviteLink,
-        /**
-         * Point in time (Unix timestamp) when the group call is expected to be started by an administrator; 0 if it is already active or was ended; for video chats only.
-         */
-        protected int    $scheduledStartDate,
-        /**
-         * True, if the group call is scheduled and the current user will receive a notification when the group call starts; for video chats only.
-         */
-        protected bool   $enabledStartNotification,
-        /**
-         * True, if the call is active.
-         */
-        protected bool   $isActive,
-        /**
-         * True, if the call is bound to a chat.
-         */
-        protected bool   $isVideoChat,
-        /**
-         * True, if the call is an RTMP stream instead of an ordinary video chat; for video chats only.
-         */
-        protected bool   $isRtmpStream,
-        /**
-         * True, if the call is joined.
-         */
-        protected bool   $isJoined,
-        /**
-         * True, if user was kicked from the call because of network loss and the call needs to be rejoined.
-         */
-        protected bool   $needRejoin,
-        /**
-         * True, if the user is the owner of the call and can end the call, change volume level of other users, or ban users there; for group calls that aren't bound to a chat.
-         */
-        protected bool   $isOwned,
-        /**
          * True, if the current user can manage the group call; for video chats only.
          */
         protected bool   $canBeManaged,
         /**
-         * Number of participants in the group call.
-         */
-        protected int    $participantCount,
-        /**
-         * True, if group call participants, which are muted, aren't returned in participant list; for video chats only.
-         */
-        protected bool   $hasHiddenListeners,
-        /**
-         * True, if all group call participants are loaded.
-         */
-        protected bool   $loadedAllParticipants,
-        /**
-         * At most 3 recently speaking users in the group call.
-         *
-         * @var GroupCallRecentSpeaker[]
-         */
-        protected array  $recentSpeakers,
-        /**
-         * True, if the current user's video is enabled.
-         */
-        protected bool   $isMyVideoEnabled,
-        /**
-         * True, if the current user's video is paused.
-         */
-        protected bool   $isMyVideoPaused,
-        /**
          * True, if the current user can broadcast video or share screen.
          */
         protected bool   $canEnableVideo,
-        /**
-         * True, if only group call administrators can unmute new participants; for video chats only.
-         */
-        protected bool   $muteNewParticipants,
-        /**
-         * True, if the current user can enable or disable mute_new_participants setting; for video chats only.
-         */
-        protected bool   $canToggleMuteNewParticipants,
         /**
          * True, if users can send messages to the group call.
          */
@@ -112,48 +34,126 @@ class GroupCall extends TdObject
          */
         protected bool   $canToggleCanSendMessages,
         /**
-         * Duration of the ongoing group call recording, in seconds; 0 if none. An updateGroupCall update is not triggered when value of this field changes, but the same recording goes on.
+         * True, if the current user can enable or disable mute_new_participants setting; for video chats only.
          */
-        protected int    $recordDuration,
+        protected bool   $canToggleMuteNewParticipants,
+        /**
+         * Call duration, in seconds; for ended calls only.
+         */
+        protected int    $duration,
+        /**
+         * True, if the group call is scheduled and the current user will receive a notification when the group call starts; for video chats only.
+         */
+        protected bool   $enabledStartNotification,
+        /**
+         * True, if group call participants, which are muted, aren't returned in participant list; for video chats only.
+         */
+        protected bool   $hasHiddenListeners,
+        /**
+         * Group call identifier.
+         */
+        protected int    $id,
+        /**
+         * Invite link for the group call; for group calls that aren't bound to a chat. For video chats call getVideoChatInviteLink to get the link.
+         */
+        protected string $inviteLink,
+        /**
+         * True, if the call is active.
+         */
+        protected bool   $isActive,
+        /**
+         * True, if the call is joined.
+         */
+        protected bool   $isJoined,
+        /**
+         * True, if the current user's video is enabled.
+         */
+        protected bool   $isMyVideoEnabled,
+        /**
+         * True, if the current user's video is paused.
+         */
+        protected bool   $isMyVideoPaused,
+        /**
+         * True, if the user is the owner of the call and can end the call, change volume level of other users, or ban users there; for group calls that aren't bound to a chat.
+         */
+        protected bool   $isOwned,
+        /**
+         * True, if the call is an RTMP stream instead of an ordinary video chat; for video chats only.
+         */
+        protected bool   $isRtmpStream,
+        /**
+         * True, if the call is bound to a chat.
+         */
+        protected bool   $isVideoChat,
         /**
          * True, if a video file is being recorded for the call.
          */
         protected bool   $isVideoRecorded,
         /**
-         * Call duration, in seconds; for ended calls only.
+         * True, if all group call participants are loaded.
          */
-        protected int    $duration,
+        protected bool   $loadedAllParticipants,
+        /**
+         * True, if only group call administrators can unmute new participants; for video chats only.
+         */
+        protected bool   $muteNewParticipants,
+        /**
+         * True, if user was kicked from the call because of network loss and the call needs to be rejoined.
+         */
+        protected bool   $needRejoin,
+        /**
+         * Number of participants in the group call.
+         */
+        protected int    $participantCount,
+        /**
+         * At most 3 recently speaking users in the group call.
+         *
+         * @var GroupCallRecentSpeaker[]
+         */
+        protected array  $recentSpeakers,
+        /**
+         * Duration of the ongoing group call recording, in seconds; 0 if none. An updateGroupCall update is not triggered when value of this field changes, but the same recording goes on.
+         */
+        protected int    $recordDuration,
+        /**
+         * Point in time (Unix timestamp) when the group call is expected to be started by an administrator; 0 if it is already active or was ended; for video chats only.
+         */
+        protected int    $scheduledStartDate,
+        /**
+         * Group call title; for video chats only.
+         */
+        protected string $title,
     ) {}
 
     public static function fromArray(array $array): GroupCall
     {
         return new static(
-            $array['id'],
-            $array['title'],
-            $array['invite_link'],
-            $array['scheduled_start_date'],
-            $array['enabled_start_notification'],
-            $array['is_active'],
-            $array['is_video_chat'],
-            $array['is_rtmp_stream'],
-            $array['is_joined'],
-            $array['need_rejoin'],
-            $array['is_owned'],
-            $array['can_be_managed'],
-            $array['participant_count'],
-            $array['has_hidden_listeners'],
-            $array['loaded_all_participants'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['recent_speakers']),
-            $array['is_my_video_enabled'],
-            $array['is_my_video_paused'],
-            $array['can_enable_video'],
-            $array['mute_new_participants'],
-            $array['can_toggle_mute_new_participants'],
-            $array['can_send_messages'],
-            $array['can_toggle_can_send_messages'],
-            $array['record_duration'],
-            $array['is_video_recorded'],
-            $array['duration'],
+            canBeManaged                : $array['can_be_managed'],
+            canEnableVideo              : $array['can_enable_video'],
+            canSendMessages             : $array['can_send_messages'],
+            canToggleCanSendMessages    : $array['can_toggle_can_send_messages'],
+            canToggleMuteNewParticipants: $array['can_toggle_mute_new_participants'],
+            duration                    : $array['duration'],
+            enabledStartNotification    : $array['enabled_start_notification'],
+            hasHiddenListeners          : $array['has_hidden_listeners'],
+            id                          : $array['id'],
+            inviteLink                  : $array['invite_link'],
+            isActive                    : $array['is_active'],
+            isJoined                    : $array['is_joined'],
+            isMyVideoEnabled            : $array['is_my_video_enabled'],
+            isMyVideoPaused             : $array['is_my_video_paused'],
+            isOwned                     : $array['is_owned'],
+            isRtmpStream                : $array['is_rtmp_stream'],
+            isVideoChat                 : $array['is_video_chat'],
+            isVideoRecorded             : $array['is_video_recorded'],
+            loadedAllParticipants       : $array['loaded_all_participants'],
+            muteNewParticipants         : $array['mute_new_participants'],
+            needRejoin                  : $array['need_rejoin'],
+            participantCount            : $array['participant_count'],
+            recentSpeakers              : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['recent_speakers']),
+            recordDuration              : $array['record_duration'],
+            scheduledStartDate          : $array['scheduled_start_date'],
+            title                       : $array['title'],
         );
     }
 
@@ -473,32 +473,32 @@ class GroupCall extends TdObject
     {
         return [
             '@type'                            => static::TYPE_NAME,
-            'id'                               => $this->id,
-            'title'                            => $this->title,
-            'invite_link'                      => $this->inviteLink,
-            'scheduled_start_date'             => $this->scheduledStartDate,
-            'enabled_start_notification'       => $this->enabledStartNotification,
-            'is_active'                        => $this->isActive,
-            'is_video_chat'                    => $this->isVideoChat,
-            'is_rtmp_stream'                   => $this->isRtmpStream,
-            'is_joined'                        => $this->isJoined,
-            'need_rejoin'                      => $this->needRejoin,
-            'is_owned'                         => $this->isOwned,
             'can_be_managed'                   => $this->canBeManaged,
-            'participant_count'                => $this->participantCount,
-            'has_hidden_listeners'             => $this->hasHiddenListeners,
-            'loaded_all_participants'          => $this->loadedAllParticipants,
-            'recent_speakers'                  => array_map(static fn($x) => $x->typeSerialize(), $this->recentSpeakers),
-            'is_my_video_enabled'              => $this->isMyVideoEnabled,
-            'is_my_video_paused'               => $this->isMyVideoPaused,
             'can_enable_video'                 => $this->canEnableVideo,
-            'mute_new_participants'            => $this->muteNewParticipants,
-            'can_toggle_mute_new_participants' => $this->canToggleMuteNewParticipants,
             'can_send_messages'                => $this->canSendMessages,
             'can_toggle_can_send_messages'     => $this->canToggleCanSendMessages,
-            'record_duration'                  => $this->recordDuration,
-            'is_video_recorded'                => $this->isVideoRecorded,
+            'can_toggle_mute_new_participants' => $this->canToggleMuteNewParticipants,
             'duration'                         => $this->duration,
+            'enabled_start_notification'       => $this->enabledStartNotification,
+            'has_hidden_listeners'             => $this->hasHiddenListeners,
+            'id'                               => $this->id,
+            'invite_link'                      => $this->inviteLink,
+            'is_active'                        => $this->isActive,
+            'is_joined'                        => $this->isJoined,
+            'is_my_video_enabled'              => $this->isMyVideoEnabled,
+            'is_my_video_paused'               => $this->isMyVideoPaused,
+            'is_owned'                         => $this->isOwned,
+            'is_rtmp_stream'                   => $this->isRtmpStream,
+            'is_video_chat'                    => $this->isVideoChat,
+            'is_video_recorded'                => $this->isVideoRecorded,
+            'loaded_all_participants'          => $this->loadedAllParticipants,
+            'mute_new_participants'            => $this->muteNewParticipants,
+            'need_rejoin'                      => $this->needRejoin,
+            'participant_count'                => $this->participantCount,
+            'recent_speakers'                  => array_map(static fn($x) => $x->jsonSerialize(), $this->recentSpeakers),
+            'record_duration'                  => $this->recordDuration,
+            'scheduled_start_date'             => $this->scheduledStartDate,
+            'title'                            => $this->title,
         ];
     }
 }

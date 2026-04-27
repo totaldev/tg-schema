@@ -17,20 +17,20 @@ class CanSendMessageToUser extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the other user.
-         */
-        protected int  $userId,
-        /**
          * Pass true to get only locally available information without sending network requests.
          */
         protected bool $onlyLocal,
+        /**
+         * Identifier of the other user.
+         */
+        protected int  $userId,
     ) {}
 
     public static function fromArray(array $array): CanSendMessageToUser
     {
         return new static(
-            $array['user_id'],
-            $array['only_local'],
+            onlyLocal: $array['only_local'],
+            userId   : $array['user_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class CanSendMessageToUser extends TdFunction
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'user_id'    => $this->userId,
             'only_local' => $this->onlyLocal,
+            'user_id'    => $this->userId,
         ];
     }
 }

@@ -25,7 +25,7 @@ class SetPersonalChat extends TdFunction
     public static function fromArray(array $array): SetPersonalChat
     {
         return new static(
-            $array['chat_id'],
+            chatId: $array['chat_id'],
         );
     }
 

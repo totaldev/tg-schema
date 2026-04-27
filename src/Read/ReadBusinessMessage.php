@@ -33,9 +33,9 @@ class ReadBusinessMessage extends TdFunction
     public static function fromArray(array $array): ReadBusinessMessage
     {
         return new static(
-            $array['business_connection_id'],
-            $array['chat_id'],
-            $array['message_id'],
+            businessConnectionId: $array['business_connection_id'],
+            chatId              : $array['chat_id'],
+            messageId           : $array['message_id'],
         );
     }
 

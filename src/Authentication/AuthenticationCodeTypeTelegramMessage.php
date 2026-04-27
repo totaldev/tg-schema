@@ -25,7 +25,7 @@ class AuthenticationCodeTypeTelegramMessage extends AuthenticationCodeType
     public static function fromArray(array $array): AuthenticationCodeTypeTelegramMessage
     {
         return new static(
-            $array['length'],
+            length: $array['length'],
         );
     }
 

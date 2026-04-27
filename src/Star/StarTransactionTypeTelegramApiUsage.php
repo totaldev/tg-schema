@@ -25,7 +25,7 @@ class StarTransactionTypeTelegramApiUsage extends StarTransactionType
     public static function fromArray(array $array): StarTransactionTypeTelegramApiUsage
     {
         return new static(
-            $array['request_count'],
+            requestCount: $array['request_count'],
         );
     }
 

@@ -19,13 +19,13 @@ class StoryAreaTypeLocation extends StoryAreaType
 
     public function __construct(
         /**
-         * The location.
-         */
-        protected Location         $location,
-        /**
          * Address of the location; may be null if unknown.
          */
         protected ?LocationAddress $address,
+        /**
+         * The location.
+         */
+        protected Location         $location,
     ) {
         parent::__construct();
     }
@@ -33,8 +33,8 @@ class StoryAreaTypeLocation extends StoryAreaType
     public static function fromArray(array $array): StoryAreaTypeLocation
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['location']),
-            isset($array['address']) ? TdSchemaRegistry::fromArray($array['address']) : null,
+            address : (isset($array['address']) ? TdSchemaRegistry::fromArray($array['address']) : null),
+            location: TdSchemaRegistry::fromArray($array['location']),
         );
     }
 
@@ -66,8 +66,8 @@ class StoryAreaTypeLocation extends StoryAreaType
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'location' => $this->location->typeSerialize(),
-            'address'  => $this->address ?? null,
+            'address'  => (null !== $this->address ? $this->address->jsonSerialize() : null),
+            'location' => $this->location->jsonSerialize(),
         ];
     }
 }

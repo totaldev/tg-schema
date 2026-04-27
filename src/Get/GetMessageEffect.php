@@ -25,7 +25,7 @@ class GetMessageEffect extends TdFunction
     public static function fromArray(array $array): GetMessageEffect
     {
         return new static(
-            $array['effect_id'],
+            effectId: $array['effect_id'],
         );
     }
 

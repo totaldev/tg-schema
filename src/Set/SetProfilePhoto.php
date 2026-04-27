@@ -19,20 +19,20 @@ class SetProfilePhoto extends TdFunction
 
     public function __construct(
         /**
-         * Profile photo to set.
-         */
-        protected InputChatPhoto $photo,
-        /**
          * Pass true to set the public photo, which will be visible even if the main photo is hidden by privacy settings.
          */
         protected bool           $isPublic,
+        /**
+         * Profile photo to set.
+         */
+        protected InputChatPhoto $photo,
     ) {}
 
     public static function fromArray(array $array): SetProfilePhoto
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['photo']),
-            $array['is_public'],
+            isPublic: $array['is_public'],
+            photo   : TdSchemaRegistry::fromArray($array['photo']),
         );
     }
 
@@ -64,8 +64,8 @@ class SetProfilePhoto extends TdFunction
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'photo'     => $this->photo->typeSerialize(),
             'is_public' => $this->isPublic,
+            'photo'     => $this->photo->jsonSerialize(),
         ];
     }
 }

@@ -18,13 +18,13 @@ class LinkPreviewTypeUser extends LinkPreviewType
 
     public function __construct(
         /**
-         * Photo of the user; may be null if none.
-         */
-        protected ?ChatPhoto $photo,
-        /**
          * True, if the user is a bot.
          */
         protected bool       $isBot,
+        /**
+         * Photo of the user; may be null if none.
+         */
+        protected ?ChatPhoto $photo,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class LinkPreviewTypeUser extends LinkPreviewType
     public static function fromArray(array $array): LinkPreviewTypeUser
     {
         return new static(
-            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
-            $array['is_bot'],
+            isBot: $array['is_bot'],
+            photo: (isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null),
         );
     }
 
@@ -65,8 +65,8 @@ class LinkPreviewTypeUser extends LinkPreviewType
     {
         return [
             '@type'  => static::TYPE_NAME,
-            'photo'  => $this->photo ?? null,
             'is_bot' => $this->isBot,
+            'photo'  => (null !== $this->photo ? $this->photo->jsonSerialize() : null),
         ];
     }
 }

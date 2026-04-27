@@ -33,9 +33,9 @@ class CheckWebAppFileDownload extends TdFunction
     public static function fromArray(array $array): CheckWebAppFileDownload
     {
         return new static(
-            $array['bot_user_id'],
-            $array['file_name'],
-            $array['url'],
+            botUserId: $array['bot_user_id'],
+            fileName : $array['file_name'],
+            url      : $array['url'],
         );
     }
 

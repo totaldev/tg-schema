@@ -17,6 +17,10 @@ class ProcessChatJoinRequest extends TdFunction
 
     public function __construct(
         /**
+         * Pass true to approve the request; pass false to decline it.
+         */
+        protected bool $approve,
+        /**
          * Chat identifier.
          */
         protected int  $chatId,
@@ -24,18 +28,14 @@ class ProcessChatJoinRequest extends TdFunction
          * Identifier of the user that sent the request.
          */
         protected int  $userId,
-        /**
-         * Pass true to approve the request; pass false to decline it.
-         */
-        protected bool $approve,
     ) {}
 
     public static function fromArray(array $array): ProcessChatJoinRequest
     {
         return new static(
-            $array['chat_id'],
-            $array['user_id'],
-            $array['approve'],
+            approve: $array['approve'],
+            chatId : $array['chat_id'],
+            userId : $array['user_id'],
         );
     }
 
@@ -79,9 +79,9 @@ class ProcessChatJoinRequest extends TdFunction
     {
         return [
             '@type'   => static::TYPE_NAME,
+            'approve' => $this->approve,
             'chat_id' => $this->chatId,
             'user_id' => $this->userId,
-            'approve' => $this->approve,
         ];
     }
 }

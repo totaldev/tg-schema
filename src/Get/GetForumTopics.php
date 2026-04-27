@@ -22,36 +22,36 @@ class GetForumTopics extends TdFunction
          */
         protected int    $chatId,
         /**
-         * Query to search for in the forum topic's name.
+         * The maximum number of forum topics to be returned; up to 100. For optimal performance, the number of returned forum topics is chosen by TDLib and can be smaller than the specified limit.
          */
-        protected string $query,
+        protected int    $limit,
         /**
          * The date starting from which the results need to be fetched. Use 0 or any date in the future to get results from the last topic.
          */
         protected int    $offsetDate,
         /**
-         * The message identifier of the last message in the last found topic, or 0 for the first request.
-         */
-        protected int    $offsetMessageId,
-        /**
          * The forum topic identifier of the last found topic, or 0 for the first request.
          */
         protected int    $offsetForumTopicId,
         /**
-         * The maximum number of forum topics to be returned; up to 100. For optimal performance, the number of returned forum topics is chosen by TDLib and can be smaller than the specified limit.
+         * The message identifier of the last message in the last found topic, or 0 for the first request.
          */
-        protected int    $limit,
+        protected int    $offsetMessageId,
+        /**
+         * Query to search for in the forum topic's name.
+         */
+        protected string $query,
     ) {}
 
     public static function fromArray(array $array): GetForumTopics
     {
         return new static(
-            $array['chat_id'],
-            $array['query'],
-            $array['offset_date'],
-            $array['offset_message_id'],
-            $array['offset_forum_topic_id'],
-            $array['limit'],
+            chatId            : $array['chat_id'],
+            limit             : $array['limit'],
+            offsetDate        : $array['offset_date'],
+            offsetForumTopicId: $array['offset_forum_topic_id'],
+            offsetMessageId   : $array['offset_message_id'],
+            query             : $array['query'],
         );
     }
 
@@ -132,11 +132,11 @@ class GetForumTopics extends TdFunction
         return [
             '@type'                 => static::TYPE_NAME,
             'chat_id'               => $this->chatId,
-            'query'                 => $this->query,
-            'offset_date'           => $this->offsetDate,
-            'offset_message_id'     => $this->offsetMessageId,
-            'offset_forum_topic_id' => $this->offsetForumTopicId,
             'limit'                 => $this->limit,
+            'offset_date'           => $this->offsetDate,
+            'offset_forum_topic_id' => $this->offsetForumTopicId,
+            'offset_message_id'     => $this->offsetMessageId,
+            'query'                 => $this->query,
         ];
     }
 }

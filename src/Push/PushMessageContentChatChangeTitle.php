@@ -25,7 +25,7 @@ class PushMessageContentChatChangeTitle extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentChatChangeTitle
     {
         return new static(
-            $array['title'],
+            title: $array['title'],
         );
     }
 

@@ -17,25 +17,25 @@ class Minithumbnail extends TdObject
 
     public function __construct(
         /**
-         * Thumbnail width, usually doesn't exceed 40.
+         * The thumbnail in JPEG format.
          */
-        protected int    $width,
+        protected string $data,
         /**
          * Thumbnail height, usually doesn't exceed 40.
          */
         protected int    $height,
         /**
-         * The thumbnail in JPEG format.
+         * Thumbnail width, usually doesn't exceed 40.
          */
-        protected string $data,
+        protected int    $width,
     ) {}
 
     public static function fromArray(array $array): Minithumbnail
     {
         return new static(
-            $array['width'],
-            $array['height'],
-            $array['data'],
+            data  : $array['data'],
+            height: $array['height'],
+            width : $array['width'],
         );
     }
 
@@ -79,9 +79,9 @@ class Minithumbnail extends TdObject
     {
         return [
             '@type'  => static::TYPE_NAME,
-            'width'  => $this->width,
-            'height' => $this->height,
             'data'   => $this->data,
+            'height' => $this->height,
+            'width'  => $this->width,
         ];
     }
 }

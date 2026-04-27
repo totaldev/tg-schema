@@ -26,7 +26,7 @@ class GetPushReceiverId extends TdFunction
     public static function fromArray(array $array): GetPushReceiverId
     {
         return new static(
-            $array['payload'],
+            payload: $array['payload'],
         );
     }
 

@@ -32,8 +32,8 @@ class UpdateChatMessageSender extends Update
     public static function fromArray(array $array): UpdateChatMessageSender
     {
         return new static(
-            $array['chat_id'],
-            isset($array['message_sender_id']) ? TdSchemaRegistry::fromArray($array['message_sender_id']) : null,
+            chatId         : $array['chat_id'],
+            messageSenderId: (isset($array['message_sender_id']) ? TdSchemaRegistry::fromArray($array['message_sender_id']) : null),
         );
     }
 
@@ -66,7 +66,7 @@ class UpdateChatMessageSender extends Update
         return [
             '@type'             => static::TYPE_NAME,
             'chat_id'           => $this->chatId,
-            'message_sender_id' => $this->messageSenderId ?? null,
+            'message_sender_id' => (null !== $this->messageSenderId ? $this->messageSenderId->jsonSerialize() : null),
         ];
     }
 }

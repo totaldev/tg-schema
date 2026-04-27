@@ -25,7 +25,7 @@ class CleanFileName extends TdFunction
     public static function fromArray(array $array): CleanFileName
     {
         return new static(
-            $array['file_name'],
+            fileName: $array['file_name'],
         );
     }
 

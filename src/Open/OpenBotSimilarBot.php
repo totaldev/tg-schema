@@ -29,8 +29,8 @@ class OpenBotSimilarBot extends TdFunction
     public static function fromArray(array $array): OpenBotSimilarBot
     {
         return new static(
-            $array['bot_user_id'],
-            $array['opened_bot_user_id'],
+            botUserId      : $array['bot_user_id'],
+            openedBotUserId: $array['opened_bot_user_id'],
         );
     }
 

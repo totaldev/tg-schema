@@ -20,10 +20,6 @@ class ProductInfo extends TdObject
 
     public function __construct(
         /**
-         * Product title.
-         */
-        protected string        $title,
-        /**
          * Product description.
          */
         protected FormattedText $description,
@@ -31,14 +27,18 @@ class ProductInfo extends TdObject
          * Product photo; may be null.
          */
         protected ?Photo        $photo,
+        /**
+         * Product title.
+         */
+        protected string        $title,
     ) {}
 
     public static function fromArray(array $array): ProductInfo
     {
         return new static(
-            $array['title'],
-            TdSchemaRegistry::fromArray($array['description']),
-            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
+            description: TdSchemaRegistry::fromArray($array['description']),
+            photo      : (isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null),
+            title      : $array['title'],
         );
     }
 
@@ -82,9 +82,9 @@ class ProductInfo extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
+            'description' => $this->description->jsonSerialize(),
+            'photo'       => (null !== $this->photo ? $this->photo->jsonSerialize() : null),
             'title'       => $this->title,
-            'description' => $this->description->typeSerialize(),
-            'photo'       => $this->photo ?? null,
         ];
     }
 }

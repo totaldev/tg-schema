@@ -27,7 +27,7 @@ class GetUserPrivacySettingRules extends TdFunction
     public static function fromArray(array $array): GetUserPrivacySettingRules
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['setting']),
+            setting: TdSchemaRegistry::fromArray($array['setting']),
         );
     }
 
@@ -47,7 +47,7 @@ class GetUserPrivacySettingRules extends TdFunction
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'setting' => $this->setting->typeSerialize(),
+            'setting' => $this->setting->jsonSerialize(),
         ];
     }
 }

@@ -29,8 +29,8 @@ class RemoveNotification extends TdFunction
     public static function fromArray(array $array): RemoveNotification
     {
         return new static(
-            $array['notification_group_id'],
-            $array['notification_id'],
+            notificationGroupId: $array['notification_group_id'],
+            notificationId     : $array['notification_id'],
         );
     }
 

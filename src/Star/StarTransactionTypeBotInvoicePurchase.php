@@ -18,13 +18,13 @@ class StarTransactionTypeBotInvoicePurchase extends StarTransactionType
 
     public function __construct(
         /**
-         * Identifier of the bot or the business account user that created the invoice.
-         */
-        protected int         $userId,
-        /**
          * Information about the bought product.
          */
         protected ProductInfo $productInfo,
+        /**
+         * Identifier of the bot or the business account user that created the invoice.
+         */
+        protected int         $userId,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class StarTransactionTypeBotInvoicePurchase extends StarTransactionType
     public static function fromArray(array $array): StarTransactionTypeBotInvoicePurchase
     {
         return new static(
-            $array['user_id'],
-            TdSchemaRegistry::fromArray($array['product_info']),
+            productInfo: TdSchemaRegistry::fromArray($array['product_info']),
+            userId     : $array['user_id'],
         );
     }
 
@@ -65,8 +65,8 @@ class StarTransactionTypeBotInvoicePurchase extends StarTransactionType
     {
         return [
             '@type'        => static::TYPE_NAME,
+            'product_info' => $this->productInfo->jsonSerialize(),
             'user_id'      => $this->userId,
-            'product_info' => $this->productInfo->typeSerialize(),
         ];
     }
 }

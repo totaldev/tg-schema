@@ -25,7 +25,7 @@ class GiveawayParticipantStatusAlreadyWasMember extends GiveawayParticipantStatu
     public static function fromArray(array $array): GiveawayParticipantStatusAlreadyWasMember
     {
         return new static(
-            $array['joined_chat_date'],
+            joinedChatDate: $array['joined_chat_date'],
         );
     }
 

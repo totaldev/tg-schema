@@ -25,7 +25,7 @@ class TerminateSession extends TdFunction
     public static function fromArray(array $array): TerminateSession
     {
         return new static(
-            $array['session_id'],
+            sessionId: $array['session_id'],
         );
     }
 

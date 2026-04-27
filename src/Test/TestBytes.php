@@ -25,7 +25,7 @@ class TestBytes extends TdObject
     public static function fromArray(array $array): TestBytes
     {
         return new static(
-            $array['value'],
+            value: $array['value'],
         );
     }
 

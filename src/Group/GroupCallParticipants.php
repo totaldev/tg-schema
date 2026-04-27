@@ -19,22 +19,22 @@ class GroupCallParticipants extends TdObject
 
     public function __construct(
         /**
-         * Total number of group call participants.
-         */
-        protected int   $totalCount,
-        /**
          * Identifiers of the participants.
          *
          * @var MessageSender[]
          */
         protected array $participantIds,
+        /**
+         * Total number of group call participants.
+         */
+        protected int   $totalCount,
     ) {}
 
     public static function fromArray(array $array): GroupCallParticipants
     {
         return new static(
-            $array['total_count'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['participant_ids']),
+            participantIds: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['participant_ids']),
+            totalCount    : $array['total_count'],
         );
     }
 
@@ -66,8 +66,8 @@ class GroupCallParticipants extends TdObject
     {
         return [
             '@type'           => static::TYPE_NAME,
+            'participant_ids' => array_map(static fn($x) => $x->jsonSerialize(), $this->participantIds),
             'total_count'     => $this->totalCount,
-            'participant_ids' => array_map(static fn($x) => $x->typeSerialize(), $this->participantIds),
         ];
     }
 }

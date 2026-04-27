@@ -25,7 +25,7 @@ class RichTextAnchor extends RichText
     public static function fromArray(array $array): RichTextAnchor
     {
         return new static(
-            $array['name'],
+            name: $array['name'],
         );
     }
 

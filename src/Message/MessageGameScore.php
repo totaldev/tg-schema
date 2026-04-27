@@ -15,13 +15,13 @@ class MessageGameScore extends MessageContent
 
     public function __construct(
         /**
-         * Identifier of the message with the game, can be an identifier of a deleted message.
-         */
-        protected int $gameMessageId,
-        /**
          * Identifier of the game; may be different from the games presented in the message with the game.
          */
         protected int $gameId,
+        /**
+         * Identifier of the message with the game, can be an identifier of a deleted message.
+         */
+        protected int $gameMessageId,
         /**
          * New score.
          */
@@ -33,9 +33,9 @@ class MessageGameScore extends MessageContent
     public static function fromArray(array $array): MessageGameScore
     {
         return new static(
-            $array['game_message_id'],
-            $array['game_id'],
-            $array['score'],
+            gameId       : $array['game_id'],
+            gameMessageId: $array['game_message_id'],
+            score        : $array['score'],
         );
     }
 
@@ -79,8 +79,8 @@ class MessageGameScore extends MessageContent
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'game_message_id' => $this->gameMessageId,
             'game_id'         => $this->gameId,
+            'game_message_id' => $this->gameMessageId,
             'score'           => $this->score,
         ];
     }

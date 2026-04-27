@@ -32,8 +32,8 @@ class SetPassportElement extends TdFunction
     public static function fromArray(array $array): SetPassportElement
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['element']),
-            $array['password'],
+            element : TdSchemaRegistry::fromArray($array['element']),
+            password: $array['password'],
         );
     }
 
@@ -65,7 +65,7 @@ class SetPassportElement extends TdFunction
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'element'  => $this->element->typeSerialize(),
+            'element'  => $this->element->jsonSerialize(),
             'password' => $this->password,
         ];
     }

@@ -17,20 +17,20 @@ class ToggleVideoChatEnabledStartNotification extends TdFunction
 
     public function __construct(
         /**
-         * Group call identifier.
-         */
-        protected int  $groupCallId,
-        /**
          * New value of the enabled_start_notification setting.
          */
         protected bool $enabledStartNotification,
+        /**
+         * Group call identifier.
+         */
+        protected int  $groupCallId,
     ) {}
 
     public static function fromArray(array $array): ToggleVideoChatEnabledStartNotification
     {
         return new static(
-            $array['group_call_id'],
-            $array['enabled_start_notification'],
+            enabledStartNotification: $array['enabled_start_notification'],
+            groupCallId             : $array['group_call_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class ToggleVideoChatEnabledStartNotification extends TdFunction
     {
         return [
             '@type'                      => static::TYPE_NAME,
-            'group_call_id'              => $this->groupCallId,
             'enabled_start_notification' => $this->enabledStartNotification,
+            'group_call_id'              => $this->groupCallId,
         ];
     }
 }

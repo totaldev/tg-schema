@@ -28,7 +28,7 @@ class AddSavedNotificationSound extends TdFunction
     public static function fromArray(array $array): AddSavedNotificationSound
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['sound']),
+            sound: TdSchemaRegistry::fromArray($array['sound']),
         );
     }
 
@@ -48,7 +48,7 @@ class AddSavedNotificationSound extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'sound' => $this->sound->typeSerialize(),
+            'sound' => $this->sound->jsonSerialize(),
         ];
     }
 }

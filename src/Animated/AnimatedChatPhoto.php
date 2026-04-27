@@ -19,13 +19,13 @@ class AnimatedChatPhoto extends TdObject
 
     public function __construct(
         /**
-         * Animation width and height.
-         */
-        protected int   $length,
-        /**
          * Information about the animation file.
          */
         protected File  $file,
+        /**
+         * Animation width and height.
+         */
+        protected int   $length,
         /**
          * Timestamp of the frame, used as a static chat photo.
          */
@@ -35,9 +35,9 @@ class AnimatedChatPhoto extends TdObject
     public static function fromArray(array $array): AnimatedChatPhoto
     {
         return new static(
-            $array['length'],
-            TdSchemaRegistry::fromArray($array['file']),
-            $array['main_frame_timestamp'],
+            file              : TdSchemaRegistry::fromArray($array['file']),
+            length            : $array['length'],
+            mainFrameTimestamp: $array['main_frame_timestamp'],
         );
     }
 
@@ -81,8 +81,8 @@ class AnimatedChatPhoto extends TdObject
     {
         return [
             '@type'                => static::TYPE_NAME,
+            'file'                 => $this->file->jsonSerialize(),
             'length'               => $this->length,
-            'file'                 => $this->file->typeSerialize(),
             'main_frame_timestamp' => $this->mainFrameTimestamp,
         ];
     }

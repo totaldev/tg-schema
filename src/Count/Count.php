@@ -25,7 +25,7 @@ class Count extends TdObject
     public static function fromArray(array $array): Count
     {
         return new static(
-            $array['count'],
+            count: $array['count'],
         );
     }
 

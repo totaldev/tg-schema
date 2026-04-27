@@ -31,8 +31,8 @@ class GroupCallVideoSourceGroup extends TdObject
     public static function fromArray(array $array): GroupCallVideoSourceGroup
     {
         return new static(
-            $array['semantics'],
-            $array['source_ids'],
+            semantics: $array['semantics'],
+            sourceIds: $array['source_ids'],
         );
     }
 

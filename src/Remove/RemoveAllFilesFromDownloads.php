@@ -17,6 +17,10 @@ class RemoveAllFilesFromDownloads extends TdFunction
 
     public function __construct(
         /**
+         * Pass true to delete the file from the TDLib file cache.
+         */
+        protected bool $deleteFromCache,
+        /**
          * Pass true to remove only active downloads, including paused.
          */
         protected bool $onlyActive,
@@ -24,18 +28,14 @@ class RemoveAllFilesFromDownloads extends TdFunction
          * Pass true to remove only completed downloads.
          */
         protected bool $onlyCompleted,
-        /**
-         * Pass true to delete the file from the TDLib file cache.
-         */
-        protected bool $deleteFromCache,
     ) {}
 
     public static function fromArray(array $array): RemoveAllFilesFromDownloads
     {
         return new static(
-            $array['only_active'],
-            $array['only_completed'],
-            $array['delete_from_cache'],
+            deleteFromCache: $array['delete_from_cache'],
+            onlyActive     : $array['only_active'],
+            onlyCompleted  : $array['only_completed'],
         );
     }
 
@@ -79,9 +79,9 @@ class RemoveAllFilesFromDownloads extends TdFunction
     {
         return [
             '@type'             => static::TYPE_NAME,
+            'delete_from_cache' => $this->deleteFromCache,
             'only_active'       => $this->onlyActive,
             'only_completed'    => $this->onlyCompleted,
-            'delete_from_cache' => $this->deleteFromCache,
         ];
     }
 }

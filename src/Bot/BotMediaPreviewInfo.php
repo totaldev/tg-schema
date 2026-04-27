@@ -18,24 +18,24 @@ class BotMediaPreviewInfo extends TdObject
 
     public function __construct(
         /**
-         * List of media previews.
-         *
-         * @var BotMediaPreview[]
-         */
-        protected array $previews,
-        /**
          * List of language codes for which the bot has dedicated previews.
          *
          * @var string[]
          */
         protected array $languageCodes,
+        /**
+         * List of media previews.
+         *
+         * @var BotMediaPreview[]
+         */
+        protected array $previews,
     ) {}
 
     public static function fromArray(array $array): BotMediaPreviewInfo
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['previews']),
-            $array['language_codes'],
+            languageCodes: $array['language_codes'],
+            previews     : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['previews']),
         );
     }
 
@@ -67,8 +67,8 @@ class BotMediaPreviewInfo extends TdObject
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'previews'       => array_map(static fn($x) => $x->typeSerialize(), $this->previews),
             'language_codes' => $this->languageCodes,
+            'previews'       => array_map(static fn($x) => $x->jsonSerialize(), $this->previews),
         ];
     }
 }

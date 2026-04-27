@@ -36,9 +36,9 @@ class PushMessageContentAnimation extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentAnimation
     {
         return new static(
-            isset($array['animation']) ? TdSchemaRegistry::fromArray($array['animation']) : null,
-            $array['caption'],
-            $array['is_pinned'],
+            animation: (isset($array['animation']) ? TdSchemaRegistry::fromArray($array['animation']) : null),
+            caption  : $array['caption'],
+            isPinned : $array['is_pinned'],
         );
     }
 
@@ -82,7 +82,7 @@ class PushMessageContentAnimation extends PushMessageContent
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'animation' => $this->animation ?? null,
+            'animation' => (null !== $this->animation ? $this->animation->jsonSerialize() : null),
             'caption'   => $this->caption,
             'is_pinned' => $this->isPinned,
         ];

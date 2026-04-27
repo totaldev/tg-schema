@@ -28,7 +28,7 @@ class StickerFullTypeMask extends StickerFullType
     public static function fromArray(array $array): StickerFullTypeMask
     {
         return new static(
-            isset($array['mask_position']) ? TdSchemaRegistry::fromArray($array['mask_position']) : null,
+            maskPosition: (isset($array['mask_position']) ? TdSchemaRegistry::fromArray($array['mask_position']) : null),
         );
     }
 
@@ -48,7 +48,7 @@ class StickerFullTypeMask extends StickerFullType
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'mask_position' => $this->maskPosition ?? null,
+            'mask_position' => (null !== $this->maskPosition ? $this->maskPosition->jsonSerialize() : null),
         ];
     }
 }

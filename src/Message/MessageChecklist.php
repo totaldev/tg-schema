@@ -28,7 +28,7 @@ class MessageChecklist extends MessageContent
     public static function fromArray(array $array): MessageChecklist
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['list']),
+            list: TdSchemaRegistry::fromArray($array['list']),
         );
     }
 
@@ -48,7 +48,7 @@ class MessageChecklist extends MessageContent
     {
         return [
             '@type' => static::TYPE_NAME,
-            'list'  => $this->list->typeSerialize(),
+            'list'  => $this->list->jsonSerialize(),
         ];
     }
 }

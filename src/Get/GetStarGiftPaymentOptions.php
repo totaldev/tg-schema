@@ -25,7 +25,7 @@ class GetStarGiftPaymentOptions extends TdFunction
     public static function fromArray(array $array): GetStarGiftPaymentOptions
     {
         return new static(
-            $array['user_id'],
+            userId: $array['user_id'],
         );
     }
 

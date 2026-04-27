@@ -31,8 +31,8 @@ class EditInlineMessageReplyMarkup extends TdFunction
     public static function fromArray(array $array): EditInlineMessageReplyMarkup
     {
         return new static(
-            $array['inline_message_id'],
-            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
+            inlineMessageId: $array['inline_message_id'],
+            replyMarkup    : (isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null),
         );
     }
 
@@ -65,7 +65,7 @@ class EditInlineMessageReplyMarkup extends TdFunction
         return [
             '@type'             => static::TYPE_NAME,
             'inline_message_id' => $this->inlineMessageId,
-            'reply_markup'      => $this->replyMarkup ?? null,
+            'reply_markup'      => (null !== $this->replyMarkup ? $this->replyMarkup->jsonSerialize() : null),
         ];
     }
 }

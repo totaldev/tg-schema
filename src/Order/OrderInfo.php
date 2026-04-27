@@ -19,6 +19,10 @@ class OrderInfo extends TdObject
 
     public function __construct(
         /**
+         * Email address of the user.
+         */
+        protected string   $emailAddress,
+        /**
          * Name of the user.
          */
         protected string   $name,
@@ -26,10 +30,6 @@ class OrderInfo extends TdObject
          * Phone number of the user.
          */
         protected string   $phoneNumber,
-        /**
-         * Email address of the user.
-         */
-        protected string   $emailAddress,
         /**
          * Shipping address for this order; may be null.
          */
@@ -39,10 +39,10 @@ class OrderInfo extends TdObject
     public static function fromArray(array $array): OrderInfo
     {
         return new static(
-            $array['name'],
-            $array['phone_number'],
-            $array['email_address'],
-            isset($array['shipping_address']) ? TdSchemaRegistry::fromArray($array['shipping_address']) : null,
+            emailAddress   : $array['email_address'],
+            name           : $array['name'],
+            phoneNumber    : $array['phone_number'],
+            shippingAddress: (isset($array['shipping_address']) ? TdSchemaRegistry::fromArray($array['shipping_address']) : null),
         );
     }
 
@@ -98,10 +98,10 @@ class OrderInfo extends TdObject
     {
         return [
             '@type'            => static::TYPE_NAME,
+            'email_address'    => $this->emailAddress,
             'name'             => $this->name,
             'phone_number'     => $this->phoneNumber,
-            'email_address'    => $this->emailAddress,
-            'shipping_address' => $this->shippingAddress ?? null,
+            'shipping_address' => (null !== $this->shippingAddress ? $this->shippingAddress->jsonSerialize() : null),
         ];
     }
 }

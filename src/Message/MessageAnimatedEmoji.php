@@ -32,8 +32,8 @@ class MessageAnimatedEmoji extends MessageContent
     public static function fromArray(array $array): MessageAnimatedEmoji
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['animated_emoji']),
-            $array['emoji'],
+            animatedEmoji: TdSchemaRegistry::fromArray($array['animated_emoji']),
+            emoji        : $array['emoji'],
         );
     }
 
@@ -65,7 +65,7 @@ class MessageAnimatedEmoji extends MessageContent
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'animated_emoji' => $this->animatedEmoji->typeSerialize(),
+            'animated_emoji' => $this->animatedEmoji->jsonSerialize(),
             'emoji'          => $this->emoji,
         ];
     }

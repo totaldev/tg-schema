@@ -27,7 +27,7 @@ class TestCallVectorString extends TdFunction
     public static function fromArray(array $array): TestCallVectorString
     {
         return new static(
-            $array['x'],
+            x: $array['x'],
         );
     }
 

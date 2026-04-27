@@ -20,30 +20,30 @@ class GetStickers extends TdFunction
 
     public function __construct(
         /**
-         * Type of the stickers to return.
+         * Chat identifier for which to return stickers. Available custom emoji stickers may be different for different chats.
          */
-        protected StickerType $stickerType,
-        /**
-         * Search query; a space-separated list of emojis or a keyword prefix. If empty, returns all known installed stickers.
-         */
-        protected string      $query,
+        protected int         $chatId,
         /**
          * The maximum number of stickers to be returned.
          */
         protected int         $limit,
         /**
-         * Chat identifier for which to return stickers. Available custom emoji stickers may be different for different chats.
+         * Search query; a space-separated list of emojis or a keyword prefix. If empty, returns all known installed stickers.
          */
-        protected int         $chatId,
+        protected string      $query,
+        /**
+         * Type of the stickers to return.
+         */
+        protected StickerType $stickerType,
     ) {}
 
     public static function fromArray(array $array): GetStickers
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['sticker_type']),
-            $array['query'],
-            $array['limit'],
-            $array['chat_id'],
+            chatId     : $array['chat_id'],
+            limit      : $array['limit'],
+            query      : $array['query'],
+            stickerType: TdSchemaRegistry::fromArray($array['sticker_type']),
         );
     }
 
@@ -99,10 +99,10 @@ class GetStickers extends TdFunction
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'sticker_type' => $this->stickerType->typeSerialize(),
-            'query'        => $this->query,
-            'limit'        => $this->limit,
             'chat_id'      => $this->chatId,
+            'limit'        => $this->limit,
+            'query'        => $this->query,
+            'sticker_type' => $this->stickerType->jsonSerialize(),
         ];
     }
 }

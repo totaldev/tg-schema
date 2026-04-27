@@ -19,25 +19,25 @@ class TextQuote extends TdObject
 
     public function __construct(
         /**
-         * Text of the quote. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities can be present in the text.
+         * True, if the quote was manually chosen by the message sender.
          */
-        protected FormattedText $text,
+        protected bool          $isManual,
         /**
          * Approximate quote position in the original message in UTF-16 code units as specified by the message sender.
          */
         protected int           $position,
         /**
-         * True, if the quote was manually chosen by the message sender.
+         * Text of the quote. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities can be present in the text.
          */
-        protected bool          $isManual,
+        protected FormattedText $text,
     ) {}
 
     public static function fromArray(array $array): TextQuote
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['text']),
-            $array['position'],
-            $array['is_manual'],
+            isManual: $array['is_manual'],
+            position: $array['position'],
+            text    : TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -81,9 +81,9 @@ class TextQuote extends TdObject
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'text'      => $this->text->typeSerialize(),
-            'position'  => $this->position,
             'is_manual' => $this->isManual,
+            'position'  => $this->position,
+            'text'      => $this->text->jsonSerialize(),
         ];
     }
 }

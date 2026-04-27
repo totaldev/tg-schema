@@ -21,23 +21,23 @@ class CreateChatFolderInviteLink extends TdFunction
          */
         protected int    $chatFolderId,
         /**
-         * Name of the link; 0-32 characters.
-         */
-        protected string $name,
-        /**
          * Identifiers of chats to be accessible by the invite link. Use getChatsForChatFolderInviteLink to get suitable chats. Basic groups will be automatically converted to supergroups before link creation.
          *
          * @var int[]
          */
         protected array  $chatIds,
+        /**
+         * Name of the link; 0-32 characters.
+         */
+        protected string $name,
     ) {}
 
     public static function fromArray(array $array): CreateChatFolderInviteLink
     {
         return new static(
-            $array['chat_folder_id'],
-            $array['name'],
-            $array['chat_ids'],
+            chatFolderId: $array['chat_folder_id'],
+            chatIds     : $array['chat_ids'],
+            name        : $array['name'],
         );
     }
 
@@ -82,8 +82,8 @@ class CreateChatFolderInviteLink extends TdFunction
         return [
             '@type'          => static::TYPE_NAME,
             'chat_folder_id' => $this->chatFolderId,
-            'name'           => $this->name,
             'chat_ids'       => $this->chatIds,
+            'name'           => $this->name,
         ];
     }
 }

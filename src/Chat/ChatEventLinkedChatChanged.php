@@ -15,13 +15,13 @@ class ChatEventLinkedChatChanged extends ChatEventAction
 
     public function __construct(
         /**
-         * Previous supergroup linked chat identifier.
-         */
-        protected int $oldLinkedChatId,
-        /**
          * New supergroup linked chat identifier.
          */
         protected int $newLinkedChatId,
+        /**
+         * Previous supergroup linked chat identifier.
+         */
+        protected int $oldLinkedChatId,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class ChatEventLinkedChatChanged extends ChatEventAction
     public static function fromArray(array $array): ChatEventLinkedChatChanged
     {
         return new static(
-            $array['old_linked_chat_id'],
-            $array['new_linked_chat_id'],
+            newLinkedChatId: $array['new_linked_chat_id'],
+            oldLinkedChatId: $array['old_linked_chat_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class ChatEventLinkedChatChanged extends ChatEventAction
     {
         return [
             '@type'              => static::TYPE_NAME,
-            'old_linked_chat_id' => $this->oldLinkedChatId,
             'new_linked_chat_id' => $this->newLinkedChatId,
+            'old_linked_chat_id' => $this->oldLinkedChatId,
         ];
     }
 }

@@ -26,15 +26,15 @@ class UpdateMessageUnreadReactions extends Update
          */
         protected int   $messageId,
         /**
+         * The new number of messages with unread reactions left in the chat.
+         */
+        protected int   $unreadReactionCount,
+        /**
          * The new list of unread reactions.
          *
          * @var UnreadReaction[]
          */
         protected array $unreadReactions,
-        /**
-         * The new number of messages with unread reactions left in the chat.
-         */
-        protected int   $unreadReactionCount,
     ) {
         parent::__construct();
     }
@@ -42,10 +42,10 @@ class UpdateMessageUnreadReactions extends Update
     public static function fromArray(array $array): UpdateMessageUnreadReactions
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['unread_reactions']),
-            $array['unread_reaction_count'],
+            chatId             : $array['chat_id'],
+            messageId          : $array['message_id'],
+            unreadReactionCount: $array['unread_reaction_count'],
+            unreadReactions    : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['unread_reactions']),
         );
     }
 
@@ -103,8 +103,8 @@ class UpdateMessageUnreadReactions extends Update
             '@type'                 => static::TYPE_NAME,
             'chat_id'               => $this->chatId,
             'message_id'            => $this->messageId,
-            'unread_reactions'      => array_map(static fn($x) => $x->typeSerialize(), $this->unreadReactions),
             'unread_reaction_count' => $this->unreadReactionCount,
+            'unread_reactions'      => array_map(static fn($x) => $x->jsonSerialize(), $this->unreadReactions),
         ];
     }
 }

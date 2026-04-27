@@ -19,20 +19,20 @@ class AvailableReaction extends TdObject
 
     public function __construct(
         /**
-         * Type of the reaction.
-         */
-        protected ReactionType $type,
-        /**
          * True, if Telegram Premium is needed to send the reaction.
          */
         protected bool         $needsPremium,
+        /**
+         * Type of the reaction.
+         */
+        protected ReactionType $type,
     ) {}
 
     public static function fromArray(array $array): AvailableReaction
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['type']),
-            $array['needs_premium'],
+            needsPremium: $array['needs_premium'],
+            type        : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -64,8 +64,8 @@ class AvailableReaction extends TdObject
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'type'          => $this->type->typeSerialize(),
             'needs_premium' => $this->needsPremium,
+            'type'          => $this->type->jsonSerialize(),
         ];
     }
 }

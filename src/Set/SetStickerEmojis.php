@@ -19,20 +19,20 @@ class SetStickerEmojis extends TdFunction
 
     public function __construct(
         /**
-         * Sticker.
-         */
-        protected InputFile $sticker,
-        /**
          * New string with 1-20 emoji corresponding to the sticker.
          */
         protected string    $emojis,
+        /**
+         * Sticker.
+         */
+        protected InputFile $sticker,
     ) {}
 
     public static function fromArray(array $array): SetStickerEmojis
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['sticker']),
-            $array['emojis'],
+            emojis : $array['emojis'],
+            sticker: TdSchemaRegistry::fromArray($array['sticker']),
         );
     }
 
@@ -64,8 +64,8 @@ class SetStickerEmojis extends TdFunction
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'sticker' => $this->sticker->typeSerialize(),
             'emojis'  => $this->emojis,
+            'sticker' => $this->sticker->jsonSerialize(),
         ];
     }
 }

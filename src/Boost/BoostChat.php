@@ -31,8 +31,8 @@ class BoostChat extends TdFunction
     public static function fromArray(array $array): BoostChat
     {
         return new static(
-            $array['chat_id'],
-            $array['slot_ids'],
+            chatId : $array['chat_id'],
+            slotIds: $array['slot_ids'],
         );
     }
 

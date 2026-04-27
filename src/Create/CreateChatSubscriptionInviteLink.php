@@ -35,9 +35,9 @@ class CreateChatSubscriptionInviteLink extends TdFunction
     public static function fromArray(array $array): CreateChatSubscriptionInviteLink
     {
         return new static(
-            $array['chat_id'],
-            $array['name'],
-            TdSchemaRegistry::fromArray($array['subscription_pricing']),
+            chatId             : $array['chat_id'],
+            name               : $array['name'],
+            subscriptionPricing: TdSchemaRegistry::fromArray($array['subscription_pricing']),
         );
     }
 
@@ -83,7 +83,7 @@ class CreateChatSubscriptionInviteLink extends TdFunction
             '@type'                => static::TYPE_NAME,
             'chat_id'              => $this->chatId,
             'name'                 => $this->name,
-            'subscription_pricing' => $this->subscriptionPricing->typeSerialize(),
+            'subscription_pricing' => $this->subscriptionPricing->jsonSerialize(),
         ];
     }
 }

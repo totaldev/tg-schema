@@ -33,9 +33,9 @@ class ChatMemberStatusCreator extends ChatMemberStatus
     public static function fromArray(array $array): ChatMemberStatusCreator
     {
         return new static(
-            $array['custom_title'],
-            $array['is_anonymous'],
-            $array['is_member'],
+            customTitle: $array['custom_title'],
+            isAnonymous: $array['is_anonymous'],
+            isMember   : $array['is_member'],
         );
     }
 

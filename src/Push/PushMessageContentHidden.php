@@ -25,7 +25,7 @@ class PushMessageContentHidden extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentHidden
     {
         return new static(
-            $array['is_pinned'],
+            isPinned: $array['is_pinned'],
         );
     }
 

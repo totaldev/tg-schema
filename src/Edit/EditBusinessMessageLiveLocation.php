@@ -28,42 +28,42 @@ class EditBusinessMessageLiveLocation extends TdFunction
          */
         protected int          $chatId,
         /**
-         * Identifier of the message.
+         * The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown.
          */
-        protected int          $messageId,
+        protected int          $heading,
         /**
          * New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever. Otherwise, must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days. Pass 0 to keep the current live_period.
          */
         protected int          $livePeriod,
         /**
-         * The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown.
+         * Identifier of the message.
          */
-        protected int          $heading,
+        protected int          $messageId,
         /**
          * The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled.
          */
         protected int          $proximityAlertRadius,
         /**
-         * The new message reply markup; pass null if none.
-         */
-        protected ?ReplyMarkup $replyMarkup = null,
-        /**
          * New location content of the message; pass null to stop sharing the live location.
          */
         protected ?Location    $location = null,
+        /**
+         * The new message reply markup; pass null if none.
+         */
+        protected ?ReplyMarkup $replyMarkup = null,
     ) {}
 
     public static function fromArray(array $array): EditBusinessMessageLiveLocation
     {
         return new static(
-            $array['business_connection_id'],
-            $array['chat_id'],
-            $array['message_id'],
-            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
-            isset($array['location']) ? TdSchemaRegistry::fromArray($array['location']) : null,
-            $array['live_period'],
-            $array['heading'],
-            $array['proximity_alert_radius'],
+            businessConnectionId: $array['business_connection_id'],
+            chatId              : $array['chat_id'],
+            heading             : $array['heading'],
+            livePeriod          : $array['live_period'],
+            location            : (isset($array['location']) ? TdSchemaRegistry::fromArray($array['location']) : null),
+            messageId           : $array['message_id'],
+            proximityAlertRadius: $array['proximity_alert_radius'],
+            replyMarkup         : (isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null),
         );
     }
 
@@ -169,12 +169,12 @@ class EditBusinessMessageLiveLocation extends TdFunction
             '@type'                  => static::TYPE_NAME,
             'business_connection_id' => $this->businessConnectionId,
             'chat_id'                => $this->chatId,
-            'message_id'             => $this->messageId,
-            'reply_markup'           => $this->replyMarkup ?? null,
-            'location'               => $this->location ?? null,
-            'live_period'            => $this->livePeriod,
             'heading'                => $this->heading,
+            'live_period'            => $this->livePeriod,
+            'location'               => (null !== $this->location ? $this->location->jsonSerialize() : null),
+            'message_id'             => $this->messageId,
             'proximity_alert_radius' => $this->proximityAlertRadius,
+            'reply_markup'           => (null !== $this->replyMarkup ? $this->replyMarkup->jsonSerialize() : null),
         ];
     }
 }

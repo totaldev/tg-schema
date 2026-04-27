@@ -20,37 +20,37 @@ class SearchGiftsForResale extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the regular gift that was upgraded to a unique gift.
-         */
-        protected int                $giftId,
-        /**
-         * Order in which the results will be sorted.
-         */
-        protected GiftForResaleOrder $order,
-        /**
          * Attributes used to filter received gifts. If multiple attributes of the same type are specified, then all of them are allowed. If none attributes of specific type are specified, then all values for this attribute type are allowed.
          *
          * @var UpgradedGiftAttributeId[]
          */
         protected array              $attributes,
         /**
-         * Offset of the first entry to return as received from the previous request with the same order and attributes; use empty string to get the first chunk of results.
+         * Identifier of the regular gift that was upgraded to a unique gift.
          */
-        protected string             $offset,
+        protected int                $giftId,
         /**
          * The maximum number of gifts to return.
          */
         protected int                $limit,
+        /**
+         * Offset of the first entry to return as received from the previous request with the same order and attributes; use empty string to get the first chunk of results.
+         */
+        protected string             $offset,
+        /**
+         * Order in which the results will be sorted.
+         */
+        protected GiftForResaleOrder $order,
     ) {}
 
     public static function fromArray(array $array): SearchGiftsForResale
     {
         return new static(
-            $array['gift_id'],
-            TdSchemaRegistry::fromArray($array['order']),
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['attributes']),
-            $array['offset'],
-            $array['limit'],
+            attributes: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['attributes']),
+            giftId    : $array['gift_id'],
+            limit     : $array['limit'],
+            offset    : $array['offset'],
+            order     : TdSchemaRegistry::fromArray($array['order']),
         );
     }
 
@@ -118,11 +118,11 @@ class SearchGiftsForResale extends TdFunction
     {
         return [
             '@type'      => static::TYPE_NAME,
+            'attributes' => array_map(static fn($x) => $x->jsonSerialize(), $this->attributes),
             'gift_id'    => $this->giftId,
-            'order'      => $this->order->typeSerialize(),
-            'attributes' => array_map(static fn($x) => $x->typeSerialize(), $this->attributes),
-            'offset'     => $this->offset,
             'limit'      => $this->limit,
+            'offset'     => $this->offset,
+            'order'      => $this->order->jsonSerialize(),
         ];
     }
 }

@@ -30,8 +30,8 @@ class SetChatPaidMessageStarCount extends TdFunction
     public static function fromArray(array $array): SetChatPaidMessageStarCount
     {
         return new static(
-            $array['chat_id'],
-            $array['paid_message_star_count'],
+            chatId              : $array['chat_id'],
+            paidMessageStarCount: $array['paid_message_star_count'],
         );
     }
 

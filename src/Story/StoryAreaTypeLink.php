@@ -25,7 +25,7 @@ class StoryAreaTypeLink extends StoryAreaType
     public static function fromArray(array $array): StoryAreaTypeLink
     {
         return new static(
-            $array['url'],
+            url: $array['url'],
         );
     }
 

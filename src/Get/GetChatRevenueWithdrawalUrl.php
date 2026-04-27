@@ -31,8 +31,8 @@ class GetChatRevenueWithdrawalUrl extends TdFunction
     public static function fromArray(array $array): GetChatRevenueWithdrawalUrl
     {
         return new static(
-            $array['chat_id'],
-            $array['password'],
+            chatId  : $array['chat_id'],
+            password: $array['password'],
         );
     }
 

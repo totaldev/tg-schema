@@ -25,7 +25,7 @@ class EmailAddressAuthenticationCode extends EmailAddressAuthentication
     public static function fromArray(array $array): EmailAddressAuthenticationCode
     {
         return new static(
-            $array['code'],
+            code: $array['code'],
         );
     }
 

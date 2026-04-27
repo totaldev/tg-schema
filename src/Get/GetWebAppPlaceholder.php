@@ -25,7 +25,7 @@ class GetWebAppPlaceholder extends TdFunction
     public static function fromArray(array $array): GetWebAppPlaceholder
     {
         return new static(
-            $array['bot_user_id'],
+            botUserId: $array['bot_user_id'],
         );
     }
 

@@ -25,7 +25,7 @@ class ReactionTypeEmoji extends ReactionType
     public static function fromArray(array $array): ReactionTypeEmoji
     {
         return new static(
-            $array['emoji'],
+            emoji: $array['emoji'],
         );
     }
 

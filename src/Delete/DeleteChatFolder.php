@@ -31,8 +31,8 @@ class DeleteChatFolder extends TdFunction
     public static function fromArray(array $array): DeleteChatFolder
     {
         return new static(
-            $array['chat_folder_id'],
-            $array['leave_chat_ids'],
+            chatFolderId: $array['chat_folder_id'],
+            leaveChatIds: $array['leave_chat_ids'],
         );
     }
 

@@ -17,20 +17,20 @@ class MessageImportInfo extends TdObject
 
     public function __construct(
         /**
-         * Name of the original sender.
-         */
-        protected string $senderName,
-        /**
          * Point in time (Unix timestamp) when the message was originally sent.
          */
         protected int    $date,
+        /**
+         * Name of the original sender.
+         */
+        protected string $senderName,
     ) {}
 
     public static function fromArray(array $array): MessageImportInfo
     {
         return new static(
-            $array['sender_name'],
-            $array['date'],
+            date      : $array['date'],
+            senderName: $array['sender_name'],
         );
     }
 
@@ -62,8 +62,8 @@ class MessageImportInfo extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'sender_name' => $this->senderName,
             'date'        => $this->date,
+            'sender_name' => $this->senderName,
         ];
     }
 }

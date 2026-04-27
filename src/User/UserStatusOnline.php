@@ -25,7 +25,7 @@ class UserStatusOnline extends UserStatus
     public static function fromArray(array $array): UserStatusOnline
     {
         return new static(
-            $array['expires'],
+            expires: $array['expires'],
         );
     }
 

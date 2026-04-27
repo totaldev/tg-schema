@@ -22,13 +22,13 @@ class UpdateNewShippingQuery extends Update
          */
         protected int     $id,
         /**
-         * Identifier of the user who sent the query.
-         */
-        protected int     $senderUserId,
-        /**
          * Invoice payload.
          */
         protected string  $invoicePayload,
+        /**
+         * Identifier of the user who sent the query.
+         */
+        protected int     $senderUserId,
         /**
          * User shipping address.
          */
@@ -40,10 +40,10 @@ class UpdateNewShippingQuery extends Update
     public static function fromArray(array $array): UpdateNewShippingQuery
     {
         return new static(
-            $array['id'],
-            $array['sender_user_id'],
-            $array['invoice_payload'],
-            TdSchemaRegistry::fromArray($array['shipping_address']),
+            id             : $array['id'],
+            invoicePayload : $array['invoice_payload'],
+            senderUserId   : $array['sender_user_id'],
+            shippingAddress: TdSchemaRegistry::fromArray($array['shipping_address']),
         );
     }
 
@@ -100,9 +100,9 @@ class UpdateNewShippingQuery extends Update
         return [
             '@type'            => static::TYPE_NAME,
             'id'               => $this->id,
-            'sender_user_id'   => $this->senderUserId,
             'invoice_payload'  => $this->invoicePayload,
-            'shipping_address' => $this->shippingAddress->typeSerialize(),
+            'sender_user_id'   => $this->senderUserId,
+            'shipping_address' => $this->shippingAddress->jsonSerialize(),
         ];
     }
 }

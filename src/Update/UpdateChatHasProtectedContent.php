@@ -29,8 +29,8 @@ class UpdateChatHasProtectedContent extends Update
     public static function fromArray(array $array): UpdateChatHasProtectedContent
     {
         return new static(
-            $array['chat_id'],
-            $array['has_protected_content'],
+            chatId             : $array['chat_id'],
+            hasProtectedContent: $array['has_protected_content'],
         );
     }
 

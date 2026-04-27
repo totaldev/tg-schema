@@ -18,13 +18,13 @@ class MessageChatShared extends MessageContent
 
     public function __construct(
         /**
-         * The shared chat.
-         */
-        protected SharedChat $chat,
-        /**
          * Identifier of the keyboard button with the request.
          */
         protected int        $buttonId,
+        /**
+         * The shared chat.
+         */
+        protected SharedChat $chat,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class MessageChatShared extends MessageContent
     public static function fromArray(array $array): MessageChatShared
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['chat']),
-            $array['button_id'],
+            buttonId: $array['button_id'],
+            chat    : TdSchemaRegistry::fromArray($array['chat']),
         );
     }
 
@@ -65,8 +65,8 @@ class MessageChatShared extends MessageContent
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'chat'      => $this->chat->typeSerialize(),
             'button_id' => $this->buttonId,
+            'chat'      => $this->chat->jsonSerialize(),
         ];
     }
 }

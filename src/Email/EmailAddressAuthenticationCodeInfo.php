@@ -29,8 +29,8 @@ class EmailAddressAuthenticationCodeInfo extends TdObject
     public static function fromArray(array $array): EmailAddressAuthenticationCodeInfo
     {
         return new static(
-            $array['email_address_pattern'],
-            $array['length'],
+            emailAddressPattern: $array['email_address_pattern'],
+            length             : $array['length'],
         );
     }
 

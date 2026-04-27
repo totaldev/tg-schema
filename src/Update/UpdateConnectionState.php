@@ -28,7 +28,7 @@ class UpdateConnectionState extends Update
     public static function fromArray(array $array): UpdateConnectionState
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['state']),
+            state: TdSchemaRegistry::fromArray($array['state']),
         );
     }
 
@@ -48,7 +48,7 @@ class UpdateConnectionState extends Update
     {
         return [
             '@type' => static::TYPE_NAME,
-            'state' => $this->state->typeSerialize(),
+            'state' => $this->state->jsonSerialize(),
         ];
     }
 }

@@ -27,7 +27,7 @@ class BackgroundTypeFill extends BackgroundType
     public static function fromArray(array $array): BackgroundTypeFill
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['fill']),
+            fill: TdSchemaRegistry::fromArray($array['fill']),
         );
     }
 
@@ -47,7 +47,7 @@ class BackgroundTypeFill extends BackgroundType
     {
         return [
             '@type' => static::TYPE_NAME,
-            'fill'  => $this->fill->typeSerialize(),
+            'fill'  => $this->fill->jsonSerialize(),
         ];
     }
 }

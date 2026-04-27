@@ -22,15 +22,15 @@ class PageBlockDetails extends PageBlock
          */
         protected RichText $header,
         /**
+         * True, if the block is open by default.
+         */
+        protected bool     $isOpen,
+        /**
          * Block contents.
          *
          * @var PageBlock[]
          */
         protected array    $pageBlocks,
-        /**
-         * True, if the block is open by default.
-         */
-        protected bool     $isOpen,
     ) {
         parent::__construct();
     }
@@ -38,9 +38,9 @@ class PageBlockDetails extends PageBlock
     public static function fromArray(array $array): PageBlockDetails
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['header']),
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['page_blocks']),
-            $array['is_open'],
+            header    : TdSchemaRegistry::fromArray($array['header']),
+            isOpen    : $array['is_open'],
+            pageBlocks: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['page_blocks']),
         );
     }
 
@@ -84,9 +84,9 @@ class PageBlockDetails extends PageBlock
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'header'      => $this->header->typeSerialize(),
-            'page_blocks' => array_map(static fn($x) => $x->typeSerialize(), $this->pageBlocks),
+            'header'      => $this->header->jsonSerialize(),
             'is_open'     => $this->isOpen,
+            'page_blocks' => array_map(static fn($x) => $x->jsonSerialize(), $this->pageBlocks),
         ];
     }
 }

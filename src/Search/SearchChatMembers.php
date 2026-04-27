@@ -24,13 +24,13 @@ class SearchChatMembers extends TdFunction
          */
         protected int                $chatId,
         /**
-         * Query to search for.
-         */
-        protected string             $query,
-        /**
          * The maximum number of users to be returned; up to 200.
          */
         protected int                $limit,
+        /**
+         * Query to search for.
+         */
+        protected string             $query,
         /**
          * The type of users to search for; pass null to search among all chat members.
          */
@@ -40,10 +40,10 @@ class SearchChatMembers extends TdFunction
     public static function fromArray(array $array): SearchChatMembers
     {
         return new static(
-            $array['chat_id'],
-            $array['query'],
-            $array['limit'],
-            isset($array['filter']) ? TdSchemaRegistry::fromArray($array['filter']) : null,
+            chatId: $array['chat_id'],
+            filter: (isset($array['filter']) ? TdSchemaRegistry::fromArray($array['filter']) : null),
+            limit : $array['limit'],
+            query : $array['query'],
         );
     }
 
@@ -100,9 +100,9 @@ class SearchChatMembers extends TdFunction
         return [
             '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
-            'query'   => $this->query,
+            'filter'  => (null !== $this->filter ? $this->filter->jsonSerialize() : null),
             'limit'   => $this->limit,
-            'filter'  => $this->filter ?? null,
+            'query'   => $this->query,
         ];
     }
 }

@@ -18,20 +18,20 @@ class TMeUrl extends TdObject
 
     public function __construct(
         /**
-         * URL.
-         */
-        protected string     $url,
-        /**
          * Type of the URL.
          */
         protected TMeUrlType $type,
+        /**
+         * URL.
+         */
+        protected string     $url,
     ) {}
 
     public static function fromArray(array $array): TMeUrl
     {
         return new static(
-            $array['url'],
-            TdSchemaRegistry::fromArray($array['type']),
+            type: TdSchemaRegistry::fromArray($array['type']),
+            url : $array['url'],
         );
     }
 
@@ -63,8 +63,8 @@ class TMeUrl extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
+            'type'  => $this->type->jsonSerialize(),
             'url'   => $this->url,
-            'type'  => $this->type->typeSerialize(),
         ];
     }
 }

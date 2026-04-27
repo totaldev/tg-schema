@@ -35,9 +35,9 @@ class EditMessageReplyMarkup extends TdFunction
     public static function fromArray(array $array): EditMessageReplyMarkup
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
+            chatId     : $array['chat_id'],
+            messageId  : $array['message_id'],
+            replyMarkup: (isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null),
         );
     }
 
@@ -83,7 +83,7 @@ class EditMessageReplyMarkup extends TdFunction
             '@type'        => static::TYPE_NAME,
             'chat_id'      => $this->chatId,
             'message_id'   => $this->messageId,
-            'reply_markup' => $this->replyMarkup ?? null,
+            'reply_markup' => (null !== $this->replyMarkup ? $this->replyMarkup->jsonSerialize() : null),
         ];
     }
 }

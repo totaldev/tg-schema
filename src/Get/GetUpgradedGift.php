@@ -25,7 +25,7 @@ class GetUpgradedGift extends TdFunction
     public static function fromArray(array $array): GetUpgradedGift
     {
         return new static(
-            $array['name'],
+            name: $array['name'],
         );
     }
 

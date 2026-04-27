@@ -28,7 +28,7 @@ class UpdateSecretChat extends Update
     public static function fromArray(array $array): UpdateSecretChat
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['secret_chat']),
+            secretChat: TdSchemaRegistry::fromArray($array['secret_chat']),
         );
     }
 
@@ -48,7 +48,7 @@ class UpdateSecretChat extends Update
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'secret_chat' => $this->secretChat->typeSerialize(),
+            'secret_chat' => $this->secretChat->jsonSerialize(),
         ];
     }
 }

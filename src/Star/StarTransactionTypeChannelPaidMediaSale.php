@@ -18,19 +18,19 @@ class StarTransactionTypeChannelPaidMediaSale extends StarTransactionType
 
     public function __construct(
         /**
-         * Identifier of the user that bought the media.
-         */
-        protected int   $userId,
-        /**
-         * Identifier of the corresponding message with paid media; can be 0 or an identifier of a deleted message.
-         */
-        protected int   $messageId,
-        /**
          * The bought media.
          *
          * @var PaidMedia[]
          */
         protected array $media,
+        /**
+         * Identifier of the corresponding message with paid media; can be 0 or an identifier of a deleted message.
+         */
+        protected int   $messageId,
+        /**
+         * Identifier of the user that bought the media.
+         */
+        protected int   $userId,
     ) {
         parent::__construct();
     }
@@ -38,9 +38,9 @@ class StarTransactionTypeChannelPaidMediaSale extends StarTransactionType
     public static function fromArray(array $array): StarTransactionTypeChannelPaidMediaSale
     {
         return new static(
-            $array['user_id'],
-            $array['message_id'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['media']),
+            media    : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['media']),
+            messageId: $array['message_id'],
+            userId   : $array['user_id'],
         );
     }
 
@@ -84,9 +84,9 @@ class StarTransactionTypeChannelPaidMediaSale extends StarTransactionType
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'user_id'    => $this->userId,
+            'media'      => array_map(static fn($x) => $x->jsonSerialize(), $this->media),
             'message_id' => $this->messageId,
-            'media'      => array_map(static fn($x) => $x->typeSerialize(), $this->media),
+            'user_id'    => $this->userId,
         ];
     }
 }

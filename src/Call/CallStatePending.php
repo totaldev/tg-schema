@@ -29,8 +29,8 @@ class CallStatePending extends CallState
     public static function fromArray(array $array): CallStatePending
     {
         return new static(
-            $array['is_created'],
-            $array['is_received'],
+            isCreated : $array['is_created'],
+            isReceived: $array['is_received'],
         );
     }
 

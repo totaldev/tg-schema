@@ -18,13 +18,13 @@ class PageBlockPreformatted extends PageBlock
 
     public function __construct(
         /**
-         * Paragraph text.
-         */
-        protected RichText $text,
-        /**
          * Programming language for which the text needs to be formatted.
          */
         protected string   $language,
+        /**
+         * Paragraph text.
+         */
+        protected RichText $text,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class PageBlockPreformatted extends PageBlock
     public static function fromArray(array $array): PageBlockPreformatted
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['text']),
-            $array['language'],
+            language: $array['language'],
+            text    : TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -65,8 +65,8 @@ class PageBlockPreformatted extends PageBlock
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'text'     => $this->text->typeSerialize(),
             'language' => $this->language,
+            'text'     => $this->text->jsonSerialize(),
         ];
     }
 }

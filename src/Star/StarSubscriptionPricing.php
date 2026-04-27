@@ -29,8 +29,8 @@ class StarSubscriptionPricing extends TdObject
     public static function fromArray(array $array): StarSubscriptionPricing
     {
         return new static(
-            $array['period'],
-            $array['star_count'],
+            period   : $array['period'],
+            starCount: $array['star_count'],
         );
     }
 

@@ -27,7 +27,7 @@ class GetCustomEmojiStickers extends TdFunction
     public static function fromArray(array $array): GetCustomEmojiStickers
     {
         return new static(
-            $array['custom_emoji_ids'],
+            customEmojiIds: $array['custom_emoji_ids'],
         );
     }
 

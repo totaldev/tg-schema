@@ -17,22 +17,22 @@ class ProcessChatFolderNewChats extends TdFunction
 
     public function __construct(
         /**
-         * Chat folder identifier.
-         */
-        protected int   $chatFolderId,
-        /**
          * Identifiers of the new chats, which are added to the chat folder. The chats are automatically joined if they aren't joined yet.
          *
          * @var int[]
          */
         protected array $addedChatIds,
+        /**
+         * Chat folder identifier.
+         */
+        protected int   $chatFolderId,
     ) {}
 
     public static function fromArray(array $array): ProcessChatFolderNewChats
     {
         return new static(
-            $array['chat_folder_id'],
-            $array['added_chat_ids'],
+            addedChatIds: $array['added_chat_ids'],
+            chatFolderId: $array['chat_folder_id'],
         );
     }
 
@@ -64,8 +64,8 @@ class ProcessChatFolderNewChats extends TdFunction
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'chat_folder_id' => $this->chatFolderId,
             'added_chat_ids' => $this->addedChatIds,
+            'chat_folder_id' => $this->chatFolderId,
         ];
     }
 }

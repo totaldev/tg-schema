@@ -17,6 +17,10 @@ class AgeVerificationParameters extends TdObject
 
     public function __construct(
         /**
+         * Unique name for the country or region, which legislation required age verification. May be used to get the corresponding localization key.
+         */
+        protected string $country,
+        /**
          * The minimum age required to view restricted content.
          */
         protected int    $minAge,
@@ -24,18 +28,14 @@ class AgeVerificationParameters extends TdObject
          * Username of the bot which main Web App may be used to verify age of the user.
          */
         protected string $verificationBotUsername,
-        /**
-         * Unique name for the country or region, which legislation required age verification. May be used to get the corresponding localization key.
-         */
-        protected string $country,
     ) {}
 
     public static function fromArray(array $array): AgeVerificationParameters
     {
         return new static(
-            $array['min_age'],
-            $array['verification_bot_username'],
-            $array['country'],
+            country                : $array['country'],
+            minAge                 : $array['min_age'],
+            verificationBotUsername: $array['verification_bot_username'],
         );
     }
 
@@ -79,9 +79,9 @@ class AgeVerificationParameters extends TdObject
     {
         return [
             '@type'                     => static::TYPE_NAME,
+            'country'                   => $this->country,
             'min_age'                   => $this->minAge,
             'verification_bot_username' => $this->verificationBotUsername,
-            'country'                   => $this->country,
         ];
     }
 }

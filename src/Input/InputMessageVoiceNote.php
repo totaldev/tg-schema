@@ -19,13 +19,13 @@ class InputMessageVoiceNote extends InputMessageContent
 
     public function __construct(
         /**
-         * Voice note to be sent. The voice note must be encoded with the Opus codec and stored inside an OGG container with a single audio channel, or be in MP3 or M4A format as regular audio.
-         */
-        protected InputFile                $voiceNote,
-        /**
          * Duration of the voice note, in seconds.
          */
         protected int                      $duration,
+        /**
+         * Voice note to be sent. The voice note must be encoded with the Opus codec and stored inside an OGG container with a single audio channel, or be in MP3 or M4A format as regular audio.
+         */
+        protected InputFile                $voiceNote,
         /**
          * Waveform representation of the voice note in 5-bit format.
          */
@@ -45,11 +45,11 @@ class InputMessageVoiceNote extends InputMessageContent
     public static function fromArray(array $array): InputMessageVoiceNote
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['voice_note']),
-            $array['duration'],
-            $array['waveform'],
-            isset($array['caption']) ? TdSchemaRegistry::fromArray($array['caption']) : null,
-            isset($array['self_destruct_type']) ? TdSchemaRegistry::fromArray($array['self_destruct_type']) : null,
+            caption         : (isset($array['caption']) ? TdSchemaRegistry::fromArray($array['caption']) : null),
+            duration        : $array['duration'],
+            selfDestructType: (isset($array['self_destruct_type']) ? TdSchemaRegistry::fromArray($array['self_destruct_type']) : null),
+            voiceNote       : TdSchemaRegistry::fromArray($array['voice_note']),
+            waveform        : $array['waveform'],
         );
     }
 
@@ -117,11 +117,11 @@ class InputMessageVoiceNote extends InputMessageContent
     {
         return [
             '@type'              => static::TYPE_NAME,
-            'voice_note'         => $this->voiceNote->typeSerialize(),
+            'caption'            => (null !== $this->caption ? $this->caption->jsonSerialize() : null),
             'duration'           => $this->duration,
+            'self_destruct_type' => (null !== $this->selfDestructType ? $this->selfDestructType->jsonSerialize() : null),
+            'voice_note'         => $this->voiceNote->jsonSerialize(),
             'waveform'           => $this->waveform,
-            'caption'            => $this->caption ?? null,
-            'self_destruct_type' => $this->selfDestructType ?? null,
         ];
     }
 }

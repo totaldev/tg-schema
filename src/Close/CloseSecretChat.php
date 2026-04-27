@@ -25,7 +25,7 @@ class CloseSecretChat extends TdFunction
     public static function fromArray(array $array): CloseSecretChat
     {
         return new static(
-            $array['secret_chat_id'],
+            secretChatId: $array['secret_chat_id'],
         );
     }
 

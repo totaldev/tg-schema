@@ -25,7 +25,7 @@ class ChatActionWatchingAnimations extends ChatAction
     public static function fromArray(array $array): ChatActionWatchingAnimations
     {
         return new static(
-            $array['emoji'],
+            emoji: $array['emoji'],
         );
     }
 

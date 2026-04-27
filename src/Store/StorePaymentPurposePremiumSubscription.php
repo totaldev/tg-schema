@@ -29,8 +29,8 @@ class StorePaymentPurposePremiumSubscription extends StorePaymentPurpose
     public static function fromArray(array $array): StorePaymentPurposePremiumSubscription
     {
         return new static(
-            $array['is_restore'],
-            $array['is_upgrade'],
+            isRestore: $array['is_restore'],
+            isUpgrade: $array['is_upgrade'],
         );
     }
 

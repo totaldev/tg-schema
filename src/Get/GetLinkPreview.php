@@ -32,8 +32,8 @@ class GetLinkPreview extends TdFunction
     public static function fromArray(array $array): GetLinkPreview
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['text']),
-            isset($array['link_preview_options']) ? TdSchemaRegistry::fromArray($array['link_preview_options']) : null,
+            linkPreviewOptions: (isset($array['link_preview_options']) ? TdSchemaRegistry::fromArray($array['link_preview_options']) : null),
+            text              : TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -65,8 +65,8 @@ class GetLinkPreview extends TdFunction
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'text'                 => $this->text->typeSerialize(),
-            'link_preview_options' => $this->linkPreviewOptions ?? null,
+            'link_preview_options' => (null !== $this->linkPreviewOptions ? $this->linkPreviewOptions->jsonSerialize() : null),
+            'text'                 => $this->text->jsonSerialize(),
         ];
     }
 }

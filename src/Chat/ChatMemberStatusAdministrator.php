@@ -18,13 +18,13 @@ class ChatMemberStatusAdministrator extends ChatMemberStatus
 
     public function __construct(
         /**
-         * A custom title of the administrator; 0-16 characters without emoji; applicable to supergroups only.
-         */
-        protected string                  $customTitle,
-        /**
          * True, if the current user can edit the administrator privileges for the called user.
          */
         protected bool                    $canBeEdited,
+        /**
+         * A custom title of the administrator; 0-16 characters without emoji; applicable to supergroups only.
+         */
+        protected string                  $customTitle,
         /**
          * Rights of the administrator.
          */
@@ -36,9 +36,9 @@ class ChatMemberStatusAdministrator extends ChatMemberStatus
     public static function fromArray(array $array): ChatMemberStatusAdministrator
     {
         return new static(
-            $array['custom_title'],
-            $array['can_be_edited'],
-            TdSchemaRegistry::fromArray($array['rights']),
+            canBeEdited: $array['can_be_edited'],
+            customTitle: $array['custom_title'],
+            rights     : TdSchemaRegistry::fromArray($array['rights']),
         );
     }
 
@@ -82,9 +82,9 @@ class ChatMemberStatusAdministrator extends ChatMemberStatus
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'custom_title'  => $this->customTitle,
             'can_be_edited' => $this->canBeEdited,
-            'rights'        => $this->rights->typeSerialize(),
+            'custom_title'  => $this->customTitle,
+            'rights'        => $this->rights->jsonSerialize(),
         ];
     }
 }

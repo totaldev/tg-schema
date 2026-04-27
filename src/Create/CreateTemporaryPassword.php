@@ -29,8 +29,8 @@ class CreateTemporaryPassword extends TdFunction
     public static function fromArray(array $array): CreateTemporaryPassword
     {
         return new static(
-            $array['password'],
-            $array['valid_for'],
+            password: $array['password'],
+            validFor: $array['valid_for'],
         );
     }
 

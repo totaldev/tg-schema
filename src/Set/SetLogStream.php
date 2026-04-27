@@ -27,7 +27,7 @@ class SetLogStream extends TdFunction
     public static function fromArray(array $array): SetLogStream
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['log_stream']),
+            logStream: TdSchemaRegistry::fromArray($array['log_stream']),
         );
     }
 
@@ -47,7 +47,7 @@ class SetLogStream extends TdFunction
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'log_stream' => $this->logStream->typeSerialize(),
+            'log_stream' => $this->logStream->jsonSerialize(),
         ];
     }
 }

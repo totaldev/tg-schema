@@ -19,30 +19,30 @@ class EmojiCategory extends TdObject
 
     public function __construct(
         /**
-         * Name of the category.
-         */
-        protected string              $name,
-        /**
          * Custom emoji sticker, which represents icon of the category.
          */
         protected Sticker             $icon,
         /**
-         * Source of stickers for the emoji category.
-         */
-        protected EmojiCategorySource $source,
-        /**
          * True, if the category must be shown first when choosing a sticker for the start page.
          */
         protected bool                $isGreeting,
+        /**
+         * Name of the category.
+         */
+        protected string              $name,
+        /**
+         * Source of stickers for the emoji category.
+         */
+        protected EmojiCategorySource $source,
     ) {}
 
     public static function fromArray(array $array): EmojiCategory
     {
         return new static(
-            $array['name'],
-            TdSchemaRegistry::fromArray($array['icon']),
-            TdSchemaRegistry::fromArray($array['source']),
-            $array['is_greeting'],
+            icon      : TdSchemaRegistry::fromArray($array['icon']),
+            isGreeting: $array['is_greeting'],
+            name      : $array['name'],
+            source    : TdSchemaRegistry::fromArray($array['source']),
         );
     }
 
@@ -98,10 +98,10 @@ class EmojiCategory extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'name'        => $this->name,
-            'icon'        => $this->icon->typeSerialize(),
-            'source'      => $this->source->typeSerialize(),
+            'icon'        => $this->icon->jsonSerialize(),
             'is_greeting' => $this->isGreeting,
+            'name'        => $this->name,
+            'source'      => $this->source->jsonSerialize(),
         ];
     }
 }

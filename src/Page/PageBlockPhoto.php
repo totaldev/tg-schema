@@ -18,13 +18,13 @@ class PageBlockPhoto extends PageBlock
 
     public function __construct(
         /**
-         * Photo file; may be null.
-         */
-        protected ?Photo           $photo,
-        /**
          * Photo caption.
          */
         protected PageBlockCaption $caption,
+        /**
+         * Photo file; may be null.
+         */
+        protected ?Photo           $photo,
         /**
          * URL that needs to be opened when the photo is clicked.
          */
@@ -36,9 +36,9 @@ class PageBlockPhoto extends PageBlock
     public static function fromArray(array $array): PageBlockPhoto
     {
         return new static(
-            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
-            TdSchemaRegistry::fromArray($array['caption']),
-            $array['url'],
+            caption: TdSchemaRegistry::fromArray($array['caption']),
+            photo  : (isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null),
+            url    : $array['url'],
         );
     }
 
@@ -82,8 +82,8 @@ class PageBlockPhoto extends PageBlock
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'photo'   => $this->photo ?? null,
-            'caption' => $this->caption->typeSerialize(),
+            'caption' => $this->caption->jsonSerialize(),
+            'photo'   => (null !== $this->photo ? $this->photo->jsonSerialize() : null),
             'url'     => $this->url,
         ];
     }

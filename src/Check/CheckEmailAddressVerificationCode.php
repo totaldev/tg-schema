@@ -25,7 +25,7 @@ class CheckEmailAddressVerificationCode extends TdFunction
     public static function fromArray(array $array): CheckEmailAddressVerificationCode
     {
         return new static(
-            $array['code'],
+            code: $array['code'],
         );
     }
 

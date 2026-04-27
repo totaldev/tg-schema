@@ -20,20 +20,20 @@ class AssignStoreTransaction extends TdFunction
 
     public function __construct(
         /**
-         * Information about the transaction.
-         */
-        protected StoreTransaction    $transaction,
-        /**
          * Transaction purpose.
          */
         protected StorePaymentPurpose $purpose,
+        /**
+         * Information about the transaction.
+         */
+        protected StoreTransaction    $transaction,
     ) {}
 
     public static function fromArray(array $array): AssignStoreTransaction
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['transaction']),
-            TdSchemaRegistry::fromArray($array['purpose']),
+            purpose    : TdSchemaRegistry::fromArray($array['purpose']),
+            transaction: TdSchemaRegistry::fromArray($array['transaction']),
         );
     }
 
@@ -65,8 +65,8 @@ class AssignStoreTransaction extends TdFunction
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'transaction' => $this->transaction->typeSerialize(),
-            'purpose'     => $this->purpose->typeSerialize(),
+            'purpose'     => $this->purpose->jsonSerialize(),
+            'transaction' => $this->transaction->jsonSerialize(),
         ];
     }
 }

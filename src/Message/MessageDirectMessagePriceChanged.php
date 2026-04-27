@@ -29,8 +29,8 @@ class MessageDirectMessagePriceChanged extends MessageContent
     public static function fromArray(array $array): MessageDirectMessagePriceChanged
     {
         return new static(
-            $array['is_enabled'],
-            $array['paid_message_star_count'],
+            isEnabled           : $array['is_enabled'],
+            paidMessageStarCount: $array['paid_message_star_count'],
         );
     }
 

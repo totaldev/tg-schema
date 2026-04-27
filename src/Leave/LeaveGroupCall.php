@@ -25,7 +25,7 @@ class LeaveGroupCall extends TdFunction
     public static function fromArray(array $array): LeaveGroupCall
     {
         return new static(
-            $array['group_call_id'],
+            groupCallId: $array['group_call_id'],
         );
     }
 

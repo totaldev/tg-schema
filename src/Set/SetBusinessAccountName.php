@@ -33,9 +33,9 @@ class SetBusinessAccountName extends TdFunction
     public static function fromArray(array $array): SetBusinessAccountName
     {
         return new static(
-            $array['business_connection_id'],
-            $array['first_name'],
-            $array['last_name'],
+            businessConnectionId: $array['business_connection_id'],
+            firstName           : $array['first_name'],
+            lastName            : $array['last_name'],
         );
     }
 

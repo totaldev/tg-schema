@@ -25,7 +25,7 @@ class MessageChatChangeTitle extends MessageContent
     public static function fromArray(array $array): MessageChatChangeTitle
     {
         return new static(
-            $array['title'],
+            title: $array['title'],
         );
     }
 

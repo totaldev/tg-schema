@@ -18,6 +18,10 @@ class WriteGeneratedFilePart extends TdFunction
 
     public function __construct(
         /**
+         * The data to write.
+         */
+        protected string $data,
+        /**
          * The identifier of the generation process.
          */
         protected int    $generationId,
@@ -25,18 +29,14 @@ class WriteGeneratedFilePart extends TdFunction
          * The offset from which to write the data to the file.
          */
         protected int    $offset,
-        /**
-         * The data to write.
-         */
-        protected string $data,
     ) {}
 
     public static function fromArray(array $array): WriteGeneratedFilePart
     {
         return new static(
-            $array['generation_id'],
-            $array['offset'],
-            $array['data'],
+            data        : $array['data'],
+            generationId: $array['generation_id'],
+            offset      : $array['offset'],
         );
     }
 
@@ -80,9 +80,9 @@ class WriteGeneratedFilePart extends TdFunction
     {
         return [
             '@type'         => static::TYPE_NAME,
+            'data'          => $this->data,
             'generation_id' => $this->generationId,
             'offset'        => $this->offset,
-            'data'          => $this->data,
         ];
     }
 }

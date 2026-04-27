@@ -20,6 +20,10 @@ class UpdateMessageSendFailed extends Update
 
     public function __construct(
         /**
+         * The cause of the message sending failure.
+         */
+        protected Error   $error,
+        /**
          * The failed to send message.
          */
         protected Message $message,
@@ -27,10 +31,6 @@ class UpdateMessageSendFailed extends Update
          * The previous temporary message identifier.
          */
         protected int     $oldMessageId,
-        /**
-         * The cause of the message sending failure.
-         */
-        protected Error   $error,
     ) {
         parent::__construct();
     }
@@ -38,9 +38,9 @@ class UpdateMessageSendFailed extends Update
     public static function fromArray(array $array): UpdateMessageSendFailed
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['message']),
-            $array['old_message_id'],
-            TdSchemaRegistry::fromArray($array['error']),
+            error       : TdSchemaRegistry::fromArray($array['error']),
+            message     : TdSchemaRegistry::fromArray($array['message']),
+            oldMessageId: $array['old_message_id'],
         );
     }
 
@@ -84,9 +84,9 @@ class UpdateMessageSendFailed extends Update
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'message'        => $this->message->typeSerialize(),
+            'error'          => $this->error->jsonSerialize(),
+            'message'        => $this->message->jsonSerialize(),
             'old_message_id' => $this->oldMessageId,
-            'error'          => $this->error->typeSerialize(),
         ];
     }
 }

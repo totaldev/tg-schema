@@ -25,7 +25,7 @@ class TMeUrlTypeUser extends TMeUrlType
     public static function fromArray(array $array): TMeUrlTypeUser
     {
         return new static(
-            $array['user_id'],
+            userId: $array['user_id'],
         );
     }
 

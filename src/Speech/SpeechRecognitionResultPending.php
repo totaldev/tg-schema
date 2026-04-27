@@ -25,7 +25,7 @@ class SpeechRecognitionResultPending extends SpeechRecognitionResult
     public static function fromArray(array $array): SpeechRecognitionResultPending
     {
         return new static(
-            $array['partial_text'],
+            partialText: $array['partial_text'],
         );
     }
 

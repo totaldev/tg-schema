@@ -15,9 +15,13 @@ class PushMessageContentMediaAlbum extends PushMessageContent
 
     public function __construct(
         /**
-         * Number of messages in the album.
+         * True, if the album has at least one audio file.
          */
-        protected int  $totalCount,
+        protected bool $hasAudios,
+        /**
+         * True, if the album has at least one document.
+         */
+        protected bool $hasDocuments,
         /**
          * True, if the album has at least one photo.
          */
@@ -27,13 +31,9 @@ class PushMessageContentMediaAlbum extends PushMessageContent
          */
         protected bool $hasVideos,
         /**
-         * True, if the album has at least one audio file.
+         * Number of messages in the album.
          */
-        protected bool $hasAudios,
-        /**
-         * True, if the album has at least one document.
-         */
-        protected bool $hasDocuments,
+        protected int  $totalCount,
     ) {
         parent::__construct();
     }
@@ -41,11 +41,11 @@ class PushMessageContentMediaAlbum extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentMediaAlbum
     {
         return new static(
-            $array['total_count'],
-            $array['has_photos'],
-            $array['has_videos'],
-            $array['has_audios'],
-            $array['has_documents'],
+            hasAudios   : $array['has_audios'],
+            hasDocuments: $array['has_documents'],
+            hasPhotos   : $array['has_photos'],
+            hasVideos   : $array['has_videos'],
+            totalCount  : $array['total_count'],
         );
     }
 
@@ -113,11 +113,11 @@ class PushMessageContentMediaAlbum extends PushMessageContent
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'total_count'   => $this->totalCount,
-            'has_photos'    => $this->hasPhotos,
-            'has_videos'    => $this->hasVideos,
             'has_audios'    => $this->hasAudios,
             'has_documents' => $this->hasDocuments,
+            'has_photos'    => $this->hasPhotos,
+            'has_videos'    => $this->hasVideos,
+            'total_count'   => $this->totalCount,
         ];
     }
 }

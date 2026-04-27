@@ -29,8 +29,8 @@ class StarTransactionTypeAffiliateProgramCommission extends StarTransactionType
     public static function fromArray(array $array): StarTransactionTypeAffiliateProgramCommission
     {
         return new static(
-            $array['chat_id'],
-            $array['commission_per_mille'],
+            chatId            : $array['chat_id'],
+            commissionPerMille: $array['commission_per_mille'],
         );
     }
 

@@ -32,8 +32,8 @@ class UpdateChatNotificationSettings extends Update
     public static function fromArray(array $array): UpdateChatNotificationSettings
     {
         return new static(
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['notification_settings']),
+            chatId              : $array['chat_id'],
+            notificationSettings: TdSchemaRegistry::fromArray($array['notification_settings']),
         );
     }
 
@@ -66,7 +66,7 @@ class UpdateChatNotificationSettings extends Update
         return [
             '@type'                 => static::TYPE_NAME,
             'chat_id'               => $this->chatId,
-            'notification_settings' => $this->notificationSettings->typeSerialize(),
+            'notification_settings' => $this->notificationSettings->jsonSerialize(),
         ];
     }
 }

@@ -17,6 +17,20 @@ class CallProtocol extends TdObject
 
     public function __construct(
         /**
+         * List of supported tgcalls versions.
+         *
+         * @var string[]
+         */
+        protected array $libraryVersions,
+        /**
+         * The maximum supported API layer; use 92.
+         */
+        protected int   $maxLayer,
+        /**
+         * The minimum supported API layer; use 65.
+         */
+        protected int   $minLayer,
+        /**
          * True, if UDP peer-to-peer connections are supported.
          */
         protected bool  $udpP2p,
@@ -24,30 +38,16 @@ class CallProtocol extends TdObject
          * True, if connection through UDP reflectors is supported.
          */
         protected bool  $udpReflector,
-        /**
-         * The minimum supported API layer; use 65.
-         */
-        protected int   $minLayer,
-        /**
-         * The maximum supported API layer; use 92.
-         */
-        protected int   $maxLayer,
-        /**
-         * List of supported tgcalls versions.
-         *
-         * @var string[]
-         */
-        protected array $libraryVersions,
     ) {}
 
     public static function fromArray(array $array): CallProtocol
     {
         return new static(
-            $array['udp_p2p'],
-            $array['udp_reflector'],
-            $array['min_layer'],
-            $array['max_layer'],
-            $array['library_versions'],
+            libraryVersions: $array['library_versions'],
+            maxLayer       : $array['max_layer'],
+            minLayer       : $array['min_layer'],
+            udpP2p         : $array['udp_p2p'],
+            udpReflector   : $array['udp_reflector'],
         );
     }
 
@@ -115,11 +115,11 @@ class CallProtocol extends TdObject
     {
         return [
             '@type'            => static::TYPE_NAME,
+            'library_versions' => $this->libraryVersions,
+            'max_layer'        => $this->maxLayer,
+            'min_layer'        => $this->minLayer,
             'udp_p2p'          => $this->udpP2p,
             'udp_reflector'    => $this->udpReflector,
-            'min_layer'        => $this->minLayer,
-            'max_layer'        => $this->maxLayer,
-            'library_versions' => $this->libraryVersions,
         ];
     }
 }

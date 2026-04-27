@@ -19,17 +19,9 @@ class ConnectedAffiliateProgram extends TdObject
 
     public function __construct(
         /**
-         * The link that can be used to refer users if the program is still active.
-         */
-        protected string                     $url,
-        /**
          * User identifier of the bot created the program.
          */
         protected int                        $botUserId,
-        /**
-         * The parameters of the affiliate program.
-         */
-        protected AffiliateProgramParameters $parameters,
         /**
          * Point in time (Unix timestamp) when the affiliate program was connected.
          */
@@ -39,25 +31,33 @@ class ConnectedAffiliateProgram extends TdObject
          */
         protected bool                       $isDisconnected,
         /**
-         * The number of users that used the affiliate program.
+         * The parameters of the affiliate program.
          */
-        protected int                        $userCount,
+        protected AffiliateProgramParameters $parameters,
         /**
          * The number of Telegram Stars that were earned by the affiliate program.
          */
         protected int                        $revenueStarCount,
+        /**
+         * The link that can be used to refer users if the program is still active.
+         */
+        protected string                     $url,
+        /**
+         * The number of users that used the affiliate program.
+         */
+        protected int                        $userCount,
     ) {}
 
     public static function fromArray(array $array): ConnectedAffiliateProgram
     {
         return new static(
-            $array['url'],
-            $array['bot_user_id'],
-            TdSchemaRegistry::fromArray($array['parameters']),
-            $array['connection_date'],
-            $array['is_disconnected'],
-            $array['user_count'],
-            $array['revenue_star_count'],
+            botUserId       : $array['bot_user_id'],
+            connectionDate  : $array['connection_date'],
+            isDisconnected  : $array['is_disconnected'],
+            parameters      : TdSchemaRegistry::fromArray($array['parameters']),
+            revenueStarCount: $array['revenue_star_count'],
+            url             : $array['url'],
+            userCount       : $array['user_count'],
         );
     }
 
@@ -149,13 +149,13 @@ class ConnectedAffiliateProgram extends TdObject
     {
         return [
             '@type'              => static::TYPE_NAME,
-            'url'                => $this->url,
             'bot_user_id'        => $this->botUserId,
-            'parameters'         => $this->parameters->typeSerialize(),
             'connection_date'    => $this->connectionDate,
             'is_disconnected'    => $this->isDisconnected,
-            'user_count'         => $this->userCount,
+            'parameters'         => $this->parameters->jsonSerialize(),
             'revenue_star_count' => $this->revenueStarCount,
+            'url'                => $this->url,
+            'user_count'         => $this->userCount,
         ];
     }
 }

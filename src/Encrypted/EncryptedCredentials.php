@@ -33,9 +33,9 @@ class EncryptedCredentials extends TdObject
     public static function fromArray(array $array): EncryptedCredentials
     {
         return new static(
-            $array['data'],
-            $array['hash'],
-            $array['secret'],
+            data  : $array['data'],
+            hash  : $array['hash'],
+            secret: $array['secret'],
         );
     }
 

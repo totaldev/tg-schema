@@ -18,25 +18,25 @@ class MessageDice extends MessageContent
 
     public function __construct(
         /**
-         * The animated stickers with the initial dice animation; may be null if unknown. The update updateMessageContent will be sent when the sticker became known.
+         * Emoji on which the dice throw animation is based.
          */
-        protected ?DiceStickers $initialState,
+        protected string        $emoji,
         /**
          * The animated stickers with the final dice animation; may be null if unknown. The update updateMessageContent will be sent when the sticker became known.
          */
         protected ?DiceStickers $finalState,
         /**
-         * Emoji on which the dice throw animation is based.
+         * The animated stickers with the initial dice animation; may be null if unknown. The update updateMessageContent will be sent when the sticker became known.
          */
-        protected string        $emoji,
-        /**
-         * The dice value. If the value is 0, the dice don't have final state yet.
-         */
-        protected int           $value,
+        protected ?DiceStickers $initialState,
         /**
          * Number of frame after which a success animation like a shower of confetti needs to be shown on updateMessageSendSucceeded.
          */
         protected int           $successAnimationFrameNumber,
+        /**
+         * The dice value. If the value is 0, the dice don't have final state yet.
+         */
+        protected int           $value,
     ) {
         parent::__construct();
     }
@@ -44,11 +44,11 @@ class MessageDice extends MessageContent
     public static function fromArray(array $array): MessageDice
     {
         return new static(
-            isset($array['initial_state']) ? TdSchemaRegistry::fromArray($array['initial_state']) : null,
-            isset($array['final_state']) ? TdSchemaRegistry::fromArray($array['final_state']) : null,
-            $array['emoji'],
-            $array['value'],
-            $array['success_animation_frame_number'],
+            emoji                      : $array['emoji'],
+            finalState                 : (isset($array['final_state']) ? TdSchemaRegistry::fromArray($array['final_state']) : null),
+            initialState               : (isset($array['initial_state']) ? TdSchemaRegistry::fromArray($array['initial_state']) : null),
+            successAnimationFrameNumber: $array['success_animation_frame_number'],
+            value                      : $array['value'],
         );
     }
 
@@ -116,11 +116,11 @@ class MessageDice extends MessageContent
     {
         return [
             '@type'                          => static::TYPE_NAME,
-            'initial_state'                  => $this->initialState ?? null,
-            'final_state'                    => $this->finalState ?? null,
             'emoji'                          => $this->emoji,
-            'value'                          => $this->value,
+            'final_state'                    => (null !== $this->finalState ? $this->finalState->jsonSerialize() : null),
+            'initial_state'                  => (null !== $this->initialState ? $this->initialState->jsonSerialize() : null),
             'success_animation_frame_number' => $this->successAnimationFrameNumber,
+            'value'                          => $this->value,
         ];
     }
 }

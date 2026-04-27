@@ -27,13 +27,13 @@ class InlineQueryResultLocation extends InlineQueryResult
          */
         protected Location   $location,
         /**
-         * Title of the result.
-         */
-        protected string     $title,
-        /**
          * Result thumbnail in JPEG format; may be null.
          */
         protected ?Thumbnail $thumbnail,
+        /**
+         * Title of the result.
+         */
+        protected string     $title,
     ) {
         parent::__construct();
     }
@@ -41,10 +41,10 @@ class InlineQueryResultLocation extends InlineQueryResult
     public static function fromArray(array $array): InlineQueryResultLocation
     {
         return new static(
-            $array['id'],
-            TdSchemaRegistry::fromArray($array['location']),
-            $array['title'],
-            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
+            id       : $array['id'],
+            location : TdSchemaRegistry::fromArray($array['location']),
+            thumbnail: (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
+            title    : $array['title'],
         );
     }
 
@@ -101,9 +101,9 @@ class InlineQueryResultLocation extends InlineQueryResult
         return [
             '@type'     => static::TYPE_NAME,
             'id'        => $this->id,
-            'location'  => $this->location->typeSerialize(),
+            'location'  => $this->location->jsonSerialize(),
+            'thumbnail' => (null !== $this->thumbnail ? $this->thumbnail->jsonSerialize() : null),
             'title'     => $this->title,
-            'thumbnail' => $this->thumbnail ?? null,
         ];
     }
 }

@@ -28,7 +28,7 @@ class CallStateError extends CallState
     public static function fromArray(array $array): CallStateError
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['error']),
+            error: TdSchemaRegistry::fromArray($array['error']),
         );
     }
 
@@ -48,7 +48,7 @@ class CallStateError extends CallState
     {
         return [
             '@type' => static::TYPE_NAME,
-            'error' => $this->error->typeSerialize(),
+            'error' => $this->error->jsonSerialize(),
         ];
     }
 }

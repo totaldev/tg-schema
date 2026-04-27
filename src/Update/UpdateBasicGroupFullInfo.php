@@ -18,13 +18,13 @@ class UpdateBasicGroupFullInfo extends Update
 
     public function __construct(
         /**
-         * Identifier of a basic group.
-         */
-        protected int                $basicGroupId,
-        /**
          * New full information about the group.
          */
         protected BasicGroupFullInfo $basicGroupFullInfo,
+        /**
+         * Identifier of a basic group.
+         */
+        protected int                $basicGroupId,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class UpdateBasicGroupFullInfo extends Update
     public static function fromArray(array $array): UpdateBasicGroupFullInfo
     {
         return new static(
-            $array['basic_group_id'],
-            TdSchemaRegistry::fromArray($array['basic_group_full_info']),
+            basicGroupFullInfo: TdSchemaRegistry::fromArray($array['basic_group_full_info']),
+            basicGroupId      : $array['basic_group_id'],
         );
     }
 
@@ -65,8 +65,8 @@ class UpdateBasicGroupFullInfo extends Update
     {
         return [
             '@type'                 => static::TYPE_NAME,
+            'basic_group_full_info' => $this->basicGroupFullInfo->jsonSerialize(),
             'basic_group_id'        => $this->basicGroupId,
-            'basic_group_full_info' => $this->basicGroupFullInfo->typeSerialize(),
         ];
     }
 }

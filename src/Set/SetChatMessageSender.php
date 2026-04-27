@@ -31,8 +31,8 @@ class SetChatMessageSender extends TdFunction
     public static function fromArray(array $array): SetChatMessageSender
     {
         return new static(
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['message_sender_id']),
+            chatId         : $array['chat_id'],
+            messageSenderId: TdSchemaRegistry::fromArray($array['message_sender_id']),
         );
     }
 
@@ -65,7 +65,7 @@ class SetChatMessageSender extends TdFunction
         return [
             '@type'             => static::TYPE_NAME,
             'chat_id'           => $this->chatId,
-            'message_sender_id' => $this->messageSenderId->typeSerialize(),
+            'message_sender_id' => $this->messageSenderId->jsonSerialize(),
         ];
     }
 }

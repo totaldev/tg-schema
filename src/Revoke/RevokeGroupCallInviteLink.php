@@ -25,7 +25,7 @@ class RevokeGroupCallInviteLink extends TdFunction
     public static function fromArray(array $array): RevokeGroupCallInviteLink
     {
         return new static(
-            $array['group_call_id'],
+            groupCallId: $array['group_call_id'],
         );
     }
 

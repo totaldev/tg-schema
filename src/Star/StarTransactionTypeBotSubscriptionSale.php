@@ -19,25 +19,25 @@ class StarTransactionTypeBotSubscriptionSale extends StarTransactionType
 
     public function __construct(
         /**
-         * Identifier of the user that bought the subscription.
+         * Information about the affiliate which received commission from the transaction; may be null if none.
          */
-        protected int            $userId,
-        /**
-         * The number of seconds between consecutive Telegram Star debitings.
-         */
-        protected int            $subscriptionPeriod,
-        /**
-         * Information about the bought subscription.
-         */
-        protected ProductInfo    $productInfo,
+        protected ?AffiliateInfo $affiliate,
         /**
          * Invoice payload.
          */
         protected string         $invoicePayload,
         /**
-         * Information about the affiliate which received commission from the transaction; may be null if none.
+         * Information about the bought subscription.
          */
-        protected ?AffiliateInfo $affiliate,
+        protected ProductInfo    $productInfo,
+        /**
+         * The number of seconds between consecutive Telegram Star debitings.
+         */
+        protected int            $subscriptionPeriod,
+        /**
+         * Identifier of the user that bought the subscription.
+         */
+        protected int            $userId,
     ) {
         parent::__construct();
     }
@@ -45,11 +45,11 @@ class StarTransactionTypeBotSubscriptionSale extends StarTransactionType
     public static function fromArray(array $array): StarTransactionTypeBotSubscriptionSale
     {
         return new static(
-            $array['user_id'],
-            $array['subscription_period'],
-            TdSchemaRegistry::fromArray($array['product_info']),
-            $array['invoice_payload'],
-            isset($array['affiliate']) ? TdSchemaRegistry::fromArray($array['affiliate']) : null,
+            affiliate         : (isset($array['affiliate']) ? TdSchemaRegistry::fromArray($array['affiliate']) : null),
+            invoicePayload    : $array['invoice_payload'],
+            productInfo       : TdSchemaRegistry::fromArray($array['product_info']),
+            subscriptionPeriod: $array['subscription_period'],
+            userId            : $array['user_id'],
         );
     }
 
@@ -117,11 +117,11 @@ class StarTransactionTypeBotSubscriptionSale extends StarTransactionType
     {
         return [
             '@type'               => static::TYPE_NAME,
-            'user_id'             => $this->userId,
-            'subscription_period' => $this->subscriptionPeriod,
-            'product_info'        => $this->productInfo->typeSerialize(),
+            'affiliate'           => (null !== $this->affiliate ? $this->affiliate->jsonSerialize() : null),
             'invoice_payload'     => $this->invoicePayload,
-            'affiliate'           => $this->affiliate ?? null,
+            'product_info'        => $this->productInfo->jsonSerialize(),
+            'subscription_period' => $this->subscriptionPeriod,
+            'user_id'             => $this->userId,
         ];
     }
 }

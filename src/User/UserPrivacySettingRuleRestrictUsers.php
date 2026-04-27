@@ -27,7 +27,7 @@ class UserPrivacySettingRuleRestrictUsers extends UserPrivacySettingRule
     public static function fromArray(array $array): UserPrivacySettingRuleRestrictUsers
     {
         return new static(
-            $array['user_ids'],
+            userIds: $array['user_ids'],
         );
     }
 

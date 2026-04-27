@@ -29,8 +29,8 @@ class SetChatDescription extends TdFunction
     public static function fromArray(array $array): SetChatDescription
     {
         return new static(
-            $array['chat_id'],
-            $array['description'],
+            chatId     : $array['chat_id'],
+            description: $array['description'],
         );
     }
 

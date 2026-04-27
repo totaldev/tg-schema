@@ -19,35 +19,35 @@ class PollOption extends TdObject
 
     public function __construct(
         /**
-         * Option text; 1-100 characters. Only custom emoji entities are allowed.
+         * True, if the option is being chosen by a pending setPollAnswer request.
          */
-        protected FormattedText $text,
-        /**
-         * Number of voters for this option, available only for closed or voted polls.
-         */
-        protected int           $voterCount,
-        /**
-         * The percentage of votes for this option; 0-100.
-         */
-        protected int           $votePercentage,
+        protected bool          $isBeingChosen,
         /**
          * True, if the option was chosen by the user.
          */
         protected bool          $isChosen,
         /**
-         * True, if the option is being chosen by a pending setPollAnswer request.
+         * Option text; 1-100 characters. Only custom emoji entities are allowed.
          */
-        protected bool          $isBeingChosen,
+        protected FormattedText $text,
+        /**
+         * The percentage of votes for this option; 0-100.
+         */
+        protected int           $votePercentage,
+        /**
+         * Number of voters for this option, available only for closed or voted polls.
+         */
+        protected int           $voterCount,
     ) {}
 
     public static function fromArray(array $array): PollOption
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['text']),
-            $array['voter_count'],
-            $array['vote_percentage'],
-            $array['is_chosen'],
-            $array['is_being_chosen'],
+            isBeingChosen : $array['is_being_chosen'],
+            isChosen      : $array['is_chosen'],
+            text          : TdSchemaRegistry::fromArray($array['text']),
+            votePercentage: $array['vote_percentage'],
+            voterCount    : $array['voter_count'],
         );
     }
 
@@ -115,11 +115,11 @@ class PollOption extends TdObject
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'text'            => $this->text->typeSerialize(),
-            'voter_count'     => $this->voterCount,
-            'vote_percentage' => $this->votePercentage,
-            'is_chosen'       => $this->isChosen,
             'is_being_chosen' => $this->isBeingChosen,
+            'is_chosen'       => $this->isChosen,
+            'text'            => $this->text->jsonSerialize(),
+            'vote_percentage' => $this->votePercentage,
+            'voter_count'     => $this->voterCount,
         ];
     }
 }

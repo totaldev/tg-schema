@@ -25,7 +25,7 @@ class CheckPasswordRecoveryCode extends TdFunction
     public static function fromArray(array $array): CheckPasswordRecoveryCode
     {
         return new static(
-            $array['recovery_code'],
+            recoveryCode: $array['recovery_code'],
         );
     }
 

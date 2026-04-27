@@ -18,21 +18,21 @@ class TonTransaction extends TdObject
 
     public function __construct(
         /**
+         * Point in time (Unix timestamp) when the transaction was completed.
+         */
+        protected int                $date,
+        /**
          * Unique identifier of the transaction.
          */
         protected string             $id,
-        /**
-         * The amount of added owned Toncoins; negative for outgoing transactions.
-         */
-        protected int                $tonAmount,
         /**
          * True, if the transaction is a refund of a previous transaction.
          */
         protected bool               $isRefund,
         /**
-         * Point in time (Unix timestamp) when the transaction was completed.
+         * The amount of added owned Toncoins; negative for outgoing transactions.
          */
-        protected int                $date,
+        protected int                $tonAmount,
         /**
          * Type of the transaction.
          */
@@ -42,11 +42,11 @@ class TonTransaction extends TdObject
     public static function fromArray(array $array): TonTransaction
     {
         return new static(
-            $array['id'],
-            $array['ton_amount'],
-            $array['is_refund'],
-            $array['date'],
-            TdSchemaRegistry::fromArray($array['type']),
+            date     : $array['date'],
+            id       : $array['id'],
+            isRefund : $array['is_refund'],
+            tonAmount: $array['ton_amount'],
+            type     : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -114,11 +114,11 @@ class TonTransaction extends TdObject
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'id'         => $this->id,
-            'ton_amount' => $this->tonAmount,
-            'is_refund'  => $this->isRefund,
             'date'       => $this->date,
-            'type'       => $this->type->typeSerialize(),
+            'id'         => $this->id,
+            'is_refund'  => $this->isRefund,
+            'ton_amount' => $this->tonAmount,
+            'type'       => $this->type->jsonSerialize(),
         ];
     }
 }

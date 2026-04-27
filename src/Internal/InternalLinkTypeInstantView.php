@@ -16,13 +16,13 @@ class InternalLinkTypeInstantView extends InternalLinkType
 
     public function __construct(
         /**
-         * URL to be passed to getWebPageInstantView.
-         */
-        protected string $url,
-        /**
          * An URL to open if getWebPageInstantView fails.
          */
         protected string $fallbackUrl,
+        /**
+         * URL to be passed to getWebPageInstantView.
+         */
+        protected string $url,
     ) {
         parent::__construct();
     }
@@ -30,8 +30,8 @@ class InternalLinkTypeInstantView extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeInstantView
     {
         return new static(
-            $array['url'],
-            $array['fallback_url'],
+            fallbackUrl: $array['fallback_url'],
+            url        : $array['url'],
         );
     }
 
@@ -63,8 +63,8 @@ class InternalLinkTypeInstantView extends InternalLinkType
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'url'          => $this->url,
             'fallback_url' => $this->fallbackUrl,
+            'url'          => $this->url,
         ];
     }
 }

@@ -17,13 +17,13 @@ class SetFileGenerationProgress extends TdFunction
 
     public function __construct(
         /**
-         * The identifier of the generation process.
-         */
-        protected int $generationId,
-        /**
          * Expected size of the generated file, in bytes; 0 if unknown.
          */
         protected int $expectedSize,
+        /**
+         * The identifier of the generation process.
+         */
+        protected int $generationId,
         /**
          * The number of bytes already generated.
          */
@@ -33,9 +33,9 @@ class SetFileGenerationProgress extends TdFunction
     public static function fromArray(array $array): SetFileGenerationProgress
     {
         return new static(
-            $array['generation_id'],
-            $array['expected_size'],
-            $array['local_prefix_size'],
+            expectedSize   : $array['expected_size'],
+            generationId   : $array['generation_id'],
+            localPrefixSize: $array['local_prefix_size'],
         );
     }
 
@@ -79,8 +79,8 @@ class SetFileGenerationProgress extends TdFunction
     {
         return [
             '@type'             => static::TYPE_NAME,
-            'generation_id'     => $this->generationId,
             'expected_size'     => $this->expectedSize,
+            'generation_id'     => $this->generationId,
             'local_prefix_size' => $this->localPrefixSize,
         ];
     }

@@ -23,21 +23,21 @@ class GetBlockedMessageSenders extends TdFunction
          */
         protected BlockList $blockList,
         /**
-         * Number of users and chats to skip in the result; must be non-negative.
-         */
-        protected int       $offset,
-        /**
          * The maximum number of users and chats to return; up to 100.
          */
         protected int       $limit,
+        /**
+         * Number of users and chats to skip in the result; must be non-negative.
+         */
+        protected int       $offset,
     ) {}
 
     public static function fromArray(array $array): GetBlockedMessageSenders
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['block_list']),
-            $array['offset'],
-            $array['limit'],
+            blockList: TdSchemaRegistry::fromArray($array['block_list']),
+            limit    : $array['limit'],
+            offset   : $array['offset'],
         );
     }
 
@@ -81,9 +81,9 @@ class GetBlockedMessageSenders extends TdFunction
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'block_list' => $this->blockList->typeSerialize(),
-            'offset'     => $this->offset,
+            'block_list' => $this->blockList->jsonSerialize(),
             'limit'      => $this->limit,
+            'offset'     => $this->offset,
         ];
     }
 }

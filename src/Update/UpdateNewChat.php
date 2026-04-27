@@ -29,7 +29,7 @@ class UpdateNewChat extends Update
     public static function fromArray(array $array): UpdateNewChat
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['chat']),
+            chat: TdSchemaRegistry::fromArray($array['chat']),
         );
     }
 
@@ -49,7 +49,7 @@ class UpdateNewChat extends Update
     {
         return [
             '@type' => static::TYPE_NAME,
-            'chat'  => $this->chat->typeSerialize(),
+            'chat'  => $this->chat->jsonSerialize(),
         ];
     }
 }

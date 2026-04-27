@@ -27,7 +27,7 @@ class UpdateDiceEmojis extends Update
     public static function fromArray(array $array): UpdateDiceEmojis
     {
         return new static(
-            $array['emojis'],
+            emojis: $array['emojis'],
         );
     }
 

@@ -27,7 +27,7 @@ class StoryPrivacySettingsSelectedUsers extends StoryPrivacySettings
     public static function fromArray(array $array): StoryPrivacySettingsSelectedUsers
     {
         return new static(
-            $array['user_ids'],
+            userIds: $array['user_ids'],
         );
     }
 

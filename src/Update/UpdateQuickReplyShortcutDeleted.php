@@ -25,7 +25,7 @@ class UpdateQuickReplyShortcutDeleted extends Update
     public static function fromArray(array $array): UpdateQuickReplyShortcutDeleted
     {
         return new static(
-            $array['shortcut_id'],
+            shortcutId: $array['shortcut_id'],
         );
     }
 

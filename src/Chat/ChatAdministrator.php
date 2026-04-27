@@ -17,10 +17,6 @@ class ChatAdministrator extends TdObject
 
     public function __construct(
         /**
-         * User identifier of the administrator.
-         */
-        protected int    $userId,
-        /**
          * Custom title of the administrator.
          */
         protected string $customTitle,
@@ -28,14 +24,18 @@ class ChatAdministrator extends TdObject
          * True, if the user is the owner of the chat.
          */
         protected bool   $isOwner,
+        /**
+         * User identifier of the administrator.
+         */
+        protected int    $userId,
     ) {}
 
     public static function fromArray(array $array): ChatAdministrator
     {
         return new static(
-            $array['user_id'],
-            $array['custom_title'],
-            $array['is_owner'],
+            customTitle: $array['custom_title'],
+            isOwner    : $array['is_owner'],
+            userId     : $array['user_id'],
         );
     }
 
@@ -79,9 +79,9 @@ class ChatAdministrator extends TdObject
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'user_id'      => $this->userId,
             'custom_title' => $this->customTitle,
             'is_owner'     => $this->isOwner,
+            'user_id'      => $this->userId,
         ];
     }
 }

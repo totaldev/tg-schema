@@ -25,7 +25,7 @@ class SupergroupMembersFilterBanned extends SupergroupMembersFilter
     public static function fromArray(array $array): SupergroupMembersFilterBanned
     {
         return new static(
-            $array['query'],
+            query: $array['query'],
         );
     }
 

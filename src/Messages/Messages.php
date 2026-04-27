@@ -19,22 +19,22 @@ class Messages extends TdObject
 
     public function __construct(
         /**
-         * Approximate total number of messages found.
-         */
-        protected int    $totalCount,
-        /**
          * List of messages; messages may be null.
          *
          * @var Message[]|null
          */
         protected ?array $messages,
+        /**
+         * Approximate total number of messages found.
+         */
+        protected int    $totalCount,
     ) {}
 
     public static function fromArray(array $array): Messages
     {
         return new static(
-            $array['total_count'],
-            isset($array['messages']) ? array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['messages']) : null,
+            messages  : (isset($array['messages']) ? array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['messages']) : null),
+            totalCount: $array['total_count'],
         );
     }
 
@@ -66,8 +66,8 @@ class Messages extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
+            'messages'    => (isset($this->messages) ? array_map(static fn($x) => $x->jsonSerialize(), $this->messages) : null),
             'total_count' => $this->totalCount,
-            'messages'    => (isset($this->messages) ? array_map(static fn($x) => $x->typeSerialize(), $this->messages) : null),
         ];
     }
 }

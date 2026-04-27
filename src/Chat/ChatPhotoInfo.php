@@ -20,17 +20,9 @@ class ChatPhotoInfo extends TdObject
 
     public function __construct(
         /**
-         * A small (160x160) chat photo variant in JPEG format. The file can be downloaded only before the photo is changed.
-         */
-        protected File           $small,
-        /**
          * A big (640x640) chat photo variant in JPEG format. The file can be downloaded only before the photo is changed.
          */
         protected File           $big,
-        /**
-         * Chat photo minithumbnail; may be null.
-         */
-        protected ?Minithumbnail $minithumbnail,
         /**
          * True, if the photo has animated variant.
          */
@@ -39,16 +31,24 @@ class ChatPhotoInfo extends TdObject
          * True, if the photo is visible only for the current user.
          */
         protected bool           $isPersonal,
+        /**
+         * Chat photo minithumbnail; may be null.
+         */
+        protected ?Minithumbnail $minithumbnail,
+        /**
+         * A small (160x160) chat photo variant in JPEG format. The file can be downloaded only before the photo is changed.
+         */
+        protected File           $small,
     ) {}
 
     public static function fromArray(array $array): ChatPhotoInfo
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['small']),
-            TdSchemaRegistry::fromArray($array['big']),
-            isset($array['minithumbnail']) ? TdSchemaRegistry::fromArray($array['minithumbnail']) : null,
-            $array['has_animation'],
-            $array['is_personal'],
+            big          : TdSchemaRegistry::fromArray($array['big']),
+            hasAnimation : $array['has_animation'],
+            isPersonal   : $array['is_personal'],
+            minithumbnail: (isset($array['minithumbnail']) ? TdSchemaRegistry::fromArray($array['minithumbnail']) : null),
+            small        : TdSchemaRegistry::fromArray($array['small']),
         );
     }
 
@@ -116,11 +116,11 @@ class ChatPhotoInfo extends TdObject
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'small'         => $this->small->typeSerialize(),
-            'big'           => $this->big->typeSerialize(),
-            'minithumbnail' => $this->minithumbnail ?? null,
+            'big'           => $this->big->jsonSerialize(),
             'has_animation' => $this->hasAnimation,
             'is_personal'   => $this->isPersonal,
+            'minithumbnail' => (null !== $this->minithumbnail ? $this->minithumbnail->jsonSerialize() : null),
+            'small'         => $this->small->jsonSerialize(),
         ];
     }
 }

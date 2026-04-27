@@ -19,16 +19,6 @@ class InputChecklist extends TdObject
 
     public function __construct(
         /**
-         * Title of the checklist; 1-getOption("checklist_title_length_max") characters. May contain only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities.
-         */
-        protected FormattedText $title,
-        /**
-         * List of tasks in the checklist; 1-getOption("checklist_task_count_max") tasks.
-         *
-         * @var InputChecklistTask[]
-         */
-        protected array         $tasks,
-        /**
          * True, if other users can add tasks to the list.
          */
         protected bool          $othersCanAddTasks,
@@ -36,15 +26,25 @@ class InputChecklist extends TdObject
          * True, if other users can mark tasks as done or not done.
          */
         protected bool          $othersCanMarkTasksAsDone,
+        /**
+         * List of tasks in the checklist; 1-getOption("checklist_task_count_max") tasks.
+         *
+         * @var InputChecklistTask[]
+         */
+        protected array         $tasks,
+        /**
+         * Title of the checklist; 1-getOption("checklist_title_length_max") characters. May contain only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities.
+         */
+        protected FormattedText $title,
     ) {}
 
     public static function fromArray(array $array): InputChecklist
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['title']),
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['tasks']),
-            $array['others_can_add_tasks'],
-            $array['others_can_mark_tasks_as_done'],
+            othersCanAddTasks       : $array['others_can_add_tasks'],
+            othersCanMarkTasksAsDone: $array['others_can_mark_tasks_as_done'],
+            tasks                   : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['tasks']),
+            title                   : TdSchemaRegistry::fromArray($array['title']),
         );
     }
 
@@ -100,10 +100,10 @@ class InputChecklist extends TdObject
     {
         return [
             '@type'                         => static::TYPE_NAME,
-            'title'                         => $this->title->typeSerialize(),
-            'tasks'                         => array_map(static fn($x) => $x->typeSerialize(), $this->tasks),
             'others_can_add_tasks'          => $this->othersCanAddTasks,
             'others_can_mark_tasks_as_done' => $this->othersCanMarkTasksAsDone,
+            'tasks'                         => array_map(static fn($x) => $x->jsonSerialize(), $this->tasks),
+            'title'                         => $this->title->jsonSerialize(),
         ];
     }
 }

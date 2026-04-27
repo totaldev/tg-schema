@@ -25,7 +25,7 @@ class GetChatActiveStories extends TdFunction
     public static function fromArray(array $array): GetChatActiveStories
     {
         return new static(
-            $array['chat_id'],
+            chatId: $array['chat_id'],
         );
     }
 

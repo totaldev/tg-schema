@@ -19,10 +19,6 @@ class AddContact extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the user.
-         */
-        protected int             $userId,
-        /**
          * The contact to add or edit; phone number may be empty and needs to be specified only if known.
          */
         protected ImportedContact $contact,
@@ -30,14 +26,18 @@ class AddContact extends TdFunction
          * Pass true to share the current user's phone number with the new contact. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed. Use the field userFullInfo.need_phone_number_privacy_exception to check whether the current user needs to be asked to share their phone number.
          */
         protected bool            $sharePhoneNumber,
+        /**
+         * Identifier of the user.
+         */
+        protected int             $userId,
     ) {}
 
     public static function fromArray(array $array): AddContact
     {
         return new static(
-            $array['user_id'],
-            TdSchemaRegistry::fromArray($array['contact']),
-            $array['share_phone_number'],
+            contact         : TdSchemaRegistry::fromArray($array['contact']),
+            sharePhoneNumber: $array['share_phone_number'],
+            userId          : $array['user_id'],
         );
     }
 
@@ -81,9 +81,9 @@ class AddContact extends TdFunction
     {
         return [
             '@type'              => static::TYPE_NAME,
-            'user_id'            => $this->userId,
-            'contact'            => $this->contact->typeSerialize(),
+            'contact'            => $this->contact->jsonSerialize(),
             'share_phone_number' => $this->sharePhoneNumber,
+            'user_id'            => $this->userId,
         ];
     }
 }

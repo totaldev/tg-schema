@@ -19,13 +19,13 @@ class UpdateMessageIsPinned extends Update
          */
         protected int  $chatId,
         /**
-         * The message identifier.
-         */
-        protected int  $messageId,
-        /**
          * True, if the message is pinned.
          */
         protected bool $isPinned,
+        /**
+         * The message identifier.
+         */
+        protected int  $messageId,
     ) {
         parent::__construct();
     }
@@ -33,9 +33,9 @@ class UpdateMessageIsPinned extends Update
     public static function fromArray(array $array): UpdateMessageIsPinned
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            $array['is_pinned'],
+            chatId   : $array['chat_id'],
+            isPinned : $array['is_pinned'],
+            messageId: $array['message_id'],
         );
     }
 
@@ -80,8 +80,8 @@ class UpdateMessageIsPinned extends Update
         return [
             '@type'      => static::TYPE_NAME,
             'chat_id'    => $this->chatId,
-            'message_id' => $this->messageId,
             'is_pinned'  => $this->isPinned,
+            'message_id' => $this->messageId,
         ];
     }
 }

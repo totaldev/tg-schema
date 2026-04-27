@@ -22,14 +22,6 @@ class GetMessageLink extends TdFunction
          */
         protected int  $chatId,
         /**
-         * Identifier of the message.
-         */
-        protected int  $messageId,
-        /**
-         * If not 0, timestamp from which the video/audio/video note/voice note/story playing must start, in seconds. The media can be in the message content or in its link preview.
-         */
-        protected int  $mediaTimestamp,
-        /**
          * Pass true to create a link for the whole media album.
          */
         protected bool $forAlbum,
@@ -37,16 +29,24 @@ class GetMessageLink extends TdFunction
          * Pass true to create a link to the message as a channel post comment, in a message thread, or a forum topic.
          */
         protected bool $inMessageThread,
+        /**
+         * If not 0, timestamp from which the video/audio/video note/voice note/story playing must start, in seconds. The media can be in the message content or in its link preview.
+         */
+        protected int  $mediaTimestamp,
+        /**
+         * Identifier of the message.
+         */
+        protected int  $messageId,
     ) {}
 
     public static function fromArray(array $array): GetMessageLink
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            $array['media_timestamp'],
-            $array['for_album'],
-            $array['in_message_thread'],
+            chatId         : $array['chat_id'],
+            forAlbum       : $array['for_album'],
+            inMessageThread: $array['in_message_thread'],
+            mediaTimestamp : $array['media_timestamp'],
+            messageId      : $array['message_id'],
         );
     }
 
@@ -115,10 +115,10 @@ class GetMessageLink extends TdFunction
         return [
             '@type'             => static::TYPE_NAME,
             'chat_id'           => $this->chatId,
-            'message_id'        => $this->messageId,
-            'media_timestamp'   => $this->mediaTimestamp,
             'for_album'         => $this->forAlbum,
             'in_message_thread' => $this->inMessageThread,
+            'media_timestamp'   => $this->mediaTimestamp,
+            'message_id'        => $this->messageId,
         ];
     }
 }

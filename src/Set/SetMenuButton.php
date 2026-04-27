@@ -19,20 +19,20 @@ class SetMenuButton extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the user or 0 to set menu button for all users.
-         */
-        protected int           $userId,
-        /**
          * New menu button.
          */
         protected BotMenuButton $menuButton,
+        /**
+         * Identifier of the user or 0 to set menu button for all users.
+         */
+        protected int           $userId,
     ) {}
 
     public static function fromArray(array $array): SetMenuButton
     {
         return new static(
-            $array['user_id'],
-            TdSchemaRegistry::fromArray($array['menu_button']),
+            menuButton: TdSchemaRegistry::fromArray($array['menu_button']),
+            userId    : $array['user_id'],
         );
     }
 
@@ -64,8 +64,8 @@ class SetMenuButton extends TdFunction
     {
         return [
             '@type'       => static::TYPE_NAME,
+            'menu_button' => $this->menuButton->jsonSerialize(),
             'user_id'     => $this->userId,
-            'menu_button' => $this->menuButton->typeSerialize(),
         ];
     }
 }

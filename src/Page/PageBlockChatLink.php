@@ -18,17 +18,17 @@ class PageBlockChatLink extends PageBlock
 
     public function __construct(
         /**
-         * Chat title.
+         * Identifier of the accent color for chat title and background of chat photo.
          */
-        protected string         $title,
+        protected int            $accentColorId,
         /**
          * Chat photo; may be null.
          */
         protected ?ChatPhotoInfo $photo,
         /**
-         * Identifier of the accent color for chat title and background of chat photo.
+         * Chat title.
          */
-        protected int            $accentColorId,
+        protected string         $title,
         /**
          * Chat username by which all other information about the chat can be resolved.
          */
@@ -40,10 +40,10 @@ class PageBlockChatLink extends PageBlock
     public static function fromArray(array $array): PageBlockChatLink
     {
         return new static(
-            $array['title'],
-            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
-            $array['accent_color_id'],
-            $array['username'],
+            accentColorId: $array['accent_color_id'],
+            photo        : (isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null),
+            title        : $array['title'],
+            username     : $array['username'],
         );
     }
 
@@ -99,9 +99,9 @@ class PageBlockChatLink extends PageBlock
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'title'           => $this->title,
-            'photo'           => $this->photo ?? null,
             'accent_color_id' => $this->accentColorId,
+            'photo'           => (null !== $this->photo ? $this->photo->jsonSerialize() : null),
+            'title'           => $this->title,
             'username'        => $this->username,
         ];
     }

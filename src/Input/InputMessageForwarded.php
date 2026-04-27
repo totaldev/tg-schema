@@ -22,21 +22,21 @@ class InputMessageForwarded extends InputMessageContent
          */
         protected int                 $fromChatId,
         /**
-         * Identifier of the message to forward. A message can be forwarded only if messageProperties.can_be_forwarded.
-         */
-        protected int                 $messageId,
-        /**
          * Pass true if a game message is being shared from a launched game; applies only to game messages.
          */
         protected bool                $inGameShare,
         /**
-         * Pass true to replace video start timestamp in the forwarded message.
+         * Identifier of the message to forward. A message can be forwarded only if messageProperties.can_be_forwarded.
          */
-        protected bool                $replaceVideoStartTimestamp,
+        protected int                 $messageId,
         /**
          * The new video start timestamp; ignored if replace_video_start_timestamp == false.
          */
         protected int                 $newVideoStartTimestamp,
+        /**
+         * Pass true to replace video start timestamp in the forwarded message.
+         */
+        protected bool                $replaceVideoStartTimestamp,
         /**
          * Options to be used to copy content of the message without reference to the original sender; pass null to forward the message as usual.
          */
@@ -48,12 +48,12 @@ class InputMessageForwarded extends InputMessageContent
     public static function fromArray(array $array): InputMessageForwarded
     {
         return new static(
-            $array['from_chat_id'],
-            $array['message_id'],
-            $array['in_game_share'],
-            $array['replace_video_start_timestamp'],
-            $array['new_video_start_timestamp'],
-            isset($array['copy_options']) ? TdSchemaRegistry::fromArray($array['copy_options']) : null,
+            copyOptions               : (isset($array['copy_options']) ? TdSchemaRegistry::fromArray($array['copy_options']) : null),
+            fromChatId                : $array['from_chat_id'],
+            inGameShare               : $array['in_game_share'],
+            messageId                 : $array['message_id'],
+            newVideoStartTimestamp    : $array['new_video_start_timestamp'],
+            replaceVideoStartTimestamp: $array['replace_video_start_timestamp'],
         );
     }
 
@@ -133,12 +133,12 @@ class InputMessageForwarded extends InputMessageContent
     {
         return [
             '@type'                         => static::TYPE_NAME,
+            'copy_options'                  => (null !== $this->copyOptions ? $this->copyOptions->jsonSerialize() : null),
             'from_chat_id'                  => $this->fromChatId,
-            'message_id'                    => $this->messageId,
             'in_game_share'                 => $this->inGameShare,
-            'replace_video_start_timestamp' => $this->replaceVideoStartTimestamp,
+            'message_id'                    => $this->messageId,
             'new_video_start_timestamp'     => $this->newVideoStartTimestamp,
-            'copy_options'                  => $this->copyOptions ?? null,
+            'replace_video_start_timestamp' => $this->replaceVideoStartTimestamp,
         ];
     }
 }

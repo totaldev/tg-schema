@@ -18,17 +18,17 @@ class StarTransactionTypeBotSubscriptionPurchase extends StarTransactionType
 
     public function __construct(
         /**
-         * Identifier of the bot or the business account user that created the subscription link.
+         * Information about the bought subscription.
          */
-        protected int         $userId,
+        protected ProductInfo $productInfo,
         /**
          * The number of seconds between consecutive Telegram Star debitings.
          */
         protected int         $subscriptionPeriod,
         /**
-         * Information about the bought subscription.
+         * Identifier of the bot or the business account user that created the subscription link.
          */
-        protected ProductInfo $productInfo,
+        protected int         $userId,
     ) {
         parent::__construct();
     }
@@ -36,9 +36,9 @@ class StarTransactionTypeBotSubscriptionPurchase extends StarTransactionType
     public static function fromArray(array $array): StarTransactionTypeBotSubscriptionPurchase
     {
         return new static(
-            $array['user_id'],
-            $array['subscription_period'],
-            TdSchemaRegistry::fromArray($array['product_info']),
+            productInfo       : TdSchemaRegistry::fromArray($array['product_info']),
+            subscriptionPeriod: $array['subscription_period'],
+            userId            : $array['user_id'],
         );
     }
 
@@ -82,9 +82,9 @@ class StarTransactionTypeBotSubscriptionPurchase extends StarTransactionType
     {
         return [
             '@type'               => static::TYPE_NAME,
-            'user_id'             => $this->userId,
+            'product_info'        => $this->productInfo->jsonSerialize(),
             'subscription_period' => $this->subscriptionPeriod,
-            'product_info'        => $this->productInfo->typeSerialize(),
+            'user_id'             => $this->userId,
         ];
     }
 }

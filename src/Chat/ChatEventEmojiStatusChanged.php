@@ -18,13 +18,13 @@ class ChatEventEmojiStatusChanged extends ChatEventAction
 
     public function __construct(
         /**
-         * Previous emoji status; may be null if none.
-         */
-        protected ?EmojiStatus $oldEmojiStatus,
-        /**
          * New emoji status; may be null if none.
          */
         protected ?EmojiStatus $newEmojiStatus,
+        /**
+         * Previous emoji status; may be null if none.
+         */
+        protected ?EmojiStatus $oldEmojiStatus,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class ChatEventEmojiStatusChanged extends ChatEventAction
     public static function fromArray(array $array): ChatEventEmojiStatusChanged
     {
         return new static(
-            isset($array['old_emoji_status']) ? TdSchemaRegistry::fromArray($array['old_emoji_status']) : null,
-            isset($array['new_emoji_status']) ? TdSchemaRegistry::fromArray($array['new_emoji_status']) : null,
+            newEmojiStatus: (isset($array['new_emoji_status']) ? TdSchemaRegistry::fromArray($array['new_emoji_status']) : null),
+            oldEmojiStatus: (isset($array['old_emoji_status']) ? TdSchemaRegistry::fromArray($array['old_emoji_status']) : null),
         );
     }
 
@@ -65,8 +65,8 @@ class ChatEventEmojiStatusChanged extends ChatEventAction
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'old_emoji_status' => $this->oldEmojiStatus ?? null,
-            'new_emoji_status' => $this->newEmojiStatus ?? null,
+            'new_emoji_status' => (null !== $this->newEmojiStatus ? $this->newEmojiStatus->jsonSerialize() : null),
+            'old_emoji_status' => (null !== $this->oldEmojiStatus ? $this->oldEmojiStatus->jsonSerialize() : null),
         ];
     }
 }

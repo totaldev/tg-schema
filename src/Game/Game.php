@@ -21,45 +21,45 @@ class Game extends TdObject
 
     public function __construct(
         /**
-         * Unique game identifier.
+         * Game animation; may be null.
          */
-        protected int           $id,
-        /**
-         * Game short name.
-         */
-        protected string        $shortName,
-        /**
-         * Game title.
-         */
-        protected string        $title,
-        /**
-         * Game text, usually containing scoreboards for a game.
-         */
-        protected FormattedText $text,
+        protected ?Animation    $animation,
         /**
          * Game description.
          */
         protected string        $description,
         /**
+         * Unique game identifier.
+         */
+        protected int           $id,
+        /**
          * Game photo.
          */
         protected Photo         $photo,
         /**
-         * Game animation; may be null.
+         * Game short name.
          */
-        protected ?Animation    $animation,
+        protected string        $shortName,
+        /**
+         * Game text, usually containing scoreboards for a game.
+         */
+        protected FormattedText $text,
+        /**
+         * Game title.
+         */
+        protected string        $title,
     ) {}
 
     public static function fromArray(array $array): Game
     {
         return new static(
-            $array['id'],
-            $array['short_name'],
-            $array['title'],
-            TdSchemaRegistry::fromArray($array['text']),
-            $array['description'],
-            TdSchemaRegistry::fromArray($array['photo']),
-            isset($array['animation']) ? TdSchemaRegistry::fromArray($array['animation']) : null,
+            animation  : (isset($array['animation']) ? TdSchemaRegistry::fromArray($array['animation']) : null),
+            description: $array['description'],
+            id         : $array['id'],
+            photo      : TdSchemaRegistry::fromArray($array['photo']),
+            shortName  : $array['short_name'],
+            text       : TdSchemaRegistry::fromArray($array['text']),
+            title      : $array['title'],
         );
     }
 
@@ -151,13 +151,13 @@ class Game extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'id'          => $this->id,
-            'short_name'  => $this->shortName,
-            'title'       => $this->title,
-            'text'        => $this->text->typeSerialize(),
+            'animation'   => (null !== $this->animation ? $this->animation->jsonSerialize() : null),
             'description' => $this->description,
-            'photo'       => $this->photo->typeSerialize(),
-            'animation'   => $this->animation ?? null,
+            'id'          => $this->id,
+            'photo'       => $this->photo->jsonSerialize(),
+            'short_name'  => $this->shortName,
+            'text'        => $this->text->jsonSerialize(),
+            'title'       => $this->title,
         ];
     }
 }

@@ -25,7 +25,7 @@ class GetChatAdministrators extends TdFunction
     public static function fromArray(array $array): GetChatAdministrators
     {
         return new static(
-            $array['chat_id'],
+            chatId: $array['chat_id'],
         );
     }
 

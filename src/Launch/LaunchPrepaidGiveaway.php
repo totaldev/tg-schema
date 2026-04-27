@@ -27,22 +27,22 @@ class LaunchPrepaidGiveaway extends TdFunction
          */
         protected GiveawayParameters $parameters,
         /**
-         * The number of users to receive giveaway prize.
-         */
-        protected int                $winnerCount,
-        /**
          * The number of Telegram Stars to be distributed through the giveaway; pass 0 for Telegram Premium giveaways.
          */
         protected int                $starCount,
+        /**
+         * The number of users to receive giveaway prize.
+         */
+        protected int                $winnerCount,
     ) {}
 
     public static function fromArray(array $array): LaunchPrepaidGiveaway
     {
         return new static(
-            $array['giveaway_id'],
-            TdSchemaRegistry::fromArray($array['parameters']),
-            $array['winner_count'],
-            $array['star_count'],
+            giveawayId : $array['giveaway_id'],
+            parameters : TdSchemaRegistry::fromArray($array['parameters']),
+            starCount  : $array['star_count'],
+            winnerCount: $array['winner_count'],
         );
     }
 
@@ -99,9 +99,9 @@ class LaunchPrepaidGiveaway extends TdFunction
         return [
             '@type'        => static::TYPE_NAME,
             'giveaway_id'  => $this->giveawayId,
-            'parameters'   => $this->parameters->typeSerialize(),
-            'winner_count' => $this->winnerCount,
+            'parameters'   => $this->parameters->jsonSerialize(),
             'star_count'   => $this->starCount,
+            'winner_count' => $this->winnerCount,
         ];
     }
 }

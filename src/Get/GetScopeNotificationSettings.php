@@ -27,7 +27,7 @@ class GetScopeNotificationSettings extends TdFunction
     public static function fromArray(array $array): GetScopeNotificationSettings
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['scope']),
+            scope: TdSchemaRegistry::fromArray($array['scope']),
         );
     }
 
@@ -47,7 +47,7 @@ class GetScopeNotificationSettings extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'scope' => $this->scope->typeSerialize(),
+            'scope' => $this->scope->jsonSerialize(),
         ];
     }
 }

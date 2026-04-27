@@ -35,9 +35,9 @@ class SetBusinessAccountProfilePhoto extends TdFunction
     public static function fromArray(array $array): SetBusinessAccountProfilePhoto
     {
         return new static(
-            $array['business_connection_id'],
-            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
-            $array['is_public'],
+            businessConnectionId: $array['business_connection_id'],
+            isPublic            : $array['is_public'],
+            photo               : (isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null),
         );
     }
 
@@ -82,8 +82,8 @@ class SetBusinessAccountProfilePhoto extends TdFunction
         return [
             '@type'                  => static::TYPE_NAME,
             'business_connection_id' => $this->businessConnectionId,
-            'photo'                  => $this->photo ?? null,
             'is_public'              => $this->isPublic,
+            'photo'                  => (null !== $this->photo ? $this->photo->jsonSerialize() : null),
         ];
     }
 }

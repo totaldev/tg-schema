@@ -19,20 +19,20 @@ class ChatFolderName extends TdObject
 
     public function __construct(
         /**
-         * The text of the chat folder name; 1-12 characters without line feeds. May contain only CustomEmoji entities.
-         */
-        protected FormattedText $text,
-        /**
          * True, if custom emoji in the name must be animated.
          */
         protected bool          $animateCustomEmoji,
+        /**
+         * The text of the chat folder name; 1-12 characters without line feeds. May contain only CustomEmoji entities.
+         */
+        protected FormattedText $text,
     ) {}
 
     public static function fromArray(array $array): ChatFolderName
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['text']),
-            $array['animate_custom_emoji'],
+            animateCustomEmoji: $array['animate_custom_emoji'],
+            text              : TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -64,8 +64,8 @@ class ChatFolderName extends TdObject
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'text'                 => $this->text->typeSerialize(),
             'animate_custom_emoji' => $this->animateCustomEmoji,
+            'text'                 => $this->text->jsonSerialize(),
         ];
     }
 }

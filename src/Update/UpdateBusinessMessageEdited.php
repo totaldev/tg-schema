@@ -32,8 +32,8 @@ class UpdateBusinessMessageEdited extends Update
     public static function fromArray(array $array): UpdateBusinessMessageEdited
     {
         return new static(
-            $array['connection_id'],
-            TdSchemaRegistry::fromArray($array['message']),
+            connectionId: $array['connection_id'],
+            message     : TdSchemaRegistry::fromArray($array['message']),
         );
     }
 
@@ -66,7 +66,7 @@ class UpdateBusinessMessageEdited extends Update
         return [
             '@type'         => static::TYPE_NAME,
             'connection_id' => $this->connectionId,
-            'message'       => $this->message->typeSerialize(),
+            'message'       => $this->message->jsonSerialize(),
         ];
     }
 }

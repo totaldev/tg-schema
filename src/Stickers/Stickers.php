@@ -29,7 +29,7 @@ class Stickers extends TdObject
     public static function fromArray(array $array): Stickers
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['stickers']),
+            stickers: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['stickers']),
         );
     }
 
@@ -49,7 +49,7 @@ class Stickers extends TdObject
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'stickers' => array_map(static fn($x) => $x->typeSerialize(), $this->stickers),
+            'stickers' => array_map(static fn($x) => $x->jsonSerialize(), $this->stickers),
         ];
     }
 }

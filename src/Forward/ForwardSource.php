@@ -23,6 +23,14 @@ class ForwardSource extends TdObject
          */
         protected int            $chatId,
         /**
+         * Point in time (Unix timestamp) when the message is sent; 0 if unknown.
+         */
+        protected int            $date,
+        /**
+         * True, if the message that was forwarded is outgoing; always false if sender is unknown.
+         */
+        protected bool           $isOutgoing,
+        /**
          * Identifier of the message; may be 0 if unknown.
          */
         protected int            $messageId,
@@ -34,25 +42,17 @@ class ForwardSource extends TdObject
          * Name of the sender of the message if the sender is hidden by their privacy settings.
          */
         protected string         $senderName,
-        /**
-         * Point in time (Unix timestamp) when the message is sent; 0 if unknown.
-         */
-        protected int            $date,
-        /**
-         * True, if the message that was forwarded is outgoing; always false if sender is unknown.
-         */
-        protected bool           $isOutgoing,
     ) {}
 
     public static function fromArray(array $array): ForwardSource
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            isset($array['sender_id']) ? TdSchemaRegistry::fromArray($array['sender_id']) : null,
-            $array['sender_name'],
-            $array['date'],
-            $array['is_outgoing'],
+            chatId    : $array['chat_id'],
+            date      : $array['date'],
+            isOutgoing: $array['is_outgoing'],
+            messageId : $array['message_id'],
+            senderId  : (isset($array['sender_id']) ? TdSchemaRegistry::fromArray($array['sender_id']) : null),
+            senderName: $array['sender_name'],
         );
     }
 
@@ -133,11 +133,11 @@ class ForwardSource extends TdObject
         return [
             '@type'       => static::TYPE_NAME,
             'chat_id'     => $this->chatId,
-            'message_id'  => $this->messageId,
-            'sender_id'   => $this->senderId ?? null,
-            'sender_name' => $this->senderName,
             'date'        => $this->date,
             'is_outgoing' => $this->isOutgoing,
+            'message_id'  => $this->messageId,
+            'sender_id'   => (null !== $this->senderId ? $this->senderId->jsonSerialize() : null),
+            'sender_name' => $this->senderName,
         ];
     }
 }

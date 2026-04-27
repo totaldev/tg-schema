@@ -25,7 +25,7 @@ class MessageFileTypeGroup extends MessageFileType
     public static function fromArray(array $array): MessageFileTypeGroup
     {
         return new static(
-            $array['title'],
+            title: $array['title'],
         );
     }
 

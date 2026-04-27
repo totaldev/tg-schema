@@ -19,21 +19,21 @@ class MessageEffect extends TdObject
 
     public function __construct(
         /**
-         * Unique identifier of the effect.
-         */
-        protected int               $id,
-        /**
-         * Static icon for the effect in WEBP format; may be null if none.
-         */
-        protected ?Sticker          $staticIcon,
-        /**
          * Emoji corresponding to the effect that can be used if static icon isn't available.
          */
         protected string            $emoji,
         /**
+         * Unique identifier of the effect.
+         */
+        protected int               $id,
+        /**
          * True, if Telegram Premium subscription is required to use the effect.
          */
         protected bool              $isPremium,
+        /**
+         * Static icon for the effect in WEBP format; may be null if none.
+         */
+        protected ?Sticker          $staticIcon,
         /**
          * Type of the effect.
          */
@@ -43,11 +43,11 @@ class MessageEffect extends TdObject
     public static function fromArray(array $array): MessageEffect
     {
         return new static(
-            $array['id'],
-            isset($array['static_icon']) ? TdSchemaRegistry::fromArray($array['static_icon']) : null,
-            $array['emoji'],
-            $array['is_premium'],
-            TdSchemaRegistry::fromArray($array['type']),
+            emoji     : $array['emoji'],
+            id        : $array['id'],
+            isPremium : $array['is_premium'],
+            staticIcon: (isset($array['static_icon']) ? TdSchemaRegistry::fromArray($array['static_icon']) : null),
+            type      : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -115,11 +115,11 @@ class MessageEffect extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'id'          => $this->id,
-            'static_icon' => $this->staticIcon ?? null,
             'emoji'       => $this->emoji,
+            'id'          => $this->id,
             'is_premium'  => $this->isPremium,
-            'type'        => $this->type->typeSerialize(),
+            'static_icon' => (null !== $this->staticIcon ? $this->staticIcon->jsonSerialize() : null),
+            'type'        => $this->type->jsonSerialize(),
         ];
     }
 }

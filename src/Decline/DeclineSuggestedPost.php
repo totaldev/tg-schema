@@ -21,21 +21,21 @@ class DeclineSuggestedPost extends TdFunction
          */
         protected int    $chatId,
         /**
-         * Identifier of the message with the suggested post. Use messageProperties.can_be_declined to check whether the suggested post can be declined.
-         */
-        protected int    $messageId,
-        /**
          * Comment for the creator of the suggested post; 0-128 characters.
          */
         protected string $comment,
+        /**
+         * Identifier of the message with the suggested post. Use messageProperties.can_be_declined to check whether the suggested post can be declined.
+         */
+        protected int    $messageId,
     ) {}
 
     public static function fromArray(array $array): DeclineSuggestedPost
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            $array['comment'],
+            chatId   : $array['chat_id'],
+            comment  : $array['comment'],
+            messageId: $array['message_id'],
         );
     }
 
@@ -80,8 +80,8 @@ class DeclineSuggestedPost extends TdFunction
         return [
             '@type'      => static::TYPE_NAME,
             'chat_id'    => $this->chatId,
-            'message_id' => $this->messageId,
             'comment'    => $this->comment,
+            'message_id' => $this->messageId,
         ];
     }
 }

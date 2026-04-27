@@ -31,8 +31,8 @@ class BusinessMessage extends TdObject
     public static function fromArray(array $array): BusinessMessage
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['message']),
-            isset($array['reply_to_message']) ? TdSchemaRegistry::fromArray($array['reply_to_message']) : null,
+            message       : TdSchemaRegistry::fromArray($array['message']),
+            replyToMessage: (isset($array['reply_to_message']) ? TdSchemaRegistry::fromArray($array['reply_to_message']) : null),
         );
     }
 
@@ -64,8 +64,8 @@ class BusinessMessage extends TdObject
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'message'          => $this->message->typeSerialize(),
-            'reply_to_message' => $this->replyToMessage ?? null,
+            'message'          => $this->message->jsonSerialize(),
+            'reply_to_message' => (null !== $this->replyToMessage ? $this->replyToMessage->jsonSerialize() : null),
         ];
     }
 }

@@ -23,6 +23,10 @@ class SetMessageReactions extends TdFunction
          */
         protected int   $chatId,
         /**
+         * Pass true if the reactions are added with a big animation.
+         */
+        protected bool  $isBig,
+        /**
          * Identifier of the message.
          */
         protected int   $messageId,
@@ -32,19 +36,15 @@ class SetMessageReactions extends TdFunction
          * @var ReactionType[]
          */
         protected array $reactionTypes,
-        /**
-         * Pass true if the reactions are added with a big animation.
-         */
-        protected bool  $isBig,
     ) {}
 
     public static function fromArray(array $array): SetMessageReactions
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['reaction_types']),
-            $array['is_big'],
+            chatId       : $array['chat_id'],
+            isBig        : $array['is_big'],
+            messageId    : $array['message_id'],
+            reactionTypes: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['reaction_types']),
         );
     }
 
@@ -101,9 +101,9 @@ class SetMessageReactions extends TdFunction
         return [
             '@type'          => static::TYPE_NAME,
             'chat_id'        => $this->chatId,
-            'message_id'     => $this->messageId,
-            'reaction_types' => array_map(static fn($x) => $x->typeSerialize(), $this->reactionTypes),
             'is_big'         => $this->isBig,
+            'message_id'     => $this->messageId,
+            'reaction_types' => array_map(static fn($x) => $x->jsonSerialize(), $this->reactionTypes),
         ];
     }
 }

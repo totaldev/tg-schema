@@ -15,6 +15,10 @@ class MessageOriginChannel extends MessageOrigin
 
     public function __construct(
         /**
+         * Original post author signature.
+         */
+        protected string $authorSignature,
+        /**
          * Identifier of the channel chat to which the message was originally sent.
          */
         protected int    $chatId,
@@ -22,10 +26,6 @@ class MessageOriginChannel extends MessageOrigin
          * Message identifier of the original message.
          */
         protected int    $messageId,
-        /**
-         * Original post author signature.
-         */
-        protected string $authorSignature,
     ) {
         parent::__construct();
     }
@@ -33,9 +33,9 @@ class MessageOriginChannel extends MessageOrigin
     public static function fromArray(array $array): MessageOriginChannel
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            $array['author_signature'],
+            authorSignature: $array['author_signature'],
+            chatId         : $array['chat_id'],
+            messageId      : $array['message_id'],
         );
     }
 
@@ -79,9 +79,9 @@ class MessageOriginChannel extends MessageOrigin
     {
         return [
             '@type'            => static::TYPE_NAME,
+            'author_signature' => $this->authorSignature,
             'chat_id'          => $this->chatId,
             'message_id'       => $this->messageId,
-            'author_signature' => $this->authorSignature,
         ];
     }
 }

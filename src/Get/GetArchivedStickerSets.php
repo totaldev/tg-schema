@@ -19,25 +19,25 @@ class GetArchivedStickerSets extends TdFunction
 
     public function __construct(
         /**
-         * Type of the sticker sets to return.
+         * The maximum number of sticker sets to return; up to 100.
          */
-        protected StickerType $stickerType,
+        protected int         $limit,
         /**
          * Identifier of the sticker set from which to return the result; use 0 to get results from the beginning.
          */
         protected int         $offsetStickerSetId,
         /**
-         * The maximum number of sticker sets to return; up to 100.
+         * Type of the sticker sets to return.
          */
-        protected int         $limit,
+        protected StickerType $stickerType,
     ) {}
 
     public static function fromArray(array $array): GetArchivedStickerSets
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['sticker_type']),
-            $array['offset_sticker_set_id'],
-            $array['limit'],
+            limit             : $array['limit'],
+            offsetStickerSetId: $array['offset_sticker_set_id'],
+            stickerType       : TdSchemaRegistry::fromArray($array['sticker_type']),
         );
     }
 
@@ -81,9 +81,9 @@ class GetArchivedStickerSets extends TdFunction
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'sticker_type'          => $this->stickerType->typeSerialize(),
-            'offset_sticker_set_id' => $this->offsetStickerSetId,
             'limit'                 => $this->limit,
+            'offset_sticker_set_id' => $this->offsetStickerSetId,
+            'sticker_type'          => $this->stickerType->jsonSerialize(),
         ];
     }
 }

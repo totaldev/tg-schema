@@ -25,7 +25,7 @@ class InlineKeyboardButtonTypeCallbackWithPassword extends InlineKeyboardButtonT
     public static function fromArray(array $array): InlineKeyboardButtonTypeCallbackWithPassword
     {
         return new static(
-            $array['data'],
+            data: $array['data'],
         );
     }
 

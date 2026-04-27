@@ -18,22 +18,22 @@ class StickerSets extends TdObject
 
     public function __construct(
         /**
-         * Approximate total number of sticker sets found.
-         */
-        protected int   $totalCount,
-        /**
          * List of sticker sets.
          *
          * @var StickerSetInfo[]
          */
         protected array $sets,
+        /**
+         * Approximate total number of sticker sets found.
+         */
+        protected int   $totalCount,
     ) {}
 
     public static function fromArray(array $array): StickerSets
     {
         return new static(
-            $array['total_count'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['sets']),
+            sets      : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['sets']),
+            totalCount: $array['total_count'],
         );
     }
 
@@ -65,8 +65,8 @@ class StickerSets extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
+            'sets'        => array_map(static fn($x) => $x->jsonSerialize(), $this->sets),
             'total_count' => $this->totalCount,
-            'sets'        => array_map(static fn($x) => $x->typeSerialize(), $this->sets),
         ];
     }
 }

@@ -31,8 +31,8 @@ class SetGiftResalePrice extends TdFunction
     public static function fromArray(array $array): SetGiftResalePrice
     {
         return new static(
-            $array['received_gift_id'],
-            isset($array['price']) ? TdSchemaRegistry::fromArray($array['price']) : null,
+            price         : (isset($array['price']) ? TdSchemaRegistry::fromArray($array['price']) : null),
+            receivedGiftId: $array['received_gift_id'],
         );
     }
 
@@ -64,8 +64,8 @@ class SetGiftResalePrice extends TdFunction
     {
         return [
             '@type'            => static::TYPE_NAME,
+            'price'            => (null !== $this->price ? $this->price->jsonSerialize() : null),
             'received_gift_id' => $this->receivedGiftId,
-            'price'            => $this->price ?? null,
         ];
     }
 }

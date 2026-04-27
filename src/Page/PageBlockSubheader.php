@@ -28,7 +28,7 @@ class PageBlockSubheader extends PageBlock
     public static function fromArray(array $array): PageBlockSubheader
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['subheader']),
+            subheader: TdSchemaRegistry::fromArray($array['subheader']),
         );
     }
 
@@ -48,7 +48,7 @@ class PageBlockSubheader extends PageBlock
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'subheader' => $this->subheader->typeSerialize(),
+            'subheader' => $this->subheader->jsonSerialize(),
         ];
     }
 }

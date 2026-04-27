@@ -17,20 +17,20 @@ class AnswerPreCheckoutQuery extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the pre-checkout query.
-         */
-        protected int    $preCheckoutQueryId,
-        /**
          * An error message, empty on success.
          */
         protected string $errorMessage,
+        /**
+         * Identifier of the pre-checkout query.
+         */
+        protected int    $preCheckoutQueryId,
     ) {}
 
     public static function fromArray(array $array): AnswerPreCheckoutQuery
     {
         return new static(
-            $array['pre_checkout_query_id'],
-            $array['error_message'],
+            errorMessage      : $array['error_message'],
+            preCheckoutQueryId: $array['pre_checkout_query_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class AnswerPreCheckoutQuery extends TdFunction
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'pre_checkout_query_id' => $this->preCheckoutQueryId,
             'error_message'         => $this->errorMessage,
+            'pre_checkout_query_id' => $this->preCheckoutQueryId,
         ];
     }
 }

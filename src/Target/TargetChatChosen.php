@@ -27,7 +27,7 @@ class TargetChatChosen extends TargetChat
     public static function fromArray(array $array): TargetChatChosen
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['types']),
+            types: TdSchemaRegistry::fromArray($array['types']),
         );
     }
 
@@ -47,7 +47,7 @@ class TargetChatChosen extends TargetChat
     {
         return [
             '@type' => static::TYPE_NAME,
-            'types' => $this->types->typeSerialize(),
+            'types' => $this->types->jsonSerialize(),
         ];
     }
 }

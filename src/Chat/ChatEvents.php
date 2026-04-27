@@ -28,7 +28,7 @@ class ChatEvents extends TdObject
     public static function fromArray(array $array): ChatEvents
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['events']),
+            events: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['events']),
         );
     }
 
@@ -48,7 +48,7 @@ class ChatEvents extends TdObject
     {
         return [
             '@type'  => static::TYPE_NAME,
-            'events' => array_map(static fn($x) => $x->typeSerialize(), $this->events),
+            'events' => array_map(static fn($x) => $x->jsonSerialize(), $this->events),
         ];
     }
 }

@@ -31,8 +31,8 @@ class SetVideoChatDefaultParticipant extends TdFunction
     public static function fromArray(array $array): SetVideoChatDefaultParticipant
     {
         return new static(
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['default_participant_id']),
+            chatId              : $array['chat_id'],
+            defaultParticipantId: TdSchemaRegistry::fromArray($array['default_participant_id']),
         );
     }
 
@@ -65,7 +65,7 @@ class SetVideoChatDefaultParticipant extends TdFunction
         return [
             '@type'                  => static::TYPE_NAME,
             'chat_id'                => $this->chatId,
-            'default_participant_id' => $this->defaultParticipantId->typeSerialize(),
+            'default_participant_id' => $this->defaultParticipantId->jsonSerialize(),
         ];
     }
 }

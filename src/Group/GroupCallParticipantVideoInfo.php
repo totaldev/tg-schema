@@ -18,12 +18,6 @@ class GroupCallParticipantVideoInfo extends TdObject
 
     public function __construct(
         /**
-         * List of synchronization source groups of the video.
-         *
-         * @var GroupCallVideoSourceGroup[]
-         */
-        protected array  $sourceGroups,
-        /**
          * Video channel endpoint identifier.
          */
         protected string $endpointId,
@@ -31,14 +25,20 @@ class GroupCallParticipantVideoInfo extends TdObject
          * True, if the video is paused. This flag needs to be ignored, if new video frames are received.
          */
         protected bool   $isPaused,
+        /**
+         * List of synchronization source groups of the video.
+         *
+         * @var GroupCallVideoSourceGroup[]
+         */
+        protected array  $sourceGroups,
     ) {}
 
     public static function fromArray(array $array): GroupCallParticipantVideoInfo
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['source_groups']),
-            $array['endpoint_id'],
-            $array['is_paused'],
+            endpointId  : $array['endpoint_id'],
+            isPaused    : $array['is_paused'],
+            sourceGroups: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['source_groups']),
         );
     }
 
@@ -82,9 +82,9 @@ class GroupCallParticipantVideoInfo extends TdObject
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'source_groups' => array_map(static fn($x) => $x->typeSerialize(), $this->sourceGroups),
             'endpoint_id'   => $this->endpointId,
             'is_paused'     => $this->isPaused,
+            'source_groups' => array_map(static fn($x) => $x->jsonSerialize(), $this->sourceGroups),
         ];
     }
 }

@@ -17,13 +17,13 @@ class RichTextReference extends RichText
 
     public function __construct(
         /**
-         * The text.
-         */
-        protected RichText $text,
-        /**
          * The name of a richTextAnchor object, which is the first element of the target richTexts object.
          */
         protected string   $anchorName,
+        /**
+         * The text.
+         */
+        protected RichText $text,
         /**
          * An HTTP URL, opening the reference.
          */
@@ -35,9 +35,9 @@ class RichTextReference extends RichText
     public static function fromArray(array $array): RichTextReference
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['text']),
-            $array['anchor_name'],
-            $array['url'],
+            anchorName: $array['anchor_name'],
+            text      : TdSchemaRegistry::fromArray($array['text']),
+            url       : $array['url'],
         );
     }
 
@@ -81,8 +81,8 @@ class RichTextReference extends RichText
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'text'        => $this->text->typeSerialize(),
             'anchor_name' => $this->anchorName,
+            'text'        => $this->text->jsonSerialize(),
             'url'         => $this->url,
         ];
     }

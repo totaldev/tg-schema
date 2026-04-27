@@ -27,7 +27,7 @@ class UpdateFavoriteStickers extends Update
     public static function fromArray(array $array): UpdateFavoriteStickers
     {
         return new static(
-            $array['sticker_ids'],
+            stickerIds: $array['sticker_ids'],
         );
     }
 

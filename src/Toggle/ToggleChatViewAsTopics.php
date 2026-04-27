@@ -29,8 +29,8 @@ class ToggleChatViewAsTopics extends TdFunction
     public static function fromArray(array $array): ToggleChatViewAsTopics
     {
         return new static(
-            $array['chat_id'],
-            $array['view_as_topics'],
+            chatId      : $array['chat_id'],
+            viewAsTopics: $array['view_as_topics'],
         );
     }
 

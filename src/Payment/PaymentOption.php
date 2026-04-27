@@ -29,8 +29,8 @@ class PaymentOption extends TdObject
     public static function fromArray(array $array): PaymentOption
     {
         return new static(
-            $array['title'],
-            $array['url'],
+            title: $array['title'],
+            url  : $array['url'],
         );
     }
 

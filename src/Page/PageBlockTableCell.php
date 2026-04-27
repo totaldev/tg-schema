@@ -19,25 +19,25 @@ class PageBlockTableCell extends TdObject
 
     public function __construct(
         /**
-         * Cell text; may be null. If the text is null, then the cell must be invisible.
+         * Horizontal cell content alignment.
          */
-        protected ?RichText                    $text,
-        /**
-         * True, if it is a header cell.
-         */
-        protected bool                         $isHeader,
+        protected PageBlockHorizontalAlignment $align,
         /**
          * The number of columns the cell spans.
          */
         protected int                          $colspan,
         /**
+         * True, if it is a header cell.
+         */
+        protected bool                         $isHeader,
+        /**
          * The number of rows the cell spans.
          */
         protected int                          $rowspan,
         /**
-         * Horizontal cell content alignment.
+         * Cell text; may be null. If the text is null, then the cell must be invisible.
          */
-        protected PageBlockHorizontalAlignment $align,
+        protected ?RichText                    $text,
         /**
          * Vertical cell content alignment.
          */
@@ -47,12 +47,12 @@ class PageBlockTableCell extends TdObject
     public static function fromArray(array $array): PageBlockTableCell
     {
         return new static(
-            isset($array['text']) ? TdSchemaRegistry::fromArray($array['text']) : null,
-            $array['is_header'],
-            $array['colspan'],
-            $array['rowspan'],
-            TdSchemaRegistry::fromArray($array['align']),
-            TdSchemaRegistry::fromArray($array['valign']),
+            align   : TdSchemaRegistry::fromArray($array['align']),
+            colspan : $array['colspan'],
+            isHeader: $array['is_header'],
+            rowspan : $array['rowspan'],
+            text    : (isset($array['text']) ? TdSchemaRegistry::fromArray($array['text']) : null),
+            valign  : TdSchemaRegistry::fromArray($array['valign']),
         );
     }
 
@@ -132,12 +132,12 @@ class PageBlockTableCell extends TdObject
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'text'      => $this->text ?? null,
-            'is_header' => $this->isHeader,
+            'align'     => $this->align->jsonSerialize(),
             'colspan'   => $this->colspan,
+            'is_header' => $this->isHeader,
             'rowspan'   => $this->rowspan,
-            'align'     => $this->align->typeSerialize(),
-            'valign'    => $this->valign->typeSerialize(),
+            'text'      => (null !== $this->text ? $this->text->jsonSerialize() : null),
+            'valign'    => $this->valign->jsonSerialize(),
         ];
     }
 }

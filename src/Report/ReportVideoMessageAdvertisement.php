@@ -29,8 +29,8 @@ class ReportVideoMessageAdvertisement extends TdFunction
     public static function fromArray(array $array): ReportVideoMessageAdvertisement
     {
         return new static(
-            $array['advertisement_unique_id'],
-            $array['option_id'],
+            advertisementUniqueId: $array['advertisement_unique_id'],
+            optionId             : $array['option_id'],
         );
     }
 

@@ -25,7 +25,7 @@ class ProxyTypeMtproto extends ProxyType
     public static function fromArray(array $array): ProxyTypeMtproto
     {
         return new static(
-            $array['secret'],
+            secret: $array['secret'],
         );
     }
 

@@ -27,7 +27,7 @@ class BackgroundFillFreeformGradient extends BackgroundFill
     public static function fromArray(array $array): BackgroundFillFreeformGradient
     {
         return new static(
-            $array['colors'],
+            colors: $array['colors'],
         );
     }
 

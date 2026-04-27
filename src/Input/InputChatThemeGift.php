@@ -25,7 +25,7 @@ class InputChatThemeGift extends InputChatTheme
     public static function fromArray(array $array): InputChatThemeGift
     {
         return new static(
-            $array['name'],
+            name: $array['name'],
         );
     }
 

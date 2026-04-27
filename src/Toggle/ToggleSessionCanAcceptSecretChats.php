@@ -17,20 +17,20 @@ class ToggleSessionCanAcceptSecretChats extends TdFunction
 
     public function __construct(
         /**
-         * Session identifier.
-         */
-        protected int  $sessionId,
-        /**
          * Pass true to allow accepting secret chats by the session; pass false otherwise.
          */
         protected bool $canAcceptSecretChats,
+        /**
+         * Session identifier.
+         */
+        protected int  $sessionId,
     ) {}
 
     public static function fromArray(array $array): ToggleSessionCanAcceptSecretChats
     {
         return new static(
-            $array['session_id'],
-            $array['can_accept_secret_chats'],
+            canAcceptSecretChats: $array['can_accept_secret_chats'],
+            sessionId           : $array['session_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class ToggleSessionCanAcceptSecretChats extends TdFunction
     {
         return [
             '@type'                   => static::TYPE_NAME,
-            'session_id'              => $this->sessionId,
             'can_accept_secret_chats' => $this->canAcceptSecretChats,
+            'session_id'              => $this->sessionId,
         ];
     }
 }

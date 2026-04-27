@@ -25,7 +25,7 @@ class ClickVideoMessageAdvertisement extends TdFunction
     public static function fromArray(array $array): ClickVideoMessageAdvertisement
     {
         return new static(
-            $array['advertisement_unique_id'],
+            advertisementUniqueId: $array['advertisement_unique_id'],
         );
     }
 

@@ -25,7 +25,7 @@ class KeyboardButtonTypeWebApp extends KeyboardButtonType
     public static function fromArray(array $array): KeyboardButtonTypeWebApp
     {
         return new static(
-            $array['url'],
+            url: $array['url'],
         );
     }
 

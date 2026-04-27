@@ -25,7 +25,7 @@ class UserStatusOffline extends UserStatus
     public static function fromArray(array $array): UserStatusOffline
     {
         return new static(
-            $array['was_online'],
+            wasOnline: $array['was_online'],
         );
     }
 

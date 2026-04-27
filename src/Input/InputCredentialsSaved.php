@@ -26,7 +26,7 @@ class InputCredentialsSaved extends InputCredentials
     public static function fromArray(array $array): InputCredentialsSaved
     {
         return new static(
-            $array['saved_credentials_id'],
+            savedCredentialsId: $array['saved_credentials_id'],
         );
     }
 

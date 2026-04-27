@@ -23,9 +23,13 @@ class InputInlineQueryResultVenue extends InputInlineQueryResult
          */
         protected string              $id,
         /**
-         * Venue result.
+         * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact.
          */
-        protected Venue               $venue,
+        protected InputMessageContent $inputMessageContent,
+        /**
+         * Thumbnail height, if known.
+         */
+        protected int                 $thumbnailHeight,
         /**
          * URL of the result thumbnail, if it exists.
          */
@@ -35,13 +39,9 @@ class InputInlineQueryResultVenue extends InputInlineQueryResult
          */
         protected int                 $thumbnailWidth,
         /**
-         * Thumbnail height, if known.
+         * Venue result.
          */
-        protected int                 $thumbnailHeight,
-        /**
-         * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact.
-         */
-        protected InputMessageContent $inputMessageContent,
+        protected Venue               $venue,
         /**
          * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null.
          */
@@ -53,13 +53,13 @@ class InputInlineQueryResultVenue extends InputInlineQueryResult
     public static function fromArray(array $array): InputInlineQueryResultVenue
     {
         return new static(
-            $array['id'],
-            TdSchemaRegistry::fromArray($array['venue']),
-            $array['thumbnail_url'],
-            $array['thumbnail_width'],
-            $array['thumbnail_height'],
-            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
-            TdSchemaRegistry::fromArray($array['input_message_content']),
+            id                 : $array['id'],
+            inputMessageContent: TdSchemaRegistry::fromArray($array['input_message_content']),
+            replyMarkup        : (isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null),
+            thumbnailHeight    : $array['thumbnail_height'],
+            thumbnailUrl       : $array['thumbnail_url'],
+            thumbnailWidth     : $array['thumbnail_width'],
+            venue              : TdSchemaRegistry::fromArray($array['venue']),
         );
     }
 
@@ -152,12 +152,12 @@ class InputInlineQueryResultVenue extends InputInlineQueryResult
         return [
             '@type'                 => static::TYPE_NAME,
             'id'                    => $this->id,
-            'venue'                 => $this->venue->typeSerialize(),
+            'input_message_content' => $this->inputMessageContent->jsonSerialize(),
+            'reply_markup'          => (null !== $this->replyMarkup ? $this->replyMarkup->jsonSerialize() : null),
+            'thumbnail_height'      => $this->thumbnailHeight,
             'thumbnail_url'         => $this->thumbnailUrl,
             'thumbnail_width'       => $this->thumbnailWidth,
-            'thumbnail_height'      => $this->thumbnailHeight,
-            'reply_markup'          => $this->replyMarkup ?? null,
-            'input_message_content' => $this->inputMessageContent->typeSerialize(),
+            'venue'                 => $this->venue->jsonSerialize(),
         ];
     }
 }

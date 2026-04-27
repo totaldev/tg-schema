@@ -25,7 +25,7 @@ class CallDiscardReasonUpgradeToGroupCall extends CallDiscardReason
     public static function fromArray(array $array): CallDiscardReasonUpgradeToGroupCall
     {
         return new static(
-            $array['invite_link'],
+            inviteLink: $array['invite_link'],
         );
     }
 

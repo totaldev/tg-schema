@@ -18,25 +18,25 @@ class PageBlockMap extends PageBlock
 
     public function __construct(
         /**
-         * Location of the map center.
+         * Block caption.
          */
-        protected Location         $location,
-        /**
-         * Map zoom level.
-         */
-        protected int              $zoom,
-        /**
-         * Map width.
-         */
-        protected int              $width,
+        protected PageBlockCaption $caption,
         /**
          * Map height.
          */
         protected int              $height,
         /**
-         * Block caption.
+         * Location of the map center.
          */
-        protected PageBlockCaption $caption,
+        protected Location         $location,
+        /**
+         * Map width.
+         */
+        protected int              $width,
+        /**
+         * Map zoom level.
+         */
+        protected int              $zoom,
     ) {
         parent::__construct();
     }
@@ -44,11 +44,11 @@ class PageBlockMap extends PageBlock
     public static function fromArray(array $array): PageBlockMap
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['location']),
-            $array['zoom'],
-            $array['width'],
-            $array['height'],
-            TdSchemaRegistry::fromArray($array['caption']),
+            caption : TdSchemaRegistry::fromArray($array['caption']),
+            height  : $array['height'],
+            location: TdSchemaRegistry::fromArray($array['location']),
+            width   : $array['width'],
+            zoom    : $array['zoom'],
         );
     }
 
@@ -116,11 +116,11 @@ class PageBlockMap extends PageBlock
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'location' => $this->location->typeSerialize(),
-            'zoom'     => $this->zoom,
-            'width'    => $this->width,
+            'caption'  => $this->caption->jsonSerialize(),
             'height'   => $this->height,
-            'caption'  => $this->caption->typeSerialize(),
+            'location' => $this->location->jsonSerialize(),
+            'width'    => $this->width,
+            'zoom'     => $this->zoom,
         ];
     }
 }

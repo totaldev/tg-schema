@@ -29,8 +29,8 @@ class BotMenuButton extends TdObject
     public static function fromArray(array $array): BotMenuButton
     {
         return new static(
-            $array['text'],
-            $array['url'],
+            text: $array['text'],
+            url : $array['url'],
         );
     }
 

@@ -28,7 +28,7 @@ class ChatMessageSenders extends TdObject
     public static function fromArray(array $array): ChatMessageSenders
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['senders']),
+            senders: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['senders']),
         );
     }
 
@@ -48,7 +48,7 @@ class ChatMessageSenders extends TdObject
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'senders' => array_map(static fn($x) => $x->typeSerialize(), $this->senders),
+            'senders' => array_map(static fn($x) => $x->jsonSerialize(), $this->senders),
         ];
     }
 }

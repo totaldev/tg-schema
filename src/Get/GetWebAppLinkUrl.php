@@ -19,40 +19,40 @@ class GetWebAppLinkUrl extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the chat in which the link was clicked; pass 0 if none.
+         * Pass true if the current user allowed the bot to send them messages.
          */
-        protected int                  $chatId,
+        protected bool                 $allowWriteAccess,
         /**
          * Identifier of the target bot.
          */
         protected int                  $botUserId,
         /**
-         * Short name of the Web App.
+         * Identifier of the chat in which the link was clicked; pass 0 if none.
          */
-        protected string               $webAppShortName,
+        protected int                  $chatId,
+        /**
+         * Parameters to use to open the Web App.
+         */
+        protected WebAppOpenParameters $parameters,
         /**
          * Start parameter from internalLinkTypeWebApp.
          */
         protected string               $startParameter,
         /**
-         * Pass true if the current user allowed the bot to send them messages.
+         * Short name of the Web App.
          */
-        protected bool                 $allowWriteAccess,
-        /**
-         * Parameters to use to open the Web App.
-         */
-        protected WebAppOpenParameters $parameters,
+        protected string               $webAppShortName,
     ) {}
 
     public static function fromArray(array $array): GetWebAppLinkUrl
     {
         return new static(
-            $array['chat_id'],
-            $array['bot_user_id'],
-            $array['web_app_short_name'],
-            $array['start_parameter'],
-            $array['allow_write_access'],
-            TdSchemaRegistry::fromArray($array['parameters']),
+            allowWriteAccess: $array['allow_write_access'],
+            botUserId       : $array['bot_user_id'],
+            chatId          : $array['chat_id'],
+            parameters      : TdSchemaRegistry::fromArray($array['parameters']),
+            startParameter  : $array['start_parameter'],
+            webAppShortName : $array['web_app_short_name'],
         );
     }
 
@@ -132,12 +132,12 @@ class GetWebAppLinkUrl extends TdFunction
     {
         return [
             '@type'              => static::TYPE_NAME,
-            'chat_id'            => $this->chatId,
-            'bot_user_id'        => $this->botUserId,
-            'web_app_short_name' => $this->webAppShortName,
-            'start_parameter'    => $this->startParameter,
             'allow_write_access' => $this->allowWriteAccess,
-            'parameters'         => $this->parameters->typeSerialize(),
+            'bot_user_id'        => $this->botUserId,
+            'chat_id'            => $this->chatId,
+            'parameters'         => $this->parameters->jsonSerialize(),
+            'start_parameter'    => $this->startParameter,
+            'web_app_short_name' => $this->webAppShortName,
         ];
     }
 }

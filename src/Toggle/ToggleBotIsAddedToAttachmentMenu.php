@@ -17,6 +17,10 @@ class ToggleBotIsAddedToAttachmentMenu extends TdFunction
 
     public function __construct(
         /**
+         * Pass true if the current user allowed the bot to send them messages. Ignored if is_added is false.
+         */
+        protected bool $allowWriteAccess,
+        /**
          * Bot's user identifier.
          */
         protected int  $botUserId,
@@ -24,18 +28,14 @@ class ToggleBotIsAddedToAttachmentMenu extends TdFunction
          * Pass true to add the bot to attachment menu; pass false to remove the bot from attachment menu.
          */
         protected bool $isAdded,
-        /**
-         * Pass true if the current user allowed the bot to send them messages. Ignored if is_added is false.
-         */
-        protected bool $allowWriteAccess,
     ) {}
 
     public static function fromArray(array $array): ToggleBotIsAddedToAttachmentMenu
     {
         return new static(
-            $array['bot_user_id'],
-            $array['is_added'],
-            $array['allow_write_access'],
+            allowWriteAccess: $array['allow_write_access'],
+            botUserId       : $array['bot_user_id'],
+            isAdded         : $array['is_added'],
         );
     }
 
@@ -79,9 +79,9 @@ class ToggleBotIsAddedToAttachmentMenu extends TdFunction
     {
         return [
             '@type'              => static::TYPE_NAME,
+            'allow_write_access' => $this->allowWriteAccess,
             'bot_user_id'        => $this->botUserId,
             'is_added'           => $this->isAdded,
-            'allow_write_access' => $this->allowWriteAccess,
         ];
     }
 }

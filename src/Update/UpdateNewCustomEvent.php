@@ -25,7 +25,7 @@ class UpdateNewCustomEvent extends Update
     public static function fromArray(array $array): UpdateNewCustomEvent
     {
         return new static(
-            $array['event'],
+            event: $array['event'],
         );
     }
 

@@ -19,30 +19,30 @@ class MessageForwardInfo extends TdObject
 
     public function __construct(
         /**
-         * Origin of the forwarded message.
-         */
-        protected MessageOrigin  $origin,
-        /**
          * Point in time (Unix timestamp) when the message was originally sent.
          */
         protected int            $date,
         /**
-         * For messages forwarded to the chat with the current user (Saved Messages), to the Replies bot chat, or to the channel's discussion group, information about the source message from which the message was forwarded last time; may be null for other forwards or if unknown.
+         * Origin of the forwarded message.
          */
-        protected ?ForwardSource $source,
+        protected MessageOrigin  $origin,
         /**
          * The type of public service announcement for the forwarded message.
          */
         protected string         $publicServiceAnnouncementType,
+        /**
+         * For messages forwarded to the chat with the current user (Saved Messages), to the Replies bot chat, or to the channel's discussion group, information about the source message from which the message was forwarded last time; may be null for other forwards or if unknown.
+         */
+        protected ?ForwardSource $source,
     ) {}
 
     public static function fromArray(array $array): MessageForwardInfo
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['origin']),
-            $array['date'],
-            isset($array['source']) ? TdSchemaRegistry::fromArray($array['source']) : null,
-            $array['public_service_announcement_type'],
+            date                         : $array['date'],
+            origin                       : TdSchemaRegistry::fromArray($array['origin']),
+            publicServiceAnnouncementType: $array['public_service_announcement_type'],
+            source                       : (isset($array['source']) ? TdSchemaRegistry::fromArray($array['source']) : null),
         );
     }
 
@@ -98,10 +98,10 @@ class MessageForwardInfo extends TdObject
     {
         return [
             '@type'                            => static::TYPE_NAME,
-            'origin'                           => $this->origin->typeSerialize(),
             'date'                             => $this->date,
-            'source'                           => $this->source ?? null,
+            'origin'                           => $this->origin->jsonSerialize(),
             'public_service_announcement_type' => $this->publicServiceAnnouncementType,
+            'source'                           => (null !== $this->source ? $this->source->jsonSerialize() : null),
         ];
     }
 }

@@ -15,13 +15,13 @@ class InputStoryAreaTypePreviousVenue extends InputStoryAreaType
 
     public function __construct(
         /**
-         * Provider of the venue.
-         */
-        protected string $venueProvider,
-        /**
          * Identifier of the venue in the provider database.
          */
         protected string $venueId,
+        /**
+         * Provider of the venue.
+         */
+        protected string $venueProvider,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class InputStoryAreaTypePreviousVenue extends InputStoryAreaType
     public static function fromArray(array $array): InputStoryAreaTypePreviousVenue
     {
         return new static(
-            $array['venue_provider'],
-            $array['venue_id'],
+            venueId      : $array['venue_id'],
+            venueProvider: $array['venue_provider'],
         );
     }
 
@@ -62,8 +62,8 @@ class InputStoryAreaTypePreviousVenue extends InputStoryAreaType
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'venue_provider' => $this->venueProvider,
             'venue_id'       => $this->venueId,
+            'venue_provider' => $this->venueProvider,
         ];
     }
 }

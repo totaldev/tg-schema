@@ -17,20 +17,20 @@ class GetGiftChatThemes extends TdFunction
 
     public function __construct(
         /**
-         * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
-         */
-        protected string $offset,
-        /**
          * The maximum number of chat themes to return.
          */
         protected int    $limit,
+        /**
+         * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
+         */
+        protected string $offset,
     ) {}
 
     public static function fromArray(array $array): GetGiftChatThemes
     {
         return new static(
-            $array['offset'],
-            $array['limit'],
+            limit : $array['limit'],
+            offset: $array['offset'],
         );
     }
 
@@ -62,8 +62,8 @@ class GetGiftChatThemes extends TdFunction
     {
         return [
             '@type'  => static::TYPE_NAME,
-            'offset' => $this->offset,
             'limit'  => $this->limit,
+            'offset' => $this->offset,
         ];
     }
 }

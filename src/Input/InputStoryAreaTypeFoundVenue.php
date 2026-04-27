@@ -29,8 +29,8 @@ class InputStoryAreaTypeFoundVenue extends InputStoryAreaType
     public static function fromArray(array $array): InputStoryAreaTypeFoundVenue
     {
         return new static(
-            $array['query_id'],
-            $array['result_id'],
+            queryId : $array['query_id'],
+            resultId: $array['result_id'],
         );
     }
 

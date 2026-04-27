@@ -25,7 +25,7 @@ class CanPostStoryResultMonthlyLimitExceeded extends CanPostStoryResult
     public static function fromArray(array $array): CanPostStoryResultMonthlyLimitExceeded
     {
         return new static(
-            $array['retry_after'],
+            retryAfter: $array['retry_after'],
         );
     }
 

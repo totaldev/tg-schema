@@ -18,10 +18,6 @@ class InputStoryAreaTypeSuggestedReaction extends InputStoryAreaType
 
     public function __construct(
         /**
-         * Type of the reaction.
-         */
-        protected ReactionType $reactionType,
-        /**
          * True, if reaction has a dark background.
          */
         protected bool         $isDark,
@@ -29,6 +25,10 @@ class InputStoryAreaTypeSuggestedReaction extends InputStoryAreaType
          * True, if reaction corner is flipped.
          */
         protected bool         $isFlipped,
+        /**
+         * Type of the reaction.
+         */
+        protected ReactionType $reactionType,
     ) {
         parent::__construct();
     }
@@ -36,9 +36,9 @@ class InputStoryAreaTypeSuggestedReaction extends InputStoryAreaType
     public static function fromArray(array $array): InputStoryAreaTypeSuggestedReaction
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['reaction_type']),
-            $array['is_dark'],
-            $array['is_flipped'],
+            isDark      : $array['is_dark'],
+            isFlipped   : $array['is_flipped'],
+            reactionType: TdSchemaRegistry::fromArray($array['reaction_type']),
         );
     }
 
@@ -82,9 +82,9 @@ class InputStoryAreaTypeSuggestedReaction extends InputStoryAreaType
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'reaction_type' => $this->reactionType->typeSerialize(),
             'is_dark'       => $this->isDark,
             'is_flipped'    => $this->isFlipped,
+            'reaction_type' => $this->reactionType->jsonSerialize(),
         ];
     }
 }

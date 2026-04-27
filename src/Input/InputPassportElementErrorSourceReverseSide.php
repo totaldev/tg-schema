@@ -25,7 +25,7 @@ class InputPassportElementErrorSourceReverseSide extends InputPassportElementErr
     public static function fromArray(array $array): InputPassportElementErrorSourceReverseSide
     {
         return new static(
-            $array['file_hash'],
+            fileHash: $array['file_hash'],
         );
     }
 

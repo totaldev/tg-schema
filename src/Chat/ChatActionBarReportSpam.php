@@ -26,7 +26,7 @@ class ChatActionBarReportSpam extends ChatActionBar
     public static function fromArray(array $array): ChatActionBarReportSpam
     {
         return new static(
-            $array['can_unarchive'],
+            canUnarchive: $array['can_unarchive'],
         );
     }
 

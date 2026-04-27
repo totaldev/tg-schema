@@ -15,13 +15,13 @@ class CallServerTypeTelegramReflector extends CallServerType
 
     public function __construct(
         /**
-         * A peer tag to be used with the reflector.
-         */
-        protected string $peerTag,
-        /**
          * True, if the server uses TCP instead of UDP.
          */
         protected bool   $isTcp,
+        /**
+         * A peer tag to be used with the reflector.
+         */
+        protected string $peerTag,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class CallServerTypeTelegramReflector extends CallServerType
     public static function fromArray(array $array): CallServerTypeTelegramReflector
     {
         return new static(
-            $array['peer_tag'],
-            $array['is_tcp'],
+            isTcp  : $array['is_tcp'],
+            peerTag: $array['peer_tag'],
         );
     }
 
@@ -62,8 +62,8 @@ class CallServerTypeTelegramReflector extends CallServerType
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'peer_tag' => $this->peerTag,
             'is_tcp'   => $this->isTcp,
+            'peer_tag' => $this->peerTag,
         ];
     }
 }

@@ -25,7 +25,7 @@ class AuthenticationCodeTypeCall extends AuthenticationCodeType
     public static function fromArray(array $array): AuthenticationCodeTypeCall
     {
         return new static(
-            $array['length'],
+            length: $array['length'],
         );
     }
 

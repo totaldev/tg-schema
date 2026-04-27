@@ -19,13 +19,13 @@ class GetTonTransactions extends TdFunction
 
     public function __construct(
         /**
-         * Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results.
-         */
-        protected string                $offset,
-        /**
          * The maximum number of transactions to return.
          */
         protected int                   $limit,
+        /**
+         * Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results.
+         */
+        protected string                $offset,
         /**
          * Direction of the transactions to receive; pass null to get all transactions.
          */
@@ -35,9 +35,9 @@ class GetTonTransactions extends TdFunction
     public static function fromArray(array $array): GetTonTransactions
     {
         return new static(
-            isset($array['direction']) ? TdSchemaRegistry::fromArray($array['direction']) : null,
-            $array['offset'],
-            $array['limit'],
+            direction: (isset($array['direction']) ? TdSchemaRegistry::fromArray($array['direction']) : null),
+            limit    : $array['limit'],
+            offset   : $array['offset'],
         );
     }
 
@@ -81,9 +81,9 @@ class GetTonTransactions extends TdFunction
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'direction' => $this->direction ?? null,
-            'offset'    => $this->offset,
+            'direction' => (null !== $this->direction ? $this->direction->jsonSerialize() : null),
             'limit'     => $this->limit,
+            'offset'    => $this->offset,
         ];
     }
 }

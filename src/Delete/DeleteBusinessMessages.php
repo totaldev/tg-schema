@@ -31,8 +31,8 @@ class DeleteBusinessMessages extends TdFunction
     public static function fromArray(array $array): DeleteBusinessMessages
     {
         return new static(
-            $array['business_connection_id'],
-            $array['message_ids'],
+            businessConnectionId: $array['business_connection_id'],
+            messageIds          : $array['message_ids'],
         );
     }
 

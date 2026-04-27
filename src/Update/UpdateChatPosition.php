@@ -32,8 +32,8 @@ class UpdateChatPosition extends Update
     public static function fromArray(array $array): UpdateChatPosition
     {
         return new static(
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['position']),
+            chatId  : $array['chat_id'],
+            position: TdSchemaRegistry::fromArray($array['position']),
         );
     }
 
@@ -66,7 +66,7 @@ class UpdateChatPosition extends Update
         return [
             '@type'    => static::TYPE_NAME,
             'chat_id'  => $this->chatId,
-            'position' => $this->position->typeSerialize(),
+            'position' => $this->position->jsonSerialize(),
         ];
     }
 }

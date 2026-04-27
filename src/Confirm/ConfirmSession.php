@@ -25,7 +25,7 @@ class ConfirmSession extends TdFunction
     public static function fromArray(array $array): ConfirmSession
     {
         return new static(
-            $array['session_id'],
+            sessionId: $array['session_id'],
         );
     }
 

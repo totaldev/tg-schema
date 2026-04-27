@@ -25,7 +25,7 @@ class PassportElementPhoneNumber extends PassportElement
     public static function fromArray(array $array): PassportElementPhoneNumber
     {
         return new static(
-            $array['phone_number'],
+            phoneNumber: $array['phone_number'],
         );
     }
 

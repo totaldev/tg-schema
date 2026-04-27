@@ -28,7 +28,7 @@ class InputStoryAreas extends TdObject
     public static function fromArray(array $array): InputStoryAreas
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['areas']),
+            areas: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['areas']),
         );
     }
 
@@ -48,7 +48,7 @@ class InputStoryAreas extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            'areas' => array_map(static fn($x) => $x->typeSerialize(), $this->areas),
+            'areas' => array_map(static fn($x) => $x->jsonSerialize(), $this->areas),
         ];
     }
 }

@@ -18,20 +18,20 @@ class ToggleSupergroupHasHiddenMembers extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the supergroup.
-         */
-        protected int  $supergroupId,
-        /**
          * New value of has_hidden_members.
          */
         protected bool $hasHiddenMembers,
+        /**
+         * Identifier of the supergroup.
+         */
+        protected int  $supergroupId,
     ) {}
 
     public static function fromArray(array $array): ToggleSupergroupHasHiddenMembers
     {
         return new static(
-            $array['supergroup_id'],
-            $array['has_hidden_members'],
+            hasHiddenMembers: $array['has_hidden_members'],
+            supergroupId    : $array['supergroup_id'],
         );
     }
 
@@ -63,8 +63,8 @@ class ToggleSupergroupHasHiddenMembers extends TdFunction
     {
         return [
             '@type'              => static::TYPE_NAME,
-            'supergroup_id'      => $this->supergroupId,
             'has_hidden_members' => $this->hasHiddenMembers,
+            'supergroup_id'      => $this->supergroupId,
         ];
     }
 }

@@ -18,17 +18,17 @@ class UpdateAccentColors extends Update
 
     public function __construct(
         /**
-         * Information about supported colors; colors with identifiers 0 (red), 1 (orange), 2 (purple/violet), 3 (green), 4 (cyan), 5 (blue), 6 (pink) must always be supported and aren't included in the list. The exact colors for the accent colors with identifiers 0-6 must be taken from the app theme.
-         *
-         * @var AccentColor[]
-         */
-        protected array $colors,
-        /**
          * The list of accent color identifiers, which can be set through setAccentColor and setChatAccentColor. The colors must be shown in the specified order.
          *
          * @var int[]
          */
         protected array $availableAccentColorIds,
+        /**
+         * Information about supported colors; colors with identifiers 0 (red), 1 (orange), 2 (purple/violet), 3 (green), 4 (cyan), 5 (blue), 6 (pink) must always be supported and aren't included in the list. The exact colors for the accent colors with identifiers 0-6 must be taken from the app theme.
+         *
+         * @var AccentColor[]
+         */
+        protected array $colors,
     ) {
         parent::__construct();
     }
@@ -36,8 +36,8 @@ class UpdateAccentColors extends Update
     public static function fromArray(array $array): UpdateAccentColors
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['colors']),
-            $array['available_accent_color_ids'],
+            availableAccentColorIds: $array['available_accent_color_ids'],
+            colors                 : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['colors']),
         );
     }
 
@@ -69,8 +69,8 @@ class UpdateAccentColors extends Update
     {
         return [
             '@type'                      => static::TYPE_NAME,
-            'colors'                     => array_map(static fn($x) => $x->typeSerialize(), $this->colors),
             'available_accent_color_ids' => $this->availableAccentColorIds,
+            'colors'                     => array_map(static fn($x) => $x->jsonSerialize(), $this->colors),
         ];
     }
 }

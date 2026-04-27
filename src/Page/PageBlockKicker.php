@@ -28,7 +28,7 @@ class PageBlockKicker extends PageBlock
     public static function fromArray(array $array): PageBlockKicker
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['kicker']),
+            kicker: TdSchemaRegistry::fromArray($array['kicker']),
         );
     }
 
@@ -48,7 +48,7 @@ class PageBlockKicker extends PageBlock
     {
         return [
             '@type'  => static::TYPE_NAME,
-            'kicker' => $this->kicker->typeSerialize(),
+            'kicker' => $this->kicker->jsonSerialize(),
         ];
     }
 }

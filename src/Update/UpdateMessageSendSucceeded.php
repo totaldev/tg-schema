@@ -32,8 +32,8 @@ class UpdateMessageSendSucceeded extends Update
     public static function fromArray(array $array): UpdateMessageSendSucceeded
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['message']),
-            $array['old_message_id'],
+            message     : TdSchemaRegistry::fromArray($array['message']),
+            oldMessageId: $array['old_message_id'],
         );
     }
 
@@ -65,7 +65,7 @@ class UpdateMessageSendSucceeded extends Update
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'message'        => $this->message->typeSerialize(),
+            'message'        => $this->message->jsonSerialize(),
             'old_message_id' => $this->oldMessageId,
         ];
     }

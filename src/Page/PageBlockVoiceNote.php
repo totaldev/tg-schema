@@ -18,13 +18,13 @@ class PageBlockVoiceNote extends PageBlock
 
     public function __construct(
         /**
-         * Voice note; may be null.
-         */
-        protected ?VoiceNote       $voiceNote,
-        /**
          * Voice note caption.
          */
         protected PageBlockCaption $caption,
+        /**
+         * Voice note; may be null.
+         */
+        protected ?VoiceNote       $voiceNote,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class PageBlockVoiceNote extends PageBlock
     public static function fromArray(array $array): PageBlockVoiceNote
     {
         return new static(
-            isset($array['voice_note']) ? TdSchemaRegistry::fromArray($array['voice_note']) : null,
-            TdSchemaRegistry::fromArray($array['caption']),
+            caption  : TdSchemaRegistry::fromArray($array['caption']),
+            voiceNote: (isset($array['voice_note']) ? TdSchemaRegistry::fromArray($array['voice_note']) : null),
         );
     }
 
@@ -65,8 +65,8 @@ class PageBlockVoiceNote extends PageBlock
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'voice_note' => $this->voiceNote ?? null,
-            'caption'    => $this->caption->typeSerialize(),
+            'caption'    => $this->caption->jsonSerialize(),
+            'voice_note' => (null !== $this->voiceNote ? $this->voiceNote->jsonSerialize() : null),
         ];
     }
 }

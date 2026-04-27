@@ -25,7 +25,7 @@ class ChatThemeEmoji extends ChatTheme
     public static function fromArray(array $array): ChatThemeEmoji
     {
         return new static(
-            $array['name'],
+            name: $array['name'],
         );
     }
 

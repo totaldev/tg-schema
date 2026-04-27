@@ -17,22 +17,22 @@ class DeleteQuickReplyShortcutMessages extends TdFunction
 
     public function __construct(
         /**
-         * Unique identifier of the quick reply shortcut to which the messages belong.
-         */
-        protected int   $shortcutId,
-        /**
          * Unique identifiers of the messages.
          *
          * @var int[]
          */
         protected array $messageIds,
+        /**
+         * Unique identifier of the quick reply shortcut to which the messages belong.
+         */
+        protected int   $shortcutId,
     ) {}
 
     public static function fromArray(array $array): DeleteQuickReplyShortcutMessages
     {
         return new static(
-            $array['shortcut_id'],
-            $array['message_ids'],
+            messageIds: $array['message_ids'],
+            shortcutId: $array['shortcut_id'],
         );
     }
 
@@ -64,8 +64,8 @@ class DeleteQuickReplyShortcutMessages extends TdFunction
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'shortcut_id' => $this->shortcutId,
             'message_ids' => $this->messageIds,
+            'shortcut_id' => $this->shortcutId,
         ];
     }
 }

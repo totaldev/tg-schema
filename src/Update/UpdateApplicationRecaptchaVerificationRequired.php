@@ -16,10 +16,6 @@ class UpdateApplicationRecaptchaVerificationRequired extends Update
 
     public function __construct(
         /**
-         * Unique identifier for the verification process.
-         */
-        protected int    $verificationId,
-        /**
          * The action for the check.
          */
         protected string $action,
@@ -27,6 +23,10 @@ class UpdateApplicationRecaptchaVerificationRequired extends Update
          * Identifier of the reCAPTCHA key.
          */
         protected string $recaptchaKeyId,
+        /**
+         * Unique identifier for the verification process.
+         */
+        protected int    $verificationId,
     ) {
         parent::__construct();
     }
@@ -34,9 +34,9 @@ class UpdateApplicationRecaptchaVerificationRequired extends Update
     public static function fromArray(array $array): UpdateApplicationRecaptchaVerificationRequired
     {
         return new static(
-            $array['verification_id'],
-            $array['action'],
-            $array['recaptcha_key_id'],
+            action        : $array['action'],
+            recaptchaKeyId: $array['recaptcha_key_id'],
+            verificationId: $array['verification_id'],
         );
     }
 
@@ -80,9 +80,9 @@ class UpdateApplicationRecaptchaVerificationRequired extends Update
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'verification_id'  => $this->verificationId,
             'action'           => $this->action,
             'recaptcha_key_id' => $this->recaptchaKeyId,
+            'verification_id'  => $this->verificationId,
         ];
     }
 }

@@ -25,7 +25,7 @@ class TextEntityTypeMentionName extends TextEntityType
     public static function fromArray(array $array): TextEntityTypeMentionName
     {
         return new static(
-            $array['user_id'],
+            userId: $array['user_id'],
         );
     }
 

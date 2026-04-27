@@ -17,30 +17,30 @@ class UnconfirmedSession extends TdObject
 
     public function __construct(
         /**
-         * Session identifier.
-         */
-        protected int    $id,
-        /**
-         * Point in time (Unix timestamp) when the user has logged in.
-         */
-        protected int    $logInDate,
-        /**
          * Model of the device that was used for the session creation, as provided by the application.
          */
         protected string $deviceModel,
         /**
+         * Session identifier.
+         */
+        protected int    $id,
+        /**
          * A human-readable description of the location from which the session was created, based on the IP address.
          */
         protected string $location,
+        /**
+         * Point in time (Unix timestamp) when the user has logged in.
+         */
+        protected int    $logInDate,
     ) {}
 
     public static function fromArray(array $array): UnconfirmedSession
     {
         return new static(
-            $array['id'],
-            $array['log_in_date'],
-            $array['device_model'],
-            $array['location'],
+            deviceModel: $array['device_model'],
+            id         : $array['id'],
+            location   : $array['location'],
+            logInDate  : $array['log_in_date'],
         );
     }
 
@@ -96,10 +96,10 @@ class UnconfirmedSession extends TdObject
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'id'           => $this->id,
-            'log_in_date'  => $this->logInDate,
             'device_model' => $this->deviceModel,
+            'id'           => $this->id,
             'location'     => $this->location,
+            'log_in_date'  => $this->logInDate,
         ];
     }
 }

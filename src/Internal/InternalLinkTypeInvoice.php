@@ -25,7 +25,7 @@ class InternalLinkTypeInvoice extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeInvoice
     {
         return new static(
-            $array['invoice_name'],
+            invoiceName: $array['invoice_name'],
         );
     }
 

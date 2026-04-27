@@ -21,21 +21,21 @@ class GetStoryStatistics extends TdFunction
          */
         protected int  $chatId,
         /**
-         * Story identifier.
-         */
-        protected int  $storyId,
-        /**
          * Pass true if a dark theme is used by the application.
          */
         protected bool $isDark,
+        /**
+         * Story identifier.
+         */
+        protected int  $storyId,
     ) {}
 
     public static function fromArray(array $array): GetStoryStatistics
     {
         return new static(
-            $array['chat_id'],
-            $array['story_id'],
-            $array['is_dark'],
+            chatId : $array['chat_id'],
+            isDark : $array['is_dark'],
+            storyId: $array['story_id'],
         );
     }
 
@@ -80,8 +80,8 @@ class GetStoryStatistics extends TdFunction
         return [
             '@type'    => static::TYPE_NAME,
             'chat_id'  => $this->chatId,
-            'story_id' => $this->storyId,
             'is_dark'  => $this->isDark,
+            'story_id' => $this->storyId,
         ];
     }
 }

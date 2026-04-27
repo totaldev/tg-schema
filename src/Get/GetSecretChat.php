@@ -25,7 +25,7 @@ class GetSecretChat extends TdFunction
     public static function fromArray(array $array): GetSecretChat
     {
         return new static(
-            $array['secret_chat_id'],
+            secretChatId: $array['secret_chat_id'],
         );
     }
 

@@ -27,7 +27,7 @@ class Emojis extends TdObject
     public static function fromArray(array $array): Emojis
     {
         return new static(
-            $array['emojis'],
+            emojis: $array['emojis'],
         );
     }
 

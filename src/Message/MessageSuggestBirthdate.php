@@ -28,7 +28,7 @@ class MessageSuggestBirthdate extends MessageContent
     public static function fromArray(array $array): MessageSuggestBirthdate
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['birthdate']),
+            birthdate: TdSchemaRegistry::fromArray($array['birthdate']),
         );
     }
 
@@ -48,7 +48,7 @@ class MessageSuggestBirthdate extends MessageContent
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'birthdate' => $this->birthdate->typeSerialize(),
+            'birthdate' => $this->birthdate->jsonSerialize(),
         ];
     }
 }

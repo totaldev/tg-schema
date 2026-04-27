@@ -19,40 +19,40 @@ class GetMapThumbnailFile extends TdFunction
 
     public function __construct(
         /**
-         * Location of the map center.
+         * Identifier of a chat in which the thumbnail will be shown. Use 0 if unknown.
          */
-        protected Location $location,
-        /**
-         * Map zoom level; 13-20.
-         */
-        protected int      $zoom,
-        /**
-         * Map width in pixels before applying scale; 16-1024.
-         */
-        protected int      $width,
+        protected int      $chatId,
         /**
          * Map height in pixels before applying scale; 16-1024.
          */
         protected int      $height,
         /**
+         * Location of the map center.
+         */
+        protected Location $location,
+        /**
          * Map scale; 1-3.
          */
         protected int      $scale,
         /**
-         * Identifier of a chat in which the thumbnail will be shown. Use 0 if unknown.
+         * Map width in pixels before applying scale; 16-1024.
          */
-        protected int      $chatId,
+        protected int      $width,
+        /**
+         * Map zoom level; 13-20.
+         */
+        protected int      $zoom,
     ) {}
 
     public static function fromArray(array $array): GetMapThumbnailFile
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['location']),
-            $array['zoom'],
-            $array['width'],
-            $array['height'],
-            $array['scale'],
-            $array['chat_id'],
+            chatId  : $array['chat_id'],
+            height  : $array['height'],
+            location: TdSchemaRegistry::fromArray($array['location']),
+            scale   : $array['scale'],
+            width   : $array['width'],
+            zoom    : $array['zoom'],
         );
     }
 
@@ -132,12 +132,12 @@ class GetMapThumbnailFile extends TdFunction
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'location' => $this->location->typeSerialize(),
-            'zoom'     => $this->zoom,
-            'width'    => $this->width,
-            'height'   => $this->height,
-            'scale'    => $this->scale,
             'chat_id'  => $this->chatId,
+            'height'   => $this->height,
+            'location' => $this->location->jsonSerialize(),
+            'scale'    => $this->scale,
+            'width'    => $this->width,
+            'zoom'     => $this->zoom,
         ];
     }
 }

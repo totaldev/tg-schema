@@ -28,7 +28,7 @@ class MessageEffectTypePremiumSticker extends MessageEffectType
     public static function fromArray(array $array): MessageEffectTypePremiumSticker
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['sticker']),
+            sticker: TdSchemaRegistry::fromArray($array['sticker']),
         );
     }
 
@@ -48,7 +48,7 @@ class MessageEffectTypePremiumSticker extends MessageEffectType
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'sticker' => $this->sticker->typeSerialize(),
+            'sticker' => $this->sticker->jsonSerialize(),
         ];
     }
 }

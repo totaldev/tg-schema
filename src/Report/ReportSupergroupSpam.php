@@ -17,22 +17,22 @@ class ReportSupergroupSpam extends TdFunction
 
     public function __construct(
         /**
-         * Supergroup identifier.
-         */
-        protected int   $supergroupId,
-        /**
          * Identifiers of messages to report. Use messageProperties.can_report_supergroup_spam to check whether the message can be reported.
          *
          * @var int[]
          */
         protected array $messageIds,
+        /**
+         * Supergroup identifier.
+         */
+        protected int   $supergroupId,
     ) {}
 
     public static function fromArray(array $array): ReportSupergroupSpam
     {
         return new static(
-            $array['supergroup_id'],
-            $array['message_ids'],
+            messageIds  : $array['message_ids'],
+            supergroupId: $array['supergroup_id'],
         );
     }
 
@@ -64,8 +64,8 @@ class ReportSupergroupSpam extends TdFunction
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'supergroup_id' => $this->supergroupId,
             'message_ids'   => $this->messageIds,
+            'supergroup_id' => $this->supergroupId,
         ];
     }
 }

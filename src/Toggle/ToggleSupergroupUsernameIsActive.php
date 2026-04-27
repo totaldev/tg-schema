@@ -18,6 +18,10 @@ class ToggleSupergroupUsernameIsActive extends TdFunction
 
     public function __construct(
         /**
+         * Pass true to activate the username; pass false to disable it.
+         */
+        protected bool   $isActive,
+        /**
          * Identifier of the supergroup or channel.
          */
         protected int    $supergroupId,
@@ -25,18 +29,14 @@ class ToggleSupergroupUsernameIsActive extends TdFunction
          * The username to change.
          */
         protected string $username,
-        /**
-         * Pass true to activate the username; pass false to disable it.
-         */
-        protected bool   $isActive,
     ) {}
 
     public static function fromArray(array $array): ToggleSupergroupUsernameIsActive
     {
         return new static(
-            $array['supergroup_id'],
-            $array['username'],
-            $array['is_active'],
+            isActive    : $array['is_active'],
+            supergroupId: $array['supergroup_id'],
+            username    : $array['username'],
         );
     }
 
@@ -80,9 +80,9 @@ class ToggleSupergroupUsernameIsActive extends TdFunction
     {
         return [
             '@type'         => static::TYPE_NAME,
+            'is_active'     => $this->isActive,
             'supergroup_id' => $this->supergroupId,
             'username'      => $this->username,
-            'is_active'     => $this->isActive,
         ];
     }
 }

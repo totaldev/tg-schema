@@ -19,20 +19,20 @@ class DatedFile extends TdObject
 
     public function __construct(
         /**
-         * The file.
-         */
-        protected File $file,
-        /**
          * Point in time (Unix timestamp) when the file was uploaded.
          */
         protected int  $date,
+        /**
+         * The file.
+         */
+        protected File $file,
     ) {}
 
     public static function fromArray(array $array): DatedFile
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['file']),
-            $array['date'],
+            date: $array['date'],
+            file: TdSchemaRegistry::fromArray($array['file']),
         );
     }
 
@@ -64,8 +64,8 @@ class DatedFile extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            'file'  => $this->file->typeSerialize(),
             'date'  => $this->date,
+            'file'  => $this->file->jsonSerialize(),
         ];
     }
 }

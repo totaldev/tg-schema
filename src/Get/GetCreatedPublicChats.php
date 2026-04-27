@@ -27,7 +27,7 @@ class GetCreatedPublicChats extends TdFunction
     public static function fromArray(array $array): GetCreatedPublicChats
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['type']),
+            type: TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -47,7 +47,7 @@ class GetCreatedPublicChats extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'type'  => $this->type->typeSerialize(),
+            'type'  => $this->type->jsonSerialize(),
         ];
     }
 }

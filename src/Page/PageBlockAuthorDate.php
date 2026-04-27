@@ -32,8 +32,8 @@ class PageBlockAuthorDate extends PageBlock
     public static function fromArray(array $array): PageBlockAuthorDate
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['author']),
-            $array['publish_date'],
+            author     : TdSchemaRegistry::fromArray($array['author']),
+            publishDate: $array['publish_date'],
         );
     }
 
@@ -65,7 +65,7 @@ class PageBlockAuthorDate extends PageBlock
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'author'       => $this->author->typeSerialize(),
+            'author'       => $this->author->jsonSerialize(),
             'publish_date' => $this->publishDate,
         ];
     }

@@ -18,20 +18,20 @@ class ToggleSupergroupJoinByRequest extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the supergroup that isn't a broadcast group and isn't a channel direct message group.
-         */
-        protected int  $supergroupId,
-        /**
          * New value of join_by_request.
          */
         protected bool $joinByRequest,
+        /**
+         * Identifier of the supergroup that isn't a broadcast group and isn't a channel direct message group.
+         */
+        protected int  $supergroupId,
     ) {}
 
     public static function fromArray(array $array): ToggleSupergroupJoinByRequest
     {
         return new static(
-            $array['supergroup_id'],
-            $array['join_by_request'],
+            joinByRequest: $array['join_by_request'],
+            supergroupId : $array['supergroup_id'],
         );
     }
 
@@ -63,8 +63,8 @@ class ToggleSupergroupJoinByRequest extends TdFunction
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'supergroup_id'   => $this->supergroupId,
             'join_by_request' => $this->joinByRequest,
+            'supergroup_id'   => $this->supergroupId,
         ];
     }
 }

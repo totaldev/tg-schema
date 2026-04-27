@@ -28,7 +28,7 @@ class AuthorizationStateWaitCode extends AuthorizationState
     public static function fromArray(array $array): AuthorizationStateWaitCode
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['code_info']),
+            codeInfo: TdSchemaRegistry::fromArray($array['code_info']),
         );
     }
 
@@ -48,7 +48,7 @@ class AuthorizationStateWaitCode extends AuthorizationState
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'code_info' => $this->codeInfo->typeSerialize(),
+            'code_info' => $this->codeInfo->jsonSerialize(),
         ];
     }
 }

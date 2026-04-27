@@ -29,7 +29,7 @@ class Countries extends TdObject
     public static function fromArray(array $array): Countries
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['countries']),
+            countries: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['countries']),
         );
     }
 
@@ -49,7 +49,7 @@ class Countries extends TdObject
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'countries' => array_map(static fn($x) => $x->typeSerialize(), $this->countries),
+            'countries' => array_map(static fn($x) => $x->jsonSerialize(), $this->countries),
         ];
     }
 }

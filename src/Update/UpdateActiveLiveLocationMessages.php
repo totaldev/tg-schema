@@ -31,7 +31,7 @@ class UpdateActiveLiveLocationMessages extends Update
     public static function fromArray(array $array): UpdateActiveLiveLocationMessages
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['messages']),
+            messages: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['messages']),
         );
     }
 
@@ -51,7 +51,7 @@ class UpdateActiveLiveLocationMessages extends Update
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'messages' => array_map(static fn($x) => $x->typeSerialize(), $this->messages),
+            'messages' => array_map(static fn($x) => $x->jsonSerialize(), $this->messages),
         ];
     }
 }

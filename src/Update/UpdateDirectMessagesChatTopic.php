@@ -29,7 +29,7 @@ class UpdateDirectMessagesChatTopic extends Update
     public static function fromArray(array $array): UpdateDirectMessagesChatTopic
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['topic']),
+            topic: TdSchemaRegistry::fromArray($array['topic']),
         );
     }
 
@@ -49,7 +49,7 @@ class UpdateDirectMessagesChatTopic extends Update
     {
         return [
             '@type' => static::TYPE_NAME,
-            'topic' => $this->topic->typeSerialize(),
+            'topic' => $this->topic->jsonSerialize(),
         ];
     }
 }

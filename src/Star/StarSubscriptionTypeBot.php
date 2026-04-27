@@ -18,21 +18,21 @@ class StarSubscriptionTypeBot extends StarSubscriptionType
 
     public function __construct(
         /**
+         * The link to the subscription invoice.
+         */
+        protected string $invoiceLink,
+        /**
          * True, if the subscription was canceled by the bot and can't be extended.
          */
         protected bool   $isCanceledByBot,
-        /**
-         * Subscription invoice title.
-         */
-        protected string $title,
         /**
          * Subscription invoice photo.
          */
         protected Photo  $photo,
         /**
-         * The link to the subscription invoice.
+         * Subscription invoice title.
          */
-        protected string $invoiceLink,
+        protected string $title,
     ) {
         parent::__construct();
     }
@@ -40,10 +40,10 @@ class StarSubscriptionTypeBot extends StarSubscriptionType
     public static function fromArray(array $array): StarSubscriptionTypeBot
     {
         return new static(
-            $array['is_canceled_by_bot'],
-            $array['title'],
-            TdSchemaRegistry::fromArray($array['photo']),
-            $array['invoice_link'],
+            invoiceLink    : $array['invoice_link'],
+            isCanceledByBot: $array['is_canceled_by_bot'],
+            photo          : TdSchemaRegistry::fromArray($array['photo']),
+            title          : $array['title'],
         );
     }
 
@@ -99,10 +99,10 @@ class StarSubscriptionTypeBot extends StarSubscriptionType
     {
         return [
             '@type'              => static::TYPE_NAME,
-            'is_canceled_by_bot' => $this->isCanceledByBot,
-            'title'              => $this->title,
-            'photo'              => $this->photo->typeSerialize(),
             'invoice_link'       => $this->invoiceLink,
+            'is_canceled_by_bot' => $this->isCanceledByBot,
+            'photo'              => $this->photo->jsonSerialize(),
+            'title'              => $this->title,
         ];
     }
 }

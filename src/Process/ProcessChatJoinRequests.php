@@ -17,6 +17,10 @@ class ProcessChatJoinRequests extends TdFunction
 
     public function __construct(
         /**
+         * Pass true to approve all requests; pass false to decline them.
+         */
+        protected bool   $approve,
+        /**
          * Chat identifier.
          */
         protected int    $chatId,
@@ -24,18 +28,14 @@ class ProcessChatJoinRequests extends TdFunction
          * Invite link for which to process join requests. If empty, all join requests will be processed. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links.
          */
         protected string $inviteLink,
-        /**
-         * Pass true to approve all requests; pass false to decline them.
-         */
-        protected bool   $approve,
     ) {}
 
     public static function fromArray(array $array): ProcessChatJoinRequests
     {
         return new static(
-            $array['chat_id'],
-            $array['invite_link'],
-            $array['approve'],
+            approve   : $array['approve'],
+            chatId    : $array['chat_id'],
+            inviteLink: $array['invite_link'],
         );
     }
 
@@ -79,9 +79,9 @@ class ProcessChatJoinRequests extends TdFunction
     {
         return [
             '@type'       => static::TYPE_NAME,
+            'approve'     => $this->approve,
             'chat_id'     => $this->chatId,
             'invite_link' => $this->inviteLink,
-            'approve'     => $this->approve,
         ];
     }
 }

@@ -25,7 +25,7 @@ class StarCount extends TdObject
     public static function fromArray(array $array): StarCount
     {
         return new static(
-            $array['star_count'],
+            starCount: $array['star_count'],
         );
     }
 

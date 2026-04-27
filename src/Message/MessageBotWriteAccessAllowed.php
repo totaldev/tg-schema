@@ -28,7 +28,7 @@ class MessageBotWriteAccessAllowed extends MessageContent
     public static function fromArray(array $array): MessageBotWriteAccessAllowed
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['reason']),
+            reason: TdSchemaRegistry::fromArray($array['reason']),
         );
     }
 
@@ -48,7 +48,7 @@ class MessageBotWriteAccessAllowed extends MessageContent
     {
         return [
             '@type'  => static::TYPE_NAME,
-            'reason' => $this->reason->typeSerialize(),
+            'reason' => $this->reason->jsonSerialize(),
         ];
     }
 }

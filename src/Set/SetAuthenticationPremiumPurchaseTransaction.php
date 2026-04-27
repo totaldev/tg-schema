@@ -20,30 +20,30 @@ class SetAuthenticationPremiumPurchaseTransaction extends TdFunction
 
     public function __construct(
         /**
-         * Information about the transaction.
+         * Paid amount, in the smallest units of the currency.
          */
-        protected StoreTransaction $transaction,
-        /**
-         * Pass true if this is a restore of a Telegram Premium purchase; only for App Store.
-         */
-        protected bool             $isRestore,
+        protected int              $amount,
         /**
          * ISO 4217 currency code of the payment currency.
          */
         protected string           $currency,
         /**
-         * Paid amount, in the smallest units of the currency.
+         * Pass true if this is a restore of a Telegram Premium purchase; only for App Store.
          */
-        protected int              $amount,
+        protected bool             $isRestore,
+        /**
+         * Information about the transaction.
+         */
+        protected StoreTransaction $transaction,
     ) {}
 
     public static function fromArray(array $array): SetAuthenticationPremiumPurchaseTransaction
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['transaction']),
-            $array['is_restore'],
-            $array['currency'],
-            $array['amount'],
+            amount     : $array['amount'],
+            currency   : $array['currency'],
+            isRestore  : $array['is_restore'],
+            transaction: TdSchemaRegistry::fromArray($array['transaction']),
         );
     }
 
@@ -99,10 +99,10 @@ class SetAuthenticationPremiumPurchaseTransaction extends TdFunction
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'transaction' => $this->transaction->typeSerialize(),
-            'is_restore'  => $this->isRestore,
-            'currency'    => $this->currency,
             'amount'      => $this->amount,
+            'currency'    => $this->currency,
+            'is_restore'  => $this->isRestore,
+            'transaction' => $this->transaction->jsonSerialize(),
         ];
     }
 }

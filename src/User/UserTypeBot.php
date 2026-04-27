@@ -15,9 +15,21 @@ class UserTypeBot extends UserType
 
     public function __construct(
         /**
+         * The number of recently active users of the bot.
+         */
+        protected int    $activeUserCount,
+        /**
+         * True, if the bot can be added to attachment or side menu.
+         */
+        protected bool   $canBeAddedToAttachmentMenu,
+        /**
          * True, if the bot is owned by the current user and can be edited using the methods toggleBotUsernameIsActive, reorderBotActiveUsernames, setBotProfilePhoto, setBotName, setBotInfoDescription, and setBotInfoShortDescription.
          */
         protected bool   $canBeEdited,
+        /**
+         * True, if the bot supports connection to Telegram Business accounts.
+         */
+        protected bool   $canConnectToBusiness,
         /**
          * True, if the bot can be invited to basic group and supergroup chats.
          */
@@ -35,29 +47,17 @@ class UserTypeBot extends UserType
          */
         protected bool   $hasTopics,
         /**
-         * True, if the bot supports inline queries.
-         */
-        protected bool   $isInline,
-        /**
          * Placeholder for inline queries (displayed on the application input field).
          */
         protected string $inlineQueryPlaceholder,
         /**
+         * True, if the bot supports inline queries.
+         */
+        protected bool   $isInline,
+        /**
          * True, if the location of the user is expected to be sent with every inline query to this bot.
          */
         protected bool   $needLocation,
-        /**
-         * True, if the bot supports connection to Telegram Business accounts.
-         */
-        protected bool   $canConnectToBusiness,
-        /**
-         * True, if the bot can be added to attachment or side menu.
-         */
-        protected bool   $canBeAddedToAttachmentMenu,
-        /**
-         * The number of recently active users of the bot.
-         */
-        protected int    $activeUserCount,
     ) {
         parent::__construct();
     }
@@ -65,17 +65,17 @@ class UserTypeBot extends UserType
     public static function fromArray(array $array): UserTypeBot
     {
         return new static(
-            $array['can_be_edited'],
-            $array['can_join_groups'],
-            $array['can_read_all_group_messages'],
-            $array['has_main_web_app'],
-            $array['has_topics'],
-            $array['is_inline'],
-            $array['inline_query_placeholder'],
-            $array['need_location'],
-            $array['can_connect_to_business'],
-            $array['can_be_added_to_attachment_menu'],
-            $array['active_user_count'],
+            activeUserCount           : $array['active_user_count'],
+            canBeAddedToAttachmentMenu: $array['can_be_added_to_attachment_menu'],
+            canBeEdited               : $array['can_be_edited'],
+            canConnectToBusiness      : $array['can_connect_to_business'],
+            canJoinGroups             : $array['can_join_groups'],
+            canReadAllGroupMessages   : $array['can_read_all_group_messages'],
+            hasMainWebApp             : $array['has_main_web_app'],
+            hasTopics                 : $array['has_topics'],
+            inlineQueryPlaceholder    : $array['inline_query_placeholder'],
+            isInline                  : $array['is_inline'],
+            needLocation              : $array['need_location'],
         );
     }
 
@@ -215,17 +215,17 @@ class UserTypeBot extends UserType
     {
         return [
             '@type'                           => static::TYPE_NAME,
+            'active_user_count'               => $this->activeUserCount,
+            'can_be_added_to_attachment_menu' => $this->canBeAddedToAttachmentMenu,
             'can_be_edited'                   => $this->canBeEdited,
+            'can_connect_to_business'         => $this->canConnectToBusiness,
             'can_join_groups'                 => $this->canJoinGroups,
             'can_read_all_group_messages'     => $this->canReadAllGroupMessages,
             'has_main_web_app'                => $this->hasMainWebApp,
             'has_topics'                      => $this->hasTopics,
-            'is_inline'                       => $this->isInline,
             'inline_query_placeholder'        => $this->inlineQueryPlaceholder,
+            'is_inline'                       => $this->isInline,
             'need_location'                   => $this->needLocation,
-            'can_connect_to_business'         => $this->canConnectToBusiness,
-            'can_be_added_to_attachment_menu' => $this->canBeAddedToAttachmentMenu,
-            'active_user_count'               => $this->activeUserCount,
         ];
     }
 }

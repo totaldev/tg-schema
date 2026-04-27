@@ -25,7 +25,7 @@ class MessageSchedulingStateSendAtDate extends MessageSchedulingState
     public static function fromArray(array $array): MessageSchedulingStateSendAtDate
     {
         return new static(
-            $array['send_date'],
+            sendDate: $array['send_date'],
         );
     }
 

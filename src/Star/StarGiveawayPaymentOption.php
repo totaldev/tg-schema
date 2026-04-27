@@ -18,13 +18,21 @@ class StarGiveawayPaymentOption extends TdObject
 
     public function __construct(
         /**
+         * The amount to pay, in the smallest units of the currency.
+         */
+        protected int    $amount,
+        /**
          * ISO 4217 currency code for the payment.
          */
         protected string $currency,
         /**
-         * The amount to pay, in the smallest units of the currency.
+         * True, if the option must be shown only in the full list of payment options.
          */
-        protected int    $amount,
+        protected bool   $isAdditional,
+        /**
+         * True, if the option must be chosen by default.
+         */
+        protected bool   $isDefault,
         /**
          * Number of Telegram Stars that will be distributed among winners.
          */
@@ -34,36 +42,28 @@ class StarGiveawayPaymentOption extends TdObject
          */
         protected string $storeProductId,
         /**
-         * Number of times the chat will be boosted for one year if the option is chosen.
-         */
-        protected int    $yearlyBoostCount,
-        /**
          * Allowed options for the number of giveaway winners.
          *
          * @var StarGiveawayWinnerOption[]
          */
         protected array  $winnerOptions,
         /**
-         * True, if the option must be chosen by default.
+         * Number of times the chat will be boosted for one year if the option is chosen.
          */
-        protected bool   $isDefault,
-        /**
-         * True, if the option must be shown only in the full list of payment options.
-         */
-        protected bool   $isAdditional,
+        protected int    $yearlyBoostCount,
     ) {}
 
     public static function fromArray(array $array): StarGiveawayPaymentOption
     {
         return new static(
-            $array['currency'],
-            $array['amount'],
-            $array['star_count'],
-            $array['store_product_id'],
-            $array['yearly_boost_count'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['winner_options']),
-            $array['is_default'],
-            $array['is_additional'],
+            amount          : $array['amount'],
+            currency        : $array['currency'],
+            isAdditional    : $array['is_additional'],
+            isDefault       : $array['is_default'],
+            starCount       : $array['star_count'],
+            storeProductId  : $array['store_product_id'],
+            winnerOptions   : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['winner_options']),
+            yearlyBoostCount: $array['yearly_boost_count'],
         );
     }
 
@@ -167,14 +167,14 @@ class StarGiveawayPaymentOption extends TdObject
     {
         return [
             '@type'              => static::TYPE_NAME,
-            'currency'           => $this->currency,
             'amount'             => $this->amount,
+            'currency'           => $this->currency,
+            'is_additional'      => $this->isAdditional,
+            'is_default'         => $this->isDefault,
             'star_count'         => $this->starCount,
             'store_product_id'   => $this->storeProductId,
+            'winner_options'     => array_map(static fn($x) => $x->jsonSerialize(), $this->winnerOptions),
             'yearly_boost_count' => $this->yearlyBoostCount,
-            'winner_options'     => array_map(static fn($x) => $x->typeSerialize(), $this->winnerOptions),
-            'is_default'         => $this->isDefault,
-            'is_additional'      => $this->isAdditional,
         ];
     }
 }

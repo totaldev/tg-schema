@@ -27,7 +27,7 @@ class SetNewChatPrivacySettings extends TdFunction
     public static function fromArray(array $array): SetNewChatPrivacySettings
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['settings']),
+            settings: TdSchemaRegistry::fromArray($array['settings']),
         );
     }
 
@@ -47,7 +47,7 @@ class SetNewChatPrivacySettings extends TdFunction
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'settings' => $this->settings->typeSerialize(),
+            'settings' => $this->settings->jsonSerialize(),
         ];
     }
 }

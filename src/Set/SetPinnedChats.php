@@ -19,22 +19,22 @@ class SetPinnedChats extends TdFunction
 
     public function __construct(
         /**
-         * Chat list in which to change the order of pinned chats.
-         */
-        protected ChatList $chatList,
-        /**
          * The new list of pinned chats.
          *
          * @var int[]
          */
         protected array    $chatIds,
+        /**
+         * Chat list in which to change the order of pinned chats.
+         */
+        protected ChatList $chatList,
     ) {}
 
     public static function fromArray(array $array): SetPinnedChats
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['chat_list']),
-            $array['chat_ids'],
+            chatIds : $array['chat_ids'],
+            chatList: TdSchemaRegistry::fromArray($array['chat_list']),
         );
     }
 
@@ -66,8 +66,8 @@ class SetPinnedChats extends TdFunction
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'chat_list' => $this->chatList->typeSerialize(),
             'chat_ids'  => $this->chatIds,
+            'chat_list' => $this->chatList->jsonSerialize(),
         ];
     }
 }

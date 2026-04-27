@@ -18,20 +18,20 @@ class GetWebPageInstantView extends TdFunction
 
     public function __construct(
         /**
-         * The web page URL.
-         */
-        protected string $url,
-        /**
          * Pass true to get only locally available information without sending network requests.
          */
         protected bool   $onlyLocal,
+        /**
+         * The web page URL.
+         */
+        protected string $url,
     ) {}
 
     public static function fromArray(array $array): GetWebPageInstantView
     {
         return new static(
-            $array['url'],
-            $array['only_local'],
+            onlyLocal: $array['only_local'],
+            url      : $array['url'],
         );
     }
 
@@ -63,8 +63,8 @@ class GetWebPageInstantView extends TdFunction
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'url'        => $this->url,
             'only_local' => $this->onlyLocal,
+            'url'        => $this->url,
         ];
     }
 }

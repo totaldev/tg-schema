@@ -25,7 +25,7 @@ class DisconnectWebsite extends TdFunction
     public static function fromArray(array $array): DisconnectWebsite
     {
         return new static(
-            $array['website_id'],
+            websiteId: $array['website_id'],
         );
     }
 

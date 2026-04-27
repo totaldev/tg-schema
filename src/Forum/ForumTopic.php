@@ -21,25 +21,21 @@ class ForumTopic extends TdObject
 
     public function __construct(
         /**
+         * A draft of a message in the topic; may be null if none.
+         */
+        protected ?DraftMessage            $draftMessage,
+        /**
          * Basic information about the topic.
          */
         protected ForumTopicInfo           $info,
-        /**
-         * Last message in the topic; may be null if unknown.
-         */
-        protected ?Message                 $lastMessage,
-        /**
-         * A parameter used to determine order of the topic in the topic list. Topics must be sorted by the order in descending order.
-         */
-        protected int                      $order,
         /**
          * True, if the topic is pinned in the topic list.
          */
         protected bool                     $isPinned,
         /**
-         * Number of unread messages in the topic.
+         * Last message in the topic; may be null if unknown.
          */
-        protected int                      $unreadCount,
+        protected ?Message                 $lastMessage,
         /**
          * Identifier of the last read incoming message.
          */
@@ -49,6 +45,18 @@ class ForumTopic extends TdObject
          */
         protected int                      $lastReadOutboxMessageId,
         /**
+         * Notification settings for the topic.
+         */
+        protected ChatNotificationSettings $notificationSettings,
+        /**
+         * A parameter used to determine order of the topic in the topic list. Topics must be sorted by the order in descending order.
+         */
+        protected int                      $order,
+        /**
+         * Number of unread messages in the topic.
+         */
+        protected int                      $unreadCount,
+        /**
          * Number of unread messages with a mention/reply in the topic.
          */
         protected int                      $unreadMentionCount,
@@ -56,30 +64,22 @@ class ForumTopic extends TdObject
          * Number of messages with unread reactions in the topic.
          */
         protected int                      $unreadReactionCount,
-        /**
-         * Notification settings for the topic.
-         */
-        protected ChatNotificationSettings $notificationSettings,
-        /**
-         * A draft of a message in the topic; may be null if none.
-         */
-        protected ?DraftMessage            $draftMessage,
     ) {}
 
     public static function fromArray(array $array): ForumTopic
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['info']),
-            isset($array['last_message']) ? TdSchemaRegistry::fromArray($array['last_message']) : null,
-            $array['order'],
-            $array['is_pinned'],
-            $array['unread_count'],
-            $array['last_read_inbox_message_id'],
-            $array['last_read_outbox_message_id'],
-            $array['unread_mention_count'],
-            $array['unread_reaction_count'],
-            TdSchemaRegistry::fromArray($array['notification_settings']),
-            isset($array['draft_message']) ? TdSchemaRegistry::fromArray($array['draft_message']) : null,
+            draftMessage           : (isset($array['draft_message']) ? TdSchemaRegistry::fromArray($array['draft_message']) : null),
+            info                   : TdSchemaRegistry::fromArray($array['info']),
+            isPinned               : $array['is_pinned'],
+            lastMessage            : (isset($array['last_message']) ? TdSchemaRegistry::fromArray($array['last_message']) : null),
+            lastReadInboxMessageId : $array['last_read_inbox_message_id'],
+            lastReadOutboxMessageId: $array['last_read_outbox_message_id'],
+            notificationSettings   : TdSchemaRegistry::fromArray($array['notification_settings']),
+            order                  : $array['order'],
+            unreadCount            : $array['unread_count'],
+            unreadMentionCount     : $array['unread_mention_count'],
+            unreadReactionCount    : $array['unread_reaction_count'],
         );
     }
 
@@ -219,17 +219,17 @@ class ForumTopic extends TdObject
     {
         return [
             '@type'                       => static::TYPE_NAME,
-            'info'                        => $this->info->typeSerialize(),
-            'last_message'                => $this->lastMessage ?? null,
-            'order'                       => $this->order,
+            'draft_message'               => (null !== $this->draftMessage ? $this->draftMessage->jsonSerialize() : null),
+            'info'                        => $this->info->jsonSerialize(),
             'is_pinned'                   => $this->isPinned,
-            'unread_count'                => $this->unreadCount,
+            'last_message'                => (null !== $this->lastMessage ? $this->lastMessage->jsonSerialize() : null),
             'last_read_inbox_message_id'  => $this->lastReadInboxMessageId,
             'last_read_outbox_message_id' => $this->lastReadOutboxMessageId,
+            'notification_settings'       => $this->notificationSettings->jsonSerialize(),
+            'order'                       => $this->order,
+            'unread_count'                => $this->unreadCount,
             'unread_mention_count'        => $this->unreadMentionCount,
             'unread_reaction_count'       => $this->unreadReactionCount,
-            'notification_settings'       => $this->notificationSettings->typeSerialize(),
-            'draft_message'               => $this->draftMessage ?? null,
         ];
     }
 }

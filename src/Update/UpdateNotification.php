@@ -18,13 +18,13 @@ class UpdateNotification extends Update
 
     public function __construct(
         /**
-         * Unique notification group identifier.
-         */
-        protected int          $notificationGroupId,
-        /**
          * Changed notification.
          */
         protected Notification $notification,
+        /**
+         * Unique notification group identifier.
+         */
+        protected int          $notificationGroupId,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class UpdateNotification extends Update
     public static function fromArray(array $array): UpdateNotification
     {
         return new static(
-            $array['notification_group_id'],
-            TdSchemaRegistry::fromArray($array['notification']),
+            notification       : TdSchemaRegistry::fromArray($array['notification']),
+            notificationGroupId: $array['notification_group_id'],
         );
     }
 
@@ -65,8 +65,8 @@ class UpdateNotification extends Update
     {
         return [
             '@type'                 => static::TYPE_NAME,
+            'notification'          => $this->notification->jsonSerialize(),
             'notification_group_id' => $this->notificationGroupId,
-            'notification'          => $this->notification->typeSerialize(),
         ];
     }
 }

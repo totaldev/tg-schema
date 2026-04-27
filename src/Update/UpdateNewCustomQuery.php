@@ -15,13 +15,13 @@ class UpdateNewCustomQuery extends Update
 
     public function __construct(
         /**
-         * The query identifier.
-         */
-        protected int    $id,
-        /**
          * JSON-serialized query data.
          */
         protected string $data,
+        /**
+         * The query identifier.
+         */
+        protected int    $id,
         /**
          * Query timeout.
          */
@@ -33,9 +33,9 @@ class UpdateNewCustomQuery extends Update
     public static function fromArray(array $array): UpdateNewCustomQuery
     {
         return new static(
-            $array['id'],
-            $array['data'],
-            $array['timeout'],
+            data   : $array['data'],
+            id     : $array['id'],
+            timeout: $array['timeout'],
         );
     }
 
@@ -79,8 +79,8 @@ class UpdateNewCustomQuery extends Update
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'id'      => $this->id,
             'data'    => $this->data,
+            'id'      => $this->id,
             'timeout' => $this->timeout,
         ];
     }

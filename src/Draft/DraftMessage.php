@@ -21,21 +21,21 @@ class DraftMessage extends TdObject
 
     public function __construct(
         /**
-         * Information about the message to be replied; inputMessageReplyToStory is unsupported; may be null if none.
-         */
-        protected ?InputMessageReplyTo    $replyTo,
-        /**
          * Point in time (Unix timestamp) when the draft was created.
          */
         protected int                     $date,
+        /**
+         * Identifier of the effect to apply to the message when it is sent; 0 if none.
+         */
+        protected int                     $effectId,
         /**
          * Content of the message draft; must be of the type inputMessageText, inputMessageVideoNote, or inputMessageVoiceNote.
          */
         protected InputMessageContent     $inputMessageText,
         /**
-         * Identifier of the effect to apply to the message when it is sent; 0 if none.
+         * Information about the message to be replied; inputMessageReplyToStory is unsupported; may be null if none.
          */
-        protected int                     $effectId,
+        protected ?InputMessageReplyTo    $replyTo,
         /**
          * Information about the suggested post; may be null if none.
          */
@@ -45,11 +45,11 @@ class DraftMessage extends TdObject
     public static function fromArray(array $array): DraftMessage
     {
         return new static(
-            isset($array['reply_to']) ? TdSchemaRegistry::fromArray($array['reply_to']) : null,
-            $array['date'],
-            TdSchemaRegistry::fromArray($array['input_message_text']),
-            $array['effect_id'],
-            isset($array['suggested_post_info']) ? TdSchemaRegistry::fromArray($array['suggested_post_info']) : null,
+            date             : $array['date'],
+            effectId         : $array['effect_id'],
+            inputMessageText : TdSchemaRegistry::fromArray($array['input_message_text']),
+            replyTo          : (isset($array['reply_to']) ? TdSchemaRegistry::fromArray($array['reply_to']) : null),
+            suggestedPostInfo: (isset($array['suggested_post_info']) ? TdSchemaRegistry::fromArray($array['suggested_post_info']) : null),
         );
     }
 
@@ -117,11 +117,11 @@ class DraftMessage extends TdObject
     {
         return [
             '@type'               => static::TYPE_NAME,
-            'reply_to'            => $this->replyTo ?? null,
             'date'                => $this->date,
-            'input_message_text'  => $this->inputMessageText->typeSerialize(),
             'effect_id'           => $this->effectId,
-            'suggested_post_info' => $this->suggestedPostInfo ?? null,
+            'input_message_text'  => $this->inputMessageText->jsonSerialize(),
+            'reply_to'            => (null !== $this->replyTo ? $this->replyTo->jsonSerialize() : null),
+            'suggested_post_info' => (null !== $this->suggestedPostInfo ? $this->suggestedPostInfo->jsonSerialize() : null),
         ];
     }
 }

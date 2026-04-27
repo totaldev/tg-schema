@@ -18,13 +18,13 @@ class TextEntity extends TdObject
 
     public function __construct(
         /**
-         * Offset of the entity, in UTF-16 code units.
-         */
-        protected int            $offset,
-        /**
          * Length of the entity, in UTF-16 code units.
          */
         protected int            $length,
+        /**
+         * Offset of the entity, in UTF-16 code units.
+         */
+        protected int            $offset,
         /**
          * Type of the entity.
          */
@@ -34,9 +34,9 @@ class TextEntity extends TdObject
     public static function fromArray(array $array): TextEntity
     {
         return new static(
-            $array['offset'],
-            $array['length'],
-            TdSchemaRegistry::fromArray($array['type']),
+            length: $array['length'],
+            offset: $array['offset'],
+            type  : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -80,9 +80,9 @@ class TextEntity extends TdObject
     {
         return [
             '@type'  => static::TYPE_NAME,
-            'offset' => $this->offset,
             'length' => $this->length,
-            'type'   => $this->type->typeSerialize(),
+            'offset' => $this->offset,
+            'type'   => $this->type->jsonSerialize(),
         ];
     }
 }

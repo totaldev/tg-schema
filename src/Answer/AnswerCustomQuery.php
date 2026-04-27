@@ -29,8 +29,8 @@ class AnswerCustomQuery extends TdFunction
     public static function fromArray(array $array): AnswerCustomQuery
     {
         return new static(
-            $array['custom_query_id'],
-            $array['data'],
+            customQueryId: $array['custom_query_id'],
+            data         : $array['data'],
         );
     }
 

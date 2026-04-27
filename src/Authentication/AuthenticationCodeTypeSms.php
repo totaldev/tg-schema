@@ -25,7 +25,7 @@ class AuthenticationCodeTypeSms extends AuthenticationCodeType
     public static function fromArray(array $array): AuthenticationCodeTypeSms
     {
         return new static(
-            $array['length'],
+            length: $array['length'],
         );
     }
 

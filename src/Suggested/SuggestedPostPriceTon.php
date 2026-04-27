@@ -25,7 +25,7 @@ class SuggestedPostPriceTon extends SuggestedPostPrice
     public static function fromArray(array $array): SuggestedPostPriceTon
     {
         return new static(
-            $array['toncoin_cent_count'],
+            toncoinCentCount: $array['toncoin_cent_count'],
         );
     }
 

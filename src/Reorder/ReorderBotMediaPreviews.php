@@ -21,23 +21,23 @@ class ReorderBotMediaPreviews extends TdFunction
          */
         protected int    $botUserId,
         /**
-         * Language code of the media previews to reorder.
-         */
-        protected string $languageCode,
-        /**
          * File identifiers of the media in the new order.
          *
          * @var int[]
          */
         protected array  $fileIds,
+        /**
+         * Language code of the media previews to reorder.
+         */
+        protected string $languageCode,
     ) {}
 
     public static function fromArray(array $array): ReorderBotMediaPreviews
     {
         return new static(
-            $array['bot_user_id'],
-            $array['language_code'],
-            $array['file_ids'],
+            botUserId   : $array['bot_user_id'],
+            fileIds     : $array['file_ids'],
+            languageCode: $array['language_code'],
         );
     }
 
@@ -82,8 +82,8 @@ class ReorderBotMediaPreviews extends TdFunction
         return [
             '@type'         => static::TYPE_NAME,
             'bot_user_id'   => $this->botUserId,
-            'language_code' => $this->languageCode,
             'file_ids'      => $this->fileIds,
+            'language_code' => $this->languageCode,
         ];
     }
 }

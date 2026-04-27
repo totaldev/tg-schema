@@ -26,7 +26,7 @@ class ReplyMarkupRemoveKeyboard extends ReplyMarkup
     public static function fromArray(array $array): ReplyMarkupRemoveKeyboard
     {
         return new static(
-            $array['is_personal'],
+            isPersonal: $array['is_personal'],
         );
     }
 

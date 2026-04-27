@@ -24,21 +24,21 @@ class SetChatDraftMessage extends TdFunction
          */
         protected int           $chatId,
         /**
-         * Topic in which the draft will be changed; pass null to change the draft for the chat itself.
-         */
-        protected ?MessageTopic $topicId = null,
-        /**
          * New draft message; pass null to remove the draft. All files in draft message content must be of the type inputFileLocal. Media thumbnails and captions are ignored.
          */
         protected ?DraftMessage $draftMessage = null,
+        /**
+         * Topic in which the draft will be changed; pass null to change the draft for the chat itself.
+         */
+        protected ?MessageTopic $topicId = null,
     ) {}
 
     public static function fromArray(array $array): SetChatDraftMessage
     {
         return new static(
-            $array['chat_id'],
-            isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null,
-            isset($array['draft_message']) ? TdSchemaRegistry::fromArray($array['draft_message']) : null,
+            chatId      : $array['chat_id'],
+            draftMessage: (isset($array['draft_message']) ? TdSchemaRegistry::fromArray($array['draft_message']) : null),
+            topicId     : (isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null),
         );
     }
 
@@ -83,8 +83,8 @@ class SetChatDraftMessage extends TdFunction
         return [
             '@type'         => static::TYPE_NAME,
             'chat_id'       => $this->chatId,
-            'topic_id'      => $this->topicId ?? null,
-            'draft_message' => $this->draftMessage ?? null,
+            'draft_message' => (null !== $this->draftMessage ? $this->draftMessage->jsonSerialize() : null),
+            'topic_id'      => (null !== $this->topicId ? $this->topicId->jsonSerialize() : null),
         ];
     }
 }

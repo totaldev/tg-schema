@@ -25,7 +25,7 @@ class UpgradedGiftAttributeIdSymbol extends UpgradedGiftAttributeId
     public static function fromArray(array $array): UpgradedGiftAttributeIdSymbol
     {
         return new static(
-            $array['sticker_id'],
+            stickerId: $array['sticker_id'],
         );
     }
 

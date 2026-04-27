@@ -18,9 +18,9 @@ class BusinessAwayMessageSettings extends TdObject
 
     public function __construct(
         /**
-         * Unique quick reply shortcut identifier for the away messages.
+         * True, if the messages must not be sent if the account was online in the last 10 minutes.
          */
-        protected int                         $shortcutId,
+        protected bool                        $offlineOnly,
         /**
          * Chosen recipients of the away messages.
          */
@@ -30,18 +30,18 @@ class BusinessAwayMessageSettings extends TdObject
          */
         protected BusinessAwayMessageSchedule $schedule,
         /**
-         * True, if the messages must not be sent if the account was online in the last 10 minutes.
+         * Unique quick reply shortcut identifier for the away messages.
          */
-        protected bool                        $offlineOnly,
+        protected int                         $shortcutId,
     ) {}
 
     public static function fromArray(array $array): BusinessAwayMessageSettings
     {
         return new static(
-            $array['shortcut_id'],
-            TdSchemaRegistry::fromArray($array['recipients']),
-            TdSchemaRegistry::fromArray($array['schedule']),
-            $array['offline_only'],
+            offlineOnly: $array['offline_only'],
+            recipients : TdSchemaRegistry::fromArray($array['recipients']),
+            schedule   : TdSchemaRegistry::fromArray($array['schedule']),
+            shortcutId : $array['shortcut_id'],
         );
     }
 
@@ -97,10 +97,10 @@ class BusinessAwayMessageSettings extends TdObject
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'shortcut_id'  => $this->shortcutId,
-            'recipients'   => $this->recipients->typeSerialize(),
-            'schedule'     => $this->schedule->typeSerialize(),
             'offline_only' => $this->offlineOnly,
+            'recipients'   => $this->recipients->jsonSerialize(),
+            'schedule'     => $this->schedule->jsonSerialize(),
+            'shortcut_id'  => $this->shortcutId,
         ];
     }
 }

@@ -19,40 +19,40 @@ class NotificationSound extends TdObject
 
     public function __construct(
         /**
-         * Unique identifier of the notification sound.
+         * Arbitrary data, defined while the sound was uploaded.
          */
-        protected int    $id,
-        /**
-         * Duration of the sound, in seconds.
-         */
-        protected int    $duration,
+        protected string $data,
         /**
          * Point in time (Unix timestamp) when the sound was created.
          */
         protected int    $date,
         /**
-         * Title of the notification sound.
+         * Duration of the sound, in seconds.
          */
-        protected string $title,
+        protected int    $duration,
         /**
-         * Arbitrary data, defined while the sound was uploaded.
+         * Unique identifier of the notification sound.
          */
-        protected string $data,
+        protected int    $id,
         /**
          * File containing the sound.
          */
         protected File   $sound,
+        /**
+         * Title of the notification sound.
+         */
+        protected string $title,
     ) {}
 
     public static function fromArray(array $array): NotificationSound
     {
         return new static(
-            $array['id'],
-            $array['duration'],
-            $array['date'],
-            $array['title'],
-            $array['data'],
-            TdSchemaRegistry::fromArray($array['sound']),
+            data    : $array['data'],
+            date    : $array['date'],
+            duration: $array['duration'],
+            id      : $array['id'],
+            sound   : TdSchemaRegistry::fromArray($array['sound']),
+            title   : $array['title'],
         );
     }
 
@@ -132,12 +132,12 @@ class NotificationSound extends TdObject
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'id'       => $this->id,
-            'duration' => $this->duration,
-            'date'     => $this->date,
-            'title'    => $this->title,
             'data'     => $this->data,
-            'sound'    => $this->sound->typeSerialize(),
+            'date'     => $this->date,
+            'duration' => $this->duration,
+            'id'       => $this->id,
+            'sound'    => $this->sound->jsonSerialize(),
+            'title'    => $this->title,
         ];
     }
 }

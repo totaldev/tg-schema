@@ -18,6 +18,12 @@ class UpdatePollAnswer extends Update
 
     public function __construct(
         /**
+         * 0-based identifiers of answer options, chosen by the user.
+         *
+         * @var int[]
+         */
+        protected array         $optionIds,
+        /**
          * Unique poll identifier.
          */
         protected int           $pollId,
@@ -25,12 +31,6 @@ class UpdatePollAnswer extends Update
          * Identifier of the message sender that changed the answer to the poll.
          */
         protected MessageSender $voterId,
-        /**
-         * 0-based identifiers of answer options, chosen by the user.
-         *
-         * @var int[]
-         */
-        protected array         $optionIds,
     ) {
         parent::__construct();
     }
@@ -38,9 +38,9 @@ class UpdatePollAnswer extends Update
     public static function fromArray(array $array): UpdatePollAnswer
     {
         return new static(
-            $array['poll_id'],
-            TdSchemaRegistry::fromArray($array['voter_id']),
-            $array['option_ids'],
+            optionIds: $array['option_ids'],
+            pollId   : $array['poll_id'],
+            voterId  : TdSchemaRegistry::fromArray($array['voter_id']),
         );
     }
 
@@ -84,9 +84,9 @@ class UpdatePollAnswer extends Update
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'poll_id'    => $this->pollId,
-            'voter_id'   => $this->voterId->typeSerialize(),
             'option_ids' => $this->optionIds,
+            'poll_id'    => $this->pollId,
+            'voter_id'   => $this->voterId->jsonSerialize(),
         ];
     }
 }

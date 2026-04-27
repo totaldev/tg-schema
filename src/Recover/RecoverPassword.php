@@ -17,25 +17,25 @@ class RecoverPassword extends TdFunction
 
     public function __construct(
         /**
-         * Recovery code to check.
+         * New password hint; may be empty.
          */
-        protected string $recoveryCode,
+        protected string $newHint,
         /**
          * New 2-step verification password of the user; may be empty to remove the password.
          */
         protected string $newPassword,
         /**
-         * New password hint; may be empty.
+         * Recovery code to check.
          */
-        protected string $newHint,
+        protected string $recoveryCode,
     ) {}
 
     public static function fromArray(array $array): RecoverPassword
     {
         return new static(
-            $array['recovery_code'],
-            $array['new_password'],
-            $array['new_hint'],
+            newHint     : $array['new_hint'],
+            newPassword : $array['new_password'],
+            recoveryCode: $array['recovery_code'],
         );
     }
 
@@ -79,9 +79,9 @@ class RecoverPassword extends TdFunction
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'recovery_code' => $this->recoveryCode,
-            'new_password'  => $this->newPassword,
             'new_hint'      => $this->newHint,
+            'new_password'  => $this->newPassword,
+            'recovery_code' => $this->recoveryCode,
         ];
     }
 }

@@ -17,30 +17,30 @@ class TargetChatTypes extends TdObject
 
     public function __construct(
         /**
-         * True, if private chats with ordinary users are allowed.
-         */
-        protected bool $allowUserChats,
-        /**
          * True, if private chats with other bots are allowed.
          */
         protected bool $allowBotChats,
+        /**
+         * True, if channel chats are allowed.
+         */
+        protected bool $allowChannelChats,
         /**
          * True, if basic group and supergroup chats are allowed.
          */
         protected bool $allowGroupChats,
         /**
-         * True, if channel chats are allowed.
+         * True, if private chats with ordinary users are allowed.
          */
-        protected bool $allowChannelChats,
+        protected bool $allowUserChats,
     ) {}
 
     public static function fromArray(array $array): TargetChatTypes
     {
         return new static(
-            $array['allow_user_chats'],
-            $array['allow_bot_chats'],
-            $array['allow_group_chats'],
-            $array['allow_channel_chats'],
+            allowBotChats    : $array['allow_bot_chats'],
+            allowChannelChats: $array['allow_channel_chats'],
+            allowGroupChats  : $array['allow_group_chats'],
+            allowUserChats   : $array['allow_user_chats'],
         );
     }
 
@@ -96,10 +96,10 @@ class TargetChatTypes extends TdObject
     {
         return [
             '@type'               => static::TYPE_NAME,
-            'allow_user_chats'    => $this->allowUserChats,
             'allow_bot_chats'     => $this->allowBotChats,
-            'allow_group_chats'   => $this->allowGroupChats,
             'allow_channel_chats' => $this->allowChannelChats,
+            'allow_group_chats'   => $this->allowGroupChats,
+            'allow_user_chats'    => $this->allowUserChats,
         ];
     }
 }

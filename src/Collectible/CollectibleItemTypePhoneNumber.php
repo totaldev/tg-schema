@@ -25,7 +25,7 @@ class CollectibleItemTypePhoneNumber extends CollectibleItemType
     public static function fromArray(array $array): CollectibleItemTypePhoneNumber
     {
         return new static(
-            $array['phone_number'],
+            phoneNumber: $array['phone_number'],
         );
     }
 

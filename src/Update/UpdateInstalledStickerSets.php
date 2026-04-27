@@ -18,15 +18,15 @@ class UpdateInstalledStickerSets extends Update
 
     public function __construct(
         /**
-         * Type of the affected stickers.
-         */
-        protected StickerType $stickerType,
-        /**
          * The new list of installed ordinary sticker sets.
          *
          * @var int[]
          */
         protected array       $stickerSetIds,
+        /**
+         * Type of the affected stickers.
+         */
+        protected StickerType $stickerType,
     ) {
         parent::__construct();
     }
@@ -34,8 +34,8 @@ class UpdateInstalledStickerSets extends Update
     public static function fromArray(array $array): UpdateInstalledStickerSets
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['sticker_type']),
-            $array['sticker_set_ids'],
+            stickerSetIds: $array['sticker_set_ids'],
+            stickerType  : TdSchemaRegistry::fromArray($array['sticker_type']),
         );
     }
 
@@ -67,8 +67,8 @@ class UpdateInstalledStickerSets extends Update
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'sticker_type'    => $this->stickerType->typeSerialize(),
             'sticker_set_ids' => $this->stickerSetIds,
+            'sticker_type'    => $this->stickerType->jsonSerialize(),
         ];
     }
 }

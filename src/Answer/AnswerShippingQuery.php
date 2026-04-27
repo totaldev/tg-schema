@@ -19,9 +19,9 @@ class AnswerShippingQuery extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the shipping query.
+         * An error message, empty on success.
          */
-        protected int    $shippingQueryId,
+        protected string $errorMessage,
         /**
          * Available shipping options.
          *
@@ -29,17 +29,17 @@ class AnswerShippingQuery extends TdFunction
          */
         protected array  $shippingOptions,
         /**
-         * An error message, empty on success.
+         * Identifier of the shipping query.
          */
-        protected string $errorMessage,
+        protected int    $shippingQueryId,
     ) {}
 
     public static function fromArray(array $array): AnswerShippingQuery
     {
         return new static(
-            $array['shipping_query_id'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['shipping_options']),
-            $array['error_message'],
+            errorMessage   : $array['error_message'],
+            shippingOptions: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['shipping_options']),
+            shippingQueryId: $array['shipping_query_id'],
         );
     }
 
@@ -83,9 +83,9 @@ class AnswerShippingQuery extends TdFunction
     {
         return [
             '@type'             => static::TYPE_NAME,
-            'shipping_query_id' => $this->shippingQueryId,
-            'shipping_options'  => array_map(static fn($x) => $x->typeSerialize(), $this->shippingOptions),
             'error_message'     => $this->errorMessage,
+            'shipping_options'  => array_map(static fn($x) => $x->jsonSerialize(), $this->shippingOptions),
+            'shipping_query_id' => $this->shippingQueryId,
         ];
     }
 }

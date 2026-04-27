@@ -16,18 +16,6 @@ class LanguagePackStringValuePluralized extends LanguagePackStringValue
 
     public function __construct(
         /**
-         * Value for zero objects.
-         */
-        protected string $zeroValue,
-        /**
-         * Value for one object.
-         */
-        protected string $oneValue,
-        /**
-         * Value for two objects.
-         */
-        protected string $twoValue,
-        /**
          * Value for few objects.
          */
         protected string $fewValue,
@@ -36,9 +24,21 @@ class LanguagePackStringValuePluralized extends LanguagePackStringValue
          */
         protected string $manyValue,
         /**
+         * Value for one object.
+         */
+        protected string $oneValue,
+        /**
          * Default value.
          */
         protected string $otherValue,
+        /**
+         * Value for two objects.
+         */
+        protected string $twoValue,
+        /**
+         * Value for zero objects.
+         */
+        protected string $zeroValue,
     ) {
         parent::__construct();
     }
@@ -46,12 +46,12 @@ class LanguagePackStringValuePluralized extends LanguagePackStringValue
     public static function fromArray(array $array): LanguagePackStringValuePluralized
     {
         return new static(
-            $array['zero_value'],
-            $array['one_value'],
-            $array['two_value'],
-            $array['few_value'],
-            $array['many_value'],
-            $array['other_value'],
+            fewValue  : $array['few_value'],
+            manyValue : $array['many_value'],
+            oneValue  : $array['one_value'],
+            otherValue: $array['other_value'],
+            twoValue  : $array['two_value'],
+            zeroValue : $array['zero_value'],
         );
     }
 
@@ -131,12 +131,12 @@ class LanguagePackStringValuePluralized extends LanguagePackStringValue
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'zero_value'  => $this->zeroValue,
-            'one_value'   => $this->oneValue,
-            'two_value'   => $this->twoValue,
             'few_value'   => $this->fewValue,
             'many_value'  => $this->manyValue,
+            'one_value'   => $this->oneValue,
             'other_value' => $this->otherValue,
+            'two_value'   => $this->twoValue,
+            'zero_value'  => $this->zeroValue,
         ];
     }
 }

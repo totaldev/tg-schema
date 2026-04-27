@@ -31,8 +31,8 @@ class Users extends TdObject
     public static function fromArray(array $array): Users
     {
         return new static(
-            $array['total_count'],
-            $array['user_ids'],
+            totalCount: $array['total_count'],
+            userIds   : $array['user_ids'],
         );
     }
 

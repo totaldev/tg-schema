@@ -25,7 +25,7 @@ class DisableAllSupergroupUsernames extends TdFunction
     public static function fromArray(array $array): DisableAllSupergroupUsernames
     {
         return new static(
-            $array['supergroup_id'],
+            supergroupId: $array['supergroup_id'],
         );
     }
 

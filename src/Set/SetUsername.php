@@ -25,7 +25,7 @@ class SetUsername extends TdFunction
     public static function fromArray(array $array): SetUsername
     {
         return new static(
-            $array['username'],
+            username: $array['username'],
         );
     }
 

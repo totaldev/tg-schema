@@ -17,10 +17,6 @@ class GetStickerOutline extends TdFunction
 
     public function __construct(
         /**
-         * File identifier of the sticker.
-         */
-        protected int  $stickerFileId,
-        /**
          * Pass true to get the outline scaled for animated emoji.
          */
         protected bool $forAnimatedEmoji,
@@ -28,14 +24,18 @@ class GetStickerOutline extends TdFunction
          * Pass true to get the outline scaled for clicked animated emoji message.
          */
         protected bool $forClickedAnimatedEmojiMessage,
+        /**
+         * File identifier of the sticker.
+         */
+        protected int  $stickerFileId,
     ) {}
 
     public static function fromArray(array $array): GetStickerOutline
     {
         return new static(
-            $array['sticker_file_id'],
-            $array['for_animated_emoji'],
-            $array['for_clicked_animated_emoji_message'],
+            forAnimatedEmoji              : $array['for_animated_emoji'],
+            forClickedAnimatedEmojiMessage: $array['for_clicked_animated_emoji_message'],
+            stickerFileId                 : $array['sticker_file_id'],
         );
     }
 
@@ -79,9 +79,9 @@ class GetStickerOutline extends TdFunction
     {
         return [
             '@type'                              => static::TYPE_NAME,
-            'sticker_file_id'                    => $this->stickerFileId,
             'for_animated_emoji'                 => $this->forAnimatedEmoji,
             'for_clicked_animated_emoji_message' => $this->forClickedAnimatedEmojiMessage,
+            'sticker_file_id'                    => $this->stickerFileId,
         ];
     }
 }

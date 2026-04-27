@@ -25,7 +25,7 @@ class ApplyPremiumGiftCode extends TdFunction
     public static function fromArray(array $array): ApplyPremiumGiftCode
     {
         return new static(
-            $array['code'],
+            code: $array['code'],
         );
     }
 

@@ -25,7 +25,7 @@ class InputPassportElementErrorSourceFrontSide extends InputPassportElementError
     public static function fromArray(array $array): InputPassportElementErrorSourceFrontSide
     {
         return new static(
-            $array['file_hash'],
+            fileHash: $array['file_hash'],
         );
     }
 

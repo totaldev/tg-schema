@@ -18,22 +18,22 @@ class NetworkStatistics extends TdObject
 
     public function __construct(
         /**
-         * Point in time (Unix timestamp) from which the statistics are collected.
-         */
-        protected int   $sinceDate,
-        /**
          * Network statistics entries.
          *
          * @var NetworkStatisticsEntry[]
          */
         protected array $entries,
+        /**
+         * Point in time (Unix timestamp) from which the statistics are collected.
+         */
+        protected int   $sinceDate,
     ) {}
 
     public static function fromArray(array $array): NetworkStatistics
     {
         return new static(
-            $array['since_date'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['entries']),
+            entries  : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['entries']),
+            sinceDate: $array['since_date'],
         );
     }
 
@@ -65,8 +65,8 @@ class NetworkStatistics extends TdObject
     {
         return [
             '@type'      => static::TYPE_NAME,
+            'entries'    => array_map(static fn($x) => $x->jsonSerialize(), $this->entries),
             'since_date' => $this->sinceDate,
-            'entries'    => array_map(static fn($x) => $x->typeSerialize(), $this->entries),
         ];
     }
 }

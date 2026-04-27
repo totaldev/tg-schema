@@ -18,21 +18,21 @@ class InputInlineQueryResultArticle extends InputInlineQueryResult
 
     public function __construct(
         /**
+         * A short description of the result.
+         */
+        protected string              $description,
+        /**
          * Unique identifier of the query result.
          */
         protected string              $id,
         /**
-         * URL of the result, if it exists.
+         * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact.
          */
-        protected string              $url,
+        protected InputMessageContent $inputMessageContent,
         /**
-         * Title of the result.
+         * Thumbnail height, if known.
          */
-        protected string              $title,
-        /**
-         * A short description of the result.
-         */
-        protected string              $description,
+        protected int                 $thumbnailHeight,
         /**
          * URL of the result thumbnail, if it exists.
          */
@@ -42,13 +42,13 @@ class InputInlineQueryResultArticle extends InputInlineQueryResult
          */
         protected int                 $thumbnailWidth,
         /**
-         * Thumbnail height, if known.
+         * Title of the result.
          */
-        protected int                 $thumbnailHeight,
+        protected string              $title,
         /**
-         * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact.
+         * URL of the result, if it exists.
          */
-        protected InputMessageContent $inputMessageContent,
+        protected string              $url,
         /**
          * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null.
          */
@@ -60,15 +60,15 @@ class InputInlineQueryResultArticle extends InputInlineQueryResult
     public static function fromArray(array $array): InputInlineQueryResultArticle
     {
         return new static(
-            $array['id'],
-            $array['url'],
-            $array['title'],
-            $array['description'],
-            $array['thumbnail_url'],
-            $array['thumbnail_width'],
-            $array['thumbnail_height'],
-            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
-            TdSchemaRegistry::fromArray($array['input_message_content']),
+            description        : $array['description'],
+            id                 : $array['id'],
+            inputMessageContent: TdSchemaRegistry::fromArray($array['input_message_content']),
+            replyMarkup        : (isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null),
+            thumbnailHeight    : $array['thumbnail_height'],
+            thumbnailUrl       : $array['thumbnail_url'],
+            thumbnailWidth     : $array['thumbnail_width'],
+            title              : $array['title'],
+            url                : $array['url'],
         );
     }
 
@@ -184,15 +184,15 @@ class InputInlineQueryResultArticle extends InputInlineQueryResult
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'id'                    => $this->id,
-            'url'                   => $this->url,
-            'title'                 => $this->title,
             'description'           => $this->description,
+            'id'                    => $this->id,
+            'input_message_content' => $this->inputMessageContent->jsonSerialize(),
+            'reply_markup'          => (null !== $this->replyMarkup ? $this->replyMarkup->jsonSerialize() : null),
+            'thumbnail_height'      => $this->thumbnailHeight,
             'thumbnail_url'         => $this->thumbnailUrl,
             'thumbnail_width'       => $this->thumbnailWidth,
-            'thumbnail_height'      => $this->thumbnailHeight,
-            'reply_markup'          => $this->replyMarkup ?? null,
-            'input_message_content' => $this->inputMessageContent->typeSerialize(),
+            'title'                 => $this->title,
+            'url'                   => $this->url,
         ];
     }
 }

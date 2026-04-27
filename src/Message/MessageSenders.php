@@ -18,22 +18,22 @@ class MessageSenders extends TdObject
 
     public function __construct(
         /**
-         * Approximate total number of messages senders found.
-         */
-        protected int   $totalCount,
-        /**
          * List of message senders.
          *
          * @var MessageSender[]
          */
         protected array $senders,
+        /**
+         * Approximate total number of messages senders found.
+         */
+        protected int   $totalCount,
     ) {}
 
     public static function fromArray(array $array): MessageSenders
     {
         return new static(
-            $array['total_count'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['senders']),
+            senders   : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['senders']),
+            totalCount: $array['total_count'],
         );
     }
 
@@ -65,8 +65,8 @@ class MessageSenders extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
+            'senders'     => array_map(static fn($x) => $x->jsonSerialize(), $this->senders),
             'total_count' => $this->totalCount,
-            'senders'     => array_map(static fn($x) => $x->typeSerialize(), $this->senders),
         ];
     }
 }

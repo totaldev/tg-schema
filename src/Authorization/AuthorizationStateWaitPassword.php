@@ -16,17 +16,17 @@ class AuthorizationStateWaitPassword extends AuthorizationState
 
     public function __construct(
         /**
-         * Hint for the password; may be empty.
+         * True, if some Telegram Passport elements were saved.
          */
-        protected string $passwordHint,
+        protected bool   $hasPassportData,
         /**
          * True, if a recovery email address has been set up.
          */
         protected bool   $hasRecoveryEmailAddress,
         /**
-         * True, if some Telegram Passport elements were saved.
+         * Hint for the password; may be empty.
          */
-        protected bool   $hasPassportData,
+        protected string $passwordHint,
         /**
          * Pattern of the email address to which the recovery email was sent; empty until a recovery email has been sent.
          */
@@ -38,10 +38,10 @@ class AuthorizationStateWaitPassword extends AuthorizationState
     public static function fromArray(array $array): AuthorizationStateWaitPassword
     {
         return new static(
-            $array['password_hint'],
-            $array['has_recovery_email_address'],
-            $array['has_passport_data'],
-            $array['recovery_email_address_pattern'],
+            hasPassportData            : $array['has_passport_data'],
+            hasRecoveryEmailAddress    : $array['has_recovery_email_address'],
+            passwordHint               : $array['password_hint'],
+            recoveryEmailAddressPattern: $array['recovery_email_address_pattern'],
         );
     }
 
@@ -97,9 +97,9 @@ class AuthorizationStateWaitPassword extends AuthorizationState
     {
         return [
             '@type'                          => static::TYPE_NAME,
-            'password_hint'                  => $this->passwordHint,
-            'has_recovery_email_address'     => $this->hasRecoveryEmailAddress,
             'has_passport_data'              => $this->hasPassportData,
+            'has_recovery_email_address'     => $this->hasRecoveryEmailAddress,
+            'password_hint'                  => $this->passwordHint,
             'recovery_email_address_pattern' => $this->recoveryEmailAddressPattern,
         ];
     }

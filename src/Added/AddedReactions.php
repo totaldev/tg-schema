@@ -18,9 +18,9 @@ class AddedReactions extends TdObject
 
     public function __construct(
         /**
-         * The total number of found reactions.
+         * The offset for the next request. If empty, then there are no more results.
          */
-        protected int    $totalCount,
+        protected string $nextOffset,
         /**
          * The list of added reactions.
          *
@@ -28,17 +28,17 @@ class AddedReactions extends TdObject
          */
         protected array  $reactions,
         /**
-         * The offset for the next request. If empty, then there are no more results.
+         * The total number of found reactions.
          */
-        protected string $nextOffset,
+        protected int    $totalCount,
     ) {}
 
     public static function fromArray(array $array): AddedReactions
     {
         return new static(
-            $array['total_count'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['reactions']),
-            $array['next_offset'],
+            nextOffset: $array['next_offset'],
+            reactions : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['reactions']),
+            totalCount: $array['total_count'],
         );
     }
 
@@ -82,9 +82,9 @@ class AddedReactions extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'total_count' => $this->totalCount,
-            'reactions'   => array_map(static fn($x) => $x->typeSerialize(), $this->reactions),
             'next_offset' => $this->nextOffset,
+            'reactions'   => array_map(static fn($x) => $x->jsonSerialize(), $this->reactions),
+            'total_count' => $this->totalCount,
         ];
     }
 }

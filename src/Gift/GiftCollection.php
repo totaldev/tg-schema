@@ -19,6 +19,14 @@ class GiftCollection extends TdObject
 
     public function __construct(
         /**
+         * Total number of gifts in the collection.
+         */
+        protected int      $giftCount,
+        /**
+         * Icon of the collection; may be null if none.
+         */
+        protected ?Sticker $icon,
+        /**
          * Unique identifier of the collection.
          */
         protected int      $id,
@@ -26,23 +34,15 @@ class GiftCollection extends TdObject
          * Name of the collection.
          */
         protected string   $name,
-        /**
-         * Icon of the collection; may be null if none.
-         */
-        protected ?Sticker $icon,
-        /**
-         * Total number of gifts in the collection.
-         */
-        protected int      $giftCount,
     ) {}
 
     public static function fromArray(array $array): GiftCollection
     {
         return new static(
-            $array['id'],
-            $array['name'],
-            isset($array['icon']) ? TdSchemaRegistry::fromArray($array['icon']) : null,
-            $array['gift_count'],
+            giftCount: $array['gift_count'],
+            icon     : (isset($array['icon']) ? TdSchemaRegistry::fromArray($array['icon']) : null),
+            id       : $array['id'],
+            name     : $array['name'],
         );
     }
 
@@ -98,10 +98,10 @@ class GiftCollection extends TdObject
     {
         return [
             '@type'      => static::TYPE_NAME,
+            'gift_count' => $this->giftCount,
+            'icon'       => (null !== $this->icon ? $this->icon->jsonSerialize() : null),
             'id'         => $this->id,
             'name'       => $this->name,
-            'icon'       => $this->icon ?? null,
-            'gift_count' => $this->giftCount,
         ];
     }
 }

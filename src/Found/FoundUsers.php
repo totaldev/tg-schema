@@ -17,22 +17,22 @@ class FoundUsers extends TdObject
 
     public function __construct(
         /**
+         * The offset for the next request. If empty, then there are no more results.
+         */
+        protected string $nextOffset,
+        /**
          * Identifiers of the found users.
          *
          * @var int[]
          */
         protected array  $userIds,
-        /**
-         * The offset for the next request. If empty, then there are no more results.
-         */
-        protected string $nextOffset,
     ) {}
 
     public static function fromArray(array $array): FoundUsers
     {
         return new static(
-            $array['user_ids'],
-            $array['next_offset'],
+            nextOffset: $array['next_offset'],
+            userIds   : $array['user_ids'],
         );
     }
 
@@ -64,8 +64,8 @@ class FoundUsers extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'user_ids'    => $this->userIds,
             'next_offset' => $this->nextOffset,
+            'user_ids'    => $this->userIds,
         ];
     }
 }

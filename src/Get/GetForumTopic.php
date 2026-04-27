@@ -29,8 +29,8 @@ class GetForumTopic extends TdFunction
     public static function fromArray(array $array): GetForumTopic
     {
         return new static(
-            $array['chat_id'],
-            $array['forum_topic_id'],
+            chatId      : $array['chat_id'],
+            forumTopicId: $array['forum_topic_id'],
         );
     }
 

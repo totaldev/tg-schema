@@ -19,20 +19,20 @@ class SetUserSupportInfo extends TdFunction
 
     public function __construct(
         /**
-         * User identifier.
-         */
-        protected int           $userId,
-        /**
          * New information message.
          */
         protected FormattedText $message,
+        /**
+         * User identifier.
+         */
+        protected int           $userId,
     ) {}
 
     public static function fromArray(array $array): SetUserSupportInfo
     {
         return new static(
-            $array['user_id'],
-            TdSchemaRegistry::fromArray($array['message']),
+            message: TdSchemaRegistry::fromArray($array['message']),
+            userId : $array['user_id'],
         );
     }
 
@@ -64,8 +64,8 @@ class SetUserSupportInfo extends TdFunction
     {
         return [
             '@type'   => static::TYPE_NAME,
+            'message' => $this->message->jsonSerialize(),
             'user_id' => $this->userId,
-            'message' => $this->message->typeSerialize(),
         ];
     }
 }

@@ -18,14 +18,6 @@ class StarTransactionTypePaidMessageReceive extends StarTransactionType
 
     public function __construct(
         /**
-         * Identifier of the sender of the message.
-         */
-        protected MessageSender $senderId,
-        /**
-         * Number of received paid messages.
-         */
-        protected int           $messageCount,
-        /**
          * The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars paid for message sending.
          */
         protected int           $commissionPerMille,
@@ -33,6 +25,14 @@ class StarTransactionTypePaidMessageReceive extends StarTransactionType
          * The amount of Telegram Stars that were received by Telegram; can be negative for refunds.
          */
         protected StarAmount    $commissionStarAmount,
+        /**
+         * Number of received paid messages.
+         */
+        protected int           $messageCount,
+        /**
+         * Identifier of the sender of the message.
+         */
+        protected MessageSender $senderId,
     ) {
         parent::__construct();
     }
@@ -40,10 +40,10 @@ class StarTransactionTypePaidMessageReceive extends StarTransactionType
     public static function fromArray(array $array): StarTransactionTypePaidMessageReceive
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['sender_id']),
-            $array['message_count'],
-            $array['commission_per_mille'],
-            TdSchemaRegistry::fromArray($array['commission_star_amount']),
+            commissionPerMille  : $array['commission_per_mille'],
+            commissionStarAmount: TdSchemaRegistry::fromArray($array['commission_star_amount']),
+            messageCount        : $array['message_count'],
+            senderId            : TdSchemaRegistry::fromArray($array['sender_id']),
         );
     }
 
@@ -99,10 +99,10 @@ class StarTransactionTypePaidMessageReceive extends StarTransactionType
     {
         return [
             '@type'                  => static::TYPE_NAME,
-            'sender_id'              => $this->senderId->typeSerialize(),
-            'message_count'          => $this->messageCount,
             'commission_per_mille'   => $this->commissionPerMille,
-            'commission_star_amount' => $this->commissionStarAmount->typeSerialize(),
+            'commission_star_amount' => $this->commissionStarAmount->jsonSerialize(),
+            'message_count'          => $this->messageCount,
+            'sender_id'              => $this->senderId->jsonSerialize(),
         ];
     }
 }

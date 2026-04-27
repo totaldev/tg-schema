@@ -28,7 +28,7 @@ class LinkPreviewTypeVideoNote extends LinkPreviewType
     public static function fromArray(array $array): LinkPreviewTypeVideoNote
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['video_note']),
+            videoNote: TdSchemaRegistry::fromArray($array['video_note']),
         );
     }
 
@@ -48,7 +48,7 @@ class LinkPreviewTypeVideoNote extends LinkPreviewType
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'video_note' => $this->videoNote->typeSerialize(),
+            'video_note' => $this->videoNote->jsonSerialize(),
         ];
     }
 }

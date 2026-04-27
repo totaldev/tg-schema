@@ -19,10 +19,6 @@ class ChatInviteLinkSubscriptionInfo extends TdObject
 
     public function __construct(
         /**
-         * Information about subscription plan that must be paid by the user to use the link.
-         */
-        protected StarSubscriptionPricing $pricing,
-        /**
          * True, if the user has already paid for the subscription and can use joinChatByInviteLink to join the subscribed chat again.
          */
         protected bool                    $canReuse,
@@ -30,14 +26,18 @@ class ChatInviteLinkSubscriptionInfo extends TdObject
          * Identifier of the payment form to use for subscription payment; 0 if the subscription can't be paid.
          */
         protected int                     $formId,
+        /**
+         * Information about subscription plan that must be paid by the user to use the link.
+         */
+        protected StarSubscriptionPricing $pricing,
     ) {}
 
     public static function fromArray(array $array): ChatInviteLinkSubscriptionInfo
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['pricing']),
-            $array['can_reuse'],
-            $array['form_id'],
+            canReuse: $array['can_reuse'],
+            formId  : $array['form_id'],
+            pricing : TdSchemaRegistry::fromArray($array['pricing']),
         );
     }
 
@@ -81,9 +81,9 @@ class ChatInviteLinkSubscriptionInfo extends TdObject
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'pricing'   => $this->pricing->typeSerialize(),
             'can_reuse' => $this->canReuse,
             'form_id'   => $this->formId,
+            'pricing'   => $this->pricing->jsonSerialize(),
         ];
     }
 }

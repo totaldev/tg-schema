@@ -32,23 +32,23 @@ class EditMessageCaption extends TdFunction
          */
         protected bool           $showCaptionAboveMedia,
         /**
-         * The new message reply markup; pass null if none; for bots only.
-         */
-        protected ?ReplyMarkup   $replyMarkup = null,
-        /**
          * New message content caption; 0-getOption("message_caption_length_max") characters; pass null to remove caption.
          */
         protected ?FormattedText $caption = null,
+        /**
+         * The new message reply markup; pass null if none; for bots only.
+         */
+        protected ?ReplyMarkup   $replyMarkup = null,
     ) {}
 
     public static function fromArray(array $array): EditMessageCaption
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
-            isset($array['caption']) ? TdSchemaRegistry::fromArray($array['caption']) : null,
-            $array['show_caption_above_media'],
+            caption              : (isset($array['caption']) ? TdSchemaRegistry::fromArray($array['caption']) : null),
+            chatId               : $array['chat_id'],
+            messageId            : $array['message_id'],
+            replyMarkup          : (isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null),
+            showCaptionAboveMedia: $array['show_caption_above_media'],
         );
     }
 
@@ -116,10 +116,10 @@ class EditMessageCaption extends TdFunction
     {
         return [
             '@type'                    => static::TYPE_NAME,
+            'caption'                  => (null !== $this->caption ? $this->caption->jsonSerialize() : null),
             'chat_id'                  => $this->chatId,
             'message_id'               => $this->messageId,
-            'reply_markup'             => $this->replyMarkup ?? null,
-            'caption'                  => $this->caption ?? null,
+            'reply_markup'             => (null !== $this->replyMarkup ? $this->replyMarkup->jsonSerialize() : null),
             'show_caption_above_media' => $this->showCaptionAboveMedia,
         ];
     }

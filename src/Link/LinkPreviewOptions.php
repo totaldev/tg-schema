@@ -17,35 +17,35 @@ class LinkPreviewOptions extends TdObject
 
     public function __construct(
         /**
-         * True, if link preview must be disabled.
+         * True, if shown media preview must be large; ignored in secret chats or if the URL isn't explicitly specified.
          */
-        protected bool   $isDisabled,
-        /**
-         * URL to use for link preview. If empty, then the first URL found in the message text will be used.
-         */
-        protected string $url,
+        protected bool   $forceLargeMedia,
         /**
          * True, if shown media preview must be small; ignored in secret chats or if the URL isn't explicitly specified.
          */
         protected bool   $forceSmallMedia,
         /**
-         * True, if shown media preview must be large; ignored in secret chats or if the URL isn't explicitly specified.
+         * True, if link preview must be disabled.
          */
-        protected bool   $forceLargeMedia,
+        protected bool   $isDisabled,
         /**
          * True, if link preview must be shown above message text; otherwise, the link preview will be shown below the message text; ignored in secret chats.
          */
         protected bool   $showAboveText,
+        /**
+         * URL to use for link preview. If empty, then the first URL found in the message text will be used.
+         */
+        protected string $url,
     ) {}
 
     public static function fromArray(array $array): LinkPreviewOptions
     {
         return new static(
-            $array['is_disabled'],
-            $array['url'],
-            $array['force_small_media'],
-            $array['force_large_media'],
-            $array['show_above_text'],
+            forceLargeMedia: $array['force_large_media'],
+            forceSmallMedia: $array['force_small_media'],
+            isDisabled     : $array['is_disabled'],
+            showAboveText  : $array['show_above_text'],
+            url            : $array['url'],
         );
     }
 
@@ -113,11 +113,11 @@ class LinkPreviewOptions extends TdObject
     {
         return [
             '@type'             => static::TYPE_NAME,
-            'is_disabled'       => $this->isDisabled,
-            'url'               => $this->url,
-            'force_small_media' => $this->forceSmallMedia,
             'force_large_media' => $this->forceLargeMedia,
+            'force_small_media' => $this->forceSmallMedia,
+            'is_disabled'       => $this->isDisabled,
             'show_above_text'   => $this->showAboveText,
+            'url'               => $this->url,
         ];
     }
 }

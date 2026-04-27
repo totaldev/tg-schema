@@ -17,20 +17,20 @@ class ToggleGroupCallCanSendMessages extends TdFunction
 
     public function __construct(
         /**
-         * Group call identifier.
-         */
-        protected int  $groupCallId,
-        /**
          * New value of the can_send_messages setting.
          */
         protected bool $canSendMessages,
+        /**
+         * Group call identifier.
+         */
+        protected int  $groupCallId,
     ) {}
 
     public static function fromArray(array $array): ToggleGroupCallCanSendMessages
     {
         return new static(
-            $array['group_call_id'],
-            $array['can_send_messages'],
+            canSendMessages: $array['can_send_messages'],
+            groupCallId    : $array['group_call_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class ToggleGroupCallCanSendMessages extends TdFunction
     {
         return [
             '@type'             => static::TYPE_NAME,
-            'group_call_id'     => $this->groupCallId,
             'can_send_messages' => $this->canSendMessages,
+            'group_call_id'     => $this->groupCallId,
         ];
     }
 }

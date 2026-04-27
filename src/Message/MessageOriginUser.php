@@ -25,7 +25,7 @@ class MessageOriginUser extends MessageOrigin
     public static function fromArray(array $array): MessageOriginUser
     {
         return new static(
-            $array['sender_user_id'],
+            senderUserId: $array['sender_user_id'],
         );
     }
 

@@ -25,7 +25,7 @@ class GetBusinessChatLinkInfo extends TdFunction
     public static function fromArray(array $array): GetBusinessChatLinkInfo
     {
         return new static(
-            $array['link_name'],
+            linkName: $array['link_name'],
         );
     }
 

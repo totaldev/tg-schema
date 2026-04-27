@@ -15,13 +15,13 @@ class ChatEventCustomEmojiStickerSetChanged extends ChatEventAction
 
     public function __construct(
         /**
-         * Previous identifier of the chat sticker set; 0 if none.
-         */
-        protected int $oldStickerSetId,
-        /**
          * New identifier of the chat sticker set; 0 if none.
          */
         protected int $newStickerSetId,
+        /**
+         * Previous identifier of the chat sticker set; 0 if none.
+         */
+        protected int $oldStickerSetId,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class ChatEventCustomEmojiStickerSetChanged extends ChatEventAction
     public static function fromArray(array $array): ChatEventCustomEmojiStickerSetChanged
     {
         return new static(
-            $array['old_sticker_set_id'],
-            $array['new_sticker_set_id'],
+            newStickerSetId: $array['new_sticker_set_id'],
+            oldStickerSetId: $array['old_sticker_set_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class ChatEventCustomEmojiStickerSetChanged extends ChatEventAction
     {
         return [
             '@type'              => static::TYPE_NAME,
-            'old_sticker_set_id' => $this->oldStickerSetId,
             'new_sticker_set_id' => $this->newStickerSetId,
+            'old_sticker_set_id' => $this->oldStickerSetId,
         ];
     }
 }

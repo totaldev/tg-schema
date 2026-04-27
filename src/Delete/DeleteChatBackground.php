@@ -29,8 +29,8 @@ class DeleteChatBackground extends TdFunction
     public static function fromArray(array $array): DeleteChatBackground
     {
         return new static(
-            $array['chat_id'],
-            $array['restore_previous'],
+            chatId         : $array['chat_id'],
+            restorePrevious: $array['restore_previous'],
         );
     }
 

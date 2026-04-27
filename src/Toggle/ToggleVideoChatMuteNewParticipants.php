@@ -30,8 +30,8 @@ class ToggleVideoChatMuteNewParticipants extends TdFunction
     public static function fromArray(array $array): ToggleVideoChatMuteNewParticipants
     {
         return new static(
-            $array['group_call_id'],
-            $array['mute_new_participants'],
+            groupCallId        : $array['group_call_id'],
+            muteNewParticipants: $array['mute_new_participants'],
         );
     }
 

@@ -28,7 +28,7 @@ class LinkPreviewTypeDocument extends LinkPreviewType
     public static function fromArray(array $array): LinkPreviewTypeDocument
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['document']),
+            document: TdSchemaRegistry::fromArray($array['document']),
         );
     }
 
@@ -48,7 +48,7 @@ class LinkPreviewTypeDocument extends LinkPreviewType
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'document' => $this->document->typeSerialize(),
+            'document' => $this->document->jsonSerialize(),
         ];
     }
 }

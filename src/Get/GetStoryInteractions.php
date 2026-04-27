@@ -17,13 +17,13 @@ class GetStoryInteractions extends TdFunction
 
     public function __construct(
         /**
-         * Story identifier.
+         * The maximum number of story interactions to return.
          */
-        protected int    $storyId,
+        protected int    $limit,
         /**
-         * Query to search for in names, usernames and titles; may be empty to get all relevant interactions.
+         * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
          */
-        protected string $query,
+        protected string $offset,
         /**
          * Pass true to get only interactions by contacts; pass false to get all relevant interactions.
          */
@@ -37,25 +37,25 @@ class GetStoryInteractions extends TdFunction
          */
         protected bool   $preferWithReaction,
         /**
-         * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
+         * Query to search for in names, usernames and titles; may be empty to get all relevant interactions.
          */
-        protected string $offset,
+        protected string $query,
         /**
-         * The maximum number of story interactions to return.
+         * Story identifier.
          */
-        protected int    $limit,
+        protected int    $storyId,
     ) {}
 
     public static function fromArray(array $array): GetStoryInteractions
     {
         return new static(
-            $array['story_id'],
-            $array['query'],
-            $array['only_contacts'],
-            $array['prefer_forwards'],
-            $array['prefer_with_reaction'],
-            $array['offset'],
-            $array['limit'],
+            limit             : $array['limit'],
+            offset            : $array['offset'],
+            onlyContacts      : $array['only_contacts'],
+            preferForwards    : $array['prefer_forwards'],
+            preferWithReaction: $array['prefer_with_reaction'],
+            query             : $array['query'],
+            storyId           : $array['story_id'],
         );
     }
 
@@ -147,13 +147,13 @@ class GetStoryInteractions extends TdFunction
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'story_id'             => $this->storyId,
-            'query'                => $this->query,
+            'limit'                => $this->limit,
+            'offset'               => $this->offset,
             'only_contacts'        => $this->onlyContacts,
             'prefer_forwards'      => $this->preferForwards,
             'prefer_with_reaction' => $this->preferWithReaction,
-            'offset'               => $this->offset,
-            'limit'                => $this->limit,
+            'query'                => $this->query,
+            'story_id'             => $this->storyId,
         ];
     }
 }

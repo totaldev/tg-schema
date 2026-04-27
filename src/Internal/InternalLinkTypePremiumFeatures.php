@@ -26,7 +26,7 @@ class InternalLinkTypePremiumFeatures extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypePremiumFeatures
     {
         return new static(
-            $array['referrer'],
+            referrer: $array['referrer'],
         );
     }
 

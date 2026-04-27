@@ -25,7 +25,7 @@ class PushMessageContentRecurringPayment extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentRecurringPayment
     {
         return new static(
-            $array['amount'],
+            amount: $array['amount'],
         );
     }
 

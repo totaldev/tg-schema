@@ -19,13 +19,13 @@ class PremiumPaymentOption extends TdObject
 
     public function __construct(
         /**
-         * ISO 4217 currency code for Telegram Premium subscription payment.
-         */
-        protected string            $currency,
-        /**
          * The amount to pay, in the smallest units of the currency.
          */
         protected int               $amount,
+        /**
+         * ISO 4217 currency code for Telegram Premium subscription payment.
+         */
+        protected string            $currency,
         /**
          * The discount associated with this option, as a percentage.
          */
@@ -35,24 +35,24 @@ class PremiumPaymentOption extends TdObject
          */
         protected int               $monthCount,
         /**
-         * Identifier of the store product associated with the option.
-         */
-        protected string            $storeProductId,
-        /**
          * An internal link to be opened for buying Telegram Premium to the user if store payment isn't possible; may be null if direct payment isn't available.
          */
         protected ?InternalLinkType $paymentLink,
+        /**
+         * Identifier of the store product associated with the option.
+         */
+        protected string            $storeProductId,
     ) {}
 
     public static function fromArray(array $array): PremiumPaymentOption
     {
         return new static(
-            $array['currency'],
-            $array['amount'],
-            $array['discount_percentage'],
-            $array['month_count'],
-            $array['store_product_id'],
-            isset($array['payment_link']) ? TdSchemaRegistry::fromArray($array['payment_link']) : null,
+            amount            : $array['amount'],
+            currency          : $array['currency'],
+            discountPercentage: $array['discount_percentage'],
+            monthCount        : $array['month_count'],
+            paymentLink       : (isset($array['payment_link']) ? TdSchemaRegistry::fromArray($array['payment_link']) : null),
+            storeProductId    : $array['store_product_id'],
         );
     }
 
@@ -132,12 +132,12 @@ class PremiumPaymentOption extends TdObject
     {
         return [
             '@type'               => static::TYPE_NAME,
-            'currency'            => $this->currency,
             'amount'              => $this->amount,
+            'currency'            => $this->currency,
             'discount_percentage' => $this->discountPercentage,
             'month_count'         => $this->monthCount,
+            'payment_link'        => (null !== $this->paymentLink ? $this->paymentLink->jsonSerialize() : null),
             'store_product_id'    => $this->storeProductId,
-            'payment_link'        => $this->paymentLink ?? null,
         ];
     }
 }

@@ -25,7 +25,7 @@ class TestSquareInt extends TdFunction
     public static function fromArray(array $array): TestSquareInt
     {
         return new static(
-            $array['x'],
+            x: $array['x'],
         );
     }
 

@@ -25,7 +25,7 @@ class AuthorizationStateWaitOtherDeviceConfirmation extends AuthorizationState
     public static function fromArray(array $array): AuthorizationStateWaitOtherDeviceConfirmation
     {
         return new static(
-            $array['link'],
+            link: $array['link'],
         );
     }
 

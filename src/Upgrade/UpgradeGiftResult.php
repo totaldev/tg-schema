@@ -19,55 +19,55 @@ class UpgradeGiftResult extends TdObject
 
     public function __construct(
         /**
-         * The upgraded gift.
-         */
-        protected UpgradedGift $gift,
-        /**
-         * Unique identifier of the received gift for the current user.
-         */
-        protected string       $receivedGiftId,
-        /**
-         * True, if the gift is displayed on the user's or the channel's profile page.
-         */
-        protected bool         $isSaved,
-        /**
          * True, if the gift can be transferred to another owner.
          */
         protected bool         $canBeTransferred,
-        /**
-         * Number of Telegram Stars that must be paid to transfer the upgraded gift.
-         */
-        protected int          $transferStarCount,
         /**
          * Number of Telegram Stars that must be paid to drop original details of the upgraded gift; 0 if not available.
          */
         protected int          $dropOriginalDetailsStarCount,
         /**
-         * Point in time (Unix timestamp) when the gift can be transferred to another owner; can be in the past; 0 if the gift can be transferred immediately or transfer isn't possible.
+         * Point in time (Unix timestamp) when the gift can be transferred to the TON blockchain as an NFT; can be in the past.
          */
-        protected int          $nextTransferDate,
+        protected int          $exportDate,
+        /**
+         * The upgraded gift.
+         */
+        protected UpgradedGift $gift,
+        /**
+         * True, if the gift is displayed on the user's or the channel's profile page.
+         */
+        protected bool         $isSaved,
         /**
          * Point in time (Unix timestamp) when the gift can be resold to another user; can be in the past; 0 if the gift can't be resold; only for the receiver of the gift.
          */
         protected int          $nextResaleDate,
         /**
-         * Point in time (Unix timestamp) when the gift can be transferred to the TON blockchain as an NFT; can be in the past.
+         * Point in time (Unix timestamp) when the gift can be transferred to another owner; can be in the past; 0 if the gift can be transferred immediately or transfer isn't possible.
          */
-        protected int          $exportDate,
+        protected int          $nextTransferDate,
+        /**
+         * Unique identifier of the received gift for the current user.
+         */
+        protected string       $receivedGiftId,
+        /**
+         * Number of Telegram Stars that must be paid to transfer the upgraded gift.
+         */
+        protected int          $transferStarCount,
     ) {}
 
     public static function fromArray(array $array): UpgradeGiftResult
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['gift']),
-            $array['received_gift_id'],
-            $array['is_saved'],
-            $array['can_be_transferred'],
-            $array['transfer_star_count'],
-            $array['drop_original_details_star_count'],
-            $array['next_transfer_date'],
-            $array['next_resale_date'],
-            $array['export_date'],
+            canBeTransferred            : $array['can_be_transferred'],
+            dropOriginalDetailsStarCount: $array['drop_original_details_star_count'],
+            exportDate                  : $array['export_date'],
+            gift                        : TdSchemaRegistry::fromArray($array['gift']),
+            isSaved                     : $array['is_saved'],
+            nextResaleDate              : $array['next_resale_date'],
+            nextTransferDate            : $array['next_transfer_date'],
+            receivedGiftId              : $array['received_gift_id'],
+            transferStarCount           : $array['transfer_star_count'],
         );
     }
 
@@ -183,15 +183,15 @@ class UpgradeGiftResult extends TdObject
     {
         return [
             '@type'                            => static::TYPE_NAME,
-            'gift'                             => $this->gift->typeSerialize(),
-            'received_gift_id'                 => $this->receivedGiftId,
-            'is_saved'                         => $this->isSaved,
             'can_be_transferred'               => $this->canBeTransferred,
-            'transfer_star_count'              => $this->transferStarCount,
             'drop_original_details_star_count' => $this->dropOriginalDetailsStarCount,
-            'next_transfer_date'               => $this->nextTransferDate,
-            'next_resale_date'                 => $this->nextResaleDate,
             'export_date'                      => $this->exportDate,
+            'gift'                             => $this->gift->jsonSerialize(),
+            'is_saved'                         => $this->isSaved,
+            'next_resale_date'                 => $this->nextResaleDate,
+            'next_transfer_date'               => $this->nextTransferDate,
+            'received_gift_id'                 => $this->receivedGiftId,
+            'transfer_star_count'              => $this->transferStarCount,
         ];
     }
 }

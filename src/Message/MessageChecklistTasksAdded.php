@@ -34,8 +34,8 @@ class MessageChecklistTasksAdded extends MessageContent
     public static function fromArray(array $array): MessageChecklistTasksAdded
     {
         return new static(
-            $array['checklist_message_id'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['tasks']),
+            checklistMessageId: $array['checklist_message_id'],
+            tasks             : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['tasks']),
         );
     }
 
@@ -68,7 +68,7 @@ class MessageChecklistTasksAdded extends MessageContent
         return [
             '@type'                => static::TYPE_NAME,
             'checklist_message_id' => $this->checklistMessageId,
-            'tasks'                => array_map(static fn($x) => $x->typeSerialize(), $this->tasks),
+            'tasks'                => array_map(static fn($x) => $x->jsonSerialize(), $this->tasks),
         ];
     }
 }

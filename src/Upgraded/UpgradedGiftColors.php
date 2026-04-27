@@ -17,17 +17,19 @@ class UpgradedGiftColors extends TdObject
 
     public function __construct(
         /**
+         * Accent color to use in dark themes in RGB format.
+         */
+        protected int   $darkThemeAccentColor,
+        /**
+         * The list of 1-3 colors in RGB format, describing the accent color, as expected to be shown in dark themes.
+         *
+         * @var int[]
+         */
+        protected array $darkThemeColors,
+        /**
          * Unique identifier of the upgraded gift colors.
          */
         protected int   $id,
-        /**
-         * Custom emoji identifier of the model of the upgraded gift.
-         */
-        protected int   $modelCustomEmojiId,
-        /**
-         * Custom emoji identifier of the symbol of the upgraded gift.
-         */
-        protected int   $symbolCustomEmojiId,
         /**
          * Accent color to use in light themes in RGB format.
          */
@@ -39,27 +41,25 @@ class UpgradedGiftColors extends TdObject
          */
         protected array $lightThemeColors,
         /**
-         * Accent color to use in dark themes in RGB format.
+         * Custom emoji identifier of the model of the upgraded gift.
          */
-        protected int   $darkThemeAccentColor,
+        protected int   $modelCustomEmojiId,
         /**
-         * The list of 1-3 colors in RGB format, describing the accent color, as expected to be shown in dark themes.
-         *
-         * @var int[]
+         * Custom emoji identifier of the symbol of the upgraded gift.
          */
-        protected array $darkThemeColors,
+        protected int   $symbolCustomEmojiId,
     ) {}
 
     public static function fromArray(array $array): UpgradedGiftColors
     {
         return new static(
-            $array['id'],
-            $array['model_custom_emoji_id'],
-            $array['symbol_custom_emoji_id'],
-            $array['light_theme_accent_color'],
-            $array['light_theme_colors'],
-            $array['dark_theme_accent_color'],
-            $array['dark_theme_colors'],
+            darkThemeAccentColor : $array['dark_theme_accent_color'],
+            darkThemeColors      : $array['dark_theme_colors'],
+            id                   : $array['id'],
+            lightThemeAccentColor: $array['light_theme_accent_color'],
+            lightThemeColors     : $array['light_theme_colors'],
+            modelCustomEmojiId   : $array['model_custom_emoji_id'],
+            symbolCustomEmojiId  : $array['symbol_custom_emoji_id'],
         );
     }
 
@@ -151,13 +151,13 @@ class UpgradedGiftColors extends TdObject
     {
         return [
             '@type'                    => static::TYPE_NAME,
-            'id'                       => $this->id,
-            'model_custom_emoji_id'    => $this->modelCustomEmojiId,
-            'symbol_custom_emoji_id'   => $this->symbolCustomEmojiId,
-            'light_theme_accent_color' => $this->lightThemeAccentColor,
-            'light_theme_colors'       => $this->lightThemeColors,
             'dark_theme_accent_color'  => $this->darkThemeAccentColor,
             'dark_theme_colors'        => $this->darkThemeColors,
+            'id'                       => $this->id,
+            'light_theme_accent_color' => $this->lightThemeAccentColor,
+            'light_theme_colors'       => $this->lightThemeColors,
+            'model_custom_emoji_id'    => $this->modelCustomEmojiId,
+            'symbol_custom_emoji_id'   => $this->symbolCustomEmojiId,
         ];
     }
 }

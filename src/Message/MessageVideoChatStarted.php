@@ -25,7 +25,7 @@ class MessageVideoChatStarted extends MessageContent
     public static function fromArray(array $array): MessageVideoChatStarted
     {
         return new static(
-            $array['group_call_id'],
+            groupCallId: $array['group_call_id'],
         );
     }
 

@@ -28,7 +28,7 @@ class ChatBoostSlots extends TdObject
     public static function fromArray(array $array): ChatBoostSlots
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['slots']),
+            slots: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['slots']),
         );
     }
 
@@ -48,7 +48,7 @@ class ChatBoostSlots extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            'slots' => array_map(static fn($x) => $x->typeSerialize(), $this->slots),
+            'slots' => array_map(static fn($x) => $x->jsonSerialize(), $this->slots),
         ];
     }
 }

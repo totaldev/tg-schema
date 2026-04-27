@@ -25,7 +25,7 @@ class PushReceiverId extends TdObject
     public static function fromArray(array $array): PushReceiverId
     {
         return new static(
-            $array['id'],
+            id: $array['id'],
         );
     }
 

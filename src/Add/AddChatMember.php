@@ -22,21 +22,21 @@ class AddChatMember extends TdFunction
          */
         protected int $chatId,
         /**
-         * Identifier of the user.
-         */
-        protected int $userId,
-        /**
          * The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels, or if the added user is a bot.
          */
         protected int $forwardLimit,
+        /**
+         * Identifier of the user.
+         */
+        protected int $userId,
     ) {}
 
     public static function fromArray(array $array): AddChatMember
     {
         return new static(
-            $array['chat_id'],
-            $array['user_id'],
-            $array['forward_limit'],
+            chatId      : $array['chat_id'],
+            forwardLimit: $array['forward_limit'],
+            userId      : $array['user_id'],
         );
     }
 
@@ -81,8 +81,8 @@ class AddChatMember extends TdFunction
         return [
             '@type'         => static::TYPE_NAME,
             'chat_id'       => $this->chatId,
-            'user_id'       => $this->userId,
             'forward_limit' => $this->forwardLimit,
+            'user_id'       => $this->userId,
         ];
     }
 }

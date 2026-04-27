@@ -27,7 +27,7 @@ class AddNetworkStatistics extends TdFunction
     public static function fromArray(array $array): AddNetworkStatistics
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['entry']),
+            entry: TdSchemaRegistry::fromArray($array['entry']),
         );
     }
 
@@ -47,7 +47,7 @@ class AddNetworkStatistics extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'entry' => $this->entry->typeSerialize(),
+            'entry' => $this->entry->jsonSerialize(),
         ];
     }
 }

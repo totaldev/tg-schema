@@ -18,10 +18,6 @@ class PublicForwards extends TdObject
 
     public function __construct(
         /**
-         * Approximate total number of messages and stories found.
-         */
-        protected int    $totalCount,
-        /**
          * List of found public forwards and reposts.
          *
          * @var PublicForward[]
@@ -31,14 +27,18 @@ class PublicForwards extends TdObject
          * The offset for the next request. If empty, then there are no more results.
          */
         protected string $nextOffset,
+        /**
+         * Approximate total number of messages and stories found.
+         */
+        protected int    $totalCount,
     ) {}
 
     public static function fromArray(array $array): PublicForwards
     {
         return new static(
-            $array['total_count'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['forwards']),
-            $array['next_offset'],
+            forwards  : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['forwards']),
+            nextOffset: $array['next_offset'],
+            totalCount: $array['total_count'],
         );
     }
 
@@ -82,9 +82,9 @@ class PublicForwards extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'total_count' => $this->totalCount,
-            'forwards'    => array_map(static fn($x) => $x->typeSerialize(), $this->forwards),
+            'forwards'    => array_map(static fn($x) => $x->jsonSerialize(), $this->forwards),
             'next_offset' => $this->nextOffset,
+            'total_count' => $this->totalCount,
         ];
     }
 }

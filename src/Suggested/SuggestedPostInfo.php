@@ -19,6 +19,14 @@ class SuggestedPostInfo extends TdObject
 
     public function __construct(
         /**
+         * True, if the suggested post can be approved by the current user using approveSuggestedPost; updates aren't sent when value of this field changes.
+         */
+        protected bool                $canBeApproved,
+        /**
+         * True, if the suggested post can be declined by the current user using declineSuggestedPost; updates aren't sent when value of this field changes.
+         */
+        protected bool                $canBeDeclined,
+        /**
          * Price of the suggested post; may be null if the post is non-paid.
          */
         protected ?SuggestedPostPrice $price,
@@ -30,24 +38,16 @@ class SuggestedPostInfo extends TdObject
          * State of the post.
          */
         protected SuggestedPostState  $state,
-        /**
-         * True, if the suggested post can be approved by the current user using approveSuggestedPost; updates aren't sent when value of this field changes.
-         */
-        protected bool                $canBeApproved,
-        /**
-         * True, if the suggested post can be declined by the current user using declineSuggestedPost; updates aren't sent when value of this field changes.
-         */
-        protected bool                $canBeDeclined,
     ) {}
 
     public static function fromArray(array $array): SuggestedPostInfo
     {
         return new static(
-            isset($array['price']) ? TdSchemaRegistry::fromArray($array['price']) : null,
-            $array['send_date'],
-            TdSchemaRegistry::fromArray($array['state']),
-            $array['can_be_approved'],
-            $array['can_be_declined'],
+            canBeApproved: $array['can_be_approved'],
+            canBeDeclined: $array['can_be_declined'],
+            price        : (isset($array['price']) ? TdSchemaRegistry::fromArray($array['price']) : null),
+            sendDate     : $array['send_date'],
+            state        : TdSchemaRegistry::fromArray($array['state']),
         );
     }
 
@@ -115,11 +115,11 @@ class SuggestedPostInfo extends TdObject
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'price'           => $this->price ?? null,
-            'send_date'       => $this->sendDate,
-            'state'           => $this->state->typeSerialize(),
             'can_be_approved' => $this->canBeApproved,
             'can_be_declined' => $this->canBeDeclined,
+            'price'           => (null !== $this->price ? $this->price->jsonSerialize() : null),
+            'send_date'       => $this->sendDate,
+            'state'           => $this->state->jsonSerialize(),
         ];
     }
 }

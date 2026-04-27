@@ -19,10 +19,6 @@ class SharedUser extends TdObject
 
     public function __construct(
         /**
-         * User identifier.
-         */
-        protected int    $userId,
-        /**
          * First name of the user; for bots only.
          */
         protected string $firstName,
@@ -31,23 +27,27 @@ class SharedUser extends TdObject
          */
         protected string $lastName,
         /**
-         * Username of the user; for bots only.
-         */
-        protected string $username,
-        /**
          * Profile photo of the user; for bots only; may be null.
          */
         protected ?Photo $photo,
+        /**
+         * User identifier.
+         */
+        protected int    $userId,
+        /**
+         * Username of the user; for bots only.
+         */
+        protected string $username,
     ) {}
 
     public static function fromArray(array $array): SharedUser
     {
         return new static(
-            $array['user_id'],
-            $array['first_name'],
-            $array['last_name'],
-            $array['username'],
-            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
+            firstName: $array['first_name'],
+            lastName : $array['last_name'],
+            photo    : (isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null),
+            userId   : $array['user_id'],
+            username : $array['username'],
         );
     }
 
@@ -115,11 +115,11 @@ class SharedUser extends TdObject
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'user_id'    => $this->userId,
             'first_name' => $this->firstName,
             'last_name'  => $this->lastName,
+            'photo'      => (null !== $this->photo ? $this->photo->jsonSerialize() : null),
+            'user_id'    => $this->userId,
             'username'   => $this->username,
-            'photo'      => $this->photo ?? null,
         ];
     }
 }

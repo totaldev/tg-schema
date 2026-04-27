@@ -18,10 +18,6 @@ class PushMessageContentSticker extends PushMessageContent
 
     public function __construct(
         /**
-         * Message content; may be null.
-         */
-        protected ?Sticker $sticker,
-        /**
          * Emoji corresponding to the sticker; may be empty.
          */
         protected string   $emoji,
@@ -29,6 +25,10 @@ class PushMessageContentSticker extends PushMessageContent
          * True, if the message is a pinned message with the specified content.
          */
         protected bool     $isPinned,
+        /**
+         * Message content; may be null.
+         */
+        protected ?Sticker $sticker,
     ) {
         parent::__construct();
     }
@@ -36,9 +36,9 @@ class PushMessageContentSticker extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentSticker
     {
         return new static(
-            isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null,
-            $array['emoji'],
-            $array['is_pinned'],
+            emoji   : $array['emoji'],
+            isPinned: $array['is_pinned'],
+            sticker : (isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null),
         );
     }
 
@@ -82,9 +82,9 @@ class PushMessageContentSticker extends PushMessageContent
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'sticker'   => $this->sticker ?? null,
             'emoji'     => $this->emoji,
             'is_pinned' => $this->isPinned,
+            'sticker'   => (null !== $this->sticker ? $this->sticker->jsonSerialize() : null),
         ];
     }
 }

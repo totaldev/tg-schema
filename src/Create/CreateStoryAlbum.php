@@ -17,10 +17,6 @@ class CreateStoryAlbum extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the chat that posted the stories.
-         */
-        protected int    $storyPosterChatId,
-        /**
          * Name of the album; 1-12 characters.
          */
         protected string $name,
@@ -30,14 +26,18 @@ class CreateStoryAlbum extends TdFunction
          * @var int[]
          */
         protected array  $storyIds,
+        /**
+         * Identifier of the chat that posted the stories.
+         */
+        protected int    $storyPosterChatId,
     ) {}
 
     public static function fromArray(array $array): CreateStoryAlbum
     {
         return new static(
-            $array['story_poster_chat_id'],
-            $array['name'],
-            $array['story_ids'],
+            name             : $array['name'],
+            storyIds         : $array['story_ids'],
+            storyPosterChatId: $array['story_poster_chat_id'],
         );
     }
 
@@ -81,9 +81,9 @@ class CreateStoryAlbum extends TdFunction
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'story_poster_chat_id' => $this->storyPosterChatId,
             'name'                 => $this->name,
             'story_ids'            => $this->storyIds,
+            'story_poster_chat_id' => $this->storyPosterChatId,
         ];
     }
 }

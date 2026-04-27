@@ -25,7 +25,7 @@ class CheckPhoneNumberCode extends TdFunction
     public static function fromArray(array $array): CheckPhoneNumberCode
     {
         return new static(
-            $array['code'],
+            code: $array['code'],
         );
     }
 

@@ -25,7 +25,7 @@ class GiveawayPrizeStars extends GiveawayPrize
     public static function fromArray(array $array): GiveawayPrizeStars
     {
         return new static(
-            $array['star_count'],
+            starCount: $array['star_count'],
         );
     }
 

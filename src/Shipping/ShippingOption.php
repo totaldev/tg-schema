@@ -23,23 +23,23 @@ class ShippingOption extends TdObject
          */
         protected string $id,
         /**
-         * Option title.
-         */
-        protected string $title,
-        /**
          * A list of objects used to calculate the total shipping costs.
          *
          * @var LabeledPricePart[]
          */
         protected array  $priceParts,
+        /**
+         * Option title.
+         */
+        protected string $title,
     ) {}
 
     public static function fromArray(array $array): ShippingOption
     {
         return new static(
-            $array['id'],
-            $array['title'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['price_parts']),
+            id        : $array['id'],
+            priceParts: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['price_parts']),
+            title     : $array['title'],
         );
     }
 
@@ -84,8 +84,8 @@ class ShippingOption extends TdObject
         return [
             '@type'       => static::TYPE_NAME,
             'id'          => $this->id,
+            'price_parts' => array_map(static fn($x) => $x->jsonSerialize(), $this->priceParts),
             'title'       => $this->title,
-            'price_parts' => array_map(static fn($x) => $x->typeSerialize(), $this->priceParts),
         ];
     }
 }

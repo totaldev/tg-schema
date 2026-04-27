@@ -15,13 +15,13 @@ class MessageStory extends MessageContent
 
     public function __construct(
         /**
-         * Identifier of the chat that posted the story.
-         */
-        protected int  $storyPosterChatId,
-        /**
          * Story identifier.
          */
         protected int  $storyId,
+        /**
+         * Identifier of the chat that posted the story.
+         */
+        protected int  $storyPosterChatId,
         /**
          * True, if the story was automatically forwarded because of a mention of the user.
          */
@@ -33,9 +33,9 @@ class MessageStory extends MessageContent
     public static function fromArray(array $array): MessageStory
     {
         return new static(
-            $array['story_poster_chat_id'],
-            $array['story_id'],
-            $array['via_mention'],
+            storyId          : $array['story_id'],
+            storyPosterChatId: $array['story_poster_chat_id'],
+            viaMention       : $array['via_mention'],
         );
     }
 
@@ -79,8 +79,8 @@ class MessageStory extends MessageContent
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'story_poster_chat_id' => $this->storyPosterChatId,
             'story_id'             => $this->storyId,
+            'story_poster_chat_id' => $this->storyPosterChatId,
             'via_mention'          => $this->viaMention,
         ];
     }

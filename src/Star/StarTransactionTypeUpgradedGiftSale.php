@@ -18,14 +18,6 @@ class StarTransactionTypeUpgradedGiftSale extends StarTransactionType
 
     public function __construct(
         /**
-         * Identifier of the user that bought the gift.
-         */
-        protected int          $userId,
-        /**
-         * The gift.
-         */
-        protected UpgradedGift $gift,
-        /**
          * The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars received by the seller of the gift.
          */
         protected int          $commissionPerMille,
@@ -33,6 +25,14 @@ class StarTransactionTypeUpgradedGiftSale extends StarTransactionType
          * The amount of Telegram Stars that were received by Telegram; can be negative for refunds.
          */
         protected StarAmount   $commissionStarAmount,
+        /**
+         * The gift.
+         */
+        protected UpgradedGift $gift,
+        /**
+         * Identifier of the user that bought the gift.
+         */
+        protected int          $userId,
     ) {
         parent::__construct();
     }
@@ -40,10 +40,10 @@ class StarTransactionTypeUpgradedGiftSale extends StarTransactionType
     public static function fromArray(array $array): StarTransactionTypeUpgradedGiftSale
     {
         return new static(
-            $array['user_id'],
-            TdSchemaRegistry::fromArray($array['gift']),
-            $array['commission_per_mille'],
-            TdSchemaRegistry::fromArray($array['commission_star_amount']),
+            commissionPerMille  : $array['commission_per_mille'],
+            commissionStarAmount: TdSchemaRegistry::fromArray($array['commission_star_amount']),
+            gift                : TdSchemaRegistry::fromArray($array['gift']),
+            userId              : $array['user_id'],
         );
     }
 
@@ -99,10 +99,10 @@ class StarTransactionTypeUpgradedGiftSale extends StarTransactionType
     {
         return [
             '@type'                  => static::TYPE_NAME,
-            'user_id'                => $this->userId,
-            'gift'                   => $this->gift->typeSerialize(),
             'commission_per_mille'   => $this->commissionPerMille,
-            'commission_star_amount' => $this->commissionStarAmount->typeSerialize(),
+            'commission_star_amount' => $this->commissionStarAmount->jsonSerialize(),
+            'gift'                   => $this->gift->jsonSerialize(),
+            'user_id'                => $this->userId,
         ];
     }
 }

@@ -29,8 +29,8 @@ class GetBotInfoDescription extends TdFunction
     public static function fromArray(array $array): GetBotInfoDescription
     {
         return new static(
-            $array['bot_user_id'],
-            $array['language_code'],
+            botUserId   : $array['bot_user_id'],
+            languageCode: $array['language_code'],
         );
     }
 

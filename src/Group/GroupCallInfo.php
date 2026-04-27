@@ -29,8 +29,8 @@ class GroupCallInfo extends TdObject
     public static function fromArray(array $array): GroupCallInfo
     {
         return new static(
-            $array['group_call_id'],
-            $array['join_payload'],
+            groupCallId: $array['group_call_id'],
+            joinPayload: $array['join_payload'],
         );
     }
 

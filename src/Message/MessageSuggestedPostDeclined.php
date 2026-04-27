@@ -15,13 +15,13 @@ class MessageSuggestedPostDeclined extends MessageContent
 
     public function __construct(
         /**
-         * Identifier of the message with the suggested post; can be 0 if the message was deleted.
-         */
-        protected int    $suggestedPostMessageId,
-        /**
          * Comment added by administrator of the channel when the post was declined.
          */
         protected string $comment,
+        /**
+         * Identifier of the message with the suggested post; can be 0 if the message was deleted.
+         */
+        protected int    $suggestedPostMessageId,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class MessageSuggestedPostDeclined extends MessageContent
     public static function fromArray(array $array): MessageSuggestedPostDeclined
     {
         return new static(
-            $array['suggested_post_message_id'],
-            $array['comment'],
+            comment               : $array['comment'],
+            suggestedPostMessageId: $array['suggested_post_message_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class MessageSuggestedPostDeclined extends MessageContent
     {
         return [
             '@type'                     => static::TYPE_NAME,
-            'suggested_post_message_id' => $this->suggestedPostMessageId,
             'comment'                   => $this->comment,
+            'suggested_post_message_id' => $this->suggestedPostMessageId,
         ];
     }
 }

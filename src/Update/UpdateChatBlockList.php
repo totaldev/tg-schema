@@ -18,13 +18,13 @@ class UpdateChatBlockList extends Update
 
     public function __construct(
         /**
-         * Chat identifier.
-         */
-        protected int        $chatId,
-        /**
          * Block list to which the chat is added; may be null if none.
          */
         protected ?BlockList $blockList,
+        /**
+         * Chat identifier.
+         */
+        protected int        $chatId,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class UpdateChatBlockList extends Update
     public static function fromArray(array $array): UpdateChatBlockList
     {
         return new static(
-            $array['chat_id'],
-            isset($array['block_list']) ? TdSchemaRegistry::fromArray($array['block_list']) : null,
+            blockList: (isset($array['block_list']) ? TdSchemaRegistry::fromArray($array['block_list']) : null),
+            chatId   : $array['chat_id'],
         );
     }
 
@@ -65,8 +65,8 @@ class UpdateChatBlockList extends Update
     {
         return [
             '@type'      => static::TYPE_NAME,
+            'block_list' => (null !== $this->blockList ? $this->blockList->jsonSerialize() : null),
             'chat_id'    => $this->chatId,
-            'block_list' => $this->blockList ?? null,
         ];
     }
 }

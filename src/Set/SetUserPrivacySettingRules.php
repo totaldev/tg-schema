@@ -20,20 +20,20 @@ class SetUserPrivacySettingRules extends TdFunction
 
     public function __construct(
         /**
-         * The privacy setting.
-         */
-        protected UserPrivacySetting      $setting,
-        /**
          * The new privacy rules.
          */
         protected UserPrivacySettingRules $rules,
+        /**
+         * The privacy setting.
+         */
+        protected UserPrivacySetting      $setting,
     ) {}
 
     public static function fromArray(array $array): SetUserPrivacySettingRules
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['setting']),
-            TdSchemaRegistry::fromArray($array['rules']),
+            rules  : TdSchemaRegistry::fromArray($array['rules']),
+            setting: TdSchemaRegistry::fromArray($array['setting']),
         );
     }
 
@@ -65,8 +65,8 @@ class SetUserPrivacySettingRules extends TdFunction
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'setting' => $this->setting->typeSerialize(),
-            'rules'   => $this->rules->typeSerialize(),
+            'rules'   => $this->rules->jsonSerialize(),
+            'setting' => $this->setting->jsonSerialize(),
         ];
     }
 }

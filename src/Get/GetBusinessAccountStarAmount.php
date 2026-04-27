@@ -25,7 +25,7 @@ class GetBusinessAccountStarAmount extends TdFunction
     public static function fromArray(array $array): GetBusinessAccountStarAmount
     {
         return new static(
-            $array['business_connection_id'],
+            businessConnectionId: $array['business_connection_id'],
         );
     }
 

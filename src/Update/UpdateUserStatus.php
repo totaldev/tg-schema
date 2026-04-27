@@ -18,13 +18,13 @@ class UpdateUserStatus extends Update
 
     public function __construct(
         /**
-         * User identifier.
-         */
-        protected int        $userId,
-        /**
          * New status of the user.
          */
         protected UserStatus $status,
+        /**
+         * User identifier.
+         */
+        protected int        $userId,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class UpdateUserStatus extends Update
     public static function fromArray(array $array): UpdateUserStatus
     {
         return new static(
-            $array['user_id'],
-            TdSchemaRegistry::fromArray($array['status']),
+            status: TdSchemaRegistry::fromArray($array['status']),
+            userId: $array['user_id'],
         );
     }
 
@@ -65,8 +65,8 @@ class UpdateUserStatus extends Update
     {
         return [
             '@type'   => static::TYPE_NAME,
+            'status'  => $this->status->jsonSerialize(),
             'user_id' => $this->userId,
-            'status'  => $this->status->typeSerialize(),
         ];
     }
 }

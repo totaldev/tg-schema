@@ -25,7 +25,7 @@ class PhoneNumberCodeTypeConfirmOwnership extends PhoneNumberCodeType
     public static function fromArray(array $array): PhoneNumberCodeTypeConfirmOwnership
     {
         return new static(
-            $array['hash'],
+            hash: $array['hash'],
         );
     }
 

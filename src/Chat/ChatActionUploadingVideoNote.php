@@ -25,7 +25,7 @@ class ChatActionUploadingVideoNote extends ChatAction
     public static function fromArray(array $array): ChatActionUploadingVideoNote
     {
         return new static(
-            $array['progress'],
+            progress: $array['progress'],
         );
     }
 

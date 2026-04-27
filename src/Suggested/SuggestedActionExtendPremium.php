@@ -25,7 +25,7 @@ class SuggestedActionExtendPremium extends SuggestedAction
     public static function fromArray(array $array): SuggestedActionExtendPremium
     {
         return new static(
-            $array['manage_premium_subscription_url'],
+            managePremiumSubscriptionUrl: $array['manage_premium_subscription_url'],
         );
     }
 

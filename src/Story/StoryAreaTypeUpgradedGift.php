@@ -25,7 +25,7 @@ class StoryAreaTypeUpgradedGift extends StoryAreaType
     public static function fromArray(array $array): StoryAreaTypeUpgradedGift
     {
         return new static(
-            $array['gift_name'],
+            giftName: $array['gift_name'],
         );
     }
 

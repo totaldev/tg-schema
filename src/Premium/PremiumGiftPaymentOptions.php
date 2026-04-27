@@ -28,7 +28,7 @@ class PremiumGiftPaymentOptions extends TdObject
     public static function fromArray(array $array): PremiumGiftPaymentOptions
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['options']),
+            options: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['options']),
         );
     }
 
@@ -48,7 +48,7 @@ class PremiumGiftPaymentOptions extends TdObject
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'options' => array_map(static fn($x) => $x->typeSerialize(), $this->options),
+            'options' => array_map(static fn($x) => $x->jsonSerialize(), $this->options),
         ];
     }
 }

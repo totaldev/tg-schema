@@ -21,21 +21,21 @@ class GetMessageStatistics extends TdFunction
          */
         protected int  $chatId,
         /**
-         * Message identifier.
-         */
-        protected int  $messageId,
-        /**
          * Pass true if a dark theme is used by the application.
          */
         protected bool $isDark,
+        /**
+         * Message identifier.
+         */
+        protected int  $messageId,
     ) {}
 
     public static function fromArray(array $array): GetMessageStatistics
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            $array['is_dark'],
+            chatId   : $array['chat_id'],
+            isDark   : $array['is_dark'],
+            messageId: $array['message_id'],
         );
     }
 
@@ -80,8 +80,8 @@ class GetMessageStatistics extends TdFunction
         return [
             '@type'      => static::TYPE_NAME,
             'chat_id'    => $this->chatId,
-            'message_id' => $this->messageId,
             'is_dark'    => $this->isDark,
+            'message_id' => $this->messageId,
         ];
     }
 }

@@ -18,13 +18,13 @@ class UpdateServiceNotification extends Update
 
     public function __construct(
         /**
-         * Notification type. If type begins with "AUTH_KEY_DROP_", then two buttons "Cancel" and "Log out" must be shown under notification; if user presses the second, all local data must be destroyed using Destroy method.
-         */
-        protected string         $type,
-        /**
          * Notification content.
          */
         protected MessageContent $content,
+        /**
+         * Notification type. If type begins with "AUTH_KEY_DROP_", then two buttons "Cancel" and "Log out" must be shown under notification; if user presses the second, all local data must be destroyed using Destroy method.
+         */
+        protected string         $type,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class UpdateServiceNotification extends Update
     public static function fromArray(array $array): UpdateServiceNotification
     {
         return new static(
-            $array['type'],
-            TdSchemaRegistry::fromArray($array['content']),
+            content: TdSchemaRegistry::fromArray($array['content']),
+            type   : $array['type'],
         );
     }
 
@@ -65,8 +65,8 @@ class UpdateServiceNotification extends Update
     {
         return [
             '@type'   => static::TYPE_NAME,
+            'content' => $this->content->jsonSerialize(),
             'type'    => $this->type,
-            'content' => $this->content->typeSerialize(),
         ];
     }
 }

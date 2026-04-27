@@ -25,7 +25,7 @@ class PushMessageContentContactRegistered extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentContactRegistered
     {
         return new static(
-            $array['as_premium_account'],
+            asPremiumAccount: $array['as_premium_account'],
         );
     }
 

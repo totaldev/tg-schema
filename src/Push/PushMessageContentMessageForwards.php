@@ -25,7 +25,7 @@ class PushMessageContentMessageForwards extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentMessageForwards
     {
         return new static(
-            $array['total_count'],
+            totalCount: $array['total_count'],
         );
     }
 

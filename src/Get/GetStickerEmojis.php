@@ -28,7 +28,7 @@ class GetStickerEmojis extends TdFunction
     public static function fromArray(array $array): GetStickerEmojis
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['sticker']),
+            sticker: TdSchemaRegistry::fromArray($array['sticker']),
         );
     }
 
@@ -48,7 +48,7 @@ class GetStickerEmojis extends TdFunction
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'sticker' => $this->sticker->typeSerialize(),
+            'sticker' => $this->sticker->jsonSerialize(),
         ];
     }
 }

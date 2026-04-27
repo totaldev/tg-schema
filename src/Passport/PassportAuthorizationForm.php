@@ -22,23 +22,23 @@ class PassportAuthorizationForm extends TdObject
          */
         protected int    $id,
         /**
+         * URL for the privacy policy of the service; may be empty.
+         */
+        protected string $privacyPolicyUrl,
+        /**
          * Telegram Passport elements that must be provided to complete the form.
          *
          * @var PassportRequiredElement[]
          */
         protected array  $requiredElements,
-        /**
-         * URL for the privacy policy of the service; may be empty.
-         */
-        protected string $privacyPolicyUrl,
     ) {}
 
     public static function fromArray(array $array): PassportAuthorizationForm
     {
         return new static(
-            $array['id'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['required_elements']),
-            $array['privacy_policy_url'],
+            id              : $array['id'],
+            privacyPolicyUrl: $array['privacy_policy_url'],
+            requiredElements: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['required_elements']),
         );
     }
 
@@ -83,8 +83,8 @@ class PassportAuthorizationForm extends TdObject
         return [
             '@type'              => static::TYPE_NAME,
             'id'                 => $this->id,
-            'required_elements'  => array_map(static fn($x) => $x->typeSerialize(), $this->requiredElements),
             'privacy_policy_url' => $this->privacyPolicyUrl,
+            'required_elements'  => array_map(static fn($x) => $x->jsonSerialize(), $this->requiredElements),
         ];
     }
 }

@@ -31,8 +31,8 @@ class GetChatMember extends TdFunction
     public static function fromArray(array $array): GetChatMember
     {
         return new static(
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['member_id']),
+            chatId  : $array['chat_id'],
+            memberId: TdSchemaRegistry::fromArray($array['member_id']),
         );
     }
 
@@ -65,7 +65,7 @@ class GetChatMember extends TdFunction
         return [
             '@type'     => static::TYPE_NAME,
             'chat_id'   => $this->chatId,
-            'member_id' => $this->memberId->typeSerialize(),
+            'member_id' => $this->memberId->jsonSerialize(),
         ];
     }
 }

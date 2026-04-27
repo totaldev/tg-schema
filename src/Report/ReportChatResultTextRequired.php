@@ -15,13 +15,13 @@ class ReportChatResultTextRequired extends ReportChatResult
 
     public function __construct(
         /**
-         * Option identifier for the next reportChat request.
-         */
-        protected string $optionId,
-        /**
          * True, if the user can skip text adding.
          */
         protected bool   $isOptional,
+        /**
+         * Option identifier for the next reportChat request.
+         */
+        protected string $optionId,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class ReportChatResultTextRequired extends ReportChatResult
     public static function fromArray(array $array): ReportChatResultTextRequired
     {
         return new static(
-            $array['option_id'],
-            $array['is_optional'],
+            isOptional: $array['is_optional'],
+            optionId  : $array['option_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class ReportChatResultTextRequired extends ReportChatResult
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'option_id'   => $this->optionId,
             'is_optional' => $this->isOptional,
+            'option_id'   => $this->optionId,
         ];
     }
 }

@@ -33,9 +33,9 @@ class ApproveSuggestedPost extends TdFunction
     public static function fromArray(array $array): ApproveSuggestedPost
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            $array['send_date'],
+            chatId   : $array['chat_id'],
+            messageId: $array['message_id'],
+            sendDate : $array['send_date'],
         );
     }
 

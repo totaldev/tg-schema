@@ -28,7 +28,7 @@ class SavedMessagesTags extends TdObject
     public static function fromArray(array $array): SavedMessagesTags
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['tags']),
+            tags: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['tags']),
         );
     }
 
@@ -48,7 +48,7 @@ class SavedMessagesTags extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            'tags'  => array_map(static fn($x) => $x->typeSerialize(), $this->tags),
+            'tags'  => array_map(static fn($x) => $x->jsonSerialize(), $this->tags),
         ];
     }
 }

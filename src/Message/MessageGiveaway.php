@@ -24,10 +24,6 @@ class MessageGiveaway extends MessageContent
          */
         protected GiveawayParameters $parameters,
         /**
-         * Number of users which will receive Telegram Premium subscription gift codes.
-         */
-        protected int                $winnerCount,
-        /**
          * Prize of the giveaway.
          */
         protected GiveawayPrize      $prize,
@@ -35,6 +31,10 @@ class MessageGiveaway extends MessageContent
          * A sticker to be shown in the message; may be null if unknown.
          */
         protected ?Sticker           $sticker,
+        /**
+         * Number of users which will receive Telegram Premium subscription gift codes.
+         */
+        protected int                $winnerCount,
     ) {
         parent::__construct();
     }
@@ -42,10 +42,10 @@ class MessageGiveaway extends MessageContent
     public static function fromArray(array $array): MessageGiveaway
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['parameters']),
-            $array['winner_count'],
-            TdSchemaRegistry::fromArray($array['prize']),
-            isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null,
+            parameters : TdSchemaRegistry::fromArray($array['parameters']),
+            prize      : TdSchemaRegistry::fromArray($array['prize']),
+            sticker    : (isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null),
+            winnerCount: $array['winner_count'],
         );
     }
 
@@ -101,10 +101,10 @@ class MessageGiveaway extends MessageContent
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'parameters'   => $this->parameters->typeSerialize(),
+            'parameters'   => $this->parameters->jsonSerialize(),
+            'prize'        => $this->prize->jsonSerialize(),
+            'sticker'      => (null !== $this->sticker ? $this->sticker->jsonSerialize() : null),
             'winner_count' => $this->winnerCount,
-            'prize'        => $this->prize->typeSerialize(),
-            'sticker'      => $this->sticker ?? null,
         ];
     }
 }

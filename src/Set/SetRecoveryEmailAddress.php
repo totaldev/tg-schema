@@ -19,20 +19,20 @@ class SetRecoveryEmailAddress extends TdFunction
 
     public function __construct(
         /**
-         * The 2-step verification password of the current user.
-         */
-        protected string $password,
-        /**
          * New recovery email address.
          */
         protected string $newRecoveryEmailAddress,
+        /**
+         * The 2-step verification password of the current user.
+         */
+        protected string $password,
     ) {}
 
     public static function fromArray(array $array): SetRecoveryEmailAddress
     {
         return new static(
-            $array['password'],
-            $array['new_recovery_email_address'],
+            newRecoveryEmailAddress: $array['new_recovery_email_address'],
+            password               : $array['password'],
         );
     }
 
@@ -64,8 +64,8 @@ class SetRecoveryEmailAddress extends TdFunction
     {
         return [
             '@type'                      => static::TYPE_NAME,
-            'password'                   => $this->password,
             'new_recovery_email_address' => $this->newRecoveryEmailAddress,
+            'password'                   => $this->password,
         ];
     }
 }

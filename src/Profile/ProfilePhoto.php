@@ -20,40 +20,40 @@ class ProfilePhoto extends TdObject
 
     public function __construct(
         /**
-         * Photo identifier; 0 for an empty photo. Can be used to find a photo in a list of user profile photos.
-         */
-        protected int            $id,
-        /**
-         * A small (160x160) user profile photo. The file can be downloaded only before the photo is changed.
-         */
-        protected File           $small,
-        /**
          * A big (640x640) user profile photo. The file can be downloaded only before the photo is changed.
          */
         protected File           $big,
-        /**
-         * User profile photo minithumbnail; may be null.
-         */
-        protected ?Minithumbnail $minithumbnail,
         /**
          * True, if the photo has animated variant.
          */
         protected bool           $hasAnimation,
         /**
+         * Photo identifier; 0 for an empty photo. Can be used to find a photo in a list of user profile photos.
+         */
+        protected int            $id,
+        /**
          * True, if the photo is visible only for the current user.
          */
         protected bool           $isPersonal,
+        /**
+         * User profile photo minithumbnail; may be null.
+         */
+        protected ?Minithumbnail $minithumbnail,
+        /**
+         * A small (160x160) user profile photo. The file can be downloaded only before the photo is changed.
+         */
+        protected File           $small,
     ) {}
 
     public static function fromArray(array $array): ProfilePhoto
     {
         return new static(
-            $array['id'],
-            TdSchemaRegistry::fromArray($array['small']),
-            TdSchemaRegistry::fromArray($array['big']),
-            isset($array['minithumbnail']) ? TdSchemaRegistry::fromArray($array['minithumbnail']) : null,
-            $array['has_animation'],
-            $array['is_personal'],
+            big          : TdSchemaRegistry::fromArray($array['big']),
+            hasAnimation : $array['has_animation'],
+            id           : $array['id'],
+            isPersonal   : $array['is_personal'],
+            minithumbnail: (isset($array['minithumbnail']) ? TdSchemaRegistry::fromArray($array['minithumbnail']) : null),
+            small        : TdSchemaRegistry::fromArray($array['small']),
         );
     }
 
@@ -133,12 +133,12 @@ class ProfilePhoto extends TdObject
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'id'            => $this->id,
-            'small'         => $this->small->typeSerialize(),
-            'big'           => $this->big->typeSerialize(),
-            'minithumbnail' => $this->minithumbnail ?? null,
+            'big'           => $this->big->jsonSerialize(),
             'has_animation' => $this->hasAnimation,
+            'id'            => $this->id,
             'is_personal'   => $this->isPersonal,
+            'minithumbnail' => (null !== $this->minithumbnail ? $this->minithumbnail->jsonSerialize() : null),
+            'small'         => $this->small->jsonSerialize(),
         ];
     }
 }

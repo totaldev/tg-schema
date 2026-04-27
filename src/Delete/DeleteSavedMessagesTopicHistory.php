@@ -25,7 +25,7 @@ class DeleteSavedMessagesTopicHistory extends TdFunction
     public static function fromArray(array $array): DeleteSavedMessagesTopicHistory
     {
         return new static(
-            $array['saved_messages_topic_id'],
+            savedMessagesTopicId: $array['saved_messages_topic_id'],
         );
     }
 

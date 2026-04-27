@@ -25,7 +25,7 @@ class UpdateOwnedTonCount extends Update
     public static function fromArray(array $array): UpdateOwnedTonCount
     {
         return new static(
-            $array['ton_amount'],
+            tonAmount: $array['ton_amount'],
         );
     }
 

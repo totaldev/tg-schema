@@ -25,7 +25,7 @@ class ResendCodeReasonVerificationFailed extends ResendCodeReason
     public static function fromArray(array $array): ResendCodeReasonVerificationFailed
     {
         return new static(
-            $array['error_message'],
+            errorMessage: $array['error_message'],
         );
     }
 

@@ -33,9 +33,9 @@ class EditChatSubscriptionInviteLink extends TdFunction
     public static function fromArray(array $array): EditChatSubscriptionInviteLink
     {
         return new static(
-            $array['chat_id'],
-            $array['invite_link'],
-            $array['name'],
+            chatId    : $array['chat_id'],
+            inviteLink: $array['invite_link'],
+            name      : $array['name'],
         );
     }
 

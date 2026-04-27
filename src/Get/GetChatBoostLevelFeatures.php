@@ -29,8 +29,8 @@ class GetChatBoostLevelFeatures extends TdFunction
     public static function fromArray(array $array): GetChatBoostLevelFeatures
     {
         return new static(
-            $array['is_channel'],
-            $array['level'],
+            isChannel: $array['is_channel'],
+            level    : $array['level'],
         );
     }
 

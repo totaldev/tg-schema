@@ -25,7 +25,7 @@ class AccountTtl extends TdObject
     public static function fromArray(array $array): AccountTtl
     {
         return new static(
-            $array['days'],
+            days: $array['days'],
         );
     }
 

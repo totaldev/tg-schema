@@ -31,8 +31,8 @@ class RemoveTopChat extends TdFunction
     public static function fromArray(array $array): RemoveTopChat
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['category']),
-            $array['chat_id'],
+            category: TdSchemaRegistry::fromArray($array['category']),
+            chatId  : $array['chat_id'],
         );
     }
 
@@ -64,7 +64,7 @@ class RemoveTopChat extends TdFunction
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'category' => $this->category->typeSerialize(),
+            'category' => $this->category->jsonSerialize(),
             'chat_id'  => $this->chatId,
         ];
     }

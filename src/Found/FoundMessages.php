@@ -19,10 +19,6 @@ class FoundMessages extends TdObject
 
     public function __construct(
         /**
-         * Approximate total number of messages found; -1 if unknown.
-         */
-        protected int    $totalCount,
-        /**
          * List of messages.
          *
          * @var Message[]
@@ -32,14 +28,18 @@ class FoundMessages extends TdObject
          * The offset for the next request. If empty, then there are no more results.
          */
         protected string $nextOffset,
+        /**
+         * Approximate total number of messages found; -1 if unknown.
+         */
+        protected int    $totalCount,
     ) {}
 
     public static function fromArray(array $array): FoundMessages
     {
         return new static(
-            $array['total_count'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['messages']),
-            $array['next_offset'],
+            messages  : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['messages']),
+            nextOffset: $array['next_offset'],
+            totalCount: $array['total_count'],
         );
     }
 
@@ -83,9 +83,9 @@ class FoundMessages extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'total_count' => $this->totalCount,
-            'messages'    => array_map(static fn($x) => $x->typeSerialize(), $this->messages),
+            'messages'    => array_map(static fn($x) => $x->jsonSerialize(), $this->messages),
             'next_offset' => $this->nextOffset,
+            'total_count' => $this->totalCount,
         ];
     }
 }

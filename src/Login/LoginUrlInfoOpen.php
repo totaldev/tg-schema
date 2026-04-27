@@ -15,13 +15,13 @@ class LoginUrlInfoOpen extends LoginUrlInfo
 
     public function __construct(
         /**
-         * The URL to open.
-         */
-        protected string $url,
-        /**
          * True, if there is no need to show an ordinary open URL confirmation.
          */
         protected bool   $skipConfirmation,
+        /**
+         * The URL to open.
+         */
+        protected string $url,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class LoginUrlInfoOpen extends LoginUrlInfo
     public static function fromArray(array $array): LoginUrlInfoOpen
     {
         return new static(
-            $array['url'],
-            $array['skip_confirmation'],
+            skipConfirmation: $array['skip_confirmation'],
+            url             : $array['url'],
         );
     }
 
@@ -62,8 +62,8 @@ class LoginUrlInfoOpen extends LoginUrlInfo
     {
         return [
             '@type'             => static::TYPE_NAME,
-            'url'               => $this->url,
             'skip_confirmation' => $this->skipConfirmation,
+            'url'               => $this->url,
         ];
     }
 }

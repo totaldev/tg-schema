@@ -24,21 +24,21 @@ class SearchPublicStoriesByLocation extends TdFunction
          */
         protected LocationAddress $address,
         /**
-         * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
-         */
-        protected string          $offset,
-        /**
          * The maximum number of stories to be returned; up to 100. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit.
          */
         protected int             $limit,
+        /**
+         * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
+         */
+        protected string          $offset,
     ) {}
 
     public static function fromArray(array $array): SearchPublicStoriesByLocation
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['address']),
-            $array['offset'],
-            $array['limit'],
+            address: TdSchemaRegistry::fromArray($array['address']),
+            limit  : $array['limit'],
+            offset : $array['offset'],
         );
     }
 
@@ -82,9 +82,9 @@ class SearchPublicStoriesByLocation extends TdFunction
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'address' => $this->address->typeSerialize(),
-            'offset'  => $this->offset,
+            'address' => $this->address->jsonSerialize(),
             'limit'   => $this->limit,
+            'offset'  => $this->offset,
         ];
     }
 }

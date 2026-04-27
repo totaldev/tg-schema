@@ -18,6 +18,10 @@ class UpdateChatFolders extends Update
 
     public function __construct(
         /**
+         * True, if folder tags are enabled.
+         */
+        protected bool  $areTagsEnabled,
+        /**
          * The new list of chat folders.
          *
          * @var ChatFolderInfo[]
@@ -27,10 +31,6 @@ class UpdateChatFolders extends Update
          * Position of the main chat list among chat folders, 0-based.
          */
         protected int   $mainChatListPosition,
-        /**
-         * True, if folder tags are enabled.
-         */
-        protected bool  $areTagsEnabled,
     ) {
         parent::__construct();
     }
@@ -38,9 +38,9 @@ class UpdateChatFolders extends Update
     public static function fromArray(array $array): UpdateChatFolders
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['chat_folders']),
-            $array['main_chat_list_position'],
-            $array['are_tags_enabled'],
+            areTagsEnabled      : $array['are_tags_enabled'],
+            chatFolders         : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['chat_folders']),
+            mainChatListPosition: $array['main_chat_list_position'],
         );
     }
 
@@ -84,9 +84,9 @@ class UpdateChatFolders extends Update
     {
         return [
             '@type'                   => static::TYPE_NAME,
-            'chat_folders'            => array_map(static fn($x) => $x->typeSerialize(), $this->chatFolders),
-            'main_chat_list_position' => $this->mainChatListPosition,
             'are_tags_enabled'        => $this->areTagsEnabled,
+            'chat_folders'            => array_map(static fn($x) => $x->jsonSerialize(), $this->chatFolders),
+            'main_chat_list_position' => $this->mainChatListPosition,
         ];
     }
 }

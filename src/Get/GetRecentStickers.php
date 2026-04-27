@@ -25,7 +25,7 @@ class GetRecentStickers extends TdFunction
     public static function fromArray(array $array): GetRecentStickers
     {
         return new static(
-            $array['is_attached'],
+            isAttached: $array['is_attached'],
         );
     }
 

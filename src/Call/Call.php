@@ -22,10 +22,6 @@ class Call extends TdObject
          */
         protected int       $id,
         /**
-         * User identifier of the other call participant.
-         */
-        protected int       $userId,
-        /**
          * True, if the call is outgoing.
          */
         protected bool      $isOutgoing,
@@ -37,16 +33,20 @@ class Call extends TdObject
          * Call state.
          */
         protected CallState $state,
+        /**
+         * User identifier of the other call participant.
+         */
+        protected int       $userId,
     ) {}
 
     public static function fromArray(array $array): Call
     {
         return new static(
-            $array['id'],
-            $array['user_id'],
-            $array['is_outgoing'],
-            $array['is_video'],
-            TdSchemaRegistry::fromArray($array['state']),
+            id        : $array['id'],
+            isOutgoing: $array['is_outgoing'],
+            isVideo   : $array['is_video'],
+            state     : TdSchemaRegistry::fromArray($array['state']),
+            userId    : $array['user_id'],
         );
     }
 
@@ -115,10 +115,10 @@ class Call extends TdObject
         return [
             '@type'       => static::TYPE_NAME,
             'id'          => $this->id,
-            'user_id'     => $this->userId,
             'is_outgoing' => $this->isOutgoing,
             'is_video'    => $this->isVideo,
-            'state'       => $this->state->typeSerialize(),
+            'state'       => $this->state->jsonSerialize(),
+            'user_id'     => $this->userId,
         ];
     }
 }

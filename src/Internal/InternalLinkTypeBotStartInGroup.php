@@ -25,6 +25,10 @@ class InternalLinkTypeBotStartInGroup extends InternalLinkType
 
     public function __construct(
         /**
+         * Expected administrator rights for the bot; may be null.
+         */
+        protected ?ChatAdministratorRights $administratorRights,
+        /**
          * Username of the bot.
          */
         protected string                   $botUsername,
@@ -32,10 +36,6 @@ class InternalLinkTypeBotStartInGroup extends InternalLinkType
          * The parameter to be passed to sendBotStartMessage.
          */
         protected string                   $startParameter,
-        /**
-         * Expected administrator rights for the bot; may be null.
-         */
-        protected ?ChatAdministratorRights $administratorRights,
     ) {
         parent::__construct();
     }
@@ -43,9 +43,9 @@ class InternalLinkTypeBotStartInGroup extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeBotStartInGroup
     {
         return new static(
-            $array['bot_username'],
-            $array['start_parameter'],
-            isset($array['administrator_rights']) ? TdSchemaRegistry::fromArray($array['administrator_rights']) : null,
+            administratorRights: (isset($array['administrator_rights']) ? TdSchemaRegistry::fromArray($array['administrator_rights']) : null),
+            botUsername        : $array['bot_username'],
+            startParameter     : $array['start_parameter'],
         );
     }
 
@@ -89,9 +89,9 @@ class InternalLinkTypeBotStartInGroup extends InternalLinkType
     {
         return [
             '@type'                => static::TYPE_NAME,
+            'administrator_rights' => (null !== $this->administratorRights ? $this->administratorRights->jsonSerialize() : null),
             'bot_username'         => $this->botUsername,
             'start_parameter'      => $this->startParameter,
-            'administrator_rights' => $this->administratorRights ?? null,
         ];
     }
 }

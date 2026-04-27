@@ -28,7 +28,7 @@ class ChatMembersFilterMention extends ChatMembersFilter
     public static function fromArray(array $array): ChatMembersFilterMention
     {
         return new static(
-            isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null,
+            topicId: (isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null),
         );
     }
 
@@ -48,7 +48,7 @@ class ChatMembersFilterMention extends ChatMembersFilter
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'topic_id' => $this->topicId ?? null,
+            'topic_id' => (null !== $this->topicId ? $this->topicId->jsonSerialize() : null),
         ];
     }
 }

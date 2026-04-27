@@ -29,13 +29,13 @@ class EditBusinessMessageMedia extends TdFunction
          */
         protected int                 $chatId,
         /**
-         * Identifier of the message.
-         */
-        protected int                 $messageId,
-        /**
          * New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo.
          */
         protected InputMessageContent $inputMessageContent,
+        /**
+         * Identifier of the message.
+         */
+        protected int                 $messageId,
         /**
          * The new message reply markup; pass null if none; for bots only.
          */
@@ -45,11 +45,11 @@ class EditBusinessMessageMedia extends TdFunction
     public static function fromArray(array $array): EditBusinessMessageMedia
     {
         return new static(
-            $array['business_connection_id'],
-            $array['chat_id'],
-            $array['message_id'],
-            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
-            TdSchemaRegistry::fromArray($array['input_message_content']),
+            businessConnectionId: $array['business_connection_id'],
+            chatId              : $array['chat_id'],
+            inputMessageContent : TdSchemaRegistry::fromArray($array['input_message_content']),
+            messageId           : $array['message_id'],
+            replyMarkup         : (isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null),
         );
     }
 
@@ -119,9 +119,9 @@ class EditBusinessMessageMedia extends TdFunction
             '@type'                  => static::TYPE_NAME,
             'business_connection_id' => $this->businessConnectionId,
             'chat_id'                => $this->chatId,
+            'input_message_content'  => $this->inputMessageContent->jsonSerialize(),
             'message_id'             => $this->messageId,
-            'reply_markup'           => $this->replyMarkup ?? null,
-            'input_message_content'  => $this->inputMessageContent->typeSerialize(),
+            'reply_markup'           => (null !== $this->replyMarkup ? $this->replyMarkup->jsonSerialize() : null),
         ];
     }
 }

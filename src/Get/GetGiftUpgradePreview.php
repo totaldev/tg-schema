@@ -25,7 +25,7 @@ class GetGiftUpgradePreview extends TdFunction
     public static function fromArray(array $array): GetGiftUpgradePreview
     {
         return new static(
-            $array['gift_id'],
+            giftId: $array['gift_id'],
         );
     }
 

@@ -27,7 +27,7 @@ class TestReturnError extends TdFunction
     public static function fromArray(array $array): TestReturnError
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['error']),
+            error: TdSchemaRegistry::fromArray($array['error']),
         );
     }
 
@@ -47,7 +47,7 @@ class TestReturnError extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'error' => $this->error->typeSerialize(),
+            'error' => $this->error->jsonSerialize(),
         ];
     }
 }

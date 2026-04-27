@@ -19,25 +19,25 @@ class Venue extends TdObject
 
     public function __construct(
         /**
-         * Venue location; as defined by the sender.
-         */
-        protected Location $location,
-        /**
-         * Venue name; as defined by the sender.
-         */
-        protected string   $title,
-        /**
          * Venue address; as defined by the sender.
          */
         protected string   $address,
+        /**
+         * Identifier of the venue in the provider database; as defined by the sender.
+         */
+        protected string   $id,
+        /**
+         * Venue location; as defined by the sender.
+         */
+        protected Location $location,
         /**
          * Provider of the venue database; as defined by the sender. Currently, only "foursquare" and "gplaces" (Google Places) need to be supported.
          */
         protected string   $provider,
         /**
-         * Identifier of the venue in the provider database; as defined by the sender.
+         * Venue name; as defined by the sender.
          */
-        protected string   $id,
+        protected string   $title,
         /**
          * Type of the venue in the provider database; as defined by the sender.
          */
@@ -47,12 +47,12 @@ class Venue extends TdObject
     public static function fromArray(array $array): Venue
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['location']),
-            $array['title'],
-            $array['address'],
-            $array['provider'],
-            $array['id'],
-            $array['type'],
+            address : $array['address'],
+            id      : $array['id'],
+            location: TdSchemaRegistry::fromArray($array['location']),
+            provider: $array['provider'],
+            title   : $array['title'],
+            type    : $array['type'],
         );
     }
 
@@ -132,11 +132,11 @@ class Venue extends TdObject
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'location' => $this->location->typeSerialize(),
-            'title'    => $this->title,
             'address'  => $this->address,
-            'provider' => $this->provider,
             'id'       => $this->id,
+            'location' => $this->location->jsonSerialize(),
+            'provider' => $this->provider,
+            'title'    => $this->title,
             'type'     => $this->type,
         ];
     }

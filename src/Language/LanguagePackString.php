@@ -30,8 +30,8 @@ class LanguagePackString extends TdObject
     public static function fromArray(array $array): LanguagePackString
     {
         return new static(
-            $array['key'],
-            isset($array['value']) ? TdSchemaRegistry::fromArray($array['value']) : null,
+            key  : $array['key'],
+            value: (isset($array['value']) ? TdSchemaRegistry::fromArray($array['value']) : null),
         );
     }
 
@@ -64,7 +64,7 @@ class LanguagePackString extends TdObject
         return [
             '@type' => static::TYPE_NAME,
             'key'   => $this->key,
-            'value' => $this->value ?? null,
+            'value' => (null !== $this->value ? $this->value->jsonSerialize() : null),
         ];
     }
 }

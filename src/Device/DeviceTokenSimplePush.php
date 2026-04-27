@@ -25,7 +25,7 @@ class DeviceTokenSimplePush extends DeviceToken
     public static function fromArray(array $array): DeviceTokenSimplePush
     {
         return new static(
-            $array['endpoint'],
+            endpoint: $array['endpoint'],
         );
     }
 

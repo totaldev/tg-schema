@@ -27,7 +27,7 @@ class TestVectorString extends TdObject
     public static function fromArray(array $array): TestVectorString
     {
         return new static(
-            $array['value'],
+            value: $array['value'],
         );
     }
 

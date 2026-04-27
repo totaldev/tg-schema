@@ -25,7 +25,7 @@ class InputBackgroundPrevious extends InputBackground
     public static function fromArray(array $array): InputBackgroundPrevious
     {
         return new static(
-            $array['message_id'],
+            messageId: $array['message_id'],
         );
     }
 

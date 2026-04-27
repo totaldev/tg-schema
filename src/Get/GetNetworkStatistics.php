@@ -25,7 +25,7 @@ class GetNetworkStatistics extends TdFunction
     public static function fromArray(array $array): GetNetworkStatistics
     {
         return new static(
-            $array['only_current'],
+            onlyCurrent: $array['only_current'],
         );
     }
 

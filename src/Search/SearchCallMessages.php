@@ -18,13 +18,13 @@ class SearchCallMessages extends TdFunction
 
     public function __construct(
         /**
-         * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
-         */
-        protected string $offset,
-        /**
          * The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit.
          */
         protected int    $limit,
+        /**
+         * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
+         */
+        protected string $offset,
         /**
          * Pass true to search only for messages with missed/declined calls.
          */
@@ -34,9 +34,9 @@ class SearchCallMessages extends TdFunction
     public static function fromArray(array $array): SearchCallMessages
     {
         return new static(
-            $array['offset'],
-            $array['limit'],
-            $array['only_missed'],
+            limit     : $array['limit'],
+            offset    : $array['offset'],
+            onlyMissed: $array['only_missed'],
         );
     }
 
@@ -80,8 +80,8 @@ class SearchCallMessages extends TdFunction
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'offset'      => $this->offset,
             'limit'       => $this->limit,
+            'offset'      => $this->offset,
             'only_missed' => $this->onlyMissed,
         ];
     }

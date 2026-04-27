@@ -36,9 +36,9 @@ class UpdateMessageSuggestedPostInfo extends Update
     public static function fromArray(array $array): UpdateMessageSuggestedPostInfo
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            TdSchemaRegistry::fromArray($array['suggested_post_info']),
+            chatId           : $array['chat_id'],
+            messageId        : $array['message_id'],
+            suggestedPostInfo: TdSchemaRegistry::fromArray($array['suggested_post_info']),
         );
     }
 
@@ -84,7 +84,7 @@ class UpdateMessageSuggestedPostInfo extends Update
             '@type'               => static::TYPE_NAME,
             'chat_id'             => $this->chatId,
             'message_id'          => $this->messageId,
-            'suggested_post_info' => $this->suggestedPostInfo->typeSerialize(),
+            'suggested_post_info' => $this->suggestedPostInfo->jsonSerialize(),
         ];
     }
 }

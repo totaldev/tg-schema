@@ -34,9 +34,9 @@ class GetMessageAvailableReactions extends TdFunction
     public static function fromArray(array $array): GetMessageAvailableReactions
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            $array['row_size'],
+            chatId   : $array['chat_id'],
+            messageId: $array['message_id'],
+            rowSize  : $array['row_size'],
         );
     }
 

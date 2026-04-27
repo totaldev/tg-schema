@@ -32,8 +32,8 @@ class SetChatLocation extends TdFunction
     public static function fromArray(array $array): SetChatLocation
     {
         return new static(
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['location']),
+            chatId  : $array['chat_id'],
+            location: TdSchemaRegistry::fromArray($array['location']),
         );
     }
 
@@ -66,7 +66,7 @@ class SetChatLocation extends TdFunction
         return [
             '@type'    => static::TYPE_NAME,
             'chat_id'  => $this->chatId,
-            'location' => $this->location->typeSerialize(),
+            'location' => $this->location->jsonSerialize(),
         ];
     }
 }

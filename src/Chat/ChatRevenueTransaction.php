@@ -34,9 +34,9 @@ class ChatRevenueTransaction extends TdObject
     public static function fromArray(array $array): ChatRevenueTransaction
     {
         return new static(
-            $array['cryptocurrency'],
-            $array['cryptocurrency_amount'],
-            TdSchemaRegistry::fromArray($array['type']),
+            cryptocurrency      : $array['cryptocurrency'],
+            cryptocurrencyAmount: $array['cryptocurrency_amount'],
+            type                : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -82,7 +82,7 @@ class ChatRevenueTransaction extends TdObject
             '@type'                 => static::TYPE_NAME,
             'cryptocurrency'        => $this->cryptocurrency,
             'cryptocurrency_amount' => $this->cryptocurrencyAmount,
-            'type'                  => $this->type->typeSerialize(),
+            'type'                  => $this->type->jsonSerialize(),
         ];
     }
 }

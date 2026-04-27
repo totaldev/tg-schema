@@ -24,13 +24,13 @@ class JoinVideoChat extends TdFunction
          */
         protected int                     $groupCallId,
         /**
-         * Parameters to join the call.
-         */
-        protected GroupCallJoinParameters $joinParameters,
-        /**
          * Invite hash as received from internalLinkTypeVideoChat.
          */
         protected string                  $inviteHash,
+        /**
+         * Parameters to join the call.
+         */
+        protected GroupCallJoinParameters $joinParameters,
         /**
          * Identifier of a group call participant, which will be used to join the call; pass null to join as self; video chats only.
          */
@@ -40,10 +40,10 @@ class JoinVideoChat extends TdFunction
     public static function fromArray(array $array): JoinVideoChat
     {
         return new static(
-            $array['group_call_id'],
-            isset($array['participant_id']) ? TdSchemaRegistry::fromArray($array['participant_id']) : null,
-            TdSchemaRegistry::fromArray($array['join_parameters']),
-            $array['invite_hash'],
+            groupCallId   : $array['group_call_id'],
+            inviteHash    : $array['invite_hash'],
+            joinParameters: TdSchemaRegistry::fromArray($array['join_parameters']),
+            participantId : (isset($array['participant_id']) ? TdSchemaRegistry::fromArray($array['participant_id']) : null),
         );
     }
 
@@ -100,9 +100,9 @@ class JoinVideoChat extends TdFunction
         return [
             '@type'           => static::TYPE_NAME,
             'group_call_id'   => $this->groupCallId,
-            'participant_id'  => $this->participantId ?? null,
-            'join_parameters' => $this->joinParameters->typeSerialize(),
             'invite_hash'     => $this->inviteHash,
+            'join_parameters' => $this->joinParameters->jsonSerialize(),
+            'participant_id'  => (null !== $this->participantId ? $this->participantId->jsonSerialize() : null),
         ];
     }
 }

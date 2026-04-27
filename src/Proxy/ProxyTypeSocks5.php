@@ -15,13 +15,13 @@ class ProxyTypeSocks5 extends ProxyType
 
     public function __construct(
         /**
-         * Username for logging in; may be empty.
-         */
-        protected string $username,
-        /**
          * Password for logging in; may be empty.
          */
         protected string $password,
+        /**
+         * Username for logging in; may be empty.
+         */
+        protected string $username,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class ProxyTypeSocks5 extends ProxyType
     public static function fromArray(array $array): ProxyTypeSocks5
     {
         return new static(
-            $array['username'],
-            $array['password'],
+            password: $array['password'],
+            username: $array['username'],
         );
     }
 
@@ -62,8 +62,8 @@ class ProxyTypeSocks5 extends ProxyType
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'username' => $this->username,
             'password' => $this->password,
+            'username' => $this->username,
         ];
     }
 }

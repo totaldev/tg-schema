@@ -15,13 +15,13 @@ class FirebaseDeviceVerificationParametersPlayIntegrity extends FirebaseDeviceVe
 
     public function __construct(
         /**
-         * Base64url-encoded nonce to pass to the Play Integrity API.
-         */
-        protected string $nonce,
-        /**
          * Cloud project number to pass to the Play Integrity API.
          */
         protected int    $cloudProjectNumber,
+        /**
+         * Base64url-encoded nonce to pass to the Play Integrity API.
+         */
+        protected string $nonce,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class FirebaseDeviceVerificationParametersPlayIntegrity extends FirebaseDeviceVe
     public static function fromArray(array $array): FirebaseDeviceVerificationParametersPlayIntegrity
     {
         return new static(
-            $array['nonce'],
-            $array['cloud_project_number'],
+            cloudProjectNumber: $array['cloud_project_number'],
+            nonce             : $array['nonce'],
         );
     }
 
@@ -62,8 +62,8 @@ class FirebaseDeviceVerificationParametersPlayIntegrity extends FirebaseDeviceVe
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'nonce'                => $this->nonce,
             'cloud_project_number' => $this->cloudProjectNumber,
+            'nonce'                => $this->nonce,
         ];
     }
 }

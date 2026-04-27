@@ -22,26 +22,26 @@ class ClickChatSponsoredMessage extends TdFunction
          */
         protected int  $chatId,
         /**
-         * Identifier of the sponsored message.
+         * Pass true if the user expanded the video from the sponsored message fullscreen before the click.
          */
-        protected int  $messageId,
+        protected bool $fromFullscreen,
         /**
          * Pass true if the media was clicked in the sponsored message.
          */
         protected bool $isMediaClick,
         /**
-         * Pass true if the user expanded the video from the sponsored message fullscreen before the click.
+         * Identifier of the sponsored message.
          */
-        protected bool $fromFullscreen,
+        protected int  $messageId,
     ) {}
 
     public static function fromArray(array $array): ClickChatSponsoredMessage
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            $array['is_media_click'],
-            $array['from_fullscreen'],
+            chatId        : $array['chat_id'],
+            fromFullscreen: $array['from_fullscreen'],
+            isMediaClick  : $array['is_media_click'],
+            messageId     : $array['message_id'],
         );
     }
 
@@ -98,9 +98,9 @@ class ClickChatSponsoredMessage extends TdFunction
         return [
             '@type'           => static::TYPE_NAME,
             'chat_id'         => $this->chatId,
-            'message_id'      => $this->messageId,
-            'is_media_click'  => $this->isMediaClick,
             'from_fullscreen' => $this->fromFullscreen,
+            'is_media_click'  => $this->isMediaClick,
+            'message_id'      => $this->messageId,
         ];
     }
 }

@@ -32,8 +32,8 @@ class SupergroupMembersFilterMention extends SupergroupMembersFilter
     public static function fromArray(array $array): SupergroupMembersFilterMention
     {
         return new static(
-            $array['query'],
-            isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null,
+            query  : $array['query'],
+            topicId: (isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null),
         );
     }
 
@@ -66,7 +66,7 @@ class SupergroupMembersFilterMention extends SupergroupMembersFilter
         return [
             '@type'    => static::TYPE_NAME,
             'query'    => $this->query,
-            'topic_id' => $this->topicId ?? null,
+            'topic_id' => (null !== $this->topicId ? $this->topicId->jsonSerialize() : null),
         ];
     }
 }

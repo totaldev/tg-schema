@@ -29,8 +29,8 @@ class StoryOriginPublicStory extends StoryOrigin
     public static function fromArray(array $array): StoryOriginPublicStory
     {
         return new static(
-            $array['chat_id'],
-            $array['story_id'],
+            chatId : $array['chat_id'],
+            storyId: $array['story_id'],
         );
     }
 

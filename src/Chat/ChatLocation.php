@@ -19,20 +19,20 @@ class ChatLocation extends TdObject
 
     public function __construct(
         /**
-         * The location.
-         */
-        protected Location $location,
-        /**
          * Location address; 1-64 characters, as defined by the chat owner.
          */
         protected string   $address,
+        /**
+         * The location.
+         */
+        protected Location $location,
     ) {}
 
     public static function fromArray(array $array): ChatLocation
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['location']),
-            $array['address'],
+            address : $array['address'],
+            location: TdSchemaRegistry::fromArray($array['location']),
         );
     }
 
@@ -64,8 +64,8 @@ class ChatLocation extends TdObject
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'location' => $this->location->typeSerialize(),
             'address'  => $this->address,
+            'location' => $this->location->jsonSerialize(),
         ];
     }
 }

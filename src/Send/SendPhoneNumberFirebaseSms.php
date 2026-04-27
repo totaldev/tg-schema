@@ -26,7 +26,7 @@ class SendPhoneNumberFirebaseSms extends TdFunction
     public static function fromArray(array $array): SendPhoneNumberFirebaseSms
     {
         return new static(
-            $array['token'],
+            token: $array['token'],
         );
     }
 

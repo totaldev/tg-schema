@@ -20,16 +20,6 @@ class PremiumState extends TdObject
 
     public function __construct(
         /**
-         * Text description of the state of the current Premium subscription; may be empty if the current user has no Telegram Premium subscription.
-         */
-        protected FormattedText $state,
-        /**
-         * The list of available options for buying Telegram Premium.
-         *
-         * @var PremiumStatePaymentOption[]
-         */
-        protected array         $paymentOptions,
-        /**
          * The list of available promotion animations for Premium features.
          *
          * @var PremiumFeaturePromotionAnimation[]
@@ -41,15 +31,25 @@ class PremiumState extends TdObject
          * @var BusinessFeaturePromotionAnimation[]
          */
         protected array         $businessAnimations,
+        /**
+         * The list of available options for buying Telegram Premium.
+         *
+         * @var PremiumStatePaymentOption[]
+         */
+        protected array         $paymentOptions,
+        /**
+         * Text description of the state of the current Premium subscription; may be empty if the current user has no Telegram Premium subscription.
+         */
+        protected FormattedText $state,
     ) {}
 
     public static function fromArray(array $array): PremiumState
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['state']),
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['payment_options']),
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['animations']),
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['business_animations']),
+            animations        : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['animations']),
+            businessAnimations: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['business_animations']),
+            paymentOptions    : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['payment_options']),
+            state             : TdSchemaRegistry::fromArray($array['state']),
         );
     }
 
@@ -105,10 +105,10 @@ class PremiumState extends TdObject
     {
         return [
             '@type'               => static::TYPE_NAME,
-            'state'               => $this->state->typeSerialize(),
-            'payment_options'     => array_map(static fn($x) => $x->typeSerialize(), $this->paymentOptions),
-            'animations'          => array_map(static fn($x) => $x->typeSerialize(), $this->animations),
-            'business_animations' => array_map(static fn($x) => $x->typeSerialize(), $this->businessAnimations),
+            'animations'          => array_map(static fn($x) => $x->jsonSerialize(), $this->animations),
+            'business_animations' => array_map(static fn($x) => $x->jsonSerialize(), $this->businessAnimations),
+            'payment_options'     => array_map(static fn($x) => $x->jsonSerialize(), $this->paymentOptions),
+            'state'               => $this->state->jsonSerialize(),
         ];
     }
 }

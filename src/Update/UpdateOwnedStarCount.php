@@ -28,7 +28,7 @@ class UpdateOwnedStarCount extends Update
     public static function fromArray(array $array): UpdateOwnedStarCount
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['star_amount']),
+            starAmount: TdSchemaRegistry::fromArray($array['star_amount']),
         );
     }
 
@@ -48,7 +48,7 @@ class UpdateOwnedStarCount extends Update
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'star_amount' => $this->starAmount->typeSerialize(),
+            'star_amount' => $this->starAmount->jsonSerialize(),
         ];
     }
 }

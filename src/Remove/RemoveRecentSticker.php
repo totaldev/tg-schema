@@ -31,8 +31,8 @@ class RemoveRecentSticker extends TdFunction
     public static function fromArray(array $array): RemoveRecentSticker
     {
         return new static(
-            $array['is_attached'],
-            TdSchemaRegistry::fromArray($array['sticker']),
+            isAttached: $array['is_attached'],
+            sticker   : TdSchemaRegistry::fromArray($array['sticker']),
         );
     }
 
@@ -65,7 +65,7 @@ class RemoveRecentSticker extends TdFunction
         return [
             '@type'       => static::TYPE_NAME,
             'is_attached' => $this->isAttached,
-            'sticker'     => $this->sticker->typeSerialize(),
+            'sticker'     => $this->sticker->jsonSerialize(),
         ];
     }
 }

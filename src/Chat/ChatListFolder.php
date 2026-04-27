@@ -25,7 +25,7 @@ class ChatListFolder extends ChatList
     public static function fromArray(array $array): ChatListFolder
     {
         return new static(
-            $array['chat_folder_id'],
+            chatFolderId: $array['chat_folder_id'],
         );
     }
 

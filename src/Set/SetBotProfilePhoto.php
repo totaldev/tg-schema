@@ -31,8 +31,8 @@ class SetBotProfilePhoto extends TdFunction
     public static function fromArray(array $array): SetBotProfilePhoto
     {
         return new static(
-            $array['bot_user_id'],
-            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
+            botUserId: $array['bot_user_id'],
+            photo    : (isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null),
         );
     }
 
@@ -65,7 +65,7 @@ class SetBotProfilePhoto extends TdFunction
         return [
             '@type'       => static::TYPE_NAME,
             'bot_user_id' => $this->botUserId,
-            'photo'       => $this->photo ?? null,
+            'photo'       => (null !== $this->photo ? $this->photo->jsonSerialize() : null),
         ];
     }
 }

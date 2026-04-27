@@ -25,7 +25,7 @@ class GetPremiumStickers extends TdFunction
     public static function fromArray(array $array): GetPremiumStickers
     {
         return new static(
-            $array['limit'],
+            limit: $array['limit'],
         );
     }
 

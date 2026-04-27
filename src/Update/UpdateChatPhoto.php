@@ -32,8 +32,8 @@ class UpdateChatPhoto extends Update
     public static function fromArray(array $array): UpdateChatPhoto
     {
         return new static(
-            $array['chat_id'],
-            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
+            chatId: $array['chat_id'],
+            photo : (isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null),
         );
     }
 
@@ -66,7 +66,7 @@ class UpdateChatPhoto extends Update
         return [
             '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
-            'photo'   => $this->photo ?? null,
+            'photo'   => (null !== $this->photo ? $this->photo->jsonSerialize() : null),
         ];
     }
 }

@@ -16,10 +16,6 @@ class InputFileGenerated extends InputFile
 
     public function __construct(
         /**
-         * Local path to a file from which the file is generated. The path doesn't have to be a valid path and is used by TDLib only to detect name and MIME type of the generated file.
-         */
-        protected string $originalPath,
-        /**
          * String specifying the conversion applied to the original file; must be persistent across application restarts. Conversions beginning with '#' are reserved for internal TDLib usage.
          */
         protected string $conversion,
@@ -27,6 +23,10 @@ class InputFileGenerated extends InputFile
          * Expected size of the generated file, in bytes; pass 0 if unknown.
          */
         protected int    $expectedSize,
+        /**
+         * Local path to a file from which the file is generated. The path doesn't have to be a valid path and is used by TDLib only to detect name and MIME type of the generated file.
+         */
+        protected string $originalPath,
     ) {
         parent::__construct();
     }
@@ -34,9 +34,9 @@ class InputFileGenerated extends InputFile
     public static function fromArray(array $array): InputFileGenerated
     {
         return new static(
-            $array['original_path'],
-            $array['conversion'],
-            $array['expected_size'],
+            conversion  : $array['conversion'],
+            expectedSize: $array['expected_size'],
+            originalPath: $array['original_path'],
         );
     }
 
@@ -80,9 +80,9 @@ class InputFileGenerated extends InputFile
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'original_path' => $this->originalPath,
             'conversion'    => $this->conversion,
             'expected_size' => $this->expectedSize,
+            'original_path' => $this->originalPath,
         ];
     }
 }

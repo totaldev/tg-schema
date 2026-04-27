@@ -38,9 +38,9 @@ class SetChatMemberStatus extends TdFunction
     public static function fromArray(array $array): SetChatMemberStatus
     {
         return new static(
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['member_id']),
-            TdSchemaRegistry::fromArray($array['status']),
+            chatId  : $array['chat_id'],
+            memberId: TdSchemaRegistry::fromArray($array['member_id']),
+            status  : TdSchemaRegistry::fromArray($array['status']),
         );
     }
 
@@ -85,8 +85,8 @@ class SetChatMemberStatus extends TdFunction
         return [
             '@type'     => static::TYPE_NAME,
             'chat_id'   => $this->chatId,
-            'member_id' => $this->memberId->typeSerialize(),
-            'status'    => $this->status->typeSerialize(),
+            'member_id' => $this->memberId->jsonSerialize(),
+            'status'    => $this->status->jsonSerialize(),
         ];
     }
 }

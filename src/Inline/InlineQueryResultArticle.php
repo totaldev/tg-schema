@@ -18,25 +18,25 @@ class InlineQueryResultArticle extends InlineQueryResult
 
     public function __construct(
         /**
+         * A short description of the result.
+         */
+        protected string     $description,
+        /**
          * Unique identifier of the query result.
          */
         protected string     $id,
         /**
-         * URL of the result, if it exists.
+         * Result thumbnail in JPEG format; may be null.
          */
-        protected string     $url,
+        protected ?Thumbnail $thumbnail,
         /**
          * Title of the result.
          */
         protected string     $title,
         /**
-         * A short description of the result.
+         * URL of the result, if it exists.
          */
-        protected string     $description,
-        /**
-         * Result thumbnail in JPEG format; may be null.
-         */
-        protected ?Thumbnail $thumbnail,
+        protected string     $url,
     ) {
         parent::__construct();
     }
@@ -44,11 +44,11 @@ class InlineQueryResultArticle extends InlineQueryResult
     public static function fromArray(array $array): InlineQueryResultArticle
     {
         return new static(
-            $array['id'],
-            $array['url'],
-            $array['title'],
-            $array['description'],
-            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
+            description: $array['description'],
+            id         : $array['id'],
+            thumbnail  : (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
+            title      : $array['title'],
+            url        : $array['url'],
         );
     }
 
@@ -116,11 +116,11 @@ class InlineQueryResultArticle extends InlineQueryResult
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'id'          => $this->id,
-            'url'         => $this->url,
-            'title'       => $this->title,
             'description' => $this->description,
-            'thumbnail'   => $this->thumbnail ?? null,
+            'id'          => $this->id,
+            'thumbnail'   => (null !== $this->thumbnail ? $this->thumbnail->jsonSerialize() : null),
+            'title'       => $this->title,
+            'url'         => $this->url,
         ];
     }
 }

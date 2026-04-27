@@ -28,7 +28,7 @@ class PageBlockTitle extends PageBlock
     public static function fromArray(array $array): PageBlockTitle
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['title']),
+            title: TdSchemaRegistry::fromArray($array['title']),
         );
     }
 
@@ -48,7 +48,7 @@ class PageBlockTitle extends PageBlock
     {
         return [
             '@type' => static::TYPE_NAME,
-            'title' => $this->title->typeSerialize(),
+            'title' => $this->title->jsonSerialize(),
         ];
     }
 }

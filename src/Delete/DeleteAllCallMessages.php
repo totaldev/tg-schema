@@ -25,7 +25,7 @@ class DeleteAllCallMessages extends TdFunction
     public static function fromArray(array $array): DeleteAllCallMessages
     {
         return new static(
-            $array['revoke'],
+            revoke: $array['revoke'],
         );
     }
 

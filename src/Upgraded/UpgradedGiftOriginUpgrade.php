@@ -25,7 +25,7 @@ class UpgradedGiftOriginUpgrade extends UpgradedGiftOrigin
     public static function fromArray(array $array): UpgradedGiftOriginUpgrade
     {
         return new static(
-            $array['gift_message_id'],
+            giftMessageId: $array['gift_message_id'],
         );
     }
 

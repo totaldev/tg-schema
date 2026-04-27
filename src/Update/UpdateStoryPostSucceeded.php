@@ -18,13 +18,13 @@ class UpdateStoryPostSucceeded extends Update
 
     public function __construct(
         /**
-         * The posted story.
-         */
-        protected Story $story,
-        /**
          * The previous temporary story identifier.
          */
         protected int   $oldStoryId,
+        /**
+         * The posted story.
+         */
+        protected Story $story,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class UpdateStoryPostSucceeded extends Update
     public static function fromArray(array $array): UpdateStoryPostSucceeded
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['story']),
-            $array['old_story_id'],
+            oldStoryId: $array['old_story_id'],
+            story     : TdSchemaRegistry::fromArray($array['story']),
         );
     }
 
@@ -65,8 +65,8 @@ class UpdateStoryPostSucceeded extends Update
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'story'        => $this->story->typeSerialize(),
             'old_story_id' => $this->oldStoryId,
+            'story'        => $this->story->jsonSerialize(),
         ];
     }
 }

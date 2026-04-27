@@ -18,9 +18,17 @@ class ForumTopics extends TdObject
 
     public function __construct(
         /**
-         * Approximate total number of forum topics found.
+         * Offset date for the next getForumTopics request.
          */
-        protected int   $totalCount,
+        protected int   $nextOffsetDate,
+        /**
+         * Offset forum topic identifier for the next getForumTopics request.
+         */
+        protected int   $nextOffsetForumTopicId,
+        /**
+         * Offset message identifier for the next getForumTopics request.
+         */
+        protected int   $nextOffsetMessageId,
         /**
          * List of forum topics.
          *
@@ -28,27 +36,19 @@ class ForumTopics extends TdObject
          */
         protected array $topics,
         /**
-         * Offset date for the next getForumTopics request.
+         * Approximate total number of forum topics found.
          */
-        protected int   $nextOffsetDate,
-        /**
-         * Offset message identifier for the next getForumTopics request.
-         */
-        protected int   $nextOffsetMessageId,
-        /**
-         * Offset forum topic identifier for the next getForumTopics request.
-         */
-        protected int   $nextOffsetForumTopicId,
+        protected int   $totalCount,
     ) {}
 
     public static function fromArray(array $array): ForumTopics
     {
         return new static(
-            $array['total_count'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['topics']),
-            $array['next_offset_date'],
-            $array['next_offset_message_id'],
-            $array['next_offset_forum_topic_id'],
+            nextOffsetDate        : $array['next_offset_date'],
+            nextOffsetForumTopicId: $array['next_offset_forum_topic_id'],
+            nextOffsetMessageId   : $array['next_offset_message_id'],
+            topics                : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['topics']),
+            totalCount            : $array['total_count'],
         );
     }
 
@@ -116,11 +116,11 @@ class ForumTopics extends TdObject
     {
         return [
             '@type'                      => static::TYPE_NAME,
-            'total_count'                => $this->totalCount,
-            'topics'                     => array_map(static fn($x) => $x->typeSerialize(), $this->topics),
             'next_offset_date'           => $this->nextOffsetDate,
-            'next_offset_message_id'     => $this->nextOffsetMessageId,
             'next_offset_forum_topic_id' => $this->nextOffsetForumTopicId,
+            'next_offset_message_id'     => $this->nextOffsetMessageId,
+            'topics'                     => array_map(static fn($x) => $x->jsonSerialize(), $this->topics),
+            'total_count'                => $this->totalCount,
         ];
     }
 }

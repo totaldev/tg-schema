@@ -19,45 +19,45 @@ class PremiumGiftCodeInfo extends TdObject
 
     public function __construct(
         /**
-         * Identifier of a chat or a user that created the gift code; may be null if unknown. If null and the code is from messagePremiumGiftCode message, then creator_id from the message can be used.
-         */
-        protected ?MessageSender $creatorId,
-        /**
          * Point in time (Unix timestamp) when the code was created.
          */
         protected int            $creationDate,
         /**
-         * True, if the gift code was created for a giveaway.
+         * Identifier of a chat or a user that created the gift code; may be null if unknown. If null and the code is from messagePremiumGiftCode message, then creator_id from the message can be used.
          */
-        protected bool           $isFromGiveaway,
+        protected ?MessageSender $creatorId,
         /**
          * Identifier of the corresponding giveaway message in the creator_id chat; can be 0 or an identifier of a deleted message.
          */
         protected int            $giveawayMessageId,
         /**
+         * True, if the gift code was created for a giveaway.
+         */
+        protected bool           $isFromGiveaway,
+        /**
          * Number of months the Telegram Premium subscription will be active after code activation.
          */
         protected int            $monthCount,
         /**
-         * Identifier of a user for which the code was created; 0 if none.
-         */
-        protected int            $userId,
-        /**
          * Point in time (Unix timestamp) when the code was activated; 0 if none.
          */
         protected int            $useDate,
+        /**
+         * Identifier of a user for which the code was created; 0 if none.
+         */
+        protected int            $userId,
     ) {}
 
     public static function fromArray(array $array): PremiumGiftCodeInfo
     {
         return new static(
-            isset($array['creator_id']) ? TdSchemaRegistry::fromArray($array['creator_id']) : null,
-            $array['creation_date'],
-            $array['is_from_giveaway'],
-            $array['giveaway_message_id'],
-            $array['month_count'],
-            $array['user_id'],
-            $array['use_date'],
+            creationDate     : $array['creation_date'],
+            creatorId        : (isset($array['creator_id']) ? TdSchemaRegistry::fromArray($array['creator_id']) : null),
+            giveawayMessageId: $array['giveaway_message_id'],
+            isFromGiveaway   : $array['is_from_giveaway'],
+            monthCount       : $array['month_count'],
+            useDate          : $array['use_date'],
+            userId           : $array['user_id'],
         );
     }
 
@@ -149,13 +149,13 @@ class PremiumGiftCodeInfo extends TdObject
     {
         return [
             '@type'               => static::TYPE_NAME,
-            'creator_id'          => $this->creatorId ?? null,
             'creation_date'       => $this->creationDate,
-            'is_from_giveaway'    => $this->isFromGiveaway,
+            'creator_id'          => (null !== $this->creatorId ? $this->creatorId->jsonSerialize() : null),
             'giveaway_message_id' => $this->giveawayMessageId,
+            'is_from_giveaway'    => $this->isFromGiveaway,
             'month_count'         => $this->monthCount,
-            'user_id'             => $this->userId,
             'use_date'            => $this->useDate,
+            'user_id'             => $this->userId,
         ];
     }
 }

@@ -17,13 +17,13 @@ class ChatEventAvailableReactionsChanged extends ChatEventAction
 
     public function __construct(
         /**
-         * Previous chat available reactions.
-         */
-        protected ChatAvailableReactions $oldAvailableReactions,
-        /**
          * New chat available reactions.
          */
         protected ChatAvailableReactions $newAvailableReactions,
+        /**
+         * Previous chat available reactions.
+         */
+        protected ChatAvailableReactions $oldAvailableReactions,
     ) {
         parent::__construct();
     }
@@ -31,8 +31,8 @@ class ChatEventAvailableReactionsChanged extends ChatEventAction
     public static function fromArray(array $array): ChatEventAvailableReactionsChanged
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['old_available_reactions']),
-            TdSchemaRegistry::fromArray($array['new_available_reactions']),
+            newAvailableReactions: TdSchemaRegistry::fromArray($array['new_available_reactions']),
+            oldAvailableReactions: TdSchemaRegistry::fromArray($array['old_available_reactions']),
         );
     }
 
@@ -64,8 +64,8 @@ class ChatEventAvailableReactionsChanged extends ChatEventAction
     {
         return [
             '@type'                   => static::TYPE_NAME,
-            'old_available_reactions' => $this->oldAvailableReactions->typeSerialize(),
-            'new_available_reactions' => $this->newAvailableReactions->typeSerialize(),
+            'new_available_reactions' => $this->newAvailableReactions->jsonSerialize(),
+            'old_available_reactions' => $this->oldAvailableReactions->jsonSerialize(),
         ];
     }
 }

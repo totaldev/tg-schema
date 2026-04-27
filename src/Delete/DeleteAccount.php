@@ -18,20 +18,20 @@ class DeleteAccount extends TdFunction
 
     public function __construct(
         /**
-         * The reason why the account was deleted; optional.
-         */
-        protected string $reason,
-        /**
          * The 2-step verification password of the current user. If the current user isn't authorized, then an empty string can be passed and account deletion can be canceled within one week.
          */
         protected string $password,
+        /**
+         * The reason why the account was deleted; optional.
+         */
+        protected string $reason,
     ) {}
 
     public static function fromArray(array $array): DeleteAccount
     {
         return new static(
-            $array['reason'],
-            $array['password'],
+            password: $array['password'],
+            reason  : $array['reason'],
         );
     }
 
@@ -63,8 +63,8 @@ class DeleteAccount extends TdFunction
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'reason'   => $this->reason,
             'password' => $this->password,
+            'reason'   => $this->reason,
         ];
     }
 }

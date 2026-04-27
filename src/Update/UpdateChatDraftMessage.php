@@ -40,9 +40,9 @@ class UpdateChatDraftMessage extends Update
     public static function fromArray(array $array): UpdateChatDraftMessage
     {
         return new static(
-            $array['chat_id'],
-            isset($array['draft_message']) ? TdSchemaRegistry::fromArray($array['draft_message']) : null,
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['positions']),
+            chatId      : $array['chat_id'],
+            draftMessage: (isset($array['draft_message']) ? TdSchemaRegistry::fromArray($array['draft_message']) : null),
+            positions   : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['positions']),
         );
     }
 
@@ -87,8 +87,8 @@ class UpdateChatDraftMessage extends Update
         return [
             '@type'         => static::TYPE_NAME,
             'chat_id'       => $this->chatId,
-            'draft_message' => $this->draftMessage ?? null,
-            'positions'     => array_map(static fn($x) => $x->typeSerialize(), $this->positions),
+            'draft_message' => (null !== $this->draftMessage ? $this->draftMessage->jsonSerialize() : null),
+            'positions'     => array_map(static fn($x) => $x->jsonSerialize(), $this->positions),
         ];
     }
 }

@@ -28,7 +28,7 @@ class StickerFullTypeRegular extends StickerFullType
     public static function fromArray(array $array): StickerFullTypeRegular
     {
         return new static(
-            isset($array['premium_animation']) ? TdSchemaRegistry::fromArray($array['premium_animation']) : null,
+            premiumAnimation: (isset($array['premium_animation']) ? TdSchemaRegistry::fromArray($array['premium_animation']) : null),
         );
     }
 
@@ -48,7 +48,7 @@ class StickerFullTypeRegular extends StickerFullType
     {
         return [
             '@type'             => static::TYPE_NAME,
-            'premium_animation' => $this->premiumAnimation ?? null,
+            'premium_animation' => (null !== $this->premiumAnimation ? $this->premiumAnimation->jsonSerialize() : null),
         ];
     }
 }

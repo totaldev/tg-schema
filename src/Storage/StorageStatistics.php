@@ -18,27 +18,27 @@ class StorageStatistics extends TdObject
 
     public function __construct(
         /**
-         * Total size of files, in bytes.
-         */
-        protected int   $size,
-        /**
-         * Total number of files.
-         */
-        protected int   $count,
-        /**
          * Statistics split by chats.
          *
          * @var StorageStatisticsByChat[]
          */
         protected array $byChat,
+        /**
+         * Total number of files.
+         */
+        protected int   $count,
+        /**
+         * Total size of files, in bytes.
+         */
+        protected int   $size,
     ) {}
 
     public static function fromArray(array $array): StorageStatistics
     {
         return new static(
-            $array['size'],
-            $array['count'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['by_chat']),
+            byChat: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['by_chat']),
+            count : $array['count'],
+            size  : $array['size'],
         );
     }
 
@@ -82,9 +82,9 @@ class StorageStatistics extends TdObject
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'size'    => $this->size,
+            'by_chat' => array_map(static fn($x) => $x->jsonSerialize(), $this->byChat),
             'count'   => $this->count,
-            'by_chat' => array_map(static fn($x) => $x->typeSerialize(), $this->byChat),
+            'size'    => $this->size,
         ];
     }
 }

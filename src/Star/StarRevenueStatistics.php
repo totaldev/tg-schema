@@ -35,9 +35,9 @@ class StarRevenueStatistics extends TdObject
     public static function fromArray(array $array): StarRevenueStatistics
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['revenue_by_day_graph']),
-            TdSchemaRegistry::fromArray($array['status']),
-            $array['usd_rate'],
+            revenueByDayGraph: TdSchemaRegistry::fromArray($array['revenue_by_day_graph']),
+            status           : TdSchemaRegistry::fromArray($array['status']),
+            usdRate          : $array['usd_rate'],
         );
     }
 
@@ -81,8 +81,8 @@ class StarRevenueStatistics extends TdObject
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'revenue_by_day_graph' => $this->revenueByDayGraph->typeSerialize(),
-            'status'               => $this->status->typeSerialize(),
+            'revenue_by_day_graph' => $this->revenueByDayGraph->jsonSerialize(),
+            'status'               => $this->status->jsonSerialize(),
             'usd_rate'             => $this->usdRate,
         ];
     }

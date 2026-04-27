@@ -22,6 +22,10 @@ class GetMessagePublicForwards extends TdFunction
          */
         protected int    $chatId,
         /**
+         * The maximum number of messages and stories to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit.
+         */
+        protected int    $limit,
+        /**
          * Message identifier.
          */
         protected int    $messageId,
@@ -29,19 +33,15 @@ class GetMessagePublicForwards extends TdFunction
          * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
          */
         protected string $offset,
-        /**
-         * The maximum number of messages and stories to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit.
-         */
-        protected int    $limit,
     ) {}
 
     public static function fromArray(array $array): GetMessagePublicForwards
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            $array['offset'],
-            $array['limit'],
+            chatId   : $array['chat_id'],
+            limit    : $array['limit'],
+            messageId: $array['message_id'],
+            offset   : $array['offset'],
         );
     }
 
@@ -98,9 +98,9 @@ class GetMessagePublicForwards extends TdFunction
         return [
             '@type'      => static::TYPE_NAME,
             'chat_id'    => $this->chatId,
+            'limit'      => $this->limit,
             'message_id' => $this->messageId,
             'offset'     => $this->offset,
-            'limit'      => $this->limit,
         ];
     }
 }

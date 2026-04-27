@@ -25,7 +25,7 @@ class DeleteBusinessChatLink extends TdFunction
     public static function fromArray(array $array): DeleteBusinessChatLink
     {
         return new static(
-            $array['link'],
+            link: $array['link'],
         );
     }
 

@@ -27,7 +27,7 @@ class CreateGroupCall extends TdFunction
     public static function fromArray(array $array): CreateGroupCall
     {
         return new static(
-            isset($array['join_parameters']) ? TdSchemaRegistry::fromArray($array['join_parameters']) : null,
+            joinParameters: (isset($array['join_parameters']) ? TdSchemaRegistry::fromArray($array['join_parameters']) : null),
         );
     }
 
@@ -47,7 +47,7 @@ class CreateGroupCall extends TdFunction
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'join_parameters' => $this->joinParameters ?? null,
+            'join_parameters' => (null !== $this->joinParameters ? $this->joinParameters->jsonSerialize() : null),
         ];
     }
 }

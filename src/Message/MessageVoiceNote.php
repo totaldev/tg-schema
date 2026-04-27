@@ -19,10 +19,6 @@ class MessageVoiceNote extends MessageContent
 
     public function __construct(
         /**
-         * The voice note description.
-         */
-        protected VoiceNote     $voiceNote,
-        /**
          * Voice note caption.
          */
         protected FormattedText $caption,
@@ -30,6 +26,10 @@ class MessageVoiceNote extends MessageContent
          * True, if at least one of the recipients has listened to the voice note.
          */
         protected bool          $isListened,
+        /**
+         * The voice note description.
+         */
+        protected VoiceNote     $voiceNote,
     ) {
         parent::__construct();
     }
@@ -37,9 +37,9 @@ class MessageVoiceNote extends MessageContent
     public static function fromArray(array $array): MessageVoiceNote
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['voice_note']),
-            TdSchemaRegistry::fromArray($array['caption']),
-            $array['is_listened'],
+            caption   : TdSchemaRegistry::fromArray($array['caption']),
+            isListened: $array['is_listened'],
+            voiceNote : TdSchemaRegistry::fromArray($array['voice_note']),
         );
     }
 
@@ -83,9 +83,9 @@ class MessageVoiceNote extends MessageContent
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'voice_note'  => $this->voiceNote->typeSerialize(),
-            'caption'     => $this->caption->typeSerialize(),
+            'caption'     => $this->caption->jsonSerialize(),
             'is_listened' => $this->isListened,
+            'voice_note'  => $this->voiceNote->jsonSerialize(),
         ];
     }
 }

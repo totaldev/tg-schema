@@ -29,8 +29,8 @@ class SetChatSlowModeDelay extends TdFunction
     public static function fromArray(array $array): SetChatSlowModeDelay
     {
         return new static(
-            $array['chat_id'],
-            $array['slow_mode_delay'],
+            chatId       : $array['chat_id'],
+            slowModeDelay: $array['slow_mode_delay'],
         );
     }
 

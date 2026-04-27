@@ -25,7 +25,7 @@ class PageBlockAnchor extends PageBlock
     public static function fromArray(array $array): PageBlockAnchor
     {
         return new static(
-            $array['name'],
+            name: $array['name'],
         );
     }
 

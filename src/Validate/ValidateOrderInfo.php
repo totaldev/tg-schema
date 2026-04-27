@@ -20,13 +20,13 @@ class ValidateOrderInfo extends TdFunction
 
     public function __construct(
         /**
-         * The invoice.
-         */
-        protected InputInvoice $inputInvoice,
-        /**
          * Pass true to save the order information.
          */
         protected bool         $allowSave,
+        /**
+         * The invoice.
+         */
+        protected InputInvoice $inputInvoice,
         /**
          * The order information, provided by the user; pass null if empty.
          */
@@ -36,9 +36,9 @@ class ValidateOrderInfo extends TdFunction
     public static function fromArray(array $array): ValidateOrderInfo
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['input_invoice']),
-            isset($array['order_info']) ? TdSchemaRegistry::fromArray($array['order_info']) : null,
-            $array['allow_save'],
+            allowSave   : $array['allow_save'],
+            inputInvoice: TdSchemaRegistry::fromArray($array['input_invoice']),
+            orderInfo   : (isset($array['order_info']) ? TdSchemaRegistry::fromArray($array['order_info']) : null),
         );
     }
 
@@ -82,9 +82,9 @@ class ValidateOrderInfo extends TdFunction
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'input_invoice' => $this->inputInvoice->typeSerialize(),
-            'order_info'    => $this->orderInfo ?? null,
             'allow_save'    => $this->allowSave,
+            'input_invoice' => $this->inputInvoice->jsonSerialize(),
+            'order_info'    => (null !== $this->orderInfo ? $this->orderInfo->jsonSerialize() : null),
         ];
     }
 }

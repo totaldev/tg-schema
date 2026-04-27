@@ -17,13 +17,13 @@ class StartGroupCallScreenSharing extends TdFunction
 
     public function __construct(
         /**
-         * Group call identifier.
-         */
-        protected int    $groupCallId,
-        /**
          * Screen sharing audio channel synchronization source identifier; received from tgcalls.
          */
         protected int    $audioSourceId,
+        /**
+         * Group call identifier.
+         */
+        protected int    $groupCallId,
         /**
          * Group call join payload; received from tgcalls.
          */
@@ -33,9 +33,9 @@ class StartGroupCallScreenSharing extends TdFunction
     public static function fromArray(array $array): StartGroupCallScreenSharing
     {
         return new static(
-            $array['group_call_id'],
-            $array['audio_source_id'],
-            $array['payload'],
+            audioSourceId: $array['audio_source_id'],
+            groupCallId  : $array['group_call_id'],
+            payload      : $array['payload'],
         );
     }
 
@@ -79,8 +79,8 @@ class StartGroupCallScreenSharing extends TdFunction
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'group_call_id'   => $this->groupCallId,
             'audio_source_id' => $this->audioSourceId,
+            'group_call_id'   => $this->groupCallId,
             'payload'         => $this->payload,
         ];
     }

@@ -29,8 +29,8 @@ class PaymentReceiptTypeStars extends PaymentReceiptType
     public static function fromArray(array $array): PaymentReceiptTypeStars
     {
         return new static(
-            $array['star_count'],
-            $array['transaction_id'],
+            starCount    : $array['star_count'],
+            transactionId: $array['transaction_id'],
         );
     }
 

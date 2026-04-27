@@ -29,8 +29,8 @@ class BotCommandScopeChatMember extends BotCommandScope
     public static function fromArray(array $array): BotCommandScopeChatMember
     {
         return new static(
-            $array['chat_id'],
-            $array['user_id'],
+            chatId: $array['chat_id'],
+            userId: $array['user_id'],
         );
     }
 

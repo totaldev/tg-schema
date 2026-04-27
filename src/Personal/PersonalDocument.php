@@ -35,8 +35,8 @@ class PersonalDocument extends TdObject
     public static function fromArray(array $array): PersonalDocument
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['files']),
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['translation']),
+            files      : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['files']),
+            translation: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['translation']),
         );
     }
 
@@ -68,8 +68,8 @@ class PersonalDocument extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'files'       => array_map(static fn($x) => $x->typeSerialize(), $this->files),
-            'translation' => array_map(static fn($x) => $x->typeSerialize(), $this->translation),
+            'files'       => array_map(static fn($x) => $x->jsonSerialize(), $this->files),
+            'translation' => array_map(static fn($x) => $x->jsonSerialize(), $this->translation),
         ];
     }
 }

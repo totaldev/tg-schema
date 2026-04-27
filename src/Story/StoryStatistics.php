@@ -31,8 +31,8 @@ class StoryStatistics extends TdObject
     public static function fromArray(array $array): StoryStatistics
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['story_interaction_graph']),
-            TdSchemaRegistry::fromArray($array['story_reaction_graph']),
+            storyInteractionGraph: TdSchemaRegistry::fromArray($array['story_interaction_graph']),
+            storyReactionGraph   : TdSchemaRegistry::fromArray($array['story_reaction_graph']),
         );
     }
 
@@ -64,8 +64,8 @@ class StoryStatistics extends TdObject
     {
         return [
             '@type'                   => static::TYPE_NAME,
-            'story_interaction_graph' => $this->storyInteractionGraph->typeSerialize(),
-            'story_reaction_graph'    => $this->storyReactionGraph->typeSerialize(),
+            'story_interaction_graph' => $this->storyInteractionGraph->jsonSerialize(),
+            'story_reaction_graph'    => $this->storyReactionGraph->jsonSerialize(),
         ];
     }
 }

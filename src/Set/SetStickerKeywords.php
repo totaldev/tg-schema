@@ -19,22 +19,22 @@ class SetStickerKeywords extends TdFunction
 
     public function __construct(
         /**
-         * Sticker.
-         */
-        protected InputFile $sticker,
-        /**
          * List of up to 20 keywords with total length up to 64 characters, which can be used to find the sticker.
          *
          * @var string[]
          */
         protected array     $keywords,
+        /**
+         * Sticker.
+         */
+        protected InputFile $sticker,
     ) {}
 
     public static function fromArray(array $array): SetStickerKeywords
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['sticker']),
-            $array['keywords'],
+            keywords: $array['keywords'],
+            sticker : TdSchemaRegistry::fromArray($array['sticker']),
         );
     }
 
@@ -66,8 +66,8 @@ class SetStickerKeywords extends TdFunction
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'sticker'  => $this->sticker->typeSerialize(),
             'keywords' => $this->keywords,
+            'sticker'  => $this->sticker->jsonSerialize(),
         ];
     }
 }

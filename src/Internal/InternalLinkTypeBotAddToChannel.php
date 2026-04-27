@@ -22,13 +22,13 @@ class InternalLinkTypeBotAddToChannel extends InternalLinkType
 
     public function __construct(
         /**
-         * Username of the bot.
-         */
-        protected string                  $botUsername,
-        /**
          * Expected administrator rights for the bot.
          */
         protected ChatAdministratorRights $administratorRights,
+        /**
+         * Username of the bot.
+         */
+        protected string                  $botUsername,
     ) {
         parent::__construct();
     }
@@ -36,8 +36,8 @@ class InternalLinkTypeBotAddToChannel extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeBotAddToChannel
     {
         return new static(
-            $array['bot_username'],
-            TdSchemaRegistry::fromArray($array['administrator_rights']),
+            administratorRights: TdSchemaRegistry::fromArray($array['administrator_rights']),
+            botUsername        : $array['bot_username'],
         );
     }
 
@@ -69,8 +69,8 @@ class InternalLinkTypeBotAddToChannel extends InternalLinkType
     {
         return [
             '@type'                => static::TYPE_NAME,
+            'administrator_rights' => $this->administratorRights->jsonSerialize(),
             'bot_username'         => $this->botUsername,
-            'administrator_rights' => $this->administratorRights->typeSerialize(),
         ];
     }
 }

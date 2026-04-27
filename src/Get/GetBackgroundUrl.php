@@ -31,8 +31,8 @@ class GetBackgroundUrl extends TdFunction
     public static function fromArray(array $array): GetBackgroundUrl
     {
         return new static(
-            $array['name'],
-            TdSchemaRegistry::fromArray($array['type']),
+            name: $array['name'],
+            type: TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -65,7 +65,7 @@ class GetBackgroundUrl extends TdFunction
         return [
             '@type' => static::TYPE_NAME,
             'name'  => $this->name,
-            'type'  => $this->type->typeSerialize(),
+            'type'  => $this->type->jsonSerialize(),
         ];
     }
 }

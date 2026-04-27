@@ -23,13 +23,13 @@ class InternalLinkTypeAttachmentMenuBot extends InternalLinkType
 
     public function __construct(
         /**
-         * Target chat to be opened.
-         */
-        protected TargetChat $targetChat,
-        /**
          * Username of the bot.
          */
         protected string     $botUsername,
+        /**
+         * Target chat to be opened.
+         */
+        protected TargetChat $targetChat,
         /**
          * URL to be passed to openWebApp.
          */
@@ -41,9 +41,9 @@ class InternalLinkTypeAttachmentMenuBot extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeAttachmentMenuBot
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['target_chat']),
-            $array['bot_username'],
-            $array['url'],
+            botUsername: $array['bot_username'],
+            targetChat : TdSchemaRegistry::fromArray($array['target_chat']),
+            url        : $array['url'],
         );
     }
 
@@ -87,8 +87,8 @@ class InternalLinkTypeAttachmentMenuBot extends InternalLinkType
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'target_chat'  => $this->targetChat->typeSerialize(),
             'bot_username' => $this->botUsername,
+            'target_chat'  => $this->targetChat->jsonSerialize(),
             'url'          => $this->url,
         ];
     }

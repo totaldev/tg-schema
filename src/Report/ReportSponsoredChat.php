@@ -17,20 +17,20 @@ class ReportSponsoredChat extends TdFunction
 
     public function __construct(
         /**
-         * Unique identifier of the sponsored chat.
-         */
-        protected int    $sponsoredChatUniqueId,
-        /**
          * Option identifier chosen by the user; leave empty for the initial request.
          */
         protected string $optionId,
+        /**
+         * Unique identifier of the sponsored chat.
+         */
+        protected int    $sponsoredChatUniqueId,
     ) {}
 
     public static function fromArray(array $array): ReportSponsoredChat
     {
         return new static(
-            $array['sponsored_chat_unique_id'],
-            $array['option_id'],
+            optionId             : $array['option_id'],
+            sponsoredChatUniqueId: $array['sponsored_chat_unique_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class ReportSponsoredChat extends TdFunction
     {
         return [
             '@type'                    => static::TYPE_NAME,
-            'sponsored_chat_unique_id' => $this->sponsoredChatUniqueId,
             'option_id'                => $this->optionId,
+            'sponsored_chat_unique_id' => $this->sponsoredChatUniqueId,
         ];
     }
 }

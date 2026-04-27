@@ -41,13 +41,13 @@ class MessageProperties extends TdObject
          */
         protected bool $canBeDeclined,
         /**
-         * True, if the message can be deleted only for the current user while other users will continue to see it using the method deleteMessages with revoke == false.
-         */
-        protected bool $canBeDeletedOnlyForSelf,
-        /**
          * True, if the message can be deleted for all users using the method deleteMessages with revoke == true.
          */
         protected bool $canBeDeletedForAllUsers,
+        /**
+         * True, if the message can be deleted only for the current user while other users will continue to see it using the method deleteMessages with revoke == false.
+         */
+        protected bool $canBeDeletedOnlyForSelf,
         /**
          * True, if the message can be edited using the methods editMessageText, editMessageCaption, or editMessageReplyMarkup. For live location, poll, and checklist messages this fields shows whether editMessageLiveLocation, stopPoll, or editMessageChecklist respectively can be used with this message.
          */
@@ -161,41 +161,41 @@ class MessageProperties extends TdObject
     public static function fromArray(array $array): MessageProperties
     {
         return new static(
-            $array['can_add_offer'],
-            $array['can_add_tasks'],
-            $array['can_be_approved'],
-            $array['can_be_copied'],
-            $array['can_be_copied_to_secret_chat'],
-            $array['can_be_declined'],
-            $array['can_be_deleted_only_for_self'],
-            $array['can_be_deleted_for_all_users'],
-            $array['can_be_edited'],
-            $array['can_be_forwarded'],
-            $array['can_be_paid'],
-            $array['can_be_pinned'],
-            $array['can_be_replied'],
-            $array['can_be_replied_in_another_chat'],
-            $array['can_be_saved'],
-            $array['can_be_shared_in_story'],
-            $array['can_edit_media'],
-            $array['can_edit_scheduling_state'],
-            $array['can_edit_suggested_post_info'],
-            $array['can_get_author'],
-            $array['can_get_embedding_code'],
-            $array['can_get_link'],
-            $array['can_get_media_timestamp_links'],
-            $array['can_get_message_thread'],
-            $array['can_get_read_date'],
-            $array['can_get_statistics'],
-            $array['can_get_video_advertisements'],
-            $array['can_get_viewers'],
-            $array['can_mark_tasks_as_done'],
-            $array['can_recognize_speech'],
-            $array['can_report_chat'],
-            $array['can_report_reactions'],
-            $array['can_report_supergroup_spam'],
-            $array['can_set_fact_check'],
-            $array['need_show_statistics'],
+            canAddOffer              : $array['can_add_offer'],
+            canAddTasks              : $array['can_add_tasks'],
+            canBeApproved            : $array['can_be_approved'],
+            canBeCopied              : $array['can_be_copied'],
+            canBeCopiedToSecretChat  : $array['can_be_copied_to_secret_chat'],
+            canBeDeclined            : $array['can_be_declined'],
+            canBeDeletedForAllUsers  : $array['can_be_deleted_for_all_users'],
+            canBeDeletedOnlyForSelf  : $array['can_be_deleted_only_for_self'],
+            canBeEdited              : $array['can_be_edited'],
+            canBeForwarded           : $array['can_be_forwarded'],
+            canBePaid                : $array['can_be_paid'],
+            canBePinned              : $array['can_be_pinned'],
+            canBeReplied             : $array['can_be_replied'],
+            canBeRepliedInAnotherChat: $array['can_be_replied_in_another_chat'],
+            canBeSaved               : $array['can_be_saved'],
+            canBeSharedInStory       : $array['can_be_shared_in_story'],
+            canEditMedia             : $array['can_edit_media'],
+            canEditSchedulingState   : $array['can_edit_scheduling_state'],
+            canEditSuggestedPostInfo : $array['can_edit_suggested_post_info'],
+            canGetAuthor             : $array['can_get_author'],
+            canGetEmbeddingCode      : $array['can_get_embedding_code'],
+            canGetLink               : $array['can_get_link'],
+            canGetMediaTimestampLinks: $array['can_get_media_timestamp_links'],
+            canGetMessageThread      : $array['can_get_message_thread'],
+            canGetReadDate           : $array['can_get_read_date'],
+            canGetStatistics         : $array['can_get_statistics'],
+            canGetVideoAdvertisements: $array['can_get_video_advertisements'],
+            canGetViewers            : $array['can_get_viewers'],
+            canMarkTasksAsDone       : $array['can_mark_tasks_as_done'],
+            canRecognizeSpeech       : $array['can_recognize_speech'],
+            canReportChat            : $array['can_report_chat'],
+            canReportReactions       : $array['can_report_reactions'],
+            canReportSupergroupSpam  : $array['can_report_supergroup_spam'],
+            canSetFactCheck          : $array['can_set_fact_check'],
+            needShowStatistics       : $array['need_show_statistics'],
         );
     }
 
@@ -629,8 +629,8 @@ class MessageProperties extends TdObject
             'can_be_copied'                  => $this->canBeCopied,
             'can_be_copied_to_secret_chat'   => $this->canBeCopiedToSecretChat,
             'can_be_declined'                => $this->canBeDeclined,
-            'can_be_deleted_only_for_self'   => $this->canBeDeletedOnlyForSelf,
             'can_be_deleted_for_all_users'   => $this->canBeDeletedForAllUsers,
+            'can_be_deleted_only_for_self'   => $this->canBeDeletedOnlyForSelf,
             'can_be_edited'                  => $this->canBeEdited,
             'can_be_forwarded'               => $this->canBeForwarded,
             'can_be_paid'                    => $this->canBePaid,

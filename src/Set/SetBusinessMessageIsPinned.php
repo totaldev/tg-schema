@@ -25,22 +25,22 @@ class SetBusinessMessageIsPinned extends TdFunction
          */
         protected int    $chatId,
         /**
-         * Identifier of the message.
-         */
-        protected int    $messageId,
-        /**
          * Pass true to pin the message, pass false to unpin it.
          */
         protected bool   $isPinned,
+        /**
+         * Identifier of the message.
+         */
+        protected int    $messageId,
     ) {}
 
     public static function fromArray(array $array): SetBusinessMessageIsPinned
     {
         return new static(
-            $array['business_connection_id'],
-            $array['chat_id'],
-            $array['message_id'],
-            $array['is_pinned'],
+            businessConnectionId: $array['business_connection_id'],
+            chatId              : $array['chat_id'],
+            isPinned            : $array['is_pinned'],
+            messageId           : $array['message_id'],
         );
     }
 
@@ -98,8 +98,8 @@ class SetBusinessMessageIsPinned extends TdFunction
             '@type'                  => static::TYPE_NAME,
             'business_connection_id' => $this->businessConnectionId,
             'chat_id'                => $this->chatId,
-            'message_id'             => $this->messageId,
             'is_pinned'              => $this->isPinned,
+            'message_id'             => $this->messageId,
         ];
     }
 }

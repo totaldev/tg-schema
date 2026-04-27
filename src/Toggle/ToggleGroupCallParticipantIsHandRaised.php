@@ -23,21 +23,21 @@ class ToggleGroupCallParticipantIsHandRaised extends TdFunction
          */
         protected int           $groupCallId,
         /**
-         * Participant identifier.
-         */
-        protected MessageSender $participantId,
-        /**
          * Pass true if the user's hand needs to be raised. Only self hand can be raised. Requires groupCall.can_be_managed right to lower other's hand.
          */
         protected bool          $isHandRaised,
+        /**
+         * Participant identifier.
+         */
+        protected MessageSender $participantId,
     ) {}
 
     public static function fromArray(array $array): ToggleGroupCallParticipantIsHandRaised
     {
         return new static(
-            $array['group_call_id'],
-            TdSchemaRegistry::fromArray($array['participant_id']),
-            $array['is_hand_raised'],
+            groupCallId  : $array['group_call_id'],
+            isHandRaised : $array['is_hand_raised'],
+            participantId: TdSchemaRegistry::fromArray($array['participant_id']),
         );
     }
 
@@ -82,8 +82,8 @@ class ToggleGroupCallParticipantIsHandRaised extends TdFunction
         return [
             '@type'          => static::TYPE_NAME,
             'group_call_id'  => $this->groupCallId,
-            'participant_id' => $this->participantId->typeSerialize(),
             'is_hand_raised' => $this->isHandRaised,
+            'participant_id' => $this->participantId->jsonSerialize(),
         ];
     }
 }

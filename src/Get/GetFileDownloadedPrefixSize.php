@@ -29,8 +29,8 @@ class GetFileDownloadedPrefixSize extends TdFunction
     public static function fromArray(array $array): GetFileDownloadedPrefixSize
     {
         return new static(
-            $array['file_id'],
-            $array['offset'],
+            fileId: $array['file_id'],
+            offset: $array['offset'],
         );
     }
 

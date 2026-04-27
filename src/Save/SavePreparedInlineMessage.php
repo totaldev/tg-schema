@@ -20,25 +20,25 @@ class SavePreparedInlineMessage extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the user.
+         * Types of the chats to which the message can be sent.
          */
-        protected int                    $userId,
+        protected TargetChatTypes        $chatTypes,
         /**
          * The description of the message.
          */
         protected InputInlineQueryResult $result,
         /**
-         * Types of the chats to which the message can be sent.
+         * Identifier of the user.
          */
-        protected TargetChatTypes        $chatTypes,
+        protected int                    $userId,
     ) {}
 
     public static function fromArray(array $array): SavePreparedInlineMessage
     {
         return new static(
-            $array['user_id'],
-            TdSchemaRegistry::fromArray($array['result']),
-            TdSchemaRegistry::fromArray($array['chat_types']),
+            chatTypes: TdSchemaRegistry::fromArray($array['chat_types']),
+            result   : TdSchemaRegistry::fromArray($array['result']),
+            userId   : $array['user_id'],
         );
     }
 
@@ -82,9 +82,9 @@ class SavePreparedInlineMessage extends TdFunction
     {
         return [
             '@type'      => static::TYPE_NAME,
+            'chat_types' => $this->chatTypes->jsonSerialize(),
+            'result'     => $this->result->jsonSerialize(),
             'user_id'    => $this->userId,
-            'result'     => $this->result->typeSerialize(),
-            'chat_types' => $this->chatTypes->typeSerialize(),
         ];
     }
 }

@@ -28,7 +28,7 @@ class LinkPreviewTypeDirectMessagesChat extends LinkPreviewType
     public static function fromArray(array $array): LinkPreviewTypeDirectMessagesChat
     {
         return new static(
-            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
+            photo: (isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null),
         );
     }
 
@@ -48,7 +48,7 @@ class LinkPreviewTypeDirectMessagesChat extends LinkPreviewType
     {
         return [
             '@type' => static::TYPE_NAME,
-            'photo' => $this->photo ?? null,
+            'photo' => (null !== $this->photo ? $this->photo->jsonSerialize() : null),
         ];
     }
 }

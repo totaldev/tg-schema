@@ -18,10 +18,6 @@ class MessageCall extends MessageContent
 
     public function __construct(
         /**
-         * True, if the call was a video call.
-         */
-        protected bool              $isVideo,
-        /**
          * Reason why the call was discarded.
          */
         protected CallDiscardReason $discardReason,
@@ -29,6 +25,10 @@ class MessageCall extends MessageContent
          * Call duration, in seconds.
          */
         protected int               $duration,
+        /**
+         * True, if the call was a video call.
+         */
+        protected bool              $isVideo,
     ) {
         parent::__construct();
     }
@@ -36,9 +36,9 @@ class MessageCall extends MessageContent
     public static function fromArray(array $array): MessageCall
     {
         return new static(
-            $array['is_video'],
-            TdSchemaRegistry::fromArray($array['discard_reason']),
-            $array['duration'],
+            discardReason: TdSchemaRegistry::fromArray($array['discard_reason']),
+            duration     : $array['duration'],
+            isVideo      : $array['is_video'],
         );
     }
 
@@ -82,9 +82,9 @@ class MessageCall extends MessageContent
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'is_video'       => $this->isVideo,
-            'discard_reason' => $this->discardReason->typeSerialize(),
+            'discard_reason' => $this->discardReason->jsonSerialize(),
             'duration'       => $this->duration,
+            'is_video'       => $this->isVideo,
         ];
     }
 }

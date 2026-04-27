@@ -35,9 +35,9 @@ class SetMessageFactCheck extends TdFunction
     public static function fromArray(array $array): SetMessageFactCheck
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            isset($array['text']) ? TdSchemaRegistry::fromArray($array['text']) : null,
+            chatId   : $array['chat_id'],
+            messageId: $array['message_id'],
+            text     : (isset($array['text']) ? TdSchemaRegistry::fromArray($array['text']) : null),
         );
     }
 
@@ -83,7 +83,7 @@ class SetMessageFactCheck extends TdFunction
             '@type'      => static::TYPE_NAME,
             'chat_id'    => $this->chatId,
             'message_id' => $this->messageId,
-            'text'       => $this->text ?? null,
+            'text'       => (null !== $this->text ? $this->text->jsonSerialize() : null),
         ];
     }
 }

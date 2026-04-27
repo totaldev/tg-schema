@@ -27,7 +27,7 @@ class SetBirthdate extends TdFunction
     public static function fromArray(array $array): SetBirthdate
     {
         return new static(
-            isset($array['birthdate']) ? TdSchemaRegistry::fromArray($array['birthdate']) : null,
+            birthdate: (isset($array['birthdate']) ? TdSchemaRegistry::fromArray($array['birthdate']) : null),
         );
     }
 
@@ -47,7 +47,7 @@ class SetBirthdate extends TdFunction
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'birthdate' => $this->birthdate ?? null,
+            'birthdate' => (null !== $this->birthdate ? $this->birthdate->jsonSerialize() : null),
         ];
     }
 }

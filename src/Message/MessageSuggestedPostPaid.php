@@ -18,13 +18,13 @@ class MessageSuggestedPostPaid extends MessageContent
 
     public function __construct(
         /**
-         * Identifier of the message with the suggested post; can be 0 if the message was deleted.
-         */
-        protected int        $suggestedPostMessageId,
-        /**
          * The amount of received Telegram Stars.
          */
         protected StarAmount $starAmount,
+        /**
+         * Identifier of the message with the suggested post; can be 0 if the message was deleted.
+         */
+        protected int        $suggestedPostMessageId,
         /**
          * The amount of received Toncoins; in the smallest units of the cryptocurrency.
          */
@@ -36,9 +36,9 @@ class MessageSuggestedPostPaid extends MessageContent
     public static function fromArray(array $array): MessageSuggestedPostPaid
     {
         return new static(
-            $array['suggested_post_message_id'],
-            TdSchemaRegistry::fromArray($array['star_amount']),
-            $array['ton_amount'],
+            starAmount            : TdSchemaRegistry::fromArray($array['star_amount']),
+            suggestedPostMessageId: $array['suggested_post_message_id'],
+            tonAmount             : $array['ton_amount'],
         );
     }
 
@@ -82,8 +82,8 @@ class MessageSuggestedPostPaid extends MessageContent
     {
         return [
             '@type'                     => static::TYPE_NAME,
+            'star_amount'               => $this->starAmount->jsonSerialize(),
             'suggested_post_message_id' => $this->suggestedPostMessageId,
-            'star_amount'               => $this->starAmount->typeSerialize(),
             'ton_amount'                => $this->tonAmount,
         ];
     }

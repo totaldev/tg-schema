@@ -16,17 +16,17 @@ class UpdateApplicationVerificationRequired extends Update
 
     public function __construct(
         /**
-         * Unique identifier for the verification process.
+         * Cloud project number to pass to the Play Integrity API on Android.
          */
-        protected int    $verificationId,
+        protected int    $cloudProjectNumber,
         /**
          * Unique base64url-encoded nonce for the classic Play Integrity verification (https://developer.android.com/google/play/integrity/classic) for Android, or a unique string to compare with verify_nonce field from a push notification for iOS.
          */
         protected string $nonce,
         /**
-         * Cloud project number to pass to the Play Integrity API on Android.
+         * Unique identifier for the verification process.
          */
-        protected int    $cloudProjectNumber,
+        protected int    $verificationId,
     ) {
         parent::__construct();
     }
@@ -34,9 +34,9 @@ class UpdateApplicationVerificationRequired extends Update
     public static function fromArray(array $array): UpdateApplicationVerificationRequired
     {
         return new static(
-            $array['verification_id'],
-            $array['nonce'],
-            $array['cloud_project_number'],
+            cloudProjectNumber: $array['cloud_project_number'],
+            nonce             : $array['nonce'],
+            verificationId    : $array['verification_id'],
         );
     }
 
@@ -80,9 +80,9 @@ class UpdateApplicationVerificationRequired extends Update
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'verification_id'      => $this->verificationId,
-            'nonce'                => $this->nonce,
             'cloud_project_number' => $this->cloudProjectNumber,
+            'nonce'                => $this->nonce,
+            'verification_id'      => $this->verificationId,
         ];
     }
 }

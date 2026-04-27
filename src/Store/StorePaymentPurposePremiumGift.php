@@ -18,21 +18,21 @@ class StorePaymentPurposePremiumGift extends StorePaymentPurpose
 
     public function __construct(
         /**
-         * ISO 4217 currency code of the payment currency.
-         */
-        protected string        $currency,
-        /**
          * Paid amount, in the smallest units of the currency.
          */
         protected int           $amount,
         /**
-         * Identifiers of the user which will receive Telegram Premium.
+         * ISO 4217 currency code of the payment currency.
          */
-        protected int           $userId,
+        protected string        $currency,
         /**
          * Text to show along with the gift codes; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed.
          */
         protected FormattedText $text,
+        /**
+         * Identifiers of the user which will receive Telegram Premium.
+         */
+        protected int           $userId,
     ) {
         parent::__construct();
     }
@@ -40,10 +40,10 @@ class StorePaymentPurposePremiumGift extends StorePaymentPurpose
     public static function fromArray(array $array): StorePaymentPurposePremiumGift
     {
         return new static(
-            $array['currency'],
-            $array['amount'],
-            $array['user_id'],
-            TdSchemaRegistry::fromArray($array['text']),
+            amount  : $array['amount'],
+            currency: $array['currency'],
+            text    : TdSchemaRegistry::fromArray($array['text']),
+            userId  : $array['user_id'],
         );
     }
 
@@ -99,10 +99,10 @@ class StorePaymentPurposePremiumGift extends StorePaymentPurpose
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'currency' => $this->currency,
             'amount'   => $this->amount,
+            'currency' => $this->currency,
+            'text'     => $this->text->jsonSerialize(),
             'user_id'  => $this->userId,
-            'text'     => $this->text->typeSerialize(),
         ];
     }
 }

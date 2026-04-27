@@ -29,8 +29,8 @@ class PaymentResult extends TdObject
     public static function fromArray(array $array): PaymentResult
     {
         return new static(
-            $array['success'],
-            $array['verification_url'],
+            success        : $array['success'],
+            verificationUrl: $array['verification_url'],
         );
     }
 

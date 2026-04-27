@@ -25,7 +25,7 @@ class MessageTopicSavedMessages extends MessageTopic
     public static function fromArray(array $array): MessageTopicSavedMessages
     {
         return new static(
-            $array['saved_messages_topic_id'],
+            savedMessagesTopicId: $array['saved_messages_topic_id'],
         );
     }
 

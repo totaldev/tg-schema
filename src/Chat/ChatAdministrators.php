@@ -28,7 +28,7 @@ class ChatAdministrators extends TdObject
     public static function fromArray(array $array): ChatAdministrators
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['administrators']),
+            administrators: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['administrators']),
         );
     }
 
@@ -48,7 +48,7 @@ class ChatAdministrators extends TdObject
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'administrators' => array_map(static fn($x) => $x->typeSerialize(), $this->administrators),
+            'administrators' => array_map(static fn($x) => $x->jsonSerialize(), $this->administrators),
         ];
     }
 }

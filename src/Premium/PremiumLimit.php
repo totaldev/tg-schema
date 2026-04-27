@@ -18,10 +18,6 @@ class PremiumLimit extends TdObject
 
     public function __construct(
         /**
-         * The type of the limit.
-         */
-        protected PremiumLimitType $type,
-        /**
          * Default value of the limit.
          */
         protected int              $defaultValue,
@@ -29,14 +25,18 @@ class PremiumLimit extends TdObject
          * Value of the limit for Premium users.
          */
         protected int              $premiumValue,
+        /**
+         * The type of the limit.
+         */
+        protected PremiumLimitType $type,
     ) {}
 
     public static function fromArray(array $array): PremiumLimit
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['type']),
-            $array['default_value'],
-            $array['premium_value'],
+            defaultValue: $array['default_value'],
+            premiumValue: $array['premium_value'],
+            type        : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -80,9 +80,9 @@ class PremiumLimit extends TdObject
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'type'          => $this->type->typeSerialize(),
             'default_value' => $this->defaultValue,
             'premium_value' => $this->premiumValue,
+            'type'          => $this->type->jsonSerialize(),
         ];
     }
 }

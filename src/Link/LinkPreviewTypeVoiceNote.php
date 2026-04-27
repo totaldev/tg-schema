@@ -28,7 +28,7 @@ class LinkPreviewTypeVoiceNote extends LinkPreviewType
     public static function fromArray(array $array): LinkPreviewTypeVoiceNote
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['voice_note']),
+            voiceNote: TdSchemaRegistry::fromArray($array['voice_note']),
         );
     }
 
@@ -48,7 +48,7 @@ class LinkPreviewTypeVoiceNote extends LinkPreviewType
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'voice_note' => $this->voiceNote->typeSerialize(),
+            'voice_note' => $this->voiceNote->jsonSerialize(),
         ];
     }
 }

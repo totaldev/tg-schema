@@ -31,8 +31,8 @@ class ChatEventMemberJoinedByInviteLink extends ChatEventAction
     public static function fromArray(array $array): ChatEventMemberJoinedByInviteLink
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['invite_link']),
-            $array['via_chat_folder_invite_link'],
+            inviteLink             : TdSchemaRegistry::fromArray($array['invite_link']),
+            viaChatFolderInviteLink: $array['via_chat_folder_invite_link'],
         );
     }
 
@@ -64,7 +64,7 @@ class ChatEventMemberJoinedByInviteLink extends ChatEventAction
     {
         return [
             '@type'                       => static::TYPE_NAME,
-            'invite_link'                 => $this->inviteLink->typeSerialize(),
+            'invite_link'                 => $this->inviteLink->jsonSerialize(),
             'via_chat_folder_invite_link' => $this->viaChatFolderInviteLink,
         ];
     }

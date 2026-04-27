@@ -24,26 +24,26 @@ class CreateForumTopic extends TdFunction
          */
         protected int            $chatId,
         /**
-         * Name of the topic; 1-128 characters.
+         * Icon of the topic. Icon color must be one of 0x6FB9F0, 0xFFD67E, 0xCB86DB, 0x8EEE98, 0xFF93B2, or 0xFB6F5F. Telegram Premium users can use any custom emoji as topic icon, other users can use only a custom emoji returned by getForumTopicDefaultIcons.
          */
-        protected string         $name,
+        protected ForumTopicIcon $icon,
         /**
          * Pass true if the name of the topic wasn't entered explicitly; for chats with bots only.
          */
         protected bool           $isNameImplicit,
         /**
-         * Icon of the topic. Icon color must be one of 0x6FB9F0, 0xFFD67E, 0xCB86DB, 0x8EEE98, 0xFF93B2, or 0xFB6F5F. Telegram Premium users can use any custom emoji as topic icon, other users can use only a custom emoji returned by getForumTopicDefaultIcons.
+         * Name of the topic; 1-128 characters.
          */
-        protected ForumTopicIcon $icon,
+        protected string         $name,
     ) {}
 
     public static function fromArray(array $array): CreateForumTopic
     {
         return new static(
-            $array['chat_id'],
-            $array['name'],
-            $array['is_name_implicit'],
-            TdSchemaRegistry::fromArray($array['icon']),
+            chatId        : $array['chat_id'],
+            icon          : TdSchemaRegistry::fromArray($array['icon']),
+            isNameImplicit: $array['is_name_implicit'],
+            name          : $array['name'],
         );
     }
 
@@ -100,9 +100,9 @@ class CreateForumTopic extends TdFunction
         return [
             '@type'            => static::TYPE_NAME,
             'chat_id'          => $this->chatId,
-            'name'             => $this->name,
+            'icon'             => $this->icon->jsonSerialize(),
             'is_name_implicit' => $this->isNameImplicit,
-            'icon'             => $this->icon->typeSerialize(),
+            'name'             => $this->name,
         ];
     }
 }

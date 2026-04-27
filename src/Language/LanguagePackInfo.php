@@ -17,13 +17,33 @@ class LanguagePackInfo extends TdObject
 
     public function __construct(
         /**
+         * Identifier of a base language pack; may be empty. If a string is missed in the language pack, then it must be fetched from base language pack. Unsupported in custom language packs.
+         */
+        protected string $baseLanguagePackId,
+        /**
          * Unique language pack identifier.
          */
         protected string $id,
         /**
-         * Identifier of a base language pack; may be empty. If a string is missed in the language pack, then it must be fetched from base language pack. Unsupported in custom language packs.
+         * True, if the language pack is a beta language pack.
          */
-        protected string $baseLanguagePackId,
+        protected bool   $isBeta,
+        /**
+         * True, if the language pack is installed by the current user.
+         */
+        protected bool   $isInstalled,
+        /**
+         * True, if the language pack is official.
+         */
+        protected bool   $isOfficial,
+        /**
+         * True, if the language pack strings are RTL.
+         */
+        protected bool   $isRtl,
+        /**
+         * Total number of non-deleted strings from the language pack available locally.
+         */
+        protected int    $localStringCount,
         /**
          * Language name.
          */
@@ -37,22 +57,6 @@ class LanguagePackInfo extends TdObject
          */
         protected string $pluralCode,
         /**
-         * True, if the language pack is official.
-         */
-        protected bool   $isOfficial,
-        /**
-         * True, if the language pack strings are RTL.
-         */
-        protected bool   $isRtl,
-        /**
-         * True, if the language pack is a beta language pack.
-         */
-        protected bool   $isBeta,
-        /**
-         * True, if the language pack is installed by the current user.
-         */
-        protected bool   $isInstalled,
-        /**
          * Total number of non-deleted strings from the language pack.
          */
         protected int    $totalStringCount,
@@ -60,10 +64,6 @@ class LanguagePackInfo extends TdObject
          * Total number of translated strings from the language pack.
          */
         protected int    $translatedStringCount,
-        /**
-         * Total number of non-deleted strings from the language pack available locally.
-         */
-        protected int    $localStringCount,
         /**
          * Link to language translation interface; empty for custom local language packs.
          */
@@ -73,19 +73,19 @@ class LanguagePackInfo extends TdObject
     public static function fromArray(array $array): LanguagePackInfo
     {
         return new static(
-            $array['id'],
-            $array['base_language_pack_id'],
-            $array['name'],
-            $array['native_name'],
-            $array['plural_code'],
-            $array['is_official'],
-            $array['is_rtl'],
-            $array['is_beta'],
-            $array['is_installed'],
-            $array['total_string_count'],
-            $array['translated_string_count'],
-            $array['local_string_count'],
-            $array['translation_url'],
+            baseLanguagePackId   : $array['base_language_pack_id'],
+            id                   : $array['id'],
+            isBeta               : $array['is_beta'],
+            isInstalled          : $array['is_installed'],
+            isOfficial           : $array['is_official'],
+            isRtl                : $array['is_rtl'],
+            localStringCount     : $array['local_string_count'],
+            name                 : $array['name'],
+            nativeName           : $array['native_name'],
+            pluralCode           : $array['plural_code'],
+            totalStringCount     : $array['total_string_count'],
+            translatedStringCount: $array['translated_string_count'],
+            translationUrl       : $array['translation_url'],
         );
     }
 
@@ -249,18 +249,18 @@ class LanguagePackInfo extends TdObject
     {
         return [
             '@type'                   => static::TYPE_NAME,
-            'id'                      => $this->id,
             'base_language_pack_id'   => $this->baseLanguagePackId,
+            'id'                      => $this->id,
+            'is_beta'                 => $this->isBeta,
+            'is_installed'            => $this->isInstalled,
+            'is_official'             => $this->isOfficial,
+            'is_rtl'                  => $this->isRtl,
+            'local_string_count'      => $this->localStringCount,
             'name'                    => $this->name,
             'native_name'             => $this->nativeName,
             'plural_code'             => $this->pluralCode,
-            'is_official'             => $this->isOfficial,
-            'is_rtl'                  => $this->isRtl,
-            'is_beta'                 => $this->isBeta,
-            'is_installed'            => $this->isInstalled,
             'total_string_count'      => $this->totalStringCount,
             'translated_string_count' => $this->translatedStringCount,
-            'local_string_count'      => $this->localStringCount,
             'translation_url'         => $this->translationUrl,
         ];
     }

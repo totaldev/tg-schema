@@ -18,20 +18,20 @@ class StoryRepostInfo extends TdObject
 
     public function __construct(
         /**
-         * Origin of the story that was reposted.
-         */
-        protected StoryOrigin $origin,
-        /**
          * True, if story content was modified during reposting; otherwise, story wasn't modified.
          */
         protected bool        $isContentModified,
+        /**
+         * Origin of the story that was reposted.
+         */
+        protected StoryOrigin $origin,
     ) {}
 
     public static function fromArray(array $array): StoryRepostInfo
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['origin']),
-            $array['is_content_modified'],
+            isContentModified: $array['is_content_modified'],
+            origin           : TdSchemaRegistry::fromArray($array['origin']),
         );
     }
 
@@ -63,8 +63,8 @@ class StoryRepostInfo extends TdObject
     {
         return [
             '@type'               => static::TYPE_NAME,
-            'origin'              => $this->origin->typeSerialize(),
             'is_content_modified' => $this->isContentModified,
+            'origin'              => $this->origin->jsonSerialize(),
         ];
     }
 }

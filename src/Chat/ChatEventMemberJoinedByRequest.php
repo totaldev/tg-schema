@@ -31,8 +31,8 @@ class ChatEventMemberJoinedByRequest extends ChatEventAction
     public static function fromArray(array $array): ChatEventMemberJoinedByRequest
     {
         return new static(
-            $array['approver_user_id'],
-            isset($array['invite_link']) ? TdSchemaRegistry::fromArray($array['invite_link']) : null,
+            approverUserId: $array['approver_user_id'],
+            inviteLink    : (isset($array['invite_link']) ? TdSchemaRegistry::fromArray($array['invite_link']) : null),
         );
     }
 
@@ -65,7 +65,7 @@ class ChatEventMemberJoinedByRequest extends ChatEventAction
         return [
             '@type'            => static::TYPE_NAME,
             'approver_user_id' => $this->approverUserId,
-            'invite_link'      => $this->inviteLink ?? null,
+            'invite_link'      => (null !== $this->inviteLink ? $this->inviteLink->jsonSerialize() : null),
         ];
     }
 }

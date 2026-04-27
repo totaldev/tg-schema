@@ -20,6 +20,10 @@ class AnswerInlineQuery extends TdFunction
 
     public function __construct(
         /**
+         * Allowed time to cache the results of the query, in seconds.
+         */
+        protected int                       $cacheTime,
+        /**
          * Identifier of the inline query.
          */
         protected int                       $inlineQueryId,
@@ -28,19 +32,15 @@ class AnswerInlineQuery extends TdFunction
          */
         protected bool                      $isPersonal,
         /**
+         * Offset for the next inline query; pass an empty string if there are no more results.
+         */
+        protected string                    $nextOffset,
+        /**
          * The results of the query.
          *
          * @var InputInlineQueryResult[]
          */
         protected array                     $results,
-        /**
-         * Allowed time to cache the results of the query, in seconds.
-         */
-        protected int                       $cacheTime,
-        /**
-         * Offset for the next inline query; pass an empty string if there are no more results.
-         */
-        protected string                    $nextOffset,
         /**
          * Button to be shown above inline query results; pass null if none.
          */
@@ -50,12 +50,12 @@ class AnswerInlineQuery extends TdFunction
     public static function fromArray(array $array): AnswerInlineQuery
     {
         return new static(
-            $array['inline_query_id'],
-            $array['is_personal'],
-            isset($array['button']) ? TdSchemaRegistry::fromArray($array['button']) : null,
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['results']),
-            $array['cache_time'],
-            $array['next_offset'],
+            button       : (isset($array['button']) ? TdSchemaRegistry::fromArray($array['button']) : null),
+            cacheTime    : $array['cache_time'],
+            inlineQueryId: $array['inline_query_id'],
+            isPersonal   : $array['is_personal'],
+            nextOffset   : $array['next_offset'],
+            results      : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['results']),
         );
     }
 
@@ -135,12 +135,12 @@ class AnswerInlineQuery extends TdFunction
     {
         return [
             '@type'           => static::TYPE_NAME,
+            'button'          => (null !== $this->button ? $this->button->jsonSerialize() : null),
+            'cache_time'      => $this->cacheTime,
             'inline_query_id' => $this->inlineQueryId,
             'is_personal'     => $this->isPersonal,
-            'button'          => $this->button ?? null,
-            'results'         => array_map(static fn($x) => $x->typeSerialize(), $this->results),
-            'cache_time'      => $this->cacheTime,
             'next_offset'     => $this->nextOffset,
+            'results'         => array_map(static fn($x) => $x->jsonSerialize(), $this->results),
         ];
     }
 }

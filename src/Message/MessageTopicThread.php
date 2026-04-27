@@ -25,7 +25,7 @@ class MessageTopicThread extends MessageTopic
     public static function fromArray(array $array): MessageTopicThread
     {
         return new static(
-            $array['message_thread_id'],
+            messageThreadId: $array['message_thread_id'],
         );
     }
 

@@ -28,7 +28,7 @@ class PassportElementBankStatement extends PassportElement
     public static function fromArray(array $array): PassportElementBankStatement
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['bank_statement']),
+            bankStatement: TdSchemaRegistry::fromArray($array['bank_statement']),
         );
     }
 
@@ -48,7 +48,7 @@ class PassportElementBankStatement extends PassportElement
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'bank_statement' => $this->bankStatement->typeSerialize(),
+            'bank_statement' => $this->bankStatement->jsonSerialize(),
         ];
     }
 }

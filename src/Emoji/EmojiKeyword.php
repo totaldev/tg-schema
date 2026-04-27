@@ -29,8 +29,8 @@ class EmojiKeyword extends TdObject
     public static function fromArray(array $array): EmojiKeyword
     {
         return new static(
-            $array['emoji'],
-            $array['keyword'],
+            emoji  : $array['emoji'],
+            keyword: $array['keyword'],
         );
     }
 

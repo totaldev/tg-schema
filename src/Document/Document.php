@@ -21,6 +21,10 @@ class Document extends TdObject
 
     public function __construct(
         /**
+         * File containing the document.
+         */
+        protected File           $document,
+        /**
          * Original name of the file; as defined by the sender.
          */
         protected string         $fileName,
@@ -36,20 +40,16 @@ class Document extends TdObject
          * Document thumbnail in JPEG or PNG format (PNG will be used only for background patterns); as defined by the sender; may be null.
          */
         protected ?Thumbnail     $thumbnail,
-        /**
-         * File containing the document.
-         */
-        protected File           $document,
     ) {}
 
     public static function fromArray(array $array): Document
     {
         return new static(
-            $array['file_name'],
-            $array['mime_type'],
-            isset($array['minithumbnail']) ? TdSchemaRegistry::fromArray($array['minithumbnail']) : null,
-            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
-            TdSchemaRegistry::fromArray($array['document']),
+            document     : TdSchemaRegistry::fromArray($array['document']),
+            fileName     : $array['file_name'],
+            mimeType     : $array['mime_type'],
+            minithumbnail: (isset($array['minithumbnail']) ? TdSchemaRegistry::fromArray($array['minithumbnail']) : null),
+            thumbnail    : (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
         );
     }
 
@@ -117,11 +117,11 @@ class Document extends TdObject
     {
         return [
             '@type'         => static::TYPE_NAME,
+            'document'      => $this->document->jsonSerialize(),
             'file_name'     => $this->fileName,
             'mime_type'     => $this->mimeType,
-            'minithumbnail' => $this->minithumbnail ?? null,
-            'thumbnail'     => $this->thumbnail ?? null,
-            'document'      => $this->document->typeSerialize(),
+            'minithumbnail' => (null !== $this->minithumbnail ? $this->minithumbnail->jsonSerialize() : null),
+            'thumbnail'     => (null !== $this->thumbnail ? $this->thumbnail->jsonSerialize() : null),
         ];
     }
 }

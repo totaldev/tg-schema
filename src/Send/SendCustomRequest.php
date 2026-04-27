@@ -29,8 +29,8 @@ class SendCustomRequest extends TdFunction
     public static function fromArray(array $array): SendCustomRequest
     {
         return new static(
-            $array['method'],
-            $array['parameters'],
+            method    : $array['method'],
+            parameters: $array['parameters'],
         );
     }
 

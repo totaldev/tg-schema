@@ -19,6 +19,14 @@ class BotVerificationParameters extends TdObject
 
     public function __construct(
         /**
+         * True, if the bot is allowed to provide custom description for verified entities.
+         */
+        protected bool           $canSetCustomDescription,
+        /**
+         * Default custom description of verification reason to be used as placeholder in setMessageSenderBotVerification; may be null if none.
+         */
+        protected ?FormattedText $defaultCustomDescription,
+        /**
          * Identifier of the custom emoji that is used as the verification sign.
          */
         protected int            $iconCustomEmojiId,
@@ -26,23 +34,15 @@ class BotVerificationParameters extends TdObject
          * Name of the organization that provides verification.
          */
         protected string         $organizationName,
-        /**
-         * Default custom description of verification reason to be used as placeholder in setMessageSenderBotVerification; may be null if none.
-         */
-        protected ?FormattedText $defaultCustomDescription,
-        /**
-         * True, if the bot is allowed to provide custom description for verified entities.
-         */
-        protected bool           $canSetCustomDescription,
     ) {}
 
     public static function fromArray(array $array): BotVerificationParameters
     {
         return new static(
-            $array['icon_custom_emoji_id'],
-            $array['organization_name'],
-            isset($array['default_custom_description']) ? TdSchemaRegistry::fromArray($array['default_custom_description']) : null,
-            $array['can_set_custom_description'],
+            canSetCustomDescription : $array['can_set_custom_description'],
+            defaultCustomDescription: (isset($array['default_custom_description']) ? TdSchemaRegistry::fromArray($array['default_custom_description']) : null),
+            iconCustomEmojiId       : $array['icon_custom_emoji_id'],
+            organizationName        : $array['organization_name'],
         );
     }
 
@@ -98,10 +98,10 @@ class BotVerificationParameters extends TdObject
     {
         return [
             '@type'                      => static::TYPE_NAME,
+            'can_set_custom_description' => $this->canSetCustomDescription,
+            'default_custom_description' => (null !== $this->defaultCustomDescription ? $this->defaultCustomDescription->jsonSerialize() : null),
             'icon_custom_emoji_id'       => $this->iconCustomEmojiId,
             'organization_name'          => $this->organizationName,
-            'default_custom_description' => $this->defaultCustomDescription ?? null,
-            'can_set_custom_description' => $this->canSetCustomDescription,
         ];
     }
 }

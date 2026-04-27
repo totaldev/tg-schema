@@ -25,7 +25,7 @@ class MessageForumTopicIsHiddenToggled extends MessageContent
     public static function fromArray(array $array): MessageForumTopicIsHiddenToggled
     {
         return new static(
-            $array['is_hidden'],
+            isHidden: $array['is_hidden'],
         );
     }
 

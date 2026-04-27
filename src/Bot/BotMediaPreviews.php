@@ -28,7 +28,7 @@ class BotMediaPreviews extends TdObject
     public static function fromArray(array $array): BotMediaPreviews
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['previews']),
+            previews: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['previews']),
         );
     }
 
@@ -48,7 +48,7 @@ class BotMediaPreviews extends TdObject
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'previews' => array_map(static fn($x) => $x->typeSerialize(), $this->previews),
+            'previews' => array_map(static fn($x) => $x->jsonSerialize(), $this->previews),
         ];
     }
 }

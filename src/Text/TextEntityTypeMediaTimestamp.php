@@ -25,7 +25,7 @@ class TextEntityTypeMediaTimestamp extends TextEntityType
     public static function fromArray(array $array): TextEntityTypeMediaTimestamp
     {
         return new static(
-            $array['media_timestamp'],
+            mediaTimestamp: $array['media_timestamp'],
         );
     }
 

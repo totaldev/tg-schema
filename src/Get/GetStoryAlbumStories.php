@@ -21,26 +21,26 @@ class GetStoryAlbumStories extends TdFunction
          */
         protected int $chatId,
         /**
-         * Story album identifier.
+         * The maximum number of stories to be returned. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit.
          */
-        protected int $storyAlbumId,
+        protected int $limit,
         /**
          * Offset of the first entry to return; use 0 to get results from the first album story.
          */
         protected int $offset,
         /**
-         * The maximum number of stories to be returned. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit.
+         * Story album identifier.
          */
-        protected int $limit,
+        protected int $storyAlbumId,
     ) {}
 
     public static function fromArray(array $array): GetStoryAlbumStories
     {
         return new static(
-            $array['chat_id'],
-            $array['story_album_id'],
-            $array['offset'],
-            $array['limit'],
+            chatId      : $array['chat_id'],
+            limit       : $array['limit'],
+            offset      : $array['offset'],
+            storyAlbumId: $array['story_album_id'],
         );
     }
 
@@ -97,9 +97,9 @@ class GetStoryAlbumStories extends TdFunction
         return [
             '@type'          => static::TYPE_NAME,
             'chat_id'        => $this->chatId,
-            'story_album_id' => $this->storyAlbumId,
-            'offset'         => $this->offset,
             'limit'          => $this->limit,
+            'offset'         => $this->offset,
+            'story_album_id' => $this->storyAlbumId,
         ];
     }
 }

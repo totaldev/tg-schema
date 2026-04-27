@@ -27,7 +27,7 @@ class GetPremiumLimit extends TdFunction
     public static function fromArray(array $array): GetPremiumLimit
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['limit_type']),
+            limitType: TdSchemaRegistry::fromArray($array['limit_type']),
         );
     }
 
@@ -47,7 +47,7 @@ class GetPremiumLimit extends TdFunction
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'limit_type' => $this->limitType->typeSerialize(),
+            'limit_type' => $this->limitType->jsonSerialize(),
         ];
     }
 }

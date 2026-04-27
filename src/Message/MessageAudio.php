@@ -33,8 +33,8 @@ class MessageAudio extends MessageContent
     public static function fromArray(array $array): MessageAudio
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['audio']),
-            TdSchemaRegistry::fromArray($array['caption']),
+            audio  : TdSchemaRegistry::fromArray($array['audio']),
+            caption: TdSchemaRegistry::fromArray($array['caption']),
         );
     }
 
@@ -66,8 +66,8 @@ class MessageAudio extends MessageContent
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'audio'   => $this->audio->typeSerialize(),
-            'caption' => $this->caption->typeSerialize(),
+            'audio'   => $this->audio->jsonSerialize(),
+            'caption' => $this->caption->jsonSerialize(),
         ];
     }
 }

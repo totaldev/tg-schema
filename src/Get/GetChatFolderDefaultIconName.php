@@ -27,7 +27,7 @@ class GetChatFolderDefaultIconName extends TdFunction
     public static function fromArray(array $array): GetChatFolderDefaultIconName
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['folder']),
+            folder: TdSchemaRegistry::fromArray($array['folder']),
         );
     }
 
@@ -47,7 +47,7 @@ class GetChatFolderDefaultIconName extends TdFunction
     {
         return [
             '@type'  => static::TYPE_NAME,
-            'folder' => $this->folder->typeSerialize(),
+            'folder' => $this->folder->jsonSerialize(),
         ];
     }
 }

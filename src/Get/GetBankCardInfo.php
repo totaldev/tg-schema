@@ -25,7 +25,7 @@ class GetBankCardInfo extends TdFunction
     public static function fromArray(array $array): GetBankCardInfo
     {
         return new static(
-            $array['bank_card_number'],
+            bankCardNumber: $array['bank_card_number'],
         );
     }
 

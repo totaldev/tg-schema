@@ -17,6 +17,14 @@ class InputMessageSticker extends InputMessageContent
 
     public function __construct(
         /**
+         * Emoji used to choose the sticker.
+         */
+        protected string          $emoji,
+        /**
+         * Sticker height.
+         */
+        protected int             $height,
+        /**
          * Sticker to be sent.
          */
         protected InputFile       $sticker,
@@ -24,14 +32,6 @@ class InputMessageSticker extends InputMessageContent
          * Sticker width.
          */
         protected int             $width,
-        /**
-         * Sticker height.
-         */
-        protected int             $height,
-        /**
-         * Emoji used to choose the sticker.
-         */
-        protected string          $emoji,
         /**
          * Sticker thumbnail; pass null to skip thumbnail uploading.
          */
@@ -43,11 +43,11 @@ class InputMessageSticker extends InputMessageContent
     public static function fromArray(array $array): InputMessageSticker
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['sticker']),
-            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
-            $array['width'],
-            $array['height'],
-            $array['emoji'],
+            emoji    : $array['emoji'],
+            height   : $array['height'],
+            sticker  : TdSchemaRegistry::fromArray($array['sticker']),
+            thumbnail: (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
+            width    : $array['width'],
         );
     }
 
@@ -115,11 +115,11 @@ class InputMessageSticker extends InputMessageContent
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'sticker'   => $this->sticker->typeSerialize(),
-            'thumbnail' => $this->thumbnail ?? null,
-            'width'     => $this->width,
-            'height'    => $this->height,
             'emoji'     => $this->emoji,
+            'height'    => $this->height,
+            'sticker'   => $this->sticker->jsonSerialize(),
+            'thumbnail' => (null !== $this->thumbnail ? $this->thumbnail->jsonSerialize() : null),
+            'width'     => $this->width,
         ];
     }
 }

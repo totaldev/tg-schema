@@ -26,7 +26,7 @@ class ReportAuthenticationCodeMissing extends TdFunction
     public static function fromArray(array $array): ReportAuthenticationCodeMissing
     {
         return new static(
-            $array['mobile_network_code'],
+            mobileNetworkCode: $array['mobile_network_code'],
         );
     }
 

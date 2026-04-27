@@ -17,29 +17,41 @@ class UpgradedGiftValueInfo extends TdObject
 
     public function __construct(
         /**
+         * The average sale price in the last month of gifts upgraded from the same gift; in the smallest units of the currency; 0 if there were no such sales.
+         */
+        protected int    $averageSalePrice,
+        /**
          * ISO 4217 currency code of the currency in which the prices are represented.
          */
         protected string $currency,
         /**
-         * Estimated value of the gift; in the smallest units of the currency.
+         * Number of gifts upgraded from the same gift being resold on Fragment.
          */
-        protected int    $value,
+        protected int    $fragmentListedGiftCount,
         /**
-         * True, if the value is calculated as average value of similar sold gifts. Otherwise, it is based on the sale price of the gift.
+         * The HTTPS link to the Fragment for the gift; may be empty if there are no such gifts being sold on Fragment.
          */
-        protected bool   $isValueAverage,
+        protected string $fragmentUrl,
         /**
          * Point in time (Unix timestamp) when the corresponding regular gift was originally purchased.
          */
         protected int    $initialSaleDate,
         /**
+         * Initial price of the gift; in the smallest units of the currency.
+         */
+        protected int    $initialSalePrice,
+        /**
          * Amount of Telegram Stars that were paid for the gift.
          */
         protected int    $initialSaleStarCount,
         /**
-         * Initial price of the gift; in the smallest units of the currency.
+         * True, if the last sale was completed on Fragment.
          */
-        protected int    $initialSalePrice,
+        protected bool   $isLastSaleOnFragment,
+        /**
+         * True, if the value is calculated as average value of similar sold gifts. Otherwise, it is based on the sale price of the gift.
+         */
+        protected bool   $isValueAverage,
         /**
          * Point in time (Unix timestamp) when the upgraded gift was purchased last time; 0 if never.
          */
@@ -49,48 +61,36 @@ class UpgradedGiftValueInfo extends TdObject
          */
         protected int    $lastSalePrice,
         /**
-         * True, if the last sale was completed on Fragment.
-         */
-        protected bool   $isLastSaleOnFragment,
-        /**
          * The current minimum price of gifts upgraded from the same gift; in the smallest units of the currency; 0 if there are no such gifts.
          */
         protected int    $minimumPrice,
-        /**
-         * The average sale price in the last month of gifts upgraded from the same gift; in the smallest units of the currency; 0 if there were no such sales.
-         */
-        protected int    $averageSalePrice,
         /**
          * Number of gifts upgraded from the same gift being resold on Telegram.
          */
         protected int    $telegramListedGiftCount,
         /**
-         * Number of gifts upgraded from the same gift being resold on Fragment.
+         * Estimated value of the gift; in the smallest units of the currency.
          */
-        protected int    $fragmentListedGiftCount,
-        /**
-         * The HTTPS link to the Fragment for the gift; may be empty if there are no such gifts being sold on Fragment.
-         */
-        protected string $fragmentUrl,
+        protected int    $value,
     ) {}
 
     public static function fromArray(array $array): UpgradedGiftValueInfo
     {
         return new static(
-            $array['currency'],
-            $array['value'],
-            $array['is_value_average'],
-            $array['initial_sale_date'],
-            $array['initial_sale_star_count'],
-            $array['initial_sale_price'],
-            $array['last_sale_date'],
-            $array['last_sale_price'],
-            $array['is_last_sale_on_fragment'],
-            $array['minimum_price'],
-            $array['average_sale_price'],
-            $array['telegram_listed_gift_count'],
-            $array['fragment_listed_gift_count'],
-            $array['fragment_url'],
+            averageSalePrice       : $array['average_sale_price'],
+            currency               : $array['currency'],
+            fragmentListedGiftCount: $array['fragment_listed_gift_count'],
+            fragmentUrl            : $array['fragment_url'],
+            initialSaleDate        : $array['initial_sale_date'],
+            initialSalePrice       : $array['initial_sale_price'],
+            initialSaleStarCount   : $array['initial_sale_star_count'],
+            isLastSaleOnFragment   : $array['is_last_sale_on_fragment'],
+            isValueAverage         : $array['is_value_average'],
+            lastSaleDate           : $array['last_sale_date'],
+            lastSalePrice          : $array['last_sale_price'],
+            minimumPrice           : $array['minimum_price'],
+            telegramListedGiftCount: $array['telegram_listed_gift_count'],
+            value                  : $array['value'],
         );
     }
 
@@ -266,20 +266,20 @@ class UpgradedGiftValueInfo extends TdObject
     {
         return [
             '@type'                      => static::TYPE_NAME,
-            'currency'                   => $this->currency,
-            'value'                      => $this->value,
-            'is_value_average'           => $this->isValueAverage,
-            'initial_sale_date'          => $this->initialSaleDate,
-            'initial_sale_star_count'    => $this->initialSaleStarCount,
-            'initial_sale_price'         => $this->initialSalePrice,
-            'last_sale_date'             => $this->lastSaleDate,
-            'last_sale_price'            => $this->lastSalePrice,
-            'is_last_sale_on_fragment'   => $this->isLastSaleOnFragment,
-            'minimum_price'              => $this->minimumPrice,
             'average_sale_price'         => $this->averageSalePrice,
-            'telegram_listed_gift_count' => $this->telegramListedGiftCount,
+            'currency'                   => $this->currency,
             'fragment_listed_gift_count' => $this->fragmentListedGiftCount,
             'fragment_url'               => $this->fragmentUrl,
+            'initial_sale_date'          => $this->initialSaleDate,
+            'initial_sale_price'         => $this->initialSalePrice,
+            'initial_sale_star_count'    => $this->initialSaleStarCount,
+            'is_last_sale_on_fragment'   => $this->isLastSaleOnFragment,
+            'is_value_average'           => $this->isValueAverage,
+            'last_sale_date'             => $this->lastSaleDate,
+            'last_sale_price'            => $this->lastSalePrice,
+            'minimum_price'              => $this->minimumPrice,
+            'telegram_listed_gift_count' => $this->telegramListedGiftCount,
+            'value'                      => $this->value,
         ];
     }
 }

@@ -25,7 +25,7 @@ class ReactionTypeCustomEmoji extends ReactionType
     public static function fromArray(array $array): ReactionTypeCustomEmoji
     {
         return new static(
-            $array['custom_emoji_id'],
+            customEmojiId: $array['custom_emoji_id'],
         );
     }
 

@@ -28,7 +28,7 @@ class StoryInteractionTypeView extends StoryInteractionType
     public static function fromArray(array $array): StoryInteractionTypeView
     {
         return new static(
-            isset($array['chosen_reaction_type']) ? TdSchemaRegistry::fromArray($array['chosen_reaction_type']) : null,
+            chosenReactionType: (isset($array['chosen_reaction_type']) ? TdSchemaRegistry::fromArray($array['chosen_reaction_type']) : null),
         );
     }
 
@@ -48,7 +48,7 @@ class StoryInteractionTypeView extends StoryInteractionType
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'chosen_reaction_type' => $this->chosenReactionType ?? null,
+            'chosen_reaction_type' => (null !== $this->chosenReactionType ? $this->chosenReactionType->jsonSerialize() : null),
         ];
     }
 }

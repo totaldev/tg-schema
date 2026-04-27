@@ -23,21 +23,21 @@ class SetMessageSenderBotVerification extends TdFunction
          */
         protected int           $botUserId,
         /**
-         * Identifier of the user or the supergroup or channel chat, which will be verified by the bot.
-         */
-        protected MessageSender $verifiedId,
-        /**
          * Custom description of verification reason; 0-getOption("bot_verification_custom_description_length_max"). If empty, then "was verified by organization "organization_name"" will be used as description. Can be specified only if the bot is allowed to provide custom description.
          */
         protected string        $customDescription,
+        /**
+         * Identifier of the user or the supergroup or channel chat, which will be verified by the bot.
+         */
+        protected MessageSender $verifiedId,
     ) {}
 
     public static function fromArray(array $array): SetMessageSenderBotVerification
     {
         return new static(
-            $array['bot_user_id'],
-            TdSchemaRegistry::fromArray($array['verified_id']),
-            $array['custom_description'],
+            botUserId        : $array['bot_user_id'],
+            customDescription: $array['custom_description'],
+            verifiedId       : TdSchemaRegistry::fromArray($array['verified_id']),
         );
     }
 
@@ -82,8 +82,8 @@ class SetMessageSenderBotVerification extends TdFunction
         return [
             '@type'              => static::TYPE_NAME,
             'bot_user_id'        => $this->botUserId,
-            'verified_id'        => $this->verifiedId->typeSerialize(),
             'custom_description' => $this->customDescription,
+            'verified_id'        => $this->verifiedId->jsonSerialize(),
         ];
     }
 }

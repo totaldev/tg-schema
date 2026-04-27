@@ -18,21 +18,21 @@ class InlineQueryResultVideo extends InlineQueryResult
 
     public function __construct(
         /**
+         * Description of the video.
+         */
+        protected string $description,
+        /**
          * Unique identifier of the query result.
          */
         protected string $id,
-        /**
-         * Video.
-         */
-        protected Video  $video,
         /**
          * Title of the video.
          */
         protected string $title,
         /**
-         * Description of the video.
+         * Video.
          */
-        protected string $description,
+        protected Video  $video,
     ) {
         parent::__construct();
     }
@@ -40,10 +40,10 @@ class InlineQueryResultVideo extends InlineQueryResult
     public static function fromArray(array $array): InlineQueryResultVideo
     {
         return new static(
-            $array['id'],
-            TdSchemaRegistry::fromArray($array['video']),
-            $array['title'],
-            $array['description'],
+            description: $array['description'],
+            id         : $array['id'],
+            title      : $array['title'],
+            video      : TdSchemaRegistry::fromArray($array['video']),
         );
     }
 
@@ -99,10 +99,10 @@ class InlineQueryResultVideo extends InlineQueryResult
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'id'          => $this->id,
-            'video'       => $this->video->typeSerialize(),
-            'title'       => $this->title,
             'description' => $this->description,
+            'id'          => $this->id,
+            'title'       => $this->title,
+            'video'       => $this->video->jsonSerialize(),
         ];
     }
 }

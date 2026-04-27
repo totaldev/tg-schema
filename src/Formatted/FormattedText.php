@@ -19,22 +19,22 @@ class FormattedText extends TdObject
 
     public function __construct(
         /**
-         * The text.
-         */
-        protected string $text,
-        /**
          * Entities contained in the text. Entities can be nested, but must not mutually intersect with each other. Pre, Code and PreCode entities can't contain other entities. BlockQuote entities can't contain other BlockQuote entities. Bold, Italic, Underline, Strikethrough, and Spoiler entities can contain and can be part of any other entities. All other entities can't contain each other.
          *
          * @var TextEntity[]
          */
         protected array  $entities,
+        /**
+         * The text.
+         */
+        protected string $text,
     ) {}
 
     public static function fromArray(array $array): FormattedText
     {
         return new static(
-            $array['text'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['entities']),
+            entities: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['entities']),
+            text    : $array['text'],
         );
     }
 
@@ -66,8 +66,8 @@ class FormattedText extends TdObject
     {
         return [
             '@type'    => static::TYPE_NAME,
+            'entities' => array_map(static fn($x) => $x->jsonSerialize(), $this->entities),
             'text'     => $this->text,
-            'entities' => array_map(static fn($x) => $x->typeSerialize(), $this->entities),
         ];
     }
 }

@@ -29,8 +29,8 @@ class StoryFullId extends TdObject
     public static function fromArray(array $array): StoryFullId
     {
         return new static(
-            $array['poster_chat_id'],
-            $array['story_id'],
+            posterChatId: $array['poster_chat_id'],
+            storyId     : $array['story_id'],
         );
     }
 

@@ -25,7 +25,7 @@ class MessageChatDeleteMember extends MessageContent
     public static function fromArray(array $array): MessageChatDeleteMember
     {
         return new static(
-            $array['user_id'],
+            userId: $array['user_id'],
         );
     }
 

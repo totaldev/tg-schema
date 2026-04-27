@@ -19,22 +19,6 @@ class KeyboardButtonTypeRequestUsers extends KeyboardButtonType
          */
         protected int  $id,
         /**
-         * True, if the shared users must or must not be bots.
-         */
-        protected bool $restrictUserIsBot,
-        /**
-         * True, if the shared users must be bots; otherwise, the shared users must not be bots. Ignored if restrict_user_is_bot is false.
-         */
-        protected bool $userIsBot,
-        /**
-         * True, if the shared users must or must not be Telegram Premium users.
-         */
-        protected bool $restrictUserIsPremium,
-        /**
-         * True, if the shared users must be Telegram Premium users; otherwise, the shared users must not be Telegram Premium users. Ignored if restrict_user_is_premium is false.
-         */
-        protected bool $userIsPremium,
-        /**
          * The maximum number of users to share.
          */
         protected int  $maxQuantity,
@@ -43,13 +27,29 @@ class KeyboardButtonTypeRequestUsers extends KeyboardButtonType
          */
         protected bool $requestName,
         /**
+         * Pass true to request photo of the users; bots only.
+         */
+        protected bool $requestPhoto,
+        /**
          * Pass true to request username of the users; bots only.
          */
         protected bool $requestUsername,
         /**
-         * Pass true to request photo of the users; bots only.
+         * True, if the shared users must or must not be bots.
          */
-        protected bool $requestPhoto,
+        protected bool $restrictUserIsBot,
+        /**
+         * True, if the shared users must or must not be Telegram Premium users.
+         */
+        protected bool $restrictUserIsPremium,
+        /**
+         * True, if the shared users must be bots; otherwise, the shared users must not be bots. Ignored if restrict_user_is_bot is false.
+         */
+        protected bool $userIsBot,
+        /**
+         * True, if the shared users must be Telegram Premium users; otherwise, the shared users must not be Telegram Premium users. Ignored if restrict_user_is_premium is false.
+         */
+        protected bool $userIsPremium,
     ) {
         parent::__construct();
     }
@@ -57,15 +57,15 @@ class KeyboardButtonTypeRequestUsers extends KeyboardButtonType
     public static function fromArray(array $array): KeyboardButtonTypeRequestUsers
     {
         return new static(
-            $array['id'],
-            $array['restrict_user_is_bot'],
-            $array['user_is_bot'],
-            $array['restrict_user_is_premium'],
-            $array['user_is_premium'],
-            $array['max_quantity'],
-            $array['request_name'],
-            $array['request_username'],
-            $array['request_photo'],
+            id                   : $array['id'],
+            maxQuantity          : $array['max_quantity'],
+            requestName          : $array['request_name'],
+            requestPhoto         : $array['request_photo'],
+            requestUsername      : $array['request_username'],
+            restrictUserIsBot    : $array['restrict_user_is_bot'],
+            restrictUserIsPremium: $array['restrict_user_is_premium'],
+            userIsBot            : $array['user_is_bot'],
+            userIsPremium        : $array['user_is_premium'],
         );
     }
 
@@ -182,14 +182,14 @@ class KeyboardButtonTypeRequestUsers extends KeyboardButtonType
         return [
             '@type'                    => static::TYPE_NAME,
             'id'                       => $this->id,
-            'restrict_user_is_bot'     => $this->restrictUserIsBot,
-            'user_is_bot'              => $this->userIsBot,
-            'restrict_user_is_premium' => $this->restrictUserIsPremium,
-            'user_is_premium'          => $this->userIsPremium,
             'max_quantity'             => $this->maxQuantity,
             'request_name'             => $this->requestName,
-            'request_username'         => $this->requestUsername,
             'request_photo'            => $this->requestPhoto,
+            'request_username'         => $this->requestUsername,
+            'restrict_user_is_bot'     => $this->restrictUserIsBot,
+            'restrict_user_is_premium' => $this->restrictUserIsPremium,
+            'user_is_bot'              => $this->userIsBot,
+            'user_is_premium'          => $this->userIsPremium,
         ];
     }
 }

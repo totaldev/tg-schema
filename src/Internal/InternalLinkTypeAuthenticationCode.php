@@ -25,7 +25,7 @@ class InternalLinkTypeAuthenticationCode extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeAuthenticationCode
     {
         return new static(
-            $array['code'],
+            code: $array['code'],
         );
     }
 

@@ -25,7 +25,7 @@ class InternalLinkTypeUpgradedGift extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeUpgradedGift
     {
         return new static(
-            $array['name'],
+            name: $array['name'],
         );
     }
 

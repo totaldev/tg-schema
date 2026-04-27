@@ -26,55 +26,45 @@ class Chat extends TdObject
 
     public function __construct(
         /**
-         * Chat unique identifier.
-         */
-        protected int                      $id,
-        /**
-         * Type of the chat.
-         */
-        protected ChatType                 $type,
-        /**
-         * Chat title.
-         */
-        protected string                   $title,
-        /**
-         * Chat photo; may be null.
-         */
-        protected ?ChatPhotoInfo           $photo,
-        /**
          * Identifier of the accent color for message sender name, and backgrounds of chat photo, reply header, and link preview.
          */
         protected int                      $accentColorId,
+        /**
+         * Information about actions which must be possible to do through the chat action bar; may be null if none.
+         */
+        protected ?ChatActionBar           $actionBar,
+        /**
+         * Types of reaction, available in the chat.
+         */
+        protected ChatAvailableReactions   $availableReactions,
+        /**
+         * Background set for the chat; may be null if none.
+         */
+        protected ?ChatBackground          $background,
         /**
          * Identifier of a custom emoji to be shown on the reply header and link preview background for messages sent by the chat; 0 if none.
          */
         protected int                      $backgroundCustomEmojiId,
         /**
-         * Color scheme based on an upgraded gift to be used for the chat instead of accent_color_id and background_custom_emoji_id; may be null if none.
+         * Block list to which the chat is added; may be null if none.
          */
-        protected ?UpgradedGiftColors      $upgradedGiftColors,
+        protected ?BlockList               $blockList,
         /**
-         * Identifier of the profile accent color for the chat's profile; -1 if none.
+         * Information about bar for managing a business bot in the chat; may be null if none.
          */
-        protected int                      $profileAccentColorId,
+        protected ?BusinessBotManageBar    $businessBotManageBar,
         /**
-         * Identifier of a custom emoji to be shown on the background of the chat's profile; 0 if none.
+         * True, if the chat messages can be deleted for all users.
          */
-        protected int                      $profileBackgroundCustomEmojiId,
+        protected bool                     $canBeDeletedForAllUsers,
         /**
-         * Actions that non-administrator chat members are allowed to take in the chat.
+         * True, if the chat messages can be deleted only for the current user while other users will continue to see the messages.
          */
-        protected ChatPermissions          $permissions,
+        protected bool                     $canBeDeletedOnlyForSelf,
         /**
-         * Last message in the chat; may be null if none or unknown.
+         * True, if the chat can be reported to Telegram moderators through reportChat or reportChatPhoto.
          */
-        protected ?Message                 $lastMessage,
-        /**
-         * Positions of the chat in chat lists.
-         *
-         * @var ChatPosition[]
-         */
-        protected array                    $positions,
+        protected bool                     $canBeReported,
         /**
          * Chat lists to which the chat belongs. A chat can have a non-zero position in a chat list even if it doesn't belong to the chat list and have no position in a chat list even if it belongs to the chat list.
          *
@@ -82,53 +72,45 @@ class Chat extends TdObject
          */
         protected array                    $chatLists,
         /**
-         * Identifier of a user or chat that is selected to send messages in the chat; may be null if the user can't change message sender.
+         * Application-specific data associated with the chat. (For example, the chat scroll position or local chat notification settings can be stored here.) Persistent if the message database is used.
          */
-        protected ?MessageSender           $messageSenderId,
-        /**
-         * Block list to which the chat is added; may be null if none.
-         */
-        protected ?BlockList               $blockList,
-        /**
-         * True, if chat content can't be saved locally, forwarded, or copied.
-         */
-        protected bool                     $hasProtectedContent,
-        /**
-         * True, if translation of all messages in the chat must be suggested to the user.
-         */
-        protected bool                     $isTranslatable,
-        /**
-         * True, if the chat is marked as unread.
-         */
-        protected bool                     $isMarkedAsUnread,
-        /**
-         * True, if the chat is a forum supergroup that must be shown in the "View as topics" mode, or Saved Messages chat that must be shown in the "View as chats".
-         */
-        protected bool                     $viewAsTopics,
-        /**
-         * True, if the chat has scheduled messages.
-         */
-        protected bool                     $hasScheduledMessages,
-        /**
-         * True, if the chat messages can be deleted only for the current user while other users will continue to see the messages.
-         */
-        protected bool                     $canBeDeletedOnlyForSelf,
-        /**
-         * True, if the chat messages can be deleted for all users.
-         */
-        protected bool                     $canBeDeletedForAllUsers,
-        /**
-         * True, if the chat can be reported to Telegram moderators through reportChat or reportChatPhoto.
-         */
-        protected bool                     $canBeReported,
+        protected string                   $clientData,
         /**
          * Default value of the disable_notification parameter, used when a message is sent to the chat.
          */
         protected bool                     $defaultDisableNotification,
         /**
-         * Number of unread messages in the chat.
+         * A draft of a message in the chat; may be null if none.
          */
-        protected int                      $unreadCount,
+        protected ?DraftMessage            $draftMessage,
+        /**
+         * Emoji status to be shown along with chat title; may be null.
+         */
+        protected ?EmojiStatus             $emojiStatus,
+        /**
+         * True, if chat content can't be saved locally, forwarded, or copied.
+         */
+        protected bool                     $hasProtectedContent,
+        /**
+         * True, if the chat has scheduled messages.
+         */
+        protected bool                     $hasScheduledMessages,
+        /**
+         * Chat unique identifier.
+         */
+        protected int                      $id,
+        /**
+         * True, if the chat is marked as unread.
+         */
+        protected bool                     $isMarkedAsUnread,
+        /**
+         * True, if translation of all messages in the chat must be suggested to the user.
+         */
+        protected bool                     $isTranslatable,
+        /**
+         * Last message in the chat; may be null if none or unknown.
+         */
+        protected ?Message                 $lastMessage,
         /**
          * Identifier of the last read incoming message.
          */
@@ -138,6 +120,64 @@ class Chat extends TdObject
          */
         protected int                      $lastReadOutboxMessageId,
         /**
+         * Current message auto-delete or self-destruct timer setting for the chat, in seconds; 0 if disabled. Self-destruct timer in secret chats starts after the message or its content is viewed. Auto-delete timer in other chats starts from the send date.
+         */
+        protected int                      $messageAutoDeleteTime,
+        /**
+         * Identifier of a user or chat that is selected to send messages in the chat; may be null if the user can't change message sender.
+         */
+        protected ?MessageSender           $messageSenderId,
+        /**
+         * Notification settings for the chat.
+         */
+        protected ChatNotificationSettings $notificationSettings,
+        /**
+         * Information about pending join requests; may be null if none.
+         */
+        protected ?ChatJoinRequestsInfo    $pendingJoinRequests,
+        /**
+         * Actions that non-administrator chat members are allowed to take in the chat.
+         */
+        protected ChatPermissions          $permissions,
+        /**
+         * Chat photo; may be null.
+         */
+        protected ?ChatPhotoInfo           $photo,
+        /**
+         * Positions of the chat in chat lists.
+         *
+         * @var ChatPosition[]
+         */
+        protected array                    $positions,
+        /**
+         * Identifier of the profile accent color for the chat's profile; -1 if none.
+         */
+        protected int                      $profileAccentColorId,
+        /**
+         * Identifier of a custom emoji to be shown on the background of the chat's profile; 0 if none.
+         */
+        protected int                      $profileBackgroundCustomEmojiId,
+        /**
+         * Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat.
+         */
+        protected int                      $replyMarkupMessageId,
+        /**
+         * Theme set for the chat; may be null if none.
+         */
+        protected ?ChatTheme               $theme,
+        /**
+         * Chat title.
+         */
+        protected string                   $title,
+        /**
+         * Type of the chat.
+         */
+        protected ChatType                 $type,
+        /**
+         * Number of unread messages in the chat.
+         */
+        protected int                      $unreadCount,
+        /**
          * Number of unread messages with a mention/reply in the chat.
          */
         protected int                      $unreadMentionCount,
@@ -146,104 +186,64 @@ class Chat extends TdObject
          */
         protected int                      $unreadReactionCount,
         /**
-         * Notification settings for the chat.
+         * Color scheme based on an upgraded gift to be used for the chat instead of accent_color_id and background_custom_emoji_id; may be null if none.
          */
-        protected ChatNotificationSettings $notificationSettings,
-        /**
-         * Types of reaction, available in the chat.
-         */
-        protected ChatAvailableReactions   $availableReactions,
-        /**
-         * Current message auto-delete or self-destruct timer setting for the chat, in seconds; 0 if disabled. Self-destruct timer in secret chats starts after the message or its content is viewed. Auto-delete timer in other chats starts from the send date.
-         */
-        protected int                      $messageAutoDeleteTime,
-        /**
-         * Emoji status to be shown along with chat title; may be null.
-         */
-        protected ?EmojiStatus             $emojiStatus,
-        /**
-         * Background set for the chat; may be null if none.
-         */
-        protected ?ChatBackground          $background,
-        /**
-         * Theme set for the chat; may be null if none.
-         */
-        protected ?ChatTheme               $theme,
-        /**
-         * Information about actions which must be possible to do through the chat action bar; may be null if none.
-         */
-        protected ?ChatActionBar           $actionBar,
-        /**
-         * Information about bar for managing a business bot in the chat; may be null if none.
-         */
-        protected ?BusinessBotManageBar    $businessBotManageBar,
+        protected ?UpgradedGiftColors      $upgradedGiftColors,
         /**
          * Information about video chat of the chat.
          */
         protected VideoChat                $videoChat,
         /**
-         * Information about pending join requests; may be null if none.
+         * True, if the chat is a forum supergroup that must be shown in the "View as topics" mode, or Saved Messages chat that must be shown in the "View as chats".
          */
-        protected ?ChatJoinRequestsInfo    $pendingJoinRequests,
-        /**
-         * Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat.
-         */
-        protected int                      $replyMarkupMessageId,
-        /**
-         * A draft of a message in the chat; may be null if none.
-         */
-        protected ?DraftMessage            $draftMessage,
-        /**
-         * Application-specific data associated with the chat. (For example, the chat scroll position or local chat notification settings can be stored here.) Persistent if the message database is used.
-         */
-        protected string                   $clientData,
+        protected bool                     $viewAsTopics,
     ) {}
 
     public static function fromArray(array $array): Chat
     {
         return new static(
-            $array['id'],
-            TdSchemaRegistry::fromArray($array['type']),
-            $array['title'],
-            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
-            $array['accent_color_id'],
-            $array['background_custom_emoji_id'],
-            isset($array['upgraded_gift_colors']) ? TdSchemaRegistry::fromArray($array['upgraded_gift_colors']) : null,
-            $array['profile_accent_color_id'],
-            $array['profile_background_custom_emoji_id'],
-            TdSchemaRegistry::fromArray($array['permissions']),
-            isset($array['last_message']) ? TdSchemaRegistry::fromArray($array['last_message']) : null,
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['positions']),
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['chat_lists']),
-            isset($array['message_sender_id']) ? TdSchemaRegistry::fromArray($array['message_sender_id']) : null,
-            isset($array['block_list']) ? TdSchemaRegistry::fromArray($array['block_list']) : null,
-            $array['has_protected_content'],
-            $array['is_translatable'],
-            $array['is_marked_as_unread'],
-            $array['view_as_topics'],
-            $array['has_scheduled_messages'],
-            $array['can_be_deleted_only_for_self'],
-            $array['can_be_deleted_for_all_users'],
-            $array['can_be_reported'],
-            $array['default_disable_notification'],
-            $array['unread_count'],
-            $array['last_read_inbox_message_id'],
-            $array['last_read_outbox_message_id'],
-            $array['unread_mention_count'],
-            $array['unread_reaction_count'],
-            TdSchemaRegistry::fromArray($array['notification_settings']),
-            TdSchemaRegistry::fromArray($array['available_reactions']),
-            $array['message_auto_delete_time'],
-            isset($array['emoji_status']) ? TdSchemaRegistry::fromArray($array['emoji_status']) : null,
-            isset($array['background']) ? TdSchemaRegistry::fromArray($array['background']) : null,
-            isset($array['theme']) ? TdSchemaRegistry::fromArray($array['theme']) : null,
-            isset($array['action_bar']) ? TdSchemaRegistry::fromArray($array['action_bar']) : null,
-            isset($array['business_bot_manage_bar']) ? TdSchemaRegistry::fromArray($array['business_bot_manage_bar']) : null,
-            TdSchemaRegistry::fromArray($array['video_chat']),
-            isset($array['pending_join_requests']) ? TdSchemaRegistry::fromArray($array['pending_join_requests']) : null,
-            $array['reply_markup_message_id'],
-            isset($array['draft_message']) ? TdSchemaRegistry::fromArray($array['draft_message']) : null,
-            $array['client_data'],
+            accentColorId                 : $array['accent_color_id'],
+            actionBar                     : (isset($array['action_bar']) ? TdSchemaRegistry::fromArray($array['action_bar']) : null),
+            availableReactions            : TdSchemaRegistry::fromArray($array['available_reactions']),
+            background                    : (isset($array['background']) ? TdSchemaRegistry::fromArray($array['background']) : null),
+            backgroundCustomEmojiId       : $array['background_custom_emoji_id'],
+            blockList                     : (isset($array['block_list']) ? TdSchemaRegistry::fromArray($array['block_list']) : null),
+            businessBotManageBar          : (isset($array['business_bot_manage_bar']) ? TdSchemaRegistry::fromArray($array['business_bot_manage_bar']) : null),
+            canBeDeletedForAllUsers       : $array['can_be_deleted_for_all_users'],
+            canBeDeletedOnlyForSelf       : $array['can_be_deleted_only_for_self'],
+            canBeReported                 : $array['can_be_reported'],
+            chatLists                     : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['chat_lists']),
+            clientData                    : $array['client_data'],
+            defaultDisableNotification    : $array['default_disable_notification'],
+            draftMessage                  : (isset($array['draft_message']) ? TdSchemaRegistry::fromArray($array['draft_message']) : null),
+            emojiStatus                   : (isset($array['emoji_status']) ? TdSchemaRegistry::fromArray($array['emoji_status']) : null),
+            hasProtectedContent           : $array['has_protected_content'],
+            hasScheduledMessages          : $array['has_scheduled_messages'],
+            id                            : $array['id'],
+            isMarkedAsUnread              : $array['is_marked_as_unread'],
+            isTranslatable                : $array['is_translatable'],
+            lastMessage                   : (isset($array['last_message']) ? TdSchemaRegistry::fromArray($array['last_message']) : null),
+            lastReadInboxMessageId        : $array['last_read_inbox_message_id'],
+            lastReadOutboxMessageId       : $array['last_read_outbox_message_id'],
+            messageAutoDeleteTime         : $array['message_auto_delete_time'],
+            messageSenderId               : (isset($array['message_sender_id']) ? TdSchemaRegistry::fromArray($array['message_sender_id']) : null),
+            notificationSettings          : TdSchemaRegistry::fromArray($array['notification_settings']),
+            pendingJoinRequests           : (isset($array['pending_join_requests']) ? TdSchemaRegistry::fromArray($array['pending_join_requests']) : null),
+            permissions                   : TdSchemaRegistry::fromArray($array['permissions']),
+            photo                         : (isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null),
+            positions                     : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['positions']),
+            profileAccentColorId          : $array['profile_accent_color_id'],
+            profileBackgroundCustomEmojiId: $array['profile_background_custom_emoji_id'],
+            replyMarkupMessageId          : $array['reply_markup_message_id'],
+            theme                         : (isset($array['theme']) ? TdSchemaRegistry::fromArray($array['theme']) : null),
+            title                         : $array['title'],
+            type                          : TdSchemaRegistry::fromArray($array['type']),
+            unreadCount                   : $array['unread_count'],
+            unreadMentionCount            : $array['unread_mention_count'],
+            unreadReactionCount           : $array['unread_reaction_count'],
+            upgradedGiftColors            : (isset($array['upgraded_gift_colors']) ? TdSchemaRegistry::fromArray($array['upgraded_gift_colors']) : null),
+            videoChat                     : TdSchemaRegistry::fromArray($array['video_chat']),
+            viewAsTopics                  : $array['view_as_topics'],
         );
     }
 
@@ -755,48 +755,48 @@ class Chat extends TdObject
     {
         return [
             '@type'                              => static::TYPE_NAME,
-            'id'                                 => $this->id,
-            'type'                               => $this->type->typeSerialize(),
-            'title'                              => $this->title,
-            'photo'                              => $this->photo ?? null,
             'accent_color_id'                    => $this->accentColorId,
+            'action_bar'                         => (null !== $this->actionBar ? $this->actionBar->jsonSerialize() : null),
+            'available_reactions'                => $this->availableReactions->jsonSerialize(),
+            'background'                         => (null !== $this->background ? $this->background->jsonSerialize() : null),
             'background_custom_emoji_id'         => $this->backgroundCustomEmojiId,
-            'upgraded_gift_colors'               => $this->upgradedGiftColors ?? null,
-            'profile_accent_color_id'            => $this->profileAccentColorId,
-            'profile_background_custom_emoji_id' => $this->profileBackgroundCustomEmojiId,
-            'permissions'                        => $this->permissions->typeSerialize(),
-            'last_message'                       => $this->lastMessage ?? null,
-            'positions'                          => array_map(static fn($x) => $x->typeSerialize(), $this->positions),
-            'chat_lists'                         => array_map(static fn($x) => $x->typeSerialize(), $this->chatLists),
-            'message_sender_id'                  => $this->messageSenderId ?? null,
-            'block_list'                         => $this->blockList ?? null,
-            'has_protected_content'              => $this->hasProtectedContent,
-            'is_translatable'                    => $this->isTranslatable,
-            'is_marked_as_unread'                => $this->isMarkedAsUnread,
-            'view_as_topics'                     => $this->viewAsTopics,
-            'has_scheduled_messages'             => $this->hasScheduledMessages,
-            'can_be_deleted_only_for_self'       => $this->canBeDeletedOnlyForSelf,
+            'block_list'                         => (null !== $this->blockList ? $this->blockList->jsonSerialize() : null),
+            'business_bot_manage_bar'            => (null !== $this->businessBotManageBar ? $this->businessBotManageBar->jsonSerialize() : null),
             'can_be_deleted_for_all_users'       => $this->canBeDeletedForAllUsers,
+            'can_be_deleted_only_for_self'       => $this->canBeDeletedOnlyForSelf,
             'can_be_reported'                    => $this->canBeReported,
+            'chat_lists'                         => array_map(static fn($x) => $x->jsonSerialize(), $this->chatLists),
+            'client_data'                        => $this->clientData,
             'default_disable_notification'       => $this->defaultDisableNotification,
-            'unread_count'                       => $this->unreadCount,
+            'draft_message'                      => (null !== $this->draftMessage ? $this->draftMessage->jsonSerialize() : null),
+            'emoji_status'                       => (null !== $this->emojiStatus ? $this->emojiStatus->jsonSerialize() : null),
+            'has_protected_content'              => $this->hasProtectedContent,
+            'has_scheduled_messages'             => $this->hasScheduledMessages,
+            'id'                                 => $this->id,
+            'is_marked_as_unread'                => $this->isMarkedAsUnread,
+            'is_translatable'                    => $this->isTranslatable,
+            'last_message'                       => (null !== $this->lastMessage ? $this->lastMessage->jsonSerialize() : null),
             'last_read_inbox_message_id'         => $this->lastReadInboxMessageId,
             'last_read_outbox_message_id'        => $this->lastReadOutboxMessageId,
+            'message_auto_delete_time'           => $this->messageAutoDeleteTime,
+            'message_sender_id'                  => (null !== $this->messageSenderId ? $this->messageSenderId->jsonSerialize() : null),
+            'notification_settings'              => $this->notificationSettings->jsonSerialize(),
+            'pending_join_requests'              => (null !== $this->pendingJoinRequests ? $this->pendingJoinRequests->jsonSerialize() : null),
+            'permissions'                        => $this->permissions->jsonSerialize(),
+            'photo'                              => (null !== $this->photo ? $this->photo->jsonSerialize() : null),
+            'positions'                          => array_map(static fn($x) => $x->jsonSerialize(), $this->positions),
+            'profile_accent_color_id'            => $this->profileAccentColorId,
+            'profile_background_custom_emoji_id' => $this->profileBackgroundCustomEmojiId,
+            'reply_markup_message_id'            => $this->replyMarkupMessageId,
+            'theme'                              => (null !== $this->theme ? $this->theme->jsonSerialize() : null),
+            'title'                              => $this->title,
+            'type'                               => $this->type->jsonSerialize(),
+            'unread_count'                       => $this->unreadCount,
             'unread_mention_count'               => $this->unreadMentionCount,
             'unread_reaction_count'              => $this->unreadReactionCount,
-            'notification_settings'              => $this->notificationSettings->typeSerialize(),
-            'available_reactions'                => $this->availableReactions->typeSerialize(),
-            'message_auto_delete_time'           => $this->messageAutoDeleteTime,
-            'emoji_status'                       => $this->emojiStatus ?? null,
-            'background'                         => $this->background ?? null,
-            'theme'                              => $this->theme ?? null,
-            'action_bar'                         => $this->actionBar ?? null,
-            'business_bot_manage_bar'            => $this->businessBotManageBar ?? null,
-            'video_chat'                         => $this->videoChat->typeSerialize(),
-            'pending_join_requests'              => $this->pendingJoinRequests ?? null,
-            'reply_markup_message_id'            => $this->replyMarkupMessageId,
-            'draft_message'                      => $this->draftMessage ?? null,
-            'client_data'                        => $this->clientData,
+            'upgraded_gift_colors'               => (null !== $this->upgradedGiftColors ? $this->upgradedGiftColors->jsonSerialize() : null),
+            'video_chat'                         => $this->videoChat->jsonSerialize(),
+            'view_as_topics'                     => $this->viewAsTopics,
         ];
     }
 }

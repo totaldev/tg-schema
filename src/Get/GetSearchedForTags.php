@@ -17,20 +17,20 @@ class GetSearchedForTags extends TdFunction
 
     public function __construct(
         /**
-         * Prefix of hashtags or cashtags to return.
-         */
-        protected string $tagPrefix,
-        /**
          * The maximum number of items to be returned.
          */
         protected int    $limit,
+        /**
+         * Prefix of hashtags or cashtags to return.
+         */
+        protected string $tagPrefix,
     ) {}
 
     public static function fromArray(array $array): GetSearchedForTags
     {
         return new static(
-            $array['tag_prefix'],
-            $array['limit'],
+            limit    : $array['limit'],
+            tagPrefix: $array['tag_prefix'],
         );
     }
 
@@ -62,8 +62,8 @@ class GetSearchedForTags extends TdFunction
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'tag_prefix' => $this->tagPrefix,
             'limit'      => $this->limit,
+            'tag_prefix' => $this->tagPrefix,
         ];
     }
 }

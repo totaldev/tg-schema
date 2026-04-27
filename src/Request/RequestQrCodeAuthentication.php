@@ -30,7 +30,7 @@ class RequestQrCodeAuthentication extends TdFunction
     public static function fromArray(array $array): RequestQrCodeAuthentication
     {
         return new static(
-            $array['other_user_ids'],
+            otherUserIds: $array['other_user_ids'],
         );
     }
 

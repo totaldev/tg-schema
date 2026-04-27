@@ -17,20 +17,20 @@ class SetBotUpdatesStatus extends TdFunction
 
     public function __construct(
         /**
-         * The number of pending updates.
-         */
-        protected int    $pendingUpdateCount,
-        /**
          * The last error message.
          */
         protected string $errorMessage,
+        /**
+         * The number of pending updates.
+         */
+        protected int    $pendingUpdateCount,
     ) {}
 
     public static function fromArray(array $array): SetBotUpdatesStatus
     {
         return new static(
-            $array['pending_update_count'],
-            $array['error_message'],
+            errorMessage      : $array['error_message'],
+            pendingUpdateCount: $array['pending_update_count'],
         );
     }
 
@@ -62,8 +62,8 @@ class SetBotUpdatesStatus extends TdFunction
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'pending_update_count' => $this->pendingUpdateCount,
             'error_message'        => $this->errorMessage,
+            'pending_update_count' => $this->pendingUpdateCount,
         ];
     }
 }

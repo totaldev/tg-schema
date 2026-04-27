@@ -20,25 +20,17 @@ class CreateNewStickerSet extends TdFunction
 
     public function __construct(
         /**
-         * Sticker set owner; ignored for regular users.
-         */
-        protected int         $userId,
-        /**
-         * Sticker set title; 1-64 characters.
-         */
-        protected string      $title,
-        /**
          * Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 0-64 characters. If empty, then the name returned by getSuggestedStickerSetName will be used automatically.
          */
         protected string      $name,
         /**
-         * Type of the stickers in the set.
-         */
-        protected StickerType $stickerType,
-        /**
          * Pass true if stickers in the sticker set must be repainted; for custom emoji sticker sets only.
          */
         protected bool        $needsRepainting,
+        /**
+         * Source of the sticker set; may be empty if unknown.
+         */
+        protected string      $source,
         /**
          * List of stickers to be added to the set; 1-200 stickers for custom emoji sticker sets, and 1-120 stickers otherwise. For TGS stickers, uploadStickerFile must be used before the sticker is shown.
          *
@@ -46,21 +38,29 @@ class CreateNewStickerSet extends TdFunction
          */
         protected array       $stickers,
         /**
-         * Source of the sticker set; may be empty if unknown.
+         * Type of the stickers in the set.
          */
-        protected string      $source,
+        protected StickerType $stickerType,
+        /**
+         * Sticker set title; 1-64 characters.
+         */
+        protected string      $title,
+        /**
+         * Sticker set owner; ignored for regular users.
+         */
+        protected int         $userId,
     ) {}
 
     public static function fromArray(array $array): CreateNewStickerSet
     {
         return new static(
-            $array['user_id'],
-            $array['title'],
-            $array['name'],
-            TdSchemaRegistry::fromArray($array['sticker_type']),
-            $array['needs_repainting'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['stickers']),
-            $array['source'],
+            name           : $array['name'],
+            needsRepainting: $array['needs_repainting'],
+            source         : $array['source'],
+            stickerType    : TdSchemaRegistry::fromArray($array['sticker_type']),
+            stickers       : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['stickers']),
+            title          : $array['title'],
+            userId         : $array['user_id'],
         );
     }
 
@@ -152,13 +152,13 @@ class CreateNewStickerSet extends TdFunction
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'user_id'          => $this->userId,
-            'title'            => $this->title,
             'name'             => $this->name,
-            'sticker_type'     => $this->stickerType->typeSerialize(),
             'needs_repainting' => $this->needsRepainting,
-            'stickers'         => array_map(static fn($x) => $x->typeSerialize(), $this->stickers),
             'source'           => $this->source,
+            'sticker_type'     => $this->stickerType->jsonSerialize(),
+            'stickers'         => array_map(static fn($x) => $x->jsonSerialize(), $this->stickers),
+            'title'            => $this->title,
+            'user_id'          => $this->userId,
         ];
     }
 }

@@ -25,7 +25,7 @@ class TextEntityTypePreCode extends TextEntityType
     public static function fromArray(array $array): TextEntityTypePreCode
     {
         return new static(
-            $array['language'],
+            language: $array['language'],
         );
     }
 

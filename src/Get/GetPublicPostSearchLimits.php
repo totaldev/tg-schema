@@ -25,7 +25,7 @@ class GetPublicPostSearchLimits extends TdFunction
     public static function fromArray(array $array): GetPublicPostSearchLimits
     {
         return new static(
-            $array['query'],
+            query: $array['query'],
         );
     }
 

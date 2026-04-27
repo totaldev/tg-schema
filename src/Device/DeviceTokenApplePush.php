@@ -29,8 +29,8 @@ class DeviceTokenApplePush extends DeviceToken
     public static function fromArray(array $array): DeviceTokenApplePush
     {
         return new static(
-            $array['device_token'],
-            $array['is_app_sandbox'],
+            deviceToken : $array['device_token'],
+            isAppSandbox: $array['is_app_sandbox'],
         );
     }
 

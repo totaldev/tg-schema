@@ -18,14 +18,6 @@ class MessageGiveawayPrizeStars extends MessageContent
 
     public function __construct(
         /**
-         * Number of Telegram Stars that were received.
-         */
-        protected int      $starCount,
-        /**
-         * Identifier of the transaction for Telegram Stars credit.
-         */
-        protected string   $transactionId,
-        /**
          * Identifier of the supergroup or channel chat, which was automatically boosted by the winners of the giveaway.
          */
         protected int      $boostedChatId,
@@ -38,9 +30,17 @@ class MessageGiveawayPrizeStars extends MessageContent
          */
         protected bool     $isUnclaimed,
         /**
+         * Number of Telegram Stars that were received.
+         */
+        protected int      $starCount,
+        /**
          * A sticker to be shown in the message; may be null if unknown.
          */
         protected ?Sticker $sticker,
+        /**
+         * Identifier of the transaction for Telegram Stars credit.
+         */
+        protected string   $transactionId,
     ) {
         parent::__construct();
     }
@@ -48,12 +48,12 @@ class MessageGiveawayPrizeStars extends MessageContent
     public static function fromArray(array $array): MessageGiveawayPrizeStars
     {
         return new static(
-            $array['star_count'],
-            $array['transaction_id'],
-            $array['boosted_chat_id'],
-            $array['giveaway_message_id'],
-            $array['is_unclaimed'],
-            isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null,
+            boostedChatId    : $array['boosted_chat_id'],
+            giveawayMessageId: $array['giveaway_message_id'],
+            isUnclaimed      : $array['is_unclaimed'],
+            starCount        : $array['star_count'],
+            sticker          : (isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null),
+            transactionId    : $array['transaction_id'],
         );
     }
 
@@ -133,12 +133,12 @@ class MessageGiveawayPrizeStars extends MessageContent
     {
         return [
             '@type'               => static::TYPE_NAME,
-            'star_count'          => $this->starCount,
-            'transaction_id'      => $this->transactionId,
             'boosted_chat_id'     => $this->boostedChatId,
             'giveaway_message_id' => $this->giveawayMessageId,
             'is_unclaimed'        => $this->isUnclaimed,
-            'sticker'             => $this->sticker ?? null,
+            'star_count'          => $this->starCount,
+            'sticker'             => (null !== $this->sticker ? $this->sticker->jsonSerialize() : null),
+            'transaction_id'      => $this->transactionId,
         ];
     }
 }

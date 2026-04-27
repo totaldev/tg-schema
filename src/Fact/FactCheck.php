@@ -19,20 +19,20 @@ class FactCheck extends TdObject
 
     public function __construct(
         /**
-         * Text of the fact-check.
-         */
-        protected FormattedText $text,
-        /**
          * A two-letter ISO 3166-1 alpha-2 country code of the country for which the fact-check is shown.
          */
         protected string        $countryCode,
+        /**
+         * Text of the fact-check.
+         */
+        protected FormattedText $text,
     ) {}
 
     public static function fromArray(array $array): FactCheck
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['text']),
-            $array['country_code'],
+            countryCode: $array['country_code'],
+            text       : TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -64,8 +64,8 @@ class FactCheck extends TdObject
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'text'         => $this->text->typeSerialize(),
             'country_code' => $this->countryCode,
+            'text'         => $this->text->jsonSerialize(),
         ];
     }
 }

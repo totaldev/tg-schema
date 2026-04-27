@@ -25,7 +25,7 @@ class CanSendMessageToUserResultUserHasPaidMessages extends CanSendMessageToUser
     public static function fromArray(array $array): CanSendMessageToUserResultUserHasPaidMessages
     {
         return new static(
-            $array['outgoing_paid_message_star_count'],
+            outgoingPaidMessageStarCount: $array['outgoing_paid_message_star_count'],
         );
     }
 

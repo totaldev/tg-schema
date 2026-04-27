@@ -29,8 +29,8 @@ class AffiliateProgramParameters extends TdObject
     public static function fromArray(array $array): AffiliateProgramParameters
     {
         return new static(
-            $array['commission_per_mille'],
-            $array['month_count'],
+            commissionPerMille: $array['commission_per_mille'],
+            monthCount        : $array['month_count'],
         );
     }
 

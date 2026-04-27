@@ -15,13 +15,13 @@ class PushMessageContentUpgradedGift extends PushMessageContent
 
     public function __construct(
         /**
-         * True, if the gift was obtained by upgrading of a previously received gift; otherwise, if is_prepaid_upgrade == false, then this is a transferred or resold gift.
-         */
-        protected bool $isUpgrade,
-        /**
          * True, if the message is about completion of prepaid upgrade of the gift instead of actual receiving of a new gift.
          */
         protected bool $isPrepaidUpgrade,
+        /**
+         * True, if the gift was obtained by upgrading of a previously received gift; otherwise, if is_prepaid_upgrade == false, then this is a transferred or resold gift.
+         */
+        protected bool $isUpgrade,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class PushMessageContentUpgradedGift extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentUpgradedGift
     {
         return new static(
-            $array['is_upgrade'],
-            $array['is_prepaid_upgrade'],
+            isPrepaidUpgrade: $array['is_prepaid_upgrade'],
+            isUpgrade       : $array['is_upgrade'],
         );
     }
 
@@ -62,8 +62,8 @@ class PushMessageContentUpgradedGift extends PushMessageContent
     {
         return [
             '@type'              => static::TYPE_NAME,
-            'is_upgrade'         => $this->isUpgrade,
             'is_prepaid_upgrade' => $this->isPrepaidUpgrade,
+            'is_upgrade'         => $this->isUpgrade,
         ];
     }
 }

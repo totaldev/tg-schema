@@ -29,8 +29,8 @@ class GetPreparedInlineMessage extends TdFunction
     public static function fromArray(array $array): GetPreparedInlineMessage
     {
         return new static(
-            $array['bot_user_id'],
-            $array['prepared_message_id'],
+            botUserId        : $array['bot_user_id'],
+            preparedMessageId: $array['prepared_message_id'],
         );
     }
 

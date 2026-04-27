@@ -30,8 +30,8 @@ class JsonObjectMember extends TdObject
     public static function fromArray(array $array): JsonObjectMember
     {
         return new static(
-            $array['key'],
-            TdSchemaRegistry::fromArray($array['value']),
+            key  : $array['key'],
+            value: TdSchemaRegistry::fromArray($array['value']),
         );
     }
 
@@ -64,7 +64,7 @@ class JsonObjectMember extends TdObject
         return [
             '@type' => static::TYPE_NAME,
             'key'   => $this->key,
-            'value' => $this->value->typeSerialize(),
+            'value' => $this->value->jsonSerialize(),
         ];
     }
 }

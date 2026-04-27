@@ -17,22 +17,22 @@ class Chats extends TdObject
 
     public function __construct(
         /**
-         * Approximate total number of chats found.
-         */
-        protected int   $totalCount,
-        /**
          * List of chat identifiers.
          *
          * @var int[]
          */
         protected array $chatIds,
+        /**
+         * Approximate total number of chats found.
+         */
+        protected int   $totalCount,
     ) {}
 
     public static function fromArray(array $array): Chats
     {
         return new static(
-            $array['total_count'],
-            $array['chat_ids'],
+            chatIds   : $array['chat_ids'],
+            totalCount: $array['total_count'],
         );
     }
 
@@ -64,8 +64,8 @@ class Chats extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'total_count' => $this->totalCount,
             'chat_ids'    => $this->chatIds,
+            'total_count' => $this->totalCount,
         ];
     }
 }

@@ -19,22 +19,6 @@ class MessageGiftedPremium extends MessageContent
 
     public function __construct(
         /**
-         * The identifier of a user that gifted Telegram Premium; 0 if the gift was anonymous or is outgoing.
-         */
-        protected int           $gifterUserId,
-        /**
-         * The identifier of a user that received Telegram Premium; 0 if the gift is incoming.
-         */
-        protected int           $receiverUserId,
-        /**
-         * Message added to the gifted Telegram Premium by the sender.
-         */
-        protected FormattedText $text,
-        /**
-         * Currency for the paid amount.
-         */
-        protected string        $currency,
-        /**
          * The paid amount, in the smallest units of the currency.
          */
         protected int           $amount,
@@ -47,13 +31,29 @@ class MessageGiftedPremium extends MessageContent
          */
         protected int           $cryptocurrencyAmount,
         /**
+         * Currency for the paid amount.
+         */
+        protected string        $currency,
+        /**
+         * The identifier of a user that gifted Telegram Premium; 0 if the gift was anonymous or is outgoing.
+         */
+        protected int           $gifterUserId,
+        /**
          * Number of months the Telegram Premium subscription will be active.
          */
         protected int           $monthCount,
         /**
+         * The identifier of a user that received Telegram Premium; 0 if the gift is incoming.
+         */
+        protected int           $receiverUserId,
+        /**
          * A sticker to be shown in the message; may be null if unknown.
          */
         protected ?Sticker      $sticker,
+        /**
+         * Message added to the gifted Telegram Premium by the sender.
+         */
+        protected FormattedText $text,
     ) {
         parent::__construct();
     }
@@ -61,15 +61,15 @@ class MessageGiftedPremium extends MessageContent
     public static function fromArray(array $array): MessageGiftedPremium
     {
         return new static(
-            $array['gifter_user_id'],
-            $array['receiver_user_id'],
-            TdSchemaRegistry::fromArray($array['text']),
-            $array['currency'],
-            $array['amount'],
-            $array['cryptocurrency'],
-            $array['cryptocurrency_amount'],
-            $array['month_count'],
-            isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null,
+            amount              : $array['amount'],
+            cryptocurrency      : $array['cryptocurrency'],
+            cryptocurrencyAmount: $array['cryptocurrency_amount'],
+            currency            : $array['currency'],
+            gifterUserId        : $array['gifter_user_id'],
+            monthCount          : $array['month_count'],
+            receiverUserId      : $array['receiver_user_id'],
+            sticker             : (isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null),
+            text                : TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -185,15 +185,15 @@ class MessageGiftedPremium extends MessageContent
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'gifter_user_id'        => $this->gifterUserId,
-            'receiver_user_id'      => $this->receiverUserId,
-            'text'                  => $this->text->typeSerialize(),
-            'currency'              => $this->currency,
             'amount'                => $this->amount,
             'cryptocurrency'        => $this->cryptocurrency,
             'cryptocurrency_amount' => $this->cryptocurrencyAmount,
+            'currency'              => $this->currency,
+            'gifter_user_id'        => $this->gifterUserId,
             'month_count'           => $this->monthCount,
-            'sticker'               => $this->sticker ?? null,
+            'receiver_user_id'      => $this->receiverUserId,
+            'sticker'               => (null !== $this->sticker ? $this->sticker->jsonSerialize() : null),
+            'text'                  => $this->text->jsonSerialize(),
         ];
     }
 }

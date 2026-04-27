@@ -25,7 +25,7 @@ class ChatTypeBasicGroup extends ChatType
     public static function fromArray(array $array): ChatTypeBasicGroup
     {
         return new static(
-            $array['basic_group_id'],
+            basicGroupId: $array['basic_group_id'],
         );
     }
 

@@ -37,10 +37,10 @@ class UpgradedGiftBackdropColors extends TdObject
     public static function fromArray(array $array): UpgradedGiftBackdropColors
     {
         return new static(
-            $array['center_color'],
-            $array['edge_color'],
-            $array['symbol_color'],
-            $array['text_color'],
+            centerColor: $array['center_color'],
+            edgeColor  : $array['edge_color'],
+            symbolColor: $array['symbol_color'],
+            textColor  : $array['text_color'],
         );
     }
 

@@ -27,10 +27,6 @@ class MessageAnimation extends MessageContent
          */
         protected FormattedText $caption,
         /**
-         * True, if the caption must be shown above the animation; otherwise, the caption must be shown below the animation.
-         */
-        protected bool          $showCaptionAboveMedia,
-        /**
          * True, if the animation preview must be covered by a spoiler animation.
          */
         protected bool          $hasSpoiler,
@@ -38,6 +34,10 @@ class MessageAnimation extends MessageContent
          * True, if the animation thumbnail must be blurred and the animation must be shown only while tapped.
          */
         protected bool          $isSecret,
+        /**
+         * True, if the caption must be shown above the animation; otherwise, the caption must be shown below the animation.
+         */
+        protected bool          $showCaptionAboveMedia,
     ) {
         parent::__construct();
     }
@@ -45,11 +45,11 @@ class MessageAnimation extends MessageContent
     public static function fromArray(array $array): MessageAnimation
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['animation']),
-            TdSchemaRegistry::fromArray($array['caption']),
-            $array['show_caption_above_media'],
-            $array['has_spoiler'],
-            $array['is_secret'],
+            animation            : TdSchemaRegistry::fromArray($array['animation']),
+            caption              : TdSchemaRegistry::fromArray($array['caption']),
+            hasSpoiler           : $array['has_spoiler'],
+            isSecret             : $array['is_secret'],
+            showCaptionAboveMedia: $array['show_caption_above_media'],
         );
     }
 
@@ -117,11 +117,11 @@ class MessageAnimation extends MessageContent
     {
         return [
             '@type'                    => static::TYPE_NAME,
-            'animation'                => $this->animation->typeSerialize(),
-            'caption'                  => $this->caption->typeSerialize(),
-            'show_caption_above_media' => $this->showCaptionAboveMedia,
+            'animation'                => $this->animation->jsonSerialize(),
+            'caption'                  => $this->caption->jsonSerialize(),
             'has_spoiler'              => $this->hasSpoiler,
             'is_secret'                => $this->isSecret,
+            'show_caption_above_media' => $this->showCaptionAboveMedia,
         ];
     }
 }

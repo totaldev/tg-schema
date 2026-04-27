@@ -30,8 +30,8 @@ class UpdateChatOnlineMemberCount extends Update
     public static function fromArray(array $array): UpdateChatOnlineMemberCount
     {
         return new static(
-            $array['chat_id'],
-            $array['online_member_count'],
+            chatId           : $array['chat_id'],
+            onlineMemberCount: $array['online_member_count'],
         );
     }
 

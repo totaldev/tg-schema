@@ -18,21 +18,21 @@ class InputInlineQueryResultPhoto extends InputInlineQueryResult
 
     public function __construct(
         /**
-         * Unique identifier of the query result.
-         */
-        protected string              $id,
-        /**
-         * Title of the result, if known.
-         */
-        protected string              $title,
-        /**
          * A short description of the result, if known.
          */
         protected string              $description,
         /**
-         * URL of the photo thumbnail, if it exists.
+         * Unique identifier of the query result.
          */
-        protected string              $thumbnailUrl,
+        protected string              $id,
+        /**
+         * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessagePhoto, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact.
+         */
+        protected InputMessageContent $inputMessageContent,
+        /**
+         * Height of the photo.
+         */
+        protected int                 $photoHeight,
         /**
          * The URL of the JPEG photo (photo size must not exceed 5MB).
          */
@@ -42,13 +42,13 @@ class InputInlineQueryResultPhoto extends InputInlineQueryResult
          */
         protected int                 $photoWidth,
         /**
-         * Height of the photo.
+         * URL of the photo thumbnail, if it exists.
          */
-        protected int                 $photoHeight,
+        protected string              $thumbnailUrl,
         /**
-         * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessagePhoto, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact.
+         * Title of the result, if known.
          */
-        protected InputMessageContent $inputMessageContent,
+        protected string              $title,
         /**
          * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null.
          */
@@ -60,15 +60,15 @@ class InputInlineQueryResultPhoto extends InputInlineQueryResult
     public static function fromArray(array $array): InputInlineQueryResultPhoto
     {
         return new static(
-            $array['id'],
-            $array['title'],
-            $array['description'],
-            $array['thumbnail_url'],
-            $array['photo_url'],
-            $array['photo_width'],
-            $array['photo_height'],
-            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
-            TdSchemaRegistry::fromArray($array['input_message_content']),
+            description        : $array['description'],
+            id                 : $array['id'],
+            inputMessageContent: TdSchemaRegistry::fromArray($array['input_message_content']),
+            photoHeight        : $array['photo_height'],
+            photoUrl           : $array['photo_url'],
+            photoWidth         : $array['photo_width'],
+            replyMarkup        : (isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null),
+            thumbnailUrl       : $array['thumbnail_url'],
+            title              : $array['title'],
         );
     }
 
@@ -184,15 +184,15 @@ class InputInlineQueryResultPhoto extends InputInlineQueryResult
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'id'                    => $this->id,
-            'title'                 => $this->title,
             'description'           => $this->description,
-            'thumbnail_url'         => $this->thumbnailUrl,
+            'id'                    => $this->id,
+            'input_message_content' => $this->inputMessageContent->jsonSerialize(),
+            'photo_height'          => $this->photoHeight,
             'photo_url'             => $this->photoUrl,
             'photo_width'           => $this->photoWidth,
-            'photo_height'          => $this->photoHeight,
-            'reply_markup'          => $this->replyMarkup ?? null,
-            'input_message_content' => $this->inputMessageContent->typeSerialize(),
+            'reply_markup'          => (null !== $this->replyMarkup ? $this->replyMarkup->jsonSerialize() : null),
+            'thumbnail_url'         => $this->thumbnailUrl,
+            'title'                 => $this->title,
         ];
     }
 }

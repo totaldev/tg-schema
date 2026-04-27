@@ -17,20 +17,20 @@ class GetSuggestedFileName extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the file.
-         */
-        protected int    $fileId,
-        /**
          * Directory in which the file is expected to be saved.
          */
         protected string $directory,
+        /**
+         * Identifier of the file.
+         */
+        protected int    $fileId,
     ) {}
 
     public static function fromArray(array $array): GetSuggestedFileName
     {
         return new static(
-            $array['file_id'],
-            $array['directory'],
+            directory: $array['directory'],
+            fileId   : $array['file_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class GetSuggestedFileName extends TdFunction
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'file_id'   => $this->fileId,
             'directory' => $this->directory,
+            'file_id'   => $this->fileId,
         ];
     }
 }

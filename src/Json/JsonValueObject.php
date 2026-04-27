@@ -29,7 +29,7 @@ class JsonValueObject extends JsonValue
     public static function fromArray(array $array): JsonValueObject
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['members']),
+            members: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['members']),
         );
     }
 
@@ -49,7 +49,7 @@ class JsonValueObject extends JsonValue
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'members' => array_map(static fn($x) => $x->typeSerialize(), $this->members),
+            'members' => array_map(static fn($x) => $x->jsonSerialize(), $this->members),
         ];
     }
 }

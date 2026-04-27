@@ -25,7 +25,7 @@ class CheckPremiumGiftCode extends TdFunction
     public static function fromArray(array $array): CheckPremiumGiftCode
     {
         return new static(
-            $array['code'],
+            code: $array['code'],
         );
     }
 

@@ -17,42 +17,6 @@ class ChatPermissions extends TdObject
 
     public function __construct(
         /**
-         * True, if the user can send text messages, contacts, giveaways, giveaway winners, invoices, locations, and venues.
-         */
-        protected bool $canSendBasicMessages,
-        /**
-         * True, if the user can send music files.
-         */
-        protected bool $canSendAudios,
-        /**
-         * True, if the user can send documents.
-         */
-        protected bool $canSendDocuments,
-        /**
-         * True, if the user can send photos.
-         */
-        protected bool $canSendPhotos,
-        /**
-         * True, if the user can send videos.
-         */
-        protected bool $canSendVideos,
-        /**
-         * True, if the user can send video notes.
-         */
-        protected bool $canSendVideoNotes,
-        /**
-         * True, if the user can send voice notes.
-         */
-        protected bool $canSendVoiceNotes,
-        /**
-         * True, if the user can send polls and checklists.
-         */
-        protected bool $canSendPolls,
-        /**
-         * True, if the user can send animations, games, stickers, and dice and use inline bots.
-         */
-        protected bool $canSendOtherMessages,
-        /**
          * True, if the user may add a link preview to their messages.
          */
         protected bool $canAddLinkPreviews,
@@ -60,6 +24,10 @@ class ChatPermissions extends TdObject
          * True, if the user can change the chat title, photo, and other settings.
          */
         protected bool $canChangeInfo,
+        /**
+         * True, if the user can create topics.
+         */
+        protected bool $canCreateTopics,
         /**
          * True, if the user can invite new users to the chat.
          */
@@ -69,28 +37,60 @@ class ChatPermissions extends TdObject
          */
         protected bool $canPinMessages,
         /**
-         * True, if the user can create topics.
+         * True, if the user can send music files.
          */
-        protected bool $canCreateTopics,
+        protected bool $canSendAudios,
+        /**
+         * True, if the user can send text messages, contacts, giveaways, giveaway winners, invoices, locations, and venues.
+         */
+        protected bool $canSendBasicMessages,
+        /**
+         * True, if the user can send documents.
+         */
+        protected bool $canSendDocuments,
+        /**
+         * True, if the user can send animations, games, stickers, and dice and use inline bots.
+         */
+        protected bool $canSendOtherMessages,
+        /**
+         * True, if the user can send photos.
+         */
+        protected bool $canSendPhotos,
+        /**
+         * True, if the user can send polls and checklists.
+         */
+        protected bool $canSendPolls,
+        /**
+         * True, if the user can send video notes.
+         */
+        protected bool $canSendVideoNotes,
+        /**
+         * True, if the user can send videos.
+         */
+        protected bool $canSendVideos,
+        /**
+         * True, if the user can send voice notes.
+         */
+        protected bool $canSendVoiceNotes,
     ) {}
 
     public static function fromArray(array $array): ChatPermissions
     {
         return new static(
-            $array['can_send_basic_messages'],
-            $array['can_send_audios'],
-            $array['can_send_documents'],
-            $array['can_send_photos'],
-            $array['can_send_videos'],
-            $array['can_send_video_notes'],
-            $array['can_send_voice_notes'],
-            $array['can_send_polls'],
-            $array['can_send_other_messages'],
-            $array['can_add_link_previews'],
-            $array['can_change_info'],
-            $array['can_invite_users'],
-            $array['can_pin_messages'],
-            $array['can_create_topics'],
+            canAddLinkPreviews  : $array['can_add_link_previews'],
+            canChangeInfo       : $array['can_change_info'],
+            canCreateTopics     : $array['can_create_topics'],
+            canInviteUsers      : $array['can_invite_users'],
+            canPinMessages      : $array['can_pin_messages'],
+            canSendAudios       : $array['can_send_audios'],
+            canSendBasicMessages: $array['can_send_basic_messages'],
+            canSendDocuments    : $array['can_send_documents'],
+            canSendOtherMessages: $array['can_send_other_messages'],
+            canSendPhotos       : $array['can_send_photos'],
+            canSendPolls        : $array['can_send_polls'],
+            canSendVideoNotes   : $array['can_send_video_notes'],
+            canSendVideos       : $array['can_send_videos'],
+            canSendVoiceNotes   : $array['can_send_voice_notes'],
         );
     }
 
@@ -266,20 +266,20 @@ class ChatPermissions extends TdObject
     {
         return [
             '@type'                   => static::TYPE_NAME,
-            'can_send_basic_messages' => $this->canSendBasicMessages,
-            'can_send_audios'         => $this->canSendAudios,
-            'can_send_documents'      => $this->canSendDocuments,
-            'can_send_photos'         => $this->canSendPhotos,
-            'can_send_videos'         => $this->canSendVideos,
-            'can_send_video_notes'    => $this->canSendVideoNotes,
-            'can_send_voice_notes'    => $this->canSendVoiceNotes,
-            'can_send_polls'          => $this->canSendPolls,
-            'can_send_other_messages' => $this->canSendOtherMessages,
             'can_add_link_previews'   => $this->canAddLinkPreviews,
             'can_change_info'         => $this->canChangeInfo,
+            'can_create_topics'       => $this->canCreateTopics,
             'can_invite_users'        => $this->canInviteUsers,
             'can_pin_messages'        => $this->canPinMessages,
-            'can_create_topics'       => $this->canCreateTopics,
+            'can_send_audios'         => $this->canSendAudios,
+            'can_send_basic_messages' => $this->canSendBasicMessages,
+            'can_send_documents'      => $this->canSendDocuments,
+            'can_send_other_messages' => $this->canSendOtherMessages,
+            'can_send_photos'         => $this->canSendPhotos,
+            'can_send_polls'          => $this->canSendPolls,
+            'can_send_video_notes'    => $this->canSendVideoNotes,
+            'can_send_videos'         => $this->canSendVideos,
+            'can_send_voice_notes'    => $this->canSendVoiceNotes,
         ];
     }
 }

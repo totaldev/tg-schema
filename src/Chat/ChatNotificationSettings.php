@@ -17,90 +17,90 @@ class ChatNotificationSettings extends TdObject
 
     public function __construct(
         /**
-         * If true, the value for the relevant type of chat or the forum chat is used instead of mute_for.
+         * If true, notifications for messages with mentions will be created as for an ordinary unread message.
          */
-        protected bool $useDefaultMuteFor,
-        /**
-         * Time left before notifications will be unmuted, in seconds.
-         */
-        protected int  $muteFor,
-        /**
-         * If true, the value for the relevant type of chat or the forum chat is used instead of sound_id.
-         */
-        protected bool $useDefaultSound,
-        /**
-         * Identifier of the notification sound to be played for messages; 0 if sound is disabled.
-         */
-        protected int  $soundId,
-        /**
-         * If true, the value for the relevant type of chat or the forum chat is used instead of show_preview.
-         */
-        protected bool $useDefaultShowPreview,
-        /**
-         * True, if message content must be displayed in notifications.
-         */
-        protected bool $showPreview,
-        /**
-         * If true, the value for the relevant type of chat is used instead of mute_stories.
-         */
-        protected bool $useDefaultMuteStories,
-        /**
-         * True, if story notifications are disabled for the chat.
-         */
-        protected bool $muteStories,
-        /**
-         * If true, the value for the relevant type of chat is used instead of story_sound_id.
-         */
-        protected bool $useDefaultStorySound,
-        /**
-         * Identifier of the notification sound to be played for stories; 0 if sound is disabled.
-         */
-        protected int  $storySoundId,
-        /**
-         * If true, the value for the relevant type of chat is used instead of show_story_poster.
-         */
-        protected bool $useDefaultShowStoryPoster,
-        /**
-         * True, if the chat that posted a story must be displayed in notifications.
-         */
-        protected bool $showStoryPoster,
-        /**
-         * If true, the value for the relevant type of chat or the forum chat is used instead of disable_pinned_message_notifications.
-         */
-        protected bool $useDefaultDisablePinnedMessageNotifications,
+        protected bool $disableMentionNotifications,
         /**
          * If true, notifications for incoming pinned messages will be created as for an ordinary unread message.
          */
         protected bool $disablePinnedMessageNotifications,
         /**
+         * Time left before notifications will be unmuted, in seconds.
+         */
+        protected int  $muteFor,
+        /**
+         * True, if story notifications are disabled for the chat.
+         */
+        protected bool $muteStories,
+        /**
+         * True, if message content must be displayed in notifications.
+         */
+        protected bool $showPreview,
+        /**
+         * True, if the chat that posted a story must be displayed in notifications.
+         */
+        protected bool $showStoryPoster,
+        /**
+         * Identifier of the notification sound to be played for messages; 0 if sound is disabled.
+         */
+        protected int  $soundId,
+        /**
+         * Identifier of the notification sound to be played for stories; 0 if sound is disabled.
+         */
+        protected int  $storySoundId,
+        /**
          * If true, the value for the relevant type of chat or the forum chat is used instead of disable_mention_notifications.
          */
         protected bool $useDefaultDisableMentionNotifications,
         /**
-         * If true, notifications for messages with mentions will be created as for an ordinary unread message.
+         * If true, the value for the relevant type of chat or the forum chat is used instead of disable_pinned_message_notifications.
          */
-        protected bool $disableMentionNotifications,
+        protected bool $useDefaultDisablePinnedMessageNotifications,
+        /**
+         * If true, the value for the relevant type of chat or the forum chat is used instead of mute_for.
+         */
+        protected bool $useDefaultMuteFor,
+        /**
+         * If true, the value for the relevant type of chat is used instead of mute_stories.
+         */
+        protected bool $useDefaultMuteStories,
+        /**
+         * If true, the value for the relevant type of chat or the forum chat is used instead of show_preview.
+         */
+        protected bool $useDefaultShowPreview,
+        /**
+         * If true, the value for the relevant type of chat is used instead of show_story_poster.
+         */
+        protected bool $useDefaultShowStoryPoster,
+        /**
+         * If true, the value for the relevant type of chat or the forum chat is used instead of sound_id.
+         */
+        protected bool $useDefaultSound,
+        /**
+         * If true, the value for the relevant type of chat is used instead of story_sound_id.
+         */
+        protected bool $useDefaultStorySound,
     ) {}
 
     public static function fromArray(array $array): ChatNotificationSettings
     {
         return new static(
-            $array['use_default_mute_for'],
-            $array['mute_for'],
-            $array['use_default_sound'],
-            $array['sound_id'],
-            $array['use_default_show_preview'],
-            $array['show_preview'],
-            $array['use_default_mute_stories'],
-            $array['mute_stories'],
-            $array['use_default_story_sound'],
-            $array['story_sound_id'],
-            $array['use_default_show_story_poster'],
-            $array['show_story_poster'],
-            $array['use_default_disable_pinned_message_notifications'],
-            $array['disable_pinned_message_notifications'],
-            $array['use_default_disable_mention_notifications'],
-            $array['disable_mention_notifications'],
+            disableMentionNotifications                : $array['disable_mention_notifications'],
+            disablePinnedMessageNotifications          : $array['disable_pinned_message_notifications'],
+            muteFor                                    : $array['mute_for'],
+            muteStories                                : $array['mute_stories'],
+            showPreview                                : $array['show_preview'],
+            showStoryPoster                            : $array['show_story_poster'],
+            soundId                                    : $array['sound_id'],
+            storySoundId                               : $array['story_sound_id'],
+            useDefaultDisableMentionNotifications      : $array['use_default_disable_mention_notifications'],
+            useDefaultDisablePinnedMessageNotifications: $array['use_default_disable_pinned_message_notifications'],
+            useDefaultMuteFor                          : $array['use_default_mute_for'],
+            useDefaultMuteStories                      : $array['use_default_mute_stories'],
+            useDefaultShowPreview                      : $array['use_default_show_preview'],
+            useDefaultShowStoryPoster                  : $array['use_default_show_story_poster'],
+            useDefaultSound                            : $array['use_default_sound'],
+            useDefaultStorySound                       : $array['use_default_story_sound'],
         );
     }
 
@@ -300,22 +300,22 @@ class ChatNotificationSettings extends TdObject
     {
         return [
             '@type'                                            => static::TYPE_NAME,
-            'use_default_mute_for'                             => $this->useDefaultMuteFor,
-            'mute_for'                                         => $this->muteFor,
-            'use_default_sound'                                => $this->useDefaultSound,
-            'sound_id'                                         => $this->soundId,
-            'use_default_show_preview'                         => $this->useDefaultShowPreview,
-            'show_preview'                                     => $this->showPreview,
-            'use_default_mute_stories'                         => $this->useDefaultMuteStories,
-            'mute_stories'                                     => $this->muteStories,
-            'use_default_story_sound'                          => $this->useDefaultStorySound,
-            'story_sound_id'                                   => $this->storySoundId,
-            'use_default_show_story_poster'                    => $this->useDefaultShowStoryPoster,
-            'show_story_poster'                                => $this->showStoryPoster,
-            'use_default_disable_pinned_message_notifications' => $this->useDefaultDisablePinnedMessageNotifications,
-            'disable_pinned_message_notifications'             => $this->disablePinnedMessageNotifications,
-            'use_default_disable_mention_notifications'        => $this->useDefaultDisableMentionNotifications,
             'disable_mention_notifications'                    => $this->disableMentionNotifications,
+            'disable_pinned_message_notifications'             => $this->disablePinnedMessageNotifications,
+            'mute_for'                                         => $this->muteFor,
+            'mute_stories'                                     => $this->muteStories,
+            'show_preview'                                     => $this->showPreview,
+            'show_story_poster'                                => $this->showStoryPoster,
+            'sound_id'                                         => $this->soundId,
+            'story_sound_id'                                   => $this->storySoundId,
+            'use_default_disable_mention_notifications'        => $this->useDefaultDisableMentionNotifications,
+            'use_default_disable_pinned_message_notifications' => $this->useDefaultDisablePinnedMessageNotifications,
+            'use_default_mute_for'                             => $this->useDefaultMuteFor,
+            'use_default_mute_stories'                         => $this->useDefaultMuteStories,
+            'use_default_show_preview'                         => $this->useDefaultShowPreview,
+            'use_default_show_story_poster'                    => $this->useDefaultShowStoryPoster,
+            'use_default_sound'                                => $this->useDefaultSound,
+            'use_default_story_sound'                          => $this->useDefaultStorySound,
         ];
     }
 }

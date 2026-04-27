@@ -25,7 +25,7 @@ class PaidReactionTypeChat extends PaidReactionType
     public static function fromArray(array $array): PaidReactionTypeChat
     {
         return new static(
-            $array['chat_id'],
+            chatId: $array['chat_id'],
         );
     }
 

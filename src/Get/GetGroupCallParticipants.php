@@ -31,8 +31,8 @@ class GetGroupCallParticipants extends TdFunction
     public static function fromArray(array $array): GetGroupCallParticipants
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['input_group_call']),
-            $array['limit'],
+            inputGroupCall: TdSchemaRegistry::fromArray($array['input_group_call']),
+            limit         : $array['limit'],
         );
     }
 
@@ -64,7 +64,7 @@ class GetGroupCallParticipants extends TdFunction
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'input_group_call' => $this->inputGroupCall->typeSerialize(),
+            'input_group_call' => $this->inputGroupCall->jsonSerialize(),
             'limit'            => $this->limit,
         ];
     }

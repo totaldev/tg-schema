@@ -30,8 +30,8 @@ class UpgradedGiftBackdropCount extends TdObject
     public static function fromArray(array $array): UpgradedGiftBackdropCount
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['backdrop']),
-            $array['total_count'],
+            backdrop  : TdSchemaRegistry::fromArray($array['backdrop']),
+            totalCount: $array['total_count'],
         );
     }
 
@@ -63,7 +63,7 @@ class UpgradedGiftBackdropCount extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'backdrop'    => $this->backdrop->typeSerialize(),
+            'backdrop'    => $this->backdrop->jsonSerialize(),
             'total_count' => $this->totalCount,
         ];
     }

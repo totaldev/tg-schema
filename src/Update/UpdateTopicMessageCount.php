@@ -22,13 +22,13 @@ class UpdateTopicMessageCount extends Update
          */
         protected int          $chatId,
         /**
-         * Identifier of the topic.
-         */
-        protected MessageTopic $topicId,
-        /**
          * Approximate number of messages in the topic.
          */
         protected int          $messageCount,
+        /**
+         * Identifier of the topic.
+         */
+        protected MessageTopic $topicId,
     ) {
         parent::__construct();
     }
@@ -36,9 +36,9 @@ class UpdateTopicMessageCount extends Update
     public static function fromArray(array $array): UpdateTopicMessageCount
     {
         return new static(
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['topic_id']),
-            $array['message_count'],
+            chatId      : $array['chat_id'],
+            messageCount: $array['message_count'],
+            topicId     : TdSchemaRegistry::fromArray($array['topic_id']),
         );
     }
 
@@ -83,8 +83,8 @@ class UpdateTopicMessageCount extends Update
         return [
             '@type'         => static::TYPE_NAME,
             'chat_id'       => $this->chatId,
-            'topic_id'      => $this->topicId->typeSerialize(),
             'message_count' => $this->messageCount,
+            'topic_id'      => $this->topicId->jsonSerialize(),
         ];
     }
 }

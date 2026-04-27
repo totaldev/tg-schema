@@ -20,6 +20,10 @@ class BanChatMember extends TdFunction
 
     public function __construct(
         /**
+         * Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups and if a chat is banned.
+         */
+        protected int           $bannedUntilDate,
+        /**
          * Chat identifier.
          */
         protected int           $chatId,
@@ -27,10 +31,6 @@ class BanChatMember extends TdFunction
          * Member identifier.
          */
         protected MessageSender $memberId,
-        /**
-         * Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups and if a chat is banned.
-         */
-        protected int           $bannedUntilDate,
         /**
          * Pass true to delete all messages in the chat for the user that is being removed. Always true for supergroups and channels.
          */
@@ -40,10 +40,10 @@ class BanChatMember extends TdFunction
     public static function fromArray(array $array): BanChatMember
     {
         return new static(
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['member_id']),
-            $array['banned_until_date'],
-            $array['revoke_messages'],
+            bannedUntilDate: $array['banned_until_date'],
+            chatId         : $array['chat_id'],
+            memberId       : TdSchemaRegistry::fromArray($array['member_id']),
+            revokeMessages : $array['revoke_messages'],
         );
     }
 
@@ -99,9 +99,9 @@ class BanChatMember extends TdFunction
     {
         return [
             '@type'             => static::TYPE_NAME,
-            'chat_id'           => $this->chatId,
-            'member_id'         => $this->memberId->typeSerialize(),
             'banned_until_date' => $this->bannedUntilDate,
+            'chat_id'           => $this->chatId,
+            'member_id'         => $this->memberId->jsonSerialize(),
             'revoke_messages'   => $this->revokeMessages,
         ];
     }

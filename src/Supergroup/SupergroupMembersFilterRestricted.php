@@ -25,7 +25,7 @@ class SupergroupMembersFilterRestricted extends SupergroupMembersFilter
     public static function fromArray(array $array): SupergroupMembersFilterRestricted
     {
         return new static(
-            $array['query'],
+            query: $array['query'],
         );
     }
 

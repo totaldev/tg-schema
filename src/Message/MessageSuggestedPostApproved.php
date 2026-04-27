@@ -18,10 +18,6 @@ class MessageSuggestedPostApproved extends MessageContent
 
     public function __construct(
         /**
-         * Identifier of the message with the suggested post; can be 0 if the message was deleted.
-         */
-        protected int                 $suggestedPostMessageId,
-        /**
          * Price of the suggested post; may be null if the post is non-paid.
          */
         protected ?SuggestedPostPrice $price,
@@ -29,6 +25,10 @@ class MessageSuggestedPostApproved extends MessageContent
          * Point in time (Unix timestamp) when the post is expected to be published.
          */
         protected int                 $sendDate,
+        /**
+         * Identifier of the message with the suggested post; can be 0 if the message was deleted.
+         */
+        protected int                 $suggestedPostMessageId,
     ) {
         parent::__construct();
     }
@@ -36,9 +36,9 @@ class MessageSuggestedPostApproved extends MessageContent
     public static function fromArray(array $array): MessageSuggestedPostApproved
     {
         return new static(
-            $array['suggested_post_message_id'],
-            isset($array['price']) ? TdSchemaRegistry::fromArray($array['price']) : null,
-            $array['send_date'],
+            price                 : (isset($array['price']) ? TdSchemaRegistry::fromArray($array['price']) : null),
+            sendDate              : $array['send_date'],
+            suggestedPostMessageId: $array['suggested_post_message_id'],
         );
     }
 
@@ -82,9 +82,9 @@ class MessageSuggestedPostApproved extends MessageContent
     {
         return [
             '@type'                     => static::TYPE_NAME,
-            'suggested_post_message_id' => $this->suggestedPostMessageId,
-            'price'                     => $this->price ?? null,
+            'price'                     => (null !== $this->price ? $this->price->jsonSerialize() : null),
             'send_date'                 => $this->sendDate,
+            'suggested_post_message_id' => $this->suggestedPostMessageId,
         ];
     }
 }

@@ -17,29 +17,25 @@ class BusinessBotRights extends TdObject
 
     public function __construct(
         /**
-         * True, if the bot can send and edit messages in the private chats that had incoming messages in the last 24 hours.
+         * True, if the bot can change gift receiving settings of the business account.
          */
-        protected bool $canReply,
-        /**
-         * True, if the bot can mark incoming private messages as read.
-         */
-        protected bool $canReadMessages,
-        /**
-         * True, if the bot can delete sent messages.
-         */
-        protected bool $canDeleteSentMessages,
+        protected bool $canChangeGiftSettings,
         /**
          * True, if the bot can delete any message.
          */
         protected bool $canDeleteAllMessages,
         /**
-         * True, if the bot can edit name of the business account.
+         * True, if the bot can delete sent messages.
          */
-        protected bool $canEditName,
+        protected bool $canDeleteSentMessages,
         /**
          * True, if the bot can edit bio of the business account.
          */
         protected bool $canEditBio,
+        /**
+         * True, if the bot can edit name of the business account.
+         */
+        protected bool $canEditName,
         /**
          * True, if the bot can edit profile photo of the business account.
          */
@@ -49,17 +45,21 @@ class BusinessBotRights extends TdObject
          */
         protected bool $canEditUsername,
         /**
-         * True, if the bot can view gifts and amount of Telegram Stars owned by the business account.
+         * True, if the bot can post, edit and delete stories.
          */
-        protected bool $canViewGiftsAndStars,
+        protected bool $canManageStories,
+        /**
+         * True, if the bot can mark incoming private messages as read.
+         */
+        protected bool $canReadMessages,
+        /**
+         * True, if the bot can send and edit messages in the private chats that had incoming messages in the last 24 hours.
+         */
+        protected bool $canReply,
         /**
          * True, if the bot can sell regular gifts received by the business account.
          */
         protected bool $canSellGifts,
-        /**
-         * True, if the bot can change gift receiving settings of the business account.
-         */
-        protected bool $canChangeGiftSettings,
         /**
          * True, if the bot can transfer and upgrade gifts received by the business account.
          */
@@ -69,28 +69,28 @@ class BusinessBotRights extends TdObject
          */
         protected bool $canTransferStars,
         /**
-         * True, if the bot can post, edit and delete stories.
+         * True, if the bot can view gifts and amount of Telegram Stars owned by the business account.
          */
-        protected bool $canManageStories,
+        protected bool $canViewGiftsAndStars,
     ) {}
 
     public static function fromArray(array $array): BusinessBotRights
     {
         return new static(
-            $array['can_reply'],
-            $array['can_read_messages'],
-            $array['can_delete_sent_messages'],
-            $array['can_delete_all_messages'],
-            $array['can_edit_name'],
-            $array['can_edit_bio'],
-            $array['can_edit_profile_photo'],
-            $array['can_edit_username'],
-            $array['can_view_gifts_and_stars'],
-            $array['can_sell_gifts'],
-            $array['can_change_gift_settings'],
-            $array['can_transfer_and_upgrade_gifts'],
-            $array['can_transfer_stars'],
-            $array['can_manage_stories'],
+            canChangeGiftSettings     : $array['can_change_gift_settings'],
+            canDeleteAllMessages      : $array['can_delete_all_messages'],
+            canDeleteSentMessages     : $array['can_delete_sent_messages'],
+            canEditBio                : $array['can_edit_bio'],
+            canEditName               : $array['can_edit_name'],
+            canEditProfilePhoto       : $array['can_edit_profile_photo'],
+            canEditUsername           : $array['can_edit_username'],
+            canManageStories          : $array['can_manage_stories'],
+            canReadMessages           : $array['can_read_messages'],
+            canReply                  : $array['can_reply'],
+            canSellGifts              : $array['can_sell_gifts'],
+            canTransferAndUpgradeGifts: $array['can_transfer_and_upgrade_gifts'],
+            canTransferStars          : $array['can_transfer_stars'],
+            canViewGiftsAndStars      : $array['can_view_gifts_and_stars'],
         );
     }
 
@@ -266,20 +266,20 @@ class BusinessBotRights extends TdObject
     {
         return [
             '@type'                          => static::TYPE_NAME,
-            'can_reply'                      => $this->canReply,
-            'can_read_messages'              => $this->canReadMessages,
-            'can_delete_sent_messages'       => $this->canDeleteSentMessages,
+            'can_change_gift_settings'       => $this->canChangeGiftSettings,
             'can_delete_all_messages'        => $this->canDeleteAllMessages,
-            'can_edit_name'                  => $this->canEditName,
+            'can_delete_sent_messages'       => $this->canDeleteSentMessages,
             'can_edit_bio'                   => $this->canEditBio,
+            'can_edit_name'                  => $this->canEditName,
             'can_edit_profile_photo'         => $this->canEditProfilePhoto,
             'can_edit_username'              => $this->canEditUsername,
-            'can_view_gifts_and_stars'       => $this->canViewGiftsAndStars,
+            'can_manage_stories'             => $this->canManageStories,
+            'can_read_messages'              => $this->canReadMessages,
+            'can_reply'                      => $this->canReply,
             'can_sell_gifts'                 => $this->canSellGifts,
-            'can_change_gift_settings'       => $this->canChangeGiftSettings,
             'can_transfer_and_upgrade_gifts' => $this->canTransferAndUpgradeGifts,
             'can_transfer_stars'             => $this->canTransferStars,
-            'can_manage_stories'             => $this->canManageStories,
+            'can_view_gifts_and_stars'       => $this->canViewGiftsAndStars,
         ];
     }
 }

@@ -28,7 +28,7 @@ class ChatThemeGift extends ChatTheme
     public static function fromArray(array $array): ChatThemeGift
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['gift_theme']),
+            giftTheme: TdSchemaRegistry::fromArray($array['gift_theme']),
         );
     }
 
@@ -48,7 +48,7 @@ class ChatThemeGift extends ChatTheme
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'gift_theme' => $this->giftTheme->typeSerialize(),
+            'gift_theme' => $this->giftTheme->jsonSerialize(),
         ];
     }
 }

@@ -18,22 +18,22 @@ class BankCardInfo extends TdObject
 
     public function __construct(
         /**
-         * Title of the bank card description.
-         */
-        protected string $title,
-        /**
          * Actions that can be done with the bank card number.
          *
          * @var BankCardActionOpenUrl[]
          */
         protected array  $actions,
+        /**
+         * Title of the bank card description.
+         */
+        protected string $title,
     ) {}
 
     public static function fromArray(array $array): BankCardInfo
     {
         return new static(
-            $array['title'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['actions']),
+            actions: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['actions']),
+            title  : $array['title'],
         );
     }
 
@@ -65,8 +65,8 @@ class BankCardInfo extends TdObject
     {
         return [
             '@type'   => static::TYPE_NAME,
+            'actions' => array_map(static fn($x) => $x->jsonSerialize(), $this->actions),
             'title'   => $this->title,
-            'actions' => array_map(static fn($x) => $x->typeSerialize(), $this->actions),
         ];
     }
 }

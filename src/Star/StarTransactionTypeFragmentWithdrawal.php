@@ -28,7 +28,7 @@ class StarTransactionTypeFragmentWithdrawal extends StarTransactionType
     public static function fromArray(array $array): StarTransactionTypeFragmentWithdrawal
     {
         return new static(
-            isset($array['withdrawal_state']) ? TdSchemaRegistry::fromArray($array['withdrawal_state']) : null,
+            withdrawalState: (isset($array['withdrawal_state']) ? TdSchemaRegistry::fromArray($array['withdrawal_state']) : null),
         );
     }
 
@@ -48,7 +48,7 @@ class StarTransactionTypeFragmentWithdrawal extends StarTransactionType
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'withdrawal_state' => $this->withdrawalState ?? null,
+            'withdrawal_state' => (null !== $this->withdrawalState ? $this->withdrawalState->jsonSerialize() : null),
         ];
     }
 }

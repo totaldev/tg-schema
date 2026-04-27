@@ -15,10 +15,6 @@ class PushMessageContentChatAddMembers extends PushMessageContent
 
     public function __construct(
         /**
-         * Name of the added member.
-         */
-        protected string $memberName,
-        /**
          * True, if the current user was added to the group.
          */
         protected bool   $isCurrentUser,
@@ -26,6 +22,10 @@ class PushMessageContentChatAddMembers extends PushMessageContent
          * True, if the user has returned to the group themselves.
          */
         protected bool   $isReturned,
+        /**
+         * Name of the added member.
+         */
+        protected string $memberName,
     ) {
         parent::__construct();
     }
@@ -33,9 +33,9 @@ class PushMessageContentChatAddMembers extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentChatAddMembers
     {
         return new static(
-            $array['member_name'],
-            $array['is_current_user'],
-            $array['is_returned'],
+            isCurrentUser: $array['is_current_user'],
+            isReturned   : $array['is_returned'],
+            memberName   : $array['member_name'],
         );
     }
 
@@ -79,9 +79,9 @@ class PushMessageContentChatAddMembers extends PushMessageContent
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'member_name'     => $this->memberName,
             'is_current_user' => $this->isCurrentUser,
             'is_returned'     => $this->isReturned,
+            'member_name'     => $this->memberName,
         ];
     }
 }

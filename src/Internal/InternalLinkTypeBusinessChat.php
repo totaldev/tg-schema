@@ -26,7 +26,7 @@ class InternalLinkTypeBusinessChat extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeBusinessChat
     {
         return new static(
-            $array['link_name'],
+            linkName: $array['link_name'],
         );
     }
 

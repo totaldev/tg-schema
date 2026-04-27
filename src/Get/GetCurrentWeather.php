@@ -27,7 +27,7 @@ class GetCurrentWeather extends TdFunction
     public static function fromArray(array $array): GetCurrentWeather
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['location']),
+            location: TdSchemaRegistry::fromArray($array['location']),
         );
     }
 
@@ -47,7 +47,7 @@ class GetCurrentWeather extends TdFunction
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'location' => $this->location->typeSerialize(),
+            'location' => $this->location->jsonSerialize(),
         ];
     }
 }

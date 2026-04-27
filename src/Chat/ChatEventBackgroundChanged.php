@@ -17,13 +17,13 @@ class ChatEventBackgroundChanged extends ChatEventAction
 
     public function __construct(
         /**
-         * Previous background; may be null if none.
-         */
-        protected ?ChatBackground $oldBackground,
-        /**
          * New background; may be null if none.
          */
         protected ?ChatBackground $newBackground,
+        /**
+         * Previous background; may be null if none.
+         */
+        protected ?ChatBackground $oldBackground,
     ) {
         parent::__construct();
     }
@@ -31,8 +31,8 @@ class ChatEventBackgroundChanged extends ChatEventAction
     public static function fromArray(array $array): ChatEventBackgroundChanged
     {
         return new static(
-            isset($array['old_background']) ? TdSchemaRegistry::fromArray($array['old_background']) : null,
-            isset($array['new_background']) ? TdSchemaRegistry::fromArray($array['new_background']) : null,
+            newBackground: (isset($array['new_background']) ? TdSchemaRegistry::fromArray($array['new_background']) : null),
+            oldBackground: (isset($array['old_background']) ? TdSchemaRegistry::fromArray($array['old_background']) : null),
         );
     }
 
@@ -64,8 +64,8 @@ class ChatEventBackgroundChanged extends ChatEventAction
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'old_background' => $this->oldBackground ?? null,
-            'new_background' => $this->newBackground ?? null,
+            'new_background' => (null !== $this->newBackground ? $this->newBackground->jsonSerialize() : null),
+            'old_background' => (null !== $this->oldBackground ? $this->oldBackground->jsonSerialize() : null),
         ];
     }
 }

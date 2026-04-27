@@ -30,8 +30,8 @@ class DeleteAllRevokedChatInviteLinks extends TdFunction
     public static function fromArray(array $array): DeleteAllRevokedChatInviteLinks
     {
         return new static(
-            $array['chat_id'],
-            $array['creator_user_id'],
+            chatId       : $array['chat_id'],
+            creatorUserId: $array['creator_user_id'],
         );
     }
 

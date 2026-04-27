@@ -15,15 +15,15 @@ class UpdateAnimationSearchParameters extends Update
 
     public function __construct(
         /**
-         * Name of the animation search provider.
-         */
-        protected string $provider,
-        /**
          * The new list of emojis suggested for searching.
          *
          * @var string[]
          */
         protected array  $emojis,
+        /**
+         * Name of the animation search provider.
+         */
+        protected string $provider,
     ) {
         parent::__construct();
     }
@@ -31,8 +31,8 @@ class UpdateAnimationSearchParameters extends Update
     public static function fromArray(array $array): UpdateAnimationSearchParameters
     {
         return new static(
-            $array['provider'],
-            $array['emojis'],
+            emojis  : $array['emojis'],
+            provider: $array['provider'],
         );
     }
 
@@ -64,8 +64,8 @@ class UpdateAnimationSearchParameters extends Update
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'provider' => $this->provider,
             'emojis'   => $this->emojis,
+            'provider' => $this->provider,
         ];
     }
 }

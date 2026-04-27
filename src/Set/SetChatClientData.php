@@ -29,8 +29,8 @@ class SetChatClientData extends TdFunction
     public static function fromArray(array $array): SetChatClientData
     {
         return new static(
-            $array['chat_id'],
-            $array['client_data'],
+            chatId    : $array['chat_id'],
+            clientData: $array['client_data'],
         );
     }
 

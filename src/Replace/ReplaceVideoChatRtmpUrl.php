@@ -25,7 +25,7 @@ class ReplaceVideoChatRtmpUrl extends TdFunction
     public static function fromArray(array $array): ReplaceVideoChatRtmpUrl
     {
         return new static(
-            $array['chat_id'],
+            chatId: $array['chat_id'],
         );
     }
 

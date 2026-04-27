@@ -29,8 +29,8 @@ class ForumTopicIcon extends TdObject
     public static function fromArray(array $array): ForumTopicIcon
     {
         return new static(
-            $array['color'],
-            $array['custom_emoji_id'],
+            color        : $array['color'],
+            customEmojiId: $array['custom_emoji_id'],
         );
     }
 

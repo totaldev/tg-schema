@@ -25,7 +25,7 @@ class CanTransferOwnershipResultSessionTooFresh extends CanTransferOwnershipResu
     public static function fromArray(array $array): CanTransferOwnershipResultSessionTooFresh
     {
         return new static(
-            $array['retry_after'],
+            retryAfter: $array['retry_after'],
         );
     }
 

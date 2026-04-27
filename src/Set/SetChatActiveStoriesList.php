@@ -31,8 +31,8 @@ class SetChatActiveStoriesList extends TdFunction
     public static function fromArray(array $array): SetChatActiveStoriesList
     {
         return new static(
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['story_list']),
+            chatId   : $array['chat_id'],
+            storyList: TdSchemaRegistry::fromArray($array['story_list']),
         );
     }
 
@@ -65,7 +65,7 @@ class SetChatActiveStoriesList extends TdFunction
         return [
             '@type'      => static::TYPE_NAME,
             'chat_id'    => $this->chatId,
-            'story_list' => $this->storyList->typeSerialize(),
+            'story_list' => $this->storyList->jsonSerialize(),
         ];
     }
 }

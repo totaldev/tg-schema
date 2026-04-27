@@ -15,14 +15,6 @@ class ChatEventProfileAccentColorChanged extends ChatEventAction
 
     public function __construct(
         /**
-         * Previous identifier of chat's profile accent color; -1 if none.
-         */
-        protected int $oldProfileAccentColorId,
-        /**
-         * Previous identifier of the custom emoji; 0 if none.
-         */
-        protected int $oldProfileBackgroundCustomEmojiId,
-        /**
          * New identifier of chat's profile accent color; -1 if none.
          */
         protected int $newProfileAccentColorId,
@@ -30,6 +22,14 @@ class ChatEventProfileAccentColorChanged extends ChatEventAction
          * New identifier of the custom emoji; 0 if none.
          */
         protected int $newProfileBackgroundCustomEmojiId,
+        /**
+         * Previous identifier of chat's profile accent color; -1 if none.
+         */
+        protected int $oldProfileAccentColorId,
+        /**
+         * Previous identifier of the custom emoji; 0 if none.
+         */
+        protected int $oldProfileBackgroundCustomEmojiId,
     ) {
         parent::__construct();
     }
@@ -37,10 +37,10 @@ class ChatEventProfileAccentColorChanged extends ChatEventAction
     public static function fromArray(array $array): ChatEventProfileAccentColorChanged
     {
         return new static(
-            $array['old_profile_accent_color_id'],
-            $array['old_profile_background_custom_emoji_id'],
-            $array['new_profile_accent_color_id'],
-            $array['new_profile_background_custom_emoji_id'],
+            newProfileAccentColorId          : $array['new_profile_accent_color_id'],
+            newProfileBackgroundCustomEmojiId: $array['new_profile_background_custom_emoji_id'],
+            oldProfileAccentColorId          : $array['old_profile_accent_color_id'],
+            oldProfileBackgroundCustomEmojiId: $array['old_profile_background_custom_emoji_id'],
         );
     }
 
@@ -96,10 +96,10 @@ class ChatEventProfileAccentColorChanged extends ChatEventAction
     {
         return [
             '@type'                                  => static::TYPE_NAME,
-            'old_profile_accent_color_id'            => $this->oldProfileAccentColorId,
-            'old_profile_background_custom_emoji_id' => $this->oldProfileBackgroundCustomEmojiId,
             'new_profile_accent_color_id'            => $this->newProfileAccentColorId,
             'new_profile_background_custom_emoji_id' => $this->newProfileBackgroundCustomEmojiId,
+            'old_profile_accent_color_id'            => $this->oldProfileAccentColorId,
+            'old_profile_background_custom_emoji_id' => $this->oldProfileBackgroundCustomEmojiId,
         ];
     }
 }

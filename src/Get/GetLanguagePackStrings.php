@@ -17,22 +17,22 @@ class GetLanguagePackStrings extends TdFunction
 
     public function __construct(
         /**
-         * Language pack identifier of the strings to be returned.
-         */
-        protected string $languagePackId,
-        /**
          * Language pack keys of the strings to be returned; leave empty to request all available strings.
          *
          * @var string[]
          */
         protected array  $keys,
+        /**
+         * Language pack identifier of the strings to be returned.
+         */
+        protected string $languagePackId,
     ) {}
 
     public static function fromArray(array $array): GetLanguagePackStrings
     {
         return new static(
-            $array['language_pack_id'],
-            $array['keys'],
+            keys          : $array['keys'],
+            languagePackId: $array['language_pack_id'],
         );
     }
 
@@ -64,8 +64,8 @@ class GetLanguagePackStrings extends TdFunction
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'language_pack_id' => $this->languagePackId,
             'keys'             => $this->keys,
+            'language_pack_id' => $this->languagePackId,
         ];
     }
 }

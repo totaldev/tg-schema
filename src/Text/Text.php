@@ -25,7 +25,7 @@ class Text extends TdObject
     public static function fromArray(array $array): Text
     {
         return new static(
-            $array['text'],
+            text: $array['text'],
         );
     }
 

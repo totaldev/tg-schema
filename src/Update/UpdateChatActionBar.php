@@ -18,13 +18,13 @@ class UpdateChatActionBar extends Update
 
     public function __construct(
         /**
-         * Chat identifier.
-         */
-        protected int            $chatId,
-        /**
          * The new value of the action bar; may be null.
          */
         protected ?ChatActionBar $actionBar,
+        /**
+         * Chat identifier.
+         */
+        protected int            $chatId,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class UpdateChatActionBar extends Update
     public static function fromArray(array $array): UpdateChatActionBar
     {
         return new static(
-            $array['chat_id'],
-            isset($array['action_bar']) ? TdSchemaRegistry::fromArray($array['action_bar']) : null,
+            actionBar: (isset($array['action_bar']) ? TdSchemaRegistry::fromArray($array['action_bar']) : null),
+            chatId   : $array['chat_id'],
         );
     }
 
@@ -65,8 +65,8 @@ class UpdateChatActionBar extends Update
     {
         return [
             '@type'      => static::TYPE_NAME,
+            'action_bar' => (null !== $this->actionBar ? $this->actionBar->jsonSerialize() : null),
             'chat_id'    => $this->chatId,
-            'action_bar' => $this->actionBar ?? null,
         ];
     }
 }

@@ -22,13 +22,13 @@ class NetworkStatisticsEntryFile extends NetworkStatisticsEntry
          */
         protected NetworkType $networkType,
         /**
-         * Total number of bytes sent.
-         */
-        protected int         $sentBytes,
-        /**
          * Total number of bytes received.
          */
         protected int         $receivedBytes,
+        /**
+         * Total number of bytes sent.
+         */
+        protected int         $sentBytes,
         /**
          * Type of the file the data is part of; pass null if the data isn't related to files.
          */
@@ -40,10 +40,10 @@ class NetworkStatisticsEntryFile extends NetworkStatisticsEntry
     public static function fromArray(array $array): NetworkStatisticsEntryFile
     {
         return new static(
-            isset($array['file_type']) ? TdSchemaRegistry::fromArray($array['file_type']) : null,
-            TdSchemaRegistry::fromArray($array['network_type']),
-            $array['sent_bytes'],
-            $array['received_bytes'],
+            fileType     : (isset($array['file_type']) ? TdSchemaRegistry::fromArray($array['file_type']) : null),
+            networkType  : TdSchemaRegistry::fromArray($array['network_type']),
+            receivedBytes: $array['received_bytes'],
+            sentBytes    : $array['sent_bytes'],
         );
     }
 
@@ -99,10 +99,10 @@ class NetworkStatisticsEntryFile extends NetworkStatisticsEntry
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'file_type'      => $this->fileType ?? null,
-            'network_type'   => $this->networkType->typeSerialize(),
-            'sent_bytes'     => $this->sentBytes,
+            'file_type'      => (null !== $this->fileType ? $this->fileType->jsonSerialize() : null),
+            'network_type'   => $this->networkType->jsonSerialize(),
             'received_bytes' => $this->receivedBytes,
+            'sent_bytes'     => $this->sentBytes,
         ];
     }
 }

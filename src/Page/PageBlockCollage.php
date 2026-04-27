@@ -17,15 +17,15 @@ class PageBlockCollage extends PageBlock
 
     public function __construct(
         /**
+         * Block caption.
+         */
+        protected PageBlockCaption $caption,
+        /**
          * Collage item contents.
          *
          * @var PageBlock[]
          */
         protected array            $pageBlocks,
-        /**
-         * Block caption.
-         */
-        protected PageBlockCaption $caption,
     ) {
         parent::__construct();
     }
@@ -33,8 +33,8 @@ class PageBlockCollage extends PageBlock
     public static function fromArray(array $array): PageBlockCollage
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['page_blocks']),
-            TdSchemaRegistry::fromArray($array['caption']),
+            caption   : TdSchemaRegistry::fromArray($array['caption']),
+            pageBlocks: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['page_blocks']),
         );
     }
 
@@ -66,8 +66,8 @@ class PageBlockCollage extends PageBlock
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'page_blocks' => array_map(static fn($x) => $x->typeSerialize(), $this->pageBlocks),
-            'caption'     => $this->caption->typeSerialize(),
+            'caption'     => $this->caption->jsonSerialize(),
+            'page_blocks' => array_map(static fn($x) => $x->jsonSerialize(), $this->pageBlocks),
         ];
     }
 }

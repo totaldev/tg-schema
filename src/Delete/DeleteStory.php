@@ -17,20 +17,20 @@ class DeleteStory extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the chat that posted the story.
-         */
-        protected int $storyPosterChatId,
-        /**
          * Identifier of the story to delete.
          */
         protected int $storyId,
+        /**
+         * Identifier of the chat that posted the story.
+         */
+        protected int $storyPosterChatId,
     ) {}
 
     public static function fromArray(array $array): DeleteStory
     {
         return new static(
-            $array['story_poster_chat_id'],
-            $array['story_id'],
+            storyId          : $array['story_id'],
+            storyPosterChatId: $array['story_poster_chat_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class DeleteStory extends TdFunction
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'story_poster_chat_id' => $this->storyPosterChatId,
             'story_id'             => $this->storyId,
+            'story_poster_chat_id' => $this->storyPosterChatId,
         ];
     }
 }

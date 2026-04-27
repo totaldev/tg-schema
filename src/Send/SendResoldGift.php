@@ -37,9 +37,9 @@ class SendResoldGift extends TdFunction
     public static function fromArray(array $array): SendResoldGift
     {
         return new static(
-            $array['gift_name'],
-            TdSchemaRegistry::fromArray($array['owner_id']),
-            TdSchemaRegistry::fromArray($array['price']),
+            giftName: $array['gift_name'],
+            ownerId : TdSchemaRegistry::fromArray($array['owner_id']),
+            price   : TdSchemaRegistry::fromArray($array['price']),
         );
     }
 
@@ -84,8 +84,8 @@ class SendResoldGift extends TdFunction
         return [
             '@type'     => static::TYPE_NAME,
             'gift_name' => $this->giftName,
-            'owner_id'  => $this->ownerId->typeSerialize(),
-            'price'     => $this->price->typeSerialize(),
+            'owner_id'  => $this->ownerId->jsonSerialize(),
+            'price'     => $this->price->jsonSerialize(),
         ];
     }
 }

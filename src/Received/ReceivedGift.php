@@ -21,17 +21,39 @@ class ReceivedGift extends TdObject
 
     public function __construct(
         /**
-         * Unique identifier of the received gift for the current user; only for the receiver of the gift.
+         * True, if the gift is an upgraded gift that can be transferred to another owner; only for the receiver of the gift.
          */
-        protected string         $receivedGiftId,
+        protected bool           $canBeTransferred,
         /**
-         * Identifier of a user or a chat that sent the gift; may be null if unknown.
+         * True, if the gift is a regular gift that can be upgraded to a unique gift; only for the receiver of the gift.
          */
-        protected ?MessageSender $senderId,
+        protected bool           $canBeUpgraded,
         /**
-         * Message added to the gift.
+         * Identifiers of collections to which the gift is added; only for the receiver of the gift.
+         *
+         * @var int[]
          */
-        protected FormattedText  $text,
+        protected array          $collectionIds,
+        /**
+         * Point in time (Unix timestamp) when the gift was sent.
+         */
+        protected int            $date,
+        /**
+         * Number of Telegram Stars that must be paid to drop original details of the upgraded gift; 0 if not available; only for the receiver of the gift.
+         */
+        protected int            $dropOriginalDetailsStarCount,
+        /**
+         * Point in time (Unix timestamp) when the upgraded gift can be transferred to the TON blockchain as an NFT; can be in the past; 0 if NFT export isn't possible; only for the receiver of the gift.
+         */
+        protected int            $exportDate,
+        /**
+         * The gift.
+         */
+        protected SentGift       $gift,
+        /**
+         * True, if the gift is pinned to the top of the chat's profile page.
+         */
+        protected bool           $isPinned,
         /**
          * True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone are able to see them.
          */
@@ -41,97 +63,75 @@ class ReceivedGift extends TdObject
          */
         protected bool           $isSaved,
         /**
-         * True, if the gift is pinned to the top of the chat's profile page.
-         */
-        protected bool           $isPinned,
-        /**
-         * True, if the gift is a regular gift that can be upgraded to a unique gift; only for the receiver of the gift.
-         */
-        protected bool           $canBeUpgraded,
-        /**
-         * True, if the gift is an upgraded gift that can be transferred to another owner; only for the receiver of the gift.
-         */
-        protected bool           $canBeTransferred,
-        /**
-         * True, if the gift was refunded and isn't available anymore.
-         */
-        protected bool           $wasRefunded,
-        /**
-         * Point in time (Unix timestamp) when the gift was sent.
-         */
-        protected int            $date,
-        /**
-         * The gift.
-         */
-        protected SentGift       $gift,
-        /**
-         * Identifiers of collections to which the gift is added; only for the receiver of the gift.
-         *
-         * @var int[]
-         */
-        protected array          $collectionIds,
-        /**
-         * Number of Telegram Stars that can be claimed by the receiver instead of the regular gift; 0 if the gift can't be sold by the current user.
-         */
-        protected int            $sellStarCount,
-        /**
-         * Number of Telegram Stars that were paid by the sender for the ability to upgrade the gift.
-         */
-        protected int            $prepaidUpgradeStarCount,
-        /**
          * True, if the upgrade was bought after the gift was sent. In this case, prepaid upgrade cost must not be added to the gift cost.
          */
         protected bool           $isUpgradeSeparate,
-        /**
-         * Number of Telegram Stars that must be paid to transfer the upgraded gift; only for the receiver of the gift.
-         */
-        protected int            $transferStarCount,
-        /**
-         * Number of Telegram Stars that must be paid to drop original details of the upgraded gift; 0 if not available; only for the receiver of the gift.
-         */
-        protected int            $dropOriginalDetailsStarCount,
-        /**
-         * Point in time (Unix timestamp) when the gift can be transferred to another owner; can be in the past; 0 if the gift can be transferred immediately or transfer isn't possible; only for the receiver of the gift.
-         */
-        protected int            $nextTransferDate,
         /**
          * Point in time (Unix timestamp) when the gift can be resold to another user; can be in the past; 0 if the gift can't be resold; only for the receiver of the gift.
          */
         protected int            $nextResaleDate,
         /**
-         * Point in time (Unix timestamp) when the upgraded gift can be transferred to the TON blockchain as an NFT; can be in the past; 0 if NFT export isn't possible; only for the receiver of the gift.
+         * Point in time (Unix timestamp) when the gift can be transferred to another owner; can be in the past; 0 if the gift can be transferred immediately or transfer isn't possible; only for the receiver of the gift.
          */
-        protected int            $exportDate,
+        protected int            $nextTransferDate,
         /**
          * If non-empty, then the user can pay for an upgrade of the gift using buyGiftUpgrade.
          */
         protected string         $prepaidUpgradeHash,
+        /**
+         * Number of Telegram Stars that were paid by the sender for the ability to upgrade the gift.
+         */
+        protected int            $prepaidUpgradeStarCount,
+        /**
+         * Unique identifier of the received gift for the current user; only for the receiver of the gift.
+         */
+        protected string         $receivedGiftId,
+        /**
+         * Number of Telegram Stars that can be claimed by the receiver instead of the regular gift; 0 if the gift can't be sold by the current user.
+         */
+        protected int            $sellStarCount,
+        /**
+         * Identifier of a user or a chat that sent the gift; may be null if unknown.
+         */
+        protected ?MessageSender $senderId,
+        /**
+         * Message added to the gift.
+         */
+        protected FormattedText  $text,
+        /**
+         * Number of Telegram Stars that must be paid to transfer the upgraded gift; only for the receiver of the gift.
+         */
+        protected int            $transferStarCount,
+        /**
+         * True, if the gift was refunded and isn't available anymore.
+         */
+        protected bool           $wasRefunded,
     ) {}
 
     public static function fromArray(array $array): ReceivedGift
     {
         return new static(
-            $array['received_gift_id'],
-            isset($array['sender_id']) ? TdSchemaRegistry::fromArray($array['sender_id']) : null,
-            TdSchemaRegistry::fromArray($array['text']),
-            $array['is_private'],
-            $array['is_saved'],
-            $array['is_pinned'],
-            $array['can_be_upgraded'],
-            $array['can_be_transferred'],
-            $array['was_refunded'],
-            $array['date'],
-            TdSchemaRegistry::fromArray($array['gift']),
-            $array['collection_ids'],
-            $array['sell_star_count'],
-            $array['prepaid_upgrade_star_count'],
-            $array['is_upgrade_separate'],
-            $array['transfer_star_count'],
-            $array['drop_original_details_star_count'],
-            $array['next_transfer_date'],
-            $array['next_resale_date'],
-            $array['export_date'],
-            $array['prepaid_upgrade_hash'],
+            canBeTransferred            : $array['can_be_transferred'],
+            canBeUpgraded               : $array['can_be_upgraded'],
+            collectionIds               : $array['collection_ids'],
+            date                        : $array['date'],
+            dropOriginalDetailsStarCount: $array['drop_original_details_star_count'],
+            exportDate                  : $array['export_date'],
+            gift                        : TdSchemaRegistry::fromArray($array['gift']),
+            isPinned                    : $array['is_pinned'],
+            isPrivate                   : $array['is_private'],
+            isSaved                     : $array['is_saved'],
+            isUpgradeSeparate           : $array['is_upgrade_separate'],
+            nextResaleDate              : $array['next_resale_date'],
+            nextTransferDate            : $array['next_transfer_date'],
+            prepaidUpgradeHash          : $array['prepaid_upgrade_hash'],
+            prepaidUpgradeStarCount     : $array['prepaid_upgrade_star_count'],
+            receivedGiftId              : $array['received_gift_id'],
+            sellStarCount               : $array['sell_star_count'],
+            senderId                    : (isset($array['sender_id']) ? TdSchemaRegistry::fromArray($array['sender_id']) : null),
+            text                        : TdSchemaRegistry::fromArray($array['text']),
+            transferStarCount           : $array['transfer_star_count'],
+            wasRefunded                 : $array['was_refunded'],
         );
     }
 
@@ -391,27 +391,27 @@ class ReceivedGift extends TdObject
     {
         return [
             '@type'                            => static::TYPE_NAME,
-            'received_gift_id'                 => $this->receivedGiftId,
-            'sender_id'                        => $this->senderId ?? null,
-            'text'                             => $this->text->typeSerialize(),
+            'can_be_transferred'               => $this->canBeTransferred,
+            'can_be_upgraded'                  => $this->canBeUpgraded,
+            'collection_ids'                   => $this->collectionIds,
+            'date'                             => $this->date,
+            'drop_original_details_star_count' => $this->dropOriginalDetailsStarCount,
+            'export_date'                      => $this->exportDate,
+            'gift'                             => $this->gift->jsonSerialize(),
+            'is_pinned'                        => $this->isPinned,
             'is_private'                       => $this->isPrivate,
             'is_saved'                         => $this->isSaved,
-            'is_pinned'                        => $this->isPinned,
-            'can_be_upgraded'                  => $this->canBeUpgraded,
-            'can_be_transferred'               => $this->canBeTransferred,
-            'was_refunded'                     => $this->wasRefunded,
-            'date'                             => $this->date,
-            'gift'                             => $this->gift->typeSerialize(),
-            'collection_ids'                   => $this->collectionIds,
-            'sell_star_count'                  => $this->sellStarCount,
-            'prepaid_upgrade_star_count'       => $this->prepaidUpgradeStarCount,
             'is_upgrade_separate'              => $this->isUpgradeSeparate,
-            'transfer_star_count'              => $this->transferStarCount,
-            'drop_original_details_star_count' => $this->dropOriginalDetailsStarCount,
-            'next_transfer_date'               => $this->nextTransferDate,
             'next_resale_date'                 => $this->nextResaleDate,
-            'export_date'                      => $this->exportDate,
+            'next_transfer_date'               => $this->nextTransferDate,
             'prepaid_upgrade_hash'             => $this->prepaidUpgradeHash,
+            'prepaid_upgrade_star_count'       => $this->prepaidUpgradeStarCount,
+            'received_gift_id'                 => $this->receivedGiftId,
+            'sell_star_count'                  => $this->sellStarCount,
+            'sender_id'                        => (null !== $this->senderId ? $this->senderId->jsonSerialize() : null),
+            'text'                             => $this->text->jsonSerialize(),
+            'transfer_star_count'              => $this->transferStarCount,
+            'was_refunded'                     => $this->wasRefunded,
         ];
     }
 }

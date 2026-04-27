@@ -21,21 +21,21 @@ class GetMessageEmbeddingCode extends TdFunction
          */
         protected int  $chatId,
         /**
-         * Identifier of the message.
-         */
-        protected int  $messageId,
-        /**
          * Pass true to return an HTML code for embedding of the whole media album.
          */
         protected bool $forAlbum,
+        /**
+         * Identifier of the message.
+         */
+        protected int  $messageId,
     ) {}
 
     public static function fromArray(array $array): GetMessageEmbeddingCode
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            $array['for_album'],
+            chatId   : $array['chat_id'],
+            forAlbum : $array['for_album'],
+            messageId: $array['message_id'],
         );
     }
 
@@ -80,8 +80,8 @@ class GetMessageEmbeddingCode extends TdFunction
         return [
             '@type'      => static::TYPE_NAME,
             'chat_id'    => $this->chatId,
-            'message_id' => $this->messageId,
             'for_album'  => $this->forAlbum,
+            'message_id' => $this->messageId,
         ];
     }
 }

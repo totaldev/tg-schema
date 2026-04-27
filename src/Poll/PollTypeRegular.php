@@ -25,7 +25,7 @@ class PollTypeRegular extends PollType
     public static function fromArray(array $array): PollTypeRegular
     {
         return new static(
-            $array['allow_multiple_answers'],
+            allowMultipleAnswers: $array['allow_multiple_answers'],
         );
     }
 

@@ -15,15 +15,15 @@ class MessageBasicGroupChatCreate extends MessageContent
 
     public function __construct(
         /**
-         * Title of the basic group.
-         */
-        protected string $title,
-        /**
          * User identifiers of members in the basic group.
          *
          * @var int[]
          */
         protected array  $memberUserIds,
+        /**
+         * Title of the basic group.
+         */
+        protected string $title,
     ) {
         parent::__construct();
     }
@@ -31,8 +31,8 @@ class MessageBasicGroupChatCreate extends MessageContent
     public static function fromArray(array $array): MessageBasicGroupChatCreate
     {
         return new static(
-            $array['title'],
-            $array['member_user_ids'],
+            memberUserIds: $array['member_user_ids'],
+            title        : $array['title'],
         );
     }
 
@@ -64,8 +64,8 @@ class MessageBasicGroupChatCreate extends MessageContent
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'title'           => $this->title,
             'member_user_ids' => $this->memberUserIds,
+            'title'           => $this->title,
         ];
     }
 }

@@ -28,7 +28,7 @@ class ChatInviteLinkCounts extends TdObject
     public static function fromArray(array $array): ChatInviteLinkCounts
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['invite_link_counts']),
+            inviteLinkCounts: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['invite_link_counts']),
         );
     }
 
@@ -48,7 +48,7 @@ class ChatInviteLinkCounts extends TdObject
     {
         return [
             '@type'              => static::TYPE_NAME,
-            'invite_link_counts' => array_map(static fn($x) => $x->typeSerialize(), $this->inviteLinkCounts),
+            'invite_link_counts' => array_map(static fn($x) => $x->jsonSerialize(), $this->inviteLinkCounts),
         ];
     }
 }

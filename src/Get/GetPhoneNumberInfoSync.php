@@ -30,8 +30,8 @@ class GetPhoneNumberInfoSync extends TdFunction
     public static function fromArray(array $array): GetPhoneNumberInfoSync
     {
         return new static(
-            $array['language_code'],
-            $array['phone_number_prefix'],
+            languageCode     : $array['language_code'],
+            phoneNumberPrefix: $array['phone_number_prefix'],
         );
     }
 

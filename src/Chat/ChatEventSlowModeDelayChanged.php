@@ -15,13 +15,13 @@ class ChatEventSlowModeDelayChanged extends ChatEventAction
 
     public function __construct(
         /**
-         * Previous value of slow_mode_delay, in seconds.
-         */
-        protected int $oldSlowModeDelay,
-        /**
          * New value of slow_mode_delay, in seconds.
          */
         protected int $newSlowModeDelay,
+        /**
+         * Previous value of slow_mode_delay, in seconds.
+         */
+        protected int $oldSlowModeDelay,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class ChatEventSlowModeDelayChanged extends ChatEventAction
     public static function fromArray(array $array): ChatEventSlowModeDelayChanged
     {
         return new static(
-            $array['old_slow_mode_delay'],
-            $array['new_slow_mode_delay'],
+            newSlowModeDelay: $array['new_slow_mode_delay'],
+            oldSlowModeDelay: $array['old_slow_mode_delay'],
         );
     }
 
@@ -62,8 +62,8 @@ class ChatEventSlowModeDelayChanged extends ChatEventAction
     {
         return [
             '@type'               => static::TYPE_NAME,
-            'old_slow_mode_delay' => $this->oldSlowModeDelay,
             'new_slow_mode_delay' => $this->newSlowModeDelay,
+            'old_slow_mode_delay' => $this->oldSlowModeDelay,
         ];
     }
 }

@@ -25,7 +25,7 @@ class GetStickerSetName extends TdFunction
     public static function fromArray(array $array): GetStickerSetName
     {
         return new static(
-            $array['set_id'],
+            setId: $array['set_id'],
         );
     }
 

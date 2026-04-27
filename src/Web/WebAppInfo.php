@@ -29,8 +29,8 @@ class WebAppInfo extends TdObject
     public static function fromArray(array $array): WebAppInfo
     {
         return new static(
-            $array['launch_id'],
-            $array['url'],
+            launchId: $array['launch_id'],
+            url     : $array['url'],
         );
     }
 

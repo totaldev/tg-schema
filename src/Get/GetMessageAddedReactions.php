@@ -23,6 +23,10 @@ class GetMessageAddedReactions extends TdFunction
          */
         protected int           $chatId,
         /**
+         * The maximum number of reactions to be returned; must be positive and can't be greater than 100.
+         */
+        protected int           $limit,
+        /**
          * Identifier of the message. Use message.interaction_info.reactions.can_get_added_reactions to check whether added reactions can be received for the message.
          */
         protected int           $messageId,
@@ -30,10 +34,6 @@ class GetMessageAddedReactions extends TdFunction
          * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
          */
         protected string        $offset,
-        /**
-         * The maximum number of reactions to be returned; must be positive and can't be greater than 100.
-         */
-        protected int           $limit,
         /**
          * Type of the reactions to return; pass null to return all added reactions; reactionTypePaid isn't supported.
          */
@@ -43,11 +43,11 @@ class GetMessageAddedReactions extends TdFunction
     public static function fromArray(array $array): GetMessageAddedReactions
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            isset($array['reaction_type']) ? TdSchemaRegistry::fromArray($array['reaction_type']) : null,
-            $array['offset'],
-            $array['limit'],
+            chatId      : $array['chat_id'],
+            limit       : $array['limit'],
+            messageId   : $array['message_id'],
+            offset      : $array['offset'],
+            reactionType: (isset($array['reaction_type']) ? TdSchemaRegistry::fromArray($array['reaction_type']) : null),
         );
     }
 
@@ -116,10 +116,10 @@ class GetMessageAddedReactions extends TdFunction
         return [
             '@type'         => static::TYPE_NAME,
             'chat_id'       => $this->chatId,
-            'message_id'    => $this->messageId,
-            'reaction_type' => $this->reactionType ?? null,
-            'offset'        => $this->offset,
             'limit'         => $this->limit,
+            'message_id'    => $this->messageId,
+            'offset'        => $this->offset,
+            'reaction_type' => (null !== $this->reactionType ? $this->reactionType->jsonSerialize() : null),
         ];
     }
 }

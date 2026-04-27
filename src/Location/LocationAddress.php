@@ -17,6 +17,10 @@ class LocationAddress extends TdObject
 
     public function __construct(
         /**
+         * City; empty if unknown.
+         */
+        protected string $city,
+        /**
          * A two-letter ISO 3166-1 alpha-2 country code.
          */
         protected string $countryCode,
@@ -24,10 +28,6 @@ class LocationAddress extends TdObject
          * State, if applicable; empty if unknown.
          */
         protected string $state,
-        /**
-         * City; empty if unknown.
-         */
-        protected string $city,
         /**
          * The address; empty if unknown.
          */
@@ -37,10 +37,10 @@ class LocationAddress extends TdObject
     public static function fromArray(array $array): LocationAddress
     {
         return new static(
-            $array['country_code'],
-            $array['state'],
-            $array['city'],
-            $array['street'],
+            city       : $array['city'],
+            countryCode: $array['country_code'],
+            state      : $array['state'],
+            street     : $array['street'],
         );
     }
 
@@ -96,9 +96,9 @@ class LocationAddress extends TdObject
     {
         return [
             '@type'        => static::TYPE_NAME,
+            'city'         => $this->city,
             'country_code' => $this->countryCode,
             'state'        => $this->state,
-            'city'         => $this->city,
             'street'       => $this->street,
         ];
     }

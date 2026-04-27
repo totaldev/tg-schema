@@ -34,9 +34,9 @@ class ToggleForumTopicIsPinned extends TdFunction
     public static function fromArray(array $array): ToggleForumTopicIsPinned
     {
         return new static(
-            $array['chat_id'],
-            $array['forum_topic_id'],
-            $array['is_pinned'],
+            chatId      : $array['chat_id'],
+            forumTopicId: $array['forum_topic_id'],
+            isPinned    : $array['is_pinned'],
         );
     }
 

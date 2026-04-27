@@ -22,26 +22,26 @@ class DeleteDirectMessagesChatTopicMessagesByDate extends TdFunction
          */
         protected int $chatId,
         /**
-         * Identifier of the topic which messages will be deleted.
+         * The maximum date of the messages to delete.
          */
-        protected int $topicId,
+        protected int $maxDate,
         /**
          * The minimum date of the messages to delete.
          */
         protected int $minDate,
         /**
-         * The maximum date of the messages to delete.
+         * Identifier of the topic which messages will be deleted.
          */
-        protected int $maxDate,
+        protected int $topicId,
     ) {}
 
     public static function fromArray(array $array): DeleteDirectMessagesChatTopicMessagesByDate
     {
         return new static(
-            $array['chat_id'],
-            $array['topic_id'],
-            $array['min_date'],
-            $array['max_date'],
+            chatId : $array['chat_id'],
+            maxDate: $array['max_date'],
+            minDate: $array['min_date'],
+            topicId: $array['topic_id'],
         );
     }
 
@@ -98,9 +98,9 @@ class DeleteDirectMessagesChatTopicMessagesByDate extends TdFunction
         return [
             '@type'    => static::TYPE_NAME,
             'chat_id'  => $this->chatId,
-            'topic_id' => $this->topicId,
-            'min_date' => $this->minDate,
             'max_date' => $this->maxDate,
+            'min_date' => $this->minDate,
+            'topic_id' => $this->topicId,
         ];
     }
 }

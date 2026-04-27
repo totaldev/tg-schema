@@ -17,25 +17,25 @@ class ChangeStickerSet extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the sticker set.
+         * The new value of is_archived. A sticker set can't be installed and archived simultaneously.
          */
-        protected int  $setId,
+        protected bool $isArchived,
         /**
          * The new value of is_installed.
          */
         protected bool $isInstalled,
         /**
-         * The new value of is_archived. A sticker set can't be installed and archived simultaneously.
+         * Identifier of the sticker set.
          */
-        protected bool $isArchived,
+        protected int  $setId,
     ) {}
 
     public static function fromArray(array $array): ChangeStickerSet
     {
         return new static(
-            $array['set_id'],
-            $array['is_installed'],
-            $array['is_archived'],
+            isArchived : $array['is_archived'],
+            isInstalled: $array['is_installed'],
+            setId      : $array['set_id'],
         );
     }
 
@@ -79,9 +79,9 @@ class ChangeStickerSet extends TdFunction
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'set_id'       => $this->setId,
-            'is_installed' => $this->isInstalled,
             'is_archived'  => $this->isArchived,
+            'is_installed' => $this->isInstalled,
+            'set_id'       => $this->setId,
         ];
     }
 }

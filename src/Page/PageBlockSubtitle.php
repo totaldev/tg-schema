@@ -28,7 +28,7 @@ class PageBlockSubtitle extends PageBlock
     public static function fromArray(array $array): PageBlockSubtitle
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['subtitle']),
+            subtitle: TdSchemaRegistry::fromArray($array['subtitle']),
         );
     }
 
@@ -48,7 +48,7 @@ class PageBlockSubtitle extends PageBlock
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'subtitle' => $this->subtitle->typeSerialize(),
+            'subtitle' => $this->subtitle->jsonSerialize(),
         ];
     }
 }

@@ -19,17 +19,17 @@ class EncryptGroupCallData extends TdFunction
 
     public function __construct(
         /**
-         * Group call identifier. The call must not be a video chat.
+         * Data to encrypt.
          */
-        protected int                  $groupCallId,
+        protected string               $data,
         /**
          * Data channel for which data is encrypted.
          */
         protected GroupCallDataChannel $dataChannel,
         /**
-         * Data to encrypt.
+         * Group call identifier. The call must not be a video chat.
          */
-        protected string               $data,
+        protected int                  $groupCallId,
         /**
          * Size of data prefix that must be kept unencrypted.
          */
@@ -39,10 +39,10 @@ class EncryptGroupCallData extends TdFunction
     public static function fromArray(array $array): EncryptGroupCallData
     {
         return new static(
-            $array['group_call_id'],
-            TdSchemaRegistry::fromArray($array['data_channel']),
-            $array['data'],
-            $array['unencrypted_prefix_size'],
+            data                 : $array['data'],
+            dataChannel          : TdSchemaRegistry::fromArray($array['data_channel']),
+            groupCallId          : $array['group_call_id'],
+            unencryptedPrefixSize: $array['unencrypted_prefix_size'],
         );
     }
 
@@ -98,9 +98,9 @@ class EncryptGroupCallData extends TdFunction
     {
         return [
             '@type'                   => static::TYPE_NAME,
-            'group_call_id'           => $this->groupCallId,
-            'data_channel'            => $this->dataChannel->typeSerialize(),
             'data'                    => $this->data,
+            'data_channel'            => $this->dataChannel->jsonSerialize(),
+            'group_call_id'           => $this->groupCallId,
             'unencrypted_prefix_size' => $this->unencryptedPrefixSize,
         ];
     }

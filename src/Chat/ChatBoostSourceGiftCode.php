@@ -15,13 +15,13 @@ class ChatBoostSourceGiftCode extends ChatBoostSource
 
     public function __construct(
         /**
-         * Identifier of a user, for which the gift code was created.
-         */
-        protected int    $userId,
-        /**
          * The created Telegram Premium gift code, which is known only if this is a gift code for the current user, or it has already been claimed.
          */
         protected string $giftCode,
+        /**
+         * Identifier of a user, for which the gift code was created.
+         */
+        protected int    $userId,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class ChatBoostSourceGiftCode extends ChatBoostSource
     public static function fromArray(array $array): ChatBoostSourceGiftCode
     {
         return new static(
-            $array['user_id'],
-            $array['gift_code'],
+            giftCode: $array['gift_code'],
+            userId  : $array['user_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class ChatBoostSourceGiftCode extends ChatBoostSource
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'user_id'   => $this->userId,
             'gift_code' => $this->giftCode,
+            'user_id'   => $this->userId,
         ];
     }
 }

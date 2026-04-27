@@ -19,20 +19,20 @@ class GroupCallRecentSpeaker extends TdObject
 
     public function __construct(
         /**
-         * Group call participant identifier.
-         */
-        protected MessageSender $participantId,
-        /**
          * True, is the user has spoken recently.
          */
         protected bool          $isSpeaking,
+        /**
+         * Group call participant identifier.
+         */
+        protected MessageSender $participantId,
     ) {}
 
     public static function fromArray(array $array): GroupCallRecentSpeaker
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['participant_id']),
-            $array['is_speaking'],
+            isSpeaking   : $array['is_speaking'],
+            participantId: TdSchemaRegistry::fromArray($array['participant_id']),
         );
     }
 
@@ -64,8 +64,8 @@ class GroupCallRecentSpeaker extends TdObject
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'participant_id' => $this->participantId->typeSerialize(),
             'is_speaking'    => $this->isSpeaking,
+            'participant_id' => $this->participantId->jsonSerialize(),
         ];
     }
 }

@@ -17,25 +17,25 @@ class GetUserProfilePhotos extends TdFunction
 
     public function __construct(
         /**
-         * User identifier.
+         * The maximum number of photos to be returned; up to 100.
          */
-        protected int $userId,
+        protected int $limit,
         /**
          * The number of photos to skip; must be non-negative.
          */
         protected int $offset,
         /**
-         * The maximum number of photos to be returned; up to 100.
+         * User identifier.
          */
-        protected int $limit,
+        protected int $userId,
     ) {}
 
     public static function fromArray(array $array): GetUserProfilePhotos
     {
         return new static(
-            $array['user_id'],
-            $array['offset'],
-            $array['limit'],
+            limit : $array['limit'],
+            offset: $array['offset'],
+            userId: $array['user_id'],
         );
     }
 
@@ -79,9 +79,9 @@ class GetUserProfilePhotos extends TdFunction
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'user_id' => $this->userId,
-            'offset'  => $this->offset,
             'limit'   => $this->limit,
+            'offset'  => $this->offset,
+            'user_id' => $this->userId,
         ];
     }
 }

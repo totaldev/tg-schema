@@ -18,21 +18,21 @@ class UpdateFileDownload extends Update
 
     public function __construct(
         /**
-         * File identifier.
-         */
-        protected int                  $fileId,
-        /**
          * Point in time (Unix timestamp) when the file downloading was completed; 0 if the file downloading isn't completed.
          */
         protected int                  $completeDate,
         /**
-         * True, if downloading of the file is paused.
-         */
-        protected bool                 $isPaused,
-        /**
          * New number of being downloaded and recently downloaded files found.
          */
         protected DownloadedFileCounts $counts,
+        /**
+         * File identifier.
+         */
+        protected int                  $fileId,
+        /**
+         * True, if downloading of the file is paused.
+         */
+        protected bool                 $isPaused,
     ) {
         parent::__construct();
     }
@@ -40,10 +40,10 @@ class UpdateFileDownload extends Update
     public static function fromArray(array $array): UpdateFileDownload
     {
         return new static(
-            $array['file_id'],
-            $array['complete_date'],
-            $array['is_paused'],
-            TdSchemaRegistry::fromArray($array['counts']),
+            completeDate: $array['complete_date'],
+            counts      : TdSchemaRegistry::fromArray($array['counts']),
+            fileId      : $array['file_id'],
+            isPaused    : $array['is_paused'],
         );
     }
 
@@ -99,10 +99,10 @@ class UpdateFileDownload extends Update
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'file_id'       => $this->fileId,
             'complete_date' => $this->completeDate,
+            'counts'        => $this->counts->jsonSerialize(),
+            'file_id'       => $this->fileId,
             'is_paused'     => $this->isPaused,
-            'counts'        => $this->counts->typeSerialize(),
         ];
     }
 }

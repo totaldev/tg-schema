@@ -32,8 +32,8 @@ class BotCommands extends TdObject
     public static function fromArray(array $array): BotCommands
     {
         return new static(
-            $array['bot_user_id'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['commands']),
+            botUserId: $array['bot_user_id'],
+            commands : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['commands']),
         );
     }
 
@@ -66,7 +66,7 @@ class BotCommands extends TdObject
         return [
             '@type'       => static::TYPE_NAME,
             'bot_user_id' => $this->botUserId,
-            'commands'    => array_map(static fn($x) => $x->typeSerialize(), $this->commands),
+            'commands'    => array_map(static fn($x) => $x->jsonSerialize(), $this->commands),
         ];
     }
 }

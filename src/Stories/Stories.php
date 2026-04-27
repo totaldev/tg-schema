@@ -19,9 +19,11 @@ class Stories extends TdObject
 
     public function __construct(
         /**
-         * Approximate total number of stories found.
+         * Identifiers of the pinned stories; returned only in getChatPostedToChatPageStories with from_story_id == 0.
+         *
+         * @var int[]
          */
-        protected int   $totalCount,
+        protected array $pinnedStoryIds,
         /**
          * The list of stories.
          *
@@ -29,19 +31,17 @@ class Stories extends TdObject
          */
         protected array $stories,
         /**
-         * Identifiers of the pinned stories; returned only in getChatPostedToChatPageStories with from_story_id == 0.
-         *
-         * @var int[]
+         * Approximate total number of stories found.
          */
-        protected array $pinnedStoryIds,
+        protected int   $totalCount,
     ) {}
 
     public static function fromArray(array $array): Stories
     {
         return new static(
-            $array['total_count'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['stories']),
-            $array['pinned_story_ids'],
+            pinnedStoryIds: $array['pinned_story_ids'],
+            stories       : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['stories']),
+            totalCount    : $array['total_count'],
         );
     }
 
@@ -85,9 +85,9 @@ class Stories extends TdObject
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'total_count'      => $this->totalCount,
-            'stories'          => array_map(static fn($x) => $x->typeSerialize(), $this->stories),
             'pinned_story_ids' => $this->pinnedStoryIds,
+            'stories'          => array_map(static fn($x) => $x->jsonSerialize(), $this->stories),
+            'total_count'      => $this->totalCount,
         ];
     }
 }

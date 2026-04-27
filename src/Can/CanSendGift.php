@@ -25,7 +25,7 @@ class CanSendGift extends TdFunction
     public static function fromArray(array $array): CanSendGift
     {
         return new static(
-            $array['gift_id'],
+            giftId: $array['gift_id'],
         );
     }
 

@@ -22,21 +22,21 @@ class InviteGroupCallParticipant extends TdFunction
          */
         protected int  $groupCallId,
         /**
-         * User identifier.
-         */
-        protected int  $userId,
-        /**
          * Pass true if the group call is a video call.
          */
         protected bool $isVideo,
+        /**
+         * User identifier.
+         */
+        protected int  $userId,
     ) {}
 
     public static function fromArray(array $array): InviteGroupCallParticipant
     {
         return new static(
-            $array['group_call_id'],
-            $array['user_id'],
-            $array['is_video'],
+            groupCallId: $array['group_call_id'],
+            isVideo    : $array['is_video'],
+            userId     : $array['user_id'],
         );
     }
 
@@ -81,8 +81,8 @@ class InviteGroupCallParticipant extends TdFunction
         return [
             '@type'         => static::TYPE_NAME,
             'group_call_id' => $this->groupCallId,
-            'user_id'       => $this->userId,
             'is_video'      => $this->isVideo,
+            'user_id'       => $this->userId,
         ];
     }
 }

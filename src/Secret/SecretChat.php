@@ -22,14 +22,6 @@ class SecretChat extends TdObject
          */
         protected int             $id,
         /**
-         * Identifier of the chat partner.
-         */
-        protected int             $userId,
-        /**
-         * State of the secret chat.
-         */
-        protected SecretChatState $state,
-        /**
          * True, if the chat was created by the current user; false otherwise.
          */
         protected bool            $isOutbound,
@@ -41,17 +33,25 @@ class SecretChat extends TdObject
          * Secret chat layer; determines features supported by the chat partner's application. Nested text entities and underline and strikethrough entities are supported if the layer >= 101, files bigger than 2000MB are supported if the layer >= 143, spoiler and custom emoji text entities are supported if the layer >= 144.
          */
         protected int             $layer,
+        /**
+         * State of the secret chat.
+         */
+        protected SecretChatState $state,
+        /**
+         * Identifier of the chat partner.
+         */
+        protected int             $userId,
     ) {}
 
     public static function fromArray(array $array): SecretChat
     {
         return new static(
-            $array['id'],
-            $array['user_id'],
-            TdSchemaRegistry::fromArray($array['state']),
-            $array['is_outbound'],
-            $array['key_hash'],
-            $array['layer'],
+            id        : $array['id'],
+            isOutbound: $array['is_outbound'],
+            keyHash   : $array['key_hash'],
+            layer     : $array['layer'],
+            state     : TdSchemaRegistry::fromArray($array['state']),
+            userId    : $array['user_id'],
         );
     }
 
@@ -132,11 +132,11 @@ class SecretChat extends TdObject
         return [
             '@type'       => static::TYPE_NAME,
             'id'          => $this->id,
-            'user_id'     => $this->userId,
-            'state'       => $this->state->typeSerialize(),
             'is_outbound' => $this->isOutbound,
             'key_hash'    => $this->keyHash,
             'layer'       => $this->layer,
+            'state'       => $this->state->jsonSerialize(),
+            'user_id'     => $this->userId,
         ];
     }
 }

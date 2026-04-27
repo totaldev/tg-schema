@@ -17,14 +17,6 @@ class CollectibleItemInfo extends TdObject
 
     public function __construct(
         /**
-         * Point in time (Unix timestamp) when the item was purchased.
-         */
-        protected int    $purchaseDate,
-        /**
-         * Currency for the paid amount.
-         */
-        protected string $currency,
-        /**
          * The paid amount, in the smallest units of the currency.
          */
         protected int    $amount,
@@ -37,6 +29,14 @@ class CollectibleItemInfo extends TdObject
          */
         protected int    $cryptocurrencyAmount,
         /**
+         * Currency for the paid amount.
+         */
+        protected string $currency,
+        /**
+         * Point in time (Unix timestamp) when the item was purchased.
+         */
+        protected int    $purchaseDate,
+        /**
          * Individual URL for the item on https://fragment.com.
          */
         protected string $url,
@@ -45,12 +45,12 @@ class CollectibleItemInfo extends TdObject
     public static function fromArray(array $array): CollectibleItemInfo
     {
         return new static(
-            $array['purchase_date'],
-            $array['currency'],
-            $array['amount'],
-            $array['cryptocurrency'],
-            $array['cryptocurrency_amount'],
-            $array['url'],
+            amount              : $array['amount'],
+            cryptocurrency      : $array['cryptocurrency'],
+            cryptocurrencyAmount: $array['cryptocurrency_amount'],
+            currency            : $array['currency'],
+            purchaseDate        : $array['purchase_date'],
+            url                 : $array['url'],
         );
     }
 
@@ -130,11 +130,11 @@ class CollectibleItemInfo extends TdObject
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'purchase_date'         => $this->purchaseDate,
-            'currency'              => $this->currency,
             'amount'                => $this->amount,
             'cryptocurrency'        => $this->cryptocurrency,
             'cryptocurrency_amount' => $this->cryptocurrencyAmount,
+            'currency'              => $this->currency,
+            'purchase_date'         => $this->purchaseDate,
             'url'                   => $this->url,
         ];
     }

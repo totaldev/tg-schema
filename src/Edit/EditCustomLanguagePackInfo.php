@@ -27,7 +27,7 @@ class EditCustomLanguagePackInfo extends TdFunction
     public static function fromArray(array $array): EditCustomLanguagePackInfo
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['info']),
+            info: TdSchemaRegistry::fromArray($array['info']),
         );
     }
 
@@ -47,7 +47,7 @@ class EditCustomLanguagePackInfo extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'info'  => $this->info->typeSerialize(),
+            'info'  => $this->info->jsonSerialize(),
         ];
     }
 }

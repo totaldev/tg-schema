@@ -18,10 +18,6 @@ class PageBlockEmbeddedPost extends PageBlock
 
     public function __construct(
         /**
-         * URL of the embedded post.
-         */
-        protected string           $url,
-        /**
          * Post author.
          */
         protected string           $author,
@@ -29,6 +25,10 @@ class PageBlockEmbeddedPost extends PageBlock
          * Post author photo; may be null.
          */
         protected ?Photo           $authorPhoto,
+        /**
+         * Post caption.
+         */
+        protected PageBlockCaption $caption,
         /**
          * Point in time (Unix timestamp) when the post was created; 0 if unknown.
          */
@@ -40,9 +40,9 @@ class PageBlockEmbeddedPost extends PageBlock
          */
         protected array            $pageBlocks,
         /**
-         * Post caption.
+         * URL of the embedded post.
          */
-        protected PageBlockCaption $caption,
+        protected string           $url,
     ) {
         parent::__construct();
     }
@@ -50,12 +50,12 @@ class PageBlockEmbeddedPost extends PageBlock
     public static function fromArray(array $array): PageBlockEmbeddedPost
     {
         return new static(
-            $array['url'],
-            $array['author'],
-            isset($array['author_photo']) ? TdSchemaRegistry::fromArray($array['author_photo']) : null,
-            $array['date'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['page_blocks']),
-            TdSchemaRegistry::fromArray($array['caption']),
+            author     : $array['author'],
+            authorPhoto: (isset($array['author_photo']) ? TdSchemaRegistry::fromArray($array['author_photo']) : null),
+            caption    : TdSchemaRegistry::fromArray($array['caption']),
+            date       : $array['date'],
+            pageBlocks : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['page_blocks']),
+            url        : $array['url'],
         );
     }
 
@@ -135,12 +135,12 @@ class PageBlockEmbeddedPost extends PageBlock
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'url'          => $this->url,
             'author'       => $this->author,
-            'author_photo' => $this->authorPhoto ?? null,
+            'author_photo' => (null !== $this->authorPhoto ? $this->authorPhoto->jsonSerialize() : null),
+            'caption'      => $this->caption->jsonSerialize(),
             'date'         => $this->date,
-            'page_blocks'  => array_map(static fn($x) => $x->typeSerialize(), $this->pageBlocks),
-            'caption'      => $this->caption->typeSerialize(),
+            'page_blocks'  => array_map(static fn($x) => $x->jsonSerialize(), $this->pageBlocks),
+            'url'          => $this->url,
         ];
     }
 }

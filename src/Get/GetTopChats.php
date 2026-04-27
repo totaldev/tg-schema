@@ -31,8 +31,8 @@ class GetTopChats extends TdFunction
     public static function fromArray(array $array): GetTopChats
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['category']),
-            $array['limit'],
+            category: TdSchemaRegistry::fromArray($array['category']),
+            limit   : $array['limit'],
         );
     }
 
@@ -64,7 +64,7 @@ class GetTopChats extends TdFunction
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'category' => $this->category->typeSerialize(),
+            'category' => $this->category->jsonSerialize(),
             'limit'    => $this->limit,
         ];
     }

@@ -26,7 +26,7 @@ class SendAuthenticationFirebaseSms extends TdFunction
     public static function fromArray(array $array): SendAuthenticationFirebaseSms
     {
         return new static(
-            $array['token'],
+            token: $array['token'],
         );
     }
 

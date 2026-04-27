@@ -20,10 +20,6 @@ class UpdateStoryPostFailed extends Update
 
     public function __construct(
         /**
-         * The failed to post story.
-         */
-        protected Story               $story,
-        /**
          * The cause of the story posting failure.
          */
         protected Error               $error,
@@ -31,6 +27,10 @@ class UpdateStoryPostFailed extends Update
          * Type of the error; may be null if unknown.
          */
         protected ?CanPostStoryResult $errorType,
+        /**
+         * The failed to post story.
+         */
+        protected Story               $story,
     ) {
         parent::__construct();
     }
@@ -38,9 +38,9 @@ class UpdateStoryPostFailed extends Update
     public static function fromArray(array $array): UpdateStoryPostFailed
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['story']),
-            TdSchemaRegistry::fromArray($array['error']),
-            isset($array['error_type']) ? TdSchemaRegistry::fromArray($array['error_type']) : null,
+            error    : TdSchemaRegistry::fromArray($array['error']),
+            errorType: (isset($array['error_type']) ? TdSchemaRegistry::fromArray($array['error_type']) : null),
+            story    : TdSchemaRegistry::fromArray($array['story']),
         );
     }
 
@@ -84,9 +84,9 @@ class UpdateStoryPostFailed extends Update
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'story'      => $this->story->typeSerialize(),
-            'error'      => $this->error->typeSerialize(),
-            'error_type' => $this->errorType ?? null,
+            'error'      => $this->error->jsonSerialize(),
+            'error_type' => (null !== $this->errorType ? $this->errorType->jsonSerialize() : null),
+            'story'      => $this->story->jsonSerialize(),
         ];
     }
 }

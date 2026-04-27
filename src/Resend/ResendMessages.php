@@ -43,10 +43,10 @@ class ResendMessages extends TdFunction
     public static function fromArray(array $array): ResendMessages
     {
         return new static(
-            $array['chat_id'],
-            $array['message_ids'],
-            isset($array['quote']) ? TdSchemaRegistry::fromArray($array['quote']) : null,
-            $array['paid_message_star_count'],
+            chatId              : $array['chat_id'],
+            messageIds          : $array['message_ids'],
+            paidMessageStarCount: $array['paid_message_star_count'],
+            quote               : (isset($array['quote']) ? TdSchemaRegistry::fromArray($array['quote']) : null),
         );
     }
 
@@ -104,8 +104,8 @@ class ResendMessages extends TdFunction
             '@type'                   => static::TYPE_NAME,
             'chat_id'                 => $this->chatId,
             'message_ids'             => $this->messageIds,
-            'quote'                   => $this->quote ?? null,
             'paid_message_star_count' => $this->paidMessageStarCount,
+            'quote'                   => (null !== $this->quote ? $this->quote->jsonSerialize() : null),
         ];
     }
 }

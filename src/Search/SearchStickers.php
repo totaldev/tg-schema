@@ -19,17 +19,9 @@ class SearchStickers extends TdFunction
 
     public function __construct(
         /**
-         * Type of the stickers to return.
-         */
-        protected StickerType $stickerType,
-        /**
          * Space-separated list of emojis to search for.
          */
         protected string      $emojis,
-        /**
-         * Query to search for; may be empty to search for emoji only.
-         */
-        protected string      $query,
         /**
          * List of possible IETF language tags of the user's input language; may be empty if unknown.
          *
@@ -37,24 +29,32 @@ class SearchStickers extends TdFunction
          */
         protected array       $inputLanguageCodes,
         /**
+         * The maximum number of stickers to be returned; 0-100.
+         */
+        protected int         $limit,
+        /**
          * The offset from which to return the stickers; must be non-negative.
          */
         protected int         $offset,
         /**
-         * The maximum number of stickers to be returned; 0-100.
+         * Query to search for; may be empty to search for emoji only.
          */
-        protected int         $limit,
+        protected string      $query,
+        /**
+         * Type of the stickers to return.
+         */
+        protected StickerType $stickerType,
     ) {}
 
     public static function fromArray(array $array): SearchStickers
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['sticker_type']),
-            $array['emojis'],
-            $array['query'],
-            $array['input_language_codes'],
-            $array['offset'],
-            $array['limit'],
+            emojis            : $array['emojis'],
+            inputLanguageCodes: $array['input_language_codes'],
+            limit             : $array['limit'],
+            offset            : $array['offset'],
+            query             : $array['query'],
+            stickerType       : TdSchemaRegistry::fromArray($array['sticker_type']),
         );
     }
 
@@ -134,12 +134,12 @@ class SearchStickers extends TdFunction
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'sticker_type'         => $this->stickerType->typeSerialize(),
             'emojis'               => $this->emojis,
-            'query'                => $this->query,
             'input_language_codes' => $this->inputLanguageCodes,
-            'offset'               => $this->offset,
             'limit'                => $this->limit,
+            'offset'               => $this->offset,
+            'query'                => $this->query,
+            'sticker_type'         => $this->stickerType->jsonSerialize(),
         ];
     }
 }

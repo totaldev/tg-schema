@@ -19,25 +19,25 @@ class GetTrendingStickerSets extends TdFunction
 
     public function __construct(
         /**
-         * Type of the sticker sets to return.
+         * The maximum number of sticker sets to be returned; up to 100. For optimal performance, the number of returned sticker sets is chosen by TDLib and can be smaller than the specified limit, even if the end of the list has not been reached.
          */
-        protected StickerType $stickerType,
+        protected int         $limit,
         /**
          * The offset from which to return the sticker sets; must be non-negative.
          */
         protected int         $offset,
         /**
-         * The maximum number of sticker sets to be returned; up to 100. For optimal performance, the number of returned sticker sets is chosen by TDLib and can be smaller than the specified limit, even if the end of the list has not been reached.
+         * Type of the sticker sets to return.
          */
-        protected int         $limit,
+        protected StickerType $stickerType,
     ) {}
 
     public static function fromArray(array $array): GetTrendingStickerSets
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['sticker_type']),
-            $array['offset'],
-            $array['limit'],
+            limit      : $array['limit'],
+            offset     : $array['offset'],
+            stickerType: TdSchemaRegistry::fromArray($array['sticker_type']),
         );
     }
 
@@ -81,9 +81,9 @@ class GetTrendingStickerSets extends TdFunction
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'sticker_type' => $this->stickerType->typeSerialize(),
-            'offset'       => $this->offset,
             'limit'        => $this->limit,
+            'offset'       => $this->offset,
+            'sticker_type' => $this->stickerType->jsonSerialize(),
         ];
     }
 }

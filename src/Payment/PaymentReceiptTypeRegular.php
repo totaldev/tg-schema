@@ -20,9 +20,9 @@ class PaymentReceiptTypeRegular extends PaymentReceiptType
 
     public function __construct(
         /**
-         * User identifier of the payment provider bot.
+         * Title of the saved credentials chosen by the buyer.
          */
-        protected int             $paymentProviderUserId,
+        protected string          $credentialsTitle,
         /**
          * Information about the invoice.
          */
@@ -32,13 +32,13 @@ class PaymentReceiptTypeRegular extends PaymentReceiptType
          */
         protected ?OrderInfo      $orderInfo,
         /**
+         * User identifier of the payment provider bot.
+         */
+        protected int             $paymentProviderUserId,
+        /**
          * Chosen shipping option; may be null.
          */
         protected ?ShippingOption $shippingOption,
-        /**
-         * Title of the saved credentials chosen by the buyer.
-         */
-        protected string          $credentialsTitle,
         /**
          * The amount of tip chosen by the buyer in the smallest units of the currency.
          */
@@ -50,12 +50,12 @@ class PaymentReceiptTypeRegular extends PaymentReceiptType
     public static function fromArray(array $array): PaymentReceiptTypeRegular
     {
         return new static(
-            $array['payment_provider_user_id'],
-            TdSchemaRegistry::fromArray($array['invoice']),
-            isset($array['order_info']) ? TdSchemaRegistry::fromArray($array['order_info']) : null,
-            isset($array['shipping_option']) ? TdSchemaRegistry::fromArray($array['shipping_option']) : null,
-            $array['credentials_title'],
-            $array['tip_amount'],
+            credentialsTitle     : $array['credentials_title'],
+            invoice              : TdSchemaRegistry::fromArray($array['invoice']),
+            orderInfo            : (isset($array['order_info']) ? TdSchemaRegistry::fromArray($array['order_info']) : null),
+            paymentProviderUserId: $array['payment_provider_user_id'],
+            shippingOption       : (isset($array['shipping_option']) ? TdSchemaRegistry::fromArray($array['shipping_option']) : null),
+            tipAmount            : $array['tip_amount'],
         );
     }
 
@@ -135,11 +135,11 @@ class PaymentReceiptTypeRegular extends PaymentReceiptType
     {
         return [
             '@type'                    => static::TYPE_NAME,
-            'payment_provider_user_id' => $this->paymentProviderUserId,
-            'invoice'                  => $this->invoice->typeSerialize(),
-            'order_info'               => $this->orderInfo ?? null,
-            'shipping_option'          => $this->shippingOption ?? null,
             'credentials_title'        => $this->credentialsTitle,
+            'invoice'                  => $this->invoice->jsonSerialize(),
+            'order_info'               => (null !== $this->orderInfo ? $this->orderInfo->jsonSerialize() : null),
+            'payment_provider_user_id' => $this->paymentProviderUserId,
+            'shipping_option'          => (null !== $this->shippingOption ? $this->shippingOption->jsonSerialize() : null),
             'tip_amount'               => $this->tipAmount,
         ];
     }

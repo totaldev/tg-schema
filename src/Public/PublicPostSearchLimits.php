@@ -21,31 +21,31 @@ class PublicPostSearchLimits extends TdObject
          */
         protected int  $dailyFreeQueryCount,
         /**
-         * Number of remaining free queries today.
+         * True, if the search for the specified query isn't charged.
          */
-        protected int  $remainingFreeQueryCount,
+        protected bool $isCurrentQueryFree,
         /**
          * Amount of time till the next free query can be sent; 0 if it can be sent now.
          */
         protected int  $nextFreeQueryIn,
         /**
+         * Number of remaining free queries today.
+         */
+        protected int  $remainingFreeQueryCount,
+        /**
          * Number of Telegram Stars that must be paid for each non-free query.
          */
         protected int  $starCount,
-        /**
-         * True, if the search for the specified query isn't charged.
-         */
-        protected bool $isCurrentQueryFree,
     ) {}
 
     public static function fromArray(array $array): PublicPostSearchLimits
     {
         return new static(
-            $array['daily_free_query_count'],
-            $array['remaining_free_query_count'],
-            $array['next_free_query_in'],
-            $array['star_count'],
-            $array['is_current_query_free'],
+            dailyFreeQueryCount    : $array['daily_free_query_count'],
+            isCurrentQueryFree     : $array['is_current_query_free'],
+            nextFreeQueryIn        : $array['next_free_query_in'],
+            remainingFreeQueryCount: $array['remaining_free_query_count'],
+            starCount              : $array['star_count'],
         );
     }
 
@@ -114,10 +114,10 @@ class PublicPostSearchLimits extends TdObject
         return [
             '@type'                      => static::TYPE_NAME,
             'daily_free_query_count'     => $this->dailyFreeQueryCount,
-            'remaining_free_query_count' => $this->remainingFreeQueryCount,
-            'next_free_query_in'         => $this->nextFreeQueryIn,
-            'star_count'                 => $this->starCount,
             'is_current_query_free'      => $this->isCurrentQueryFree,
+            'next_free_query_in'         => $this->nextFreeQueryIn,
+            'remaining_free_query_count' => $this->remainingFreeQueryCount,
+            'star_count'                 => $this->starCount,
         ];
     }
 }

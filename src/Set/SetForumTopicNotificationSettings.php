@@ -35,9 +35,9 @@ class SetForumTopicNotificationSettings extends TdFunction
     public static function fromArray(array $array): SetForumTopicNotificationSettings
     {
         return new static(
-            $array['chat_id'],
-            $array['forum_topic_id'],
-            TdSchemaRegistry::fromArray($array['notification_settings']),
+            chatId              : $array['chat_id'],
+            forumTopicId        : $array['forum_topic_id'],
+            notificationSettings: TdSchemaRegistry::fromArray($array['notification_settings']),
         );
     }
 
@@ -83,7 +83,7 @@ class SetForumTopicNotificationSettings extends TdFunction
             '@type'                 => static::TYPE_NAME,
             'chat_id'               => $this->chatId,
             'forum_topic_id'        => $this->forumTopicId,
-            'notification_settings' => $this->notificationSettings->typeSerialize(),
+            'notification_settings' => $this->notificationSettings->jsonSerialize(),
         ];
     }
 }

@@ -26,7 +26,7 @@ class GetTonWithdrawalUrl extends TdFunction
     public static function fromArray(array $array): GetTonWithdrawalUrl
     {
         return new static(
-            $array['password'],
+            password: $array['password'],
         );
     }
 

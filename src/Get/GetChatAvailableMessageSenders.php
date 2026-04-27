@@ -25,7 +25,7 @@ class GetChatAvailableMessageSenders extends TdFunction
     public static function fromArray(array $array): GetChatAvailableMessageSenders
     {
         return new static(
-            $array['chat_id'],
+            chatId: $array['chat_id'],
         );
     }
 

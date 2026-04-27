@@ -31,8 +31,8 @@ class SetChatAffiliateProgram extends TdFunction
     public static function fromArray(array $array): SetChatAffiliateProgram
     {
         return new static(
-            $array['chat_id'],
-            isset($array['parameters']) ? TdSchemaRegistry::fromArray($array['parameters']) : null,
+            chatId    : $array['chat_id'],
+            parameters: (isset($array['parameters']) ? TdSchemaRegistry::fromArray($array['parameters']) : null),
         );
     }
 
@@ -65,7 +65,7 @@ class SetChatAffiliateProgram extends TdFunction
         return [
             '@type'      => static::TYPE_NAME,
             'chat_id'    => $this->chatId,
-            'parameters' => $this->parameters ?? null,
+            'parameters' => (null !== $this->parameters ? $this->parameters->jsonSerialize() : null),
         ];
     }
 }

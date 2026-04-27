@@ -27,7 +27,7 @@ class SetBusinessOpeningHours extends TdFunction
     public static function fromArray(array $array): SetBusinessOpeningHours
     {
         return new static(
-            isset($array['opening_hours']) ? TdSchemaRegistry::fromArray($array['opening_hours']) : null,
+            openingHours: (isset($array['opening_hours']) ? TdSchemaRegistry::fromArray($array['opening_hours']) : null),
         );
     }
 
@@ -47,7 +47,7 @@ class SetBusinessOpeningHours extends TdFunction
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'opening_hours' => $this->openingHours ?? null,
+            'opening_hours' => (null !== $this->openingHours ? $this->openingHours->jsonSerialize() : null),
         ];
     }
 }

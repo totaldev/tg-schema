@@ -25,7 +25,7 @@ class InlineKeyboardButtonTypeCallback extends InlineKeyboardButtonType
     public static function fromArray(array $array): InlineKeyboardButtonTypeCallback
     {
         return new static(
-            $array['data'],
+            data: $array['data'],
         );
     }
 

@@ -32,8 +32,8 @@ class JoinGroupCall extends TdFunction
     public static function fromArray(array $array): JoinGroupCall
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['input_group_call']),
-            TdSchemaRegistry::fromArray($array['join_parameters']),
+            inputGroupCall: TdSchemaRegistry::fromArray($array['input_group_call']),
+            joinParameters: TdSchemaRegistry::fromArray($array['join_parameters']),
         );
     }
 
@@ -65,8 +65,8 @@ class JoinGroupCall extends TdFunction
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'input_group_call' => $this->inputGroupCall->typeSerialize(),
-            'join_parameters'  => $this->joinParameters->typeSerialize(),
+            'input_group_call' => $this->inputGroupCall->jsonSerialize(),
+            'join_parameters'  => $this->joinParameters->jsonSerialize(),
         ];
     }
 }

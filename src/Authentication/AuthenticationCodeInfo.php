@@ -18,30 +18,30 @@ class AuthenticationCodeInfo extends TdObject
 
     public function __construct(
         /**
-         * A phone number that is being authenticated.
-         */
-        protected string                  $phoneNumber,
-        /**
-         * The way the code was sent to the user.
-         */
-        protected AuthenticationCodeType  $type,
-        /**
          * The way the next code will be sent to the user; may be null.
          */
         protected ?AuthenticationCodeType $nextType,
         /**
+         * A phone number that is being authenticated.
+         */
+        protected string                  $phoneNumber,
+        /**
          * Timeout before the code can be re-sent, in seconds.
          */
         protected int                     $timeout,
+        /**
+         * The way the code was sent to the user.
+         */
+        protected AuthenticationCodeType  $type,
     ) {}
 
     public static function fromArray(array $array): AuthenticationCodeInfo
     {
         return new static(
-            $array['phone_number'],
-            TdSchemaRegistry::fromArray($array['type']),
-            isset($array['next_type']) ? TdSchemaRegistry::fromArray($array['next_type']) : null,
-            $array['timeout'],
+            nextType   : (isset($array['next_type']) ? TdSchemaRegistry::fromArray($array['next_type']) : null),
+            phoneNumber: $array['phone_number'],
+            timeout    : $array['timeout'],
+            type       : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -97,10 +97,10 @@ class AuthenticationCodeInfo extends TdObject
     {
         return [
             '@type'        => static::TYPE_NAME,
+            'next_type'    => (null !== $this->nextType ? $this->nextType->jsonSerialize() : null),
             'phone_number' => $this->phoneNumber,
-            'type'         => $this->type->typeSerialize(),
-            'next_type'    => $this->nextType ?? null,
             'timeout'      => $this->timeout,
+            'type'         => $this->type->jsonSerialize(),
         ];
     }
 }

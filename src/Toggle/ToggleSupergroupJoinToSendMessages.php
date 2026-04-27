@@ -17,20 +17,20 @@ class ToggleSupergroupJoinToSendMessages extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the supergroup that isn't a broadcast group.
-         */
-        protected int  $supergroupId,
-        /**
          * New value of join_to_send_messages.
          */
         protected bool $joinToSendMessages,
+        /**
+         * Identifier of the supergroup that isn't a broadcast group.
+         */
+        protected int  $supergroupId,
     ) {}
 
     public static function fromArray(array $array): ToggleSupergroupJoinToSendMessages
     {
         return new static(
-            $array['supergroup_id'],
-            $array['join_to_send_messages'],
+            joinToSendMessages: $array['join_to_send_messages'],
+            supergroupId      : $array['supergroup_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class ToggleSupergroupJoinToSendMessages extends TdFunction
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'supergroup_id'         => $this->supergroupId,
             'join_to_send_messages' => $this->joinToSendMessages,
+            'supergroup_id'         => $this->supergroupId,
         ];
     }
 }

@@ -17,9 +17,13 @@ class SearchFileDownloads extends TdFunction
 
     public function __construct(
         /**
-         * Query to search for; may be empty to return all downloaded files.
+         * The maximum number of files to be returned.
          */
-        protected string $query,
+        protected int    $limit,
+        /**
+         * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
+         */
+        protected string $offset,
         /**
          * Pass true to search only for active downloads, including paused.
          */
@@ -29,23 +33,19 @@ class SearchFileDownloads extends TdFunction
          */
         protected bool   $onlyCompleted,
         /**
-         * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
+         * Query to search for; may be empty to return all downloaded files.
          */
-        protected string $offset,
-        /**
-         * The maximum number of files to be returned.
-         */
-        protected int    $limit,
+        protected string $query,
     ) {}
 
     public static function fromArray(array $array): SearchFileDownloads
     {
         return new static(
-            $array['query'],
-            $array['only_active'],
-            $array['only_completed'],
-            $array['offset'],
-            $array['limit'],
+            limit        : $array['limit'],
+            offset       : $array['offset'],
+            onlyActive   : $array['only_active'],
+            onlyCompleted: $array['only_completed'],
+            query        : $array['query'],
         );
     }
 
@@ -113,11 +113,11 @@ class SearchFileDownloads extends TdFunction
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'query'          => $this->query,
+            'limit'          => $this->limit,
+            'offset'         => $this->offset,
             'only_active'    => $this->onlyActive,
             'only_completed' => $this->onlyCompleted,
-            'offset'         => $this->offset,
-            'limit'          => $this->limit,
+            'query'          => $this->query,
         ];
     }
 }

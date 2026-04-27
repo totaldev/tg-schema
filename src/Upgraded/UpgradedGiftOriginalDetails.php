@@ -20,30 +20,30 @@ class UpgradedGiftOriginalDetails extends TdObject
 
     public function __construct(
         /**
-         * Identifier of the user or the chat that sent the gift; may be null if the gift was private.
+         * Point in time (Unix timestamp) when the gift was sent.
          */
-        protected ?MessageSender $senderId,
+        protected int            $date,
         /**
          * Identifier of the user or the chat that received the gift.
          */
         protected MessageSender  $receiverId,
         /**
+         * Identifier of the user or the chat that sent the gift; may be null if the gift was private.
+         */
+        protected ?MessageSender $senderId,
+        /**
          * Message added to the gift.
          */
         protected FormattedText  $text,
-        /**
-         * Point in time (Unix timestamp) when the gift was sent.
-         */
-        protected int            $date,
     ) {}
 
     public static function fromArray(array $array): UpgradedGiftOriginalDetails
     {
         return new static(
-            isset($array['sender_id']) ? TdSchemaRegistry::fromArray($array['sender_id']) : null,
-            TdSchemaRegistry::fromArray($array['receiver_id']),
-            TdSchemaRegistry::fromArray($array['text']),
-            $array['date'],
+            date      : $array['date'],
+            receiverId: TdSchemaRegistry::fromArray($array['receiver_id']),
+            senderId  : (isset($array['sender_id']) ? TdSchemaRegistry::fromArray($array['sender_id']) : null),
+            text      : TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -99,10 +99,10 @@ class UpgradedGiftOriginalDetails extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'sender_id'   => $this->senderId ?? null,
-            'receiver_id' => $this->receiverId->typeSerialize(),
-            'text'        => $this->text->typeSerialize(),
             'date'        => $this->date,
+            'receiver_id' => $this->receiverId->jsonSerialize(),
+            'sender_id'   => (null !== $this->senderId ? $this->senderId->jsonSerialize() : null),
+            'text'        => $this->text->jsonSerialize(),
         ];
     }
 }

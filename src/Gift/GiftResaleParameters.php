@@ -33,9 +33,9 @@ class GiftResaleParameters extends TdObject
     public static function fromArray(array $array): GiftResaleParameters
     {
         return new static(
-            $array['star_count'],
-            $array['toncoin_cent_count'],
-            $array['toncoin_only'],
+            starCount       : $array['star_count'],
+            toncoinCentCount: $array['toncoin_cent_count'],
+            toncoinOnly     : $array['toncoin_only'],
         );
     }
 

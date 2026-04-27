@@ -19,24 +19,6 @@ class AvailableReactions extends TdObject
 
     public function __construct(
         /**
-         * List of reactions to be shown at the top.
-         *
-         * @var AvailableReaction[]
-         */
-        protected array                         $topReactions,
-        /**
-         * List of recently used reactions.
-         *
-         * @var AvailableReaction[]
-         */
-        protected array                         $recentReactions,
-        /**
-         * List of popular reactions.
-         *
-         * @var AvailableReaction[]
-         */
-        protected array                         $popularReactions,
-        /**
          * True, if any custom emoji reaction can be added by Telegram Premium subscribers.
          */
         protected bool                          $allowCustomEmoji,
@@ -44,6 +26,24 @@ class AvailableReactions extends TdObject
          * True, if the reactions will be tags and the message can be found by them.
          */
         protected bool                          $areTags,
+        /**
+         * List of popular reactions.
+         *
+         * @var AvailableReaction[]
+         */
+        protected array                         $popularReactions,
+        /**
+         * List of recently used reactions.
+         *
+         * @var AvailableReaction[]
+         */
+        protected array                         $recentReactions,
+        /**
+         * List of reactions to be shown at the top.
+         *
+         * @var AvailableReaction[]
+         */
+        protected array                         $topReactions,
         /**
          * The reason why the current user can't add reactions to the message, despite some other users can; may be null if none.
          */
@@ -53,12 +53,12 @@ class AvailableReactions extends TdObject
     public static function fromArray(array $array): AvailableReactions
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['top_reactions']),
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['recent_reactions']),
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['popular_reactions']),
-            $array['allow_custom_emoji'],
-            $array['are_tags'],
-            isset($array['unavailability_reason']) ? TdSchemaRegistry::fromArray($array['unavailability_reason']) : null,
+            allowCustomEmoji    : $array['allow_custom_emoji'],
+            areTags             : $array['are_tags'],
+            popularReactions    : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['popular_reactions']),
+            recentReactions     : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['recent_reactions']),
+            topReactions        : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['top_reactions']),
+            unavailabilityReason: (isset($array['unavailability_reason']) ? TdSchemaRegistry::fromArray($array['unavailability_reason']) : null),
         );
     }
 
@@ -138,12 +138,12 @@ class AvailableReactions extends TdObject
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'top_reactions'         => array_map(static fn($x) => $x->typeSerialize(), $this->topReactions),
-            'recent_reactions'      => array_map(static fn($x) => $x->typeSerialize(), $this->recentReactions),
-            'popular_reactions'     => array_map(static fn($x) => $x->typeSerialize(), $this->popularReactions),
             'allow_custom_emoji'    => $this->allowCustomEmoji,
             'are_tags'              => $this->areTags,
-            'unavailability_reason' => $this->unavailabilityReason ?? null,
+            'popular_reactions'     => array_map(static fn($x) => $x->jsonSerialize(), $this->popularReactions),
+            'recent_reactions'      => array_map(static fn($x) => $x->jsonSerialize(), $this->recentReactions),
+            'top_reactions'         => array_map(static fn($x) => $x->jsonSerialize(), $this->topReactions),
+            'unavailability_reason' => (null !== $this->unavailabilityReason ? $this->unavailabilityReason->jsonSerialize() : null),
         ];
     }
 }

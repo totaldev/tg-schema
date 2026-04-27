@@ -25,7 +25,7 @@ class GetFile extends TdFunction
     public static function fromArray(array $array): GetFile
     {
         return new static(
-            $array['file_id'],
+            fileId: $array['file_id'],
         );
     }
 

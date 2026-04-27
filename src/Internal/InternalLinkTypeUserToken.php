@@ -26,7 +26,7 @@ class InternalLinkTypeUserToken extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeUserToken
     {
         return new static(
-            $array['token'],
+            token: $array['token'],
         );
     }
 

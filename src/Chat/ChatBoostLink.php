@@ -17,20 +17,20 @@ class ChatBoostLink extends TdObject
 
     public function __construct(
         /**
-         * The link.
-         */
-        protected string $link,
-        /**
          * True, if the link will work for non-members of the chat.
          */
         protected bool   $isPublic,
+        /**
+         * The link.
+         */
+        protected string $link,
     ) {}
 
     public static function fromArray(array $array): ChatBoostLink
     {
         return new static(
-            $array['link'],
-            $array['is_public'],
+            isPublic: $array['is_public'],
+            link    : $array['link'],
         );
     }
 
@@ -62,8 +62,8 @@ class ChatBoostLink extends TdObject
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'link'      => $this->link,
             'is_public' => $this->isPublic,
+            'link'      => $this->link,
         ];
     }
 }

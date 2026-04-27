@@ -33,9 +33,9 @@ class SendWebAppData extends TdFunction
     public static function fromArray(array $array): SendWebAppData
     {
         return new static(
-            $array['bot_user_id'],
-            $array['button_text'],
-            $array['data'],
+            botUserId : $array['bot_user_id'],
+            buttonText: $array['button_text'],
+            data      : $array['data'],
         );
     }
 

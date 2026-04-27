@@ -18,15 +18,15 @@ class MessageUsersShared extends MessageContent
 
     public function __construct(
         /**
+         * Identifier of the keyboard button with the request.
+         */
+        protected int   $buttonId,
+        /**
          * The shared users.
          *
          * @var SharedUser[]
          */
         protected array $users,
-        /**
-         * Identifier of the keyboard button with the request.
-         */
-        protected int   $buttonId,
     ) {
         parent::__construct();
     }
@@ -34,8 +34,8 @@ class MessageUsersShared extends MessageContent
     public static function fromArray(array $array): MessageUsersShared
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['users']),
-            $array['button_id'],
+            buttonId: $array['button_id'],
+            users   : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['users']),
         );
     }
 
@@ -67,8 +67,8 @@ class MessageUsersShared extends MessageContent
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'users'     => array_map(static fn($x) => $x->typeSerialize(), $this->users),
             'button_id' => $this->buttonId,
+            'users'     => array_map(static fn($x) => $x->jsonSerialize(), $this->users),
         ];
     }
 }

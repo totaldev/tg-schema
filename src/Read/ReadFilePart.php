@@ -18,6 +18,10 @@ class ReadFilePart extends TdFunction
 
     public function __construct(
         /**
+         * Number of bytes to read. An error will be returned if there are not enough bytes available in the file from the specified position. Pass 0 to read all available data from the specified position.
+         */
+        protected int $count,
+        /**
          * Identifier of the file. The file must be located in the TDLib file cache.
          */
         protected int $fileId,
@@ -25,18 +29,14 @@ class ReadFilePart extends TdFunction
          * The offset from which to read the file.
          */
         protected int $offset,
-        /**
-         * Number of bytes to read. An error will be returned if there are not enough bytes available in the file from the specified position. Pass 0 to read all available data from the specified position.
-         */
-        protected int $count,
     ) {}
 
     public static function fromArray(array $array): ReadFilePart
     {
         return new static(
-            $array['file_id'],
-            $array['offset'],
-            $array['count'],
+            count : $array['count'],
+            fileId: $array['file_id'],
+            offset: $array['offset'],
         );
     }
 
@@ -80,9 +80,9 @@ class ReadFilePart extends TdFunction
     {
         return [
             '@type'   => static::TYPE_NAME,
+            'count'   => $this->count,
             'file_id' => $this->fileId,
             'offset'  => $this->offset,
-            'count'   => $this->count,
         ];
     }
 }

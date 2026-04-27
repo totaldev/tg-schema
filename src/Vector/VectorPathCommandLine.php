@@ -28,7 +28,7 @@ class VectorPathCommandLine extends VectorPathCommand
     public static function fromArray(array $array): VectorPathCommandLine
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['end_point']),
+            endPoint: TdSchemaRegistry::fromArray($array['end_point']),
         );
     }
 
@@ -48,7 +48,7 @@ class VectorPathCommandLine extends VectorPathCommand
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'end_point' => $this->endPoint->typeSerialize(),
+            'end_point' => $this->endPoint->jsonSerialize(),
         ];
     }
 }

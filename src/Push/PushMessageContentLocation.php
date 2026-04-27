@@ -29,8 +29,8 @@ class PushMessageContentLocation extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentLocation
     {
         return new static(
-            $array['is_live'],
-            $array['is_pinned'],
+            isLive  : $array['is_live'],
+            isPinned: $array['is_pinned'],
         );
     }
 

@@ -15,21 +15,21 @@ class UpdateSpeechRecognitionTrial extends Update
 
     public function __construct(
         /**
-         * The maximum allowed duration of media for speech recognition without Telegram Premium subscription, in seconds.
-         */
-        protected int $maxMediaDuration,
-        /**
-         * The total number of allowed speech recognitions per week; 0 if none.
-         */
-        protected int $weeklyCount,
-        /**
          * Number of left speech recognition attempts this week.
          */
         protected int $leftCount,
         /**
+         * The maximum allowed duration of media for speech recognition without Telegram Premium subscription, in seconds.
+         */
+        protected int $maxMediaDuration,
+        /**
          * Point in time (Unix timestamp) when the weekly number of tries will reset; 0 if unknown.
          */
         protected int $nextResetDate,
+        /**
+         * The total number of allowed speech recognitions per week; 0 if none.
+         */
+        protected int $weeklyCount,
     ) {
         parent::__construct();
     }
@@ -37,10 +37,10 @@ class UpdateSpeechRecognitionTrial extends Update
     public static function fromArray(array $array): UpdateSpeechRecognitionTrial
     {
         return new static(
-            $array['max_media_duration'],
-            $array['weekly_count'],
-            $array['left_count'],
-            $array['next_reset_date'],
+            leftCount       : $array['left_count'],
+            maxMediaDuration: $array['max_media_duration'],
+            nextResetDate   : $array['next_reset_date'],
+            weeklyCount     : $array['weekly_count'],
         );
     }
 
@@ -96,10 +96,10 @@ class UpdateSpeechRecognitionTrial extends Update
     {
         return [
             '@type'              => static::TYPE_NAME,
-            'max_media_duration' => $this->maxMediaDuration,
-            'weekly_count'       => $this->weeklyCount,
             'left_count'         => $this->leftCount,
+            'max_media_duration' => $this->maxMediaDuration,
             'next_reset_date'    => $this->nextResetDate,
+            'weekly_count'       => $this->weeklyCount,
         ];
     }
 }

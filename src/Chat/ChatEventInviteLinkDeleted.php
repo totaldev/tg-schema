@@ -27,7 +27,7 @@ class ChatEventInviteLinkDeleted extends ChatEventAction
     public static function fromArray(array $array): ChatEventInviteLinkDeleted
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['invite_link']),
+            inviteLink: TdSchemaRegistry::fromArray($array['invite_link']),
         );
     }
 
@@ -47,7 +47,7 @@ class ChatEventInviteLinkDeleted extends ChatEventAction
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'invite_link' => $this->inviteLink->typeSerialize(),
+            'invite_link' => $this->inviteLink->jsonSerialize(),
         ];
     }
 }

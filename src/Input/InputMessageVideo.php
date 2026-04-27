@@ -19,14 +19,6 @@ class InputMessageVideo extends InputMessageContent
 
     public function __construct(
         /**
-         * Video to be sent. The video is expected to be re-encoded to MPEG4 format with H.264 codec by the sender.
-         */
-        protected InputFile                $video,
-        /**
-         * Timestamp from which the video playing must start, in seconds.
-         */
-        protected int                      $startTimestamp,
-        /**
          * File identifiers of the stickers added to the video, if applicable.
          *
          * @var int[]
@@ -37,41 +29,49 @@ class InputMessageVideo extends InputMessageContent
          */
         protected int                      $duration,
         /**
-         * Video width.
+         * True, if the video preview must be covered by a spoiler animation; not supported in secret chats.
          */
-        protected int                      $width,
+        protected bool                     $hasSpoiler,
         /**
          * Video height.
          */
         protected int                      $height,
         /**
-         * True, if the video is expected to be streamed.
-         */
-        protected bool                     $supportsStreaming,
-        /**
          * True, if the caption must be shown above the video; otherwise, the caption must be shown below the video; not supported in secret chats.
          */
         protected bool                     $showCaptionAboveMedia,
         /**
-         * True, if the video preview must be covered by a spoiler animation; not supported in secret chats.
+         * Timestamp from which the video playing must start, in seconds.
          */
-        protected bool                     $hasSpoiler,
+        protected int                      $startTimestamp,
         /**
-         * Video thumbnail; pass null to skip thumbnail uploading.
+         * True, if the video is expected to be streamed.
          */
-        protected ?InputThumbnail          $thumbnail = null,
+        protected bool                     $supportsStreaming,
         /**
-         * Cover of the video; pass null to skip cover uploading; not supported in secret chats and for self-destructing messages.
+         * Video to be sent. The video is expected to be re-encoded to MPEG4 format with H.264 codec by the sender.
          */
-        protected ?InputFile               $cover = null,
+        protected InputFile                $video,
+        /**
+         * Video width.
+         */
+        protected int                      $width,
         /**
          * Video caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters.
          */
         protected ?FormattedText           $caption = null,
         /**
+         * Cover of the video; pass null to skip cover uploading; not supported in secret chats and for self-destructing messages.
+         */
+        protected ?InputFile               $cover = null,
+        /**
          * Video self-destruct type; pass null if none; private chats only.
          */
         protected ?MessageSelfDestructType $selfDestructType = null,
+        /**
+         * Video thumbnail; pass null to skip thumbnail uploading.
+         */
+        protected ?InputThumbnail          $thumbnail = null,
     ) {
         parent::__construct();
     }
@@ -79,19 +79,19 @@ class InputMessageVideo extends InputMessageContent
     public static function fromArray(array $array): InputMessageVideo
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['video']),
-            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
-            isset($array['cover']) ? TdSchemaRegistry::fromArray($array['cover']) : null,
-            $array['start_timestamp'],
-            $array['added_sticker_file_ids'],
-            $array['duration'],
-            $array['width'],
-            $array['height'],
-            $array['supports_streaming'],
-            isset($array['caption']) ? TdSchemaRegistry::fromArray($array['caption']) : null,
-            $array['show_caption_above_media'],
-            isset($array['self_destruct_type']) ? TdSchemaRegistry::fromArray($array['self_destruct_type']) : null,
-            $array['has_spoiler'],
+            addedStickerFileIds  : $array['added_sticker_file_ids'],
+            caption              : (isset($array['caption']) ? TdSchemaRegistry::fromArray($array['caption']) : null),
+            cover                : (isset($array['cover']) ? TdSchemaRegistry::fromArray($array['cover']) : null),
+            duration             : $array['duration'],
+            hasSpoiler           : $array['has_spoiler'],
+            height               : $array['height'],
+            selfDestructType     : (isset($array['self_destruct_type']) ? TdSchemaRegistry::fromArray($array['self_destruct_type']) : null),
+            showCaptionAboveMedia: $array['show_caption_above_media'],
+            startTimestamp       : $array['start_timestamp'],
+            supportsStreaming    : $array['supports_streaming'],
+            thumbnail            : (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
+            video                : TdSchemaRegistry::fromArray($array['video']),
+            width                : $array['width'],
         );
     }
 
@@ -255,19 +255,19 @@ class InputMessageVideo extends InputMessageContent
     {
         return [
             '@type'                    => static::TYPE_NAME,
-            'video'                    => $this->video->typeSerialize(),
-            'thumbnail'                => $this->thumbnail ?? null,
-            'cover'                    => $this->cover ?? null,
-            'start_timestamp'          => $this->startTimestamp,
             'added_sticker_file_ids'   => $this->addedStickerFileIds,
+            'caption'                  => (null !== $this->caption ? $this->caption->jsonSerialize() : null),
+            'cover'                    => (null !== $this->cover ? $this->cover->jsonSerialize() : null),
             'duration'                 => $this->duration,
-            'width'                    => $this->width,
-            'height'                   => $this->height,
-            'supports_streaming'       => $this->supportsStreaming,
-            'caption'                  => $this->caption ?? null,
-            'show_caption_above_media' => $this->showCaptionAboveMedia,
-            'self_destruct_type'       => $this->selfDestructType ?? null,
             'has_spoiler'              => $this->hasSpoiler,
+            'height'                   => $this->height,
+            'self_destruct_type'       => (null !== $this->selfDestructType ? $this->selfDestructType->jsonSerialize() : null),
+            'show_caption_above_media' => $this->showCaptionAboveMedia,
+            'start_timestamp'          => $this->startTimestamp,
+            'supports_streaming'       => $this->supportsStreaming,
+            'thumbnail'                => (null !== $this->thumbnail ? $this->thumbnail->jsonSerialize() : null),
+            'video'                    => $this->video->jsonSerialize(),
+            'width'                    => $this->width,
         ];
     }
 }

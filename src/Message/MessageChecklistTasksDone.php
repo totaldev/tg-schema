@@ -37,9 +37,9 @@ class MessageChecklistTasksDone extends MessageContent
     public static function fromArray(array $array): MessageChecklistTasksDone
     {
         return new static(
-            $array['checklist_message_id'],
-            $array['marked_as_done_task_ids'],
-            $array['marked_as_not_done_task_ids'],
+            checklistMessageId    : $array['checklist_message_id'],
+            markedAsDoneTaskIds   : $array['marked_as_done_task_ids'],
+            markedAsNotDoneTaskIds: $array['marked_as_not_done_task_ids'],
         );
     }
 

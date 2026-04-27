@@ -19,10 +19,6 @@ class FoundWebApp extends TdObject
 
     public function __construct(
         /**
-         * The Web App.
-         */
-        protected WebApp $webApp,
-        /**
          * True, if the user must be asked for the permission to the bot to send them messages.
          */
         protected bool   $requestWriteAccess,
@@ -30,14 +26,18 @@ class FoundWebApp extends TdObject
          * True, if there is no need to show an ordinary open URL confirmation before opening the Web App. The field must be ignored and confirmation must be shown anyway if the Web App link was hidden.
          */
         protected bool   $skipConfirmation,
+        /**
+         * The Web App.
+         */
+        protected WebApp $webApp,
     ) {}
 
     public static function fromArray(array $array): FoundWebApp
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['web_app']),
-            $array['request_write_access'],
-            $array['skip_confirmation'],
+            requestWriteAccess: $array['request_write_access'],
+            skipConfirmation  : $array['skip_confirmation'],
+            webApp            : TdSchemaRegistry::fromArray($array['web_app']),
         );
     }
 
@@ -81,9 +81,9 @@ class FoundWebApp extends TdObject
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'web_app'              => $this->webApp->typeSerialize(),
             'request_write_access' => $this->requestWriteAccess,
             'skip_confirmation'    => $this->skipConfirmation,
+            'web_app'              => $this->webApp->jsonSerialize(),
         ];
     }
 }

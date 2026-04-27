@@ -25,7 +25,7 @@ class MessageForumTopicIsClosedToggled extends MessageContent
     public static function fromArray(array $array): MessageForumTopicIsClosedToggled
     {
         return new static(
-            $array['is_closed'],
+            isClosed: $array['is_closed'],
         );
     }
 

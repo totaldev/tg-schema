@@ -30,8 +30,8 @@ class KeyboardButton extends TdObject
     public static function fromArray(array $array): KeyboardButton
     {
         return new static(
-            $array['text'],
-            TdSchemaRegistry::fromArray($array['type']),
+            text: $array['text'],
+            type: TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -64,7 +64,7 @@ class KeyboardButton extends TdObject
         return [
             '@type' => static::TYPE_NAME,
             'text'  => $this->text,
-            'type'  => $this->type->typeSerialize(),
+            'type'  => $this->type->jsonSerialize(),
         ];
     }
 }

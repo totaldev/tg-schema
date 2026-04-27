@@ -25,7 +25,7 @@ class ChatEventAutomaticTranslationToggled extends ChatEventAction
     public static function fromArray(array $array): ChatEventAutomaticTranslationToggled
     {
         return new static(
-            $array['has_automatic_translation'],
+            hasAutomaticTranslation: $array['has_automatic_translation'],
         );
     }
 

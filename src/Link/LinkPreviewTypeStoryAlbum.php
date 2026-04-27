@@ -33,8 +33,8 @@ class LinkPreviewTypeStoryAlbum extends LinkPreviewType
     public static function fromArray(array $array): LinkPreviewTypeStoryAlbum
     {
         return new static(
-            isset($array['photo_icon']) ? TdSchemaRegistry::fromArray($array['photo_icon']) : null,
-            isset($array['video_icon']) ? TdSchemaRegistry::fromArray($array['video_icon']) : null,
+            photoIcon: (isset($array['photo_icon']) ? TdSchemaRegistry::fromArray($array['photo_icon']) : null),
+            videoIcon: (isset($array['video_icon']) ? TdSchemaRegistry::fromArray($array['video_icon']) : null),
         );
     }
 
@@ -66,8 +66,8 @@ class LinkPreviewTypeStoryAlbum extends LinkPreviewType
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'photo_icon' => $this->photoIcon ?? null,
-            'video_icon' => $this->videoIcon ?? null,
+            'photo_icon' => (null !== $this->photoIcon ? $this->photoIcon->jsonSerialize() : null),
+            'video_icon' => (null !== $this->videoIcon ? $this->videoIcon->jsonSerialize() : null),
         ];
     }
 }

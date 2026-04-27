@@ -27,7 +27,7 @@ class LogTags extends TdObject
     public static function fromArray(array $array): LogTags
     {
         return new static(
-            $array['tags'],
+            tags: $array['tags'],
         );
     }
 

@@ -20,20 +20,20 @@ class SetScopeNotificationSettings extends TdFunction
 
     public function __construct(
         /**
-         * Types of chats for which to change the notification settings.
-         */
-        protected NotificationSettingsScope $scope,
-        /**
          * The new notification settings for the given scope.
          */
         protected ScopeNotificationSettings $notificationSettings,
+        /**
+         * Types of chats for which to change the notification settings.
+         */
+        protected NotificationSettingsScope $scope,
     ) {}
 
     public static function fromArray(array $array): SetScopeNotificationSettings
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['scope']),
-            TdSchemaRegistry::fromArray($array['notification_settings']),
+            notificationSettings: TdSchemaRegistry::fromArray($array['notification_settings']),
+            scope               : TdSchemaRegistry::fromArray($array['scope']),
         );
     }
 
@@ -65,8 +65,8 @@ class SetScopeNotificationSettings extends TdFunction
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'scope'                 => $this->scope->typeSerialize(),
-            'notification_settings' => $this->notificationSettings->typeSerialize(),
+            'notification_settings' => $this->notificationSettings->jsonSerialize(),
+            'scope'                 => $this->scope->jsonSerialize(),
         ];
     }
 }

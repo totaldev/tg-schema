@@ -15,13 +15,13 @@ class InternalLinkTypeChatAffiliateProgram extends InternalLinkType
 
     public function __construct(
         /**
-         * Username to be passed to searchChatAffiliateProgram.
-         */
-        protected string $username,
-        /**
          * Referrer to be passed to searchChatAffiliateProgram.
          */
         protected string $referrer,
+        /**
+         * Username to be passed to searchChatAffiliateProgram.
+         */
+        protected string $username,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class InternalLinkTypeChatAffiliateProgram extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeChatAffiliateProgram
     {
         return new static(
-            $array['username'],
-            $array['referrer'],
+            referrer: $array['referrer'],
+            username: $array['username'],
         );
     }
 
@@ -62,8 +62,8 @@ class InternalLinkTypeChatAffiliateProgram extends InternalLinkType
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'username' => $this->username,
             'referrer' => $this->referrer,
+            'username' => $this->username,
         ];
     }
 }

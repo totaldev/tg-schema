@@ -29,8 +29,8 @@ class SetAccentColor extends TdFunction
     public static function fromArray(array $array): SetAccentColor
     {
         return new static(
-            $array['accent_color_id'],
-            $array['background_custom_emoji_id'],
+            accentColorId          : $array['accent_color_id'],
+            backgroundCustomEmojiId: $array['background_custom_emoji_id'],
         );
     }
 

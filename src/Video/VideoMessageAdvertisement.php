@@ -19,50 +19,50 @@ class VideoMessageAdvertisement extends TdObject
 
     public function __construct(
         /**
-         * Unique identifier of this result.
+         * If non-empty, additional information about the sponsored message to be shown along with the message.
          */
-        protected int                  $uniqueId,
-        /**
-         * Text of the advertisement.
-         */
-        protected string               $text,
-        /**
-         * The minimum amount of time the advertisement must be displayed before it can be hidden by the user, in seconds.
-         */
-        protected int                  $minDisplayDuration,
-        /**
-         * The maximum amount of time the advertisement must be displayed before it must be automatically hidden, in seconds.
-         */
-        protected int                  $maxDisplayDuration,
+        protected string               $additionalInfo,
         /**
          * True, if the advertisement can be reported to Telegram moderators through reportVideoMessageAdvertisement.
          */
         protected bool                 $canBeReported,
         /**
+         * The maximum amount of time the advertisement must be displayed before it must be automatically hidden, in seconds.
+         */
+        protected int                  $maxDisplayDuration,
+        /**
+         * The minimum amount of time the advertisement must be displayed before it can be hidden by the user, in seconds.
+         */
+        protected int                  $minDisplayDuration,
+        /**
          * Information about the sponsor of the advertisement.
          */
         protected AdvertisementSponsor $sponsor,
+        /**
+         * Text of the advertisement.
+         */
+        protected string               $text,
         /**
          * Title of the sponsored message.
          */
         protected string               $title,
         /**
-         * If non-empty, additional information about the sponsored message to be shown along with the message.
+         * Unique identifier of this result.
          */
-        protected string               $additionalInfo,
+        protected int                  $uniqueId,
     ) {}
 
     public static function fromArray(array $array): VideoMessageAdvertisement
     {
         return new static(
-            $array['unique_id'],
-            $array['text'],
-            $array['min_display_duration'],
-            $array['max_display_duration'],
-            $array['can_be_reported'],
-            TdSchemaRegistry::fromArray($array['sponsor']),
-            $array['title'],
-            $array['additional_info'],
+            additionalInfo    : $array['additional_info'],
+            canBeReported     : $array['can_be_reported'],
+            maxDisplayDuration: $array['max_display_duration'],
+            minDisplayDuration: $array['min_display_duration'],
+            sponsor           : TdSchemaRegistry::fromArray($array['sponsor']),
+            text              : $array['text'],
+            title             : $array['title'],
+            uniqueId          : $array['unique_id'],
         );
     }
 
@@ -166,14 +166,14 @@ class VideoMessageAdvertisement extends TdObject
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'unique_id'            => $this->uniqueId,
-            'text'                 => $this->text,
-            'min_display_duration' => $this->minDisplayDuration,
-            'max_display_duration' => $this->maxDisplayDuration,
-            'can_be_reported'      => $this->canBeReported,
-            'sponsor'              => $this->sponsor->typeSerialize(),
-            'title'                => $this->title,
             'additional_info'      => $this->additionalInfo,
+            'can_be_reported'      => $this->canBeReported,
+            'max_display_duration' => $this->maxDisplayDuration,
+            'min_display_duration' => $this->minDisplayDuration,
+            'sponsor'              => $this->sponsor->jsonSerialize(),
+            'text'                 => $this->text,
+            'title'                => $this->title,
+            'unique_id'            => $this->uniqueId,
         ];
     }
 }

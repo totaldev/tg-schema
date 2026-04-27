@@ -28,7 +28,7 @@ class EmojiKeywords extends TdObject
     public static function fromArray(array $array): EmojiKeywords
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['emoji_keywords']),
+            emojiKeywords: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['emoji_keywords']),
         );
     }
 
@@ -48,7 +48,7 @@ class EmojiKeywords extends TdObject
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'emoji_keywords' => array_map(static fn($x) => $x->typeSerialize(), $this->emojiKeywords),
+            'emoji_keywords' => array_map(static fn($x) => $x->jsonSerialize(), $this->emojiKeywords),
         ];
     }
 }

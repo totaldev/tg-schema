@@ -25,7 +25,7 @@ class PassportElementErrorSourceFile extends PassportElementErrorSource
     public static function fromArray(array $array): PassportElementErrorSourceFile
     {
         return new static(
-            $array['file_index'],
+            fileIndex: $array['file_index'],
         );
     }
 

@@ -19,6 +19,10 @@ class StorageStatisticsByFileType extends TdObject
 
     public function __construct(
         /**
+         * Total number of files.
+         */
+        protected int      $count,
+        /**
          * File type.
          */
         protected FileType $fileType,
@@ -26,18 +30,14 @@ class StorageStatisticsByFileType extends TdObject
          * Total size of the files, in bytes.
          */
         protected int      $size,
-        /**
-         * Total number of files.
-         */
-        protected int      $count,
     ) {}
 
     public static function fromArray(array $array): StorageStatisticsByFileType
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['file_type']),
-            $array['size'],
-            $array['count'],
+            count   : $array['count'],
+            fileType: TdSchemaRegistry::fromArray($array['file_type']),
+            size    : $array['size'],
         );
     }
 
@@ -81,9 +81,9 @@ class StorageStatisticsByFileType extends TdObject
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'file_type' => $this->fileType->typeSerialize(),
-            'size'      => $this->size,
             'count'     => $this->count,
+            'file_type' => $this->fileType->jsonSerialize(),
+            'size'      => $this->size,
         ];
     }
 }

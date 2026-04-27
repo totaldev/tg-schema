@@ -22,21 +22,21 @@ class SetStoryAlbumName extends TdFunction
          */
         protected int    $chatId,
         /**
-         * Identifier of the story album.
-         */
-        protected int    $storyAlbumId,
-        /**
          * New name of the album; 1-12 characters.
          */
         protected string $name,
+        /**
+         * Identifier of the story album.
+         */
+        protected int    $storyAlbumId,
     ) {}
 
     public static function fromArray(array $array): SetStoryAlbumName
     {
         return new static(
-            $array['chat_id'],
-            $array['story_album_id'],
-            $array['name'],
+            chatId      : $array['chat_id'],
+            name        : $array['name'],
+            storyAlbumId: $array['story_album_id'],
         );
     }
 
@@ -81,8 +81,8 @@ class SetStoryAlbumName extends TdFunction
         return [
             '@type'          => static::TYPE_NAME,
             'chat_id'        => $this->chatId,
-            'story_album_id' => $this->storyAlbumId,
             'name'           => $this->name,
+            'story_album_id' => $this->storyAlbumId,
         ];
     }
 }

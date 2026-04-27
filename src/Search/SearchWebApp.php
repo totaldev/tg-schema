@@ -29,8 +29,8 @@ class SearchWebApp extends TdFunction
     public static function fromArray(array $array): SearchWebApp
     {
         return new static(
-            $array['bot_user_id'],
-            $array['web_app_short_name'],
+            botUserId      : $array['bot_user_id'],
+            webAppShortName: $array['web_app_short_name'],
         );
     }
 

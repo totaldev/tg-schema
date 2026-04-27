@@ -17,14 +17,6 @@ class CallStateDiscarded extends CallState
 
     public function __construct(
         /**
-         * The reason why the call has ended.
-         */
-        protected CallDiscardReason $reason,
-        /**
-         * True, if the call rating must be sent to the server.
-         */
-        protected bool              $needRating,
-        /**
          * True, if the call debug information must be sent to the server.
          */
         protected bool              $needDebugInformation,
@@ -32,6 +24,14 @@ class CallStateDiscarded extends CallState
          * True, if the call log must be sent to the server.
          */
         protected bool              $needLog,
+        /**
+         * True, if the call rating must be sent to the server.
+         */
+        protected bool              $needRating,
+        /**
+         * The reason why the call has ended.
+         */
+        protected CallDiscardReason $reason,
     ) {
         parent::__construct();
     }
@@ -39,10 +39,10 @@ class CallStateDiscarded extends CallState
     public static function fromArray(array $array): CallStateDiscarded
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['reason']),
-            $array['need_rating'],
-            $array['need_debug_information'],
-            $array['need_log'],
+            needDebugInformation: $array['need_debug_information'],
+            needLog             : $array['need_log'],
+            needRating          : $array['need_rating'],
+            reason              : TdSchemaRegistry::fromArray($array['reason']),
         );
     }
 
@@ -98,10 +98,10 @@ class CallStateDiscarded extends CallState
     {
         return [
             '@type'                  => static::TYPE_NAME,
-            'reason'                 => $this->reason->typeSerialize(),
-            'need_rating'            => $this->needRating,
             'need_debug_information' => $this->needDebugInformation,
             'need_log'               => $this->needLog,
+            'need_rating'            => $this->needRating,
+            'reason'                 => $this->reason->jsonSerialize(),
         ];
     }
 }

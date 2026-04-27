@@ -31,8 +31,8 @@ class InputChatPhotoAnimation extends InputChatPhoto
     public static function fromArray(array $array): InputChatPhotoAnimation
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['animation']),
-            $array['main_frame_timestamp'],
+            animation         : TdSchemaRegistry::fromArray($array['animation']),
+            mainFrameTimestamp: $array['main_frame_timestamp'],
         );
     }
 
@@ -64,7 +64,7 @@ class InputChatPhotoAnimation extends InputChatPhoto
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'animation'            => $this->animation->typeSerialize(),
+            'animation'            => $this->animation->jsonSerialize(),
             'main_frame_timestamp' => $this->mainFrameTimestamp,
         ];
     }

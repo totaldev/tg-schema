@@ -17,20 +17,20 @@ class GetSavedMessagesTopicMessageByDate extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of Saved Messages topic which message will be returned.
-         */
-        protected int $savedMessagesTopicId,
-        /**
          * Point in time (Unix timestamp) relative to which to search for messages.
          */
         protected int $date,
+        /**
+         * Identifier of Saved Messages topic which message will be returned.
+         */
+        protected int $savedMessagesTopicId,
     ) {}
 
     public static function fromArray(array $array): GetSavedMessagesTopicMessageByDate
     {
         return new static(
-            $array['saved_messages_topic_id'],
-            $array['date'],
+            date                : $array['date'],
+            savedMessagesTopicId: $array['saved_messages_topic_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class GetSavedMessagesTopicMessageByDate extends TdFunction
     {
         return [
             '@type'                   => static::TYPE_NAME,
-            'saved_messages_topic_id' => $this->savedMessagesTopicId,
             'date'                    => $this->date,
+            'saved_messages_topic_id' => $this->savedMessagesTopicId,
         ];
     }
 }

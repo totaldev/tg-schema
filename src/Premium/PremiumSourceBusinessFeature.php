@@ -28,7 +28,7 @@ class PremiumSourceBusinessFeature extends PremiumSource
     public static function fromArray(array $array): PremiumSourceBusinessFeature
     {
         return new static(
-            isset($array['feature']) ? TdSchemaRegistry::fromArray($array['feature']) : null,
+            feature: (isset($array['feature']) ? TdSchemaRegistry::fromArray($array['feature']) : null),
         );
     }
 
@@ -48,7 +48,7 @@ class PremiumSourceBusinessFeature extends PremiumSource
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'feature' => $this->feature ?? null,
+            'feature' => (null !== $this->feature ? $this->feature->jsonSerialize() : null),
         ];
     }
 }

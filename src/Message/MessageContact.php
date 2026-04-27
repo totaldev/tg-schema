@@ -28,7 +28,7 @@ class MessageContact extends MessageContent
     public static function fromArray(array $array): MessageContact
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['contact']),
+            contact: TdSchemaRegistry::fromArray($array['contact']),
         );
     }
 
@@ -48,7 +48,7 @@ class MessageContact extends MessageContent
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'contact' => $this->contact->typeSerialize(),
+            'contact' => $this->contact->jsonSerialize(),
         ];
     }
 }

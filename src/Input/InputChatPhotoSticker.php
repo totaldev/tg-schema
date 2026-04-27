@@ -28,7 +28,7 @@ class InputChatPhotoSticker extends InputChatPhoto
     public static function fromArray(array $array): InputChatPhotoSticker
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['sticker']),
+            sticker: TdSchemaRegistry::fromArray($array['sticker']),
         );
     }
 
@@ -48,7 +48,7 @@ class InputChatPhotoSticker extends InputChatPhoto
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'sticker' => $this->sticker->typeSerialize(),
+            'sticker' => $this->sticker->jsonSerialize(),
         ];
     }
 }

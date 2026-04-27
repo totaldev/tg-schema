@@ -27,7 +27,7 @@ class GetBusinessFeatures extends TdFunction
     public static function fromArray(array $array): GetBusinessFeatures
     {
         return new static(
-            isset($array['source']) ? TdSchemaRegistry::fromArray($array['source']) : null,
+            source: (isset($array['source']) ? TdSchemaRegistry::fromArray($array['source']) : null),
         );
     }
 
@@ -47,7 +47,7 @@ class GetBusinessFeatures extends TdFunction
     {
         return [
             '@type'  => static::TYPE_NAME,
-            'source' => $this->source ?? null,
+            'source' => (null !== $this->source ? $this->source->jsonSerialize() : null),
         ];
     }
 }

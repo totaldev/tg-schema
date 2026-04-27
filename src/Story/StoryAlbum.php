@@ -40,10 +40,10 @@ class StoryAlbum extends TdObject
     public static function fromArray(array $array): StoryAlbum
     {
         return new static(
-            $array['id'],
-            $array['name'],
-            isset($array['photo_icon']) ? TdSchemaRegistry::fromArray($array['photo_icon']) : null,
-            isset($array['video_icon']) ? TdSchemaRegistry::fromArray($array['video_icon']) : null,
+            id       : $array['id'],
+            name     : $array['name'],
+            photoIcon: (isset($array['photo_icon']) ? TdSchemaRegistry::fromArray($array['photo_icon']) : null),
+            videoIcon: (isset($array['video_icon']) ? TdSchemaRegistry::fromArray($array['video_icon']) : null),
         );
     }
 
@@ -101,8 +101,8 @@ class StoryAlbum extends TdObject
             '@type'      => static::TYPE_NAME,
             'id'         => $this->id,
             'name'       => $this->name,
-            'photo_icon' => $this->photoIcon ?? null,
-            'video_icon' => $this->videoIcon ?? null,
+            'photo_icon' => (null !== $this->photoIcon ? $this->photoIcon->jsonSerialize() : null),
+            'video_icon' => (null !== $this->videoIcon ? $this->videoIcon->jsonSerialize() : null),
         ];
     }
 }

@@ -18,18 +18,6 @@ class MessageGiftedStars extends MessageContent
 
     public function __construct(
         /**
-         * The identifier of a user that gifted Telegram Stars; 0 if the gift was anonymous or is outgoing.
-         */
-        protected int      $gifterUserId,
-        /**
-         * The identifier of a user that received Telegram Stars; 0 if the gift is incoming.
-         */
-        protected int      $receiverUserId,
-        /**
-         * Currency for the paid amount.
-         */
-        protected string   $currency,
-        /**
          * The paid amount, in the smallest units of the currency.
          */
         protected int      $amount,
@@ -42,17 +30,29 @@ class MessageGiftedStars extends MessageContent
          */
         protected int      $cryptocurrencyAmount,
         /**
+         * Currency for the paid amount.
+         */
+        protected string   $currency,
+        /**
+         * The identifier of a user that gifted Telegram Stars; 0 if the gift was anonymous or is outgoing.
+         */
+        protected int      $gifterUserId,
+        /**
+         * The identifier of a user that received Telegram Stars; 0 if the gift is incoming.
+         */
+        protected int      $receiverUserId,
+        /**
          * Number of Telegram Stars that were gifted.
          */
         protected int      $starCount,
         /**
-         * Identifier of the transaction for Telegram Stars purchase; for receiver only.
-         */
-        protected string   $transactionId,
-        /**
          * A sticker to be shown in the message; may be null if unknown.
          */
         protected ?Sticker $sticker,
+        /**
+         * Identifier of the transaction for Telegram Stars purchase; for receiver only.
+         */
+        protected string   $transactionId,
     ) {
         parent::__construct();
     }
@@ -60,15 +60,15 @@ class MessageGiftedStars extends MessageContent
     public static function fromArray(array $array): MessageGiftedStars
     {
         return new static(
-            $array['gifter_user_id'],
-            $array['receiver_user_id'],
-            $array['currency'],
-            $array['amount'],
-            $array['cryptocurrency'],
-            $array['cryptocurrency_amount'],
-            $array['star_count'],
-            $array['transaction_id'],
-            isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null,
+            amount              : $array['amount'],
+            cryptocurrency      : $array['cryptocurrency'],
+            cryptocurrencyAmount: $array['cryptocurrency_amount'],
+            currency            : $array['currency'],
+            gifterUserId        : $array['gifter_user_id'],
+            receiverUserId      : $array['receiver_user_id'],
+            starCount           : $array['star_count'],
+            sticker             : (isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null),
+            transactionId       : $array['transaction_id'],
         );
     }
 
@@ -184,15 +184,15 @@ class MessageGiftedStars extends MessageContent
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'gifter_user_id'        => $this->gifterUserId,
-            'receiver_user_id'      => $this->receiverUserId,
-            'currency'              => $this->currency,
             'amount'                => $this->amount,
             'cryptocurrency'        => $this->cryptocurrency,
             'cryptocurrency_amount' => $this->cryptocurrencyAmount,
+            'currency'              => $this->currency,
+            'gifter_user_id'        => $this->gifterUserId,
+            'receiver_user_id'      => $this->receiverUserId,
             'star_count'            => $this->starCount,
+            'sticker'               => (null !== $this->sticker ? $this->sticker->jsonSerialize() : null),
             'transaction_id'        => $this->transactionId,
-            'sticker'               => $this->sticker ?? null,
         ];
     }
 }

@@ -18,20 +18,20 @@ class EmojiStatus extends TdObject
 
     public function __construct(
         /**
-         * Type of the emoji status.
-         */
-        protected EmojiStatusType $type,
-        /**
          * Point in time (Unix timestamp) when the status will expire; 0 if never.
          */
         protected int             $expirationDate,
+        /**
+         * Type of the emoji status.
+         */
+        protected EmojiStatusType $type,
     ) {}
 
     public static function fromArray(array $array): EmojiStatus
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['type']),
-            $array['expiration_date'],
+            expirationDate: $array['expiration_date'],
+            type          : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -63,8 +63,8 @@ class EmojiStatus extends TdObject
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'type'            => $this->type->typeSerialize(),
             'expiration_date' => $this->expirationDate,
+            'type'            => $this->type->jsonSerialize(),
         ];
     }
 }

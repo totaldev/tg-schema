@@ -15,13 +15,13 @@ class ReportStoryResultTextRequired extends ReportStoryResult
 
     public function __construct(
         /**
-         * Option identifier for the next reportStory request.
-         */
-        protected string $optionId,
-        /**
          * True, if the user can skip text adding.
          */
         protected bool   $isOptional,
+        /**
+         * Option identifier for the next reportStory request.
+         */
+        protected string $optionId,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class ReportStoryResultTextRequired extends ReportStoryResult
     public static function fromArray(array $array): ReportStoryResultTextRequired
     {
         return new static(
-            $array['option_id'],
-            $array['is_optional'],
+            isOptional: $array['is_optional'],
+            optionId  : $array['option_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class ReportStoryResultTextRequired extends ReportStoryResult
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'option_id'   => $this->optionId,
             'is_optional' => $this->isOptional,
+            'option_id'   => $this->optionId,
         ];
     }
 }

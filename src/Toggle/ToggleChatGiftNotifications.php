@@ -18,20 +18,20 @@ class ToggleChatGiftNotifications extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the channel chat.
-         */
-        protected int  $chatId,
-        /**
          * Pass true to enable notifications about new gifts owned by the channel chat; pass false to disable the notifications.
          */
         protected bool $areEnabled,
+        /**
+         * Identifier of the channel chat.
+         */
+        protected int  $chatId,
     ) {}
 
     public static function fromArray(array $array): ToggleChatGiftNotifications
     {
         return new static(
-            $array['chat_id'],
-            $array['are_enabled'],
+            areEnabled: $array['are_enabled'],
+            chatId    : $array['chat_id'],
         );
     }
 
@@ -63,8 +63,8 @@ class ToggleChatGiftNotifications extends TdFunction
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'chat_id'     => $this->chatId,
             'are_enabled' => $this->areEnabled,
+            'chat_id'     => $this->chatId,
         ];
     }
 }

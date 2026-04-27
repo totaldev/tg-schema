@@ -26,7 +26,7 @@ class EmailAddressResetStateAvailable extends EmailAddressResetState
     public static function fromArray(array $array): EmailAddressResetStateAvailable
     {
         return new static(
-            $array['wait_period'],
+            waitPeriod: $array['wait_period'],
         );
     }
 

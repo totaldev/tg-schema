@@ -31,8 +31,8 @@ class GetChatNotificationSettingsExceptions extends TdFunction
     public static function fromArray(array $array): GetChatNotificationSettingsExceptions
     {
         return new static(
-            isset($array['scope']) ? TdSchemaRegistry::fromArray($array['scope']) : null,
-            $array['compare_sound'],
+            compareSound: $array['compare_sound'],
+            scope       : (isset($array['scope']) ? TdSchemaRegistry::fromArray($array['scope']) : null),
         );
     }
 
@@ -64,8 +64,8 @@ class GetChatNotificationSettingsExceptions extends TdFunction
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'scope'         => $this->scope ?? null,
             'compare_sound' => $this->compareSound,
+            'scope'         => (null !== $this->scope ? $this->scope->jsonSerialize() : null),
         ];
     }
 }

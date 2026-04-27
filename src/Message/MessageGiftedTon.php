@@ -26,6 +26,10 @@ class MessageGiftedTon extends MessageContent
          */
         protected int      $receiverUserId,
         /**
+         * A sticker to be shown in the message; may be null if unknown.
+         */
+        protected ?Sticker $sticker,
+        /**
          * The received amount of Toncoins, in the smallest units of the cryptocurrency.
          */
         protected int      $tonAmount,
@@ -33,10 +37,6 @@ class MessageGiftedTon extends MessageContent
          * Identifier of the transaction for Toncoin credit; for receiver only.
          */
         protected string   $transactionId,
-        /**
-         * A sticker to be shown in the message; may be null if unknown.
-         */
-        protected ?Sticker $sticker,
     ) {
         parent::__construct();
     }
@@ -44,11 +44,11 @@ class MessageGiftedTon extends MessageContent
     public static function fromArray(array $array): MessageGiftedTon
     {
         return new static(
-            $array['gifter_user_id'],
-            $array['receiver_user_id'],
-            $array['ton_amount'],
-            $array['transaction_id'],
-            isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null,
+            gifterUserId  : $array['gifter_user_id'],
+            receiverUserId: $array['receiver_user_id'],
+            sticker       : (isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null),
+            tonAmount     : $array['ton_amount'],
+            transactionId : $array['transaction_id'],
         );
     }
 
@@ -118,9 +118,9 @@ class MessageGiftedTon extends MessageContent
             '@type'            => static::TYPE_NAME,
             'gifter_user_id'   => $this->gifterUserId,
             'receiver_user_id' => $this->receiverUserId,
+            'sticker'          => (null !== $this->sticker ? $this->sticker->jsonSerialize() : null),
             'ton_amount'       => $this->tonAmount,
             'transaction_id'   => $this->transactionId,
-            'sticker'          => $this->sticker ?? null,
         ];
     }
 }

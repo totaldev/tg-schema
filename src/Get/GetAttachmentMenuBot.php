@@ -25,7 +25,7 @@ class GetAttachmentMenuBot extends TdFunction
     public static function fromArray(array $array): GetAttachmentMenuBot
     {
         return new static(
-            $array['bot_user_id'],
+            botUserId: $array['bot_user_id'],
         );
     }
 

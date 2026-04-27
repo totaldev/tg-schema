@@ -18,20 +18,20 @@ class ReportSupergroupAntiSpamFalsePositive extends TdFunction
 
     public function __construct(
         /**
-         * Supergroup identifier.
-         */
-        protected int $supergroupId,
-        /**
          * Identifier of the erroneously deleted message from chatEventMessageDeleted.
          */
         protected int $messageId,
+        /**
+         * Supergroup identifier.
+         */
+        protected int $supergroupId,
     ) {}
 
     public static function fromArray(array $array): ReportSupergroupAntiSpamFalsePositive
     {
         return new static(
-            $array['supergroup_id'],
-            $array['message_id'],
+            messageId   : $array['message_id'],
+            supergroupId: $array['supergroup_id'],
         );
     }
 
@@ -63,8 +63,8 @@ class ReportSupergroupAntiSpamFalsePositive extends TdFunction
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'supergroup_id' => $this->supergroupId,
             'message_id'    => $this->messageId,
+            'supergroup_id' => $this->supergroupId,
         ];
     }
 }

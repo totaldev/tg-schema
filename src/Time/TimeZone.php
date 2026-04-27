@@ -33,9 +33,9 @@ class TimeZone extends TdObject
     public static function fromArray(array $array): TimeZone
     {
         return new static(
-            $array['id'],
-            $array['name'],
-            $array['utc_time_offset'],
+            id           : $array['id'],
+            name         : $array['name'],
+            utcTimeOffset: $array['utc_time_offset'],
         );
     }
 

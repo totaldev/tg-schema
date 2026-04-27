@@ -21,17 +21,17 @@ class DownloadFile extends TdFunction
          */
         protected int  $fileId,
         /**
-         * Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile/addFileToDownloads was called will be downloaded first.
+         * Number of bytes which need to be downloaded starting from the "offset" position before the download will automatically be canceled; use 0 to download without a limit.
          */
-        protected int  $priority,
+        protected int  $limit,
         /**
          * The starting position from which the file needs to be downloaded.
          */
         protected int  $offset,
         /**
-         * Number of bytes which need to be downloaded starting from the "offset" position before the download will automatically be canceled; use 0 to download without a limit.
+         * Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile/addFileToDownloads was called will be downloaded first.
          */
-        protected int  $limit,
+        protected int  $priority,
         /**
          * Pass true to return response only after the file download has succeeded, has failed, has been canceled, or a new downloadFile request with different offset/limit parameters was sent; pass false to return file state immediately, just after the download has been started.
          */
@@ -41,11 +41,11 @@ class DownloadFile extends TdFunction
     public static function fromArray(array $array): DownloadFile
     {
         return new static(
-            $array['file_id'],
-            $array['priority'],
-            $array['offset'],
-            $array['limit'],
-            $array['synchronous'],
+            fileId     : $array['file_id'],
+            limit      : $array['limit'],
+            offset     : $array['offset'],
+            priority   : $array['priority'],
+            synchronous: $array['synchronous'],
         );
     }
 
@@ -114,9 +114,9 @@ class DownloadFile extends TdFunction
         return [
             '@type'       => static::TYPE_NAME,
             'file_id'     => $this->fileId,
-            'priority'    => $this->priority,
-            'offset'      => $this->offset,
             'limit'       => $this->limit,
+            'offset'      => $this->offset,
+            'priority'    => $this->priority,
             'synchronous' => $this->synchronous,
         ];
     }

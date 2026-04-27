@@ -29,8 +29,8 @@ class CheckChatUsername extends TdFunction
     public static function fromArray(array $array): CheckChatUsername
     {
         return new static(
-            $array['chat_id'],
-            $array['username'],
+            chatId  : $array['chat_id'],
+            username: $array['username'],
         );
     }
 

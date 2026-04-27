@@ -17,20 +17,20 @@ class SetLogTagVerbosityLevel extends TdFunction
 
     public function __construct(
         /**
-         * Logging tag to change verbosity level.
-         */
-        protected string $tag,
-        /**
          * New verbosity level; 1-1024.
          */
         protected int    $newVerbosityLevel,
+        /**
+         * Logging tag to change verbosity level.
+         */
+        protected string $tag,
     ) {}
 
     public static function fromArray(array $array): SetLogTagVerbosityLevel
     {
         return new static(
-            $array['tag'],
-            $array['new_verbosity_level'],
+            newVerbosityLevel: $array['new_verbosity_level'],
+            tag              : $array['tag'],
         );
     }
 
@@ -62,8 +62,8 @@ class SetLogTagVerbosityLevel extends TdFunction
     {
         return [
             '@type'               => static::TYPE_NAME,
-            'tag'                 => $this->tag,
             'new_verbosity_level' => $this->newVerbosityLevel,
+            'tag'                 => $this->tag,
         ];
     }
 }

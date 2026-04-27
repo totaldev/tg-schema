@@ -26,7 +26,7 @@ class ReplacePrimaryChatInviteLink extends TdFunction
     public static function fromArray(array $array): ReplacePrimaryChatInviteLink
     {
         return new static(
-            $array['chat_id'],
+            chatId: $array['chat_id'],
         );
     }
 

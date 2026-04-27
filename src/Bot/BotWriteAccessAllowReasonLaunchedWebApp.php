@@ -28,7 +28,7 @@ class BotWriteAccessAllowReasonLaunchedWebApp extends BotWriteAccessAllowReason
     public static function fromArray(array $array): BotWriteAccessAllowReasonLaunchedWebApp
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['web_app']),
+            webApp: TdSchemaRegistry::fromArray($array['web_app']),
         );
     }
 
@@ -48,7 +48,7 @@ class BotWriteAccessAllowReasonLaunchedWebApp extends BotWriteAccessAllowReason
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'web_app' => $this->webApp->typeSerialize(),
+            'web_app' => $this->webApp->jsonSerialize(),
         ];
     }
 }

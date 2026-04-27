@@ -17,13 +17,13 @@ class InputMessageReplyToMessage extends InputMessageReplyTo
 
     public function __construct(
         /**
-         * The identifier of the message to be replied in the same chat and forum topic. A message can be replied in the same chat and forum topic only if messageProperties.can_be_replied.
-         */
-        protected int             $messageId,
-        /**
          * Identifier of the checklist task in the message to be replied; pass 0 to reply to the whole message.
          */
         protected int             $checklistTaskId,
+        /**
+         * The identifier of the message to be replied in the same chat and forum topic. A message can be replied in the same chat and forum topic only if messageProperties.can_be_replied.
+         */
+        protected int             $messageId,
         /**
          * Quote from the message to be replied; pass null if none. Must always be null for replies in secret chats.
          */
@@ -35,9 +35,9 @@ class InputMessageReplyToMessage extends InputMessageReplyTo
     public static function fromArray(array $array): InputMessageReplyToMessage
     {
         return new static(
-            $array['message_id'],
-            isset($array['quote']) ? TdSchemaRegistry::fromArray($array['quote']) : null,
-            $array['checklist_task_id'],
+            checklistTaskId: $array['checklist_task_id'],
+            messageId      : $array['message_id'],
+            quote          : (isset($array['quote']) ? TdSchemaRegistry::fromArray($array['quote']) : null),
         );
     }
 
@@ -81,9 +81,9 @@ class InputMessageReplyToMessage extends InputMessageReplyTo
     {
         return [
             '@type'             => static::TYPE_NAME,
-            'message_id'        => $this->messageId,
-            'quote'             => $this->quote ?? null,
             'checklist_task_id' => $this->checklistTaskId,
+            'message_id'        => $this->messageId,
+            'quote'             => (null !== $this->quote ? $this->quote->jsonSerialize() : null),
         ];
     }
 }

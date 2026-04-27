@@ -17,13 +17,13 @@ class ChatEventMemberInvited extends ChatEventAction
 
     public function __construct(
         /**
-         * New member user identifier.
-         */
-        protected int              $userId,
-        /**
          * New member status.
          */
         protected ChatMemberStatus $status,
+        /**
+         * New member user identifier.
+         */
+        protected int              $userId,
     ) {
         parent::__construct();
     }
@@ -31,8 +31,8 @@ class ChatEventMemberInvited extends ChatEventAction
     public static function fromArray(array $array): ChatEventMemberInvited
     {
         return new static(
-            $array['user_id'],
-            TdSchemaRegistry::fromArray($array['status']),
+            status: TdSchemaRegistry::fromArray($array['status']),
+            userId: $array['user_id'],
         );
     }
 
@@ -64,8 +64,8 @@ class ChatEventMemberInvited extends ChatEventAction
     {
         return [
             '@type'   => static::TYPE_NAME,
+            'status'  => $this->status->jsonSerialize(),
             'user_id' => $this->userId,
-            'status'  => $this->status->typeSerialize(),
         ];
     }
 }

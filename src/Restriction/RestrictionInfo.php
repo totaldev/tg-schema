@@ -17,20 +17,20 @@ class RestrictionInfo extends TdObject
 
     public function __construct(
         /**
-         * A human-readable description of the reason why access to the content must be restricted. If empty, then the content can be accessed, but may be covered by hidden with 18+ spoiler anyway.
-         */
-        protected string $restrictionReason,
-        /**
          * True, if media content of the messages must be hidden with 18+ spoiler. Use value of the option "can_ignore_sensitive_content_restrictions" to check whether the current user can ignore the restriction. If age verification parameters were received in updateAgeVerificationParameters, then the user must complete age verification to ignore the restriction. Set the option "ignore_sensitive_content_restrictions" to true if the user passes age verification.
          */
         protected bool   $hasSensitiveContent,
+        /**
+         * A human-readable description of the reason why access to the content must be restricted. If empty, then the content can be accessed, but may be covered by hidden with 18+ spoiler anyway.
+         */
+        protected string $restrictionReason,
     ) {}
 
     public static function fromArray(array $array): RestrictionInfo
     {
         return new static(
-            $array['restriction_reason'],
-            $array['has_sensitive_content'],
+            hasSensitiveContent: $array['has_sensitive_content'],
+            restrictionReason  : $array['restriction_reason'],
         );
     }
 
@@ -62,8 +62,8 @@ class RestrictionInfo extends TdObject
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'restriction_reason'    => $this->restrictionReason,
             'has_sensitive_content' => $this->hasSensitiveContent,
+            'restriction_reason'    => $this->restrictionReason,
         ];
     }
 }

@@ -15,13 +15,13 @@ class InputMessageDice extends InputMessageContent
 
     public function __construct(
         /**
-         * Emoji on which the dice throw animation is based.
-         */
-        protected string $emoji,
-        /**
          * True, if the chat message draft must be deleted.
          */
         protected bool   $clearDraft,
+        /**
+         * Emoji on which the dice throw animation is based.
+         */
+        protected string $emoji,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class InputMessageDice extends InputMessageContent
     public static function fromArray(array $array): InputMessageDice
     {
         return new static(
-            $array['emoji'],
-            $array['clear_draft'],
+            clearDraft: $array['clear_draft'],
+            emoji     : $array['emoji'],
         );
     }
 
@@ -62,8 +62,8 @@ class InputMessageDice extends InputMessageContent
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'emoji'       => $this->emoji,
             'clear_draft' => $this->clearDraft,
+            'emoji'       => $this->emoji,
         ];
     }
 }

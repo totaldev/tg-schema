@@ -15,9 +15,9 @@ class PaymentProviderStripe extends PaymentProvider
 
     public function __construct(
         /**
-         * Stripe API publishable key.
+         * True, if the cardholder name must be provided.
          */
-        protected string $publishableKey,
+        protected bool   $needCardholderName,
         /**
          * True, if the user country must be provided.
          */
@@ -27,9 +27,9 @@ class PaymentProviderStripe extends PaymentProvider
          */
         protected bool   $needPostalCode,
         /**
-         * True, if the cardholder name must be provided.
+         * Stripe API publishable key.
          */
-        protected bool   $needCardholderName,
+        protected string $publishableKey,
     ) {
         parent::__construct();
     }
@@ -37,10 +37,10 @@ class PaymentProviderStripe extends PaymentProvider
     public static function fromArray(array $array): PaymentProviderStripe
     {
         return new static(
-            $array['publishable_key'],
-            $array['need_country'],
-            $array['need_postal_code'],
-            $array['need_cardholder_name'],
+            needCardholderName: $array['need_cardholder_name'],
+            needCountry       : $array['need_country'],
+            needPostalCode    : $array['need_postal_code'],
+            publishableKey    : $array['publishable_key'],
         );
     }
 
@@ -96,10 +96,10 @@ class PaymentProviderStripe extends PaymentProvider
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'publishable_key'      => $this->publishableKey,
+            'need_cardholder_name' => $this->needCardholderName,
             'need_country'         => $this->needCountry,
             'need_postal_code'     => $this->needPostalCode,
-            'need_cardholder_name' => $this->needCardholderName,
+            'publishable_key'      => $this->publishableKey,
         ];
     }
 }

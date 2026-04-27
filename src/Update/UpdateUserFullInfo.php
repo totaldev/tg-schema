@@ -18,13 +18,13 @@ class UpdateUserFullInfo extends Update
 
     public function __construct(
         /**
-         * User identifier.
-         */
-        protected int          $userId,
-        /**
          * New full information about the user.
          */
         protected UserFullInfo $userFullInfo,
+        /**
+         * User identifier.
+         */
+        protected int          $userId,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class UpdateUserFullInfo extends Update
     public static function fromArray(array $array): UpdateUserFullInfo
     {
         return new static(
-            $array['user_id'],
-            TdSchemaRegistry::fromArray($array['user_full_info']),
+            userFullInfo: TdSchemaRegistry::fromArray($array['user_full_info']),
+            userId      : $array['user_id'],
         );
     }
 
@@ -65,8 +65,8 @@ class UpdateUserFullInfo extends Update
     {
         return [
             '@type'          => static::TYPE_NAME,
+            'user_full_info' => $this->userFullInfo->jsonSerialize(),
             'user_id'        => $this->userId,
-            'user_full_info' => $this->userFullInfo->typeSerialize(),
         ];
     }
 }

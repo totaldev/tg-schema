@@ -29,8 +29,8 @@ class InputMessageGame extends InputMessageContent
     public static function fromArray(array $array): InputMessageGame
     {
         return new static(
-            $array['bot_user_id'],
-            $array['game_short_name'],
+            botUserId    : $array['bot_user_id'],
+            gameShortName: $array['game_short_name'],
         );
     }
 

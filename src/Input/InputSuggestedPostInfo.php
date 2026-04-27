@@ -31,8 +31,8 @@ class InputSuggestedPostInfo extends TdObject
     public static function fromArray(array $array): InputSuggestedPostInfo
     {
         return new static(
-            isset($array['price']) ? TdSchemaRegistry::fromArray($array['price']) : null,
-            $array['send_date'],
+            price   : (isset($array['price']) ? TdSchemaRegistry::fromArray($array['price']) : null),
+            sendDate: $array['send_date'],
         );
     }
 
@@ -64,7 +64,7 @@ class InputSuggestedPostInfo extends TdObject
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'price'     => $this->price ?? null,
+            'price'     => (null !== $this->price ? $this->price->jsonSerialize() : null),
             'send_date' => $this->sendDate,
         ];
     }

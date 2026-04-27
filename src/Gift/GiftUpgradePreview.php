@@ -21,23 +21,23 @@ class GiftUpgradePreview extends TdObject
 
     public function __construct(
         /**
+         * Examples of possible backdrops that can be chosen for the gift after upgrade.
+         *
+         * @var UpgradedGiftBackdrop[]
+         */
+        protected array $backdrops,
+        /**
          * Examples of possible models that can be chosen for the gift after upgrade.
          *
          * @var UpgradedGiftModel[]
          */
         protected array $models,
         /**
-         * Examples of possible symbols that can be chosen for the gift after upgrade.
+         * Next changes for the price for gift upgrade with more granularity than in prices.
          *
-         * @var UpgradedGiftSymbol[]
+         * @var GiftUpgradePrice[]
          */
-        protected array $symbols,
-        /**
-         * Examples of possible backdrops that can be chosen for the gift after upgrade.
-         *
-         * @var UpgradedGiftBackdrop[]
-         */
-        protected array $backdrops,
+        protected array $nextPrices,
         /**
          * Examples of price for gift upgrade from the maximum price to the minimum price.
          *
@@ -45,21 +45,21 @@ class GiftUpgradePreview extends TdObject
          */
         protected array $prices,
         /**
-         * Next changes for the price for gift upgrade with more granularity than in prices.
+         * Examples of possible symbols that can be chosen for the gift after upgrade.
          *
-         * @var GiftUpgradePrice[]
+         * @var UpgradedGiftSymbol[]
          */
-        protected array $nextPrices,
+        protected array $symbols,
     ) {}
 
     public static function fromArray(array $array): GiftUpgradePreview
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['models']),
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['symbols']),
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['backdrops']),
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['prices']),
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['next_prices']),
+            backdrops : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['backdrops']),
+            models    : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['models']),
+            nextPrices: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['next_prices']),
+            prices    : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['prices']),
+            symbols   : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['symbols']),
         );
     }
 
@@ -127,11 +127,11 @@ class GiftUpgradePreview extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'models'      => array_map(static fn($x) => $x->typeSerialize(), $this->models),
-            'symbols'     => array_map(static fn($x) => $x->typeSerialize(), $this->symbols),
-            'backdrops'   => array_map(static fn($x) => $x->typeSerialize(), $this->backdrops),
-            'prices'      => array_map(static fn($x) => $x->typeSerialize(), $this->prices),
-            'next_prices' => array_map(static fn($x) => $x->typeSerialize(), $this->nextPrices),
+            'backdrops'   => array_map(static fn($x) => $x->jsonSerialize(), $this->backdrops),
+            'models'      => array_map(static fn($x) => $x->jsonSerialize(), $this->models),
+            'next_prices' => array_map(static fn($x) => $x->jsonSerialize(), $this->nextPrices),
+            'prices'      => array_map(static fn($x) => $x->jsonSerialize(), $this->prices),
+            'symbols'     => array_map(static fn($x) => $x->jsonSerialize(), $this->symbols),
         ];
     }
 }

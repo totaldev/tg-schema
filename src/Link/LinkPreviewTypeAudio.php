@@ -28,7 +28,7 @@ class LinkPreviewTypeAudio extends LinkPreviewType
     public static function fromArray(array $array): LinkPreviewTypeAudio
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['audio']),
+            audio: TdSchemaRegistry::fromArray($array['audio']),
         );
     }
 
@@ -48,7 +48,7 @@ class LinkPreviewTypeAudio extends LinkPreviewType
     {
         return [
             '@type' => static::TYPE_NAME,
-            'audio' => $this->audio->typeSerialize(),
+            'audio' => $this->audio->jsonSerialize(),
         ];
     }
 }

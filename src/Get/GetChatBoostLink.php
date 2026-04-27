@@ -25,7 +25,7 @@ class GetChatBoostLink extends TdFunction
     public static function fromArray(array $array): GetChatBoostLink
     {
         return new static(
-            $array['chat_id'],
+            chatId: $array['chat_id'],
         );
     }
 

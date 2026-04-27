@@ -25,7 +25,7 @@ class GetRecoveryEmailAddress extends TdFunction
     public static function fromArray(array $array): GetRecoveryEmailAddress
     {
         return new static(
-            $array['password'],
+            password: $array['password'],
         );
     }
 

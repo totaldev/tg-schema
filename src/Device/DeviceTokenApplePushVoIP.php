@@ -19,13 +19,13 @@ class DeviceTokenApplePushVoIP extends DeviceToken
          */
         protected string $deviceToken,
         /**
-         * True, if App Sandbox is enabled.
-         */
-        protected bool   $isAppSandbox,
-        /**
          * True, if push notifications must be additionally encrypted.
          */
         protected bool   $encrypt,
+        /**
+         * True, if App Sandbox is enabled.
+         */
+        protected bool   $isAppSandbox,
     ) {
         parent::__construct();
     }
@@ -33,9 +33,9 @@ class DeviceTokenApplePushVoIP extends DeviceToken
     public static function fromArray(array $array): DeviceTokenApplePushVoIP
     {
         return new static(
-            $array['device_token'],
-            $array['is_app_sandbox'],
-            $array['encrypt'],
+            deviceToken : $array['device_token'],
+            encrypt     : $array['encrypt'],
+            isAppSandbox: $array['is_app_sandbox'],
         );
     }
 
@@ -80,8 +80,8 @@ class DeviceTokenApplePushVoIP extends DeviceToken
         return [
             '@type'          => static::TYPE_NAME,
             'device_token'   => $this->deviceToken,
-            'is_app_sandbox' => $this->isAppSandbox,
             'encrypt'        => $this->encrypt,
+            'is_app_sandbox' => $this->isAppSandbox,
         ];
     }
 }

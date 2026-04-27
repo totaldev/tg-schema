@@ -23,17 +23,17 @@ class GetReceivedGifts extends TdFunction
          */
         protected string        $businessConnectionId,
         /**
-         * Identifier of the gift receiver.
-         */
-        protected MessageSender $ownerId,
-        /**
          * Pass collection identifier to get gifts only from the specified collection; pass 0 to get gifts regardless of collections.
          */
         protected int           $collectionId,
         /**
-         * Pass true to exclude gifts that aren't saved to the chat's profile page. Always true for gifts received by other users and channel chats without can_post_messages administrator right.
+         * Pass true to exclude gifts that are just hosted and are not owned by the owner.
          */
-        protected bool          $excludeUnsaved,
+        protected bool          $excludeHosted,
+        /**
+         * Pass true to exclude gifts that can be purchased limited number of times and can't be upgraded.
+         */
+        protected bool          $excludeNonUpgradable,
         /**
          * Pass true to exclude gifts that are saved to the chat's profile page. Always false for gifts received by other users and channel chats without can_post_messages administrator right.
          */
@@ -43,13 +43,13 @@ class GetReceivedGifts extends TdFunction
          */
         protected bool          $excludeUnlimited,
         /**
+         * Pass true to exclude gifts that aren't saved to the chat's profile page. Always true for gifts received by other users and channel chats without can_post_messages administrator right.
+         */
+        protected bool          $excludeUnsaved,
+        /**
          * Pass true to exclude gifts that can be purchased limited number of times and can be upgraded.
          */
         protected bool          $excludeUpgradable,
-        /**
-         * Pass true to exclude gifts that can be purchased limited number of times and can't be upgraded.
-         */
-        protected bool          $excludeNonUpgradable,
         /**
          * Pass true to exclude upgraded gifts.
          */
@@ -59,40 +59,40 @@ class GetReceivedGifts extends TdFunction
          */
         protected bool          $excludeWithoutColors,
         /**
-         * Pass true to exclude gifts that are just hosted and are not owned by the owner.
+         * The maximum number of gifts to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit.
          */
-        protected bool          $excludeHosted,
-        /**
-         * Pass true to sort results by gift price instead of send date.
-         */
-        protected bool          $sortByPrice,
+        protected int           $limit,
         /**
          * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
          */
         protected string        $offset,
         /**
-         * The maximum number of gifts to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit.
+         * Identifier of the gift receiver.
          */
-        protected int           $limit,
+        protected MessageSender $ownerId,
+        /**
+         * Pass true to sort results by gift price instead of send date.
+         */
+        protected bool          $sortByPrice,
     ) {}
 
     public static function fromArray(array $array): GetReceivedGifts
     {
         return new static(
-            $array['business_connection_id'],
-            TdSchemaRegistry::fromArray($array['owner_id']),
-            $array['collection_id'],
-            $array['exclude_unsaved'],
-            $array['exclude_saved'],
-            $array['exclude_unlimited'],
-            $array['exclude_upgradable'],
-            $array['exclude_non_upgradable'],
-            $array['exclude_upgraded'],
-            $array['exclude_without_colors'],
-            $array['exclude_hosted'],
-            $array['sort_by_price'],
-            $array['offset'],
-            $array['limit'],
+            businessConnectionId: $array['business_connection_id'],
+            collectionId        : $array['collection_id'],
+            excludeHosted       : $array['exclude_hosted'],
+            excludeNonUpgradable: $array['exclude_non_upgradable'],
+            excludeSaved        : $array['exclude_saved'],
+            excludeUnlimited    : $array['exclude_unlimited'],
+            excludeUnsaved      : $array['exclude_unsaved'],
+            excludeUpgradable   : $array['exclude_upgradable'],
+            excludeUpgraded     : $array['exclude_upgraded'],
+            excludeWithoutColors: $array['exclude_without_colors'],
+            limit               : $array['limit'],
+            offset              : $array['offset'],
+            ownerId             : TdSchemaRegistry::fromArray($array['owner_id']),
+            sortByPrice         : $array['sort_by_price'],
         );
     }
 
@@ -269,19 +269,19 @@ class GetReceivedGifts extends TdFunction
         return [
             '@type'                  => static::TYPE_NAME,
             'business_connection_id' => $this->businessConnectionId,
-            'owner_id'               => $this->ownerId->typeSerialize(),
             'collection_id'          => $this->collectionId,
-            'exclude_unsaved'        => $this->excludeUnsaved,
+            'exclude_hosted'         => $this->excludeHosted,
+            'exclude_non_upgradable' => $this->excludeNonUpgradable,
             'exclude_saved'          => $this->excludeSaved,
             'exclude_unlimited'      => $this->excludeUnlimited,
+            'exclude_unsaved'        => $this->excludeUnsaved,
             'exclude_upgradable'     => $this->excludeUpgradable,
-            'exclude_non_upgradable' => $this->excludeNonUpgradable,
             'exclude_upgraded'       => $this->excludeUpgraded,
             'exclude_without_colors' => $this->excludeWithoutColors,
-            'exclude_hosted'         => $this->excludeHosted,
-            'sort_by_price'          => $this->sortByPrice,
-            'offset'                 => $this->offset,
             'limit'                  => $this->limit,
+            'offset'                 => $this->offset,
+            'owner_id'               => $this->ownerId->jsonSerialize(),
+            'sort_by_price'          => $this->sortByPrice,
         ];
     }
 }

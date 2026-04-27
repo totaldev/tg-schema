@@ -20,21 +20,9 @@ class MessageInvoice extends MessageContent
 
     public function __construct(
         /**
-         * Information about the product.
-         */
-        protected ProductInfo    $productInfo,
-        /**
          * Currency for the product price.
          */
         protected string         $currency,
-        /**
-         * Product total price in the smallest units of the currency.
-         */
-        protected int            $totalAmount,
-        /**
-         * Unique invoice bot start_parameter to be passed to getInternalLink.
-         */
-        protected string         $startParameter,
         /**
          * True, if the invoice is a test invoice.
          */
@@ -44,10 +32,6 @@ class MessageInvoice extends MessageContent
          */
         protected bool           $needShippingAddress,
         /**
-         * The identifier of the message with the receipt, after the product has been purchased.
-         */
-        protected int            $receiptMessageId,
-        /**
          * Extended media attached to the invoice; may be null if none.
          */
         protected ?PaidMedia     $paidMedia,
@@ -55,6 +39,22 @@ class MessageInvoice extends MessageContent
          * Extended media caption; may be null if none.
          */
         protected ?FormattedText $paidMediaCaption,
+        /**
+         * Information about the product.
+         */
+        protected ProductInfo    $productInfo,
+        /**
+         * The identifier of the message with the receipt, after the product has been purchased.
+         */
+        protected int            $receiptMessageId,
+        /**
+         * Unique invoice bot start_parameter to be passed to getInternalLink.
+         */
+        protected string         $startParameter,
+        /**
+         * Product total price in the smallest units of the currency.
+         */
+        protected int            $totalAmount,
     ) {
         parent::__construct();
     }
@@ -62,15 +62,15 @@ class MessageInvoice extends MessageContent
     public static function fromArray(array $array): MessageInvoice
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['product_info']),
-            $array['currency'],
-            $array['total_amount'],
-            $array['start_parameter'],
-            $array['is_test'],
-            $array['need_shipping_address'],
-            $array['receipt_message_id'],
-            isset($array['paid_media']) ? TdSchemaRegistry::fromArray($array['paid_media']) : null,
-            isset($array['paid_media_caption']) ? TdSchemaRegistry::fromArray($array['paid_media_caption']) : null,
+            currency           : $array['currency'],
+            isTest             : $array['is_test'],
+            needShippingAddress: $array['need_shipping_address'],
+            paidMedia          : (isset($array['paid_media']) ? TdSchemaRegistry::fromArray($array['paid_media']) : null),
+            paidMediaCaption   : (isset($array['paid_media_caption']) ? TdSchemaRegistry::fromArray($array['paid_media_caption']) : null),
+            productInfo        : TdSchemaRegistry::fromArray($array['product_info']),
+            receiptMessageId   : $array['receipt_message_id'],
+            startParameter     : $array['start_parameter'],
+            totalAmount        : $array['total_amount'],
         );
     }
 
@@ -186,15 +186,15 @@ class MessageInvoice extends MessageContent
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'product_info'          => $this->productInfo->typeSerialize(),
             'currency'              => $this->currency,
-            'total_amount'          => $this->totalAmount,
-            'start_parameter'       => $this->startParameter,
             'is_test'               => $this->isTest,
             'need_shipping_address' => $this->needShippingAddress,
+            'paid_media'            => (null !== $this->paidMedia ? $this->paidMedia->jsonSerialize() : null),
+            'paid_media_caption'    => (null !== $this->paidMediaCaption ? $this->paidMediaCaption->jsonSerialize() : null),
+            'product_info'          => $this->productInfo->jsonSerialize(),
             'receipt_message_id'    => $this->receiptMessageId,
-            'paid_media'            => $this->paidMedia ?? null,
-            'paid_media_caption'    => $this->paidMediaCaption ?? null,
+            'start_parameter'       => $this->startParameter,
+            'total_amount'          => $this->totalAmount,
         ];
     }
 }

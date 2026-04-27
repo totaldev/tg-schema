@@ -25,7 +25,7 @@ class EmailAddressAuthenticationGoogleId extends EmailAddressAuthentication
     public static function fromArray(array $array): EmailAddressAuthenticationGoogleId
     {
         return new static(
-            $array['token'],
+            token: $array['token'],
         );
     }
 

@@ -32,8 +32,8 @@ class UpdateChatPermissions extends Update
     public static function fromArray(array $array): UpdateChatPermissions
     {
         return new static(
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['permissions']),
+            chatId     : $array['chat_id'],
+            permissions: TdSchemaRegistry::fromArray($array['permissions']),
         );
     }
 
@@ -66,7 +66,7 @@ class UpdateChatPermissions extends Update
         return [
             '@type'       => static::TYPE_NAME,
             'chat_id'     => $this->chatId,
-            'permissions' => $this->permissions->typeSerialize(),
+            'permissions' => $this->permissions->jsonSerialize(),
         ];
     }
 }

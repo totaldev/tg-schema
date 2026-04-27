@@ -20,22 +20,6 @@ class Sticker extends TdObject
 
     public function __construct(
         /**
-         * Unique sticker identifier within the set; 0 if none.
-         */
-        protected int             $id,
-        /**
-         * Identifier of the sticker set to which the sticker belongs; 0 if none.
-         */
-        protected int             $setId,
-        /**
-         * Sticker width; as defined by the sender.
-         */
-        protected int             $width,
-        /**
-         * Sticker height; as defined by the sender.
-         */
-        protected int             $height,
-        /**
          * Emoji corresponding to the sticker.
          */
         protected string          $emoji,
@@ -48,27 +32,43 @@ class Sticker extends TdObject
          */
         protected StickerFullType $fullType,
         /**
-         * Sticker thumbnail in WEBP or JPEG format; may be null.
+         * Sticker height; as defined by the sender.
          */
-        protected ?Thumbnail      $thumbnail,
+        protected int             $height,
+        /**
+         * Unique sticker identifier within the set; 0 if none.
+         */
+        protected int             $id,
+        /**
+         * Identifier of the sticker set to which the sticker belongs; 0 if none.
+         */
+        protected int             $setId,
         /**
          * File containing the sticker.
          */
         protected File            $sticker,
+        /**
+         * Sticker thumbnail in WEBP or JPEG format; may be null.
+         */
+        protected ?Thumbnail      $thumbnail,
+        /**
+         * Sticker width; as defined by the sender.
+         */
+        protected int             $width,
     ) {}
 
     public static function fromArray(array $array): Sticker
     {
         return new static(
-            $array['id'],
-            $array['set_id'],
-            $array['width'],
-            $array['height'],
-            $array['emoji'],
-            TdSchemaRegistry::fromArray($array['format']),
-            TdSchemaRegistry::fromArray($array['full_type']),
-            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
-            TdSchemaRegistry::fromArray($array['sticker']),
+            emoji    : $array['emoji'],
+            format   : TdSchemaRegistry::fromArray($array['format']),
+            fullType : TdSchemaRegistry::fromArray($array['full_type']),
+            height   : $array['height'],
+            id       : $array['id'],
+            setId    : $array['set_id'],
+            sticker  : TdSchemaRegistry::fromArray($array['sticker']),
+            thumbnail: (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
+            width    : $array['width'],
         );
     }
 
@@ -184,15 +184,15 @@ class Sticker extends TdObject
     {
         return [
             '@type'     => static::TYPE_NAME,
+            'emoji'     => $this->emoji,
+            'format'    => $this->format->jsonSerialize(),
+            'full_type' => $this->fullType->jsonSerialize(),
+            'height'    => $this->height,
             'id'        => $this->id,
             'set_id'    => $this->setId,
+            'sticker'   => $this->sticker->jsonSerialize(),
+            'thumbnail' => (null !== $this->thumbnail ? $this->thumbnail->jsonSerialize() : null),
             'width'     => $this->width,
-            'height'    => $this->height,
-            'emoji'     => $this->emoji,
-            'format'    => $this->format->typeSerialize(),
-            'full_type' => $this->fullType->typeSerialize(),
-            'thumbnail' => $this->thumbnail ?? null,
-            'sticker'   => $this->sticker->typeSerialize(),
         ];
     }
 }

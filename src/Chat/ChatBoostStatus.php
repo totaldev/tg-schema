@@ -19,31 +19,31 @@ class ChatBoostStatus extends TdObject
 
     public function __construct(
         /**
-         * An HTTP URL, which can be used to boost the chat.
-         */
-        protected string $boostUrl,
-        /**
          * Identifiers of boost slots of the current user applied to the chat.
          *
          * @var int[]
          */
         protected array  $appliedSlotIds,
         /**
-         * Current boost level of the chat.
+         * The number of boosts received by the chat.
          */
-        protected int    $level,
+        protected int    $boostCount,
+        /**
+         * An HTTP URL, which can be used to boost the chat.
+         */
+        protected string $boostUrl,
+        /**
+         * The number of boosts added to reach the current level.
+         */
+        protected int    $currentLevelBoostCount,
         /**
          * The number of boosts received by the chat from created Telegram Premium gift codes and giveaways; always 0 if the current user isn't an administrator in the chat.
          */
         protected int    $giftCodeBoostCount,
         /**
-         * The number of boosts received by the chat.
+         * Current boost level of the chat.
          */
-        protected int    $boostCount,
-        /**
-         * The number of boosts added to reach the current level.
-         */
-        protected int    $currentLevelBoostCount,
+        protected int    $level,
         /**
          * The number of boosts needed to reach the next level; 0 if the next level isn't available.
          */
@@ -67,16 +67,16 @@ class ChatBoostStatus extends TdObject
     public static function fromArray(array $array): ChatBoostStatus
     {
         return new static(
-            $array['boost_url'],
-            $array['applied_slot_ids'],
-            $array['level'],
-            $array['gift_code_boost_count'],
-            $array['boost_count'],
-            $array['current_level_boost_count'],
-            $array['next_level_boost_count'],
-            $array['premium_member_count'],
-            $array['premium_member_percentage'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['prepaid_giveaways']),
+            appliedSlotIds         : $array['applied_slot_ids'],
+            boostCount             : $array['boost_count'],
+            boostUrl               : $array['boost_url'],
+            currentLevelBoostCount : $array['current_level_boost_count'],
+            giftCodeBoostCount     : $array['gift_code_boost_count'],
+            level                  : $array['level'],
+            nextLevelBoostCount    : $array['next_level_boost_count'],
+            premiumMemberCount     : $array['premium_member_count'],
+            premiumMemberPercentage: $array['premium_member_percentage'],
+            prepaidGiveaways       : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['prepaid_giveaways']),
         );
     }
 
@@ -204,16 +204,16 @@ class ChatBoostStatus extends TdObject
     {
         return [
             '@type'                     => static::TYPE_NAME,
-            'boost_url'                 => $this->boostUrl,
             'applied_slot_ids'          => $this->appliedSlotIds,
-            'level'                     => $this->level,
-            'gift_code_boost_count'     => $this->giftCodeBoostCount,
             'boost_count'               => $this->boostCount,
+            'boost_url'                 => $this->boostUrl,
             'current_level_boost_count' => $this->currentLevelBoostCount,
+            'gift_code_boost_count'     => $this->giftCodeBoostCount,
+            'level'                     => $this->level,
             'next_level_boost_count'    => $this->nextLevelBoostCount,
             'premium_member_count'      => $this->premiumMemberCount,
             'premium_member_percentage' => $this->premiumMemberPercentage,
-            'prepaid_giveaways'         => array_map(static fn($x) => $x->typeSerialize(), $this->prepaidGiveaways),
+            'prepaid_giveaways'         => array_map(static fn($x) => $x->jsonSerialize(), $this->prepaidGiveaways),
         ];
     }
 }

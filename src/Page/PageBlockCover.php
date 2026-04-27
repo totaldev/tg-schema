@@ -27,7 +27,7 @@ class PageBlockCover extends PageBlock
     public static function fromArray(array $array): PageBlockCover
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['cover']),
+            cover: TdSchemaRegistry::fromArray($array['cover']),
         );
     }
 
@@ -47,7 +47,7 @@ class PageBlockCover extends PageBlock
     {
         return [
             '@type' => static::TYPE_NAME,
-            'cover' => $this->cover->typeSerialize(),
+            'cover' => $this->cover->jsonSerialize(),
         ];
     }
 }

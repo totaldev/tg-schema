@@ -25,7 +25,7 @@ class TextParseModeMarkdown extends TextParseMode
     public static function fromArray(array $array): TextParseModeMarkdown
     {
         return new static(
-            $array['version'],
+            version: $array['version'],
         );
     }
 

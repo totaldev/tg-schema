@@ -17,30 +17,30 @@ class ChatStatisticsAdministratorActionsInfo extends TdObject
 
     public function __construct(
         /**
-         * Administrator user identifier.
+         * Number of users banned by the administrator.
          */
-        protected int $userId,
+        protected int $bannedUserCount,
         /**
          * Number of messages deleted by the administrator.
          */
         protected int $deletedMessageCount,
         /**
-         * Number of users banned by the administrator.
-         */
-        protected int $bannedUserCount,
-        /**
          * Number of users restricted by the administrator.
          */
         protected int $restrictedUserCount,
+        /**
+         * Administrator user identifier.
+         */
+        protected int $userId,
     ) {}
 
     public static function fromArray(array $array): ChatStatisticsAdministratorActionsInfo
     {
         return new static(
-            $array['user_id'],
-            $array['deleted_message_count'],
-            $array['banned_user_count'],
-            $array['restricted_user_count'],
+            bannedUserCount    : $array['banned_user_count'],
+            deletedMessageCount: $array['deleted_message_count'],
+            restrictedUserCount: $array['restricted_user_count'],
+            userId             : $array['user_id'],
         );
     }
 
@@ -96,10 +96,10 @@ class ChatStatisticsAdministratorActionsInfo extends TdObject
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'user_id'               => $this->userId,
-            'deleted_message_count' => $this->deletedMessageCount,
             'banned_user_count'     => $this->bannedUserCount,
+            'deleted_message_count' => $this->deletedMessageCount,
             'restricted_user_count' => $this->restrictedUserCount,
+            'user_id'               => $this->userId,
         ];
     }
 }

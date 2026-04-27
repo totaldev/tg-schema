@@ -28,7 +28,7 @@ class UpdateSupergroup extends Update
     public static function fromArray(array $array): UpdateSupergroup
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['supergroup']),
+            supergroup: TdSchemaRegistry::fromArray($array['supergroup']),
         );
     }
 
@@ -48,7 +48,7 @@ class UpdateSupergroup extends Update
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'supergroup' => $this->supergroup->typeSerialize(),
+            'supergroup' => $this->supergroup->jsonSerialize(),
         ];
     }
 }

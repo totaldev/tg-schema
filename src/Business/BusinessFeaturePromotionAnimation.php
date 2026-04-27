@@ -19,20 +19,20 @@ class BusinessFeaturePromotionAnimation extends TdObject
 
     public function __construct(
         /**
-         * Business feature.
-         */
-        protected BusinessFeature $feature,
-        /**
          * Promotion animation for the feature.
          */
         protected Animation       $animation,
+        /**
+         * Business feature.
+         */
+        protected BusinessFeature $feature,
     ) {}
 
     public static function fromArray(array $array): BusinessFeaturePromotionAnimation
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['feature']),
-            TdSchemaRegistry::fromArray($array['animation']),
+            animation: TdSchemaRegistry::fromArray($array['animation']),
+            feature  : TdSchemaRegistry::fromArray($array['feature']),
         );
     }
 
@@ -64,8 +64,8 @@ class BusinessFeaturePromotionAnimation extends TdObject
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'feature'   => $this->feature->typeSerialize(),
-            'animation' => $this->animation->typeSerialize(),
+            'animation' => $this->animation->jsonSerialize(),
+            'feature'   => $this->feature->jsonSerialize(),
         ];
     }
 }

@@ -17,22 +17,22 @@ class AddChatFolderByInviteLink extends TdFunction
 
     public function __construct(
         /**
-         * Invite link for the chat folder.
-         */
-        protected string $inviteLink,
-        /**
          * Identifiers of the chats added to the chat folder. The chats are automatically joined if they aren't joined yet.
          *
          * @var int[]
          */
         protected array  $chatIds,
+        /**
+         * Invite link for the chat folder.
+         */
+        protected string $inviteLink,
     ) {}
 
     public static function fromArray(array $array): AddChatFolderByInviteLink
     {
         return new static(
-            $array['invite_link'],
-            $array['chat_ids'],
+            chatIds   : $array['chat_ids'],
+            inviteLink: $array['invite_link'],
         );
     }
 
@@ -64,8 +64,8 @@ class AddChatFolderByInviteLink extends TdFunction
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'invite_link' => $this->inviteLink,
             'chat_ids'    => $this->chatIds,
+            'invite_link' => $this->inviteLink,
         ];
     }
 }

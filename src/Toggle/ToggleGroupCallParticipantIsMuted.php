@@ -23,21 +23,21 @@ class ToggleGroupCallParticipantIsMuted extends TdFunction
          */
         protected int           $groupCallId,
         /**
-         * Participant identifier.
-         */
-        protected MessageSender $participantId,
-        /**
          * Pass true to mute the user; pass false to unmute them.
          */
         protected bool          $isMuted,
+        /**
+         * Participant identifier.
+         */
+        protected MessageSender $participantId,
     ) {}
 
     public static function fromArray(array $array): ToggleGroupCallParticipantIsMuted
     {
         return new static(
-            $array['group_call_id'],
-            TdSchemaRegistry::fromArray($array['participant_id']),
-            $array['is_muted'],
+            groupCallId  : $array['group_call_id'],
+            isMuted      : $array['is_muted'],
+            participantId: TdSchemaRegistry::fromArray($array['participant_id']),
         );
     }
 
@@ -82,8 +82,8 @@ class ToggleGroupCallParticipantIsMuted extends TdFunction
         return [
             '@type'          => static::TYPE_NAME,
             'group_call_id'  => $this->groupCallId,
-            'participant_id' => $this->participantId->typeSerialize(),
             'is_muted'       => $this->isMuted,
+            'participant_id' => $this->participantId->jsonSerialize(),
         ];
     }
 }

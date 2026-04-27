@@ -18,13 +18,9 @@ class UpdateNewChosenInlineResult extends Update
 
     public function __construct(
         /**
-         * Identifier of the user who sent the query.
+         * Identifier of the sent inline message, if known.
          */
-        protected int       $senderUserId,
-        /**
-         * User location; may be null.
-         */
-        protected ?Location $userLocation,
+        protected string    $inlineMessageId,
         /**
          * Text of the query.
          */
@@ -34,9 +30,13 @@ class UpdateNewChosenInlineResult extends Update
          */
         protected string    $resultId,
         /**
-         * Identifier of the sent inline message, if known.
+         * Identifier of the user who sent the query.
          */
-        protected string    $inlineMessageId,
+        protected int       $senderUserId,
+        /**
+         * User location; may be null.
+         */
+        protected ?Location $userLocation,
     ) {
         parent::__construct();
     }
@@ -44,11 +44,11 @@ class UpdateNewChosenInlineResult extends Update
     public static function fromArray(array $array): UpdateNewChosenInlineResult
     {
         return new static(
-            $array['sender_user_id'],
-            isset($array['user_location']) ? TdSchemaRegistry::fromArray($array['user_location']) : null,
-            $array['query'],
-            $array['result_id'],
-            $array['inline_message_id'],
+            inlineMessageId: $array['inline_message_id'],
+            query          : $array['query'],
+            resultId       : $array['result_id'],
+            senderUserId   : $array['sender_user_id'],
+            userLocation   : (isset($array['user_location']) ? TdSchemaRegistry::fromArray($array['user_location']) : null),
         );
     }
 
@@ -116,11 +116,11 @@ class UpdateNewChosenInlineResult extends Update
     {
         return [
             '@type'             => static::TYPE_NAME,
-            'sender_user_id'    => $this->senderUserId,
-            'user_location'     => $this->userLocation ?? null,
+            'inline_message_id' => $this->inlineMessageId,
             'query'             => $this->query,
             'result_id'         => $this->resultId,
-            'inline_message_id' => $this->inlineMessageId,
+            'sender_user_id'    => $this->senderUserId,
+            'user_location'     => (null !== $this->userLocation ? $this->userLocation->jsonSerialize() : null),
         ];
     }
 }

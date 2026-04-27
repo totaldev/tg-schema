@@ -20,25 +20,25 @@ class UploadStickerFile extends TdFunction
 
     public function __construct(
         /**
-         * Sticker file owner; ignored for regular users.
+         * File file to upload; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP server-side. See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements.
          */
-        protected int           $userId,
+        protected InputFile     $sticker,
         /**
          * Sticker format.
          */
         protected StickerFormat $stickerFormat,
         /**
-         * File file to upload; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP server-side. See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements.
+         * Sticker file owner; ignored for regular users.
          */
-        protected InputFile     $sticker,
+        protected int           $userId,
     ) {}
 
     public static function fromArray(array $array): UploadStickerFile
     {
         return new static(
-            $array['user_id'],
-            TdSchemaRegistry::fromArray($array['sticker_format']),
-            TdSchemaRegistry::fromArray($array['sticker']),
+            sticker      : TdSchemaRegistry::fromArray($array['sticker']),
+            stickerFormat: TdSchemaRegistry::fromArray($array['sticker_format']),
+            userId       : $array['user_id'],
         );
     }
 
@@ -82,9 +82,9 @@ class UploadStickerFile extends TdFunction
     {
         return [
             '@type'          => static::TYPE_NAME,
+            'sticker'        => $this->sticker->jsonSerialize(),
+            'sticker_format' => $this->stickerFormat->jsonSerialize(),
             'user_id'        => $this->userId,
-            'sticker_format' => $this->stickerFormat->typeSerialize(),
-            'sticker'        => $this->sticker->typeSerialize(),
         ];
     }
 }

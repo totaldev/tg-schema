@@ -25,7 +25,7 @@ class SuggestedActionConvertToBroadcastGroup extends SuggestedAction
     public static function fromArray(array $array): SuggestedActionConvertToBroadcastGroup
     {
         return new static(
-            $array['supergroup_id'],
+            supergroupId: $array['supergroup_id'],
         );
     }
 

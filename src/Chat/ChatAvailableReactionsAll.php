@@ -25,7 +25,7 @@ class ChatAvailableReactionsAll extends ChatAvailableReactions
     public static function fromArray(array $array): ChatAvailableReactionsAll
     {
         return new static(
-            $array['max_reaction_count'],
+            maxReactionCount: $array['max_reaction_count'],
         );
     }
 

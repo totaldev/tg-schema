@@ -18,29 +18,29 @@ class UpdateNewCallbackQuery extends Update
 
     public function __construct(
         /**
-         * Unique query identifier.
-         */
-        protected int                  $id,
-        /**
-         * Identifier of the user who sent the query.
-         */
-        protected int                  $senderUserId,
-        /**
          * Identifier of the chat where the query was sent.
          */
         protected int                  $chatId,
-        /**
-         * Identifier of the message from which the query originated.
-         */
-        protected int                  $messageId,
         /**
          * Identifier that uniquely corresponds to the chat to which the message was sent.
          */
         protected int                  $chatInstance,
         /**
+         * Unique query identifier.
+         */
+        protected int                  $id,
+        /**
+         * Identifier of the message from which the query originated.
+         */
+        protected int                  $messageId,
+        /**
          * Query payload.
          */
         protected CallbackQueryPayload $payload,
+        /**
+         * Identifier of the user who sent the query.
+         */
+        protected int                  $senderUserId,
     ) {
         parent::__construct();
     }
@@ -48,12 +48,12 @@ class UpdateNewCallbackQuery extends Update
     public static function fromArray(array $array): UpdateNewCallbackQuery
     {
         return new static(
-            $array['id'],
-            $array['sender_user_id'],
-            $array['chat_id'],
-            $array['message_id'],
-            $array['chat_instance'],
-            TdSchemaRegistry::fromArray($array['payload']),
+            chatId      : $array['chat_id'],
+            chatInstance: $array['chat_instance'],
+            id          : $array['id'],
+            messageId   : $array['message_id'],
+            payload     : TdSchemaRegistry::fromArray($array['payload']),
+            senderUserId: $array['sender_user_id'],
         );
     }
 
@@ -133,12 +133,12 @@ class UpdateNewCallbackQuery extends Update
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'id'             => $this->id,
-            'sender_user_id' => $this->senderUserId,
             'chat_id'        => $this->chatId,
-            'message_id'     => $this->messageId,
             'chat_instance'  => $this->chatInstance,
-            'payload'        => $this->payload->typeSerialize(),
+            'id'             => $this->id,
+            'message_id'     => $this->messageId,
+            'payload'        => $this->payload->jsonSerialize(),
+            'sender_user_id' => $this->senderUserId,
         ];
     }
 }

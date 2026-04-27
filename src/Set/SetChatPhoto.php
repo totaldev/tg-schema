@@ -31,8 +31,8 @@ class SetChatPhoto extends TdFunction
     public static function fromArray(array $array): SetChatPhoto
     {
         return new static(
-            $array['chat_id'],
-            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
+            chatId: $array['chat_id'],
+            photo : (isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null),
         );
     }
 
@@ -65,7 +65,7 @@ class SetChatPhoto extends TdFunction
         return [
             '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
-            'photo'   => $this->photo ?? null,
+            'photo'   => (null !== $this->photo ? $this->photo->jsonSerialize() : null),
         ];
     }
 }

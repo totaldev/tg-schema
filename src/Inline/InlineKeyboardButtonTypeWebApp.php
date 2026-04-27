@@ -25,7 +25,7 @@ class InlineKeyboardButtonTypeWebApp extends InlineKeyboardButtonType
     public static function fromArray(array $array): InlineKeyboardButtonTypeWebApp
     {
         return new static(
-            $array['url'],
+            url: $array['url'],
         );
     }
 

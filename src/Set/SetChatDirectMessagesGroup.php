@@ -33,9 +33,9 @@ class SetChatDirectMessagesGroup extends TdFunction
     public static function fromArray(array $array): SetChatDirectMessagesGroup
     {
         return new static(
-            $array['chat_id'],
-            $array['is_enabled'],
-            $array['paid_message_star_count'],
+            chatId              : $array['chat_id'],
+            isEnabled           : $array['is_enabled'],
+            paidMessageStarCount: $array['paid_message_star_count'],
         );
     }
 

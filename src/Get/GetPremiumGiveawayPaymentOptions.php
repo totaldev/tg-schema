@@ -25,7 +25,7 @@ class GetPremiumGiveawayPaymentOptions extends TdFunction
     public static function fromArray(array $array): GetPremiumGiveawayPaymentOptions
     {
         return new static(
-            $array['boosted_chat_id'],
+            boostedChatId: $array['boosted_chat_id'],
         );
     }
 

@@ -31,8 +31,8 @@ class DeleteCommands extends TdFunction
     public static function fromArray(array $array): DeleteCommands
     {
         return new static(
-            isset($array['scope']) ? TdSchemaRegistry::fromArray($array['scope']) : null,
-            $array['language_code'],
+            languageCode: $array['language_code'],
+            scope       : (isset($array['scope']) ? TdSchemaRegistry::fromArray($array['scope']) : null),
         );
     }
 
@@ -64,8 +64,8 @@ class DeleteCommands extends TdFunction
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'scope'         => $this->scope ?? null,
             'language_code' => $this->languageCode,
+            'scope'         => (null !== $this->scope ? $this->scope->jsonSerialize() : null),
         ];
     }
 }

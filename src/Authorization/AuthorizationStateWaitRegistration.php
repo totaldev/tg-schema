@@ -29,7 +29,7 @@ class AuthorizationStateWaitRegistration extends AuthorizationState
     public static function fromArray(array $array): AuthorizationStateWaitRegistration
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['terms_of_service']),
+            termsOfService: TdSchemaRegistry::fromArray($array['terms_of_service']),
         );
     }
 
@@ -49,7 +49,7 @@ class AuthorizationStateWaitRegistration extends AuthorizationState
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'terms_of_service' => $this->termsOfService->typeSerialize(),
+            'terms_of_service' => $this->termsOfService->jsonSerialize(),
         ];
     }
 }

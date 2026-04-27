@@ -31,8 +31,8 @@ class RemoveMessageSenderBotVerification extends TdFunction
     public static function fromArray(array $array): RemoveMessageSenderBotVerification
     {
         return new static(
-            $array['bot_user_id'],
-            TdSchemaRegistry::fromArray($array['verified_id']),
+            botUserId : $array['bot_user_id'],
+            verifiedId: TdSchemaRegistry::fromArray($array['verified_id']),
         );
     }
 
@@ -65,7 +65,7 @@ class RemoveMessageSenderBotVerification extends TdFunction
         return [
             '@type'       => static::TYPE_NAME,
             'bot_user_id' => $this->botUserId,
-            'verified_id' => $this->verifiedId->typeSerialize(),
+            'verified_id' => $this->verifiedId->jsonSerialize(),
         ];
     }
 }

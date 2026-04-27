@@ -25,7 +25,7 @@ class GetPhoneNumberInfo extends TdFunction
     public static function fromArray(array $array): GetPhoneNumberInfo
     {
         return new static(
-            $array['phone_number_prefix'],
+            phoneNumberPrefix: $array['phone_number_prefix'],
         );
     }
 

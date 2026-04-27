@@ -32,8 +32,8 @@ class InlineKeyboardButtonTypeSwitchInline extends InlineKeyboardButtonType
     public static function fromArray(array $array): InlineKeyboardButtonTypeSwitchInline
     {
         return new static(
-            $array['query'],
-            TdSchemaRegistry::fromArray($array['target_chat']),
+            query     : $array['query'],
+            targetChat: TdSchemaRegistry::fromArray($array['target_chat']),
         );
     }
 
@@ -66,7 +66,7 @@ class InlineKeyboardButtonTypeSwitchInline extends InlineKeyboardButtonType
         return [
             '@type'       => static::TYPE_NAME,
             'query'       => $this->query,
-            'target_chat' => $this->targetChat->typeSerialize(),
+            'target_chat' => $this->targetChat->jsonSerialize(),
         ];
     }
 }

@@ -17,25 +17,25 @@ class AccentColor extends TdObject
 
     public function __construct(
         /**
-         * Accent color identifier.
-         */
-        protected int   $id,
-        /**
          * Identifier of a built-in color to use in places, where only one color is needed; 0-6.
          */
         protected int   $builtInAccentColorId,
-        /**
-         * The list of 1-3 colors in RGB format, describing the accent color, as expected to be shown in light themes.
-         *
-         * @var int[]
-         */
-        protected array $lightThemeColors,
         /**
          * The list of 1-3 colors in RGB format, describing the accent color, as expected to be shown in dark themes.
          *
          * @var int[]
          */
         protected array $darkThemeColors,
+        /**
+         * Accent color identifier.
+         */
+        protected int   $id,
+        /**
+         * The list of 1-3 colors in RGB format, describing the accent color, as expected to be shown in light themes.
+         *
+         * @var int[]
+         */
+        protected array $lightThemeColors,
         /**
          * The minimum chat boost level required to use the color in a channel chat.
          */
@@ -45,11 +45,11 @@ class AccentColor extends TdObject
     public static function fromArray(array $array): AccentColor
     {
         return new static(
-            $array['id'],
-            $array['built_in_accent_color_id'],
-            $array['light_theme_colors'],
-            $array['dark_theme_colors'],
-            $array['min_channel_chat_boost_level'],
+            builtInAccentColorId    : $array['built_in_accent_color_id'],
+            darkThemeColors         : $array['dark_theme_colors'],
+            id                      : $array['id'],
+            lightThemeColors        : $array['light_theme_colors'],
+            minChannelChatBoostLevel: $array['min_channel_chat_boost_level'],
         );
     }
 
@@ -117,10 +117,10 @@ class AccentColor extends TdObject
     {
         return [
             '@type'                        => static::TYPE_NAME,
-            'id'                           => $this->id,
             'built_in_accent_color_id'     => $this->builtInAccentColorId,
-            'light_theme_colors'           => $this->lightThemeColors,
             'dark_theme_colors'            => $this->darkThemeColors,
+            'id'                           => $this->id,
+            'light_theme_colors'           => $this->lightThemeColors,
             'min_channel_chat_boost_level' => $this->minChannelChatBoostLevel,
         ];
     }

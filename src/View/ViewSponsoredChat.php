@@ -25,7 +25,7 @@ class ViewSponsoredChat extends TdFunction
     public static function fromArray(array $array): ViewSponsoredChat
     {
         return new static(
-            $array['sponsored_chat_unique_id'],
+            sponsoredChatUniqueId: $array['sponsored_chat_unique_id'],
         );
     }
 

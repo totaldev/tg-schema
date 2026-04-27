@@ -19,21 +19,21 @@ class GetVideoChatStreamSegment extends TdFunction
 
     public function __construct(
         /**
+         * Identifier of an audio/video channel to get as received from tgcalls.
+         */
+        protected int                    $channelId,
+        /**
          * Group call identifier.
          */
         protected int                    $groupCallId,
-        /**
-         * Point in time when the stream segment begins; Unix timestamp in milliseconds.
-         */
-        protected int                    $timeOffset,
         /**
          * Segment duration scale; 0-1. Segment's duration is 1000/(2**scale) milliseconds.
          */
         protected int                    $scale,
         /**
-         * Identifier of an audio/video channel to get as received from tgcalls.
+         * Point in time when the stream segment begins; Unix timestamp in milliseconds.
          */
-        protected int                    $channelId,
+        protected int                    $timeOffset,
         /**
          * Video quality as received from tgcalls; pass null to get the worst available quality.
          */
@@ -43,11 +43,11 @@ class GetVideoChatStreamSegment extends TdFunction
     public static function fromArray(array $array): GetVideoChatStreamSegment
     {
         return new static(
-            $array['group_call_id'],
-            $array['time_offset'],
-            $array['scale'],
-            $array['channel_id'],
-            isset($array['video_quality']) ? TdSchemaRegistry::fromArray($array['video_quality']) : null,
+            channelId   : $array['channel_id'],
+            groupCallId : $array['group_call_id'],
+            scale       : $array['scale'],
+            timeOffset  : $array['time_offset'],
+            videoQuality: (isset($array['video_quality']) ? TdSchemaRegistry::fromArray($array['video_quality']) : null),
         );
     }
 
@@ -115,11 +115,11 @@ class GetVideoChatStreamSegment extends TdFunction
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'group_call_id' => $this->groupCallId,
-            'time_offset'   => $this->timeOffset,
-            'scale'         => $this->scale,
             'channel_id'    => $this->channelId,
-            'video_quality' => $this->videoQuality ?? null,
+            'group_call_id' => $this->groupCallId,
+            'scale'         => $this->scale,
+            'time_offset'   => $this->timeOffset,
+            'video_quality' => (null !== $this->videoQuality ? $this->videoQuality->jsonSerialize() : null),
         ];
     }
 }

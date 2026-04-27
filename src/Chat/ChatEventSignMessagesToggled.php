@@ -25,7 +25,7 @@ class ChatEventSignMessagesToggled extends ChatEventAction
     public static function fromArray(array $array): ChatEventSignMessagesToggled
     {
         return new static(
-            $array['sign_messages'],
+            signMessages: $array['sign_messages'],
         );
     }
 

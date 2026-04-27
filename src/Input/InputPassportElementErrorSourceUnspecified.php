@@ -25,7 +25,7 @@ class InputPassportElementErrorSourceUnspecified extends InputPassportElementErr
     public static function fromArray(array $array): InputPassportElementErrorSourceUnspecified
     {
         return new static(
-            $array['element_hash'],
+            elementHash: $array['element_hash'],
         );
     }
 

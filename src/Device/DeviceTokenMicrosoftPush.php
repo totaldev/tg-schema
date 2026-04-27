@@ -25,7 +25,7 @@ class DeviceTokenMicrosoftPush extends DeviceToken
     public static function fromArray(array $array): DeviceTokenMicrosoftPush
     {
         return new static(
-            $array['channel_uri'],
+            channelUri: $array['channel_uri'],
         );
     }
 

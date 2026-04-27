@@ -23,13 +23,13 @@ class TransferGift extends TdFunction
          */
         protected string        $businessConnectionId,
         /**
-         * Identifier of the gift.
-         */
-        protected string        $receivedGiftId,
-        /**
          * Identifier of the user or the channel chat that will receive the gift.
          */
         protected MessageSender $newOwnerId,
+        /**
+         * Identifier of the gift.
+         */
+        protected string        $receivedGiftId,
         /**
          * The amount of Telegram Stars required to pay for the transfer.
          */
@@ -39,10 +39,10 @@ class TransferGift extends TdFunction
     public static function fromArray(array $array): TransferGift
     {
         return new static(
-            $array['business_connection_id'],
-            $array['received_gift_id'],
-            TdSchemaRegistry::fromArray($array['new_owner_id']),
-            $array['star_count'],
+            businessConnectionId: $array['business_connection_id'],
+            newOwnerId          : TdSchemaRegistry::fromArray($array['new_owner_id']),
+            receivedGiftId      : $array['received_gift_id'],
+            starCount           : $array['star_count'],
         );
     }
 
@@ -99,8 +99,8 @@ class TransferGift extends TdFunction
         return [
             '@type'                  => static::TYPE_NAME,
             'business_connection_id' => $this->businessConnectionId,
+            'new_owner_id'           => $this->newOwnerId->jsonSerialize(),
             'received_gift_id'       => $this->receivedGiftId,
-            'new_owner_id'           => $this->newOwnerId->typeSerialize(),
             'star_count'             => $this->starCount,
         ];
     }

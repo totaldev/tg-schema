@@ -25,7 +25,7 @@ class ChatBoostSourcePremium extends ChatBoostSource
     public static function fromArray(array $array): ChatBoostSourcePremium
     {
         return new static(
-            $array['user_id'],
+            userId: $array['user_id'],
         );
     }
 

@@ -27,7 +27,7 @@ class UpdateSavedNotificationSounds extends Update
     public static function fromArray(array $array): UpdateSavedNotificationSounds
     {
         return new static(
-            $array['notification_sound_ids'],
+            notificationSoundIds: $array['notification_sound_ids'],
         );
     }
 

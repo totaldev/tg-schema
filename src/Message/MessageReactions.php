@@ -19,15 +19,13 @@ class MessageReactions extends TdObject
 
     public function __construct(
         /**
-         * List of added reactions.
-         *
-         * @var MessageReaction[]
-         */
-        protected array $reactions,
-        /**
          * True, if the reactions are tags and Telegram Premium users can filter messages by them.
          */
         protected bool  $areTags,
+        /**
+         * True, if the list of added reactions is available using getMessageAddedReactions.
+         */
+        protected bool  $canGetAddedReactions,
         /**
          * Information about top users that added the paid reaction.
          *
@@ -35,18 +33,20 @@ class MessageReactions extends TdObject
          */
         protected array $paidReactors,
         /**
-         * True, if the list of added reactions is available using getMessageAddedReactions.
+         * List of added reactions.
+         *
+         * @var MessageReaction[]
          */
-        protected bool  $canGetAddedReactions,
+        protected array $reactions,
     ) {}
 
     public static function fromArray(array $array): MessageReactions
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['reactions']),
-            $array['are_tags'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['paid_reactors']),
-            $array['can_get_added_reactions'],
+            areTags             : $array['are_tags'],
+            canGetAddedReactions: $array['can_get_added_reactions'],
+            paidReactors        : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['paid_reactors']),
+            reactions           : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['reactions']),
         );
     }
 
@@ -102,10 +102,10 @@ class MessageReactions extends TdObject
     {
         return [
             '@type'                   => static::TYPE_NAME,
-            'reactions'               => array_map(static fn($x) => $x->typeSerialize(), $this->reactions),
             'are_tags'                => $this->areTags,
-            'paid_reactors'           => array_map(static fn($x) => $x->typeSerialize(), $this->paidReactors),
             'can_get_added_reactions' => $this->canGetAddedReactions,
+            'paid_reactors'           => array_map(static fn($x) => $x->jsonSerialize(), $this->paidReactors),
+            'reactions'               => array_map(static fn($x) => $x->jsonSerialize(), $this->reactions),
         ];
     }
 }

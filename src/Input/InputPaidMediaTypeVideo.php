@@ -17,13 +17,13 @@ class InputPaidMediaTypeVideo extends InputPaidMediaType
 
     public function __construct(
         /**
-         * Timestamp from which the video playing must start, in seconds.
-         */
-        protected int        $startTimestamp,
-        /**
          * Duration of the video, in seconds.
          */
         protected int        $duration,
+        /**
+         * Timestamp from which the video playing must start, in seconds.
+         */
+        protected int        $startTimestamp,
         /**
          * True, if the video is expected to be streamed.
          */
@@ -39,10 +39,10 @@ class InputPaidMediaTypeVideo extends InputPaidMediaType
     public static function fromArray(array $array): InputPaidMediaTypeVideo
     {
         return new static(
-            isset($array['cover']) ? TdSchemaRegistry::fromArray($array['cover']) : null,
-            $array['start_timestamp'],
-            $array['duration'],
-            $array['supports_streaming'],
+            cover            : (isset($array['cover']) ? TdSchemaRegistry::fromArray($array['cover']) : null),
+            duration         : $array['duration'],
+            startTimestamp   : $array['start_timestamp'],
+            supportsStreaming: $array['supports_streaming'],
         );
     }
 
@@ -98,9 +98,9 @@ class InputPaidMediaTypeVideo extends InputPaidMediaType
     {
         return [
             '@type'              => static::TYPE_NAME,
-            'cover'              => $this->cover ?? null,
-            'start_timestamp'    => $this->startTimestamp,
+            'cover'              => (null !== $this->cover ? $this->cover->jsonSerialize() : null),
             'duration'           => $this->duration,
+            'start_timestamp'    => $this->startTimestamp,
             'supports_streaming' => $this->supportsStreaming,
         ];
     }

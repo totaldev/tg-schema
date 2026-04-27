@@ -15,13 +15,13 @@ class ChatEventUsernameChanged extends ChatEventAction
 
     public function __construct(
         /**
-         * Previous chat username.
-         */
-        protected string $oldUsername,
-        /**
          * New chat username.
          */
         protected string $newUsername,
+        /**
+         * Previous chat username.
+         */
+        protected string $oldUsername,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class ChatEventUsernameChanged extends ChatEventAction
     public static function fromArray(array $array): ChatEventUsernameChanged
     {
         return new static(
-            $array['old_username'],
-            $array['new_username'],
+            newUsername: $array['new_username'],
+            oldUsername: $array['old_username'],
         );
     }
 
@@ -62,8 +62,8 @@ class ChatEventUsernameChanged extends ChatEventAction
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'old_username' => $this->oldUsername,
             'new_username' => $this->newUsername,
+            'old_username' => $this->oldUsername,
         ];
     }
 }

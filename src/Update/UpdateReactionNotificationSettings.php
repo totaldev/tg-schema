@@ -28,7 +28,7 @@ class UpdateReactionNotificationSettings extends Update
     public static function fromArray(array $array): UpdateReactionNotificationSettings
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['notification_settings']),
+            notificationSettings: TdSchemaRegistry::fromArray($array['notification_settings']),
         );
     }
 
@@ -48,7 +48,7 @@ class UpdateReactionNotificationSettings extends Update
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'notification_settings' => $this->notificationSettings->typeSerialize(),
+            'notification_settings' => $this->notificationSettings->jsonSerialize(),
         ];
     }
 }

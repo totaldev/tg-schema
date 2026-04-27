@@ -25,7 +25,7 @@ class NotificationTypeNewCall extends NotificationType
     public static function fromArray(array $array): NotificationTypeNewCall
     {
         return new static(
-            $array['call_id'],
+            callId: $array['call_id'],
         );
     }
 

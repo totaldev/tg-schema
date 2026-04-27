@@ -18,13 +18,13 @@ class InputBusinessStartPage extends TdObject
 
     public function __construct(
         /**
-         * Title text of the start page; 0-getOption("business_start_page_title_length_max") characters.
-         */
-        protected string     $title,
-        /**
          * Message text of the start page; 0-getOption("business_start_page_message_length_max") characters.
          */
         protected string     $message,
+        /**
+         * Title text of the start page; 0-getOption("business_start_page_title_length_max") characters.
+         */
+        protected string     $title,
         /**
          * Greeting sticker of the start page; pass null if none. The sticker must belong to a sticker set and must not be a custom emoji.
          */
@@ -34,9 +34,9 @@ class InputBusinessStartPage extends TdObject
     public static function fromArray(array $array): InputBusinessStartPage
     {
         return new static(
-            $array['title'],
-            $array['message'],
-            isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null,
+            message: $array['message'],
+            sticker: (isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null),
+            title  : $array['title'],
         );
     }
 
@@ -80,9 +80,9 @@ class InputBusinessStartPage extends TdObject
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'title'   => $this->title,
             'message' => $this->message,
-            'sticker' => $this->sticker ?? null,
+            'sticker' => (null !== $this->sticker ? $this->sticker->jsonSerialize() : null),
+            'title'   => $this->title,
         ];
     }
 }

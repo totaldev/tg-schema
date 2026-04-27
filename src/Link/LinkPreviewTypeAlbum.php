@@ -17,15 +17,15 @@ class LinkPreviewTypeAlbum extends LinkPreviewType
 
     public function __construct(
         /**
+         * Album caption.
+         */
+        protected string $caption,
+        /**
          * The list of album media.
          *
          * @var LinkPreviewAlbumMedia[]
          */
         protected array  $media,
-        /**
-         * Album caption.
-         */
-        protected string $caption,
     ) {
         parent::__construct();
     }
@@ -33,8 +33,8 @@ class LinkPreviewTypeAlbum extends LinkPreviewType
     public static function fromArray(array $array): LinkPreviewTypeAlbum
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['media']),
-            $array['caption'],
+            caption: $array['caption'],
+            media  : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['media']),
         );
     }
 
@@ -66,8 +66,8 @@ class LinkPreviewTypeAlbum extends LinkPreviewType
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'media'   => array_map(static fn($x) => $x->typeSerialize(), $this->media),
             'caption' => $this->caption,
+            'media'   => array_map(static fn($x) => $x->jsonSerialize(), $this->media),
         ];
     }
 }

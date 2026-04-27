@@ -27,7 +27,7 @@ class InputPassportElementRentalAgreement extends InputPassportElement
     public static function fromArray(array $array): InputPassportElementRentalAgreement
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['rental_agreement']),
+            rentalAgreement: TdSchemaRegistry::fromArray($array['rental_agreement']),
         );
     }
 
@@ -47,7 +47,7 @@ class InputPassportElementRentalAgreement extends InputPassportElement
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'rental_agreement' => $this->rentalAgreement->typeSerialize(),
+            'rental_agreement' => $this->rentalAgreement->jsonSerialize(),
         ];
     }
 }

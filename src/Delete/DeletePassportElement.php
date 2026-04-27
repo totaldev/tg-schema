@@ -27,7 +27,7 @@ class DeletePassportElement extends TdFunction
     public static function fromArray(array $array): DeletePassportElement
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['type']),
+            type: TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -47,7 +47,7 @@ class DeletePassportElement extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'type'  => $this->type->typeSerialize(),
+            'type'  => $this->type->jsonSerialize(),
         ];
     }
 }

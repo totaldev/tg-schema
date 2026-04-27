@@ -18,13 +18,13 @@ class MessageEffectTypeEmojiReaction extends MessageEffectType
 
     public function __construct(
         /**
-         * Select animation for the effect in TGS format.
-         */
-        protected Sticker $selectAnimation,
-        /**
          * Effect animation for the effect in TGS format.
          */
         protected Sticker $effectAnimation,
+        /**
+         * Select animation for the effect in TGS format.
+         */
+        protected Sticker $selectAnimation,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class MessageEffectTypeEmojiReaction extends MessageEffectType
     public static function fromArray(array $array): MessageEffectTypeEmojiReaction
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['select_animation']),
-            TdSchemaRegistry::fromArray($array['effect_animation']),
+            effectAnimation: TdSchemaRegistry::fromArray($array['effect_animation']),
+            selectAnimation: TdSchemaRegistry::fromArray($array['select_animation']),
         );
     }
 
@@ -65,8 +65,8 @@ class MessageEffectTypeEmojiReaction extends MessageEffectType
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'select_animation' => $this->selectAnimation->typeSerialize(),
-            'effect_animation' => $this->effectAnimation->typeSerialize(),
+            'effect_animation' => $this->effectAnimation->jsonSerialize(),
+            'select_animation' => $this->selectAnimation->jsonSerialize(),
         ];
     }
 }

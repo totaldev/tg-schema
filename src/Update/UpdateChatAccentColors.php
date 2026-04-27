@@ -18,10 +18,6 @@ class UpdateChatAccentColors extends Update
 
     public function __construct(
         /**
-         * Chat identifier.
-         */
-        protected int                 $chatId,
-        /**
          * The new chat accent color identifier.
          */
         protected int                 $accentColorId,
@@ -30,9 +26,9 @@ class UpdateChatAccentColors extends Update
          */
         protected int                 $backgroundCustomEmojiId,
         /**
-         * Color scheme based on an upgraded gift to be used for the chat instead of accent_color_id and background_custom_emoji_id; may be null if none.
+         * Chat identifier.
          */
-        protected ?UpgradedGiftColors $upgradedGiftColors,
+        protected int                 $chatId,
         /**
          * The new chat profile accent color identifier; -1 if none.
          */
@@ -41,6 +37,10 @@ class UpdateChatAccentColors extends Update
          * The new identifier of a custom emoji to be shown on the profile background; 0 if none.
          */
         protected int                 $profileBackgroundCustomEmojiId,
+        /**
+         * Color scheme based on an upgraded gift to be used for the chat instead of accent_color_id and background_custom_emoji_id; may be null if none.
+         */
+        protected ?UpgradedGiftColors $upgradedGiftColors,
     ) {
         parent::__construct();
     }
@@ -48,12 +48,12 @@ class UpdateChatAccentColors extends Update
     public static function fromArray(array $array): UpdateChatAccentColors
     {
         return new static(
-            $array['chat_id'],
-            $array['accent_color_id'],
-            $array['background_custom_emoji_id'],
-            isset($array['upgraded_gift_colors']) ? TdSchemaRegistry::fromArray($array['upgraded_gift_colors']) : null,
-            $array['profile_accent_color_id'],
-            $array['profile_background_custom_emoji_id'],
+            accentColorId                 : $array['accent_color_id'],
+            backgroundCustomEmojiId       : $array['background_custom_emoji_id'],
+            chatId                        : $array['chat_id'],
+            profileAccentColorId          : $array['profile_accent_color_id'],
+            profileBackgroundCustomEmojiId: $array['profile_background_custom_emoji_id'],
+            upgradedGiftColors            : (isset($array['upgraded_gift_colors']) ? TdSchemaRegistry::fromArray($array['upgraded_gift_colors']) : null),
         );
     }
 
@@ -133,12 +133,12 @@ class UpdateChatAccentColors extends Update
     {
         return [
             '@type'                              => static::TYPE_NAME,
-            'chat_id'                            => $this->chatId,
             'accent_color_id'                    => $this->accentColorId,
             'background_custom_emoji_id'         => $this->backgroundCustomEmojiId,
-            'upgraded_gift_colors'               => $this->upgradedGiftColors ?? null,
+            'chat_id'                            => $this->chatId,
             'profile_accent_color_id'            => $this->profileAccentColorId,
             'profile_background_custom_emoji_id' => $this->profileBackgroundCustomEmojiId,
+            'upgraded_gift_colors'               => (null !== $this->upgradedGiftColors ? $this->upgradedGiftColors->jsonSerialize() : null),
         ];
     }
 }

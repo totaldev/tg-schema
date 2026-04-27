@@ -24,13 +24,13 @@ class UpdatePendingTextMessage extends Update
          */
         protected int           $chatId,
         /**
-         * The forum topic identifier in which the message will be sent; 0 if none.
-         */
-        protected int           $forumTopicId,
-        /**
          * Unique identifier of the message draft within the message thread.
          */
         protected int           $draftId,
+        /**
+         * The forum topic identifier in which the message will be sent; 0 if none.
+         */
+        protected int           $forumTopicId,
         /**
          * Text of the pending message.
          */
@@ -42,10 +42,10 @@ class UpdatePendingTextMessage extends Update
     public static function fromArray(array $array): UpdatePendingTextMessage
     {
         return new static(
-            $array['chat_id'],
-            $array['forum_topic_id'],
-            $array['draft_id'],
-            TdSchemaRegistry::fromArray($array['text']),
+            chatId      : $array['chat_id'],
+            draftId     : $array['draft_id'],
+            forumTopicId: $array['forum_topic_id'],
+            text        : TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -102,9 +102,9 @@ class UpdatePendingTextMessage extends Update
         return [
             '@type'          => static::TYPE_NAME,
             'chat_id'        => $this->chatId,
-            'forum_topic_id' => $this->forumTopicId,
             'draft_id'       => $this->draftId,
-            'text'           => $this->text->typeSerialize(),
+            'forum_topic_id' => $this->forumTopicId,
+            'text'           => $this->text->jsonSerialize(),
         ];
     }
 }

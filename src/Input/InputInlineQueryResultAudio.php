@@ -18,29 +18,29 @@ class InputInlineQueryResultAudio extends InputInlineQueryResult
 
     public function __construct(
         /**
-         * Unique identifier of the query result.
+         * Audio file duration, in seconds.
          */
-        protected string              $id,
-        /**
-         * Title of the audio file.
-         */
-        protected string              $title,
-        /**
-         * Performer of the audio file.
-         */
-        protected string              $performer,
+        protected int                 $audioDuration,
         /**
          * The URL of the audio file.
          */
         protected string              $audioUrl,
         /**
-         * Audio file duration, in seconds.
+         * Unique identifier of the query result.
          */
-        protected int                 $audioDuration,
+        protected string              $id,
         /**
          * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAudio, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact.
          */
         protected InputMessageContent $inputMessageContent,
+        /**
+         * Performer of the audio file.
+         */
+        protected string              $performer,
+        /**
+         * Title of the audio file.
+         */
+        protected string              $title,
         /**
          * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null.
          */
@@ -52,13 +52,13 @@ class InputInlineQueryResultAudio extends InputInlineQueryResult
     public static function fromArray(array $array): InputInlineQueryResultAudio
     {
         return new static(
-            $array['id'],
-            $array['title'],
-            $array['performer'],
-            $array['audio_url'],
-            $array['audio_duration'],
-            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
-            TdSchemaRegistry::fromArray($array['input_message_content']),
+            audioDuration      : $array['audio_duration'],
+            audioUrl           : $array['audio_url'],
+            id                 : $array['id'],
+            inputMessageContent: TdSchemaRegistry::fromArray($array['input_message_content']),
+            performer          : $array['performer'],
+            replyMarkup        : (isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null),
+            title              : $array['title'],
         );
     }
 
@@ -150,13 +150,13 @@ class InputInlineQueryResultAudio extends InputInlineQueryResult
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'id'                    => $this->id,
-            'title'                 => $this->title,
-            'performer'             => $this->performer,
-            'audio_url'             => $this->audioUrl,
             'audio_duration'        => $this->audioDuration,
-            'reply_markup'          => $this->replyMarkup ?? null,
-            'input_message_content' => $this->inputMessageContent->typeSerialize(),
+            'audio_url'             => $this->audioUrl,
+            'id'                    => $this->id,
+            'input_message_content' => $this->inputMessageContent->jsonSerialize(),
+            'performer'             => $this->performer,
+            'reply_markup'          => (null !== $this->replyMarkup ? $this->replyMarkup->jsonSerialize() : null),
+            'title'                 => $this->title,
         ];
     }
 }

@@ -28,13 +28,13 @@ class EditBusinessMessageChecklist extends TdFunction
          */
         protected int            $chatId,
         /**
-         * Identifier of the message.
-         */
-        protected int            $messageId,
-        /**
          * The new checklist. If some tasks were completed, this information will be kept.
          */
         protected InputChecklist $checklist,
+        /**
+         * Identifier of the message.
+         */
+        protected int            $messageId,
         /**
          * The new message reply markup; pass null if none.
          */
@@ -44,11 +44,11 @@ class EditBusinessMessageChecklist extends TdFunction
     public static function fromArray(array $array): EditBusinessMessageChecklist
     {
         return new static(
-            $array['business_connection_id'],
-            $array['chat_id'],
-            $array['message_id'],
-            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
-            TdSchemaRegistry::fromArray($array['checklist']),
+            businessConnectionId: $array['business_connection_id'],
+            chatId              : $array['chat_id'],
+            checklist           : TdSchemaRegistry::fromArray($array['checklist']),
+            messageId           : $array['message_id'],
+            replyMarkup         : (isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null),
         );
     }
 
@@ -118,9 +118,9 @@ class EditBusinessMessageChecklist extends TdFunction
             '@type'                  => static::TYPE_NAME,
             'business_connection_id' => $this->businessConnectionId,
             'chat_id'                => $this->chatId,
+            'checklist'              => $this->checklist->jsonSerialize(),
             'message_id'             => $this->messageId,
-            'reply_markup'           => $this->replyMarkup ?? null,
-            'checklist'              => $this->checklist->typeSerialize(),
+            'reply_markup'           => (null !== $this->replyMarkup ? $this->replyMarkup->jsonSerialize() : null),
         ];
     }
 }

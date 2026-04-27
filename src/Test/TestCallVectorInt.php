@@ -27,7 +27,7 @@ class TestCallVectorInt extends TdFunction
     public static function fromArray(array $array): TestCallVectorInt
     {
         return new static(
-            $array['x'],
+            x: $array['x'],
         );
     }
 

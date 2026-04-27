@@ -32,8 +32,8 @@ class PollTypeQuiz extends PollType
     public static function fromArray(array $array): PollTypeQuiz
     {
         return new static(
-            $array['correct_option_id'],
-            TdSchemaRegistry::fromArray($array['explanation']),
+            correctOptionId: $array['correct_option_id'],
+            explanation    : TdSchemaRegistry::fromArray($array['explanation']),
         );
     }
 
@@ -66,7 +66,7 @@ class PollTypeQuiz extends PollType
         return [
             '@type'             => static::TYPE_NAME,
             'correct_option_id' => $this->correctOptionId,
-            'explanation'       => $this->explanation->typeSerialize(),
+            'explanation'       => $this->explanation->jsonSerialize(),
         ];
     }
 }

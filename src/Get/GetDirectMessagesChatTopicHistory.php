@@ -22,31 +22,31 @@ class GetDirectMessagesChatTopicHistory extends TdFunction
          */
         protected int $chatId,
         /**
-         * Identifier of the topic which messages will be fetched.
-         */
-        protected int $topicId,
-        /**
          * Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message.
          */
         protected int $fromMessageId,
+        /**
+         * The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, then the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit.
+         */
+        protected int $limit,
         /**
          * Specify 0 to get results from exactly the message from_message_id or a negative number from -99 to -1 to get additionally -offset newer messages.
          */
         protected int $offset,
         /**
-         * The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, then the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit.
+         * Identifier of the topic which messages will be fetched.
          */
-        protected int $limit,
+        protected int $topicId,
     ) {}
 
     public static function fromArray(array $array): GetDirectMessagesChatTopicHistory
     {
         return new static(
-            $array['chat_id'],
-            $array['topic_id'],
-            $array['from_message_id'],
-            $array['offset'],
-            $array['limit'],
+            chatId       : $array['chat_id'],
+            fromMessageId: $array['from_message_id'],
+            limit        : $array['limit'],
+            offset       : $array['offset'],
+            topicId      : $array['topic_id'],
         );
     }
 
@@ -115,10 +115,10 @@ class GetDirectMessagesChatTopicHistory extends TdFunction
         return [
             '@type'           => static::TYPE_NAME,
             'chat_id'         => $this->chatId,
-            'topic_id'        => $this->topicId,
             'from_message_id' => $this->fromMessageId,
-            'offset'          => $this->offset,
             'limit'           => $this->limit,
+            'offset'          => $this->offset,
+            'topic_id'        => $this->topicId,
         ];
     }
 }

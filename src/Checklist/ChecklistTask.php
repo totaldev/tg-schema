@@ -19,14 +19,6 @@ class ChecklistTask extends TdObject
 
     public function __construct(
         /**
-         * Unique identifier of the task.
-         */
-        protected int           $id,
-        /**
-         * Text of the task; may contain only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Url, EmailAddress, Mention, Hashtag, Cashtag and PhoneNumber entities.
-         */
-        protected FormattedText $text,
-        /**
          * Identifier of the user that completed the task; 0 if the task isn't completed.
          */
         protected int           $completedByUserId,
@@ -34,15 +26,23 @@ class ChecklistTask extends TdObject
          * Point in time (Unix timestamp) when the task was completed; 0 if the task isn't completed.
          */
         protected int           $completionDate,
+        /**
+         * Unique identifier of the task.
+         */
+        protected int           $id,
+        /**
+         * Text of the task; may contain only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Url, EmailAddress, Mention, Hashtag, Cashtag and PhoneNumber entities.
+         */
+        protected FormattedText $text,
     ) {}
 
     public static function fromArray(array $array): ChecklistTask
     {
         return new static(
-            $array['id'],
-            TdSchemaRegistry::fromArray($array['text']),
-            $array['completed_by_user_id'],
-            $array['completion_date'],
+            completedByUserId: $array['completed_by_user_id'],
+            completionDate   : $array['completion_date'],
+            id               : $array['id'],
+            text             : TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -98,10 +98,10 @@ class ChecklistTask extends TdObject
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'id'                   => $this->id,
-            'text'                 => $this->text->typeSerialize(),
             'completed_by_user_id' => $this->completedByUserId,
             'completion_date'      => $this->completionDate,
+            'id'                   => $this->id,
+            'text'                 => $this->text->jsonSerialize(),
         ];
     }
 }

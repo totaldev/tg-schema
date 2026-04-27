@@ -21,25 +21,25 @@ class AddQuickReplyShortcutMessage extends TdFunction
 
     public function __construct(
         /**
-         * Name of the target shortcut.
+         * The content of the message to be added; inputMessagePaidMedia, inputMessageForwarded and inputMessageLocation with live_period aren't supported.
          */
-        protected string              $shortcutName,
+        protected InputMessageContent $inputMessageContent,
         /**
          * Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none.
          */
         protected int                 $replyToMessageId,
         /**
-         * The content of the message to be added; inputMessagePaidMedia, inputMessageForwarded and inputMessageLocation with live_period aren't supported.
+         * Name of the target shortcut.
          */
-        protected InputMessageContent $inputMessageContent,
+        protected string              $shortcutName,
     ) {}
 
     public static function fromArray(array $array): AddQuickReplyShortcutMessage
     {
         return new static(
-            $array['shortcut_name'],
-            $array['reply_to_message_id'],
-            TdSchemaRegistry::fromArray($array['input_message_content']),
+            inputMessageContent: TdSchemaRegistry::fromArray($array['input_message_content']),
+            replyToMessageId   : $array['reply_to_message_id'],
+            shortcutName       : $array['shortcut_name'],
         );
     }
 
@@ -83,9 +83,9 @@ class AddQuickReplyShortcutMessage extends TdFunction
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'shortcut_name'         => $this->shortcutName,
+            'input_message_content' => $this->inputMessageContent->jsonSerialize(),
             'reply_to_message_id'   => $this->replyToMessageId,
-            'input_message_content' => $this->inputMessageContent->typeSerialize(),
+            'shortcut_name'         => $this->shortcutName,
         ];
     }
 }

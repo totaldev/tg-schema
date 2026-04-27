@@ -27,7 +27,7 @@ class PremiumSourceStoryFeature extends PremiumSource
     public static function fromArray(array $array): PremiumSourceStoryFeature
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['feature']),
+            feature: TdSchemaRegistry::fromArray($array['feature']),
         );
     }
 
@@ -47,7 +47,7 @@ class PremiumSourceStoryFeature extends PremiumSource
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'feature' => $this->feature->typeSerialize(),
+            'feature' => $this->feature->jsonSerialize(),
         ];
     }
 }

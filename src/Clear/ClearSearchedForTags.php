@@ -25,7 +25,7 @@ class ClearSearchedForTags extends TdFunction
     public static function fromArray(array $array): ClearSearchedForTags
     {
         return new static(
-            $array['clear_cashtags'],
+            clearCashtags: $array['clear_cashtags'],
         );
     }
 

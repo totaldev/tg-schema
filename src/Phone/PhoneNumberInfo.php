@@ -39,10 +39,10 @@ class PhoneNumberInfo extends TdObject
     public static function fromArray(array $array): PhoneNumberInfo
     {
         return new static(
-            isset($array['country']) ? TdSchemaRegistry::fromArray($array['country']) : null,
-            $array['country_calling_code'],
-            $array['formatted_phone_number'],
-            $array['is_anonymous'],
+            country             : (isset($array['country']) ? TdSchemaRegistry::fromArray($array['country']) : null),
+            countryCallingCode  : $array['country_calling_code'],
+            formattedPhoneNumber: $array['formatted_phone_number'],
+            isAnonymous         : $array['is_anonymous'],
         );
     }
 
@@ -98,7 +98,7 @@ class PhoneNumberInfo extends TdObject
     {
         return [
             '@type'                  => static::TYPE_NAME,
-            'country'                => $this->country ?? null,
+            'country'                => (null !== $this->country ? $this->country->jsonSerialize() : null),
             'country_calling_code'   => $this->countryCallingCode,
             'formatted_phone_number' => $this->formattedPhoneNumber,
             'is_anonymous'           => $this->isAnonymous,

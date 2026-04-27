@@ -19,17 +19,13 @@ class PremiumGiftPaymentOption extends TdObject
 
     public function __construct(
         /**
-         * ISO 4217 currency code for the payment.
-         */
-        protected string   $currency,
-        /**
          * The amount to pay, in the smallest units of the currency.
          */
         protected int      $amount,
         /**
-         * The alternative amount of Telegram Stars to pay; 0 if payment in Telegram Stars is not possible.
+         * ISO 4217 currency code for the payment.
          */
-        protected int      $starCount,
+        protected string   $currency,
         /**
          * The discount associated with this option, as a percentage.
          */
@@ -39,25 +35,29 @@ class PremiumGiftPaymentOption extends TdObject
          */
         protected int      $monthCount,
         /**
-         * Identifier of the store product associated with the option.
+         * The alternative amount of Telegram Stars to pay; 0 if payment in Telegram Stars is not possible.
          */
-        protected string   $storeProductId,
+        protected int      $starCount,
         /**
          * A sticker to be shown along with the option; may be null if unknown.
          */
         protected ?Sticker $sticker,
+        /**
+         * Identifier of the store product associated with the option.
+         */
+        protected string   $storeProductId,
     ) {}
 
     public static function fromArray(array $array): PremiumGiftPaymentOption
     {
         return new static(
-            $array['currency'],
-            $array['amount'],
-            $array['star_count'],
-            $array['discount_percentage'],
-            $array['month_count'],
-            $array['store_product_id'],
-            isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null,
+            amount            : $array['amount'],
+            currency          : $array['currency'],
+            discountPercentage: $array['discount_percentage'],
+            monthCount        : $array['month_count'],
+            starCount         : $array['star_count'],
+            sticker           : (isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null),
+            storeProductId    : $array['store_product_id'],
         );
     }
 
@@ -149,13 +149,13 @@ class PremiumGiftPaymentOption extends TdObject
     {
         return [
             '@type'               => static::TYPE_NAME,
-            'currency'            => $this->currency,
             'amount'              => $this->amount,
-            'star_count'          => $this->starCount,
+            'currency'            => $this->currency,
             'discount_percentage' => $this->discountPercentage,
             'month_count'         => $this->monthCount,
+            'star_count'          => $this->starCount,
+            'sticker'             => (null !== $this->sticker ? $this->sticker->jsonSerialize() : null),
             'store_product_id'    => $this->storeProductId,
-            'sticker'             => $this->sticker ?? null,
         ];
     }
 }

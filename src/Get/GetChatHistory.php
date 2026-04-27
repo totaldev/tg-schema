@@ -26,13 +26,13 @@ class GetChatHistory extends TdFunction
          */
         protected int  $fromMessageId,
         /**
-         * Specify 0 to get results from exactly the message from_message_id or a negative number from -99 to -1 to get additionally -offset newer messages.
-         */
-        protected int  $offset,
-        /**
          * The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, then the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit.
          */
         protected int  $limit,
+        /**
+         * Specify 0 to get results from exactly the message from_message_id or a negative number from -99 to -1 to get additionally -offset newer messages.
+         */
+        protected int  $offset,
         /**
          * Pass true to get only messages that are available without sending network requests.
          */
@@ -42,11 +42,11 @@ class GetChatHistory extends TdFunction
     public static function fromArray(array $array): GetChatHistory
     {
         return new static(
-            $array['chat_id'],
-            $array['from_message_id'],
-            $array['offset'],
-            $array['limit'],
-            $array['only_local'],
+            chatId       : $array['chat_id'],
+            fromMessageId: $array['from_message_id'],
+            limit        : $array['limit'],
+            offset       : $array['offset'],
+            onlyLocal    : $array['only_local'],
         );
     }
 
@@ -116,8 +116,8 @@ class GetChatHistory extends TdFunction
             '@type'           => static::TYPE_NAME,
             'chat_id'         => $this->chatId,
             'from_message_id' => $this->fromMessageId,
-            'offset'          => $this->offset,
             'limit'           => $this->limit,
+            'offset'          => $this->offset,
             'only_local'      => $this->onlyLocal,
         ];
     }

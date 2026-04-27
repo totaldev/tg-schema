@@ -38,6 +38,10 @@ class UpdateForumTopic extends Update
          */
         protected int                      $lastReadOutboxMessageId,
         /**
+         * Notification settings for the topic.
+         */
+        protected ChatNotificationSettings $notificationSettings,
+        /**
          * Number of unread messages with a mention/reply in the topic.
          */
         protected int                      $unreadMentionCount,
@@ -45,10 +49,6 @@ class UpdateForumTopic extends Update
          * Number of messages with unread reactions in the topic.
          */
         protected int                      $unreadReactionCount,
-        /**
-         * Notification settings for the topic.
-         */
-        protected ChatNotificationSettings $notificationSettings,
     ) {
         parent::__construct();
     }
@@ -56,14 +56,14 @@ class UpdateForumTopic extends Update
     public static function fromArray(array $array): UpdateForumTopic
     {
         return new static(
-            $array['chat_id'],
-            $array['forum_topic_id'],
-            $array['is_pinned'],
-            $array['last_read_inbox_message_id'],
-            $array['last_read_outbox_message_id'],
-            $array['unread_mention_count'],
-            $array['unread_reaction_count'],
-            TdSchemaRegistry::fromArray($array['notification_settings']),
+            chatId                 : $array['chat_id'],
+            forumTopicId           : $array['forum_topic_id'],
+            isPinned               : $array['is_pinned'],
+            lastReadInboxMessageId : $array['last_read_inbox_message_id'],
+            lastReadOutboxMessageId: $array['last_read_outbox_message_id'],
+            notificationSettings   : TdSchemaRegistry::fromArray($array['notification_settings']),
+            unreadMentionCount     : $array['unread_mention_count'],
+            unreadReactionCount    : $array['unread_reaction_count'],
         );
     }
 
@@ -172,9 +172,9 @@ class UpdateForumTopic extends Update
             'is_pinned'                   => $this->isPinned,
             'last_read_inbox_message_id'  => $this->lastReadInboxMessageId,
             'last_read_outbox_message_id' => $this->lastReadOutboxMessageId,
+            'notification_settings'       => $this->notificationSettings->jsonSerialize(),
             'unread_mention_count'        => $this->unreadMentionCount,
             'unread_reaction_count'       => $this->unreadReactionCount,
-            'notification_settings'       => $this->notificationSettings->typeSerialize(),
         ];
     }
 }

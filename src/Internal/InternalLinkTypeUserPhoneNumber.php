@@ -16,10 +16,6 @@ class InternalLinkTypeUserPhoneNumber extends InternalLinkType
 
     public function __construct(
         /**
-         * Phone number of the user.
-         */
-        protected string $phoneNumber,
-        /**
          * Draft text for message to send in the chat.
          */
         protected string $draftText,
@@ -27,6 +23,10 @@ class InternalLinkTypeUserPhoneNumber extends InternalLinkType
          * True, if user's profile information screen must be opened; otherwise, the chat itself must be opened.
          */
         protected bool   $openProfile,
+        /**
+         * Phone number of the user.
+         */
+        protected string $phoneNumber,
     ) {
         parent::__construct();
     }
@@ -34,9 +34,9 @@ class InternalLinkTypeUserPhoneNumber extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeUserPhoneNumber
     {
         return new static(
-            $array['phone_number'],
-            $array['draft_text'],
-            $array['open_profile'],
+            draftText  : $array['draft_text'],
+            openProfile: $array['open_profile'],
+            phoneNumber: $array['phone_number'],
         );
     }
 
@@ -80,9 +80,9 @@ class InternalLinkTypeUserPhoneNumber extends InternalLinkType
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'phone_number' => $this->phoneNumber,
             'draft_text'   => $this->draftText,
             'open_profile' => $this->openProfile,
+            'phone_number' => $this->phoneNumber,
         ];
     }
 }

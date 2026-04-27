@@ -19,13 +19,13 @@ class SetStoryReaction extends TdFunction
 
     public function __construct(
         /**
-         * The identifier of the poster of the story.
-         */
-        protected int           $storyPosterChatId,
-        /**
          * The identifier of the story.
          */
         protected int           $storyId,
+        /**
+         * The identifier of the poster of the story.
+         */
+        protected int           $storyPosterChatId,
         /**
          * Pass true if the reaction needs to be added to recent reactions.
          */
@@ -39,10 +39,10 @@ class SetStoryReaction extends TdFunction
     public static function fromArray(array $array): SetStoryReaction
     {
         return new static(
-            $array['story_poster_chat_id'],
-            $array['story_id'],
-            isset($array['reaction_type']) ? TdSchemaRegistry::fromArray($array['reaction_type']) : null,
-            $array['update_recent_reactions'],
+            reactionType         : (isset($array['reaction_type']) ? TdSchemaRegistry::fromArray($array['reaction_type']) : null),
+            storyId              : $array['story_id'],
+            storyPosterChatId    : $array['story_poster_chat_id'],
+            updateRecentReactions: $array['update_recent_reactions'],
         );
     }
 
@@ -98,9 +98,9 @@ class SetStoryReaction extends TdFunction
     {
         return [
             '@type'                   => static::TYPE_NAME,
-            'story_poster_chat_id'    => $this->storyPosterChatId,
+            'reaction_type'           => (null !== $this->reactionType ? $this->reactionType->jsonSerialize() : null),
             'story_id'                => $this->storyId,
-            'reaction_type'           => $this->reactionType ?? null,
+            'story_poster_chat_id'    => $this->storyPosterChatId,
             'update_recent_reactions' => $this->updateRecentReactions,
         ];
     }

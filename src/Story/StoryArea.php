@@ -30,8 +30,8 @@ class StoryArea extends TdObject
     public static function fromArray(array $array): StoryArea
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['position']),
-            TdSchemaRegistry::fromArray($array['type']),
+            position: TdSchemaRegistry::fromArray($array['position']),
+            type    : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -63,8 +63,8 @@ class StoryArea extends TdObject
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'position' => $this->position->typeSerialize(),
-            'type'     => $this->type->typeSerialize(),
+            'position' => $this->position->jsonSerialize(),
+            'type'     => $this->type->jsonSerialize(),
         ];
     }
 }

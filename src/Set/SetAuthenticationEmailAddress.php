@@ -26,7 +26,7 @@ class SetAuthenticationEmailAddress extends TdFunction
     public static function fromArray(array $array): SetAuthenticationEmailAddress
     {
         return new static(
-            $array['email_address'],
+            emailAddress: $array['email_address'],
         );
     }
 

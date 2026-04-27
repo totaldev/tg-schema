@@ -19,9 +19,9 @@ class TrendingStickerSets extends TdObject
 
     public function __construct(
         /**
-         * Approximate total number of trending sticker sets.
+         * True, if the list contains sticker sets with premium stickers.
          */
-        protected int   $totalCount,
+        protected bool  $isPremium,
         /**
          * List of trending sticker sets.
          *
@@ -29,17 +29,17 @@ class TrendingStickerSets extends TdObject
          */
         protected array $sets,
         /**
-         * True, if the list contains sticker sets with premium stickers.
+         * Approximate total number of trending sticker sets.
          */
-        protected bool  $isPremium,
+        protected int   $totalCount,
     ) {}
 
     public static function fromArray(array $array): TrendingStickerSets
     {
         return new static(
-            $array['total_count'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['sets']),
-            $array['is_premium'],
+            isPremium : $array['is_premium'],
+            sets      : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['sets']),
+            totalCount: $array['total_count'],
         );
     }
 
@@ -83,9 +83,9 @@ class TrendingStickerSets extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'total_count' => $this->totalCount,
-            'sets'        => array_map(static fn($x) => $x->typeSerialize(), $this->sets),
             'is_premium'  => $this->isPremium,
+            'sets'        => array_map(static fn($x) => $x->jsonSerialize(), $this->sets),
+            'total_count' => $this->totalCount,
         ];
     }
 }

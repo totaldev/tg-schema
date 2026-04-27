@@ -25,7 +25,7 @@ class FoundPosition extends TdObject
     public static function fromArray(array $array): FoundPosition
     {
         return new static(
-            $array['position'],
+            position: $array['position'],
         );
     }
 

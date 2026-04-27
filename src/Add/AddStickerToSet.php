@@ -19,10 +19,6 @@ class AddStickerToSet extends TdFunction
 
     public function __construct(
         /**
-         * Sticker set owner; ignored for regular users.
-         */
-        protected int          $userId,
-        /**
          * Sticker set name. The sticker set must be owned by the current user, and contain less than 200 stickers for custom emoji sticker sets and less than 120 otherwise.
          */
         protected string       $name,
@@ -30,14 +26,18 @@ class AddStickerToSet extends TdFunction
          * Sticker to add to the set.
          */
         protected InputSticker $sticker,
+        /**
+         * Sticker set owner; ignored for regular users.
+         */
+        protected int          $userId,
     ) {}
 
     public static function fromArray(array $array): AddStickerToSet
     {
         return new static(
-            $array['user_id'],
-            $array['name'],
-            TdSchemaRegistry::fromArray($array['sticker']),
+            name   : $array['name'],
+            sticker: TdSchemaRegistry::fromArray($array['sticker']),
+            userId : $array['user_id'],
         );
     }
 
@@ -81,9 +81,9 @@ class AddStickerToSet extends TdFunction
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'user_id' => $this->userId,
             'name'    => $this->name,
-            'sticker' => $this->sticker->typeSerialize(),
+            'sticker' => $this->sticker->jsonSerialize(),
+            'user_id' => $this->userId,
         ];
     }
 }

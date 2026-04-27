@@ -17,13 +17,17 @@ class StarPaymentOption extends TdObject
 
     public function __construct(
         /**
+         * The amount to pay, in the smallest units of the currency.
+         */
+        protected int    $amount,
+        /**
          * ISO 4217 currency code for the payment.
          */
         protected string $currency,
         /**
-         * The amount to pay, in the smallest units of the currency.
+         * True, if the option must be shown only in the full list of payment options.
          */
-        protected int    $amount,
+        protected bool   $isAdditional,
         /**
          * Number of Telegram Stars that will be purchased.
          */
@@ -32,20 +36,16 @@ class StarPaymentOption extends TdObject
          * Identifier of the store product associated with the option; may be empty if none.
          */
         protected string $storeProductId,
-        /**
-         * True, if the option must be shown only in the full list of payment options.
-         */
-        protected bool   $isAdditional,
     ) {}
 
     public static function fromArray(array $array): StarPaymentOption
     {
         return new static(
-            $array['currency'],
-            $array['amount'],
-            $array['star_count'],
-            $array['store_product_id'],
-            $array['is_additional'],
+            amount        : $array['amount'],
+            currency      : $array['currency'],
+            isAdditional  : $array['is_additional'],
+            starCount     : $array['star_count'],
+            storeProductId: $array['store_product_id'],
         );
     }
 
@@ -113,11 +113,11 @@ class StarPaymentOption extends TdObject
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'currency'         => $this->currency,
             'amount'           => $this->amount,
+            'currency'         => $this->currency,
+            'is_additional'    => $this->isAdditional,
             'star_count'       => $this->starCount,
             'store_product_id' => $this->storeProductId,
-            'is_additional'    => $this->isAdditional,
         ];
     }
 }

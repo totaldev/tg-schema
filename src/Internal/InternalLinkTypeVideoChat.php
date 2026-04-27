@@ -34,9 +34,9 @@ class InternalLinkTypeVideoChat extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeVideoChat
     {
         return new static(
-            $array['chat_username'],
-            $array['invite_hash'],
-            $array['is_live_stream'],
+            chatUsername: $array['chat_username'],
+            inviteHash  : $array['invite_hash'],
+            isLiveStream: $array['is_live_stream'],
         );
     }
 

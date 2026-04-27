@@ -29,8 +29,8 @@ class ToggleChatIsTranslatable extends TdFunction
     public static function fromArray(array $array): ToggleChatIsTranslatable
     {
         return new static(
-            $array['chat_id'],
-            $array['is_translatable'],
+            chatId        : $array['chat_id'],
+            isTranslatable: $array['is_translatable'],
         );
     }
 

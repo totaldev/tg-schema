@@ -25,7 +25,7 @@ class UpdateWebAppMessageSent extends Update
     public static function fromArray(array $array): UpdateWebAppMessageSent
     {
         return new static(
-            $array['web_app_launch_id'],
+            webAppLaunchId: $array['web_app_launch_id'],
         );
     }
 

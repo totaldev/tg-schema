@@ -27,7 +27,7 @@ class UpdateSavedAnimations extends Update
     public static function fromArray(array $array): UpdateSavedAnimations
     {
         return new static(
-            $array['animation_ids'],
+            animationIds: $array['animation_ids'],
         );
     }
 

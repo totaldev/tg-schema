@@ -22,18 +22,6 @@ class EditBusinessStory extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the chat that posted the story.
-         */
-        protected int                  $storyPosterChatId,
-        /**
-         * Identifier of the story to edit.
-         */
-        protected int                  $storyId,
-        /**
-         * New content of the story.
-         */
-        protected InputStoryContent    $content,
-        /**
          * New clickable rectangle areas to be shown on the story media.
          */
         protected InputStoryAreas      $areas,
@@ -42,20 +30,32 @@ class EditBusinessStory extends TdFunction
          */
         protected FormattedText        $caption,
         /**
+         * New content of the story.
+         */
+        protected InputStoryContent    $content,
+        /**
          * The new privacy settings for the story.
          */
         protected StoryPrivacySettings $privacySettings,
+        /**
+         * Identifier of the story to edit.
+         */
+        protected int                  $storyId,
+        /**
+         * Identifier of the chat that posted the story.
+         */
+        protected int                  $storyPosterChatId,
     ) {}
 
     public static function fromArray(array $array): EditBusinessStory
     {
         return new static(
-            $array['story_poster_chat_id'],
-            $array['story_id'],
-            TdSchemaRegistry::fromArray($array['content']),
-            TdSchemaRegistry::fromArray($array['areas']),
-            TdSchemaRegistry::fromArray($array['caption']),
-            TdSchemaRegistry::fromArray($array['privacy_settings']),
+            areas            : TdSchemaRegistry::fromArray($array['areas']),
+            caption          : TdSchemaRegistry::fromArray($array['caption']),
+            content          : TdSchemaRegistry::fromArray($array['content']),
+            privacySettings  : TdSchemaRegistry::fromArray($array['privacy_settings']),
+            storyId          : $array['story_id'],
+            storyPosterChatId: $array['story_poster_chat_id'],
         );
     }
 
@@ -135,12 +135,12 @@ class EditBusinessStory extends TdFunction
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'story_poster_chat_id' => $this->storyPosterChatId,
+            'areas'                => $this->areas->jsonSerialize(),
+            'caption'              => $this->caption->jsonSerialize(),
+            'content'              => $this->content->jsonSerialize(),
+            'privacy_settings'     => $this->privacySettings->jsonSerialize(),
             'story_id'             => $this->storyId,
-            'content'              => $this->content->typeSerialize(),
-            'areas'                => $this->areas->typeSerialize(),
-            'caption'              => $this->caption->typeSerialize(),
-            'privacy_settings'     => $this->privacySettings->typeSerialize(),
+            'story_poster_chat_id' => $this->storyPosterChatId,
         ];
     }
 }

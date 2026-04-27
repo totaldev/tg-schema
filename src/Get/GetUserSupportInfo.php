@@ -25,7 +25,7 @@ class GetUserSupportInfo extends TdFunction
     public static function fromArray(array $array): GetUserSupportInfo
     {
         return new static(
-            $array['user_id'],
+            userId: $array['user_id'],
         );
     }
 

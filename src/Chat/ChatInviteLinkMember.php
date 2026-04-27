@@ -17,30 +17,30 @@ class ChatInviteLinkMember extends TdObject
 
     public function __construct(
         /**
-         * User identifier.
+         * User identifier of the chat administrator, approved user join request.
          */
-        protected int  $userId,
+        protected int  $approverUserId,
         /**
          * Point in time (Unix timestamp) when the user joined the chat.
          */
         protected int  $joinedChatDate,
         /**
+         * User identifier.
+         */
+        protected int  $userId,
+        /**
          * True, if the user has joined the chat using an invite link for a chat folder.
          */
         protected bool $viaChatFolderInviteLink,
-        /**
-         * User identifier of the chat administrator, approved user join request.
-         */
-        protected int  $approverUserId,
     ) {}
 
     public static function fromArray(array $array): ChatInviteLinkMember
     {
         return new static(
-            $array['user_id'],
-            $array['joined_chat_date'],
-            $array['via_chat_folder_invite_link'],
-            $array['approver_user_id'],
+            approverUserId         : $array['approver_user_id'],
+            joinedChatDate         : $array['joined_chat_date'],
+            userId                 : $array['user_id'],
+            viaChatFolderInviteLink: $array['via_chat_folder_invite_link'],
         );
     }
 
@@ -96,10 +96,10 @@ class ChatInviteLinkMember extends TdObject
     {
         return [
             '@type'                       => static::TYPE_NAME,
-            'user_id'                     => $this->userId,
-            'joined_chat_date'            => $this->joinedChatDate,
-            'via_chat_folder_invite_link' => $this->viaChatFolderInviteLink,
             'approver_user_id'            => $this->approverUserId,
+            'joined_chat_date'            => $this->joinedChatDate,
+            'user_id'                     => $this->userId,
+            'via_chat_folder_invite_link' => $this->viaChatFolderInviteLink,
         ];
     }
 }

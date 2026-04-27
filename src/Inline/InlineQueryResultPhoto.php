@@ -18,6 +18,10 @@ class InlineQueryResultPhoto extends InlineQueryResult
 
     public function __construct(
         /**
+         * A short description of the result, if known.
+         */
+        protected string $description,
+        /**
          * Unique identifier of the query result.
          */
         protected string $id,
@@ -29,10 +33,6 @@ class InlineQueryResultPhoto extends InlineQueryResult
          * Title of the result, if known.
          */
         protected string $title,
-        /**
-         * A short description of the result, if known.
-         */
-        protected string $description,
     ) {
         parent::__construct();
     }
@@ -40,10 +40,10 @@ class InlineQueryResultPhoto extends InlineQueryResult
     public static function fromArray(array $array): InlineQueryResultPhoto
     {
         return new static(
-            $array['id'],
-            TdSchemaRegistry::fromArray($array['photo']),
-            $array['title'],
-            $array['description'],
+            description: $array['description'],
+            id         : $array['id'],
+            photo      : TdSchemaRegistry::fromArray($array['photo']),
+            title      : $array['title'],
         );
     }
 
@@ -99,10 +99,10 @@ class InlineQueryResultPhoto extends InlineQueryResult
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'id'          => $this->id,
-            'photo'       => $this->photo->typeSerialize(),
-            'title'       => $this->title,
             'description' => $this->description,
+            'id'          => $this->id,
+            'photo'       => $this->photo->jsonSerialize(),
+            'title'       => $this->title,
         ];
     }
 }

@@ -20,27 +20,27 @@ class AddQuickReplyShortcutMessageAlbum extends TdFunction
 
     public function __construct(
         /**
-         * Name of the target shortcut.
-         */
-        protected string $shortcutName,
-        /**
-         * Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none.
-         */
-        protected int    $replyToMessageId,
-        /**
          * Contents of messages to be sent. At most 10 messages can be added to an album. All messages must have the same value of show_caption_above_media.
          *
          * @var InputMessageContent[]
          */
         protected array  $inputMessageContents,
+        /**
+         * Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none.
+         */
+        protected int    $replyToMessageId,
+        /**
+         * Name of the target shortcut.
+         */
+        protected string $shortcutName,
     ) {}
 
     public static function fromArray(array $array): AddQuickReplyShortcutMessageAlbum
     {
         return new static(
-            $array['shortcut_name'],
-            $array['reply_to_message_id'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['input_message_contents']),
+            inputMessageContents: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['input_message_contents']),
+            replyToMessageId    : $array['reply_to_message_id'],
+            shortcutName        : $array['shortcut_name'],
         );
     }
 
@@ -84,9 +84,9 @@ class AddQuickReplyShortcutMessageAlbum extends TdFunction
     {
         return [
             '@type'                  => static::TYPE_NAME,
-            'shortcut_name'          => $this->shortcutName,
+            'input_message_contents' => array_map(static fn($x) => $x->jsonSerialize(), $this->inputMessageContents),
             'reply_to_message_id'    => $this->replyToMessageId,
-            'input_message_contents' => array_map(static fn($x) => $x->typeSerialize(), $this->inputMessageContents),
+            'shortcut_name'          => $this->shortcutName,
         ];
     }
 }

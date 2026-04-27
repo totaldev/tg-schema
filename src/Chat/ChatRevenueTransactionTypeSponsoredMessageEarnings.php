@@ -15,13 +15,13 @@ class ChatRevenueTransactionTypeSponsoredMessageEarnings extends ChatRevenueTran
 
     public function __construct(
         /**
-         * Point in time (Unix timestamp) when the earnings started.
-         */
-        protected int $startDate,
-        /**
          * Point in time (Unix timestamp) when the earnings ended.
          */
         protected int $endDate,
+        /**
+         * Point in time (Unix timestamp) when the earnings started.
+         */
+        protected int $startDate,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class ChatRevenueTransactionTypeSponsoredMessageEarnings extends ChatRevenueTran
     public static function fromArray(array $array): ChatRevenueTransactionTypeSponsoredMessageEarnings
     {
         return new static(
-            $array['start_date'],
-            $array['end_date'],
+            endDate  : $array['end_date'],
+            startDate: $array['start_date'],
         );
     }
 
@@ -62,8 +62,8 @@ class ChatRevenueTransactionTypeSponsoredMessageEarnings extends ChatRevenueTran
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'start_date' => $this->startDate,
             'end_date'   => $this->endDate,
+            'start_date' => $this->startDate,
         ];
     }
 }

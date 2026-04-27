@@ -19,20 +19,20 @@ class ChatMessageSender extends TdObject
 
     public function __construct(
         /**
-         * The message sender.
-         */
-        protected MessageSender $sender,
-        /**
          * True, if Telegram Premium is needed to use the message sender.
          */
         protected bool          $needsPremium,
+        /**
+         * The message sender.
+         */
+        protected MessageSender $sender,
     ) {}
 
     public static function fromArray(array $array): ChatMessageSender
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['sender']),
-            $array['needs_premium'],
+            needsPremium: $array['needs_premium'],
+            sender      : TdSchemaRegistry::fromArray($array['sender']),
         );
     }
 
@@ -64,8 +64,8 @@ class ChatMessageSender extends TdObject
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'sender'        => $this->sender->typeSerialize(),
             'needs_premium' => $this->needsPremium,
+            'sender'        => $this->sender->jsonSerialize(),
         ];
     }
 }

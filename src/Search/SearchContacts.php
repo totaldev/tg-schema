@@ -17,20 +17,20 @@ class SearchContacts extends TdFunction
 
     public function __construct(
         /**
-         * Query to search for; may be empty to return all contacts.
-         */
-        protected string $query,
-        /**
          * The maximum number of users to be returned.
          */
         protected int    $limit,
+        /**
+         * Query to search for; may be empty to return all contacts.
+         */
+        protected string $query,
     ) {}
 
     public static function fromArray(array $array): SearchContacts
     {
         return new static(
-            $array['query'],
-            $array['limit'],
+            limit: $array['limit'],
+            query: $array['query'],
         );
     }
 
@@ -62,8 +62,8 @@ class SearchContacts extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'query' => $this->query,
             'limit' => $this->limit,
+            'query' => $this->query,
         ];
     }
 }

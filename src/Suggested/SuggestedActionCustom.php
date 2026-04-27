@@ -18,6 +18,10 @@ class SuggestedActionCustom extends SuggestedAction
 
     public function __construct(
         /**
+         * Description of the suggestion.
+         */
+        protected FormattedText $description,
+        /**
          * Unique name of the suggestion.
          */
         protected string        $name,
@@ -25,10 +29,6 @@ class SuggestedActionCustom extends SuggestedAction
          * Title of the suggestion.
          */
         protected FormattedText $title,
-        /**
-         * Description of the suggestion.
-         */
-        protected FormattedText $description,
         /**
          * The link to open when the suggestion is clicked.
          */
@@ -40,10 +40,10 @@ class SuggestedActionCustom extends SuggestedAction
     public static function fromArray(array $array): SuggestedActionCustom
     {
         return new static(
-            $array['name'],
-            TdSchemaRegistry::fromArray($array['title']),
-            TdSchemaRegistry::fromArray($array['description']),
-            $array['url'],
+            description: TdSchemaRegistry::fromArray($array['description']),
+            name       : $array['name'],
+            title      : TdSchemaRegistry::fromArray($array['title']),
+            url        : $array['url'],
         );
     }
 
@@ -99,9 +99,9 @@ class SuggestedActionCustom extends SuggestedAction
     {
         return [
             '@type'       => static::TYPE_NAME,
+            'description' => $this->description->jsonSerialize(),
             'name'        => $this->name,
-            'title'       => $this->title->typeSerialize(),
-            'description' => $this->description->typeSerialize(),
+            'title'       => $this->title->jsonSerialize(),
             'url'         => $this->url,
         ];
     }

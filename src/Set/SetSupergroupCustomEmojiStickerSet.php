@@ -18,20 +18,20 @@ class SetSupergroupCustomEmojiStickerSet extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the supergroup.
-         */
-        protected int $supergroupId,
-        /**
          * New value of the custom emoji sticker set identifier for the supergroup. Use 0 to remove the custom emoji sticker set in the supergroup.
          */
         protected int $customEmojiStickerSetId,
+        /**
+         * Identifier of the supergroup.
+         */
+        protected int $supergroupId,
     ) {}
 
     public static function fromArray(array $array): SetSupergroupCustomEmojiStickerSet
     {
         return new static(
-            $array['supergroup_id'],
-            $array['custom_emoji_sticker_set_id'],
+            customEmojiStickerSetId: $array['custom_emoji_sticker_set_id'],
+            supergroupId           : $array['supergroup_id'],
         );
     }
 
@@ -63,8 +63,8 @@ class SetSupergroupCustomEmojiStickerSet extends TdFunction
     {
         return [
             '@type'                       => static::TYPE_NAME,
-            'supergroup_id'               => $this->supergroupId,
             'custom_emoji_sticker_set_id' => $this->customEmojiStickerSetId,
+            'supergroup_id'               => $this->supergroupId,
         ];
     }
 }

@@ -18,37 +18,37 @@ class NotificationGroup extends TdObject
 
     public function __construct(
         /**
-         * Unique persistent auto-incremented from 1 identifier of the notification group.
-         */
-        protected int                   $id,
-        /**
-         * Type of the group.
-         */
-        protected NotificationGroupType $type,
-        /**
          * Identifier of a chat to which all notifications in the group belong.
          */
         protected int                   $chatId,
         /**
-         * Total number of active notifications in the group.
+         * Unique persistent auto-incremented from 1 identifier of the notification group.
          */
-        protected int                   $totalCount,
+        protected int                   $id,
         /**
          * The list of active notifications.
          *
          * @var Notification[]
          */
         protected array                 $notifications,
+        /**
+         * Total number of active notifications in the group.
+         */
+        protected int                   $totalCount,
+        /**
+         * Type of the group.
+         */
+        protected NotificationGroupType $type,
     ) {}
 
     public static function fromArray(array $array): NotificationGroup
     {
         return new static(
-            $array['id'],
-            TdSchemaRegistry::fromArray($array['type']),
-            $array['chat_id'],
-            $array['total_count'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['notifications']),
+            chatId       : $array['chat_id'],
+            id           : $array['id'],
+            notifications: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['notifications']),
+            totalCount   : $array['total_count'],
+            type         : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -116,11 +116,11 @@ class NotificationGroup extends TdObject
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'id'            => $this->id,
-            'type'          => $this->type->typeSerialize(),
             'chat_id'       => $this->chatId,
+            'id'            => $this->id,
+            'notifications' => array_map(static fn($x) => $x->jsonSerialize(), $this->notifications),
             'total_count'   => $this->totalCount,
-            'notifications' => array_map(static fn($x) => $x->typeSerialize(), $this->notifications),
+            'type'          => $this->type->jsonSerialize(),
         ];
     }
 }

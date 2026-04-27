@@ -25,7 +25,7 @@ class LogVerbosityLevel extends TdObject
     public static function fromArray(array $array): LogVerbosityLevel
     {
         return new static(
-            $array['verbosity_level'],
+            verbosityLevel: $array['verbosity_level'],
         );
     }
 

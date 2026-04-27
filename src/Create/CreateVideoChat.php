@@ -22,26 +22,26 @@ class CreateVideoChat extends TdFunction
          */
         protected int    $chatId,
         /**
-         * Group call title; if empty, chat title will be used.
+         * Pass true to create an RTMP stream instead of an ordinary video chat.
          */
-        protected string $title,
+        protected bool   $isRtmpStream,
         /**
          * Point in time (Unix timestamp) when the group call is expected to be started by an administrator; 0 to start the video chat immediately. The date must be at least 10 seconds and at most 8 days in the future.
          */
         protected int    $startDate,
         /**
-         * Pass true to create an RTMP stream instead of an ordinary video chat.
+         * Group call title; if empty, chat title will be used.
          */
-        protected bool   $isRtmpStream,
+        protected string $title,
     ) {}
 
     public static function fromArray(array $array): CreateVideoChat
     {
         return new static(
-            $array['chat_id'],
-            $array['title'],
-            $array['start_date'],
-            $array['is_rtmp_stream'],
+            chatId      : $array['chat_id'],
+            isRtmpStream: $array['is_rtmp_stream'],
+            startDate   : $array['start_date'],
+            title       : $array['title'],
         );
     }
 
@@ -98,9 +98,9 @@ class CreateVideoChat extends TdFunction
         return [
             '@type'          => static::TYPE_NAME,
             'chat_id'        => $this->chatId,
-            'title'          => $this->title,
-            'start_date'     => $this->startDate,
             'is_rtmp_stream' => $this->isRtmpStream,
+            'start_date'     => $this->startDate,
+            'title'          => $this->title,
         ];
     }
 }

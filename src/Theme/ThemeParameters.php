@@ -17,49 +17,33 @@ class ThemeParameters extends TdObject
 
     public function __construct(
         /**
+         * An accent color of the text in the RGB format.
+         */
+        protected int $accentTextColor,
+        /**
          * A color of the background in the RGB format.
          */
         protected int $backgroundColor,
-        /**
-         * A secondary color for the background in the RGB format.
-         */
-        protected int $secondaryBackgroundColor,
-        /**
-         * A color of the header background in the RGB format.
-         */
-        protected int $headerBackgroundColor,
         /**
          * A color of the bottom bar background in the RGB format.
          */
         protected int $bottomBarBackgroundColor,
         /**
-         * A color of the section background in the RGB format.
+         * A color of the buttons in the RGB format.
          */
-        protected int $sectionBackgroundColor,
+        protected int $buttonColor,
         /**
-         * A color of the section separator in the RGB format.
+         * A color of text on the buttons in the RGB format.
          */
-        protected int $sectionSeparatorColor,
-        /**
-         * A color of text in the RGB format.
-         */
-        protected int $textColor,
-        /**
-         * An accent color of the text in the RGB format.
-         */
-        protected int $accentTextColor,
-        /**
-         * A color of text on the section headers in the RGB format.
-         */
-        protected int $sectionHeaderTextColor,
-        /**
-         * A color of the subtitle text in the RGB format.
-         */
-        protected int $subtitleTextColor,
+        protected int $buttonTextColor,
         /**
          * A color of the text for destructive actions in the RGB format.
          */
         protected int $destructiveTextColor,
+        /**
+         * A color of the header background in the RGB format.
+         */
+        protected int $headerBackgroundColor,
         /**
          * A color of hints in the RGB format.
          */
@@ -69,33 +53,49 @@ class ThemeParameters extends TdObject
          */
         protected int $linkColor,
         /**
-         * A color of the buttons in the RGB format.
+         * A secondary color for the background in the RGB format.
          */
-        protected int $buttonColor,
+        protected int $secondaryBackgroundColor,
         /**
-         * A color of text on the buttons in the RGB format.
+         * A color of the section background in the RGB format.
          */
-        protected int $buttonTextColor,
+        protected int $sectionBackgroundColor,
+        /**
+         * A color of text on the section headers in the RGB format.
+         */
+        protected int $sectionHeaderTextColor,
+        /**
+         * A color of the section separator in the RGB format.
+         */
+        protected int $sectionSeparatorColor,
+        /**
+         * A color of the subtitle text in the RGB format.
+         */
+        protected int $subtitleTextColor,
+        /**
+         * A color of text in the RGB format.
+         */
+        protected int $textColor,
     ) {}
 
     public static function fromArray(array $array): ThemeParameters
     {
         return new static(
-            $array['background_color'],
-            $array['secondary_background_color'],
-            $array['header_background_color'],
-            $array['bottom_bar_background_color'],
-            $array['section_background_color'],
-            $array['section_separator_color'],
-            $array['text_color'],
-            $array['accent_text_color'],
-            $array['section_header_text_color'],
-            $array['subtitle_text_color'],
-            $array['destructive_text_color'],
-            $array['hint_color'],
-            $array['link_color'],
-            $array['button_color'],
-            $array['button_text_color'],
+            accentTextColor         : $array['accent_text_color'],
+            backgroundColor         : $array['background_color'],
+            bottomBarBackgroundColor: $array['bottom_bar_background_color'],
+            buttonColor             : $array['button_color'],
+            buttonTextColor         : $array['button_text_color'],
+            destructiveTextColor    : $array['destructive_text_color'],
+            headerBackgroundColor   : $array['header_background_color'],
+            hintColor               : $array['hint_color'],
+            linkColor               : $array['link_color'],
+            secondaryBackgroundColor: $array['secondary_background_color'],
+            sectionBackgroundColor  : $array['section_background_color'],
+            sectionHeaderTextColor  : $array['section_header_text_color'],
+            sectionSeparatorColor   : $array['section_separator_color'],
+            subtitleTextColor       : $array['subtitle_text_color'],
+            textColor               : $array['text_color'],
         );
     }
 
@@ -283,21 +283,21 @@ class ThemeParameters extends TdObject
     {
         return [
             '@type'                       => static::TYPE_NAME,
-            'background_color'            => $this->backgroundColor,
-            'secondary_background_color'  => $this->secondaryBackgroundColor,
-            'header_background_color'     => $this->headerBackgroundColor,
-            'bottom_bar_background_color' => $this->bottomBarBackgroundColor,
-            'section_background_color'    => $this->sectionBackgroundColor,
-            'section_separator_color'     => $this->sectionSeparatorColor,
-            'text_color'                  => $this->textColor,
             'accent_text_color'           => $this->accentTextColor,
-            'section_header_text_color'   => $this->sectionHeaderTextColor,
-            'subtitle_text_color'         => $this->subtitleTextColor,
-            'destructive_text_color'      => $this->destructiveTextColor,
-            'hint_color'                  => $this->hintColor,
-            'link_color'                  => $this->linkColor,
+            'background_color'            => $this->backgroundColor,
+            'bottom_bar_background_color' => $this->bottomBarBackgroundColor,
             'button_color'                => $this->buttonColor,
             'button_text_color'           => $this->buttonTextColor,
+            'destructive_text_color'      => $this->destructiveTextColor,
+            'header_background_color'     => $this->headerBackgroundColor,
+            'hint_color'                  => $this->hintColor,
+            'link_color'                  => $this->linkColor,
+            'secondary_background_color'  => $this->secondaryBackgroundColor,
+            'section_background_color'    => $this->sectionBackgroundColor,
+            'section_header_text_color'   => $this->sectionHeaderTextColor,
+            'section_separator_color'     => $this->sectionSeparatorColor,
+            'subtitle_text_color'         => $this->subtitleTextColor,
+            'text_color'                  => $this->textColor,
         ];
     }
 }

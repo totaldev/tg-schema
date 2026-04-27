@@ -25,7 +25,7 @@ class FirebaseDeviceVerificationParametersSafetyNet extends FirebaseDeviceVerifi
     public static function fromArray(array $array): FirebaseDeviceVerificationParametersSafetyNet
     {
         return new static(
-            $array['nonce'],
+            nonce: $array['nonce'],
         );
     }
 

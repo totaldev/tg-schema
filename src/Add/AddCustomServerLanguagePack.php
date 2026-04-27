@@ -25,7 +25,7 @@ class AddCustomServerLanguagePack extends TdFunction
     public static function fromArray(array $array): AddCustomServerLanguagePack
     {
         return new static(
-            $array['language_pack_id'],
+            languagePackId: $array['language_pack_id'],
         );
     }
 

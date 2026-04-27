@@ -25,7 +25,7 @@ class PassportElementEmailAddress extends PassportElement
     public static function fromArray(array $array): PassportElementEmailAddress
     {
         return new static(
-            $array['email_address'],
+            emailAddress: $array['email_address'],
         );
     }
 

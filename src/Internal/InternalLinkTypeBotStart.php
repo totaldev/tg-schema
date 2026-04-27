@@ -16,6 +16,10 @@ class InternalLinkTypeBotStart extends InternalLinkType
 
     public function __construct(
         /**
+         * True, if sendBotStartMessage must be called automatically without showing the START button.
+         */
+        protected bool   $autostart,
+        /**
          * Username of the bot.
          */
         protected string $botUsername,
@@ -23,10 +27,6 @@ class InternalLinkTypeBotStart extends InternalLinkType
          * The parameter to be passed to sendBotStartMessage.
          */
         protected string $startParameter,
-        /**
-         * True, if sendBotStartMessage must be called automatically without showing the START button.
-         */
-        protected bool   $autostart,
     ) {
         parent::__construct();
     }
@@ -34,9 +34,9 @@ class InternalLinkTypeBotStart extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeBotStart
     {
         return new static(
-            $array['bot_username'],
-            $array['start_parameter'],
-            $array['autostart'],
+            autostart     : $array['autostart'],
+            botUsername   : $array['bot_username'],
+            startParameter: $array['start_parameter'],
         );
     }
 
@@ -80,9 +80,9 @@ class InternalLinkTypeBotStart extends InternalLinkType
     {
         return [
             '@type'           => static::TYPE_NAME,
+            'autostart'       => $this->autostart,
             'bot_username'    => $this->botUsername,
             'start_parameter' => $this->startParameter,
-            'autostart'       => $this->autostart,
         ];
     }
 }

@@ -18,10 +18,6 @@ class StarTransactionTypePremiumPurchase extends StarTransactionType
 
     public function __construct(
         /**
-         * Identifier of the user that received the Telegram Premium subscription.
-         */
-        protected int      $userId,
-        /**
          * Number of months the Telegram Premium subscription will be active.
          */
         protected int      $monthCount,
@@ -29,6 +25,10 @@ class StarTransactionTypePremiumPurchase extends StarTransactionType
          * A sticker to be shown in the transaction information; may be null if unknown.
          */
         protected ?Sticker $sticker,
+        /**
+         * Identifier of the user that received the Telegram Premium subscription.
+         */
+        protected int      $userId,
     ) {
         parent::__construct();
     }
@@ -36,9 +36,9 @@ class StarTransactionTypePremiumPurchase extends StarTransactionType
     public static function fromArray(array $array): StarTransactionTypePremiumPurchase
     {
         return new static(
-            $array['user_id'],
-            $array['month_count'],
-            isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null,
+            monthCount: $array['month_count'],
+            sticker   : (isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null),
+            userId    : $array['user_id'],
         );
     }
 
@@ -82,9 +82,9 @@ class StarTransactionTypePremiumPurchase extends StarTransactionType
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'user_id'     => $this->userId,
             'month_count' => $this->monthCount,
-            'sticker'     => $this->sticker ?? null,
+            'sticker'     => (null !== $this->sticker ? $this->sticker->jsonSerialize() : null),
+            'user_id'     => $this->userId,
         ];
     }
 }

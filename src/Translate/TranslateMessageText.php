@@ -34,9 +34,9 @@ class TranslateMessageText extends TdFunction
     public static function fromArray(array $array): TranslateMessageText
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            $array['to_language_code'],
+            chatId        : $array['chat_id'],
+            messageId     : $array['message_id'],
+            toLanguageCode: $array['to_language_code'],
         );
     }
 

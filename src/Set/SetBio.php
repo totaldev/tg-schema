@@ -25,7 +25,7 @@ class SetBio extends TdFunction
     public static function fromArray(array $array): SetBio
     {
         return new static(
-            $array['bio'],
+            bio: $array['bio'],
         );
     }
 

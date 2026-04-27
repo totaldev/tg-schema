@@ -25,7 +25,7 @@ class HttpUrl extends TdObject
     public static function fromArray(array $array): HttpUrl
     {
         return new static(
-            $array['url'],
+            url: $array['url'],
         );
     }
 

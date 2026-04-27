@@ -33,9 +33,9 @@ class SetBotName extends TdFunction
     public static function fromArray(array $array): SetBotName
     {
         return new static(
-            $array['bot_user_id'],
-            $array['language_code'],
-            $array['name'],
+            botUserId   : $array['bot_user_id'],
+            languageCode: $array['language_code'],
+            name        : $array['name'],
         );
     }
 

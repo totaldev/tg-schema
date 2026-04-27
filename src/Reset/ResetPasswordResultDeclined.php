@@ -25,7 +25,7 @@ class ResetPasswordResultDeclined extends ResetPasswordResult
     public static function fromArray(array $array): ResetPasswordResultDeclined
     {
         return new static(
-            $array['retry_date'],
+            retryDate: $array['retry_date'],
         );
     }
 

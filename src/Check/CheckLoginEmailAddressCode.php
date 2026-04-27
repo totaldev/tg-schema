@@ -27,7 +27,7 @@ class CheckLoginEmailAddressCode extends TdFunction
     public static function fromArray(array $array): CheckLoginEmailAddressCode
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['code']),
+            code: TdSchemaRegistry::fromArray($array['code']),
         );
     }
 
@@ -47,7 +47,7 @@ class CheckLoginEmailAddressCode extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'code'  => $this->code->typeSerialize(),
+            'code'  => $this->code->jsonSerialize(),
         ];
     }
 }

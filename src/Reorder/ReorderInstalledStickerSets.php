@@ -19,22 +19,22 @@ class ReorderInstalledStickerSets extends TdFunction
 
     public function __construct(
         /**
-         * Type of the sticker sets to reorder.
-         */
-        protected StickerType $stickerType,
-        /**
          * Identifiers of installed sticker sets in the new correct order.
          *
          * @var int[]
          */
         protected array       $stickerSetIds,
+        /**
+         * Type of the sticker sets to reorder.
+         */
+        protected StickerType $stickerType,
     ) {}
 
     public static function fromArray(array $array): ReorderInstalledStickerSets
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['sticker_type']),
-            $array['sticker_set_ids'],
+            stickerSetIds: $array['sticker_set_ids'],
+            stickerType  : TdSchemaRegistry::fromArray($array['sticker_type']),
         );
     }
 
@@ -66,8 +66,8 @@ class ReorderInstalledStickerSets extends TdFunction
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'sticker_type'    => $this->stickerType->typeSerialize(),
             'sticker_set_ids' => $this->stickerSetIds,
+            'sticker_type'    => $this->stickerType->jsonSerialize(),
         ];
     }
 }

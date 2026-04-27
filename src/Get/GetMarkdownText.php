@@ -28,7 +28,7 @@ class GetMarkdownText extends TdFunction
     public static function fromArray(array $array): GetMarkdownText
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['text']),
+            text: TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -48,7 +48,7 @@ class GetMarkdownText extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'text'  => $this->text->typeSerialize(),
+            'text'  => $this->text->jsonSerialize(),
         ];
     }
 }

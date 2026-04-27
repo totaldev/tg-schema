@@ -27,7 +27,7 @@ class HideSuggestedAction extends TdFunction
     public static function fromArray(array $array): HideSuggestedAction
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['action']),
+            action: TdSchemaRegistry::fromArray($array['action']),
         );
     }
 
@@ -47,7 +47,7 @@ class HideSuggestedAction extends TdFunction
     {
         return [
             '@type'  => static::TYPE_NAME,
-            'action' => $this->action->typeSerialize(),
+            'action' => $this->action->jsonSerialize(),
         ];
     }
 }

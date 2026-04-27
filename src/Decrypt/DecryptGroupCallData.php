@@ -20,6 +20,10 @@ class DecryptGroupCallData extends TdFunction
 
     public function __construct(
         /**
+         * Data to decrypt.
+         */
+        protected string                $data,
+        /**
          * Group call identifier. The call must not be a video chat.
          */
         protected int                   $groupCallId,
@@ -27,10 +31,6 @@ class DecryptGroupCallData extends TdFunction
          * Identifier of the group call participant, which sent the data.
          */
         protected MessageSender         $participantId,
-        /**
-         * Data to decrypt.
-         */
-        protected string                $data,
         /**
          * Data channel for which data was encrypted; pass null if unknown.
          */
@@ -40,10 +40,10 @@ class DecryptGroupCallData extends TdFunction
     public static function fromArray(array $array): DecryptGroupCallData
     {
         return new static(
-            $array['group_call_id'],
-            TdSchemaRegistry::fromArray($array['participant_id']),
-            isset($array['data_channel']) ? TdSchemaRegistry::fromArray($array['data_channel']) : null,
-            $array['data'],
+            data         : $array['data'],
+            dataChannel  : (isset($array['data_channel']) ? TdSchemaRegistry::fromArray($array['data_channel']) : null),
+            groupCallId  : $array['group_call_id'],
+            participantId: TdSchemaRegistry::fromArray($array['participant_id']),
         );
     }
 
@@ -99,10 +99,10 @@ class DecryptGroupCallData extends TdFunction
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'group_call_id'  => $this->groupCallId,
-            'participant_id' => $this->participantId->typeSerialize(),
-            'data_channel'   => $this->dataChannel ?? null,
             'data'           => $this->data,
+            'data_channel'   => (null !== $this->dataChannel ? $this->dataChannel->jsonSerialize() : null),
+            'group_call_id'  => $this->groupCallId,
+            'participant_id' => $this->participantId->jsonSerialize(),
         ];
     }
 }

@@ -25,7 +25,7 @@ class OptionValueInteger extends OptionValue
     public static function fromArray(array $array): OptionValueInteger
     {
         return new static(
-            $array['value'],
+            value: $array['value'],
         );
     }
 

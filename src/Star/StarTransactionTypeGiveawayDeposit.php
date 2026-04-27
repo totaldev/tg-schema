@@ -29,8 +29,8 @@ class StarTransactionTypeGiveawayDeposit extends StarTransactionType
     public static function fromArray(array $array): StarTransactionTypeGiveawayDeposit
     {
         return new static(
-            $array['chat_id'],
-            $array['giveaway_message_id'],
+            chatId           : $array['chat_id'],
+            giveawayMessageId: $array['giveaway_message_id'],
         );
     }
 

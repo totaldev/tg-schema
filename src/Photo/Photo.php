@@ -37,9 +37,9 @@ class Photo extends TdObject
     public static function fromArray(array $array): Photo
     {
         return new static(
-            $array['has_stickers'],
-            isset($array['minithumbnail']) ? TdSchemaRegistry::fromArray($array['minithumbnail']) : null,
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['sizes']),
+            hasStickers  : $array['has_stickers'],
+            minithumbnail: (isset($array['minithumbnail']) ? TdSchemaRegistry::fromArray($array['minithumbnail']) : null),
+            sizes        : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['sizes']),
         );
     }
 
@@ -84,8 +84,8 @@ class Photo extends TdObject
         return [
             '@type'         => static::TYPE_NAME,
             'has_stickers'  => $this->hasStickers,
-            'minithumbnail' => $this->minithumbnail ?? null,
-            'sizes'         => array_map(static fn($x) => $x->typeSerialize(), $this->sizes),
+            'minithumbnail' => (null !== $this->minithumbnail ? $this->minithumbnail->jsonSerialize() : null),
+            'sizes'         => array_map(static fn($x) => $x->jsonSerialize(), $this->sizes),
         ];
     }
 }

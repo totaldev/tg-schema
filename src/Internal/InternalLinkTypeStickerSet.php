@@ -16,13 +16,13 @@ class InternalLinkTypeStickerSet extends InternalLinkType
 
     public function __construct(
         /**
-         * Name of the sticker set.
-         */
-        protected string $stickerSetName,
-        /**
          * True, if the sticker set is expected to contain custom emoji.
          */
         protected bool   $expectCustomEmoji,
+        /**
+         * Name of the sticker set.
+         */
+        protected string $stickerSetName,
     ) {
         parent::__construct();
     }
@@ -30,8 +30,8 @@ class InternalLinkTypeStickerSet extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeStickerSet
     {
         return new static(
-            $array['sticker_set_name'],
-            $array['expect_custom_emoji'],
+            expectCustomEmoji: $array['expect_custom_emoji'],
+            stickerSetName   : $array['sticker_set_name'],
         );
     }
 
@@ -63,8 +63,8 @@ class InternalLinkTypeStickerSet extends InternalLinkType
     {
         return [
             '@type'               => static::TYPE_NAME,
-            'sticker_set_name'    => $this->stickerSetName,
             'expect_custom_emoji' => $this->expectCustomEmoji,
+            'sticker_set_name'    => $this->stickerSetName,
         ];
     }
 }

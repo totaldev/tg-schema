@@ -25,7 +25,7 @@ class PushMessageContentChatSetBackground extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentChatSetBackground
     {
         return new static(
-            $array['is_same'],
+            isSame: $array['is_same'],
         );
     }
 

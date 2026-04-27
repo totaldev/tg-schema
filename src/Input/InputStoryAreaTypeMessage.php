@@ -29,8 +29,8 @@ class InputStoryAreaTypeMessage extends InputStoryAreaType
     public static function fromArray(array $array): InputStoryAreaTypeMessage
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
+            chatId   : $array['chat_id'],
+            messageId: $array['message_id'],
         );
     }
 

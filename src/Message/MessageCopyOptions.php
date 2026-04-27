@@ -20,17 +20,17 @@ class MessageCopyOptions extends TdObject
 
     public function __construct(
         /**
-         * True, if content of the message needs to be copied without reference to the original sender. Always true if the message is forwarded to a secret chat or is local. Use messageProperties.can_be_copied and messageProperties.can_be_copied_to_secret_chat to check whether the message is suitable.
+         * True, if new caption must be shown above the media; otherwise, new caption must be shown below the media; not supported in secret chats. Ignored if replace_caption is false.
          */
-        protected bool           $sendCopy,
+        protected bool           $newShowCaptionAboveMedia,
         /**
          * True, if media caption of the message copy needs to be replaced. Ignored if send_copy is false.
          */
         protected bool           $replaceCaption,
         /**
-         * True, if new caption must be shown above the media; otherwise, new caption must be shown below the media; not supported in secret chats. Ignored if replace_caption is false.
+         * True, if content of the message needs to be copied without reference to the original sender. Always true if the message is forwarded to a secret chat or is local. Use messageProperties.can_be_copied and messageProperties.can_be_copied_to_secret_chat to check whether the message is suitable.
          */
-        protected bool           $newShowCaptionAboveMedia,
+        protected bool           $sendCopy,
         /**
          * New message caption; pass null to copy message without caption. Ignored if replace_caption is false.
          */
@@ -40,10 +40,10 @@ class MessageCopyOptions extends TdObject
     public static function fromArray(array $array): MessageCopyOptions
     {
         return new static(
-            $array['send_copy'],
-            $array['replace_caption'],
-            isset($array['new_caption']) ? TdSchemaRegistry::fromArray($array['new_caption']) : null,
-            $array['new_show_caption_above_media'],
+            newCaption              : (isset($array['new_caption']) ? TdSchemaRegistry::fromArray($array['new_caption']) : null),
+            newShowCaptionAboveMedia: $array['new_show_caption_above_media'],
+            replaceCaption          : $array['replace_caption'],
+            sendCopy                : $array['send_copy'],
         );
     }
 
@@ -99,10 +99,10 @@ class MessageCopyOptions extends TdObject
     {
         return [
             '@type'                        => static::TYPE_NAME,
-            'send_copy'                    => $this->sendCopy,
-            'replace_caption'              => $this->replaceCaption,
-            'new_caption'                  => $this->newCaption ?? null,
+            'new_caption'                  => (null !== $this->newCaption ? $this->newCaption->jsonSerialize() : null),
             'new_show_caption_above_media' => $this->newShowCaptionAboveMedia,
+            'replace_caption'              => $this->replaceCaption,
+            'send_copy'                    => $this->sendCopy,
         ];
     }
 }

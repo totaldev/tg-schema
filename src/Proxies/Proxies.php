@@ -29,7 +29,7 @@ class Proxies extends TdObject
     public static function fromArray(array $array): Proxies
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['proxies']),
+            proxies: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['proxies']),
         );
     }
 
@@ -49,7 +49,7 @@ class Proxies extends TdObject
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'proxies' => array_map(static fn($x) => $x->typeSerialize(), $this->proxies),
+            'proxies' => array_map(static fn($x) => $x->jsonSerialize(), $this->proxies),
         ];
     }
 }

@@ -25,7 +25,7 @@ class GetCountryFlagEmoji extends TdFunction
     public static function fromArray(array $array): GetCountryFlagEmoji
     {
         return new static(
-            $array['country_code'],
+            countryCode: $array['country_code'],
         );
     }
 

@@ -29,8 +29,8 @@ class MessageWebAppDataReceived extends MessageContent
     public static function fromArray(array $array): MessageWebAppDataReceived
     {
         return new static(
-            $array['button_text'],
-            $array['data'],
+            buttonText: $array['button_text'],
+            data      : $array['data'],
         );
     }
 

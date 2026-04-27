@@ -25,7 +25,7 @@ class GetLocalizationTargetInfo extends TdFunction
     public static function fromArray(array $array): GetLocalizationTargetInfo
     {
         return new static(
-            $array['only_local'],
+            onlyLocal: $array['only_local'],
         );
     }
 

@@ -25,7 +25,7 @@ class GetBotSimilarBots extends TdFunction
     public static function fromArray(array $array): GetBotSimilarBots
     {
         return new static(
-            $array['bot_user_id'],
+            botUserId: $array['bot_user_id'],
         );
     }
 

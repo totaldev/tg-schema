@@ -21,50 +21,50 @@ class QuickReplyMessage extends TdObject
 
     public function __construct(
         /**
-         * Unique message identifier among all quick replies.
-         */
-        protected int                  $id,
-        /**
-         * The sending state of the message; may be null if the message isn't being sent and didn't fail to be sent.
-         */
-        protected ?MessageSendingState $sendingState,
-        /**
          * True, if the message can be edited.
          */
         protected bool                 $canBeEdited,
-        /**
-         * The identifier of the quick reply message to which the message replies; 0 if none.
-         */
-        protected int                  $replyToMessageId,
-        /**
-         * If non-zero, the user identifier of the bot through which this message was sent.
-         */
-        protected int                  $viaBotUserId,
-        /**
-         * Unique identifier of an album this message belongs to; 0 if none. Only audios, documents, photos and videos can be grouped together in albums.
-         */
-        protected int                  $mediaAlbumId,
         /**
          * Content of the message.
          */
         protected MessageContent       $content,
         /**
+         * Unique message identifier among all quick replies.
+         */
+        protected int                  $id,
+        /**
+         * Unique identifier of an album this message belongs to; 0 if none. Only audios, documents, photos and videos can be grouped together in albums.
+         */
+        protected int                  $mediaAlbumId,
+        /**
          * Inline keyboard reply markup for the message; may be null if none.
          */
         protected ?ReplyMarkup         $replyMarkup,
+        /**
+         * The identifier of the quick reply message to which the message replies; 0 if none.
+         */
+        protected int                  $replyToMessageId,
+        /**
+         * The sending state of the message; may be null if the message isn't being sent and didn't fail to be sent.
+         */
+        protected ?MessageSendingState $sendingState,
+        /**
+         * If non-zero, the user identifier of the bot through which this message was sent.
+         */
+        protected int                  $viaBotUserId,
     ) {}
 
     public static function fromArray(array $array): QuickReplyMessage
     {
         return new static(
-            $array['id'],
-            isset($array['sending_state']) ? TdSchemaRegistry::fromArray($array['sending_state']) : null,
-            $array['can_be_edited'],
-            $array['reply_to_message_id'],
-            $array['via_bot_user_id'],
-            $array['media_album_id'],
-            TdSchemaRegistry::fromArray($array['content']),
-            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
+            canBeEdited     : $array['can_be_edited'],
+            content         : TdSchemaRegistry::fromArray($array['content']),
+            id              : $array['id'],
+            mediaAlbumId    : $array['media_album_id'],
+            replyMarkup     : (isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null),
+            replyToMessageId: $array['reply_to_message_id'],
+            sendingState    : (isset($array['sending_state']) ? TdSchemaRegistry::fromArray($array['sending_state']) : null),
+            viaBotUserId    : $array['via_bot_user_id'],
         );
     }
 
@@ -168,14 +168,14 @@ class QuickReplyMessage extends TdObject
     {
         return [
             '@type'               => static::TYPE_NAME,
-            'id'                  => $this->id,
-            'sending_state'       => $this->sendingState ?? null,
             'can_be_edited'       => $this->canBeEdited,
-            'reply_to_message_id' => $this->replyToMessageId,
-            'via_bot_user_id'     => $this->viaBotUserId,
+            'content'             => $this->content->jsonSerialize(),
+            'id'                  => $this->id,
             'media_album_id'      => $this->mediaAlbumId,
-            'content'             => $this->content->typeSerialize(),
-            'reply_markup'        => $this->replyMarkup ?? null,
+            'reply_markup'        => (null !== $this->replyMarkup ? $this->replyMarkup->jsonSerialize() : null),
+            'reply_to_message_id' => $this->replyToMessageId,
+            'sending_state'       => (null !== $this->sendingState ? $this->sendingState->jsonSerialize() : null),
+            'via_bot_user_id'     => $this->viaBotUserId,
         ];
     }
 }

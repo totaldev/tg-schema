@@ -17,15 +17,15 @@ class InputStoryContentPhoto extends InputStoryContent
 
     public function __construct(
         /**
-         * Photo to send. The photo must be at most 10 MB in size. The photo size must be 1080x1920.
-         */
-        protected InputFile $photo,
-        /**
          * File identifiers of the stickers added to the photo, if applicable.
          *
          * @var int[]
          */
         protected array     $addedStickerFileIds,
+        /**
+         * Photo to send. The photo must be at most 10 MB in size. The photo size must be 1080x1920.
+         */
+        protected InputFile $photo,
     ) {
         parent::__construct();
     }
@@ -33,8 +33,8 @@ class InputStoryContentPhoto extends InputStoryContent
     public static function fromArray(array $array): InputStoryContentPhoto
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['photo']),
-            $array['added_sticker_file_ids'],
+            addedStickerFileIds: $array['added_sticker_file_ids'],
+            photo              : TdSchemaRegistry::fromArray($array['photo']),
         );
     }
 
@@ -66,8 +66,8 @@ class InputStoryContentPhoto extends InputStoryContent
     {
         return [
             '@type'                  => static::TYPE_NAME,
-            'photo'                  => $this->photo->typeSerialize(),
             'added_sticker_file_ids' => $this->addedStickerFileIds,
+            'photo'                  => $this->photo->jsonSerialize(),
         ];
     }
 }

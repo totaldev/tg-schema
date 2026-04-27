@@ -18,6 +18,10 @@ class AutoDownloadSettingsPresets extends TdObject
 
     public function __construct(
         /**
+         * Preset with highest settings; expected to be used by default when connected on Wi-Fi.
+         */
+        protected AutoDownloadSettings $high,
+        /**
          * Preset with lowest settings; expected to be used by default when roaming.
          */
         protected AutoDownloadSettings $low,
@@ -25,18 +29,14 @@ class AutoDownloadSettingsPresets extends TdObject
          * Preset with medium settings; expected to be used by default when using mobile data.
          */
         protected AutoDownloadSettings $medium,
-        /**
-         * Preset with highest settings; expected to be used by default when connected on Wi-Fi.
-         */
-        protected AutoDownloadSettings $high,
     ) {}
 
     public static function fromArray(array $array): AutoDownloadSettingsPresets
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['low']),
-            TdSchemaRegistry::fromArray($array['medium']),
-            TdSchemaRegistry::fromArray($array['high']),
+            high  : TdSchemaRegistry::fromArray($array['high']),
+            low   : TdSchemaRegistry::fromArray($array['low']),
+            medium: TdSchemaRegistry::fromArray($array['medium']),
         );
     }
 
@@ -80,9 +80,9 @@ class AutoDownloadSettingsPresets extends TdObject
     {
         return [
             '@type'  => static::TYPE_NAME,
-            'low'    => $this->low->typeSerialize(),
-            'medium' => $this->medium->typeSerialize(),
-            'high'   => $this->high->typeSerialize(),
+            'high'   => $this->high->jsonSerialize(),
+            'low'    => $this->low->jsonSerialize(),
+            'medium' => $this->medium->jsonSerialize(),
         ];
     }
 }

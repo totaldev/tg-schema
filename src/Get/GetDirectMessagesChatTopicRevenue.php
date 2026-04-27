@@ -29,8 +29,8 @@ class GetDirectMessagesChatTopicRevenue extends TdFunction
     public static function fromArray(array $array): GetDirectMessagesChatTopicRevenue
     {
         return new static(
-            $array['chat_id'],
-            $array['topic_id'],
+            chatId : $array['chat_id'],
+            topicId: $array['topic_id'],
         );
     }
 

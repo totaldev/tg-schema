@@ -18,6 +18,10 @@ class TelegramPaymentPurposePremiumGiftCodes extends TelegramPaymentPurpose
 
     public function __construct(
         /**
+         * Paid amount, in the smallest units of the currency.
+         */
+        protected int           $amount,
+        /**
          * Identifier of the supergroup or channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user.
          */
         protected int           $boostedChatId,
@@ -26,16 +30,6 @@ class TelegramPaymentPurposePremiumGiftCodes extends TelegramPaymentPurpose
          */
         protected string        $currency,
         /**
-         * Paid amount, in the smallest units of the currency.
-         */
-        protected int           $amount,
-        /**
-         * Identifiers of the users which can activate the gift codes.
-         *
-         * @var int[]
-         */
-        protected array         $userIds,
-        /**
          * Number of months the Telegram Premium subscription will be active for the users.
          */
         protected int           $monthCount,
@@ -43,6 +37,12 @@ class TelegramPaymentPurposePremiumGiftCodes extends TelegramPaymentPurpose
          * Text to show along with the gift codes; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed.
          */
         protected FormattedText $text,
+        /**
+         * Identifiers of the users which can activate the gift codes.
+         *
+         * @var int[]
+         */
+        protected array         $userIds,
     ) {
         parent::__construct();
     }
@@ -50,12 +50,12 @@ class TelegramPaymentPurposePremiumGiftCodes extends TelegramPaymentPurpose
     public static function fromArray(array $array): TelegramPaymentPurposePremiumGiftCodes
     {
         return new static(
-            $array['boosted_chat_id'],
-            $array['currency'],
-            $array['amount'],
-            $array['user_ids'],
-            $array['month_count'],
-            TdSchemaRegistry::fromArray($array['text']),
+            amount       : $array['amount'],
+            boostedChatId: $array['boosted_chat_id'],
+            currency     : $array['currency'],
+            monthCount   : $array['month_count'],
+            text         : TdSchemaRegistry::fromArray($array['text']),
+            userIds      : $array['user_ids'],
         );
     }
 
@@ -135,12 +135,12 @@ class TelegramPaymentPurposePremiumGiftCodes extends TelegramPaymentPurpose
     {
         return [
             '@type'           => static::TYPE_NAME,
+            'amount'          => $this->amount,
             'boosted_chat_id' => $this->boostedChatId,
             'currency'        => $this->currency,
-            'amount'          => $this->amount,
-            'user_ids'        => $this->userIds,
             'month_count'     => $this->monthCount,
-            'text'            => $this->text->typeSerialize(),
+            'text'            => $this->text->jsonSerialize(),
+            'user_ids'        => $this->userIds,
         ];
     }
 }

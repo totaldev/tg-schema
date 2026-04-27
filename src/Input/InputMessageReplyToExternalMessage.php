@@ -21,13 +21,13 @@ class InputMessageReplyToExternalMessage extends InputMessageReplyTo
          */
         protected int             $chatId,
         /**
-         * The identifier of the message to be replied in the specified chat. A message can be replied in another chat or forum topic only if messageProperties.can_be_replied_in_another_chat.
-         */
-        protected int             $messageId,
-        /**
          * Identifier of the checklist task in the message to be replied; pass 0 to reply to the whole message.
          */
         protected int             $checklistTaskId,
+        /**
+         * The identifier of the message to be replied in the specified chat. A message can be replied in another chat or forum topic only if messageProperties.can_be_replied_in_another_chat.
+         */
+        protected int             $messageId,
         /**
          * Quote from the message to be replied; pass null if none.
          */
@@ -39,10 +39,10 @@ class InputMessageReplyToExternalMessage extends InputMessageReplyTo
     public static function fromArray(array $array): InputMessageReplyToExternalMessage
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            isset($array['quote']) ? TdSchemaRegistry::fromArray($array['quote']) : null,
-            $array['checklist_task_id'],
+            chatId         : $array['chat_id'],
+            checklistTaskId: $array['checklist_task_id'],
+            messageId      : $array['message_id'],
+            quote          : (isset($array['quote']) ? TdSchemaRegistry::fromArray($array['quote']) : null),
         );
     }
 
@@ -99,9 +99,9 @@ class InputMessageReplyToExternalMessage extends InputMessageReplyTo
         return [
             '@type'             => static::TYPE_NAME,
             'chat_id'           => $this->chatId,
-            'message_id'        => $this->messageId,
-            'quote'             => $this->quote ?? null,
             'checklist_task_id' => $this->checklistTaskId,
+            'message_id'        => $this->messageId,
+            'quote'             => (null !== $this->quote ? $this->quote->jsonSerialize() : null),
         ];
     }
 }

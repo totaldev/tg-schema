@@ -29,8 +29,8 @@ class SetVideoChatTitle extends TdFunction
     public static function fromArray(array $array): SetVideoChatTitle
     {
         return new static(
-            $array['group_call_id'],
-            $array['title'],
+            groupCallId: $array['group_call_id'],
+            title      : $array['title'],
         );
     }
 

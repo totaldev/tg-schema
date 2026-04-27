@@ -19,10 +19,6 @@ class SaveApplicationLogEvent extends TdFunction
 
     public function __construct(
         /**
-         * Event type.
-         */
-        protected string    $type,
-        /**
          * Optional chat identifier, associated with the event.
          */
         protected int       $chatId,
@@ -30,14 +26,18 @@ class SaveApplicationLogEvent extends TdFunction
          * The log event data.
          */
         protected JsonValue $data,
+        /**
+         * Event type.
+         */
+        protected string    $type,
     ) {}
 
     public static function fromArray(array $array): SaveApplicationLogEvent
     {
         return new static(
-            $array['type'],
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['data']),
+            chatId: $array['chat_id'],
+            data  : TdSchemaRegistry::fromArray($array['data']),
+            type  : $array['type'],
         );
     }
 
@@ -81,9 +81,9 @@ class SaveApplicationLogEvent extends TdFunction
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'type'    => $this->type,
             'chat_id' => $this->chatId,
-            'data'    => $this->data->typeSerialize(),
+            'data'    => $this->data->jsonSerialize(),
+            'type'    => $this->type,
         ];
     }
 }

@@ -18,25 +18,25 @@ class StorePaymentPurposeStarGiveaway extends StorePaymentPurpose
 
     public function __construct(
         /**
-         * Giveaway parameters.
+         * Paid amount, in the smallest units of the currency.
          */
-        protected GiveawayParameters $parameters,
+        protected int                $amount,
         /**
          * ISO 4217 currency code of the payment currency.
          */
         protected string             $currency,
         /**
-         * Paid amount, in the smallest units of the currency.
+         * Giveaway parameters.
          */
-        protected int                $amount,
-        /**
-         * The number of users to receive Telegram Stars.
-         */
-        protected int                $winnerCount,
+        protected GiveawayParameters $parameters,
         /**
          * The number of Telegram Stars to be distributed through the giveaway.
          */
         protected int                $starCount,
+        /**
+         * The number of users to receive Telegram Stars.
+         */
+        protected int                $winnerCount,
     ) {
         parent::__construct();
     }
@@ -44,11 +44,11 @@ class StorePaymentPurposeStarGiveaway extends StorePaymentPurpose
     public static function fromArray(array $array): StorePaymentPurposeStarGiveaway
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['parameters']),
-            $array['currency'],
-            $array['amount'],
-            $array['winner_count'],
-            $array['star_count'],
+            amount     : $array['amount'],
+            currency   : $array['currency'],
+            parameters : TdSchemaRegistry::fromArray($array['parameters']),
+            starCount  : $array['star_count'],
+            winnerCount: $array['winner_count'],
         );
     }
 
@@ -116,11 +116,11 @@ class StorePaymentPurposeStarGiveaway extends StorePaymentPurpose
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'parameters'   => $this->parameters->typeSerialize(),
-            'currency'     => $this->currency,
             'amount'       => $this->amount,
-            'winner_count' => $this->winnerCount,
+            'currency'     => $this->currency,
+            'parameters'   => $this->parameters->jsonSerialize(),
             'star_count'   => $this->starCount,
+            'winner_count' => $this->winnerCount,
         ];
     }
 }

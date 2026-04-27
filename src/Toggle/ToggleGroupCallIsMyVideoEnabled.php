@@ -29,8 +29,8 @@ class ToggleGroupCallIsMyVideoEnabled extends TdFunction
     public static function fromArray(array $array): ToggleGroupCallIsMyVideoEnabled
     {
         return new static(
-            $array['group_call_id'],
-            $array['is_my_video_enabled'],
+            groupCallId     : $array['group_call_id'],
+            isMyVideoEnabled: $array['is_my_video_enabled'],
         );
     }
 

@@ -19,13 +19,13 @@ class StoreTransactionGooglePlay extends StoreTransaction
          */
         protected string $packageName,
         /**
-         * Identifier of the purchased store product.
-         */
-        protected string $storeProductId,
-        /**
          * Google Play purchase token.
          */
         protected string $purchaseToken,
+        /**
+         * Identifier of the purchased store product.
+         */
+        protected string $storeProductId,
     ) {
         parent::__construct();
     }
@@ -33,9 +33,9 @@ class StoreTransactionGooglePlay extends StoreTransaction
     public static function fromArray(array $array): StoreTransactionGooglePlay
     {
         return new static(
-            $array['package_name'],
-            $array['store_product_id'],
-            $array['purchase_token'],
+            packageName   : $array['package_name'],
+            purchaseToken : $array['purchase_token'],
+            storeProductId: $array['store_product_id'],
         );
     }
 
@@ -80,8 +80,8 @@ class StoreTransactionGooglePlay extends StoreTransaction
         return [
             '@type'            => static::TYPE_NAME,
             'package_name'     => $this->packageName,
-            'store_product_id' => $this->storeProductId,
             'purchase_token'   => $this->purchaseToken,
+            'store_product_id' => $this->storeProductId,
         ];
     }
 }

@@ -18,17 +18,17 @@ class PushMessageContentGiveaway extends PushMessageContent
 
     public function __construct(
         /**
-         * Number of users which will receive giveaway prizes; 0 for pinned message.
+         * True, if the message is a pinned message with the specified content.
          */
-        protected int            $winnerCount,
+        protected bool           $isPinned,
         /**
          * Prize of the giveaway; may be null for pinned message.
          */
         protected ?GiveawayPrize $prize,
         /**
-         * True, if the message is a pinned message with the specified content.
+         * Number of users which will receive giveaway prizes; 0 for pinned message.
          */
-        protected bool           $isPinned,
+        protected int            $winnerCount,
     ) {
         parent::__construct();
     }
@@ -36,9 +36,9 @@ class PushMessageContentGiveaway extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentGiveaway
     {
         return new static(
-            $array['winner_count'],
-            isset($array['prize']) ? TdSchemaRegistry::fromArray($array['prize']) : null,
-            $array['is_pinned'],
+            isPinned   : $array['is_pinned'],
+            prize      : (isset($array['prize']) ? TdSchemaRegistry::fromArray($array['prize']) : null),
+            winnerCount: $array['winner_count'],
         );
     }
 
@@ -82,9 +82,9 @@ class PushMessageContentGiveaway extends PushMessageContent
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'winner_count' => $this->winnerCount,
-            'prize'        => $this->prize ?? null,
             'is_pinned'    => $this->isPinned,
+            'prize'        => (null !== $this->prize ? $this->prize->jsonSerialize() : null),
+            'winner_count' => $this->winnerCount,
         ];
     }
 }

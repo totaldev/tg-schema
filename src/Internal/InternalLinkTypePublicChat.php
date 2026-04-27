@@ -35,9 +35,9 @@ class InternalLinkTypePublicChat extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypePublicChat
     {
         return new static(
-            $array['chat_username'],
-            $array['draft_text'],
-            $array['open_profile'],
+            chatUsername: $array['chat_username'],
+            draftText   : $array['draft_text'],
+            openProfile : $array['open_profile'],
         );
     }
 

@@ -35,9 +35,9 @@ class BuyGiftUpgrade extends TdFunction
     public static function fromArray(array $array): BuyGiftUpgrade
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['owner_id']),
-            $array['prepaid_upgrade_hash'],
-            $array['star_count'],
+            ownerId           : TdSchemaRegistry::fromArray($array['owner_id']),
+            prepaidUpgradeHash: $array['prepaid_upgrade_hash'],
+            starCount         : $array['star_count'],
         );
     }
 
@@ -81,7 +81,7 @@ class BuyGiftUpgrade extends TdFunction
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'owner_id'             => $this->ownerId->typeSerialize(),
+            'owner_id'             => $this->ownerId->jsonSerialize(),
             'prepaid_upgrade_hash' => $this->prepaidUpgradeHash,
             'star_count'           => $this->starCount,
         ];

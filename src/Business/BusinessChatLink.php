@@ -39,10 +39,10 @@ class BusinessChatLink extends TdObject
     public static function fromArray(array $array): BusinessChatLink
     {
         return new static(
-            $array['link'],
-            TdSchemaRegistry::fromArray($array['text']),
-            $array['title'],
-            $array['view_count'],
+            link     : $array['link'],
+            text     : TdSchemaRegistry::fromArray($array['text']),
+            title    : $array['title'],
+            viewCount: $array['view_count'],
         );
     }
 
@@ -99,7 +99,7 @@ class BusinessChatLink extends TdObject
         return [
             '@type'      => static::TYPE_NAME,
             'link'       => $this->link,
-            'text'       => $this->text->typeSerialize(),
+            'text'       => $this->text->jsonSerialize(),
             'title'      => $this->title,
             'view_count' => $this->viewCount,
         ];

@@ -28,7 +28,7 @@ class ChatEventPollStopped extends ChatEventAction
     public static function fromArray(array $array): ChatEventPollStopped
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['message']),
+            message: TdSchemaRegistry::fromArray($array['message']),
         );
     }
 
@@ -48,7 +48,7 @@ class ChatEventPollStopped extends ChatEventAction
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'message' => $this->message->typeSerialize(),
+            'message' => $this->message->jsonSerialize(),
         ];
     }
 }

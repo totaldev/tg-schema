@@ -25,7 +25,7 @@ class GetAllPassportElements extends TdFunction
     public static function fromArray(array $array): GetAllPassportElements
     {
         return new static(
-            $array['password'],
+            password: $array['password'],
         );
     }
 

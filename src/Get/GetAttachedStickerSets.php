@@ -26,7 +26,7 @@ class GetAttachedStickerSets extends TdFunction
     public static function fromArray(array $array): GetAttachedStickerSets
     {
         return new static(
-            $array['file_id'],
+            fileId: $array['file_id'],
         );
     }
 

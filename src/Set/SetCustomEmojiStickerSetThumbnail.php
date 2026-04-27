@@ -17,20 +17,20 @@ class SetCustomEmojiStickerSetThumbnail extends TdFunction
 
     public function __construct(
         /**
-         * Sticker set name. The sticker set must be owned by the current user.
-         */
-        protected string $name,
-        /**
          * Identifier of the custom emoji from the sticker set, which will be set as sticker set thumbnail; pass 0 to remove the sticker set thumbnail.
          */
         protected int    $customEmojiId,
+        /**
+         * Sticker set name. The sticker set must be owned by the current user.
+         */
+        protected string $name,
     ) {}
 
     public static function fromArray(array $array): SetCustomEmojiStickerSetThumbnail
     {
         return new static(
-            $array['name'],
-            $array['custom_emoji_id'],
+            customEmojiId: $array['custom_emoji_id'],
+            name         : $array['name'],
         );
     }
 
@@ -62,8 +62,8 @@ class SetCustomEmojiStickerSetThumbnail extends TdFunction
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'name'            => $this->name,
             'custom_emoji_id' => $this->customEmojiId,
+            'name'            => $this->name,
         ];
     }
 }

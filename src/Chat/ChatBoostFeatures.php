@@ -24,17 +24,13 @@ class ChatBoostFeatures extends TdObject
          */
         protected array $features,
         /**
-         * The minimum boost level required to set custom emoji for profile background.
+         * The minimum boost level allowing to enable automatic translation of messages for non-Premium users; for channel chats only.
          */
-        protected int   $minProfileBackgroundCustomEmojiBoostLevel,
+        protected int   $minAutomaticTranslationBoostLevel,
         /**
          * The minimum boost level required to set custom emoji for reply header and link preview background; for channel chats only.
          */
         protected int   $minBackgroundCustomEmojiBoostLevel,
-        /**
-         * The minimum boost level required to set emoji status.
-         */
-        protected int   $minEmojiStatusBoostLevel,
         /**
          * The minimum boost level required to set a chat theme background as chat background.
          */
@@ -48,9 +44,13 @@ class ChatBoostFeatures extends TdObject
          */
         protected int   $minCustomEmojiStickerSetBoostLevel,
         /**
-         * The minimum boost level allowing to enable automatic translation of messages for non-Premium users; for channel chats only.
+         * The minimum boost level required to set emoji status.
          */
-        protected int   $minAutomaticTranslationBoostLevel,
+        protected int   $minEmojiStatusBoostLevel,
+        /**
+         * The minimum boost level required to set custom emoji for profile background.
+         */
+        protected int   $minProfileBackgroundCustomEmojiBoostLevel,
         /**
          * The minimum boost level allowing to recognize speech in video note and voice note messages for non-Premium users; for supergroup chats only.
          */
@@ -64,16 +64,16 @@ class ChatBoostFeatures extends TdObject
     public static function fromArray(array $array): ChatBoostFeatures
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['features']),
-            $array['min_profile_background_custom_emoji_boost_level'],
-            $array['min_background_custom_emoji_boost_level'],
-            $array['min_emoji_status_boost_level'],
-            $array['min_chat_theme_background_boost_level'],
-            $array['min_custom_background_boost_level'],
-            $array['min_custom_emoji_sticker_set_boost_level'],
-            $array['min_automatic_translation_boost_level'],
-            $array['min_speech_recognition_boost_level'],
-            $array['min_sponsored_message_disable_boost_level'],
+            features                                 : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['features']),
+            minAutomaticTranslationBoostLevel        : $array['min_automatic_translation_boost_level'],
+            minBackgroundCustomEmojiBoostLevel       : $array['min_background_custom_emoji_boost_level'],
+            minChatThemeBackgroundBoostLevel         : $array['min_chat_theme_background_boost_level'],
+            minCustomBackgroundBoostLevel            : $array['min_custom_background_boost_level'],
+            minCustomEmojiStickerSetBoostLevel       : $array['min_custom_emoji_sticker_set_boost_level'],
+            minEmojiStatusBoostLevel                 : $array['min_emoji_status_boost_level'],
+            minProfileBackgroundCustomEmojiBoostLevel: $array['min_profile_background_custom_emoji_boost_level'],
+            minSpeechRecognitionBoostLevel           : $array['min_speech_recognition_boost_level'],
+            minSponsoredMessageDisableBoostLevel     : $array['min_sponsored_message_disable_boost_level'],
         );
     }
 
@@ -201,14 +201,14 @@ class ChatBoostFeatures extends TdObject
     {
         return [
             '@type'                                           => static::TYPE_NAME,
-            'features'                                        => array_map(static fn($x) => $x->typeSerialize(), $this->features),
-            'min_profile_background_custom_emoji_boost_level' => $this->minProfileBackgroundCustomEmojiBoostLevel,
+            'features'                                        => array_map(static fn($x) => $x->jsonSerialize(), $this->features),
+            'min_automatic_translation_boost_level'           => $this->minAutomaticTranslationBoostLevel,
             'min_background_custom_emoji_boost_level'         => $this->minBackgroundCustomEmojiBoostLevel,
-            'min_emoji_status_boost_level'                    => $this->minEmojiStatusBoostLevel,
             'min_chat_theme_background_boost_level'           => $this->minChatThemeBackgroundBoostLevel,
             'min_custom_background_boost_level'               => $this->minCustomBackgroundBoostLevel,
             'min_custom_emoji_sticker_set_boost_level'        => $this->minCustomEmojiStickerSetBoostLevel,
-            'min_automatic_translation_boost_level'           => $this->minAutomaticTranslationBoostLevel,
+            'min_emoji_status_boost_level'                    => $this->minEmojiStatusBoostLevel,
+            'min_profile_background_custom_emoji_boost_level' => $this->minProfileBackgroundCustomEmojiBoostLevel,
             'min_speech_recognition_boost_level'              => $this->minSpeechRecognitionBoostLevel,
             'min_sponsored_message_disable_boost_level'       => $this->minSponsoredMessageDisableBoostLevel,
         ];

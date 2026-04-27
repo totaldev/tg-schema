@@ -19,35 +19,35 @@ class PrepaidGiveaway extends TdObject
 
     public function __construct(
         /**
+         * The number of boosts received by the chat from the giveaway; for Telegram Star giveaways only.
+         */
+        protected int           $boostCount,
+        /**
          * Unique identifier of the prepaid giveaway.
          */
         protected int           $id,
         /**
-         * Number of users which will receive giveaway prize.
+         * Point in time (Unix timestamp) when the giveaway was paid.
          */
-        protected int           $winnerCount,
+        protected int           $paymentDate,
         /**
          * Prize of the giveaway.
          */
         protected GiveawayPrize $prize,
         /**
-         * The number of boosts received by the chat from the giveaway; for Telegram Star giveaways only.
+         * Number of users which will receive giveaway prize.
          */
-        protected int           $boostCount,
-        /**
-         * Point in time (Unix timestamp) when the giveaway was paid.
-         */
-        protected int           $paymentDate,
+        protected int           $winnerCount,
     ) {}
 
     public static function fromArray(array $array): PrepaidGiveaway
     {
         return new static(
-            $array['id'],
-            $array['winner_count'],
-            TdSchemaRegistry::fromArray($array['prize']),
-            $array['boost_count'],
-            $array['payment_date'],
+            boostCount : $array['boost_count'],
+            id         : $array['id'],
+            paymentDate: $array['payment_date'],
+            prize      : TdSchemaRegistry::fromArray($array['prize']),
+            winnerCount: $array['winner_count'],
         );
     }
 
@@ -115,11 +115,11 @@ class PrepaidGiveaway extends TdObject
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'id'           => $this->id,
-            'winner_count' => $this->winnerCount,
-            'prize'        => $this->prize->typeSerialize(),
             'boost_count'  => $this->boostCount,
+            'id'           => $this->id,
             'payment_date' => $this->paymentDate,
+            'prize'        => $this->prize->jsonSerialize(),
+            'winner_count' => $this->winnerCount,
         ];
     }
 }

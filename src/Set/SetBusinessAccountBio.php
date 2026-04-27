@@ -17,20 +17,20 @@ class SetBusinessAccountBio extends TdFunction
 
     public function __construct(
         /**
-         * Unique identifier of business connection.
-         */
-        protected string $businessConnectionId,
-        /**
          * The new value of the bio; 0-getOption("bio_length_max") characters without line feeds.
          */
         protected string $bio,
+        /**
+         * Unique identifier of business connection.
+         */
+        protected string $businessConnectionId,
     ) {}
 
     public static function fromArray(array $array): SetBusinessAccountBio
     {
         return new static(
-            $array['business_connection_id'],
-            $array['bio'],
+            bio                 : $array['bio'],
+            businessConnectionId: $array['business_connection_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class SetBusinessAccountBio extends TdFunction
     {
         return [
             '@type'                  => static::TYPE_NAME,
-            'business_connection_id' => $this->businessConnectionId,
             'bio'                    => $this->bio,
+            'business_connection_id' => $this->businessConnectionId,
         ];
     }
 }

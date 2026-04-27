@@ -19,20 +19,20 @@ class GetInternalLink extends TdFunction
 
     public function __construct(
         /**
-         * Expected type of the link.
-         */
-        protected InternalLinkType $type,
-        /**
          * Pass true to create an HTTPS link (only available for some link types); pass false to create a tg: link.
          */
         protected bool             $isHttp,
+        /**
+         * Expected type of the link.
+         */
+        protected InternalLinkType $type,
     ) {}
 
     public static function fromArray(array $array): GetInternalLink
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['type']),
-            $array['is_http'],
+            isHttp: $array['is_http'],
+            type  : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -64,8 +64,8 @@ class GetInternalLink extends TdFunction
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'type'    => $this->type->typeSerialize(),
             'is_http' => $this->isHttp,
+            'type'    => $this->type->jsonSerialize(),
         ];
     }
 }

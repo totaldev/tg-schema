@@ -22,41 +22,41 @@ class MessagePaymentSuccessfulBot extends MessageContent
          */
         protected string     $currency,
         /**
-         * Total price for the product, in the smallest units of the currency.
+         * Invoice payload.
          */
-        protected int        $totalAmount,
-        /**
-         * Point in time (Unix timestamp) when the subscription will expire; 0 if unknown or the payment isn't recurring.
-         */
-        protected int        $subscriptionUntilDate,
-        /**
-         * True, if this is a recurring payment.
-         */
-        protected bool       $isRecurring,
+        protected string     $invoicePayload,
         /**
          * True, if this is the first recurring payment.
          */
         protected bool       $isFirstRecurring,
         /**
-         * Invoice payload.
+         * True, if this is a recurring payment.
          */
-        protected string     $invoicePayload,
-        /**
-         * Identifier of the shipping option chosen by the user; may be empty if not applicable; for bots only.
-         */
-        protected string     $shippingOptionId,
+        protected bool       $isRecurring,
         /**
          * Information about the order; may be null; for bots only.
          */
         protected ?OrderInfo $orderInfo,
         /**
+         * Provider payment identifier.
+         */
+        protected string     $providerPaymentChargeId,
+        /**
+         * Identifier of the shipping option chosen by the user; may be empty if not applicable; for bots only.
+         */
+        protected string     $shippingOptionId,
+        /**
+         * Point in time (Unix timestamp) when the subscription will expire; 0 if unknown or the payment isn't recurring.
+         */
+        protected int        $subscriptionUntilDate,
+        /**
          * Telegram payment identifier.
          */
         protected string     $telegramPaymentChargeId,
         /**
-         * Provider payment identifier.
+         * Total price for the product, in the smallest units of the currency.
          */
-        protected string     $providerPaymentChargeId,
+        protected int        $totalAmount,
     ) {
         parent::__construct();
     }
@@ -64,16 +64,16 @@ class MessagePaymentSuccessfulBot extends MessageContent
     public static function fromArray(array $array): MessagePaymentSuccessfulBot
     {
         return new static(
-            $array['currency'],
-            $array['total_amount'],
-            $array['subscription_until_date'],
-            $array['is_recurring'],
-            $array['is_first_recurring'],
-            $array['invoice_payload'],
-            $array['shipping_option_id'],
-            isset($array['order_info']) ? TdSchemaRegistry::fromArray($array['order_info']) : null,
-            $array['telegram_payment_charge_id'],
-            $array['provider_payment_charge_id'],
+            currency               : $array['currency'],
+            invoicePayload         : $array['invoice_payload'],
+            isFirstRecurring       : $array['is_first_recurring'],
+            isRecurring            : $array['is_recurring'],
+            orderInfo              : (isset($array['order_info']) ? TdSchemaRegistry::fromArray($array['order_info']) : null),
+            providerPaymentChargeId: $array['provider_payment_charge_id'],
+            shippingOptionId       : $array['shipping_option_id'],
+            subscriptionUntilDate  : $array['subscription_until_date'],
+            telegramPaymentChargeId: $array['telegram_payment_charge_id'],
+            totalAmount            : $array['total_amount'],
         );
     }
 
@@ -202,15 +202,15 @@ class MessagePaymentSuccessfulBot extends MessageContent
         return [
             '@type'                      => static::TYPE_NAME,
             'currency'                   => $this->currency,
-            'total_amount'               => $this->totalAmount,
-            'subscription_until_date'    => $this->subscriptionUntilDate,
-            'is_recurring'               => $this->isRecurring,
-            'is_first_recurring'         => $this->isFirstRecurring,
             'invoice_payload'            => $this->invoicePayload,
-            'shipping_option_id'         => $this->shippingOptionId,
-            'order_info'                 => $this->orderInfo ?? null,
-            'telegram_payment_charge_id' => $this->telegramPaymentChargeId,
+            'is_first_recurring'         => $this->isFirstRecurring,
+            'is_recurring'               => $this->isRecurring,
+            'order_info'                 => (null !== $this->orderInfo ? $this->orderInfo->jsonSerialize() : null),
             'provider_payment_charge_id' => $this->providerPaymentChargeId,
+            'shipping_option_id'         => $this->shippingOptionId,
+            'subscription_until_date'    => $this->subscriptionUntilDate,
+            'telegram_payment_charge_id' => $this->telegramPaymentChargeId,
+            'total_amount'               => $this->totalAmount,
         ];
     }
 }

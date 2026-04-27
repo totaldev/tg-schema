@@ -25,7 +25,7 @@ class StoryOriginHiddenUser extends StoryOrigin
     public static function fromArray(array $array): StoryOriginHiddenUser
     {
         return new static(
-            $array['poster_name'],
+            posterName: $array['poster_name'],
         );
     }
 

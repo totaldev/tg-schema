@@ -30,6 +30,10 @@ class GetChatInviteLinks extends TdFunction
          */
         protected bool   $isRevoked,
         /**
+         * The maximum number of invite links to return; up to 100.
+         */
+        protected int    $limit,
+        /**
          * Creation date of an invite link starting after which to return invite links; use 0 to get results from the beginning.
          */
         protected int    $offsetDate,
@@ -37,21 +41,17 @@ class GetChatInviteLinks extends TdFunction
          * Invite link starting after which to return invite links; use empty string to get results from the beginning.
          */
         protected string $offsetInviteLink,
-        /**
-         * The maximum number of invite links to return; up to 100.
-         */
-        protected int    $limit,
     ) {}
 
     public static function fromArray(array $array): GetChatInviteLinks
     {
         return new static(
-            $array['chat_id'],
-            $array['creator_user_id'],
-            $array['is_revoked'],
-            $array['offset_date'],
-            $array['offset_invite_link'],
-            $array['limit'],
+            chatId          : $array['chat_id'],
+            creatorUserId   : $array['creator_user_id'],
+            isRevoked       : $array['is_revoked'],
+            limit           : $array['limit'],
+            offsetDate      : $array['offset_date'],
+            offsetInviteLink: $array['offset_invite_link'],
         );
     }
 
@@ -134,9 +134,9 @@ class GetChatInviteLinks extends TdFunction
             'chat_id'            => $this->chatId,
             'creator_user_id'    => $this->creatorUserId,
             'is_revoked'         => $this->isRevoked,
+            'limit'              => $this->limit,
             'offset_date'        => $this->offsetDate,
             'offset_invite_link' => $this->offsetInviteLink,
-            'limit'              => $this->limit,
         ];
     }
 }

@@ -25,7 +25,7 @@ class TMeUrlTypeSupergroup extends TMeUrlType
     public static function fromArray(array $array): TMeUrlTypeSupergroup
     {
         return new static(
-            $array['supergroup_id'],
+            supergroupId: $array['supergroup_id'],
         );
     }
 

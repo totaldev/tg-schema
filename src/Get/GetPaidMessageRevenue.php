@@ -25,7 +25,7 @@ class GetPaidMessageRevenue extends TdFunction
     public static function fromArray(array $array): GetPaidMessageRevenue
     {
         return new static(
-            $array['user_id'],
+            userId: $array['user_id'],
         );
     }
 

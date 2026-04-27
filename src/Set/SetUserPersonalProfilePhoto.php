@@ -31,8 +31,8 @@ class SetUserPersonalProfilePhoto extends TdFunction
     public static function fromArray(array $array): SetUserPersonalProfilePhoto
     {
         return new static(
-            $array['user_id'],
-            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
+            photo : (isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null),
+            userId: $array['user_id'],
         );
     }
 
@@ -64,8 +64,8 @@ class SetUserPersonalProfilePhoto extends TdFunction
     {
         return [
             '@type'   => static::TYPE_NAME,
+            'photo'   => (null !== $this->photo ? $this->photo->jsonSerialize() : null),
             'user_id' => $this->userId,
-            'photo'   => $this->photo ?? null,
         ];
     }
 }

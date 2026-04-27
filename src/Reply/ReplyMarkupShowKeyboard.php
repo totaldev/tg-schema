@@ -18,31 +18,31 @@ class ReplyMarkupShowKeyboard extends ReplyMarkup
 
     public function __construct(
         /**
-         * A list of rows of bot keyboard buttons.
-         *
-         * @var KeyboardButton[][]
+         * If non-empty, the placeholder to be shown in the input field when the keyboard is active; 0-64 characters.
          */
-        protected array  $rows,
+        protected string $inputFieldPlaceholder,
         /**
          * True, if the keyboard is expected to always be shown when the ordinary keyboard is hidden.
          */
         protected bool   $isPersistent,
         /**
-         * True, if the application needs to resize the keyboard vertically.
+         * True, if the keyboard must automatically be shown to the current user. For outgoing messages, specify true to show the keyboard only for the mentioned users and for the target user of a reply.
          */
-        protected bool   $resizeKeyboard,
+        protected bool   $isPersonal,
         /**
          * True, if the application needs to hide the keyboard after use.
          */
         protected bool   $oneTime,
         /**
-         * True, if the keyboard must automatically be shown to the current user. For outgoing messages, specify true to show the keyboard only for the mentioned users and for the target user of a reply.
+         * True, if the application needs to resize the keyboard vertically.
          */
-        protected bool   $isPersonal,
+        protected bool   $resizeKeyboard,
         /**
-         * If non-empty, the placeholder to be shown in the input field when the keyboard is active; 0-64 characters.
+         * A list of rows of bot keyboard buttons.
+         *
+         * @var KeyboardButton[][]
          */
-        protected string $inputFieldPlaceholder,
+        protected array  $rows,
     ) {
         parent::__construct();
     }
@@ -50,12 +50,12 @@ class ReplyMarkupShowKeyboard extends ReplyMarkup
     public static function fromArray(array $array): ReplyMarkupShowKeyboard
     {
         return new static(
-            array_map(static fn($x) => array_map(static fn($y) => TdSchemaRegistry::fromArray($y), $x), $array['rows']),
-            $array['is_persistent'],
-            $array['resize_keyboard'],
-            $array['one_time'],
-            $array['is_personal'],
-            $array['input_field_placeholder'],
+            inputFieldPlaceholder: $array['input_field_placeholder'],
+            isPersistent         : $array['is_persistent'],
+            isPersonal           : $array['is_personal'],
+            oneTime              : $array['one_time'],
+            resizeKeyboard       : $array['resize_keyboard'],
+            rows                 : array_map(static fn($x) => array_map(static fn($y) => TdSchemaRegistry::fromArray($y), $x), $array['rows']),
         );
     }
 
@@ -135,12 +135,12 @@ class ReplyMarkupShowKeyboard extends ReplyMarkup
     {
         return [
             '@type'                   => static::TYPE_NAME,
-            'rows'                    => array_map(static fn($x) => array_map(static fn($y) => $y->typeSerialize(), $x), $this->rows),
-            'is_persistent'           => $this->isPersistent,
-            'resize_keyboard'         => $this->resizeKeyboard,
-            'one_time'                => $this->oneTime,
-            'is_personal'             => $this->isPersonal,
             'input_field_placeholder' => $this->inputFieldPlaceholder,
+            'is_persistent'           => $this->isPersistent,
+            'is_personal'             => $this->isPersonal,
+            'one_time'                => $this->oneTime,
+            'resize_keyboard'         => $this->resizeKeyboard,
+            'rows'                    => array_map(static fn($x) => array_map(static fn($y) => $y->jsonSerialize(), $x), $this->rows),
         ];
     }
 }

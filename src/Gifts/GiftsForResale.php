@@ -22,9 +22,11 @@ class GiftsForResale extends TdObject
 
     public function __construct(
         /**
-         * Total number of gifts found.
+         * Available backdrops; for searchGiftsForResale requests without offset and attributes only.
+         *
+         * @var UpgradedGiftBackdropCount[]
          */
-        protected int    $totalCount,
+        protected array  $backdrops,
         /**
          * The gifts.
          *
@@ -38,32 +40,30 @@ class GiftsForResale extends TdObject
          */
         protected array  $models,
         /**
+         * The offset for the next request. If empty, then there are no more results.
+         */
+        protected string $nextOffset,
+        /**
          * Available symbols; for searchGiftsForResale requests without offset and attributes only.
          *
          * @var UpgradedGiftSymbolCount[]
          */
         protected array  $symbols,
         /**
-         * Available backdrops; for searchGiftsForResale requests without offset and attributes only.
-         *
-         * @var UpgradedGiftBackdropCount[]
+         * Total number of gifts found.
          */
-        protected array  $backdrops,
-        /**
-         * The offset for the next request. If empty, then there are no more results.
-         */
-        protected string $nextOffset,
+        protected int    $totalCount,
     ) {}
 
     public static function fromArray(array $array): GiftsForResale
     {
         return new static(
-            $array['total_count'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['gifts']),
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['models']),
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['symbols']),
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['backdrops']),
-            $array['next_offset'],
+            backdrops : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['backdrops']),
+            gifts     : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['gifts']),
+            models    : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['models']),
+            nextOffset: $array['next_offset'],
+            symbols   : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['symbols']),
+            totalCount: $array['total_count'],
         );
     }
 
@@ -143,12 +143,12 @@ class GiftsForResale extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'total_count' => $this->totalCount,
-            'gifts'       => array_map(static fn($x) => $x->typeSerialize(), $this->gifts),
-            'models'      => array_map(static fn($x) => $x->typeSerialize(), $this->models),
-            'symbols'     => array_map(static fn($x) => $x->typeSerialize(), $this->symbols),
-            'backdrops'   => array_map(static fn($x) => $x->typeSerialize(), $this->backdrops),
+            'backdrops'   => array_map(static fn($x) => $x->jsonSerialize(), $this->backdrops),
+            'gifts'       => array_map(static fn($x) => $x->jsonSerialize(), $this->gifts),
+            'models'      => array_map(static fn($x) => $x->jsonSerialize(), $this->models),
             'next_offset' => $this->nextOffset,
+            'symbols'     => array_map(static fn($x) => $x->jsonSerialize(), $this->symbols),
+            'total_count' => $this->totalCount,
         ];
     }
 }

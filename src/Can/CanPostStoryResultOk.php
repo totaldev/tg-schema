@@ -25,7 +25,7 @@ class CanPostStoryResultOk extends CanPostStoryResult
     public static function fromArray(array $array): CanPostStoryResultOk
     {
         return new static(
-            $array['story_count'],
+            storyCount: $array['story_count'],
         );
     }
 

@@ -15,13 +15,13 @@ class InputPassportElementErrorSourceDataField extends InputPassportElementError
 
     public function __construct(
         /**
-         * Field name.
-         */
-        protected string $fieldName,
-        /**
          * Current data hash.
          */
         protected string $dataHash,
+        /**
+         * Field name.
+         */
+        protected string $fieldName,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class InputPassportElementErrorSourceDataField extends InputPassportElementError
     public static function fromArray(array $array): InputPassportElementErrorSourceDataField
     {
         return new static(
-            $array['field_name'],
-            $array['data_hash'],
+            dataHash : $array['data_hash'],
+            fieldName: $array['field_name'],
         );
     }
 
@@ -62,8 +62,8 @@ class InputPassportElementErrorSourceDataField extends InputPassportElementError
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'field_name' => $this->fieldName,
             'data_hash'  => $this->dataHash,
+            'field_name' => $this->fieldName,
         ];
     }
 }

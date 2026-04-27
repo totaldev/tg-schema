@@ -17,13 +17,13 @@ class ChatEventInviteLinkEdited extends ChatEventAction
 
     public function __construct(
         /**
-         * Previous information about the invite link.
-         */
-        protected ChatInviteLink $oldInviteLink,
-        /**
          * New information about the invite link.
          */
         protected ChatInviteLink $newInviteLink,
+        /**
+         * Previous information about the invite link.
+         */
+        protected ChatInviteLink $oldInviteLink,
     ) {
         parent::__construct();
     }
@@ -31,8 +31,8 @@ class ChatEventInviteLinkEdited extends ChatEventAction
     public static function fromArray(array $array): ChatEventInviteLinkEdited
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['old_invite_link']),
-            TdSchemaRegistry::fromArray($array['new_invite_link']),
+            newInviteLink: TdSchemaRegistry::fromArray($array['new_invite_link']),
+            oldInviteLink: TdSchemaRegistry::fromArray($array['old_invite_link']),
         );
     }
 
@@ -64,8 +64,8 @@ class ChatEventInviteLinkEdited extends ChatEventAction
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'old_invite_link' => $this->oldInviteLink->typeSerialize(),
-            'new_invite_link' => $this->newInviteLink->typeSerialize(),
+            'new_invite_link' => $this->newInviteLink->jsonSerialize(),
+            'old_invite_link' => $this->oldInviteLink->jsonSerialize(),
         ];
     }
 }

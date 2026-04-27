@@ -28,7 +28,7 @@ class UpdateSavedMessagesTopic extends Update
     public static function fromArray(array $array): UpdateSavedMessagesTopic
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['topic']),
+            topic: TdSchemaRegistry::fromArray($array['topic']),
         );
     }
 
@@ -48,7 +48,7 @@ class UpdateSavedMessagesTopic extends Update
     {
         return [
             '@type' => static::TYPE_NAME,
-            'topic' => $this->topic->typeSerialize(),
+            'topic' => $this->topic->jsonSerialize(),
         ];
     }
 }

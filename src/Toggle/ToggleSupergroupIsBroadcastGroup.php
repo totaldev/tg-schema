@@ -25,7 +25,7 @@ class ToggleSupergroupIsBroadcastGroup extends TdFunction
     public static function fromArray(array $array): ToggleSupergroupIsBroadcastGroup
     {
         return new static(
-            $array['supergroup_id'],
+            supergroupId: $array['supergroup_id'],
         );
     }
 

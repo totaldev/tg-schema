@@ -19,10 +19,6 @@ class MessageGiveawayCompleted extends MessageContent
          */
         protected int  $giveawayMessageId,
         /**
-         * Number of winners in the giveaway.
-         */
-        protected int  $winnerCount,
-        /**
          * True, if the giveaway is a Telegram Star giveaway.
          */
         protected bool $isStarGiveaway,
@@ -30,6 +26,10 @@ class MessageGiveawayCompleted extends MessageContent
          * Number of undistributed prizes; for Telegram Premium giveaways only.
          */
         protected int  $unclaimedPrizeCount,
+        /**
+         * Number of winners in the giveaway.
+         */
+        protected int  $winnerCount,
     ) {
         parent::__construct();
     }
@@ -37,10 +37,10 @@ class MessageGiveawayCompleted extends MessageContent
     public static function fromArray(array $array): MessageGiveawayCompleted
     {
         return new static(
-            $array['giveaway_message_id'],
-            $array['winner_count'],
-            $array['is_star_giveaway'],
-            $array['unclaimed_prize_count'],
+            giveawayMessageId  : $array['giveaway_message_id'],
+            isStarGiveaway     : $array['is_star_giveaway'],
+            unclaimedPrizeCount: $array['unclaimed_prize_count'],
+            winnerCount        : $array['winner_count'],
         );
     }
 
@@ -97,9 +97,9 @@ class MessageGiveawayCompleted extends MessageContent
         return [
             '@type'                 => static::TYPE_NAME,
             'giveaway_message_id'   => $this->giveawayMessageId,
-            'winner_count'          => $this->winnerCount,
             'is_star_giveaway'      => $this->isStarGiveaway,
             'unclaimed_prize_count' => $this->unclaimedPrizeCount,
+            'winner_count'          => $this->winnerCount,
         ];
     }
 }

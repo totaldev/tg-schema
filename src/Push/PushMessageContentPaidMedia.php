@@ -15,13 +15,13 @@ class PushMessageContentPaidMedia extends PushMessageContent
 
     public function __construct(
         /**
-         * Number of Telegram Stars needed to buy access to the media in the message; 0 for pinned message.
-         */
-        protected int  $starCount,
-        /**
          * True, if the message is a pinned message with the specified content.
          */
         protected bool $isPinned,
+        /**
+         * Number of Telegram Stars needed to buy access to the media in the message; 0 for pinned message.
+         */
+        protected int  $starCount,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class PushMessageContentPaidMedia extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentPaidMedia
     {
         return new static(
-            $array['star_count'],
-            $array['is_pinned'],
+            isPinned : $array['is_pinned'],
+            starCount: $array['star_count'],
         );
     }
 
@@ -62,8 +62,8 @@ class PushMessageContentPaidMedia extends PushMessageContent
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'star_count' => $this->starCount,
             'is_pinned'  => $this->isPinned,
+            'star_count' => $this->starCount,
         ];
     }
 }

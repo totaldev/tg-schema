@@ -29,8 +29,8 @@ class CreateBasicGroupChat extends TdFunction
     public static function fromArray(array $array): CreateBasicGroupChat
     {
         return new static(
-            $array['basic_group_id'],
-            $array['force'],
+            basicGroupId: $array['basic_group_id'],
+            force       : $array['force'],
         );
     }
 

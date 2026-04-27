@@ -18,22 +18,22 @@ class BusinessOpeningHours extends TdObject
 
     public function __construct(
         /**
-         * Unique time zone identifier.
-         */
-        protected string $timeZoneId,
-        /**
          * Intervals of the time when the business is open.
          *
          * @var BusinessOpeningHoursInterval[]
          */
         protected array  $openingHours,
+        /**
+         * Unique time zone identifier.
+         */
+        protected string $timeZoneId,
     ) {}
 
     public static function fromArray(array $array): BusinessOpeningHours
     {
         return new static(
-            $array['time_zone_id'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['opening_hours']),
+            openingHours: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['opening_hours']),
+            timeZoneId  : $array['time_zone_id'],
         );
     }
 
@@ -65,8 +65,8 @@ class BusinessOpeningHours extends TdObject
     {
         return [
             '@type'         => static::TYPE_NAME,
+            'opening_hours' => array_map(static fn($x) => $x->jsonSerialize(), $this->openingHours),
             'time_zone_id'  => $this->timeZoneId,
-            'opening_hours' => array_map(static fn($x) => $x->typeSerialize(), $this->openingHours),
         ];
     }
 }

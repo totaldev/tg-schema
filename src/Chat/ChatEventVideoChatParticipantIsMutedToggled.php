@@ -18,13 +18,13 @@ class ChatEventVideoChatParticipantIsMutedToggled extends ChatEventAction
 
     public function __construct(
         /**
-         * Identifier of the affected group call participant.
-         */
-        protected MessageSender $participantId,
-        /**
          * New value of is_muted.
          */
         protected bool          $isMuted,
+        /**
+         * Identifier of the affected group call participant.
+         */
+        protected MessageSender $participantId,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class ChatEventVideoChatParticipantIsMutedToggled extends ChatEventAction
     public static function fromArray(array $array): ChatEventVideoChatParticipantIsMutedToggled
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['participant_id']),
-            $array['is_muted'],
+            isMuted      : $array['is_muted'],
+            participantId: TdSchemaRegistry::fromArray($array['participant_id']),
         );
     }
 
@@ -65,8 +65,8 @@ class ChatEventVideoChatParticipantIsMutedToggled extends ChatEventAction
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'participant_id' => $this->participantId->typeSerialize(),
             'is_muted'       => $this->isMuted,
+            'participant_id' => $this->participantId->jsonSerialize(),
         ];
     }
 }

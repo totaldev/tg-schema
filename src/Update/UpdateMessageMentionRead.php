@@ -33,9 +33,9 @@ class UpdateMessageMentionRead extends Update
     public static function fromArray(array $array): UpdateMessageMentionRead
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            $array['unread_mention_count'],
+            chatId            : $array['chat_id'],
+            messageId         : $array['message_id'],
+            unreadMentionCount: $array['unread_mention_count'],
         );
     }
 

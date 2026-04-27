@@ -18,13 +18,17 @@ class ChatBoost extends TdObject
 
     public function __construct(
         /**
-         * Unique identifier of the boost.
-         */
-        protected string          $id,
-        /**
          * The number of identical boosts applied.
          */
         protected int             $count,
+        /**
+         * Point in time (Unix timestamp) when the boost will expire.
+         */
+        protected int             $expirationDate,
+        /**
+         * Unique identifier of the boost.
+         */
+        protected string          $id,
         /**
          * Source of the boost.
          */
@@ -33,20 +37,16 @@ class ChatBoost extends TdObject
          * Point in time (Unix timestamp) when the chat was boosted.
          */
         protected int             $startDate,
-        /**
-         * Point in time (Unix timestamp) when the boost will expire.
-         */
-        protected int             $expirationDate,
     ) {}
 
     public static function fromArray(array $array): ChatBoost
     {
         return new static(
-            $array['id'],
-            $array['count'],
-            TdSchemaRegistry::fromArray($array['source']),
-            $array['start_date'],
-            $array['expiration_date'],
+            count         : $array['count'],
+            expirationDate: $array['expiration_date'],
+            id            : $array['id'],
+            source        : TdSchemaRegistry::fromArray($array['source']),
+            startDate     : $array['start_date'],
         );
     }
 
@@ -114,11 +114,11 @@ class ChatBoost extends TdObject
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'id'              => $this->id,
             'count'           => $this->count,
-            'source'          => $this->source->typeSerialize(),
-            'start_date'      => $this->startDate,
             'expiration_date' => $this->expirationDate,
+            'id'              => $this->id,
+            'source'          => $this->source->jsonSerialize(),
+            'start_date'      => $this->startDate,
         ];
     }
 }

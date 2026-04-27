@@ -29,8 +29,8 @@ class TemporaryPasswordState extends TdObject
     public static function fromArray(array $array): TemporaryPasswordState
     {
         return new static(
-            $array['has_password'],
-            $array['valid_for'],
+            hasPassword: $array['has_password'],
+            validFor   : $array['valid_for'],
         );
     }
 

@@ -25,7 +25,7 @@ class PushMessageContentInviteVideoChatParticipants extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentInviteVideoChatParticipants
     {
         return new static(
-            $array['is_current_user'],
+            isCurrentUser: $array['is_current_user'],
         );
     }
 

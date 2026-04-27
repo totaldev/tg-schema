@@ -27,7 +27,7 @@ class InputFileRemote extends InputFile
     public static function fromArray(array $array): InputFileRemote
     {
         return new static(
-            $array['id'],
+            id: $array['id'],
         );
     }
 

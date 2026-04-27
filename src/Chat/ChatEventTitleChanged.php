@@ -15,13 +15,13 @@ class ChatEventTitleChanged extends ChatEventAction
 
     public function __construct(
         /**
-         * Previous chat title.
-         */
-        protected string $oldTitle,
-        /**
          * New chat title.
          */
         protected string $newTitle,
+        /**
+         * Previous chat title.
+         */
+        protected string $oldTitle,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class ChatEventTitleChanged extends ChatEventAction
     public static function fromArray(array $array): ChatEventTitleChanged
     {
         return new static(
-            $array['old_title'],
-            $array['new_title'],
+            newTitle: $array['new_title'],
+            oldTitle: $array['old_title'],
         );
     }
 
@@ -62,8 +62,8 @@ class ChatEventTitleChanged extends ChatEventAction
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'old_title' => $this->oldTitle,
             'new_title' => $this->newTitle,
+            'old_title' => $this->oldTitle,
         ];
     }
 }

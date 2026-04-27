@@ -25,7 +25,7 @@ class SuggestedPostPriceStar extends SuggestedPostPrice
     public static function fromArray(array $array): SuggestedPostPriceStar
     {
         return new static(
-            $array['star_count'],
+            starCount: $array['star_count'],
         );
     }
 

@@ -33,8 +33,8 @@ class UpdateAutosaveSettings extends Update
     public static function fromArray(array $array): UpdateAutosaveSettings
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['scope']),
-            isset($array['settings']) ? TdSchemaRegistry::fromArray($array['settings']) : null,
+            scope   : TdSchemaRegistry::fromArray($array['scope']),
+            settings: (isset($array['settings']) ? TdSchemaRegistry::fromArray($array['settings']) : null),
         );
     }
 
@@ -66,8 +66,8 @@ class UpdateAutosaveSettings extends Update
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'scope'    => $this->scope->typeSerialize(),
-            'settings' => $this->settings ?? null,
+            'scope'    => $this->scope->jsonSerialize(),
+            'settings' => (null !== $this->settings ? $this->settings->jsonSerialize() : null),
         ];
     }
 }

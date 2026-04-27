@@ -15,17 +15,17 @@ class PushMessageContentPoll extends PushMessageContent
 
     public function __construct(
         /**
-         * Poll question.
+         * True, if the message is a pinned message with the specified content.
          */
-        protected string $question,
+        protected bool   $isPinned,
         /**
          * True, if the poll is regular and not in quiz mode.
          */
         protected bool   $isRegular,
         /**
-         * True, if the message is a pinned message with the specified content.
+         * Poll question.
          */
-        protected bool   $isPinned,
+        protected string $question,
     ) {
         parent::__construct();
     }
@@ -33,9 +33,9 @@ class PushMessageContentPoll extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentPoll
     {
         return new static(
-            $array['question'],
-            $array['is_regular'],
-            $array['is_pinned'],
+            isPinned : $array['is_pinned'],
+            isRegular: $array['is_regular'],
+            question : $array['question'],
         );
     }
 
@@ -79,9 +79,9 @@ class PushMessageContentPoll extends PushMessageContent
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'question'   => $this->question,
-            'is_regular' => $this->isRegular,
             'is_pinned'  => $this->isPinned,
+            'is_regular' => $this->isRegular,
+            'question'   => $this->question,
         ];
     }
 }

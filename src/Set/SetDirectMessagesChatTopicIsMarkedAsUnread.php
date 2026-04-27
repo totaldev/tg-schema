@@ -21,21 +21,21 @@ class SetDirectMessagesChatTopicIsMarkedAsUnread extends TdFunction
          */
         protected int  $chatId,
         /**
-         * Topic identifier.
-         */
-        protected int  $topicId,
-        /**
          * New value of is_marked_as_unread.
          */
         protected bool $isMarkedAsUnread,
+        /**
+         * Topic identifier.
+         */
+        protected int  $topicId,
     ) {}
 
     public static function fromArray(array $array): SetDirectMessagesChatTopicIsMarkedAsUnread
     {
         return new static(
-            $array['chat_id'],
-            $array['topic_id'],
-            $array['is_marked_as_unread'],
+            chatId          : $array['chat_id'],
+            isMarkedAsUnread: $array['is_marked_as_unread'],
+            topicId         : $array['topic_id'],
         );
     }
 
@@ -80,8 +80,8 @@ class SetDirectMessagesChatTopicIsMarkedAsUnread extends TdFunction
         return [
             '@type'               => static::TYPE_NAME,
             'chat_id'             => $this->chatId,
-            'topic_id'            => $this->topicId,
             'is_marked_as_unread' => $this->isMarkedAsUnread,
+            'topic_id'            => $this->topicId,
         ];
     }
 }

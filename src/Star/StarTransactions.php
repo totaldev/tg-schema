@@ -18,6 +18,10 @@ class StarTransactions extends TdObject
 
     public function __construct(
         /**
+         * The offset for the next request. If empty, then there are no more results.
+         */
+        protected string     $nextOffset,
+        /**
          * The amount of owned Telegram Stars.
          */
         protected StarAmount $starAmount,
@@ -27,18 +31,14 @@ class StarTransactions extends TdObject
          * @var StarTransaction[]
          */
         protected array      $transactions,
-        /**
-         * The offset for the next request. If empty, then there are no more results.
-         */
-        protected string     $nextOffset,
     ) {}
 
     public static function fromArray(array $array): StarTransactions
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['star_amount']),
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['transactions']),
-            $array['next_offset'],
+            nextOffset  : $array['next_offset'],
+            starAmount  : TdSchemaRegistry::fromArray($array['star_amount']),
+            transactions: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['transactions']),
         );
     }
 
@@ -82,9 +82,9 @@ class StarTransactions extends TdObject
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'star_amount'  => $this->starAmount->typeSerialize(),
-            'transactions' => array_map(static fn($x) => $x->typeSerialize(), $this->transactions),
             'next_offset'  => $this->nextOffset,
+            'star_amount'  => $this->starAmount->jsonSerialize(),
+            'transactions' => array_map(static fn($x) => $x->jsonSerialize(), $this->transactions),
         ];
     }
 }

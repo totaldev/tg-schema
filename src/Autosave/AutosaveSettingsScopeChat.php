@@ -25,7 +25,7 @@ class AutosaveSettingsScopeChat extends AutosaveSettingsScope
     public static function fromArray(array $array): AutosaveSettingsScopeChat
     {
         return new static(
-            $array['chat_id'],
+            chatId: $array['chat_id'],
         );
     }
 

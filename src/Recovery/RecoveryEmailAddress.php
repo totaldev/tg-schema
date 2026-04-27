@@ -25,7 +25,7 @@ class RecoveryEmailAddress extends TdObject
     public static function fromArray(array $array): RecoveryEmailAddress
     {
         return new static(
-            $array['recovery_email_address'],
+            recoveryEmailAddress: $array['recovery_email_address'],
         );
     }
 

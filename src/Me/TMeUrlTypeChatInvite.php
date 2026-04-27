@@ -28,7 +28,7 @@ class TMeUrlTypeChatInvite extends TMeUrlType
     public static function fromArray(array $array): TMeUrlTypeChatInvite
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['info']),
+            info: TdSchemaRegistry::fromArray($array['info']),
         );
     }
 
@@ -48,7 +48,7 @@ class TMeUrlTypeChatInvite extends TMeUrlType
     {
         return [
             '@type' => static::TYPE_NAME,
-            'info'  => $this->info->typeSerialize(),
+            'info'  => $this->info->jsonSerialize(),
         ];
     }
 }

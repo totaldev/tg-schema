@@ -22,21 +22,21 @@ class InputInlineQueryResultVoiceNote extends InputInlineQueryResult
          */
         protected string              $id,
         /**
+         * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageVoiceNote, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact.
+         */
+        protected InputMessageContent $inputMessageContent,
+        /**
          * Title of the voice note.
          */
         protected string              $title,
-        /**
-         * The URL of the voice note file.
-         */
-        protected string              $voiceNoteUrl,
         /**
          * Duration of the voice note, in seconds.
          */
         protected int                 $voiceNoteDuration,
         /**
-         * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageVoiceNote, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact.
+         * The URL of the voice note file.
          */
-        protected InputMessageContent $inputMessageContent,
+        protected string              $voiceNoteUrl,
         /**
          * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null.
          */
@@ -48,12 +48,12 @@ class InputInlineQueryResultVoiceNote extends InputInlineQueryResult
     public static function fromArray(array $array): InputInlineQueryResultVoiceNote
     {
         return new static(
-            $array['id'],
-            $array['title'],
-            $array['voice_note_url'],
-            $array['voice_note_duration'],
-            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
-            TdSchemaRegistry::fromArray($array['input_message_content']),
+            id                 : $array['id'],
+            inputMessageContent: TdSchemaRegistry::fromArray($array['input_message_content']),
+            replyMarkup        : (isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null),
+            title              : $array['title'],
+            voiceNoteDuration  : $array['voice_note_duration'],
+            voiceNoteUrl       : $array['voice_note_url'],
         );
     }
 
@@ -134,11 +134,11 @@ class InputInlineQueryResultVoiceNote extends InputInlineQueryResult
         return [
             '@type'                 => static::TYPE_NAME,
             'id'                    => $this->id,
+            'input_message_content' => $this->inputMessageContent->jsonSerialize(),
+            'reply_markup'          => (null !== $this->replyMarkup ? $this->replyMarkup->jsonSerialize() : null),
             'title'                 => $this->title,
-            'voice_note_url'        => $this->voiceNoteUrl,
             'voice_note_duration'   => $this->voiceNoteDuration,
-            'reply_markup'          => $this->replyMarkup ?? null,
-            'input_message_content' => $this->inputMessageContent->typeSerialize(),
+            'voice_note_url'        => $this->voiceNoteUrl,
         ];
     }
 }

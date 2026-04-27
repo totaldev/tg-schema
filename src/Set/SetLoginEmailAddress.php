@@ -27,7 +27,7 @@ class SetLoginEmailAddress extends TdFunction
     public static function fromArray(array $array): SetLoginEmailAddress
     {
         return new static(
-            $array['new_login_email_address'],
+            newLoginEmailAddress: $array['new_login_email_address'],
         );
     }
 

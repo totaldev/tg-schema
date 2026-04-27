@@ -18,21 +18,21 @@ class PaidMediaPreview extends PaidMedia
 
     public function __construct(
         /**
-         * Media width; 0 if unknown.
+         * Media duration, in seconds; 0 if unknown.
          */
-        protected int            $width,
+        protected int            $duration,
         /**
          * Media height; 0 if unknown.
          */
         protected int            $height,
         /**
-         * Media duration, in seconds; 0 if unknown.
-         */
-        protected int            $duration,
-        /**
          * Media minithumbnail; may be null.
          */
         protected ?Minithumbnail $minithumbnail,
+        /**
+         * Media width; 0 if unknown.
+         */
+        protected int            $width,
     ) {
         parent::__construct();
     }
@@ -40,10 +40,10 @@ class PaidMediaPreview extends PaidMedia
     public static function fromArray(array $array): PaidMediaPreview
     {
         return new static(
-            $array['width'],
-            $array['height'],
-            $array['duration'],
-            isset($array['minithumbnail']) ? TdSchemaRegistry::fromArray($array['minithumbnail']) : null,
+            duration     : $array['duration'],
+            height       : $array['height'],
+            minithumbnail: (isset($array['minithumbnail']) ? TdSchemaRegistry::fromArray($array['minithumbnail']) : null),
+            width        : $array['width'],
         );
     }
 
@@ -99,10 +99,10 @@ class PaidMediaPreview extends PaidMedia
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'width'         => $this->width,
-            'height'        => $this->height,
             'duration'      => $this->duration,
-            'minithumbnail' => $this->minithumbnail ?? null,
+            'height'        => $this->height,
+            'minithumbnail' => (null !== $this->minithumbnail ? $this->minithumbnail->jsonSerialize() : null),
+            'width'         => $this->width,
         ];
     }
 }

@@ -28,7 +28,7 @@ class PageBlockFooter extends PageBlock
     public static function fromArray(array $array): PageBlockFooter
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['footer']),
+            footer: TdSchemaRegistry::fromArray($array['footer']),
         );
     }
 
@@ -48,7 +48,7 @@ class PageBlockFooter extends PageBlock
     {
         return [
             '@type'  => static::TYPE_NAME,
-            'footer' => $this->footer->typeSerialize(),
+            'footer' => $this->footer->jsonSerialize(),
         ];
     }
 }

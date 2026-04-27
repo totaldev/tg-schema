@@ -31,8 +31,8 @@ class SetCustomLanguagePackString extends TdFunction
     public static function fromArray(array $array): SetCustomLanguagePackString
     {
         return new static(
-            $array['language_pack_id'],
-            TdSchemaRegistry::fromArray($array['new_string']),
+            languagePackId: $array['language_pack_id'],
+            newString     : TdSchemaRegistry::fromArray($array['new_string']),
         );
     }
 
@@ -65,7 +65,7 @@ class SetCustomLanguagePackString extends TdFunction
         return [
             '@type'            => static::TYPE_NAME,
             'language_pack_id' => $this->languagePackId,
-            'new_string'       => $this->newString->typeSerialize(),
+            'new_string'       => $this->newString->jsonSerialize(),
         ];
     }
 }

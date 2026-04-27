@@ -17,17 +17,17 @@ class StorageStatisticsFast extends TdObject
 
     public function __construct(
         /**
-         * Approximate total size of files, in bytes.
+         * Size of the database.
          */
-        protected int $filesSize,
+        protected int $databaseSize,
         /**
          * Approximate number of files.
          */
         protected int $fileCount,
         /**
-         * Size of the database.
+         * Approximate total size of files, in bytes.
          */
-        protected int $databaseSize,
+        protected int $filesSize,
         /**
          * Size of the language pack database.
          */
@@ -41,11 +41,11 @@ class StorageStatisticsFast extends TdObject
     public static function fromArray(array $array): StorageStatisticsFast
     {
         return new static(
-            $array['files_size'],
-            $array['file_count'],
-            $array['database_size'],
-            $array['language_pack_database_size'],
-            $array['log_size'],
+            databaseSize            : $array['database_size'],
+            fileCount               : $array['file_count'],
+            filesSize               : $array['files_size'],
+            languagePackDatabaseSize: $array['language_pack_database_size'],
+            logSize                 : $array['log_size'],
         );
     }
 
@@ -113,9 +113,9 @@ class StorageStatisticsFast extends TdObject
     {
         return [
             '@type'                       => static::TYPE_NAME,
-            'files_size'                  => $this->filesSize,
-            'file_count'                  => $this->fileCount,
             'database_size'               => $this->databaseSize,
+            'file_count'                  => $this->fileCount,
+            'files_size'                  => $this->filesSize,
             'language_pack_database_size' => $this->languagePackDatabaseSize,
             'log_size'                    => $this->logSize,
         ];

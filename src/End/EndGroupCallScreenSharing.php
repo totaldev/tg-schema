@@ -25,7 +25,7 @@ class EndGroupCallScreenSharing extends TdFunction
     public static function fromArray(array $array): EndGroupCallScreenSharing
     {
         return new static(
-            $array['group_call_id'],
+            groupCallId: $array['group_call_id'],
         );
     }
 

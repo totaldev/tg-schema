@@ -25,7 +25,7 @@ class ChatEventIsAllHistoryAvailableToggled extends ChatEventAction
     public static function fromArray(array $array): ChatEventIsAllHistoryAvailableToggled
     {
         return new static(
-            $array['is_all_history_available'],
+            isAllHistoryAvailable: $array['is_all_history_available'],
         );
     }
 

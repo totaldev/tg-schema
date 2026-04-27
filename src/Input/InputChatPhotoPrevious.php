@@ -25,7 +25,7 @@ class InputChatPhotoPrevious extends InputChatPhoto
     public static function fromArray(array $array): InputChatPhotoPrevious
     {
         return new static(
-            $array['chat_photo_id'],
+            chatPhotoId: $array['chat_photo_id'],
         );
     }
 

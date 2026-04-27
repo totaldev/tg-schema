@@ -15,17 +15,17 @@ class InlineKeyboardButtonTypeLoginUrl extends InlineKeyboardButtonType
 
     public function __construct(
         /**
-         * An HTTP URL to pass to getLoginUrlInfo.
+         * If non-empty, new text of the button in forwarded messages.
          */
-        protected string $url,
+        protected string $forwardText,
         /**
          * Unique button identifier.
          */
         protected int    $id,
         /**
-         * If non-empty, new text of the button in forwarded messages.
+         * An HTTP URL to pass to getLoginUrlInfo.
          */
-        protected string $forwardText,
+        protected string $url,
     ) {
         parent::__construct();
     }
@@ -33,9 +33,9 @@ class InlineKeyboardButtonTypeLoginUrl extends InlineKeyboardButtonType
     public static function fromArray(array $array): InlineKeyboardButtonTypeLoginUrl
     {
         return new static(
-            $array['url'],
-            $array['id'],
-            $array['forward_text'],
+            forwardText: $array['forward_text'],
+            id         : $array['id'],
+            url        : $array['url'],
         );
     }
 
@@ -79,9 +79,9 @@ class InlineKeyboardButtonTypeLoginUrl extends InlineKeyboardButtonType
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'url'          => $this->url,
-            'id'           => $this->id,
             'forward_text' => $this->forwardText,
+            'id'           => $this->id,
+            'url'          => $this->url,
         ];
     }
 }

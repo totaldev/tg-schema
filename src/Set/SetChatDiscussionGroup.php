@@ -29,8 +29,8 @@ class SetChatDiscussionGroup extends TdFunction
     public static function fromArray(array $array): SetChatDiscussionGroup
     {
         return new static(
-            $array['chat_id'],
-            $array['discussion_chat_id'],
+            chatId          : $array['chat_id'],
+            discussionChatId: $array['discussion_chat_id'],
         );
     }
 

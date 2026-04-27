@@ -31,8 +31,8 @@ class AddChatToList extends TdFunction
     public static function fromArray(array $array): AddChatToList
     {
         return new static(
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['chat_list']),
+            chatId  : $array['chat_id'],
+            chatList: TdSchemaRegistry::fromArray($array['chat_list']),
         );
     }
 
@@ -65,7 +65,7 @@ class AddChatToList extends TdFunction
         return [
             '@type'     => static::TYPE_NAME,
             'chat_id'   => $this->chatId,
-            'chat_list' => $this->chatList->typeSerialize(),
+            'chat_list' => $this->chatList->jsonSerialize(),
         ];
     }
 }

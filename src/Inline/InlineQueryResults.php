@@ -18,32 +18,32 @@ class InlineQueryResults extends TdObject
 
     public function __construct(
         /**
+         * Button to be shown above inline query results; may be null.
+         */
+        protected ?InlineQueryResultsButton $button,
+        /**
          * Unique identifier of the inline query.
          */
         protected int                       $inlineQueryId,
         /**
-         * Button to be shown above inline query results; may be null.
+         * The offset for the next request. If empty, then there are no more results.
          */
-        protected ?InlineQueryResultsButton $button,
+        protected string                    $nextOffset,
         /**
          * Results of the query.
          *
          * @var InlineQueryResult[]
          */
         protected array                     $results,
-        /**
-         * The offset for the next request. If empty, then there are no more results.
-         */
-        protected string                    $nextOffset,
     ) {}
 
     public static function fromArray(array $array): InlineQueryResults
     {
         return new static(
-            $array['inline_query_id'],
-            isset($array['button']) ? TdSchemaRegistry::fromArray($array['button']) : null,
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['results']),
-            $array['next_offset'],
+            button       : (isset($array['button']) ? TdSchemaRegistry::fromArray($array['button']) : null),
+            inlineQueryId: $array['inline_query_id'],
+            nextOffset   : $array['next_offset'],
+            results      : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['results']),
         );
     }
 
@@ -99,10 +99,10 @@ class InlineQueryResults extends TdObject
     {
         return [
             '@type'           => static::TYPE_NAME,
+            'button'          => (null !== $this->button ? $this->button->jsonSerialize() : null),
             'inline_query_id' => $this->inlineQueryId,
-            'button'          => $this->button ?? null,
-            'results'         => array_map(static fn($x) => $x->typeSerialize(), $this->results),
             'next_offset'     => $this->nextOffset,
+            'results'         => array_map(static fn($x) => $x->jsonSerialize(), $this->results),
         ];
     }
 }

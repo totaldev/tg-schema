@@ -28,7 +28,7 @@ class EmojiCategorySourceSearch extends EmojiCategorySource
     public static function fromArray(array $array): EmojiCategorySourceSearch
     {
         return new static(
-            $array['emojis'],
+            emojis: $array['emojis'],
         );
     }
 

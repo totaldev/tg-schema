@@ -19,20 +19,20 @@ class SetStickerPositionInSet extends TdFunction
 
     public function __construct(
         /**
-         * Sticker.
-         */
-        protected InputFile $sticker,
-        /**
          * New position of the sticker in the set, 0-based.
          */
         protected int       $position,
+        /**
+         * Sticker.
+         */
+        protected InputFile $sticker,
     ) {}
 
     public static function fromArray(array $array): SetStickerPositionInSet
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['sticker']),
-            $array['position'],
+            position: $array['position'],
+            sticker : TdSchemaRegistry::fromArray($array['sticker']),
         );
     }
 
@@ -64,8 +64,8 @@ class SetStickerPositionInSet extends TdFunction
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'sticker'  => $this->sticker->typeSerialize(),
             'position' => $this->position,
+            'sticker'  => $this->sticker->jsonSerialize(),
         ];
     }
 }

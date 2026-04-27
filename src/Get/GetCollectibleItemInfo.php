@@ -27,7 +27,7 @@ class GetCollectibleItemInfo extends TdFunction
     public static function fromArray(array $array): GetCollectibleItemInfo
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['type']),
+            type: TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -47,7 +47,7 @@ class GetCollectibleItemInfo extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'type'  => $this->type->typeSerialize(),
+            'type'  => $this->type->jsonSerialize(),
         ];
     }
 }

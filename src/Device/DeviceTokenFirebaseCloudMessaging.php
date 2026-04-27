@@ -15,13 +15,13 @@ class DeviceTokenFirebaseCloudMessaging extends DeviceToken
 
     public function __construct(
         /**
-         * Device registration token; may be empty to deregister a device.
-         */
-        protected string $token,
-        /**
          * True, if push notifications must be additionally encrypted.
          */
         protected bool   $encrypt,
+        /**
+         * Device registration token; may be empty to deregister a device.
+         */
+        protected string $token,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class DeviceTokenFirebaseCloudMessaging extends DeviceToken
     public static function fromArray(array $array): DeviceTokenFirebaseCloudMessaging
     {
         return new static(
-            $array['token'],
-            $array['encrypt'],
+            encrypt: $array['encrypt'],
+            token  : $array['token'],
         );
     }
 
@@ -62,8 +62,8 @@ class DeviceTokenFirebaseCloudMessaging extends DeviceToken
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'token'   => $this->token,
             'encrypt' => $this->encrypt,
+            'token'   => $this->token,
         ];
     }
 }

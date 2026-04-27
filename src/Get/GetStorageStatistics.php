@@ -25,7 +25,7 @@ class GetStorageStatistics extends TdFunction
     public static function fromArray(array $array): GetStorageStatistics
     {
         return new static(
-            $array['chat_limit'],
+            chatLimit: $array['chat_limit'],
         );
     }
 

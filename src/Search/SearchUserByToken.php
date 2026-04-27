@@ -25,7 +25,7 @@ class SearchUserByToken extends TdFunction
     public static function fromArray(array $array): SearchUserByToken
     {
         return new static(
-            $array['token'],
+            token: $array['token'],
         );
     }
 

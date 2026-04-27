@@ -25,7 +25,7 @@ class ChatEventVideoChatCreated extends ChatEventAction
     public static function fromArray(array $array): ChatEventVideoChatCreated
     {
         return new static(
-            $array['group_call_id'],
+            groupCallId: $array['group_call_id'],
         );
     }
 

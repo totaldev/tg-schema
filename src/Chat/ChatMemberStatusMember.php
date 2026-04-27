@@ -25,7 +25,7 @@ class ChatMemberStatusMember extends ChatMemberStatus
     public static function fromArray(array $array): ChatMemberStatusMember
     {
         return new static(
-            $array['member_until_date'],
+            memberUntilDate: $array['member_until_date'],
         );
     }
 

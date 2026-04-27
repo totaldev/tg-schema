@@ -20,18 +20,6 @@ class AnimatedEmoji extends TdObject
 
     public function __construct(
         /**
-         * Sticker for the emoji; may be null if yet unknown for a custom emoji. If the sticker is a custom emoji, then it can have arbitrary format.
-         */
-        protected ?Sticker $sticker,
-        /**
-         * Expected width of the sticker, which can be used if the sticker is null.
-         */
-        protected int      $stickerWidth,
-        /**
-         * Expected height of the sticker, which can be used if the sticker is null.
-         */
-        protected int      $stickerHeight,
-        /**
          * Emoji modifier fitzpatrick type; 0-6; 0 if none.
          */
         protected int      $fitzpatrickType,
@@ -39,16 +27,28 @@ class AnimatedEmoji extends TdObject
          * File containing the sound to be played when the sticker is clicked; may be null. The sound is encoded with the Opus codec, and stored inside an OGG container.
          */
         protected ?File    $sound,
+        /**
+         * Sticker for the emoji; may be null if yet unknown for a custom emoji. If the sticker is a custom emoji, then it can have arbitrary format.
+         */
+        protected ?Sticker $sticker,
+        /**
+         * Expected height of the sticker, which can be used if the sticker is null.
+         */
+        protected int      $stickerHeight,
+        /**
+         * Expected width of the sticker, which can be used if the sticker is null.
+         */
+        protected int      $stickerWidth,
     ) {}
 
     public static function fromArray(array $array): AnimatedEmoji
     {
         return new static(
-            isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null,
-            $array['sticker_width'],
-            $array['sticker_height'],
-            $array['fitzpatrick_type'],
-            isset($array['sound']) ? TdSchemaRegistry::fromArray($array['sound']) : null,
+            fitzpatrickType: $array['fitzpatrick_type'],
+            sound          : (isset($array['sound']) ? TdSchemaRegistry::fromArray($array['sound']) : null),
+            sticker        : (isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null),
+            stickerHeight  : $array['sticker_height'],
+            stickerWidth   : $array['sticker_width'],
         );
     }
 
@@ -116,11 +116,11 @@ class AnimatedEmoji extends TdObject
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'sticker'          => $this->sticker ?? null,
-            'sticker_width'    => $this->stickerWidth,
-            'sticker_height'   => $this->stickerHeight,
             'fitzpatrick_type' => $this->fitzpatrickType,
-            'sound'            => $this->sound ?? null,
+            'sound'            => (null !== $this->sound ? $this->sound->jsonSerialize() : null),
+            'sticker'          => (null !== $this->sticker ? $this->sticker->jsonSerialize() : null),
+            'sticker_height'   => $this->stickerHeight,
+            'sticker_width'    => $this->stickerWidth,
         ];
     }
 }

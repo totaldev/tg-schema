@@ -25,7 +25,7 @@ class GetLogTagVerbosityLevel extends TdFunction
     public static function fromArray(array $array): GetLogTagVerbosityLevel
     {
         return new static(
-            $array['tag'],
+            tag: $array['tag'],
         );
     }
 

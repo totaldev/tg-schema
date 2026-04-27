@@ -28,7 +28,7 @@ class TMeUrls extends TdObject
     public static function fromArray(array $array): TMeUrls
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['urls']),
+            urls: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['urls']),
         );
     }
 
@@ -48,7 +48,7 @@ class TMeUrls extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            'urls'  => array_map(static fn($x) => $x->typeSerialize(), $this->urls),
+            'urls'  => array_map(static fn($x) => $x->jsonSerialize(), $this->urls),
         ];
     }
 }

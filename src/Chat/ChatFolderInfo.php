@@ -18,40 +18,40 @@ class ChatFolderInfo extends TdObject
 
     public function __construct(
         /**
-         * Unique chat folder identifier.
+         * The identifier of the chosen color for the chat folder icon; from -1 to 6. If -1, then color is disabled.
          */
-        protected int            $id,
+        protected int            $colorId,
         /**
-         * The name of the folder.
+         * True, if the chat folder has invite links created by the current user.
          */
-        protected ChatFolderName $name,
+        protected bool           $hasMyInviteLinks,
         /**
          * The chosen or default icon for the chat folder.
          */
         protected ChatFolderIcon $icon,
         /**
-         * The identifier of the chosen color for the chat folder icon; from -1 to 6. If -1, then color is disabled.
+         * Unique chat folder identifier.
          */
-        protected int            $colorId,
+        protected int            $id,
         /**
          * True, if at least one link has been created for the folder.
          */
         protected bool           $isShareable,
         /**
-         * True, if the chat folder has invite links created by the current user.
+         * The name of the folder.
          */
-        protected bool           $hasMyInviteLinks,
+        protected ChatFolderName $name,
     ) {}
 
     public static function fromArray(array $array): ChatFolderInfo
     {
         return new static(
-            $array['id'],
-            TdSchemaRegistry::fromArray($array['name']),
-            TdSchemaRegistry::fromArray($array['icon']),
-            $array['color_id'],
-            $array['is_shareable'],
-            $array['has_my_invite_links'],
+            colorId         : $array['color_id'],
+            hasMyInviteLinks: $array['has_my_invite_links'],
+            icon            : TdSchemaRegistry::fromArray($array['icon']),
+            id              : $array['id'],
+            isShareable     : $array['is_shareable'],
+            name            : TdSchemaRegistry::fromArray($array['name']),
         );
     }
 
@@ -131,12 +131,12 @@ class ChatFolderInfo extends TdObject
     {
         return [
             '@type'               => static::TYPE_NAME,
-            'id'                  => $this->id,
-            'name'                => $this->name->typeSerialize(),
-            'icon'                => $this->icon->typeSerialize(),
             'color_id'            => $this->colorId,
-            'is_shareable'        => $this->isShareable,
             'has_my_invite_links' => $this->hasMyInviteLinks,
+            'icon'                => $this->icon->jsonSerialize(),
+            'id'                  => $this->id,
+            'is_shareable'        => $this->isShareable,
+            'name'                => $this->name->jsonSerialize(),
         ];
     }
 }

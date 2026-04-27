@@ -33,8 +33,8 @@ class UpdateGroupCallParticipant extends Update
     public static function fromArray(array $array): UpdateGroupCallParticipant
     {
         return new static(
-            $array['group_call_id'],
-            TdSchemaRegistry::fromArray($array['participant']),
+            groupCallId: $array['group_call_id'],
+            participant: TdSchemaRegistry::fromArray($array['participant']),
         );
     }
 
@@ -67,7 +67,7 @@ class UpdateGroupCallParticipant extends Update
         return [
             '@type'         => static::TYPE_NAME,
             'group_call_id' => $this->groupCallId,
-            'participant'   => $this->participant->typeSerialize(),
+            'participant'   => $this->participant->jsonSerialize(),
         ];
     }
 }

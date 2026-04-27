@@ -18,20 +18,20 @@ class GetExternalLink extends TdFunction
 
     public function __construct(
         /**
-         * The HTTP link.
-         */
-        protected string $link,
-        /**
          * Pass true if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages.
          */
         protected bool   $allowWriteAccess,
+        /**
+         * The HTTP link.
+         */
+        protected string $link,
     ) {}
 
     public static function fromArray(array $array): GetExternalLink
     {
         return new static(
-            $array['link'],
-            $array['allow_write_access'],
+            allowWriteAccess: $array['allow_write_access'],
+            link            : $array['link'],
         );
     }
 
@@ -63,8 +63,8 @@ class GetExternalLink extends TdFunction
     {
         return [
             '@type'              => static::TYPE_NAME,
-            'link'               => $this->link,
             'allow_write_access' => $this->allowWriteAccess,
+            'link'               => $this->link,
         ];
     }
 }

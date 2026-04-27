@@ -25,7 +25,7 @@ class PassportElementErrorSourceDataField extends PassportElementErrorSource
     public static function fromArray(array $array): PassportElementErrorSourceDataField
     {
         return new static(
-            $array['field_name'],
+            fieldName: $array['field_name'],
         );
     }
 

@@ -17,20 +17,20 @@ class SetProfileAudioPosition extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the file from profile audio files, which position will be changed.
-         */
-        protected int $fileId,
-        /**
          * Identifier of the file from profile audio files after which the file will be positioned; pass 0 to move the file to the beginning of the list.
          */
         protected int $afterFileId,
+        /**
+         * Identifier of the file from profile audio files, which position will be changed.
+         */
+        protected int $fileId,
     ) {}
 
     public static function fromArray(array $array): SetProfileAudioPosition
     {
         return new static(
-            $array['file_id'],
-            $array['after_file_id'],
+            afterFileId: $array['after_file_id'],
+            fileId     : $array['file_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class SetProfileAudioPosition extends TdFunction
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'file_id'       => $this->fileId,
             'after_file_id' => $this->afterFileId,
+            'file_id'       => $this->fileId,
         ];
     }
 }

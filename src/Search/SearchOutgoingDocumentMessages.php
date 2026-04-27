@@ -17,20 +17,20 @@ class SearchOutgoingDocumentMessages extends TdFunction
 
     public function __construct(
         /**
-         * Query to search for in document file name and message caption.
-         */
-        protected string $query,
-        /**
          * The maximum number of messages to be returned; up to 100.
          */
         protected int    $limit,
+        /**
+         * Query to search for in document file name and message caption.
+         */
+        protected string $query,
     ) {}
 
     public static function fromArray(array $array): SearchOutgoingDocumentMessages
     {
         return new static(
-            $array['query'],
-            $array['limit'],
+            limit: $array['limit'],
+            query: $array['query'],
         );
     }
 
@@ -62,8 +62,8 @@ class SearchOutgoingDocumentMessages extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'query' => $this->query,
             'limit' => $this->limit,
+            'query' => $this->query,
         ];
     }
 }

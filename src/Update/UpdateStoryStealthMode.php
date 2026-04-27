@@ -29,8 +29,8 @@ class UpdateStoryStealthMode extends Update
     public static function fromArray(array $array): UpdateStoryStealthMode
     {
         return new static(
-            $array['active_until_date'],
-            $array['cooldown_until_date'],
+            activeUntilDate  : $array['active_until_date'],
+            cooldownUntilDate: $array['cooldown_until_date'],
         );
     }
 

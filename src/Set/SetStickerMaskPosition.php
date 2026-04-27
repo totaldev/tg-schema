@@ -32,8 +32,8 @@ class SetStickerMaskPosition extends TdFunction
     public static function fromArray(array $array): SetStickerMaskPosition
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['sticker']),
-            isset($array['mask_position']) ? TdSchemaRegistry::fromArray($array['mask_position']) : null,
+            maskPosition: (isset($array['mask_position']) ? TdSchemaRegistry::fromArray($array['mask_position']) : null),
+            sticker     : TdSchemaRegistry::fromArray($array['sticker']),
         );
     }
 
@@ -65,8 +65,8 @@ class SetStickerMaskPosition extends TdFunction
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'sticker'       => $this->sticker->typeSerialize(),
-            'mask_position' => $this->maskPosition ?? null,
+            'mask_position' => (null !== $this->maskPosition ? $this->maskPosition->jsonSerialize() : null),
+            'sticker'       => $this->sticker->jsonSerialize(),
         ];
     }
 }

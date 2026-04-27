@@ -15,10 +15,6 @@ class PushMessageContentChatDeleteMember extends PushMessageContent
 
     public function __construct(
         /**
-         * Name of the deleted member.
-         */
-        protected string $memberName,
-        /**
          * True, if the current user was deleted from the group.
          */
         protected bool   $isCurrentUser,
@@ -26,6 +22,10 @@ class PushMessageContentChatDeleteMember extends PushMessageContent
          * True, if the user has left the group themselves.
          */
         protected bool   $isLeft,
+        /**
+         * Name of the deleted member.
+         */
+        protected string $memberName,
     ) {
         parent::__construct();
     }
@@ -33,9 +33,9 @@ class PushMessageContentChatDeleteMember extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentChatDeleteMember
     {
         return new static(
-            $array['member_name'],
-            $array['is_current_user'],
-            $array['is_left'],
+            isCurrentUser: $array['is_current_user'],
+            isLeft       : $array['is_left'],
+            memberName   : $array['member_name'],
         );
     }
 
@@ -79,9 +79,9 @@ class PushMessageContentChatDeleteMember extends PushMessageContent
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'member_name'     => $this->memberName,
             'is_current_user' => $this->isCurrentUser,
             'is_left'         => $this->isLeft,
+            'member_name'     => $this->memberName,
         ];
     }
 }

@@ -31,8 +31,8 @@ class AcceptCall extends TdFunction
     public static function fromArray(array $array): AcceptCall
     {
         return new static(
-            $array['call_id'],
-            TdSchemaRegistry::fromArray($array['protocol']),
+            callId  : $array['call_id'],
+            protocol: TdSchemaRegistry::fromArray($array['protocol']),
         );
     }
 
@@ -65,7 +65,7 @@ class AcceptCall extends TdFunction
         return [
             '@type'    => static::TYPE_NAME,
             'call_id'  => $this->callId,
-            'protocol' => $this->protocol->typeSerialize(),
+            'protocol' => $this->protocol->jsonSerialize(),
         ];
     }
 }

@@ -19,65 +19,65 @@ class MessageSendOptions extends TdObject
 
     public function __construct(
         /**
-         * Pass true to disable notification for the message.
-         */
-        protected bool                    $disableNotification,
-        /**
-         * Pass true if the message is sent from the background.
-         */
-        protected bool                    $fromBackground,
-        /**
-         * Pass true if the content of the message must be protected from forwarding and saving; for bots only.
-         */
-        protected bool                    $protectContent,
-        /**
          * Pass true to allow the message to ignore regular broadcast limits for a small fee; for bots only.
          */
         protected bool                    $allowPaidBroadcast,
         /**
-         * The number of Telegram Stars the user agreed to pay to send the messages.
+         * Pass true to disable notification for the message.
          */
-        protected int                     $paidMessageStarCount,
-        /**
-         * Pass true if the user explicitly chosen a sticker or a custom emoji from an installed sticker set; applicable only to sendMessage and sendMessageAlbum.
-         */
-        protected bool                    $updateOrderOfInstalledStickerSets,
+        protected bool                    $disableNotification,
         /**
          * Identifier of the effect to apply to the message; pass 0 if none; applicable only to sendMessage and sendMessageAlbum in private chats.
          */
         protected int                     $effectId,
         /**
-         * Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates.
+         * Pass true if the message is sent from the background.
          */
-        protected int                     $sendingId,
+        protected bool                    $fromBackground,
         /**
          * Pass true to get a fake message instead of actually sending them.
          */
         protected bool                    $onlyPreview,
         /**
-         * Information about the suggested post; pass null if none. For messages to channel direct messages chat only. Applicable only to sendMessage and addOffer.
+         * The number of Telegram Stars the user agreed to pay to send the messages.
          */
-        protected ?InputSuggestedPostInfo $suggestedPostInfo = null,
+        protected int                     $paidMessageStarCount,
+        /**
+         * Pass true if the content of the message must be protected from forwarding and saving; for bots only.
+         */
+        protected bool                    $protectContent,
+        /**
+         * Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates.
+         */
+        protected int                     $sendingId,
+        /**
+         * Pass true if the user explicitly chosen a sticker or a custom emoji from an installed sticker set; applicable only to sendMessage and sendMessageAlbum.
+         */
+        protected bool                    $updateOrderOfInstalledStickerSets,
         /**
          * Message scheduling state; pass null to send message immediately. Messages sent to a secret chat, to a chat with paid messages, to a channel direct messages chat, live location messages and self-destructing messages can't be scheduled.
          */
         protected ?MessageSchedulingState $schedulingState = null,
+        /**
+         * Information about the suggested post; pass null if none. For messages to channel direct messages chat only. Applicable only to sendMessage and addOffer.
+         */
+        protected ?InputSuggestedPostInfo $suggestedPostInfo = null,
     ) {}
 
     public static function fromArray(array $array): MessageSendOptions
     {
         return new static(
-            isset($array['suggested_post_info']) ? TdSchemaRegistry::fromArray($array['suggested_post_info']) : null,
-            $array['disable_notification'],
-            $array['from_background'],
-            $array['protect_content'],
-            $array['allow_paid_broadcast'],
-            $array['paid_message_star_count'],
-            $array['update_order_of_installed_sticker_sets'],
-            isset($array['scheduling_state']) ? TdSchemaRegistry::fromArray($array['scheduling_state']) : null,
-            $array['effect_id'],
-            $array['sending_id'],
-            $array['only_preview'],
+            allowPaidBroadcast               : $array['allow_paid_broadcast'],
+            disableNotification              : $array['disable_notification'],
+            effectId                         : $array['effect_id'],
+            fromBackground                   : $array['from_background'],
+            onlyPreview                      : $array['only_preview'],
+            paidMessageStarCount             : $array['paid_message_star_count'],
+            protectContent                   : $array['protect_content'],
+            schedulingState                  : (isset($array['scheduling_state']) ? TdSchemaRegistry::fromArray($array['scheduling_state']) : null),
+            sendingId                        : $array['sending_id'],
+            suggestedPostInfo                : (isset($array['suggested_post_info']) ? TdSchemaRegistry::fromArray($array['suggested_post_info']) : null),
+            updateOrderOfInstalledStickerSets: $array['update_order_of_installed_sticker_sets'],
         );
     }
 
@@ -217,17 +217,17 @@ class MessageSendOptions extends TdObject
     {
         return [
             '@type'                                  => static::TYPE_NAME,
-            'suggested_post_info'                    => $this->suggestedPostInfo ?? null,
-            'disable_notification'                   => $this->disableNotification,
-            'from_background'                        => $this->fromBackground,
-            'protect_content'                        => $this->protectContent,
             'allow_paid_broadcast'                   => $this->allowPaidBroadcast,
-            'paid_message_star_count'                => $this->paidMessageStarCount,
-            'update_order_of_installed_sticker_sets' => $this->updateOrderOfInstalledStickerSets,
-            'scheduling_state'                       => $this->schedulingState ?? null,
+            'disable_notification'                   => $this->disableNotification,
             'effect_id'                              => $this->effectId,
-            'sending_id'                             => $this->sendingId,
+            'from_background'                        => $this->fromBackground,
             'only_preview'                           => $this->onlyPreview,
+            'paid_message_star_count'                => $this->paidMessageStarCount,
+            'protect_content'                        => $this->protectContent,
+            'scheduling_state'                       => (null !== $this->schedulingState ? $this->schedulingState->jsonSerialize() : null),
+            'sending_id'                             => $this->sendingId,
+            'suggested_post_info'                    => (null !== $this->suggestedPostInfo ? $this->suggestedPostInfo->jsonSerialize() : null),
+            'update_order_of_installed_sticker_sets' => $this->updateOrderOfInstalledStickerSets,
         ];
     }
 }

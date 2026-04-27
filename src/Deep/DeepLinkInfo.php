@@ -19,20 +19,20 @@ class DeepLinkInfo extends TdObject
 
     public function __construct(
         /**
-         * Text to be shown to the user.
-         */
-        protected FormattedText $text,
-        /**
          * True, if the user must be asked to update the application.
          */
         protected bool          $needUpdateApplication,
+        /**
+         * Text to be shown to the user.
+         */
+        protected FormattedText $text,
     ) {}
 
     public static function fromArray(array $array): DeepLinkInfo
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['text']),
-            $array['need_update_application'],
+            needUpdateApplication: $array['need_update_application'],
+            text                 : TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -64,8 +64,8 @@ class DeepLinkInfo extends TdObject
     {
         return [
             '@type'                   => static::TYPE_NAME,
-            'text'                    => $this->text->typeSerialize(),
             'need_update_application' => $this->needUpdateApplication,
+            'text'                    => $this->text->jsonSerialize(),
         ];
     }
 }

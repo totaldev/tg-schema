@@ -28,7 +28,7 @@ class TextEntities extends TdObject
     public static function fromArray(array $array): TextEntities
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['entities']),
+            entities: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['entities']),
         );
     }
 
@@ -48,7 +48,7 @@ class TextEntities extends TdObject
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'entities' => array_map(static fn($x) => $x->typeSerialize(), $this->entities),
+            'entities' => array_map(static fn($x) => $x->jsonSerialize(), $this->entities),
         ];
     }
 }

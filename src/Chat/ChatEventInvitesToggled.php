@@ -25,7 +25,7 @@ class ChatEventInvitesToggled extends ChatEventAction
     public static function fromArray(array $array): ChatEventInvitesToggled
     {
         return new static(
-            $array['can_invite_users'],
+            canInviteUsers: $array['can_invite_users'],
         );
     }
 

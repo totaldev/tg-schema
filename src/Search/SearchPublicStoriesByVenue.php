@@ -18,30 +18,30 @@ class SearchPublicStoriesByVenue extends TdFunction
 
     public function __construct(
         /**
-         * Provider of the venue.
+         * The maximum number of stories to be returned; up to 100. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit.
          */
-        protected string $venueProvider,
-        /**
-         * Identifier of the venue in the provider database.
-         */
-        protected string $venueId,
+        protected int    $limit,
         /**
          * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
          */
         protected string $offset,
         /**
-         * The maximum number of stories to be returned; up to 100. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit.
+         * Identifier of the venue in the provider database.
          */
-        protected int    $limit,
+        protected string $venueId,
+        /**
+         * Provider of the venue.
+         */
+        protected string $venueProvider,
     ) {}
 
     public static function fromArray(array $array): SearchPublicStoriesByVenue
     {
         return new static(
-            $array['venue_provider'],
-            $array['venue_id'],
-            $array['offset'],
-            $array['limit'],
+            limit        : $array['limit'],
+            offset       : $array['offset'],
+            venueId      : $array['venue_id'],
+            venueProvider: $array['venue_provider'],
         );
     }
 
@@ -97,10 +97,10 @@ class SearchPublicStoriesByVenue extends TdFunction
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'venue_provider' => $this->venueProvider,
-            'venue_id'       => $this->venueId,
-            'offset'         => $this->offset,
             'limit'          => $this->limit,
+            'offset'         => $this->offset,
+            'venue_id'       => $this->venueId,
+            'venue_provider' => $this->venueProvider,
         ];
     }
 }

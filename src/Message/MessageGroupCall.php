@@ -20,27 +20,27 @@ class MessageGroupCall extends MessageContent
 
     public function __construct(
         /**
+         * Call duration, in seconds; for left calls only.
+         */
+        protected int   $duration,
+        /**
          * True, if the call is active, i.e. the called user joined the call.
          */
         protected bool  $isActive,
         /**
-         * True, if the called user missed or declined the call.
-         */
-        protected bool  $wasMissed,
-        /**
          * True, if the call is a video call.
          */
         protected bool  $isVideo,
-        /**
-         * Call duration, in seconds; for left calls only.
-         */
-        protected int   $duration,
         /**
          * Identifiers of some other call participants.
          *
          * @var MessageSender[]
          */
         protected array $otherParticipantIds,
+        /**
+         * True, if the called user missed or declined the call.
+         */
+        protected bool  $wasMissed,
     ) {
         parent::__construct();
     }
@@ -48,11 +48,11 @@ class MessageGroupCall extends MessageContent
     public static function fromArray(array $array): MessageGroupCall
     {
         return new static(
-            $array['is_active'],
-            $array['was_missed'],
-            $array['is_video'],
-            $array['duration'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['other_participant_ids']),
+            duration           : $array['duration'],
+            isActive           : $array['is_active'],
+            isVideo            : $array['is_video'],
+            otherParticipantIds: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['other_participant_ids']),
+            wasMissed          : $array['was_missed'],
         );
     }
 
@@ -120,11 +120,11 @@ class MessageGroupCall extends MessageContent
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'is_active'             => $this->isActive,
-            'was_missed'            => $this->wasMissed,
-            'is_video'              => $this->isVideo,
             'duration'              => $this->duration,
-            'other_participant_ids' => array_map(static fn($x) => $x->typeSerialize(), $this->otherParticipantIds),
+            'is_active'             => $this->isActive,
+            'is_video'              => $this->isVideo,
+            'other_participant_ids' => array_map(static fn($x) => $x->jsonSerialize(), $this->otherParticipantIds),
+            'was_missed'            => $this->wasMissed,
         ];
     }
 }

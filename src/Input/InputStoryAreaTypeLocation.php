@@ -33,8 +33,8 @@ class InputStoryAreaTypeLocation extends InputStoryAreaType
     public static function fromArray(array $array): InputStoryAreaTypeLocation
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['location']),
-            isset($array['address']) ? TdSchemaRegistry::fromArray($array['address']) : null,
+            address : (isset($array['address']) ? TdSchemaRegistry::fromArray($array['address']) : null),
+            location: TdSchemaRegistry::fromArray($array['location']),
         );
     }
 
@@ -66,8 +66,8 @@ class InputStoryAreaTypeLocation extends InputStoryAreaType
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'location' => $this->location->typeSerialize(),
-            'address'  => $this->address ?? null,
+            'address'  => (null !== $this->address ? $this->address->jsonSerialize() : null),
+            'location' => $this->location->jsonSerialize(),
         ];
     }
 }

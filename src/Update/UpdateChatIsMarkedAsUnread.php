@@ -29,8 +29,8 @@ class UpdateChatIsMarkedAsUnread extends Update
     public static function fromArray(array $array): UpdateChatIsMarkedAsUnread
     {
         return new static(
-            $array['chat_id'],
-            $array['is_marked_as_unread'],
+            chatId          : $array['chat_id'],
+            isMarkedAsUnread: $array['is_marked_as_unread'],
         );
     }
 

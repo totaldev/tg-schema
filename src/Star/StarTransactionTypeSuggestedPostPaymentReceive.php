@@ -25,7 +25,7 @@ class StarTransactionTypeSuggestedPostPaymentReceive extends StarTransactionType
     public static function fromArray(array $array): StarTransactionTypeSuggestedPostPaymentReceive
     {
         return new static(
-            $array['user_id'],
+            userId: $array['user_id'],
         );
     }
 

@@ -25,7 +25,7 @@ class InlineKeyboardButtonTypeUrl extends InlineKeyboardButtonType
     public static function fromArray(array $array): InlineKeyboardButtonTypeUrl
     {
         return new static(
-            $array['url'],
+            url: $array['url'],
         );
     }
 

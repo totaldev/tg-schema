@@ -20,10 +20,6 @@ class IdentityDocument extends TdObject
 
     public function __construct(
         /**
-         * Document number; 1-24 characters.
-         */
-        protected string     $number,
-        /**
          * Document expiration date; may be null if not applicable.
          */
         protected ?Date      $expirationDate,
@@ -31,6 +27,10 @@ class IdentityDocument extends TdObject
          * Front side of the document.
          */
         protected DatedFile  $frontSide,
+        /**
+         * Document number; 1-24 characters.
+         */
+        protected string     $number,
         /**
          * Reverse side of the document; only for driver license and identity card; may be null.
          */
@@ -50,12 +50,12 @@ class IdentityDocument extends TdObject
     public static function fromArray(array $array): IdentityDocument
     {
         return new static(
-            $array['number'],
-            isset($array['expiration_date']) ? TdSchemaRegistry::fromArray($array['expiration_date']) : null,
-            TdSchemaRegistry::fromArray($array['front_side']),
-            isset($array['reverse_side']) ? TdSchemaRegistry::fromArray($array['reverse_side']) : null,
-            isset($array['selfie']) ? TdSchemaRegistry::fromArray($array['selfie']) : null,
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['translation']),
+            expirationDate: (isset($array['expiration_date']) ? TdSchemaRegistry::fromArray($array['expiration_date']) : null),
+            frontSide     : TdSchemaRegistry::fromArray($array['front_side']),
+            number        : $array['number'],
+            reverseSide   : (isset($array['reverse_side']) ? TdSchemaRegistry::fromArray($array['reverse_side']) : null),
+            selfie        : (isset($array['selfie']) ? TdSchemaRegistry::fromArray($array['selfie']) : null),
+            translation   : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['translation']),
         );
     }
 
@@ -135,12 +135,12 @@ class IdentityDocument extends TdObject
     {
         return [
             '@type'           => static::TYPE_NAME,
+            'expiration_date' => (null !== $this->expirationDate ? $this->expirationDate->jsonSerialize() : null),
+            'front_side'      => $this->frontSide->jsonSerialize(),
             'number'          => $this->number,
-            'expiration_date' => $this->expirationDate ?? null,
-            'front_side'      => $this->frontSide->typeSerialize(),
-            'reverse_side'    => $this->reverseSide ?? null,
-            'selfie'          => $this->selfie ?? null,
-            'translation'     => array_map(static fn($x) => $x->typeSerialize(), $this->translation),
+            'reverse_side'    => (null !== $this->reverseSide ? $this->reverseSide->jsonSerialize() : null),
+            'selfie'          => (null !== $this->selfie ? $this->selfie->jsonSerialize() : null),
+            'translation'     => array_map(static fn($x) => $x->jsonSerialize(), $this->translation),
         ];
     }
 }

@@ -28,7 +28,7 @@ class TestVectorStringObject extends TdObject
     public static function fromArray(array $array): TestVectorStringObject
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['value']),
+            value: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['value']),
         );
     }
 
@@ -48,7 +48,7 @@ class TestVectorStringObject extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            'value' => array_map(static fn($x) => $x->typeSerialize(), $this->value),
+            'value' => array_map(static fn($x) => $x->jsonSerialize(), $this->value),
         ];
     }
 }

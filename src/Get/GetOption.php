@@ -26,7 +26,7 @@ class GetOption extends TdFunction
     public static function fromArray(array $array): GetOption
     {
         return new static(
-            $array['name'],
+            name: $array['name'],
         );
     }
 

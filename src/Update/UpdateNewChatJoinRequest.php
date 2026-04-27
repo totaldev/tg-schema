@@ -23,6 +23,10 @@ class UpdateNewChatJoinRequest extends Update
          */
         protected int             $chatId,
         /**
+         * The invite link, which was used to send join request; may be null.
+         */
+        protected ?ChatInviteLink $inviteLink,
+        /**
          * Join request.
          */
         protected ChatJoinRequest $request,
@@ -30,10 +34,6 @@ class UpdateNewChatJoinRequest extends Update
          * Chat identifier of the private chat with the user.
          */
         protected int             $userChatId,
-        /**
-         * The invite link, which was used to send join request; may be null.
-         */
-        protected ?ChatInviteLink $inviteLink,
     ) {
         parent::__construct();
     }
@@ -41,10 +41,10 @@ class UpdateNewChatJoinRequest extends Update
     public static function fromArray(array $array): UpdateNewChatJoinRequest
     {
         return new static(
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['request']),
-            $array['user_chat_id'],
-            isset($array['invite_link']) ? TdSchemaRegistry::fromArray($array['invite_link']) : null,
+            chatId    : $array['chat_id'],
+            inviteLink: (isset($array['invite_link']) ? TdSchemaRegistry::fromArray($array['invite_link']) : null),
+            request   : TdSchemaRegistry::fromArray($array['request']),
+            userChatId: $array['user_chat_id'],
         );
     }
 
@@ -101,9 +101,9 @@ class UpdateNewChatJoinRequest extends Update
         return [
             '@type'        => static::TYPE_NAME,
             'chat_id'      => $this->chatId,
-            'request'      => $this->request->typeSerialize(),
+            'invite_link'  => (null !== $this->inviteLink ? $this->inviteLink->jsonSerialize() : null),
+            'request'      => $this->request->jsonSerialize(),
             'user_chat_id' => $this->userChatId,
-            'invite_link'  => $this->inviteLink ?? null,
         ];
     }
 }

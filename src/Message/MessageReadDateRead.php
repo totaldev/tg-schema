@@ -25,7 +25,7 @@ class MessageReadDateRead extends MessageReadDate
     public static function fromArray(array $array): MessageReadDateRead
     {
         return new static(
-            $array['read_date'],
+            readDate: $array['read_date'],
         );
     }
 

@@ -18,30 +18,30 @@ class ChatStatisticsInteractionInfo extends TdObject
 
     public function __construct(
         /**
-         * Type of the object.
-         */
-        protected ChatStatisticsObjectType $objectType,
-        /**
-         * Number of times the object was viewed.
-         */
-        protected int                      $viewCount,
-        /**
          * Number of times the object was forwarded.
          */
         protected int                      $forwardCount,
         /**
+         * Type of the object.
+         */
+        protected ChatStatisticsObjectType $objectType,
+        /**
          * Number of times reactions were added to the object.
          */
         protected int                      $reactionCount,
+        /**
+         * Number of times the object was viewed.
+         */
+        protected int                      $viewCount,
     ) {}
 
     public static function fromArray(array $array): ChatStatisticsInteractionInfo
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['object_type']),
-            $array['view_count'],
-            $array['forward_count'],
-            $array['reaction_count'],
+            forwardCount : $array['forward_count'],
+            objectType   : TdSchemaRegistry::fromArray($array['object_type']),
+            reactionCount: $array['reaction_count'],
+            viewCount    : $array['view_count'],
         );
     }
 
@@ -97,10 +97,10 @@ class ChatStatisticsInteractionInfo extends TdObject
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'object_type'    => $this->objectType->typeSerialize(),
-            'view_count'     => $this->viewCount,
             'forward_count'  => $this->forwardCount,
+            'object_type'    => $this->objectType->jsonSerialize(),
             'reaction_count' => $this->reactionCount,
+            'view_count'     => $this->viewCount,
         ];
     }
 }

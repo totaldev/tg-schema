@@ -25,7 +25,7 @@ class FileDownloadedPrefixSize extends TdObject
     public static function fromArray(array $array): FileDownloadedPrefixSize
     {
         return new static(
-            $array['size'],
+            size: $array['size'],
         );
     }
 

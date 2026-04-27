@@ -25,7 +25,7 @@ class AcceptTermsOfService extends TdFunction
     public static function fromArray(array $array): AcceptTermsOfService
     {
         return new static(
-            $array['terms_of_service_id'],
+            termsOfServiceId: $array['terms_of_service_id'],
         );
     }
 

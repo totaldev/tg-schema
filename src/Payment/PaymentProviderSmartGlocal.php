@@ -29,8 +29,8 @@ class PaymentProviderSmartGlocal extends PaymentProvider
     public static function fromArray(array $array): PaymentProviderSmartGlocal
     {
         return new static(
-            $array['public_token'],
-            $array['tokenize_url'],
+            publicToken: $array['public_token'],
+            tokenizeUrl: $array['tokenize_url'],
         );
     }
 

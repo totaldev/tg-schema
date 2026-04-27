@@ -21,17 +21,13 @@ class EditStory extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the chat that posted the story.
-         */
-        protected int                $storyPosterChatId,
-        /**
          * Identifier of the story to edit.
          */
         protected int                $storyId,
         /**
-         * New content of the story; pass null to keep the current content.
+         * Identifier of the chat that posted the story.
          */
-        protected ?InputStoryContent $content = null,
+        protected int                $storyPosterChatId,
         /**
          * New clickable rectangle areas to be shown on the story media; pass null to keep the current areas. Areas can't be edited if story content isn't changed.
          */
@@ -40,16 +36,20 @@ class EditStory extends TdFunction
          * New story caption; pass null to keep the current caption.
          */
         protected ?FormattedText     $caption = null,
+        /**
+         * New content of the story; pass null to keep the current content.
+         */
+        protected ?InputStoryContent $content = null,
     ) {}
 
     public static function fromArray(array $array): EditStory
     {
         return new static(
-            $array['story_poster_chat_id'],
-            $array['story_id'],
-            isset($array['content']) ? TdSchemaRegistry::fromArray($array['content']) : null,
-            isset($array['areas']) ? TdSchemaRegistry::fromArray($array['areas']) : null,
-            isset($array['caption']) ? TdSchemaRegistry::fromArray($array['caption']) : null,
+            areas            : (isset($array['areas']) ? TdSchemaRegistry::fromArray($array['areas']) : null),
+            caption          : (isset($array['caption']) ? TdSchemaRegistry::fromArray($array['caption']) : null),
+            content          : (isset($array['content']) ? TdSchemaRegistry::fromArray($array['content']) : null),
+            storyId          : $array['story_id'],
+            storyPosterChatId: $array['story_poster_chat_id'],
         );
     }
 
@@ -117,11 +117,11 @@ class EditStory extends TdFunction
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'story_poster_chat_id' => $this->storyPosterChatId,
+            'areas'                => (null !== $this->areas ? $this->areas->jsonSerialize() : null),
+            'caption'              => (null !== $this->caption ? $this->caption->jsonSerialize() : null),
+            'content'              => (null !== $this->content ? $this->content->jsonSerialize() : null),
             'story_id'             => $this->storyId,
-            'content'              => $this->content ?? null,
-            'areas'                => $this->areas ?? null,
-            'caption'              => $this->caption ?? null,
+            'story_poster_chat_id' => $this->storyPosterChatId,
         ];
     }
 }

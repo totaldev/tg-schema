@@ -27,7 +27,7 @@ class SetBusinessConnectedBot extends TdFunction
     public static function fromArray(array $array): SetBusinessConnectedBot
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['bot']),
+            bot: TdSchemaRegistry::fromArray($array['bot']),
         );
     }
 
@@ -47,7 +47,7 @@ class SetBusinessConnectedBot extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'bot'   => $this->bot->typeSerialize(),
+            'bot'   => $this->bot->jsonSerialize(),
         ];
     }
 }

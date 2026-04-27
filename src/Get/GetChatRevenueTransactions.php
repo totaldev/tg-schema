@@ -22,21 +22,21 @@ class GetChatRevenueTransactions extends TdFunction
          */
         protected int    $chatId,
         /**
-         * Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results.
-         */
-        protected string $offset,
-        /**
          * The maximum number of transactions to be returned; up to 100.
          */
         protected int    $limit,
+        /**
+         * Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results.
+         */
+        protected string $offset,
     ) {}
 
     public static function fromArray(array $array): GetChatRevenueTransactions
     {
         return new static(
-            $array['chat_id'],
-            $array['offset'],
-            $array['limit'],
+            chatId: $array['chat_id'],
+            limit : $array['limit'],
+            offset: $array['offset'],
         );
     }
 
@@ -81,8 +81,8 @@ class GetChatRevenueTransactions extends TdFunction
         return [
             '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
-            'offset'  => $this->offset,
             'limit'   => $this->limit,
+            'offset'  => $this->offset,
         ];
     }
 }

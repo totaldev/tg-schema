@@ -27,7 +27,7 @@ class InputPassportElementDriverLicense extends InputPassportElement
     public static function fromArray(array $array): InputPassportElementDriverLicense
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['driver_license']),
+            driverLicense: TdSchemaRegistry::fromArray($array['driver_license']),
         );
     }
 
@@ -47,7 +47,7 @@ class InputPassportElementDriverLicense extends InputPassportElement
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'driver_license' => $this->driverLicense->typeSerialize(),
+            'driver_license' => $this->driverLicense->jsonSerialize(),
         ];
     }
 }

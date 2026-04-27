@@ -30,8 +30,8 @@ class SetSupergroupUnrestrictBoostCount extends TdFunction
     public static function fromArray(array $array): SetSupergroupUnrestrictBoostCount
     {
         return new static(
-            $array['supergroup_id'],
-            $array['unrestrict_boost_count'],
+            supergroupId        : $array['supergroup_id'],
+            unrestrictBoostCount: $array['unrestrict_boost_count'],
         );
     }
 

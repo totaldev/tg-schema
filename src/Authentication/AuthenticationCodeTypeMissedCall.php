@@ -16,13 +16,13 @@ class AuthenticationCodeTypeMissedCall extends AuthenticationCodeType
 
     public function __construct(
         /**
-         * Prefix of the phone number from which the call will be made.
-         */
-        protected string $phoneNumberPrefix,
-        /**
          * Number of digits in the code, excluding the prefix.
          */
         protected int    $length,
+        /**
+         * Prefix of the phone number from which the call will be made.
+         */
+        protected string $phoneNumberPrefix,
     ) {
         parent::__construct();
     }
@@ -30,8 +30,8 @@ class AuthenticationCodeTypeMissedCall extends AuthenticationCodeType
     public static function fromArray(array $array): AuthenticationCodeTypeMissedCall
     {
         return new static(
-            $array['phone_number_prefix'],
-            $array['length'],
+            length           : $array['length'],
+            phoneNumberPrefix: $array['phone_number_prefix'],
         );
     }
 
@@ -63,8 +63,8 @@ class AuthenticationCodeTypeMissedCall extends AuthenticationCodeType
     {
         return [
             '@type'               => static::TYPE_NAME,
-            'phone_number_prefix' => $this->phoneNumberPrefix,
             'length'              => $this->length,
+            'phone_number_prefix' => $this->phoneNumberPrefix,
         ];
     }
 }

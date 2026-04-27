@@ -19,10 +19,6 @@ class UserSupportInfo extends TdObject
 
     public function __construct(
         /**
-         * Information message.
-         */
-        protected FormattedText $message,
-        /**
          * Information author.
          */
         protected string        $author,
@@ -30,14 +26,18 @@ class UserSupportInfo extends TdObject
          * Information change date.
          */
         protected int           $date,
+        /**
+         * Information message.
+         */
+        protected FormattedText $message,
     ) {}
 
     public static function fromArray(array $array): UserSupportInfo
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['message']),
-            $array['author'],
-            $array['date'],
+            author : $array['author'],
+            date   : $array['date'],
+            message: TdSchemaRegistry::fromArray($array['message']),
         );
     }
 
@@ -81,9 +81,9 @@ class UserSupportInfo extends TdObject
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'message' => $this->message->typeSerialize(),
             'author'  => $this->author,
             'date'    => $this->date,
+            'message' => $this->message->jsonSerialize(),
         ];
     }
 }

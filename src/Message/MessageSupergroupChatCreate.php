@@ -25,7 +25,7 @@ class MessageSupergroupChatCreate extends MessageContent
     public static function fromArray(array $array): MessageSupergroupChatCreate
     {
         return new static(
-            $array['title'],
+            title: $array['title'],
         );
     }
 

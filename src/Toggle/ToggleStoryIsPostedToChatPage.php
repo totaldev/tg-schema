@@ -17,25 +17,25 @@ class ToggleStoryIsPostedToChatPage extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the chat that posted the story.
+         * Pass true to make the story accessible after expiration; pass false to make it private.
          */
-        protected int  $storyPosterChatId,
+        protected bool $isPostedToChatPage,
         /**
          * Identifier of the story.
          */
         protected int  $storyId,
         /**
-         * Pass true to make the story accessible after expiration; pass false to make it private.
+         * Identifier of the chat that posted the story.
          */
-        protected bool $isPostedToChatPage,
+        protected int  $storyPosterChatId,
     ) {}
 
     public static function fromArray(array $array): ToggleStoryIsPostedToChatPage
     {
         return new static(
-            $array['story_poster_chat_id'],
-            $array['story_id'],
-            $array['is_posted_to_chat_page'],
+            isPostedToChatPage: $array['is_posted_to_chat_page'],
+            storyId           : $array['story_id'],
+            storyPosterChatId : $array['story_poster_chat_id'],
         );
     }
 
@@ -79,9 +79,9 @@ class ToggleStoryIsPostedToChatPage extends TdFunction
     {
         return [
             '@type'                  => static::TYPE_NAME,
-            'story_poster_chat_id'   => $this->storyPosterChatId,
-            'story_id'               => $this->storyId,
             'is_posted_to_chat_page' => $this->isPostedToChatPage,
+            'story_id'               => $this->storyId,
+            'story_poster_chat_id'   => $this->storyPosterChatId,
         ];
     }
 }

@@ -21,21 +21,21 @@ class GetDirectMessagesChatTopicMessageByDate extends TdFunction
          */
         protected int $chatId,
         /**
-         * Identifier of the topic which messages will be fetched.
-         */
-        protected int $topicId,
-        /**
          * Point in time (Unix timestamp) relative to which to search for messages.
          */
         protected int $date,
+        /**
+         * Identifier of the topic which messages will be fetched.
+         */
+        protected int $topicId,
     ) {}
 
     public static function fromArray(array $array): GetDirectMessagesChatTopicMessageByDate
     {
         return new static(
-            $array['chat_id'],
-            $array['topic_id'],
-            $array['date'],
+            chatId : $array['chat_id'],
+            date   : $array['date'],
+            topicId: $array['topic_id'],
         );
     }
 
@@ -80,8 +80,8 @@ class GetDirectMessagesChatTopicMessageByDate extends TdFunction
         return [
             '@type'    => static::TYPE_NAME,
             'chat_id'  => $this->chatId,
-            'topic_id' => $this->topicId,
             'date'     => $this->date,
+            'topic_id' => $this->topicId,
         ];
     }
 }

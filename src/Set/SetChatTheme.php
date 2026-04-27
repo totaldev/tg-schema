@@ -31,8 +31,8 @@ class SetChatTheme extends TdFunction
     public static function fromArray(array $array): SetChatTheme
     {
         return new static(
-            $array['chat_id'],
-            isset($array['theme']) ? TdSchemaRegistry::fromArray($array['theme']) : null,
+            chatId: $array['chat_id'],
+            theme : (isset($array['theme']) ? TdSchemaRegistry::fromArray($array['theme']) : null),
         );
     }
 
@@ -65,7 +65,7 @@ class SetChatTheme extends TdFunction
         return [
             '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
-            'theme'   => $this->theme ?? null,
+            'theme'   => (null !== $this->theme ? $this->theme->jsonSerialize() : null),
         ];
     }
 }

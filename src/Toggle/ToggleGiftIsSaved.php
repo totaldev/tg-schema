@@ -17,20 +17,20 @@ class ToggleGiftIsSaved extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the gift.
-         */
-        protected string $receivedGiftId,
-        /**
          * Pass true to display the gift on the user's or the channel's profile page; pass false to remove it from the profile page.
          */
         protected bool   $isSaved,
+        /**
+         * Identifier of the gift.
+         */
+        protected string $receivedGiftId,
     ) {}
 
     public static function fromArray(array $array): ToggleGiftIsSaved
     {
         return new static(
-            $array['received_gift_id'],
-            $array['is_saved'],
+            isSaved       : $array['is_saved'],
+            receivedGiftId: $array['received_gift_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class ToggleGiftIsSaved extends TdFunction
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'received_gift_id' => $this->receivedGiftId,
             'is_saved'         => $this->isSaved,
+            'received_gift_id' => $this->receivedGiftId,
         ];
     }
 }

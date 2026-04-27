@@ -27,7 +27,7 @@ class InputPassportElementInternalPassport extends InputPassportElement
     public static function fromArray(array $array): InputPassportElementInternalPassport
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['internal_passport']),
+            internalPassport: TdSchemaRegistry::fromArray($array['internal_passport']),
         );
     }
 
@@ -47,7 +47,7 @@ class InputPassportElementInternalPassport extends InputPassportElement
     {
         return [
             '@type'             => static::TYPE_NAME,
-            'internal_passport' => $this->internalPassport->typeSerialize(),
+            'internal_passport' => $this->internalPassport->jsonSerialize(),
         ];
     }
 }

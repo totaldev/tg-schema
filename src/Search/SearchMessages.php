@@ -20,50 +20,50 @@ class SearchMessages extends TdFunction
 
     public function __construct(
         /**
-         * Query to search for.
-         */
-        protected string                        $query,
-        /**
-         * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
-         */
-        protected string                        $offset,
-        /**
          * The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit.
          */
         protected int                           $limit,
-        /**
-         * If not 0, the minimum date of the messages to return.
-         */
-        protected int                           $minDate,
         /**
          * If not 0, the maximum date of the messages to return.
          */
         protected int                           $maxDate,
         /**
+         * If not 0, the minimum date of the messages to return.
+         */
+        protected int                           $minDate,
+        /**
+         * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
+         */
+        protected string                        $offset,
+        /**
+         * Query to search for.
+         */
+        protected string                        $query,
+        /**
          * Chat list in which to search messages; pass null to search in all chats regardless of their chat list. Only Main and Archive chat lists are supported.
          */
         protected ?ChatList                     $chatList = null,
         /**
-         * Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterFailedToSend, and searchMessagesFilterPinned are unsupported in this function.
-         */
-        protected ?SearchMessagesFilter         $filter = null,
-        /**
          * Additional filter for type of the chat of the searched messages; pass null to search for messages in all chats.
          */
         protected ?SearchMessagesChatTypeFilter $chatTypeFilter = null,
+        /**
+         * Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterFailedToSend, and searchMessagesFilterPinned are unsupported in this function.
+         */
+        protected ?SearchMessagesFilter         $filter = null,
     ) {}
 
     public static function fromArray(array $array): SearchMessages
     {
         return new static(
-            isset($array['chat_list']) ? TdSchemaRegistry::fromArray($array['chat_list']) : null,
-            $array['query'],
-            $array['offset'],
-            $array['limit'],
-            isset($array['filter']) ? TdSchemaRegistry::fromArray($array['filter']) : null,
-            isset($array['chat_type_filter']) ? TdSchemaRegistry::fromArray($array['chat_type_filter']) : null,
-            $array['min_date'],
-            $array['max_date'],
+            chatList      : (isset($array['chat_list']) ? TdSchemaRegistry::fromArray($array['chat_list']) : null),
+            chatTypeFilter: (isset($array['chat_type_filter']) ? TdSchemaRegistry::fromArray($array['chat_type_filter']) : null),
+            filter        : (isset($array['filter']) ? TdSchemaRegistry::fromArray($array['filter']) : null),
+            limit         : $array['limit'],
+            maxDate       : $array['max_date'],
+            minDate       : $array['min_date'],
+            offset        : $array['offset'],
+            query         : $array['query'],
         );
     }
 
@@ -167,14 +167,14 @@ class SearchMessages extends TdFunction
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'chat_list'        => $this->chatList ?? null,
-            'query'            => $this->query,
-            'offset'           => $this->offset,
+            'chat_list'        => (null !== $this->chatList ? $this->chatList->jsonSerialize() : null),
+            'chat_type_filter' => (null !== $this->chatTypeFilter ? $this->chatTypeFilter->jsonSerialize() : null),
+            'filter'           => (null !== $this->filter ? $this->filter->jsonSerialize() : null),
             'limit'            => $this->limit,
-            'filter'           => $this->filter ?? null,
-            'chat_type_filter' => $this->chatTypeFilter ?? null,
-            'min_date'         => $this->minDate,
             'max_date'         => $this->maxDate,
+            'min_date'         => $this->minDate,
+            'offset'           => $this->offset,
+            'query'            => $this->query,
         ];
     }
 }

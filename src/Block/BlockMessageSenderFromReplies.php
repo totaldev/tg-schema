@@ -17,17 +17,17 @@ class BlockMessageSenderFromReplies extends TdFunction
 
     public function __construct(
         /**
-         * The identifier of an incoming message in the Replies chat.
+         * Pass true to delete all messages from the same sender.
          */
-        protected int  $messageId,
+        protected bool $deleteAllMessages,
         /**
          * Pass true to delete the message.
          */
         protected bool $deleteMessage,
         /**
-         * Pass true to delete all messages from the same sender.
+         * The identifier of an incoming message in the Replies chat.
          */
-        protected bool $deleteAllMessages,
+        protected int  $messageId,
         /**
          * Pass true to report the sender to the Telegram moderators.
          */
@@ -37,10 +37,10 @@ class BlockMessageSenderFromReplies extends TdFunction
     public static function fromArray(array $array): BlockMessageSenderFromReplies
     {
         return new static(
-            $array['message_id'],
-            $array['delete_message'],
-            $array['delete_all_messages'],
-            $array['report_spam'],
+            deleteAllMessages: $array['delete_all_messages'],
+            deleteMessage    : $array['delete_message'],
+            messageId        : $array['message_id'],
+            reportSpam       : $array['report_spam'],
         );
     }
 
@@ -96,9 +96,9 @@ class BlockMessageSenderFromReplies extends TdFunction
     {
         return [
             '@type'               => static::TYPE_NAME,
-            'message_id'          => $this->messageId,
-            'delete_message'      => $this->deleteMessage,
             'delete_all_messages' => $this->deleteAllMessages,
+            'delete_message'      => $this->deleteMessage,
+            'message_id'          => $this->messageId,
             'report_spam'         => $this->reportSpam,
         ];
     }

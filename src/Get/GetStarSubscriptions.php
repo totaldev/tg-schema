@@ -17,20 +17,20 @@ class GetStarSubscriptions extends TdFunction
 
     public function __construct(
         /**
-         * Pass true to receive only expiring subscriptions for which there are no enough Telegram Stars to extend.
-         */
-        protected bool   $onlyExpiring,
-        /**
          * Offset of the first subscription to return as received from the previous request; use empty string to get the first chunk of results.
          */
         protected string $offset,
+        /**
+         * Pass true to receive only expiring subscriptions for which there are no enough Telegram Stars to extend.
+         */
+        protected bool   $onlyExpiring,
     ) {}
 
     public static function fromArray(array $array): GetStarSubscriptions
     {
         return new static(
-            $array['only_expiring'],
-            $array['offset'],
+            offset      : $array['offset'],
+            onlyExpiring: $array['only_expiring'],
         );
     }
 
@@ -62,8 +62,8 @@ class GetStarSubscriptions extends TdFunction
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'only_expiring' => $this->onlyExpiring,
             'offset'        => $this->offset,
+            'only_expiring' => $this->onlyExpiring,
         ];
     }
 }

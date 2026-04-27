@@ -25,7 +25,7 @@ class TestCallBytes extends TdFunction
     public static function fromArray(array $array): TestCallBytes
     {
         return new static(
-            $array['x'],
+            x: $array['x'],
         );
     }
 

@@ -17,35 +17,35 @@ class SetInlineGameScore extends TdFunction
 
     public function __construct(
         /**
-         * Inline message identifier.
-         */
-        protected string $inlineMessageId,
-        /**
          * Pass true to edit the game message to include the current scoreboard.
          */
         protected bool   $editMessage,
         /**
-         * User identifier.
+         * Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table.
          */
-        protected int    $userId,
+        protected bool   $force,
+        /**
+         * Inline message identifier.
+         */
+        protected string $inlineMessageId,
         /**
          * The new score.
          */
         protected int    $score,
         /**
-         * Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table.
+         * User identifier.
          */
-        protected bool   $force,
+        protected int    $userId,
     ) {}
 
     public static function fromArray(array $array): SetInlineGameScore
     {
         return new static(
-            $array['inline_message_id'],
-            $array['edit_message'],
-            $array['user_id'],
-            $array['score'],
-            $array['force'],
+            editMessage    : $array['edit_message'],
+            force          : $array['force'],
+            inlineMessageId: $array['inline_message_id'],
+            score          : $array['score'],
+            userId         : $array['user_id'],
         );
     }
 
@@ -113,11 +113,11 @@ class SetInlineGameScore extends TdFunction
     {
         return [
             '@type'             => static::TYPE_NAME,
-            'inline_message_id' => $this->inlineMessageId,
             'edit_message'      => $this->editMessage,
-            'user_id'           => $this->userId,
-            'score'             => $this->score,
             'force'             => $this->force,
+            'inline_message_id' => $this->inlineMessageId,
+            'score'             => $this->score,
+            'user_id'           => $this->userId,
         ];
     }
 }

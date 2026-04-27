@@ -25,7 +25,7 @@ class MessagePinMessage extends MessageContent
     public static function fromArray(array $array): MessagePinMessage
     {
         return new static(
-            $array['message_id'],
+            messageId: $array['message_id'],
         );
     }
 

@@ -21,33 +21,29 @@ class DirectMessagesChatTopic extends TdObject
 
     public function __construct(
         /**
+         * True, if the other party can send unpaid messages even if the chat has paid messages enabled.
+         */
+        protected bool          $canSendUnpaidMessages,
+        /**
          * Identifier of the chat to which the topic belongs.
          */
         protected int           $chatId,
+        /**
+         * A draft of a message in the topic; may be null if none.
+         */
+        protected ?DraftMessage $draftMessage,
         /**
          * Unique topic identifier.
          */
         protected int           $id,
         /**
-         * Identifier of the user or chat that sends the messages to the topic.
-         */
-        protected MessageSender $senderId,
-        /**
-         * A parameter used to determine order of the topic in the topic list. Topics must be sorted by the order in descending order.
-         */
-        protected int           $order,
-        /**
-         * True, if the other party can send unpaid messages even if the chat has paid messages enabled.
-         */
-        protected bool          $canSendUnpaidMessages,
-        /**
          * True, if the topic is marked as unread.
          */
         protected bool          $isMarkedAsUnread,
         /**
-         * Number of unread messages in the chat.
+         * Last message in the topic; may be null if none or unknown.
          */
-        protected int           $unreadCount,
+        protected ?Message      $lastMessage,
         /**
          * Identifier of the last read incoming message.
          */
@@ -57,34 +53,38 @@ class DirectMessagesChatTopic extends TdObject
          */
         protected int           $lastReadOutboxMessageId,
         /**
+         * A parameter used to determine order of the topic in the topic list. Topics must be sorted by the order in descending order.
+         */
+        protected int           $order,
+        /**
+         * Identifier of the user or chat that sends the messages to the topic.
+         */
+        protected MessageSender $senderId,
+        /**
+         * Number of unread messages in the chat.
+         */
+        protected int           $unreadCount,
+        /**
          * Number of messages with unread reactions in the chat.
          */
         protected int           $unreadReactionCount,
-        /**
-         * Last message in the topic; may be null if none or unknown.
-         */
-        protected ?Message      $lastMessage,
-        /**
-         * A draft of a message in the topic; may be null if none.
-         */
-        protected ?DraftMessage $draftMessage,
     ) {}
 
     public static function fromArray(array $array): DirectMessagesChatTopic
     {
         return new static(
-            $array['chat_id'],
-            $array['id'],
-            TdSchemaRegistry::fromArray($array['sender_id']),
-            $array['order'],
-            $array['can_send_unpaid_messages'],
-            $array['is_marked_as_unread'],
-            $array['unread_count'],
-            $array['last_read_inbox_message_id'],
-            $array['last_read_outbox_message_id'],
-            $array['unread_reaction_count'],
-            isset($array['last_message']) ? TdSchemaRegistry::fromArray($array['last_message']) : null,
-            isset($array['draft_message']) ? TdSchemaRegistry::fromArray($array['draft_message']) : null,
+            canSendUnpaidMessages  : $array['can_send_unpaid_messages'],
+            chatId                 : $array['chat_id'],
+            draftMessage           : (isset($array['draft_message']) ? TdSchemaRegistry::fromArray($array['draft_message']) : null),
+            id                     : $array['id'],
+            isMarkedAsUnread       : $array['is_marked_as_unread'],
+            lastMessage            : (isset($array['last_message']) ? TdSchemaRegistry::fromArray($array['last_message']) : null),
+            lastReadInboxMessageId : $array['last_read_inbox_message_id'],
+            lastReadOutboxMessageId: $array['last_read_outbox_message_id'],
+            order                  : $array['order'],
+            senderId               : TdSchemaRegistry::fromArray($array['sender_id']),
+            unreadCount            : $array['unread_count'],
+            unreadReactionCount    : $array['unread_reaction_count'],
         );
     }
 
@@ -236,18 +236,18 @@ class DirectMessagesChatTopic extends TdObject
     {
         return [
             '@type'                       => static::TYPE_NAME,
-            'chat_id'                     => $this->chatId,
-            'id'                          => $this->id,
-            'sender_id'                   => $this->senderId->typeSerialize(),
-            'order'                       => $this->order,
             'can_send_unpaid_messages'    => $this->canSendUnpaidMessages,
+            'chat_id'                     => $this->chatId,
+            'draft_message'               => (null !== $this->draftMessage ? $this->draftMessage->jsonSerialize() : null),
+            'id'                          => $this->id,
             'is_marked_as_unread'         => $this->isMarkedAsUnread,
-            'unread_count'                => $this->unreadCount,
+            'last_message'                => (null !== $this->lastMessage ? $this->lastMessage->jsonSerialize() : null),
             'last_read_inbox_message_id'  => $this->lastReadInboxMessageId,
             'last_read_outbox_message_id' => $this->lastReadOutboxMessageId,
+            'order'                       => $this->order,
+            'sender_id'                   => $this->senderId->jsonSerialize(),
+            'unread_count'                => $this->unreadCount,
             'unread_reaction_count'       => $this->unreadReactionCount,
-            'last_message'                => $this->lastMessage ?? null,
-            'draft_message'               => $this->draftMessage ?? null,
         ];
     }
 }

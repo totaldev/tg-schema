@@ -15,13 +15,13 @@ class CallbackQueryPayloadDataWithPassword extends CallbackQueryPayload
 
     public function __construct(
         /**
-         * The 2-step verification password for the current user.
-         */
-        protected string $password,
-        /**
          * Data that was attached to the callback button.
          */
         protected string $data,
+        /**
+         * The 2-step verification password for the current user.
+         */
+        protected string $password,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class CallbackQueryPayloadDataWithPassword extends CallbackQueryPayload
     public static function fromArray(array $array): CallbackQueryPayloadDataWithPassword
     {
         return new static(
-            $array['password'],
-            $array['data'],
+            data    : $array['data'],
+            password: $array['password'],
         );
     }
 
@@ -62,8 +62,8 @@ class CallbackQueryPayloadDataWithPassword extends CallbackQueryPayload
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'password' => $this->password,
             'data'     => $this->data,
+            'password' => $this->password,
         ];
     }
 }

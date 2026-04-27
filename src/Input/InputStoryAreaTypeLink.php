@@ -25,7 +25,7 @@ class InputStoryAreaTypeLink extends InputStoryAreaType
     public static function fromArray(array $array): InputStoryAreaTypeLink
     {
         return new static(
-            $array['url'],
+            url: $array['url'],
         );
     }
 

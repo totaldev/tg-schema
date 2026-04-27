@@ -20,20 +20,20 @@ class AnswerWebAppQuery extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the Web App query.
-         */
-        protected string                 $webAppQueryId,
-        /**
          * The result of the query.
          */
         protected InputInlineQueryResult $result,
+        /**
+         * Identifier of the Web App query.
+         */
+        protected string                 $webAppQueryId,
     ) {}
 
     public static function fromArray(array $array): AnswerWebAppQuery
     {
         return new static(
-            $array['web_app_query_id'],
-            TdSchemaRegistry::fromArray($array['result']),
+            result       : TdSchemaRegistry::fromArray($array['result']),
+            webAppQueryId: $array['web_app_query_id'],
         );
     }
 
@@ -65,8 +65,8 @@ class AnswerWebAppQuery extends TdFunction
     {
         return [
             '@type'            => static::TYPE_NAME,
+            'result'           => $this->result->jsonSerialize(),
             'web_app_query_id' => $this->webAppQueryId,
-            'result'           => $this->result->typeSerialize(),
         ];
     }
 }

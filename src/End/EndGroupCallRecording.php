@@ -25,7 +25,7 @@ class EndGroupCallRecording extends TdFunction
     public static function fromArray(array $array): EndGroupCallRecording
     {
         return new static(
-            $array['group_call_id'],
+            groupCallId: $array['group_call_id'],
         );
     }
 

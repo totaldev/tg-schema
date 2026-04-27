@@ -29,8 +29,8 @@ class ToggleChatDefaultDisableNotification extends TdFunction
     public static function fromArray(array $array): ToggleChatDefaultDisableNotification
     {
         return new static(
-            $array['chat_id'],
-            $array['default_disable_notification'],
+            chatId                    : $array['chat_id'],
+            defaultDisableNotification: $array['default_disable_notification'],
         );
     }
 

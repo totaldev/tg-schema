@@ -18,17 +18,17 @@ class EmojiStatusTypeUpgradedGift extends EmojiStatusType
 
     public function __construct(
         /**
-         * Identifier of the upgraded gift.
+         * Colors of the backdrop of the upgraded gift.
          */
-        protected int                        $upgradedGiftId,
-        /**
-         * The title of the upgraded gift.
-         */
-        protected string                     $giftTitle,
+        protected UpgradedGiftBackdropColors $backdropColors,
         /**
          * Unique name of the upgraded gift that can be used with internalLinkTypeUpgradedGift.
          */
         protected string                     $giftName,
+        /**
+         * The title of the upgraded gift.
+         */
+        protected string                     $giftTitle,
         /**
          * Custom emoji identifier of the model of the upgraded gift.
          */
@@ -38,9 +38,9 @@ class EmojiStatusTypeUpgradedGift extends EmojiStatusType
          */
         protected int                        $symbolCustomEmojiId,
         /**
-         * Colors of the backdrop of the upgraded gift.
+         * Identifier of the upgraded gift.
          */
-        protected UpgradedGiftBackdropColors $backdropColors,
+        protected int                        $upgradedGiftId,
     ) {
         parent::__construct();
     }
@@ -48,12 +48,12 @@ class EmojiStatusTypeUpgradedGift extends EmojiStatusType
     public static function fromArray(array $array): EmojiStatusTypeUpgradedGift
     {
         return new static(
-            $array['upgraded_gift_id'],
-            $array['gift_title'],
-            $array['gift_name'],
-            $array['model_custom_emoji_id'],
-            $array['symbol_custom_emoji_id'],
-            TdSchemaRegistry::fromArray($array['backdrop_colors']),
+            backdropColors     : TdSchemaRegistry::fromArray($array['backdrop_colors']),
+            giftName           : $array['gift_name'],
+            giftTitle          : $array['gift_title'],
+            modelCustomEmojiId : $array['model_custom_emoji_id'],
+            symbolCustomEmojiId: $array['symbol_custom_emoji_id'],
+            upgradedGiftId     : $array['upgraded_gift_id'],
         );
     }
 
@@ -133,12 +133,12 @@ class EmojiStatusTypeUpgradedGift extends EmojiStatusType
     {
         return [
             '@type'                  => static::TYPE_NAME,
-            'upgraded_gift_id'       => $this->upgradedGiftId,
-            'gift_title'             => $this->giftTitle,
+            'backdrop_colors'        => $this->backdropColors->jsonSerialize(),
             'gift_name'              => $this->giftName,
+            'gift_title'             => $this->giftTitle,
             'model_custom_emoji_id'  => $this->modelCustomEmojiId,
             'symbol_custom_emoji_id' => $this->symbolCustomEmojiId,
-            'backdrop_colors'        => $this->backdropColors->typeSerialize(),
+            'upgraded_gift_id'       => $this->upgradedGiftId,
         ];
     }
 }

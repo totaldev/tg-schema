@@ -25,7 +25,7 @@ class GetAnimatedEmoji extends TdFunction
     public static function fromArray(array $array): GetAnimatedEmoji
     {
         return new static(
-            $array['emoji'],
+            emoji: $array['emoji'],
         );
     }
 

@@ -17,13 +17,13 @@ class ChatEventPhotoChanged extends ChatEventAction
 
     public function __construct(
         /**
-         * Previous chat photo value; may be null.
-         */
-        protected ?ChatPhoto $oldPhoto,
-        /**
          * New chat photo value; may be null.
          */
         protected ?ChatPhoto $newPhoto,
+        /**
+         * Previous chat photo value; may be null.
+         */
+        protected ?ChatPhoto $oldPhoto,
     ) {
         parent::__construct();
     }
@@ -31,8 +31,8 @@ class ChatEventPhotoChanged extends ChatEventAction
     public static function fromArray(array $array): ChatEventPhotoChanged
     {
         return new static(
-            isset($array['old_photo']) ? TdSchemaRegistry::fromArray($array['old_photo']) : null,
-            isset($array['new_photo']) ? TdSchemaRegistry::fromArray($array['new_photo']) : null,
+            newPhoto: (isset($array['new_photo']) ? TdSchemaRegistry::fromArray($array['new_photo']) : null),
+            oldPhoto: (isset($array['old_photo']) ? TdSchemaRegistry::fromArray($array['old_photo']) : null),
         );
     }
 
@@ -64,8 +64,8 @@ class ChatEventPhotoChanged extends ChatEventAction
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'old_photo' => $this->oldPhoto ?? null,
-            'new_photo' => $this->newPhoto ?? null,
+            'new_photo' => (null !== $this->newPhoto ? $this->newPhoto->jsonSerialize() : null),
+            'old_photo' => (null !== $this->oldPhoto ? $this->oldPhoto->jsonSerialize() : null),
         ];
     }
 }

@@ -27,7 +27,7 @@ class RemoveFavoriteSticker extends TdFunction
     public static function fromArray(array $array): RemoveFavoriteSticker
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['sticker']),
+            sticker: TdSchemaRegistry::fromArray($array['sticker']),
         );
     }
 
@@ -47,7 +47,7 @@ class RemoveFavoriteSticker extends TdFunction
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'sticker' => $this->sticker->typeSerialize(),
+            'sticker' => $this->sticker->jsonSerialize(),
         ];
     }
 }

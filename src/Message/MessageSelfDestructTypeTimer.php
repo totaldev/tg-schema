@@ -25,7 +25,7 @@ class MessageSelfDestructTypeTimer extends MessageSelfDestructType
     public static function fromArray(array $array): MessageSelfDestructTypeTimer
     {
         return new static(
-            $array['self_destruct_time'],
+            selfDestructTime: $array['self_destruct_time'],
         );
     }
 

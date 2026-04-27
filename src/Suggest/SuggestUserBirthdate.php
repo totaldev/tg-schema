@@ -19,20 +19,20 @@ class SuggestUserBirthdate extends TdFunction
 
     public function __construct(
         /**
-         * User identifier.
-         */
-        protected int       $userId,
-        /**
          * Birthdate to suggest.
          */
         protected Birthdate $birthdate,
+        /**
+         * User identifier.
+         */
+        protected int       $userId,
     ) {}
 
     public static function fromArray(array $array): SuggestUserBirthdate
     {
         return new static(
-            $array['user_id'],
-            TdSchemaRegistry::fromArray($array['birthdate']),
+            birthdate: TdSchemaRegistry::fromArray($array['birthdate']),
+            userId   : $array['user_id'],
         );
     }
 
@@ -64,8 +64,8 @@ class SuggestUserBirthdate extends TdFunction
     {
         return [
             '@type'     => static::TYPE_NAME,
+            'birthdate' => $this->birthdate->jsonSerialize(),
             'user_id'   => $this->userId,
-            'birthdate' => $this->birthdate->typeSerialize(),
         ];
     }
 }

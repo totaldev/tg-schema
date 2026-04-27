@@ -26,7 +26,7 @@ class InternalLinkTypePremiumGiftCode extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypePremiumGiftCode
     {
         return new static(
-            $array['code'],
+            code: $array['code'],
         );
     }
 

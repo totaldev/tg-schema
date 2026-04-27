@@ -19,9 +19,9 @@ class MessagePaidMedia extends MessageContent
 
     public function __construct(
         /**
-         * Number of Telegram Stars needed to buy access to the media in the message.
+         * Media caption.
          */
-        protected int           $starCount,
+        protected FormattedText $caption,
         /**
          * Information about the media.
          *
@@ -29,13 +29,13 @@ class MessagePaidMedia extends MessageContent
          */
         protected array         $media,
         /**
-         * Media caption.
-         */
-        protected FormattedText $caption,
-        /**
          * True, if the caption must be shown above the media; otherwise, the caption must be shown below the media.
          */
         protected bool          $showCaptionAboveMedia,
+        /**
+         * Number of Telegram Stars needed to buy access to the media in the message.
+         */
+        protected int           $starCount,
     ) {
         parent::__construct();
     }
@@ -43,10 +43,10 @@ class MessagePaidMedia extends MessageContent
     public static function fromArray(array $array): MessagePaidMedia
     {
         return new static(
-            $array['star_count'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['media']),
-            TdSchemaRegistry::fromArray($array['caption']),
-            $array['show_caption_above_media'],
+            caption              : TdSchemaRegistry::fromArray($array['caption']),
+            media                : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['media']),
+            showCaptionAboveMedia: $array['show_caption_above_media'],
+            starCount            : $array['star_count'],
         );
     }
 
@@ -102,10 +102,10 @@ class MessagePaidMedia extends MessageContent
     {
         return [
             '@type'                    => static::TYPE_NAME,
-            'star_count'               => $this->starCount,
-            'media'                    => array_map(static fn($x) => $x->typeSerialize(), $this->media),
-            'caption'                  => $this->caption->typeSerialize(),
+            'caption'                  => $this->caption->jsonSerialize(),
+            'media'                    => array_map(static fn($x) => $x->jsonSerialize(), $this->media),
             'show_caption_above_media' => $this->showCaptionAboveMedia,
+            'star_count'               => $this->starCount,
         ];
     }
 }

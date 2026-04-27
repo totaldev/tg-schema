@@ -33,9 +33,9 @@ class ScopeAutosaveSettings extends TdObject
     public static function fromArray(array $array): ScopeAutosaveSettings
     {
         return new static(
-            $array['autosave_photos'],
-            $array['autosave_videos'],
-            $array['max_video_file_size'],
+            autosavePhotos  : $array['autosave_photos'],
+            autosaveVideos  : $array['autosave_videos'],
+            maxVideoFileSize: $array['max_video_file_size'],
         );
     }
 

@@ -28,7 +28,7 @@ class PassportElementUtilityBill extends PassportElement
     public static function fromArray(array $array): PassportElementUtilityBill
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['utility_bill']),
+            utilityBill: TdSchemaRegistry::fromArray($array['utility_bill']),
         );
     }
 
@@ -48,7 +48,7 @@ class PassportElementUtilityBill extends PassportElement
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'utility_bill' => $this->utilityBill->typeSerialize(),
+            'utility_bill' => $this->utilityBill->jsonSerialize(),
         ];
     }
 }

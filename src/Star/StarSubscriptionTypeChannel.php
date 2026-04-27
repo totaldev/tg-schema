@@ -29,8 +29,8 @@ class StarSubscriptionTypeChannel extends StarSubscriptionType
     public static function fromArray(array $array): StarSubscriptionTypeChannel
     {
         return new static(
-            $array['can_reuse'],
-            $array['invite_link'],
+            canReuse  : $array['can_reuse'],
+            inviteLink: $array['invite_link'],
         );
     }
 

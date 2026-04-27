@@ -17,6 +17,10 @@ class MessageProximityAlertTriggered extends MessageContent
 
     public function __construct(
         /**
+         * The distance between the users.
+         */
+        protected int           $distance,
+        /**
          * The identifier of a user or chat that triggered the proximity alert.
          */
         protected MessageSender $travelerId,
@@ -24,10 +28,6 @@ class MessageProximityAlertTriggered extends MessageContent
          * The identifier of a user or chat that subscribed for the proximity alert.
          */
         protected MessageSender $watcherId,
-        /**
-         * The distance between the users.
-         */
-        protected int           $distance,
     ) {
         parent::__construct();
     }
@@ -35,9 +35,9 @@ class MessageProximityAlertTriggered extends MessageContent
     public static function fromArray(array $array): MessageProximityAlertTriggered
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['traveler_id']),
-            TdSchemaRegistry::fromArray($array['watcher_id']),
-            $array['distance'],
+            distance  : $array['distance'],
+            travelerId: TdSchemaRegistry::fromArray($array['traveler_id']),
+            watcherId : TdSchemaRegistry::fromArray($array['watcher_id']),
         );
     }
 
@@ -81,9 +81,9 @@ class MessageProximityAlertTriggered extends MessageContent
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'traveler_id' => $this->travelerId->typeSerialize(),
-            'watcher_id'  => $this->watcherId->typeSerialize(),
             'distance'    => $this->distance,
+            'traveler_id' => $this->travelerId->jsonSerialize(),
+            'watcher_id'  => $this->watcherId->jsonSerialize(),
         ];
     }
 }

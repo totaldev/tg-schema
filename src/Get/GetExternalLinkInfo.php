@@ -26,7 +26,7 @@ class GetExternalLinkInfo extends TdFunction
     public static function fromArray(array $array): GetExternalLinkInfo
     {
         return new static(
-            $array['link'],
+            link: $array['link'],
         );
     }
 

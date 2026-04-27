@@ -17,13 +17,13 @@ class RichTextPhoneNumber extends RichText
 
     public function __construct(
         /**
-         * Text.
-         */
-        protected RichText $text,
-        /**
          * Phone number.
          */
         protected string   $phoneNumber,
+        /**
+         * Text.
+         */
+        protected RichText $text,
     ) {
         parent::__construct();
     }
@@ -31,8 +31,8 @@ class RichTextPhoneNumber extends RichText
     public static function fromArray(array $array): RichTextPhoneNumber
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['text']),
-            $array['phone_number'],
+            phoneNumber: $array['phone_number'],
+            text       : TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -64,8 +64,8 @@ class RichTextPhoneNumber extends RichText
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'text'         => $this->text->typeSerialize(),
             'phone_number' => $this->phoneNumber,
+            'text'         => $this->text->jsonSerialize(),
         ];
     }
 }

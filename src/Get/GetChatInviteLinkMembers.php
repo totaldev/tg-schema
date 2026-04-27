@@ -28,13 +28,13 @@ class GetChatInviteLinkMembers extends TdFunction
          */
         protected string                $inviteLink,
         /**
-         * Pass true if the link is a subscription link and only members with expired subscription must be returned.
-         */
-        protected bool                  $onlyWithExpiredSubscription,
-        /**
          * The maximum number of chat members to return; up to 100.
          */
         protected int                   $limit,
+        /**
+         * Pass true if the link is a subscription link and only members with expired subscription must be returned.
+         */
+        protected bool                  $onlyWithExpiredSubscription,
         /**
          * A chat member from which to return next chat members; pass null to get results from the beginning.
          */
@@ -44,11 +44,11 @@ class GetChatInviteLinkMembers extends TdFunction
     public static function fromArray(array $array): GetChatInviteLinkMembers
     {
         return new static(
-            $array['chat_id'],
-            $array['invite_link'],
-            $array['only_with_expired_subscription'],
-            isset($array['offset_member']) ? TdSchemaRegistry::fromArray($array['offset_member']) : null,
-            $array['limit'],
+            chatId                     : $array['chat_id'],
+            inviteLink                 : $array['invite_link'],
+            limit                      : $array['limit'],
+            offsetMember               : (isset($array['offset_member']) ? TdSchemaRegistry::fromArray($array['offset_member']) : null),
+            onlyWithExpiredSubscription: $array['only_with_expired_subscription'],
         );
     }
 
@@ -118,9 +118,9 @@ class GetChatInviteLinkMembers extends TdFunction
             '@type'                          => static::TYPE_NAME,
             'chat_id'                        => $this->chatId,
             'invite_link'                    => $this->inviteLink,
-            'only_with_expired_subscription' => $this->onlyWithExpiredSubscription,
-            'offset_member'                  => $this->offsetMember ?? null,
             'limit'                          => $this->limit,
+            'offset_member'                  => (null !== $this->offsetMember ? $this->offsetMember->jsonSerialize() : null),
+            'only_with_expired_subscription' => $this->onlyWithExpiredSubscription,
         ];
     }
 }

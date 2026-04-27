@@ -31,8 +31,8 @@ class SetChatPinnedStories extends TdFunction
     public static function fromArray(array $array): SetChatPinnedStories
     {
         return new static(
-            $array['chat_id'],
-            $array['story_ids'],
+            chatId  : $array['chat_id'],
+            storyIds: $array['story_ids'],
         );
     }
 

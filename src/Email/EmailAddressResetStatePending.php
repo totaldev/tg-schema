@@ -25,7 +25,7 @@ class EmailAddressResetStatePending extends EmailAddressResetState
     public static function fromArray(array $array): EmailAddressResetStatePending
     {
         return new static(
-            $array['reset_in'],
+            resetIn: $array['reset_in'],
         );
     }
 

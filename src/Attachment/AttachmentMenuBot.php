@@ -19,65 +19,25 @@ class AttachmentMenuBot extends TdObject
 
     public function __construct(
         /**
+         * Icon for the bot in TGS format for the official Android app; may be null.
+         */
+        protected ?File                   $androidIcon,
+        /**
+         * Icon for the bot in SVG format for the official Android app side menu; may be null.
+         */
+        protected ?File                   $androidSideMenuIcon,
+        /**
          * User identifier of the bot.
          */
         protected int                     $botUserId,
-        /**
-         * True, if the bot supports opening from attachment menu in the chat with the bot.
-         */
-        protected bool                    $supportsSelfChat,
-        /**
-         * True, if the bot supports opening from attachment menu in private chats with ordinary users.
-         */
-        protected bool                    $supportsUserChats,
-        /**
-         * True, if the bot supports opening from attachment menu in private chats with other bots.
-         */
-        protected bool                    $supportsBotChats,
-        /**
-         * True, if the bot supports opening from attachment menu in basic group and supergroup chats.
-         */
-        protected bool                    $supportsGroupChats,
-        /**
-         * True, if the bot supports opening from attachment menu in channel chats.
-         */
-        protected bool                    $supportsChannelChats,
-        /**
-         * True, if the user must be asked for the permission to send messages to the bot.
-         */
-        protected bool                    $requestWriteAccess,
-        /**
-         * True, if the bot was explicitly added by the user. If the bot isn't added, then on the first bot launch toggleBotIsAddedToAttachmentMenu must be called and the bot must be added or removed.
-         */
-        protected bool                    $isAdded,
-        /**
-         * True, if the bot must be shown in the attachment menu.
-         */
-        protected bool                    $showInAttachmentMenu,
-        /**
-         * True, if the bot must be shown in the side menu.
-         */
-        protected bool                    $showInSideMenu,
-        /**
-         * True, if a disclaimer, why the bot is shown in the side menu, is needed.
-         */
-        protected bool                    $showDisclaimerInSideMenu,
-        /**
-         * Name for the bot in attachment menu.
-         */
-        protected string                  $name,
-        /**
-         * Color to highlight selected name of the bot if appropriate; may be null.
-         */
-        protected ?AttachmentMenuBotColor $nameColor,
         /**
          * Default icon for the bot in SVG format; may be null.
          */
         protected ?File                   $defaultIcon,
         /**
-         * Icon for the bot in SVG format for the official iOS app; may be null.
+         * Color to highlight selected icon of the bot if appropriate; may be null.
          */
-        protected ?File                   $iosStaticIcon,
+        protected ?AttachmentMenuBotColor $iconColor,
         /**
          * Icon for the bot in TGS format for the official iOS app; may be null.
          */
@@ -87,13 +47,13 @@ class AttachmentMenuBot extends TdObject
          */
         protected ?File                   $iosSideMenuIcon,
         /**
-         * Icon for the bot in TGS format for the official Android app; may be null.
+         * Icon for the bot in SVG format for the official iOS app; may be null.
          */
-        protected ?File                   $androidIcon,
+        protected ?File                   $iosStaticIcon,
         /**
-         * Icon for the bot in SVG format for the official Android app side menu; may be null.
+         * True, if the bot was explicitly added by the user. If the bot isn't added, then on the first bot launch toggleBotIsAddedToAttachmentMenu must be called and the bot must be added or removed.
          */
-        protected ?File                   $androidSideMenuIcon,
+        protected bool                    $isAdded,
         /**
          * Icon for the bot in TGS format for the official native macOS app; may be null.
          */
@@ -103,9 +63,49 @@ class AttachmentMenuBot extends TdObject
          */
         protected ?File                   $macosSideMenuIcon,
         /**
-         * Color to highlight selected icon of the bot if appropriate; may be null.
+         * Name for the bot in attachment menu.
          */
-        protected ?AttachmentMenuBotColor $iconColor,
+        protected string                  $name,
+        /**
+         * Color to highlight selected name of the bot if appropriate; may be null.
+         */
+        protected ?AttachmentMenuBotColor $nameColor,
+        /**
+         * True, if the user must be asked for the permission to send messages to the bot.
+         */
+        protected bool                    $requestWriteAccess,
+        /**
+         * True, if a disclaimer, why the bot is shown in the side menu, is needed.
+         */
+        protected bool                    $showDisclaimerInSideMenu,
+        /**
+         * True, if the bot must be shown in the attachment menu.
+         */
+        protected bool                    $showInAttachmentMenu,
+        /**
+         * True, if the bot must be shown in the side menu.
+         */
+        protected bool                    $showInSideMenu,
+        /**
+         * True, if the bot supports opening from attachment menu in private chats with other bots.
+         */
+        protected bool                    $supportsBotChats,
+        /**
+         * True, if the bot supports opening from attachment menu in channel chats.
+         */
+        protected bool                    $supportsChannelChats,
+        /**
+         * True, if the bot supports opening from attachment menu in basic group and supergroup chats.
+         */
+        protected bool                    $supportsGroupChats,
+        /**
+         * True, if the bot supports opening from attachment menu in the chat with the bot.
+         */
+        protected bool                    $supportsSelfChat,
+        /**
+         * True, if the bot supports opening from attachment menu in private chats with ordinary users.
+         */
+        protected bool                    $supportsUserChats,
         /**
          * Default placeholder for opened Web Apps in SVG format; may be null.
          */
@@ -115,29 +115,29 @@ class AttachmentMenuBot extends TdObject
     public static function fromArray(array $array): AttachmentMenuBot
     {
         return new static(
-            $array['bot_user_id'],
-            $array['supports_self_chat'],
-            $array['supports_user_chats'],
-            $array['supports_bot_chats'],
-            $array['supports_group_chats'],
-            $array['supports_channel_chats'],
-            $array['request_write_access'],
-            $array['is_added'],
-            $array['show_in_attachment_menu'],
-            $array['show_in_side_menu'],
-            $array['show_disclaimer_in_side_menu'],
-            $array['name'],
-            isset($array['name_color']) ? TdSchemaRegistry::fromArray($array['name_color']) : null,
-            isset($array['default_icon']) ? TdSchemaRegistry::fromArray($array['default_icon']) : null,
-            isset($array['ios_static_icon']) ? TdSchemaRegistry::fromArray($array['ios_static_icon']) : null,
-            isset($array['ios_animated_icon']) ? TdSchemaRegistry::fromArray($array['ios_animated_icon']) : null,
-            isset($array['ios_side_menu_icon']) ? TdSchemaRegistry::fromArray($array['ios_side_menu_icon']) : null,
-            isset($array['android_icon']) ? TdSchemaRegistry::fromArray($array['android_icon']) : null,
-            isset($array['android_side_menu_icon']) ? TdSchemaRegistry::fromArray($array['android_side_menu_icon']) : null,
-            isset($array['macos_icon']) ? TdSchemaRegistry::fromArray($array['macos_icon']) : null,
-            isset($array['macos_side_menu_icon']) ? TdSchemaRegistry::fromArray($array['macos_side_menu_icon']) : null,
-            isset($array['icon_color']) ? TdSchemaRegistry::fromArray($array['icon_color']) : null,
-            isset($array['web_app_placeholder']) ? TdSchemaRegistry::fromArray($array['web_app_placeholder']) : null,
+            androidIcon             : (isset($array['android_icon']) ? TdSchemaRegistry::fromArray($array['android_icon']) : null),
+            androidSideMenuIcon     : (isset($array['android_side_menu_icon']) ? TdSchemaRegistry::fromArray($array['android_side_menu_icon']) : null),
+            botUserId               : $array['bot_user_id'],
+            defaultIcon             : (isset($array['default_icon']) ? TdSchemaRegistry::fromArray($array['default_icon']) : null),
+            iconColor               : (isset($array['icon_color']) ? TdSchemaRegistry::fromArray($array['icon_color']) : null),
+            iosAnimatedIcon         : (isset($array['ios_animated_icon']) ? TdSchemaRegistry::fromArray($array['ios_animated_icon']) : null),
+            iosSideMenuIcon         : (isset($array['ios_side_menu_icon']) ? TdSchemaRegistry::fromArray($array['ios_side_menu_icon']) : null),
+            iosStaticIcon           : (isset($array['ios_static_icon']) ? TdSchemaRegistry::fromArray($array['ios_static_icon']) : null),
+            isAdded                 : $array['is_added'],
+            macosIcon               : (isset($array['macos_icon']) ? TdSchemaRegistry::fromArray($array['macos_icon']) : null),
+            macosSideMenuIcon       : (isset($array['macos_side_menu_icon']) ? TdSchemaRegistry::fromArray($array['macos_side_menu_icon']) : null),
+            name                    : $array['name'],
+            nameColor               : (isset($array['name_color']) ? TdSchemaRegistry::fromArray($array['name_color']) : null),
+            requestWriteAccess      : $array['request_write_access'],
+            showDisclaimerInSideMenu: $array['show_disclaimer_in_side_menu'],
+            showInAttachmentMenu    : $array['show_in_attachment_menu'],
+            showInSideMenu          : $array['show_in_side_menu'],
+            supportsBotChats        : $array['supports_bot_chats'],
+            supportsChannelChats    : $array['supports_channel_chats'],
+            supportsGroupChats      : $array['supports_group_chats'],
+            supportsSelfChat        : $array['supports_self_chat'],
+            supportsUserChats       : $array['supports_user_chats'],
+            webAppPlaceholder       : (isset($array['web_app_placeholder']) ? TdSchemaRegistry::fromArray($array['web_app_placeholder']) : null),
         );
     }
 
@@ -421,29 +421,29 @@ class AttachmentMenuBot extends TdObject
     {
         return [
             '@type'                        => static::TYPE_NAME,
+            'android_icon'                 => (null !== $this->androidIcon ? $this->androidIcon->jsonSerialize() : null),
+            'android_side_menu_icon'       => (null !== $this->androidSideMenuIcon ? $this->androidSideMenuIcon->jsonSerialize() : null),
             'bot_user_id'                  => $this->botUserId,
-            'supports_self_chat'           => $this->supportsSelfChat,
-            'supports_user_chats'          => $this->supportsUserChats,
-            'supports_bot_chats'           => $this->supportsBotChats,
-            'supports_group_chats'         => $this->supportsGroupChats,
-            'supports_channel_chats'       => $this->supportsChannelChats,
-            'request_write_access'         => $this->requestWriteAccess,
+            'default_icon'                 => (null !== $this->defaultIcon ? $this->defaultIcon->jsonSerialize() : null),
+            'icon_color'                   => (null !== $this->iconColor ? $this->iconColor->jsonSerialize() : null),
+            'ios_animated_icon'            => (null !== $this->iosAnimatedIcon ? $this->iosAnimatedIcon->jsonSerialize() : null),
+            'ios_side_menu_icon'           => (null !== $this->iosSideMenuIcon ? $this->iosSideMenuIcon->jsonSerialize() : null),
+            'ios_static_icon'              => (null !== $this->iosStaticIcon ? $this->iosStaticIcon->jsonSerialize() : null),
             'is_added'                     => $this->isAdded,
+            'macos_icon'                   => (null !== $this->macosIcon ? $this->macosIcon->jsonSerialize() : null),
+            'macos_side_menu_icon'         => (null !== $this->macosSideMenuIcon ? $this->macosSideMenuIcon->jsonSerialize() : null),
+            'name'                         => $this->name,
+            'name_color'                   => (null !== $this->nameColor ? $this->nameColor->jsonSerialize() : null),
+            'request_write_access'         => $this->requestWriteAccess,
+            'show_disclaimer_in_side_menu' => $this->showDisclaimerInSideMenu,
             'show_in_attachment_menu'      => $this->showInAttachmentMenu,
             'show_in_side_menu'            => $this->showInSideMenu,
-            'show_disclaimer_in_side_menu' => $this->showDisclaimerInSideMenu,
-            'name'                         => $this->name,
-            'name_color'                   => $this->nameColor ?? null,
-            'default_icon'                 => $this->defaultIcon ?? null,
-            'ios_static_icon'              => $this->iosStaticIcon ?? null,
-            'ios_animated_icon'            => $this->iosAnimatedIcon ?? null,
-            'ios_side_menu_icon'           => $this->iosSideMenuIcon ?? null,
-            'android_icon'                 => $this->androidIcon ?? null,
-            'android_side_menu_icon'       => $this->androidSideMenuIcon ?? null,
-            'macos_icon'                   => $this->macosIcon ?? null,
-            'macos_side_menu_icon'         => $this->macosSideMenuIcon ?? null,
-            'icon_color'                   => $this->iconColor ?? null,
-            'web_app_placeholder'          => $this->webAppPlaceholder ?? null,
+            'supports_bot_chats'           => $this->supportsBotChats,
+            'supports_channel_chats'       => $this->supportsChannelChats,
+            'supports_group_chats'         => $this->supportsGroupChats,
+            'supports_self_chat'           => $this->supportsSelfChat,
+            'supports_user_chats'          => $this->supportsUserChats,
+            'web_app_placeholder'          => (null !== $this->webAppPlaceholder ? $this->webAppPlaceholder->jsonSerialize() : null),
         ];
     }
 }

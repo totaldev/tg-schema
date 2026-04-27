@@ -19,20 +19,20 @@ class SuggestUserProfilePhoto extends TdFunction
 
     public function __construct(
         /**
-         * User identifier.
-         */
-        protected int            $userId,
-        /**
          * Profile photo to suggest; inputChatPhotoPrevious isn't supported in this function.
          */
         protected InputChatPhoto $photo,
+        /**
+         * User identifier.
+         */
+        protected int            $userId,
     ) {}
 
     public static function fromArray(array $array): SuggestUserProfilePhoto
     {
         return new static(
-            $array['user_id'],
-            TdSchemaRegistry::fromArray($array['photo']),
+            photo : TdSchemaRegistry::fromArray($array['photo']),
+            userId: $array['user_id'],
         );
     }
 
@@ -64,8 +64,8 @@ class SuggestUserProfilePhoto extends TdFunction
     {
         return [
             '@type'   => static::TYPE_NAME,
+            'photo'   => $this->photo->jsonSerialize(),
             'user_id' => $this->userId,
-            'photo'   => $this->photo->typeSerialize(),
         ];
     }
 }

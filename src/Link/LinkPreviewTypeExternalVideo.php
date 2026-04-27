@@ -15,25 +15,25 @@ class LinkPreviewTypeExternalVideo extends LinkPreviewType
 
     public function __construct(
         /**
-         * URL of the video file.
+         * Duration of the video, in seconds; 0 if unknown.
          */
-        protected string $url,
-        /**
-         * MIME type of the video file.
-         */
-        protected string $mimeType,
-        /**
-         * Expected width of the video preview; 0 if unknown.
-         */
-        protected int    $width,
+        protected int    $duration,
         /**
          * Expected height of the video preview; 0 if unknown.
          */
         protected int    $height,
         /**
-         * Duration of the video, in seconds; 0 if unknown.
+         * MIME type of the video file.
          */
-        protected int    $duration,
+        protected string $mimeType,
+        /**
+         * URL of the video file.
+         */
+        protected string $url,
+        /**
+         * Expected width of the video preview; 0 if unknown.
+         */
+        protected int    $width,
     ) {
         parent::__construct();
     }
@@ -41,11 +41,11 @@ class LinkPreviewTypeExternalVideo extends LinkPreviewType
     public static function fromArray(array $array): LinkPreviewTypeExternalVideo
     {
         return new static(
-            $array['url'],
-            $array['mime_type'],
-            $array['width'],
-            $array['height'],
-            $array['duration'],
+            duration: $array['duration'],
+            height  : $array['height'],
+            mimeType: $array['mime_type'],
+            url     : $array['url'],
+            width   : $array['width'],
         );
     }
 
@@ -113,11 +113,11 @@ class LinkPreviewTypeExternalVideo extends LinkPreviewType
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'url'       => $this->url,
-            'mime_type' => $this->mimeType,
-            'width'     => $this->width,
-            'height'    => $this->height,
             'duration'  => $this->duration,
+            'height'    => $this->height,
+            'mime_type' => $this->mimeType,
+            'url'       => $this->url,
+            'width'     => $this->width,
         ];
     }
 }

@@ -27,7 +27,7 @@ class InputChatPhotoStatic extends InputChatPhoto
     public static function fromArray(array $array): InputChatPhotoStatic
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['photo']),
+            photo: TdSchemaRegistry::fromArray($array['photo']),
         );
     }
 
@@ -47,7 +47,7 @@ class InputChatPhotoStatic extends InputChatPhoto
     {
         return [
             '@type' => static::TYPE_NAME,
-            'photo' => $this->photo->typeSerialize(),
+            'photo' => $this->photo->jsonSerialize(),
         ];
     }
 }

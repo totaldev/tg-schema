@@ -20,21 +20,21 @@ class UpdateChatAction extends Update
 
     public function __construct(
         /**
+         * The action.
+         */
+        protected ChatAction    $action,
+        /**
          * Chat identifier.
          */
         protected int           $chatId,
-        /**
-         * Identifier of the specific topic in which the action was performed; may be null if none.
-         */
-        protected ?MessageTopic $topicId,
         /**
          * Identifier of a message sender performing the action.
          */
         protected MessageSender $senderId,
         /**
-         * The action.
+         * Identifier of the specific topic in which the action was performed; may be null if none.
          */
-        protected ChatAction    $action,
+        protected ?MessageTopic $topicId,
     ) {
         parent::__construct();
     }
@@ -42,10 +42,10 @@ class UpdateChatAction extends Update
     public static function fromArray(array $array): UpdateChatAction
     {
         return new static(
-            $array['chat_id'],
-            isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null,
-            TdSchemaRegistry::fromArray($array['sender_id']),
-            TdSchemaRegistry::fromArray($array['action']),
+            action  : TdSchemaRegistry::fromArray($array['action']),
+            chatId  : $array['chat_id'],
+            senderId: TdSchemaRegistry::fromArray($array['sender_id']),
+            topicId : (isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null),
         );
     }
 
@@ -101,10 +101,10 @@ class UpdateChatAction extends Update
     {
         return [
             '@type'     => static::TYPE_NAME,
+            'action'    => $this->action->jsonSerialize(),
             'chat_id'   => $this->chatId,
-            'topic_id'  => $this->topicId ?? null,
-            'sender_id' => $this->senderId->typeSerialize(),
-            'action'    => $this->action->typeSerialize(),
+            'sender_id' => $this->senderId->jsonSerialize(),
+            'topic_id'  => (null !== $this->topicId ? $this->topicId->jsonSerialize() : null),
         ];
     }
 }

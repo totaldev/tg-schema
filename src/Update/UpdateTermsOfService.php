@@ -19,13 +19,13 @@ class UpdateTermsOfService extends Update
 
     public function __construct(
         /**
-         * Identifier of the terms of service.
-         */
-        protected string         $termsOfServiceId,
-        /**
          * The new terms of service.
          */
         protected TermsOfService $termsOfService,
+        /**
+         * Identifier of the terms of service.
+         */
+        protected string         $termsOfServiceId,
     ) {
         parent::__construct();
     }
@@ -33,8 +33,8 @@ class UpdateTermsOfService extends Update
     public static function fromArray(array $array): UpdateTermsOfService
     {
         return new static(
-            $array['terms_of_service_id'],
-            TdSchemaRegistry::fromArray($array['terms_of_service']),
+            termsOfService  : TdSchemaRegistry::fromArray($array['terms_of_service']),
+            termsOfServiceId: $array['terms_of_service_id'],
         );
     }
 
@@ -66,8 +66,8 @@ class UpdateTermsOfService extends Update
     {
         return [
             '@type'               => static::TYPE_NAME,
+            'terms_of_service'    => $this->termsOfService->jsonSerialize(),
             'terms_of_service_id' => $this->termsOfServiceId,
-            'terms_of_service'    => $this->termsOfService->typeSerialize(),
         ];
     }
 }

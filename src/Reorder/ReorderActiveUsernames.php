@@ -27,7 +27,7 @@ class ReorderActiveUsernames extends TdFunction
     public static function fromArray(array $array): ReorderActiveUsernames
     {
         return new static(
-            $array['usernames'],
+            usernames: $array['usernames'],
         );
     }
 

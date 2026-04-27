@@ -22,13 +22,13 @@ class ChatEventMemberRestricted extends ChatEventAction
          */
         protected MessageSender    $memberId,
         /**
-         * Previous status of the chat member.
-         */
-        protected ChatMemberStatus $oldStatus,
-        /**
          * New status of the chat member.
          */
         protected ChatMemberStatus $newStatus,
+        /**
+         * Previous status of the chat member.
+         */
+        protected ChatMemberStatus $oldStatus,
     ) {
         parent::__construct();
     }
@@ -36,9 +36,9 @@ class ChatEventMemberRestricted extends ChatEventAction
     public static function fromArray(array $array): ChatEventMemberRestricted
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['member_id']),
-            TdSchemaRegistry::fromArray($array['old_status']),
-            TdSchemaRegistry::fromArray($array['new_status']),
+            memberId : TdSchemaRegistry::fromArray($array['member_id']),
+            newStatus: TdSchemaRegistry::fromArray($array['new_status']),
+            oldStatus: TdSchemaRegistry::fromArray($array['old_status']),
         );
     }
 
@@ -82,9 +82,9 @@ class ChatEventMemberRestricted extends ChatEventAction
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'member_id'  => $this->memberId->typeSerialize(),
-            'old_status' => $this->oldStatus->typeSerialize(),
-            'new_status' => $this->newStatus->typeSerialize(),
+            'member_id'  => $this->memberId->jsonSerialize(),
+            'new_status' => $this->newStatus->jsonSerialize(),
+            'old_status' => $this->oldStatus->jsonSerialize(),
         ];
     }
 }

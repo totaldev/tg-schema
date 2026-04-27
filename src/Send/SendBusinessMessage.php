@@ -33,10 +33,6 @@ class SendBusinessMessage extends TdFunction
          */
         protected bool                 $disableNotification,
         /**
-         * Pass true if the content of the message must be protected from forwarding and saving.
-         */
-        protected bool                 $protectContent,
-        /**
          * Identifier of the effect to apply to the message.
          */
         protected int                  $effectId,
@@ -45,26 +41,30 @@ class SendBusinessMessage extends TdFunction
          */
         protected InputMessageContent  $inputMessageContent,
         /**
-         * Information about the message to be replied; pass null if none.
+         * Pass true if the content of the message must be protected from forwarding and saving.
          */
-        protected ?InputMessageReplyTo $replyTo = null,
+        protected bool                 $protectContent,
         /**
          * Markup for replying to the message; pass null if none.
          */
         protected ?ReplyMarkup         $replyMarkup = null,
+        /**
+         * Information about the message to be replied; pass null if none.
+         */
+        protected ?InputMessageReplyTo $replyTo = null,
     ) {}
 
     public static function fromArray(array $array): SendBusinessMessage
     {
         return new static(
-            $array['business_connection_id'],
-            $array['chat_id'],
-            isset($array['reply_to']) ? TdSchemaRegistry::fromArray($array['reply_to']) : null,
-            $array['disable_notification'],
-            $array['protect_content'],
-            $array['effect_id'],
-            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
-            TdSchemaRegistry::fromArray($array['input_message_content']),
+            businessConnectionId: $array['business_connection_id'],
+            chatId              : $array['chat_id'],
+            disableNotification : $array['disable_notification'],
+            effectId            : $array['effect_id'],
+            inputMessageContent : TdSchemaRegistry::fromArray($array['input_message_content']),
+            protectContent      : $array['protect_content'],
+            replyMarkup         : (isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null),
+            replyTo             : (isset($array['reply_to']) ? TdSchemaRegistry::fromArray($array['reply_to']) : null),
         );
     }
 
@@ -170,12 +170,12 @@ class SendBusinessMessage extends TdFunction
             '@type'                  => static::TYPE_NAME,
             'business_connection_id' => $this->businessConnectionId,
             'chat_id'                => $this->chatId,
-            'reply_to'               => $this->replyTo ?? null,
             'disable_notification'   => $this->disableNotification,
-            'protect_content'        => $this->protectContent,
             'effect_id'              => $this->effectId,
-            'reply_markup'           => $this->replyMarkup ?? null,
-            'input_message_content'  => $this->inputMessageContent->typeSerialize(),
+            'input_message_content'  => $this->inputMessageContent->jsonSerialize(),
+            'protect_content'        => $this->protectContent,
+            'reply_markup'           => (null !== $this->replyMarkup ? $this->replyMarkup->jsonSerialize() : null),
+            'reply_to'               => (null !== $this->replyTo ? $this->replyTo->jsonSerialize() : null),
         ];
     }
 }

@@ -25,7 +25,7 @@ class ChatTypePrivate extends ChatType
     public static function fromArray(array $array): ChatTypePrivate
     {
         return new static(
-            $array['user_id'],
+            userId: $array['user_id'],
         );
     }
 

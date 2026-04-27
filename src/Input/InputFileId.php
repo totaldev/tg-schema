@@ -25,7 +25,7 @@ class InputFileId extends InputFile
     public static function fromArray(array $array): InputFileId
     {
         return new static(
-            $array['id'],
+            id: $array['id'],
         );
     }
 

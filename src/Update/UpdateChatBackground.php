@@ -18,13 +18,13 @@ class UpdateChatBackground extends Update
 
     public function __construct(
         /**
-         * Chat identifier.
-         */
-        protected int             $chatId,
-        /**
          * The new chat background; may be null if background was reset to default.
          */
         protected ?ChatBackground $background,
+        /**
+         * Chat identifier.
+         */
+        protected int             $chatId,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class UpdateChatBackground extends Update
     public static function fromArray(array $array): UpdateChatBackground
     {
         return new static(
-            $array['chat_id'],
-            isset($array['background']) ? TdSchemaRegistry::fromArray($array['background']) : null,
+            background: (isset($array['background']) ? TdSchemaRegistry::fromArray($array['background']) : null),
+            chatId    : $array['chat_id'],
         );
     }
 
@@ -65,8 +65,8 @@ class UpdateChatBackground extends Update
     {
         return [
             '@type'      => static::TYPE_NAME,
+            'background' => (null !== $this->background ? $this->background->jsonSerialize() : null),
             'chat_id'    => $this->chatId,
-            'background' => $this->background ?? null,
         ];
     }
 }

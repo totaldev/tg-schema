@@ -25,7 +25,7 @@ class StoreTransactionAppStore extends StoreTransaction
     public static function fromArray(array $array): StoreTransactionAppStore
     {
         return new static(
-            $array['receipt'],
+            receipt: $array['receipt'],
         );
     }
 

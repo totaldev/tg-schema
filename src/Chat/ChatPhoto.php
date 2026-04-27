@@ -21,13 +21,17 @@ class ChatPhoto extends TdObject
 
     public function __construct(
         /**
-         * Unique photo identifier.
-         */
-        protected int                $id,
-        /**
          * Point in time (Unix timestamp) when the photo has been added.
          */
         protected int                $addedDate,
+        /**
+         * A big (up to 1280x1280) animated variant of the photo in MPEG4 format; may be null.
+         */
+        protected ?AnimatedChatPhoto $animation,
+        /**
+         * Unique photo identifier.
+         */
+        protected int                $id,
         /**
          * Photo minithumbnail; may be null.
          */
@@ -38,10 +42,6 @@ class ChatPhoto extends TdObject
          * @var PhotoSize[]
          */
         protected array              $sizes,
-        /**
-         * A big (up to 1280x1280) animated variant of the photo in MPEG4 format; may be null.
-         */
-        protected ?AnimatedChatPhoto $animation,
         /**
          * A small (160x160) animated variant of the photo in MPEG4 format; may be null even if the big animation is available.
          */
@@ -55,13 +55,13 @@ class ChatPhoto extends TdObject
     public static function fromArray(array $array): ChatPhoto
     {
         return new static(
-            $array['id'],
-            $array['added_date'],
-            isset($array['minithumbnail']) ? TdSchemaRegistry::fromArray($array['minithumbnail']) : null,
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['sizes']),
-            isset($array['animation']) ? TdSchemaRegistry::fromArray($array['animation']) : null,
-            isset($array['small_animation']) ? TdSchemaRegistry::fromArray($array['small_animation']) : null,
-            isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null,
+            addedDate     : $array['added_date'],
+            animation     : (isset($array['animation']) ? TdSchemaRegistry::fromArray($array['animation']) : null),
+            id            : $array['id'],
+            minithumbnail : (isset($array['minithumbnail']) ? TdSchemaRegistry::fromArray($array['minithumbnail']) : null),
+            sizes         : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['sizes']),
+            smallAnimation: (isset($array['small_animation']) ? TdSchemaRegistry::fromArray($array['small_animation']) : null),
+            sticker       : (isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null),
         );
     }
 
@@ -153,13 +153,13 @@ class ChatPhoto extends TdObject
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'id'              => $this->id,
             'added_date'      => $this->addedDate,
-            'minithumbnail'   => $this->minithumbnail ?? null,
-            'sizes'           => array_map(static fn($x) => $x->typeSerialize(), $this->sizes),
-            'animation'       => $this->animation ?? null,
-            'small_animation' => $this->smallAnimation ?? null,
-            'sticker'         => $this->sticker ?? null,
+            'animation'       => (null !== $this->animation ? $this->animation->jsonSerialize() : null),
+            'id'              => $this->id,
+            'minithumbnail'   => (null !== $this->minithumbnail ? $this->minithumbnail->jsonSerialize() : null),
+            'sizes'           => array_map(static fn($x) => $x->jsonSerialize(), $this->sizes),
+            'small_animation' => (null !== $this->smallAnimation ? $this->smallAnimation->jsonSerialize() : null),
+            'sticker'         => (null !== $this->sticker ? $this->sticker->jsonSerialize() : null),
         ];
     }
 }

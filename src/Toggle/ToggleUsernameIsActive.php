@@ -18,20 +18,20 @@ class ToggleUsernameIsActive extends TdFunction
 
     public function __construct(
         /**
-         * The username to change.
-         */
-        protected string $username,
-        /**
          * Pass true to activate the username; pass false to disable it.
          */
         protected bool   $isActive,
+        /**
+         * The username to change.
+         */
+        protected string $username,
     ) {}
 
     public static function fromArray(array $array): ToggleUsernameIsActive
     {
         return new static(
-            $array['username'],
-            $array['is_active'],
+            isActive: $array['is_active'],
+            username: $array['username'],
         );
     }
 
@@ -63,8 +63,8 @@ class ToggleUsernameIsActive extends TdFunction
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'username'  => $this->username,
             'is_active' => $this->isActive,
+            'username'  => $this->username,
         ];
     }
 }

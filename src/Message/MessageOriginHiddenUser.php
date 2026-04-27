@@ -25,7 +25,7 @@ class MessageOriginHiddenUser extends MessageOrigin
     public static function fromArray(array $array): MessageOriginHiddenUser
     {
         return new static(
-            $array['sender_name'],
+            senderName: $array['sender_name'],
         );
     }
 

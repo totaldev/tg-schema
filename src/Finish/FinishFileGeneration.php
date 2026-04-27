@@ -31,8 +31,8 @@ class FinishFileGeneration extends TdFunction
     public static function fromArray(array $array): FinishFileGeneration
     {
         return new static(
-            $array['generation_id'],
-            isset($array['error']) ? TdSchemaRegistry::fromArray($array['error']) : null,
+            error       : (isset($array['error']) ? TdSchemaRegistry::fromArray($array['error']) : null),
+            generationId: $array['generation_id'],
         );
     }
 
@@ -64,8 +64,8 @@ class FinishFileGeneration extends TdFunction
     {
         return [
             '@type'         => static::TYPE_NAME,
+            'error'         => (null !== $this->error ? $this->error->jsonSerialize() : null),
             'generation_id' => $this->generationId,
-            'error'         => $this->error ?? null,
         ];
     }
 }

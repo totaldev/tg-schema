@@ -19,10 +19,6 @@ class PaidMediaVideo extends PaidMedia
 
     public function __construct(
         /**
-         * The video.
-         */
-        protected Video  $video,
-        /**
          * Cover of the video; may be null if none.
          */
         protected ?Photo $cover,
@@ -30,6 +26,10 @@ class PaidMediaVideo extends PaidMedia
          * Timestamp from which the video playing must start, in seconds.
          */
         protected int    $startTimestamp,
+        /**
+         * The video.
+         */
+        protected Video  $video,
     ) {
         parent::__construct();
     }
@@ -37,9 +37,9 @@ class PaidMediaVideo extends PaidMedia
     public static function fromArray(array $array): PaidMediaVideo
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['video']),
-            isset($array['cover']) ? TdSchemaRegistry::fromArray($array['cover']) : null,
-            $array['start_timestamp'],
+            cover         : (isset($array['cover']) ? TdSchemaRegistry::fromArray($array['cover']) : null),
+            startTimestamp: $array['start_timestamp'],
+            video         : TdSchemaRegistry::fromArray($array['video']),
         );
     }
 
@@ -83,9 +83,9 @@ class PaidMediaVideo extends PaidMedia
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'video'           => $this->video->typeSerialize(),
-            'cover'           => $this->cover ?? null,
+            'cover'           => (null !== $this->cover ? $this->cover->jsonSerialize() : null),
             'start_timestamp' => $this->startTimestamp,
+            'video'           => $this->video->jsonSerialize(),
         ];
     }
 }

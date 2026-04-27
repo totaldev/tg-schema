@@ -27,7 +27,7 @@ class InternalLinkTypeChatBoost extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeChatBoost
     {
         return new static(
-            $array['url'],
+            url: $array['url'],
         );
     }
 

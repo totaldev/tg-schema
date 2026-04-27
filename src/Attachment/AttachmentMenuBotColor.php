@@ -17,20 +17,20 @@ class AttachmentMenuBotColor extends TdObject
 
     public function __construct(
         /**
-         * Color in the RGB format for light themes.
-         */
-        protected int $lightColor,
-        /**
          * Color in the RGB format for dark themes.
          */
         protected int $darkColor,
+        /**
+         * Color in the RGB format for light themes.
+         */
+        protected int $lightColor,
     ) {}
 
     public static function fromArray(array $array): AttachmentMenuBotColor
     {
         return new static(
-            $array['light_color'],
-            $array['dark_color'],
+            darkColor : $array['dark_color'],
+            lightColor: $array['light_color'],
         );
     }
 
@@ -62,8 +62,8 @@ class AttachmentMenuBotColor extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'light_color' => $this->lightColor,
             'dark_color'  => $this->darkColor,
+            'light_color' => $this->lightColor,
         ];
     }
 }

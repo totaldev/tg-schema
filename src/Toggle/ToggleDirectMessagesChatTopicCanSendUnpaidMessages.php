@@ -17,30 +17,30 @@ class ToggleDirectMessagesChatTopicCanSendUnpaidMessages extends TdFunction
 
     public function __construct(
         /**
-         * Chat identifier.
-         */
-        protected int  $chatId,
-        /**
-         * Identifier of the topic.
-         */
-        protected int  $topicId,
-        /**
          * Pass true to allow unpaid messages; pass false to disallow unpaid messages.
          */
         protected bool $canSendUnpaidMessages,
         /**
+         * Chat identifier.
+         */
+        protected int  $chatId,
+        /**
          * Pass true to refund the user previously paid messages.
          */
         protected bool $refundPayments,
+        /**
+         * Identifier of the topic.
+         */
+        protected int  $topicId,
     ) {}
 
     public static function fromArray(array $array): ToggleDirectMessagesChatTopicCanSendUnpaidMessages
     {
         return new static(
-            $array['chat_id'],
-            $array['topic_id'],
-            $array['can_send_unpaid_messages'],
-            $array['refund_payments'],
+            canSendUnpaidMessages: $array['can_send_unpaid_messages'],
+            chatId               : $array['chat_id'],
+            refundPayments       : $array['refund_payments'],
+            topicId              : $array['topic_id'],
         );
     }
 
@@ -96,10 +96,10 @@ class ToggleDirectMessagesChatTopicCanSendUnpaidMessages extends TdFunction
     {
         return [
             '@type'                    => static::TYPE_NAME,
-            'chat_id'                  => $this->chatId,
-            'topic_id'                 => $this->topicId,
             'can_send_unpaid_messages' => $this->canSendUnpaidMessages,
+            'chat_id'                  => $this->chatId,
             'refund_payments'          => $this->refundPayments,
+            'topic_id'                 => $this->topicId,
         ];
     }
 }

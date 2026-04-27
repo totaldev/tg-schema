@@ -18,13 +18,13 @@ class ChatEventMessageEdited extends ChatEventAction
 
     public function __construct(
         /**
-         * The original message before the edit.
-         */
-        protected Message $oldMessage,
-        /**
          * The message after it was edited.
          */
         protected Message $newMessage,
+        /**
+         * The original message before the edit.
+         */
+        protected Message $oldMessage,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class ChatEventMessageEdited extends ChatEventAction
     public static function fromArray(array $array): ChatEventMessageEdited
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['old_message']),
-            TdSchemaRegistry::fromArray($array['new_message']),
+            newMessage: TdSchemaRegistry::fromArray($array['new_message']),
+            oldMessage: TdSchemaRegistry::fromArray($array['old_message']),
         );
     }
 
@@ -65,8 +65,8 @@ class ChatEventMessageEdited extends ChatEventAction
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'old_message' => $this->oldMessage->typeSerialize(),
-            'new_message' => $this->newMessage->typeSerialize(),
+            'new_message' => $this->newMessage->jsonSerialize(),
+            'old_message' => $this->oldMessage->jsonSerialize(),
         ];
     }
 }

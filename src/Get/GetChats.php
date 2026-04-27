@@ -32,8 +32,8 @@ class GetChats extends TdFunction
     public static function fromArray(array $array): GetChats
     {
         return new static(
-            isset($array['chat_list']) ? TdSchemaRegistry::fromArray($array['chat_list']) : null,
-            $array['limit'],
+            chatList: (isset($array['chat_list']) ? TdSchemaRegistry::fromArray($array['chat_list']) : null),
+            limit   : $array['limit'],
         );
     }
 
@@ -65,7 +65,7 @@ class GetChats extends TdFunction
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'chat_list' => $this->chatList ?? null,
+            'chat_list' => (null !== $this->chatList ? $this->chatList->jsonSerialize() : null),
             'limit'     => $this->limit,
         ];
     }

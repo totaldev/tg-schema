@@ -25,10 +25,6 @@ class AddLocalMessage extends TdFunction
          */
         protected int                  $chatId,
         /**
-         * Identifier of the sender of the message.
-         */
-        protected MessageSender        $senderId,
-        /**
          * Pass true to disable notification for the message.
          */
         protected bool                 $disableNotification,
@@ -36,6 +32,10 @@ class AddLocalMessage extends TdFunction
          * The content of the message to be added.
          */
         protected InputMessageContent  $inputMessageContent,
+        /**
+         * Identifier of the sender of the message.
+         */
+        protected MessageSender        $senderId,
         /**
          * Information about the message or story to be replied; pass null if none.
          */
@@ -45,11 +45,11 @@ class AddLocalMessage extends TdFunction
     public static function fromArray(array $array): AddLocalMessage
     {
         return new static(
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['sender_id']),
-            isset($array['reply_to']) ? TdSchemaRegistry::fromArray($array['reply_to']) : null,
-            $array['disable_notification'],
-            TdSchemaRegistry::fromArray($array['input_message_content']),
+            chatId             : $array['chat_id'],
+            disableNotification: $array['disable_notification'],
+            inputMessageContent: TdSchemaRegistry::fromArray($array['input_message_content']),
+            replyTo            : (isset($array['reply_to']) ? TdSchemaRegistry::fromArray($array['reply_to']) : null),
+            senderId           : TdSchemaRegistry::fromArray($array['sender_id']),
         );
     }
 
@@ -118,10 +118,10 @@ class AddLocalMessage extends TdFunction
         return [
             '@type'                 => static::TYPE_NAME,
             'chat_id'               => $this->chatId,
-            'sender_id'             => $this->senderId->typeSerialize(),
-            'reply_to'              => $this->replyTo ?? null,
             'disable_notification'  => $this->disableNotification,
-            'input_message_content' => $this->inputMessageContent->typeSerialize(),
+            'input_message_content' => $this->inputMessageContent->jsonSerialize(),
+            'reply_to'              => (null !== $this->replyTo ? $this->replyTo->jsonSerialize() : null),
+            'sender_id'             => $this->senderId->jsonSerialize(),
         ];
     }
 }

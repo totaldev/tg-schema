@@ -26,10 +26,6 @@ class VideoNote extends TdObject
          */
         protected int                      $duration,
         /**
-         * A waveform representation of the video note's audio in 5-bit format; may be empty if unknown.
-         */
-        protected string                   $waveform,
-        /**
          * Video width and height; as defined by the sender.
          */
         protected int                      $length,
@@ -38,29 +34,33 @@ class VideoNote extends TdObject
          */
         protected ?Minithumbnail           $minithumbnail,
         /**
-         * Video thumbnail in JPEG format; as defined by the sender; may be null.
-         */
-        protected ?Thumbnail               $thumbnail,
-        /**
          * Result of speech recognition in the video note; may be null.
          */
         protected ?SpeechRecognitionResult $speechRecognitionResult,
         /**
+         * Video thumbnail in JPEG format; as defined by the sender; may be null.
+         */
+        protected ?Thumbnail               $thumbnail,
+        /**
          * File containing the video.
          */
         protected File                     $video,
+        /**
+         * A waveform representation of the video note's audio in 5-bit format; may be empty if unknown.
+         */
+        protected string                   $waveform,
     ) {}
 
     public static function fromArray(array $array): VideoNote
     {
         return new static(
-            $array['duration'],
-            $array['waveform'],
-            $array['length'],
-            isset($array['minithumbnail']) ? TdSchemaRegistry::fromArray($array['minithumbnail']) : null,
-            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
-            isset($array['speech_recognition_result']) ? TdSchemaRegistry::fromArray($array['speech_recognition_result']) : null,
-            TdSchemaRegistry::fromArray($array['video']),
+            duration               : $array['duration'],
+            length                 : $array['length'],
+            minithumbnail          : (isset($array['minithumbnail']) ? TdSchemaRegistry::fromArray($array['minithumbnail']) : null),
+            speechRecognitionResult: (isset($array['speech_recognition_result']) ? TdSchemaRegistry::fromArray($array['speech_recognition_result']) : null),
+            thumbnail              : (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
+            video                  : TdSchemaRegistry::fromArray($array['video']),
+            waveform               : $array['waveform'],
         );
     }
 
@@ -153,12 +153,12 @@ class VideoNote extends TdObject
         return [
             '@type'                     => static::TYPE_NAME,
             'duration'                  => $this->duration,
-            'waveform'                  => $this->waveform,
             'length'                    => $this->length,
-            'minithumbnail'             => $this->minithumbnail ?? null,
-            'thumbnail'                 => $this->thumbnail ?? null,
-            'speech_recognition_result' => $this->speechRecognitionResult ?? null,
-            'video'                     => $this->video->typeSerialize(),
+            'minithumbnail'             => (null !== $this->minithumbnail ? $this->minithumbnail->jsonSerialize() : null),
+            'speech_recognition_result' => (null !== $this->speechRecognitionResult ? $this->speechRecognitionResult->jsonSerialize() : null),
+            'thumbnail'                 => (null !== $this->thumbnail ? $this->thumbnail->jsonSerialize() : null),
+            'video'                     => $this->video->jsonSerialize(),
+            'waveform'                  => $this->waveform,
         ];
     }
 }

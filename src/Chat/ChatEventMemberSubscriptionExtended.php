@@ -17,17 +17,17 @@ class ChatEventMemberSubscriptionExtended extends ChatEventAction
 
     public function __construct(
         /**
-         * Affected chat member user identifier.
+         * New status of the chat member.
          */
-        protected int              $userId,
+        protected ChatMemberStatus $newStatus,
         /**
          * Previous status of the chat member.
          */
         protected ChatMemberStatus $oldStatus,
         /**
-         * New status of the chat member.
+         * Affected chat member user identifier.
          */
-        protected ChatMemberStatus $newStatus,
+        protected int              $userId,
     ) {
         parent::__construct();
     }
@@ -35,9 +35,9 @@ class ChatEventMemberSubscriptionExtended extends ChatEventAction
     public static function fromArray(array $array): ChatEventMemberSubscriptionExtended
     {
         return new static(
-            $array['user_id'],
-            TdSchemaRegistry::fromArray($array['old_status']),
-            TdSchemaRegistry::fromArray($array['new_status']),
+            newStatus: TdSchemaRegistry::fromArray($array['new_status']),
+            oldStatus: TdSchemaRegistry::fromArray($array['old_status']),
+            userId   : $array['user_id'],
         );
     }
 
@@ -81,9 +81,9 @@ class ChatEventMemberSubscriptionExtended extends ChatEventAction
     {
         return [
             '@type'      => static::TYPE_NAME,
+            'new_status' => $this->newStatus->jsonSerialize(),
+            'old_status' => $this->oldStatus->jsonSerialize(),
             'user_id'    => $this->userId,
-            'old_status' => $this->oldStatus->typeSerialize(),
-            'new_status' => $this->newStatus->typeSerialize(),
         ];
     }
 }

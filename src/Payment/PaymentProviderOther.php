@@ -25,7 +25,7 @@ class PaymentProviderOther extends PaymentProvider
     public static function fromArray(array $array): PaymentProviderOther
     {
         return new static(
-            $array['url'],
+            url: $array['url'],
         );
     }
 

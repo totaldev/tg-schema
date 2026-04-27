@@ -18,13 +18,13 @@ class UpdateChatAvailableReactions extends Update
 
     public function __construct(
         /**
-         * Chat identifier.
-         */
-        protected int                    $chatId,
-        /**
          * The new reactions, available in the chat.
          */
         protected ChatAvailableReactions $availableReactions,
+        /**
+         * Chat identifier.
+         */
+        protected int                    $chatId,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class UpdateChatAvailableReactions extends Update
     public static function fromArray(array $array): UpdateChatAvailableReactions
     {
         return new static(
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['available_reactions']),
+            availableReactions: TdSchemaRegistry::fromArray($array['available_reactions']),
+            chatId            : $array['chat_id'],
         );
     }
 
@@ -65,8 +65,8 @@ class UpdateChatAvailableReactions extends Update
     {
         return [
             '@type'               => static::TYPE_NAME,
+            'available_reactions' => $this->availableReactions->jsonSerialize(),
             'chat_id'             => $this->chatId,
-            'available_reactions' => $this->availableReactions->typeSerialize(),
         ];
     }
 }

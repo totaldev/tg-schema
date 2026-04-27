@@ -25,7 +25,7 @@ class ChatFolderIcon extends TdObject
     public static function fromArray(array $array): ChatFolderIcon
     {
         return new static(
-            $array['name'],
+            name: $array['name'],
         );
     }
 

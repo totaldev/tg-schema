@@ -25,7 +25,7 @@ class SendEmailAddressVerificationCode extends TdFunction
     public static function fromArray(array $array): SendEmailAddressVerificationCode
     {
         return new static(
-            $array['email_address'],
+            emailAddress: $array['email_address'],
         );
     }
 

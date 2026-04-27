@@ -32,8 +32,8 @@ class InlineQueryResultSticker extends InlineQueryResult
     public static function fromArray(array $array): InlineQueryResultSticker
     {
         return new static(
-            $array['id'],
-            TdSchemaRegistry::fromArray($array['sticker']),
+            id     : $array['id'],
+            sticker: TdSchemaRegistry::fromArray($array['sticker']),
         );
     }
 
@@ -66,7 +66,7 @@ class InlineQueryResultSticker extends InlineQueryResult
         return [
             '@type'   => static::TYPE_NAME,
             'id'      => $this->id,
-            'sticker' => $this->sticker->typeSerialize(),
+            'sticker' => $this->sticker->jsonSerialize(),
         ];
     }
 }

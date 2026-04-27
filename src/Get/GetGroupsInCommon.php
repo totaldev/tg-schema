@@ -17,25 +17,25 @@ class GetGroupsInCommon extends TdFunction
 
     public function __construct(
         /**
-         * User identifier.
+         * The maximum number of chats to be returned; up to 100.
          */
-        protected int $userId,
+        protected int $limit,
         /**
          * Chat identifier starting from which to return chats; use 0 for the first request.
          */
         protected int $offsetChatId,
         /**
-         * The maximum number of chats to be returned; up to 100.
+         * User identifier.
          */
-        protected int $limit,
+        protected int $userId,
     ) {}
 
     public static function fromArray(array $array): GetGroupsInCommon
     {
         return new static(
-            $array['user_id'],
-            $array['offset_chat_id'],
-            $array['limit'],
+            limit       : $array['limit'],
+            offsetChatId: $array['offset_chat_id'],
+            userId      : $array['user_id'],
         );
     }
 
@@ -79,9 +79,9 @@ class GetGroupsInCommon extends TdFunction
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'user_id'        => $this->userId,
-            'offset_chat_id' => $this->offsetChatId,
             'limit'          => $this->limit,
+            'offset_chat_id' => $this->offsetChatId,
+            'user_id'        => $this->userId,
         ];
     }
 }

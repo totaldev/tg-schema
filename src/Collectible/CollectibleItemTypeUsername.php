@@ -25,7 +25,7 @@ class CollectibleItemTypeUsername extends CollectibleItemType
     public static function fromArray(array $array): CollectibleItemTypeUsername
     {
         return new static(
-            $array['username'],
+            username: $array['username'],
         );
     }
 

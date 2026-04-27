@@ -25,7 +25,7 @@ class GetSuggestedStickerSetName extends TdFunction
     public static function fromArray(array $array): GetSuggestedStickerSetName
     {
         return new static(
-            $array['title'],
+            title: $array['title'],
         );
     }
 

@@ -19,25 +19,25 @@ class SavedMessagesTag extends TdObject
 
     public function __construct(
         /**
-         * The tag.
+         * Number of times the tag was used; may be 0 if the tag has non-empty label.
          */
-        protected ReactionType $tag,
+        protected int          $count,
         /**
          * Label of the tag; 0-12 characters. Always empty if the tag is returned for a Saved Messages topic.
          */
         protected string       $label,
         /**
-         * Number of times the tag was used; may be 0 if the tag has non-empty label.
+         * The tag.
          */
-        protected int          $count,
+        protected ReactionType $tag,
     ) {}
 
     public static function fromArray(array $array): SavedMessagesTag
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['tag']),
-            $array['label'],
-            $array['count'],
+            count: $array['count'],
+            label: $array['label'],
+            tag  : TdSchemaRegistry::fromArray($array['tag']),
         );
     }
 
@@ -81,9 +81,9 @@ class SavedMessagesTag extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            'tag'   => $this->tag->typeSerialize(),
-            'label' => $this->label,
             'count' => $this->count,
+            'label' => $this->label,
+            'tag'   => $this->tag->jsonSerialize(),
         ];
     }
 }

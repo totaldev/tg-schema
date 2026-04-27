@@ -34,8 +34,8 @@ class GetRemoteFile extends TdFunction
     public static function fromArray(array $array): GetRemoteFile
     {
         return new static(
-            $array['remote_file_id'],
-            isset($array['file_type']) ? TdSchemaRegistry::fromArray($array['file_type']) : null,
+            fileType    : (isset($array['file_type']) ? TdSchemaRegistry::fromArray($array['file_type']) : null),
+            remoteFileId: $array['remote_file_id'],
         );
     }
 
@@ -67,8 +67,8 @@ class GetRemoteFile extends TdFunction
     {
         return [
             '@type'          => static::TYPE_NAME,
+            'file_type'      => (null !== $this->fileType ? $this->fileType->jsonSerialize() : null),
             'remote_file_id' => $this->remoteFileId,
-            'file_type'      => $this->fileType ?? null,
         ];
     }
 }

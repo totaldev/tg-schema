@@ -29,8 +29,8 @@ class SetName extends TdFunction
     public static function fromArray(array $array): SetName
     {
         return new static(
-            $array['first_name'],
-            $array['last_name'],
+            firstName: $array['first_name'],
+            lastName : $array['last_name'],
         );
     }
 

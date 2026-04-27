@@ -28,7 +28,7 @@ class UpdateQuickReplyShortcut extends Update
     public static function fromArray(array $array): UpdateQuickReplyShortcut
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['shortcut']),
+            shortcut: TdSchemaRegistry::fromArray($array['shortcut']),
         );
     }
 
@@ -48,7 +48,7 @@ class UpdateQuickReplyShortcut extends Update
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'shortcut' => $this->shortcut->typeSerialize(),
+            'shortcut' => $this->shortcut->jsonSerialize(),
         ];
     }
 }

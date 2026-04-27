@@ -31,8 +31,8 @@ class GiftForResale extends TdObject
     public static function fromArray(array $array): GiftForResale
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['gift']),
-            $array['received_gift_id'],
+            gift          : TdSchemaRegistry::fromArray($array['gift']),
+            receivedGiftId: $array['received_gift_id'],
         );
     }
 
@@ -64,7 +64,7 @@ class GiftForResale extends TdObject
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'gift'             => $this->gift->typeSerialize(),
+            'gift'             => $this->gift->jsonSerialize(),
             'received_gift_id' => $this->receivedGiftId,
         ];
     }

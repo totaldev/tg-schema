@@ -19,20 +19,20 @@ class PageBlockCaption extends TdObject
 
     public function __construct(
         /**
-         * Content of the caption.
-         */
-        protected RichText $text,
-        /**
          * Block credit (like HTML tag <cite>).
          */
         protected RichText $credit,
+        /**
+         * Content of the caption.
+         */
+        protected RichText $text,
     ) {}
 
     public static function fromArray(array $array): PageBlockCaption
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['text']),
-            TdSchemaRegistry::fromArray($array['credit']),
+            credit: TdSchemaRegistry::fromArray($array['credit']),
+            text  : TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -64,8 +64,8 @@ class PageBlockCaption extends TdObject
     {
         return [
             '@type'  => static::TYPE_NAME,
-            'text'   => $this->text->typeSerialize(),
-            'credit' => $this->credit->typeSerialize(),
+            'credit' => $this->credit->jsonSerialize(),
+            'text'   => $this->text->jsonSerialize(),
         ];
     }
 }

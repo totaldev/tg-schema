@@ -18,17 +18,13 @@ class PremiumGiveawayPaymentOption extends TdObject
 
     public function __construct(
         /**
-         * ISO 4217 currency code for Telegram Premium gift code payment.
-         */
-        protected string $currency,
-        /**
          * The amount to pay, in the smallest units of the currency.
          */
         protected int    $amount,
         /**
-         * Number of users which will be able to activate the gift codes.
+         * ISO 4217 currency code for Telegram Premium gift code payment.
          */
-        protected int    $winnerCount,
+        protected string $currency,
         /**
          * Number of months the Telegram Premium subscription will be active.
          */
@@ -41,17 +37,21 @@ class PremiumGiveawayPaymentOption extends TdObject
          * Number of times the store product must be paid.
          */
         protected int    $storeProductQuantity,
+        /**
+         * Number of users which will be able to activate the gift codes.
+         */
+        protected int    $winnerCount,
     ) {}
 
     public static function fromArray(array $array): PremiumGiveawayPaymentOption
     {
         return new static(
-            $array['currency'],
-            $array['amount'],
-            $array['winner_count'],
-            $array['month_count'],
-            $array['store_product_id'],
-            $array['store_product_quantity'],
+            amount              : $array['amount'],
+            currency            : $array['currency'],
+            monthCount          : $array['month_count'],
+            storeProductId      : $array['store_product_id'],
+            storeProductQuantity: $array['store_product_quantity'],
+            winnerCount         : $array['winner_count'],
         );
     }
 
@@ -131,12 +131,12 @@ class PremiumGiveawayPaymentOption extends TdObject
     {
         return [
             '@type'                  => static::TYPE_NAME,
-            'currency'               => $this->currency,
             'amount'                 => $this->amount,
-            'winner_count'           => $this->winnerCount,
+            'currency'               => $this->currency,
             'month_count'            => $this->monthCount,
             'store_product_id'       => $this->storeProductId,
             'store_product_quantity' => $this->storeProductQuantity,
+            'winner_count'           => $this->winnerCount,
         ];
     }
 }

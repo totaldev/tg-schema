@@ -20,13 +20,13 @@ class ToggleChatIsPinned extends TdFunction
 
     public function __construct(
         /**
-         * Chat list in which to change the pinned state of the chat.
-         */
-        protected ChatList $chatList,
-        /**
          * Chat identifier.
          */
         protected int      $chatId,
+        /**
+         * Chat list in which to change the pinned state of the chat.
+         */
+        protected ChatList $chatList,
         /**
          * Pass true to pin the chat; pass false to unpin it.
          */
@@ -36,9 +36,9 @@ class ToggleChatIsPinned extends TdFunction
     public static function fromArray(array $array): ToggleChatIsPinned
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['chat_list']),
-            $array['chat_id'],
-            $array['is_pinned'],
+            chatId  : $array['chat_id'],
+            chatList: TdSchemaRegistry::fromArray($array['chat_list']),
+            isPinned: $array['is_pinned'],
         );
     }
 
@@ -82,8 +82,8 @@ class ToggleChatIsPinned extends TdFunction
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'chat_list' => $this->chatList->typeSerialize(),
             'chat_id'   => $this->chatId,
+            'chat_list' => $this->chatList->jsonSerialize(),
             'is_pinned' => $this->isPinned,
         ];
     }

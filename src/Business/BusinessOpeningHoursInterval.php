@@ -17,20 +17,20 @@ class BusinessOpeningHoursInterval extends TdObject
 
     public function __construct(
         /**
-         * The minute's sequence number in a week, starting on Monday, marking the start of the time interval during which the business is open; 0-7*24*60.
-         */
-        protected int $startMinute,
-        /**
          * The minute's sequence number in a week, starting on Monday, marking the end of the time interval during which the business is open; 1-8*24*60.
          */
         protected int $endMinute,
+        /**
+         * The minute's sequence number in a week, starting on Monday, marking the start of the time interval during which the business is open; 0-7*24*60.
+         */
+        protected int $startMinute,
     ) {}
 
     public static function fromArray(array $array): BusinessOpeningHoursInterval
     {
         return new static(
-            $array['start_minute'],
-            $array['end_minute'],
+            endMinute  : $array['end_minute'],
+            startMinute: $array['start_minute'],
         );
     }
 
@@ -62,8 +62,8 @@ class BusinessOpeningHoursInterval extends TdObject
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'start_minute' => $this->startMinute,
             'end_minute'   => $this->endMinute,
+            'start_minute' => $this->startMinute,
         ];
     }
 }

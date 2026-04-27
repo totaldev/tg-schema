@@ -25,7 +25,7 @@ class InlineKeyboardButtonTypeUser extends InlineKeyboardButtonType
     public static function fromArray(array $array): InlineKeyboardButtonTypeUser
     {
         return new static(
-            $array['user_id'],
+            userId: $array['user_id'],
         );
     }
 

@@ -34,9 +34,9 @@ class AuthorizationStateWaitPremiumPurchase extends AuthorizationState
     public static function fromArray(array $array): AuthorizationStateWaitPremiumPurchase
     {
         return new static(
-            $array['store_product_id'],
-            $array['support_email_address'],
-            $array['support_email_subject'],
+            storeProductId     : $array['store_product_id'],
+            supportEmailAddress: $array['support_email_address'],
+            supportEmailSubject: $array['support_email_subject'],
         );
     }
 

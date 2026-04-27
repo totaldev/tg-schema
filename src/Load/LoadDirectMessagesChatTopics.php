@@ -30,8 +30,8 @@ class LoadDirectMessagesChatTopics extends TdFunction
     public static function fromArray(array $array): LoadDirectMessagesChatTopics
     {
         return new static(
-            $array['chat_id'],
-            $array['limit'],
+            chatId: $array['chat_id'],
+            limit : $array['limit'],
         );
     }
 

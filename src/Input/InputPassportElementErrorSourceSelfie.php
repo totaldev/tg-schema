@@ -25,7 +25,7 @@ class InputPassportElementErrorSourceSelfie extends InputPassportElementErrorSou
     public static function fromArray(array $array): InputPassportElementErrorSourceSelfie
     {
         return new static(
-            $array['file_hash'],
+            fileHash: $array['file_hash'],
         );
     }
 

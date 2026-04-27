@@ -17,20 +17,20 @@ class CreateSupergroupChat extends TdFunction
 
     public function __construct(
         /**
-         * Supergroup or channel identifier.
-         */
-        protected int  $supergroupId,
-        /**
          * Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect.
          */
         protected bool $force,
+        /**
+         * Supergroup or channel identifier.
+         */
+        protected int  $supergroupId,
     ) {}
 
     public static function fromArray(array $array): CreateSupergroupChat
     {
         return new static(
-            $array['supergroup_id'],
-            $array['force'],
+            force       : $array['force'],
+            supergroupId: $array['supergroup_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class CreateSupergroupChat extends TdFunction
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'supergroup_id' => $this->supergroupId,
             'force'         => $this->force,
+            'supergroup_id' => $this->supergroupId,
         ];
     }
 }

@@ -18,13 +18,13 @@ class InlineQueryResultGame extends InlineQueryResult
 
     public function __construct(
         /**
-         * Unique identifier of the query result.
-         */
-        protected string $id,
-        /**
          * Game result.
          */
         protected Game   $game,
+        /**
+         * Unique identifier of the query result.
+         */
+        protected string $id,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class InlineQueryResultGame extends InlineQueryResult
     public static function fromArray(array $array): InlineQueryResultGame
     {
         return new static(
-            $array['id'],
-            TdSchemaRegistry::fromArray($array['game']),
+            game: TdSchemaRegistry::fromArray($array['game']),
+            id  : $array['id'],
         );
     }
 
@@ -65,8 +65,8 @@ class InlineQueryResultGame extends InlineQueryResult
     {
         return [
             '@type' => static::TYPE_NAME,
+            'game'  => $this->game->jsonSerialize(),
             'id'    => $this->id,
-            'game'  => $this->game->typeSerialize(),
         ];
     }
 }

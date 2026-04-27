@@ -21,36 +21,36 @@ class DiscardCall extends TdFunction
          */
         protected int    $callId,
         /**
-         * Pass true if the user was disconnected.
+         * Identifier of the connection used during the call.
          */
-        protected bool   $isDisconnected,
-        /**
-         * If the call was upgraded to a group call, pass invite link to the group call.
-         */
-        protected string $inviteLink,
+        protected int    $connectionId,
         /**
          * The call duration, in seconds.
          */
         protected int    $duration,
         /**
+         * If the call was upgraded to a group call, pass invite link to the group call.
+         */
+        protected string $inviteLink,
+        /**
+         * Pass true if the user was disconnected.
+         */
+        protected bool   $isDisconnected,
+        /**
          * Pass true if the call was a video call.
          */
         protected bool   $isVideo,
-        /**
-         * Identifier of the connection used during the call.
-         */
-        protected int    $connectionId,
     ) {}
 
     public static function fromArray(array $array): DiscardCall
     {
         return new static(
-            $array['call_id'],
-            $array['is_disconnected'],
-            $array['invite_link'],
-            $array['duration'],
-            $array['is_video'],
-            $array['connection_id'],
+            callId        : $array['call_id'],
+            connectionId  : $array['connection_id'],
+            duration      : $array['duration'],
+            inviteLink    : $array['invite_link'],
+            isDisconnected: $array['is_disconnected'],
+            isVideo       : $array['is_video'],
         );
     }
 
@@ -131,11 +131,11 @@ class DiscardCall extends TdFunction
         return [
             '@type'           => static::TYPE_NAME,
             'call_id'         => $this->callId,
-            'is_disconnected' => $this->isDisconnected,
-            'invite_link'     => $this->inviteLink,
-            'duration'        => $this->duration,
-            'is_video'        => $this->isVideo,
             'connection_id'   => $this->connectionId,
+            'duration'        => $this->duration,
+            'invite_link'     => $this->inviteLink,
+            'is_disconnected' => $this->isDisconnected,
+            'is_video'        => $this->isVideo,
         ];
     }
 }

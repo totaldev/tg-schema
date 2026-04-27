@@ -25,7 +25,7 @@ class GetPremiumInfoSticker extends TdFunction
     public static function fromArray(array $array): GetPremiumInfoSticker
     {
         return new static(
-            $array['month_count'],
+            monthCount: $array['month_count'],
         );
     }
 

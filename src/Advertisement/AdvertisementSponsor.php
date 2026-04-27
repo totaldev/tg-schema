@@ -19,25 +19,25 @@ class AdvertisementSponsor extends TdObject
 
     public function __construct(
         /**
-         * URL of the sponsor to be opened when the advertisement is clicked.
+         * Additional optional information about the sponsor to be shown along with the advertisement.
          */
-        protected string $url,
+        protected string $info,
         /**
          * Photo of the sponsor; may be null if must not be shown.
          */
         protected ?Photo $photo,
         /**
-         * Additional optional information about the sponsor to be shown along with the advertisement.
+         * URL of the sponsor to be opened when the advertisement is clicked.
          */
-        protected string $info,
+        protected string $url,
     ) {}
 
     public static function fromArray(array $array): AdvertisementSponsor
     {
         return new static(
-            $array['url'],
-            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
-            $array['info'],
+            info : $array['info'],
+            photo: (isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null),
+            url  : $array['url'],
         );
     }
 
@@ -81,9 +81,9 @@ class AdvertisementSponsor extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            'url'   => $this->url,
-            'photo' => $this->photo ?? null,
             'info'  => $this->info,
+            'photo' => (null !== $this->photo ? $this->photo->jsonSerialize() : null),
+            'url'   => $this->url,
         ];
     }
 }

@@ -28,7 +28,7 @@ class PaymentFormTypeStarSubscription extends PaymentFormType
     public static function fromArray(array $array): PaymentFormTypeStarSubscription
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['pricing']),
+            pricing: TdSchemaRegistry::fromArray($array['pricing']),
         );
     }
 
@@ -48,7 +48,7 @@ class PaymentFormTypeStarSubscription extends PaymentFormType
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'pricing' => $this->pricing->typeSerialize(),
+            'pricing' => $this->pricing->jsonSerialize(),
         ];
     }
 }

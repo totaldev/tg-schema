@@ -21,13 +21,13 @@ class UpgradeGift extends TdFunction
          */
         protected string $businessConnectionId,
         /**
-         * Identifier of the gift.
-         */
-        protected string $receivedGiftId,
-        /**
          * Pass true to keep the original gift text, sender and receiver in the upgraded gift.
          */
         protected bool   $keepOriginalDetails,
+        /**
+         * Identifier of the gift.
+         */
+        protected string $receivedGiftId,
         /**
          * The amount of Telegram Stars required to pay for the upgrade. It the gift has prepaid_upgrade_star_count > 0, then pass 0, otherwise, pass gift.upgrade_star_count.
          */
@@ -37,10 +37,10 @@ class UpgradeGift extends TdFunction
     public static function fromArray(array $array): UpgradeGift
     {
         return new static(
-            $array['business_connection_id'],
-            $array['received_gift_id'],
-            $array['keep_original_details'],
-            $array['star_count'],
+            businessConnectionId: $array['business_connection_id'],
+            keepOriginalDetails : $array['keep_original_details'],
+            receivedGiftId      : $array['received_gift_id'],
+            starCount           : $array['star_count'],
         );
     }
 
@@ -97,8 +97,8 @@ class UpgradeGift extends TdFunction
         return [
             '@type'                  => static::TYPE_NAME,
             'business_connection_id' => $this->businessConnectionId,
-            'received_gift_id'       => $this->receivedGiftId,
             'keep_original_details'  => $this->keepOriginalDetails,
+            'received_gift_id'       => $this->receivedGiftId,
             'star_count'             => $this->starCount,
         ];
     }

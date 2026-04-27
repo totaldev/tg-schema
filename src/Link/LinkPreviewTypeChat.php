@@ -19,17 +19,17 @@ class LinkPreviewTypeChat extends LinkPreviewType
 
     public function __construct(
         /**
-         * Type of the chat.
+         * True, if the link only creates join request.
          */
-        protected InviteLinkChatType $type,
+        protected bool               $createsJoinRequest,
         /**
          * Photo of the chat; may be null.
          */
         protected ?ChatPhoto         $photo,
         /**
-         * True, if the link only creates join request.
+         * Type of the chat.
          */
-        protected bool               $createsJoinRequest,
+        protected InviteLinkChatType $type,
     ) {
         parent::__construct();
     }
@@ -37,9 +37,9 @@ class LinkPreviewTypeChat extends LinkPreviewType
     public static function fromArray(array $array): LinkPreviewTypeChat
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['type']),
-            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
-            $array['creates_join_request'],
+            createsJoinRequest: $array['creates_join_request'],
+            photo             : (isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null),
+            type              : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -83,9 +83,9 @@ class LinkPreviewTypeChat extends LinkPreviewType
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'type'                 => $this->type->typeSerialize(),
-            'photo'                => $this->photo ?? null,
             'creates_join_request' => $this->createsJoinRequest,
+            'photo'                => (null !== $this->photo ? $this->photo->jsonSerialize() : null),
+            'type'                 => $this->type->jsonSerialize(),
         ];
     }
 }

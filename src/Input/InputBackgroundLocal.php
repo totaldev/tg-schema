@@ -27,7 +27,7 @@ class InputBackgroundLocal extends InputBackground
     public static function fromArray(array $array): InputBackgroundLocal
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['background']),
+            background: TdSchemaRegistry::fromArray($array['background']),
         );
     }
 
@@ -47,7 +47,7 @@ class InputBackgroundLocal extends InputBackground
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'background' => $this->background->typeSerialize(),
+            'background' => $this->background->jsonSerialize(),
         ];
     }
 }

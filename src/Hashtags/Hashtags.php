@@ -27,7 +27,7 @@ class Hashtags extends TdObject
     public static function fromArray(array $array): Hashtags
     {
         return new static(
-            $array['hashtags'],
+            hashtags: $array['hashtags'],
         );
     }
 

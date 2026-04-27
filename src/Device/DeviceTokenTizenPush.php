@@ -25,7 +25,7 @@ class DeviceTokenTizenPush extends DeviceToken
     public static function fromArray(array $array): DeviceTokenTizenPush
     {
         return new static(
-            $array['reg_id'],
+            regId: $array['reg_id'],
         );
     }
 

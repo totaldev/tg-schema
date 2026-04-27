@@ -17,17 +17,17 @@ class ProfileAccentColors extends TdObject
 
     public function __construct(
         /**
-         * The list of 1-2 colors in RGB format, describing the colors, as expected to be shown in the color palette settings.
-         *
-         * @var int[]
-         */
-        protected array $paletteColors,
-        /**
          * The list of 1-2 colors in RGB format, describing the colors, as expected to be used for the profile photo background.
          *
          * @var int[]
          */
         protected array $backgroundColors,
+        /**
+         * The list of 1-2 colors in RGB format, describing the colors, as expected to be shown in the color palette settings.
+         *
+         * @var int[]
+         */
+        protected array $paletteColors,
         /**
          * The list of 2 colors in RGB format, describing the colors of the gradient to be used for the unread active story indicator around profile photo.
          *
@@ -39,9 +39,9 @@ class ProfileAccentColors extends TdObject
     public static function fromArray(array $array): ProfileAccentColors
     {
         return new static(
-            $array['palette_colors'],
-            $array['background_colors'],
-            $array['story_colors'],
+            backgroundColors: $array['background_colors'],
+            paletteColors   : $array['palette_colors'],
+            storyColors     : $array['story_colors'],
         );
     }
 
@@ -85,8 +85,8 @@ class ProfileAccentColors extends TdObject
     {
         return [
             '@type'             => static::TYPE_NAME,
-            'palette_colors'    => $this->paletteColors,
             'background_colors' => $this->backgroundColors,
+            'palette_colors'    => $this->paletteColors,
             'story_colors'      => $this->storyColors,
         ];
     }

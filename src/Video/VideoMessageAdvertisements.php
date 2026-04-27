@@ -24,21 +24,21 @@ class VideoMessageAdvertisements extends TdObject
          */
         protected array $advertisements,
         /**
-         * Delay before the first advertisement is shown, in seconds.
-         */
-        protected int   $startDelay,
-        /**
          * Delay between consecutive advertisements, in seconds.
          */
         protected int   $betweenDelay,
+        /**
+         * Delay before the first advertisement is shown, in seconds.
+         */
+        protected int   $startDelay,
     ) {}
 
     public static function fromArray(array $array): VideoMessageAdvertisements
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['advertisements']),
-            $array['start_delay'],
-            $array['between_delay'],
+            advertisements: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['advertisements']),
+            betweenDelay  : $array['between_delay'],
+            startDelay    : $array['start_delay'],
         );
     }
 
@@ -82,9 +82,9 @@ class VideoMessageAdvertisements extends TdObject
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'advertisements' => array_map(static fn($x) => $x->typeSerialize(), $this->advertisements),
-            'start_delay'    => $this->startDelay,
+            'advertisements' => array_map(static fn($x) => $x->jsonSerialize(), $this->advertisements),
             'between_delay'  => $this->betweenDelay,
+            'start_delay'    => $this->startDelay,
         ];
     }
 }

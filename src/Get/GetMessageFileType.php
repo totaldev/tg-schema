@@ -25,7 +25,7 @@ class GetMessageFileType extends TdFunction
     public static function fromArray(array $array): GetMessageFileType
     {
         return new static(
-            $array['message_file_head'],
+            messageFileHead: $array['message_file_head'],
         );
     }
 

@@ -19,6 +19,14 @@ class NotificationTypeNewPushMessage extends NotificationType
 
     public function __construct(
         /**
+         * Push message content.
+         */
+        protected PushMessageContent $content,
+        /**
+         * True, if the message is outgoing.
+         */
+        protected bool               $isOutgoing,
+        /**
          * The message identifier. The message will not be available in the chat history, but the identifier can be used in viewMessages, or as a message to be replied in the same chat.
          */
         protected int                $messageId,
@@ -30,14 +38,6 @@ class NotificationTypeNewPushMessage extends NotificationType
          * Name of the sender.
          */
         protected string             $senderName,
-        /**
-         * True, if the message is outgoing.
-         */
-        protected bool               $isOutgoing,
-        /**
-         * Push message content.
-         */
-        protected PushMessageContent $content,
     ) {
         parent::__construct();
     }
@@ -45,11 +45,11 @@ class NotificationTypeNewPushMessage extends NotificationType
     public static function fromArray(array $array): NotificationTypeNewPushMessage
     {
         return new static(
-            $array['message_id'],
-            TdSchemaRegistry::fromArray($array['sender_id']),
-            $array['sender_name'],
-            $array['is_outgoing'],
-            TdSchemaRegistry::fromArray($array['content']),
+            content   : TdSchemaRegistry::fromArray($array['content']),
+            isOutgoing: $array['is_outgoing'],
+            messageId : $array['message_id'],
+            senderId  : TdSchemaRegistry::fromArray($array['sender_id']),
+            senderName: $array['sender_name'],
         );
     }
 
@@ -117,11 +117,11 @@ class NotificationTypeNewPushMessage extends NotificationType
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'message_id'  => $this->messageId,
-            'sender_id'   => $this->senderId->typeSerialize(),
-            'sender_name' => $this->senderName,
+            'content'     => $this->content->jsonSerialize(),
             'is_outgoing' => $this->isOutgoing,
-            'content'     => $this->content->typeSerialize(),
+            'message_id'  => $this->messageId,
+            'sender_id'   => $this->senderId->jsonSerialize(),
+            'sender_name' => $this->senderName,
         ];
     }
 }

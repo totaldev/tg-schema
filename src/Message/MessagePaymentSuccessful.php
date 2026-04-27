@@ -15,6 +15,10 @@ class MessagePaymentSuccessful extends MessageContent
 
     public function __construct(
         /**
+         * Currency for the price of the product.
+         */
+        protected string $currency,
+        /**
          * Identifier of the chat, containing the corresponding invoice message.
          */
         protected int    $invoiceChatId,
@@ -23,29 +27,25 @@ class MessagePaymentSuccessful extends MessageContent
          */
         protected int    $invoiceMessageId,
         /**
-         * Currency for the price of the product.
+         * Name of the invoice; may be empty if unknown.
          */
-        protected string $currency,
-        /**
-         * Total price for the product, in the smallest units of the currency.
-         */
-        protected int    $totalAmount,
-        /**
-         * Point in time (Unix timestamp) when the subscription will expire; 0 if unknown or the payment isn't recurring.
-         */
-        protected int    $subscriptionUntilDate,
-        /**
-         * True, if this is a recurring payment.
-         */
-        protected bool   $isRecurring,
+        protected string $invoiceName,
         /**
          * True, if this is the first recurring payment.
          */
         protected bool   $isFirstRecurring,
         /**
-         * Name of the invoice; may be empty if unknown.
+         * True, if this is a recurring payment.
          */
-        protected string $invoiceName,
+        protected bool   $isRecurring,
+        /**
+         * Point in time (Unix timestamp) when the subscription will expire; 0 if unknown or the payment isn't recurring.
+         */
+        protected int    $subscriptionUntilDate,
+        /**
+         * Total price for the product, in the smallest units of the currency.
+         */
+        protected int    $totalAmount,
     ) {
         parent::__construct();
     }
@@ -53,14 +53,14 @@ class MessagePaymentSuccessful extends MessageContent
     public static function fromArray(array $array): MessagePaymentSuccessful
     {
         return new static(
-            $array['invoice_chat_id'],
-            $array['invoice_message_id'],
-            $array['currency'],
-            $array['total_amount'],
-            $array['subscription_until_date'],
-            $array['is_recurring'],
-            $array['is_first_recurring'],
-            $array['invoice_name'],
+            currency             : $array['currency'],
+            invoiceChatId        : $array['invoice_chat_id'],
+            invoiceMessageId     : $array['invoice_message_id'],
+            invoiceName          : $array['invoice_name'],
+            isFirstRecurring     : $array['is_first_recurring'],
+            isRecurring          : $array['is_recurring'],
+            subscriptionUntilDate: $array['subscription_until_date'],
+            totalAmount          : $array['total_amount'],
         );
     }
 
@@ -164,14 +164,14 @@ class MessagePaymentSuccessful extends MessageContent
     {
         return [
             '@type'                   => static::TYPE_NAME,
+            'currency'                => $this->currency,
             'invoice_chat_id'         => $this->invoiceChatId,
             'invoice_message_id'      => $this->invoiceMessageId,
-            'currency'                => $this->currency,
-            'total_amount'            => $this->totalAmount,
-            'subscription_until_date' => $this->subscriptionUntilDate,
-            'is_recurring'            => $this->isRecurring,
-            'is_first_recurring'      => $this->isFirstRecurring,
             'invoice_name'            => $this->invoiceName,
+            'is_first_recurring'      => $this->isFirstRecurring,
+            'is_recurring'            => $this->isRecurring,
+            'subscription_until_date' => $this->subscriptionUntilDate,
+            'total_amount'            => $this->totalAmount,
         ];
     }
 }

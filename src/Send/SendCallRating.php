@@ -23,10 +23,6 @@ class SendCallRating extends TdFunction
          */
         protected int    $callId,
         /**
-         * Call rating; 1-5.
-         */
-        protected int    $rating,
-        /**
          * An optional user comment if the rating is less than 5.
          */
         protected string $comment,
@@ -36,15 +32,19 @@ class SendCallRating extends TdFunction
          * @var CallProblem[]
          */
         protected array  $problems,
+        /**
+         * Call rating; 1-5.
+         */
+        protected int    $rating,
     ) {}
 
     public static function fromArray(array $array): SendCallRating
     {
         return new static(
-            $array['call_id'],
-            $array['rating'],
-            $array['comment'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['problems']),
+            callId  : $array['call_id'],
+            comment : $array['comment'],
+            problems: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['problems']),
+            rating  : $array['rating'],
         );
     }
 
@@ -101,9 +101,9 @@ class SendCallRating extends TdFunction
         return [
             '@type'    => static::TYPE_NAME,
             'call_id'  => $this->callId,
-            'rating'   => $this->rating,
             'comment'  => $this->comment,
-            'problems' => array_map(static fn($x) => $x->typeSerialize(), $this->problems),
+            'problems' => array_map(static fn($x) => $x->jsonSerialize(), $this->problems),
+            'rating'   => $this->rating,
         ];
     }
 }

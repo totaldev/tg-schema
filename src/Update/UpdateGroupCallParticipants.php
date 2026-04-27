@@ -31,8 +31,8 @@ class UpdateGroupCallParticipants extends Update
     public static function fromArray(array $array): UpdateGroupCallParticipants
     {
         return new static(
-            $array['group_call_id'],
-            $array['participant_user_ids'],
+            groupCallId       : $array['group_call_id'],
+            participantUserIds: $array['participant_user_ids'],
         );
     }
 

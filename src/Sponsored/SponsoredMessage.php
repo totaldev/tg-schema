@@ -20,13 +20,21 @@ class SponsoredMessage extends TdObject
 
     public function __construct(
         /**
-         * Message identifier; unique for the chat to which the sponsored message belongs among both ordinary and sponsored messages.
+         * Identifier of the accent color for title, button text and message background.
          */
-        protected int                  $messageId,
+        protected int                  $accentColorId,
         /**
-         * True, if the message needs to be labeled as "recommended" instead of "sponsored".
+         * If non-empty, additional information about the sponsored message to be shown along with the message.
          */
-        protected bool                 $isRecommended,
+        protected string               $additionalInfo,
+        /**
+         * Identifier of a custom emoji to be shown on the message background; 0 if none.
+         */
+        protected int                  $backgroundCustomEmojiId,
+        /**
+         * Text for the message action button.
+         */
+        protected string               $buttonText,
         /**
          * True, if the message can be reported to Telegram moderators through reportChatSponsoredMessage.
          */
@@ -36,6 +44,14 @@ class SponsoredMessage extends TdObject
          */
         protected MessageContent       $content,
         /**
+         * True, if the message needs to be labeled as "recommended" instead of "sponsored".
+         */
+        protected bool                 $isRecommended,
+        /**
+         * Message identifier; unique for the chat to which the sponsored message belongs among both ordinary and sponsored messages.
+         */
+        protected int                  $messageId,
+        /**
          * Information about the sponsor of the message.
          */
         protected AdvertisementSponsor $sponsor,
@@ -43,37 +59,21 @@ class SponsoredMessage extends TdObject
          * Title of the sponsored message.
          */
         protected string               $title,
-        /**
-         * Text for the message action button.
-         */
-        protected string               $buttonText,
-        /**
-         * Identifier of the accent color for title, button text and message background.
-         */
-        protected int                  $accentColorId,
-        /**
-         * Identifier of a custom emoji to be shown on the message background; 0 if none.
-         */
-        protected int                  $backgroundCustomEmojiId,
-        /**
-         * If non-empty, additional information about the sponsored message to be shown along with the message.
-         */
-        protected string               $additionalInfo,
     ) {}
 
     public static function fromArray(array $array): SponsoredMessage
     {
         return new static(
-            $array['message_id'],
-            $array['is_recommended'],
-            $array['can_be_reported'],
-            TdSchemaRegistry::fromArray($array['content']),
-            TdSchemaRegistry::fromArray($array['sponsor']),
-            $array['title'],
-            $array['button_text'],
-            $array['accent_color_id'],
-            $array['background_custom_emoji_id'],
-            $array['additional_info'],
+            accentColorId          : $array['accent_color_id'],
+            additionalInfo         : $array['additional_info'],
+            backgroundCustomEmojiId: $array['background_custom_emoji_id'],
+            buttonText             : $array['button_text'],
+            canBeReported          : $array['can_be_reported'],
+            content                : TdSchemaRegistry::fromArray($array['content']),
+            isRecommended          : $array['is_recommended'],
+            messageId              : $array['message_id'],
+            sponsor                : TdSchemaRegistry::fromArray($array['sponsor']),
+            title                  : $array['title'],
         );
     }
 
@@ -201,16 +201,16 @@ class SponsoredMessage extends TdObject
     {
         return [
             '@type'                      => static::TYPE_NAME,
-            'message_id'                 => $this->messageId,
-            'is_recommended'             => $this->isRecommended,
-            'can_be_reported'            => $this->canBeReported,
-            'content'                    => $this->content->typeSerialize(),
-            'sponsor'                    => $this->sponsor->typeSerialize(),
-            'title'                      => $this->title,
-            'button_text'                => $this->buttonText,
             'accent_color_id'            => $this->accentColorId,
-            'background_custom_emoji_id' => $this->backgroundCustomEmojiId,
             'additional_info'            => $this->additionalInfo,
+            'background_custom_emoji_id' => $this->backgroundCustomEmojiId,
+            'button_text'                => $this->buttonText,
+            'can_be_reported'            => $this->canBeReported,
+            'content'                    => $this->content->jsonSerialize(),
+            'is_recommended'             => $this->isRecommended,
+            'message_id'                 => $this->messageId,
+            'sponsor'                    => $this->sponsor->jsonSerialize(),
+            'title'                      => $this->title,
         ];
     }
 }

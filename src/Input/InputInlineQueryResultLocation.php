@@ -23,17 +23,21 @@ class InputInlineQueryResultLocation extends InputInlineQueryResult
          */
         protected string              $id,
         /**
-         * Location result.
+         * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact.
          */
-        protected Location            $location,
+        protected InputMessageContent $inputMessageContent,
         /**
          * Amount of time relative to the message sent time until the location can be updated, in seconds.
          */
         protected int                 $livePeriod,
         /**
-         * Title of the result.
+         * Location result.
          */
-        protected string              $title,
+        protected Location            $location,
+        /**
+         * Thumbnail height, if known.
+         */
+        protected int                 $thumbnailHeight,
         /**
          * URL of the result thumbnail, if it exists.
          */
@@ -43,13 +47,9 @@ class InputInlineQueryResultLocation extends InputInlineQueryResult
          */
         protected int                 $thumbnailWidth,
         /**
-         * Thumbnail height, if known.
+         * Title of the result.
          */
-        protected int                 $thumbnailHeight,
-        /**
-         * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact.
-         */
-        protected InputMessageContent $inputMessageContent,
+        protected string              $title,
         /**
          * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null.
          */
@@ -61,15 +61,15 @@ class InputInlineQueryResultLocation extends InputInlineQueryResult
     public static function fromArray(array $array): InputInlineQueryResultLocation
     {
         return new static(
-            $array['id'],
-            TdSchemaRegistry::fromArray($array['location']),
-            $array['live_period'],
-            $array['title'],
-            $array['thumbnail_url'],
-            $array['thumbnail_width'],
-            $array['thumbnail_height'],
-            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
-            TdSchemaRegistry::fromArray($array['input_message_content']),
+            id                 : $array['id'],
+            inputMessageContent: TdSchemaRegistry::fromArray($array['input_message_content']),
+            livePeriod         : $array['live_period'],
+            location           : TdSchemaRegistry::fromArray($array['location']),
+            replyMarkup        : (isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null),
+            thumbnailHeight    : $array['thumbnail_height'],
+            thumbnailUrl       : $array['thumbnail_url'],
+            thumbnailWidth     : $array['thumbnail_width'],
+            title              : $array['title'],
         );
     }
 
@@ -186,14 +186,14 @@ class InputInlineQueryResultLocation extends InputInlineQueryResult
         return [
             '@type'                 => static::TYPE_NAME,
             'id'                    => $this->id,
-            'location'              => $this->location->typeSerialize(),
+            'input_message_content' => $this->inputMessageContent->jsonSerialize(),
             'live_period'           => $this->livePeriod,
-            'title'                 => $this->title,
+            'location'              => $this->location->jsonSerialize(),
+            'reply_markup'          => (null !== $this->replyMarkup ? $this->replyMarkup->jsonSerialize() : null),
+            'thumbnail_height'      => $this->thumbnailHeight,
             'thumbnail_url'         => $this->thumbnailUrl,
             'thumbnail_width'       => $this->thumbnailWidth,
-            'thumbnail_height'      => $this->thumbnailHeight,
-            'reply_markup'          => $this->replyMarkup ?? null,
-            'input_message_content' => $this->inputMessageContent->typeSerialize(),
+            'title'                 => $this->title,
         ];
     }
 }

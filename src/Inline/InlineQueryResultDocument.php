@@ -18,21 +18,21 @@ class InlineQueryResultDocument extends InlineQueryResult
 
     public function __construct(
         /**
-         * Unique identifier of the query result.
+         * Document description.
          */
-        protected string   $id,
+        protected string   $description,
         /**
          * Document.
          */
         protected Document $document,
         /**
+         * Unique identifier of the query result.
+         */
+        protected string   $id,
+        /**
          * Document title.
          */
         protected string   $title,
-        /**
-         * Document description.
-         */
-        protected string   $description,
     ) {
         parent::__construct();
     }
@@ -40,10 +40,10 @@ class InlineQueryResultDocument extends InlineQueryResult
     public static function fromArray(array $array): InlineQueryResultDocument
     {
         return new static(
-            $array['id'],
-            TdSchemaRegistry::fromArray($array['document']),
-            $array['title'],
-            $array['description'],
+            description: $array['description'],
+            document   : TdSchemaRegistry::fromArray($array['document']),
+            id         : $array['id'],
+            title      : $array['title'],
         );
     }
 
@@ -99,10 +99,10 @@ class InlineQueryResultDocument extends InlineQueryResult
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'id'          => $this->id,
-            'document'    => $this->document->typeSerialize(),
-            'title'       => $this->title,
             'description' => $this->description,
+            'document'    => $this->document->jsonSerialize(),
+            'id'          => $this->id,
+            'title'       => $this->title,
         ];
     }
 }

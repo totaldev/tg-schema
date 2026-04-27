@@ -29,8 +29,8 @@ class StarTransactionTypePaidMessageSend extends StarTransactionType
     public static function fromArray(array $array): StarTransactionTypePaidMessageSend
     {
         return new static(
-            $array['chat_id'],
-            $array['message_count'],
+            chatId      : $array['chat_id'],
+            messageCount: $array['message_count'],
         );
     }
 

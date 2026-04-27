@@ -17,17 +17,17 @@ class TonRevenueStatus extends TdObject
 
     public function __construct(
         /**
-         * Total amount of Toncoins earned; in the smallest units of the cryptocurrency.
+         * Amount of Toncoins that are available for withdrawal; in the smallest units of the cryptocurrency.
          */
-        protected int  $totalAmount,
+        protected int  $availableAmount,
         /**
          * Amount of Toncoins that aren't withdrawn yet; in the smallest units of the cryptocurrency.
          */
         protected int  $balanceAmount,
         /**
-         * Amount of Toncoins that are available for withdrawal; in the smallest units of the cryptocurrency.
+         * Total amount of Toncoins earned; in the smallest units of the cryptocurrency.
          */
-        protected int  $availableAmount,
+        protected int  $totalAmount,
         /**
          * True, if Toncoins can be withdrawn.
          */
@@ -37,10 +37,10 @@ class TonRevenueStatus extends TdObject
     public static function fromArray(array $array): TonRevenueStatus
     {
         return new static(
-            $array['total_amount'],
-            $array['balance_amount'],
-            $array['available_amount'],
-            $array['withdrawal_enabled'],
+            availableAmount  : $array['available_amount'],
+            balanceAmount    : $array['balance_amount'],
+            totalAmount      : $array['total_amount'],
+            withdrawalEnabled: $array['withdrawal_enabled'],
         );
     }
 
@@ -96,9 +96,9 @@ class TonRevenueStatus extends TdObject
     {
         return [
             '@type'              => static::TYPE_NAME,
-            'total_amount'       => $this->totalAmount,
-            'balance_amount'     => $this->balanceAmount,
             'available_amount'   => $this->availableAmount,
+            'balance_amount'     => $this->balanceAmount,
+            'total_amount'       => $this->totalAmount,
             'withdrawal_enabled' => $this->withdrawalEnabled,
         ];
     }

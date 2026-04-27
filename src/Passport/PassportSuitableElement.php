@@ -18,9 +18,9 @@ class PassportSuitableElement extends TdObject
 
     public function __construct(
         /**
-         * Type of the element.
+         * True, if personal details must include the user's name in the language of their country of residence.
          */
-        protected PassportElementType $type,
+        protected bool                $isNativeNameRequired,
         /**
          * True, if a selfie is required with the identity document.
          */
@@ -30,18 +30,18 @@ class PassportSuitableElement extends TdObject
          */
         protected bool                $isTranslationRequired,
         /**
-         * True, if personal details must include the user's name in the language of their country of residence.
+         * Type of the element.
          */
-        protected bool                $isNativeNameRequired,
+        protected PassportElementType $type,
     ) {}
 
     public static function fromArray(array $array): PassportSuitableElement
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['type']),
-            $array['is_selfie_required'],
-            $array['is_translation_required'],
-            $array['is_native_name_required'],
+            isNativeNameRequired : $array['is_native_name_required'],
+            isSelfieRequired     : $array['is_selfie_required'],
+            isTranslationRequired: $array['is_translation_required'],
+            type                 : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -97,10 +97,10 @@ class PassportSuitableElement extends TdObject
     {
         return [
             '@type'                   => static::TYPE_NAME,
-            'type'                    => $this->type->typeSerialize(),
+            'is_native_name_required' => $this->isNativeNameRequired,
             'is_selfie_required'      => $this->isSelfieRequired,
             'is_translation_required' => $this->isTranslationRequired,
-            'is_native_name_required' => $this->isNativeNameRequired,
+            'type'                    => $this->type->jsonSerialize(),
         ];
     }
 }

@@ -29,8 +29,8 @@ class MessageViewer extends TdObject
     public static function fromArray(array $array): MessageViewer
     {
         return new static(
-            $array['user_id'],
-            $array['view_date'],
+            userId  : $array['user_id'],
+            viewDate: $array['view_date'],
         );
     }
 

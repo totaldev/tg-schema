@@ -17,25 +17,25 @@ class StatisticalValue extends TdObject
 
     public function __construct(
         /**
-         * The current value.
+         * The growth rate of the value, as a percentage.
          */
-        protected float $value,
+        protected float $growthRatePercentage,
         /**
          * The value for the previous day.
          */
         protected float $previousValue,
         /**
-         * The growth rate of the value, as a percentage.
+         * The current value.
          */
-        protected float $growthRatePercentage,
+        protected float $value,
     ) {}
 
     public static function fromArray(array $array): StatisticalValue
     {
         return new static(
-            $array['value'],
-            $array['previous_value'],
-            $array['growth_rate_percentage'],
+            growthRatePercentage: $array['growth_rate_percentage'],
+            previousValue       : $array['previous_value'],
+            value               : $array['value'],
         );
     }
 
@@ -79,9 +79,9 @@ class StatisticalValue extends TdObject
     {
         return [
             '@type'                  => static::TYPE_NAME,
-            'value'                  => $this->value,
-            'previous_value'         => $this->previousValue,
             'growth_rate_percentage' => $this->growthRatePercentage,
+            'previous_value'         => $this->previousValue,
+            'value'                  => $this->value,
         ];
     }
 }

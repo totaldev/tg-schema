@@ -29,8 +29,8 @@ class UpdateChatHasScheduledMessages extends Update
     public static function fromArray(array $array): UpdateChatHasScheduledMessages
     {
         return new static(
-            $array['chat_id'],
-            $array['has_scheduled_messages'],
+            chatId              : $array['chat_id'],
+            hasScheduledMessages: $array['has_scheduled_messages'],
         );
     }
 

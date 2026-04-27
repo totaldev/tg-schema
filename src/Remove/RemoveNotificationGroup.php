@@ -17,20 +17,20 @@ class RemoveNotificationGroup extends TdFunction
 
     public function __construct(
         /**
-         * Notification group identifier.
-         */
-        protected int $notificationGroupId,
-        /**
          * The maximum identifier of removed notifications.
          */
         protected int $maxNotificationId,
+        /**
+         * Notification group identifier.
+         */
+        protected int $notificationGroupId,
     ) {}
 
     public static function fromArray(array $array): RemoveNotificationGroup
     {
         return new static(
-            $array['notification_group_id'],
-            $array['max_notification_id'],
+            maxNotificationId  : $array['max_notification_id'],
+            notificationGroupId: $array['notification_group_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class RemoveNotificationGroup extends TdFunction
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'notification_group_id' => $this->notificationGroupId,
             'max_notification_id'   => $this->maxNotificationId,
+            'notification_group_id' => $this->notificationGroupId,
         ];
     }
 }

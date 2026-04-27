@@ -29,8 +29,8 @@ class FirebaseAuthenticationSettingsIos extends FirebaseAuthenticationSettings
     public static function fromArray(array $array): FirebaseAuthenticationSettingsIos
     {
         return new static(
-            $array['device_token'],
-            $array['is_app_sandbox'],
+            deviceToken : $array['device_token'],
+            isAppSandbox: $array['is_app_sandbox'],
         );
     }
 

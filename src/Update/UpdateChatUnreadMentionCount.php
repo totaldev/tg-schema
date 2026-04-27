@@ -29,8 +29,8 @@ class UpdateChatUnreadMentionCount extends Update
     public static function fromArray(array $array): UpdateChatUnreadMentionCount
     {
         return new static(
-            $array['chat_id'],
-            $array['unread_mention_count'],
+            chatId            : $array['chat_id'],
+            unreadMentionCount: $array['unread_mention_count'],
         );
     }
 

@@ -17,35 +17,35 @@ class ChatBoostSlot extends TdObject
 
     public function __construct(
         /**
-         * Unique identifier of the slot.
+         * Point in time (Unix timestamp) after which the boost can be used for another chat.
          */
-        protected int $slotId,
+        protected int $cooldownUntilDate,
         /**
          * Identifier of the currently boosted chat; 0 if none.
          */
         protected int $currentlyBoostedChatId,
         /**
-         * Point in time (Unix timestamp) when the chat was boosted; 0 if none.
-         */
-        protected int $startDate,
-        /**
          * Point in time (Unix timestamp) when the boost will expire.
          */
         protected int $expirationDate,
         /**
-         * Point in time (Unix timestamp) after which the boost can be used for another chat.
+         * Unique identifier of the slot.
          */
-        protected int $cooldownUntilDate,
+        protected int $slotId,
+        /**
+         * Point in time (Unix timestamp) when the chat was boosted; 0 if none.
+         */
+        protected int $startDate,
     ) {}
 
     public static function fromArray(array $array): ChatBoostSlot
     {
         return new static(
-            $array['slot_id'],
-            $array['currently_boosted_chat_id'],
-            $array['start_date'],
-            $array['expiration_date'],
-            $array['cooldown_until_date'],
+            cooldownUntilDate     : $array['cooldown_until_date'],
+            currentlyBoostedChatId: $array['currently_boosted_chat_id'],
+            expirationDate        : $array['expiration_date'],
+            slotId                : $array['slot_id'],
+            startDate             : $array['start_date'],
         );
     }
 
@@ -113,11 +113,11 @@ class ChatBoostSlot extends TdObject
     {
         return [
             '@type'                     => static::TYPE_NAME,
-            'slot_id'                   => $this->slotId,
-            'currently_boosted_chat_id' => $this->currentlyBoostedChatId,
-            'start_date'                => $this->startDate,
-            'expiration_date'           => $this->expirationDate,
             'cooldown_until_date'       => $this->cooldownUntilDate,
+            'currently_boosted_chat_id' => $this->currentlyBoostedChatId,
+            'expiration_date'           => $this->expirationDate,
+            'slot_id'                   => $this->slotId,
+            'start_date'                => $this->startDate,
         ];
     }
 }

@@ -29,8 +29,8 @@ class ReadAllForumTopicMentions extends TdFunction
     public static function fromArray(array $array): ReadAllForumTopicMentions
     {
         return new static(
-            $array['chat_id'],
-            $array['forum_topic_id'],
+            chatId      : $array['chat_id'],
+            forumTopicId: $array['forum_topic_id'],
         );
     }
 

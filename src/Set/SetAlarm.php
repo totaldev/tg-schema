@@ -25,7 +25,7 @@ class SetAlarm extends TdFunction
     public static function fromArray(array $array): SetAlarm
     {
         return new static(
-            $array['seconds'],
+            seconds: $array['seconds'],
         );
     }
 

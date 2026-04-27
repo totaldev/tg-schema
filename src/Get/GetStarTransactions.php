@@ -20,6 +20,14 @@ class GetStarTransactions extends TdFunction
 
     public function __construct(
         /**
+         * The maximum number of transactions to return.
+         */
+        protected int                   $limit,
+        /**
+         * Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results.
+         */
+        protected string                $offset,
+        /**
          * Identifier of the owner of the Telegram Stars; can be the identifier of the current user, identifier of an owned bot, or identifier of a supergroup or a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true.
          */
         protected MessageSender         $ownerId,
@@ -27,14 +35,6 @@ class GetStarTransactions extends TdFunction
          * If non-empty, only transactions related to the Star Subscription will be returned.
          */
         protected string                $subscriptionId,
-        /**
-         * Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results.
-         */
-        protected string                $offset,
-        /**
-         * The maximum number of transactions to return.
-         */
-        protected int                   $limit,
         /**
          * Direction of the transactions to receive; pass null to get all transactions.
          */
@@ -44,11 +44,11 @@ class GetStarTransactions extends TdFunction
     public static function fromArray(array $array): GetStarTransactions
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['owner_id']),
-            $array['subscription_id'],
-            isset($array['direction']) ? TdSchemaRegistry::fromArray($array['direction']) : null,
-            $array['offset'],
-            $array['limit'],
+            direction     : (isset($array['direction']) ? TdSchemaRegistry::fromArray($array['direction']) : null),
+            limit         : $array['limit'],
+            offset        : $array['offset'],
+            ownerId       : TdSchemaRegistry::fromArray($array['owner_id']),
+            subscriptionId: $array['subscription_id'],
         );
     }
 
@@ -116,11 +116,11 @@ class GetStarTransactions extends TdFunction
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'owner_id'        => $this->ownerId->typeSerialize(),
-            'subscription_id' => $this->subscriptionId,
-            'direction'       => $this->direction ?? null,
-            'offset'          => $this->offset,
+            'direction'       => (null !== $this->direction ? $this->direction->jsonSerialize() : null),
             'limit'           => $this->limit,
+            'offset'          => $this->offset,
+            'owner_id'        => $this->ownerId->jsonSerialize(),
+            'subscription_id' => $this->subscriptionId,
         ];
     }
 }

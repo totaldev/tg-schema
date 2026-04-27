@@ -20,22 +20,22 @@ class SetPassportElementErrors extends TdFunction
 
     public function __construct(
         /**
-         * User identifier.
-         */
-        protected int   $userId,
-        /**
          * The errors.
          *
          * @var InputPassportElementError[]
          */
         protected array $errors,
+        /**
+         * User identifier.
+         */
+        protected int   $userId,
     ) {}
 
     public static function fromArray(array $array): SetPassportElementErrors
     {
         return new static(
-            $array['user_id'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['errors']),
+            errors: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['errors']),
+            userId: $array['user_id'],
         );
     }
 
@@ -67,8 +67,8 @@ class SetPassportElementErrors extends TdFunction
     {
         return [
             '@type'   => static::TYPE_NAME,
+            'errors'  => array_map(static fn($x) => $x->jsonSerialize(), $this->errors),
             'user_id' => $this->userId,
-            'errors'  => array_map(static fn($x) => $x->typeSerialize(), $this->errors),
         ];
     }
 }

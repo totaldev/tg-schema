@@ -15,13 +15,13 @@ class UpdateBusinessMessagesDeleted extends Update
 
     public function __construct(
         /**
-         * Unique identifier of the business connection.
-         */
-        protected string $connectionId,
-        /**
          * Identifier of a chat in the business account in which messages were deleted.
          */
         protected int    $chatId,
+        /**
+         * Unique identifier of the business connection.
+         */
+        protected string $connectionId,
         /**
          * Unique message identifiers of the deleted messages.
          *
@@ -35,9 +35,9 @@ class UpdateBusinessMessagesDeleted extends Update
     public static function fromArray(array $array): UpdateBusinessMessagesDeleted
     {
         return new static(
-            $array['connection_id'],
-            $array['chat_id'],
-            $array['message_ids'],
+            chatId      : $array['chat_id'],
+            connectionId: $array['connection_id'],
+            messageIds  : $array['message_ids'],
         );
     }
 
@@ -81,8 +81,8 @@ class UpdateBusinessMessagesDeleted extends Update
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'connection_id' => $this->connectionId,
             'chat_id'       => $this->chatId,
+            'connection_id' => $this->connectionId,
             'message_ids'   => $this->messageIds,
         ];
     }

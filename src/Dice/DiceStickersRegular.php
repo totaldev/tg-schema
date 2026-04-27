@@ -28,7 +28,7 @@ class DiceStickersRegular extends DiceStickers
     public static function fromArray(array $array): DiceStickersRegular
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['sticker']),
+            sticker: TdSchemaRegistry::fromArray($array['sticker']),
         );
     }
 
@@ -48,7 +48,7 @@ class DiceStickersRegular extends DiceStickers
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'sticker' => $this->sticker->typeSerialize(),
+            'sticker' => $this->sticker->jsonSerialize(),
         ];
     }
 }

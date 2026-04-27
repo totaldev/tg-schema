@@ -18,13 +18,13 @@ class UpdateStoryListChatCount extends Update
 
     public function __construct(
         /**
-         * The story list.
-         */
-        protected StoryList $storyList,
-        /**
          * Approximate total number of chats with active stories in the list.
          */
         protected int       $chatCount,
+        /**
+         * The story list.
+         */
+        protected StoryList $storyList,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class UpdateStoryListChatCount extends Update
     public static function fromArray(array $array): UpdateStoryListChatCount
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['story_list']),
-            $array['chat_count'],
+            chatCount: $array['chat_count'],
+            storyList: TdSchemaRegistry::fromArray($array['story_list']),
         );
     }
 
@@ -65,8 +65,8 @@ class UpdateStoryListChatCount extends Update
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'story_list' => $this->storyList->typeSerialize(),
             'chat_count' => $this->chatCount,
+            'story_list' => $this->storyList->jsonSerialize(),
         ];
     }
 }

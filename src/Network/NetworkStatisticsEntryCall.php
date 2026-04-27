@@ -17,21 +17,21 @@ class NetworkStatisticsEntryCall extends NetworkStatisticsEntry
 
     public function __construct(
         /**
+         * Total call duration, in seconds.
+         */
+        protected float       $duration,
+        /**
          * Type of the network the data was sent through. Call setNetworkType to maintain the actual network type.
          */
         protected NetworkType $networkType,
-        /**
-         * Total number of bytes sent.
-         */
-        protected int         $sentBytes,
         /**
          * Total number of bytes received.
          */
         protected int         $receivedBytes,
         /**
-         * Total call duration, in seconds.
+         * Total number of bytes sent.
          */
-        protected float       $duration,
+        protected int         $sentBytes,
     ) {
         parent::__construct();
     }
@@ -39,10 +39,10 @@ class NetworkStatisticsEntryCall extends NetworkStatisticsEntry
     public static function fromArray(array $array): NetworkStatisticsEntryCall
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['network_type']),
-            $array['sent_bytes'],
-            $array['received_bytes'],
-            $array['duration'],
+            duration     : $array['duration'],
+            networkType  : TdSchemaRegistry::fromArray($array['network_type']),
+            receivedBytes: $array['received_bytes'],
+            sentBytes    : $array['sent_bytes'],
         );
     }
 
@@ -98,10 +98,10 @@ class NetworkStatisticsEntryCall extends NetworkStatisticsEntry
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'network_type'   => $this->networkType->typeSerialize(),
-            'sent_bytes'     => $this->sentBytes,
-            'received_bytes' => $this->receivedBytes,
             'duration'       => $this->duration,
+            'network_type'   => $this->networkType->jsonSerialize(),
+            'received_bytes' => $this->receivedBytes,
+            'sent_bytes'     => $this->sentBytes,
         ];
     }
 }

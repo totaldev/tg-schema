@@ -17,35 +17,35 @@ class AnswerCallbackQuery extends TdFunction
 
     public function __construct(
         /**
+         * Time during which the result of the query can be cached, in seconds.
+         */
+        protected int    $cacheTime,
+        /**
          * Identifier of the callback query.
          */
         protected int    $callbackQueryId,
-        /**
-         * Text of the answer.
-         */
-        protected string $text,
         /**
          * Pass true to show an alert to the user instead of a toast notification.
          */
         protected bool   $showAlert,
         /**
+         * Text of the answer.
+         */
+        protected string $text,
+        /**
          * URL to be opened.
          */
         protected string $url,
-        /**
-         * Time during which the result of the query can be cached, in seconds.
-         */
-        protected int    $cacheTime,
     ) {}
 
     public static function fromArray(array $array): AnswerCallbackQuery
     {
         return new static(
-            $array['callback_query_id'],
-            $array['text'],
-            $array['show_alert'],
-            $array['url'],
-            $array['cache_time'],
+            cacheTime      : $array['cache_time'],
+            callbackQueryId: $array['callback_query_id'],
+            showAlert      : $array['show_alert'],
+            text           : $array['text'],
+            url            : $array['url'],
         );
     }
 
@@ -113,11 +113,11 @@ class AnswerCallbackQuery extends TdFunction
     {
         return [
             '@type'             => static::TYPE_NAME,
-            'callback_query_id' => $this->callbackQueryId,
-            'text'              => $this->text,
-            'show_alert'        => $this->showAlert,
-            'url'               => $this->url,
             'cache_time'        => $this->cacheTime,
+            'callback_query_id' => $this->callbackQueryId,
+            'show_alert'        => $this->showAlert,
+            'text'              => $this->text,
+            'url'               => $this->url,
         ];
     }
 }

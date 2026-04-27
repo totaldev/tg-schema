@@ -21,6 +21,12 @@ class EditChatFolderInviteLink extends TdFunction
          */
         protected int    $chatFolderId,
         /**
+         * New identifiers of chats to be accessible by the invite link. Use getChatsForChatFolderInviteLink to get suitable chats. Basic groups will be automatically converted to supergroups before link editing.
+         *
+         * @var int[]
+         */
+        protected array  $chatIds,
+        /**
          * Invite link to be edited.
          */
         protected string $inviteLink,
@@ -28,21 +34,15 @@ class EditChatFolderInviteLink extends TdFunction
          * New name of the link; 0-32 characters.
          */
         protected string $name,
-        /**
-         * New identifiers of chats to be accessible by the invite link. Use getChatsForChatFolderInviteLink to get suitable chats. Basic groups will be automatically converted to supergroups before link editing.
-         *
-         * @var int[]
-         */
-        protected array  $chatIds,
     ) {}
 
     public static function fromArray(array $array): EditChatFolderInviteLink
     {
         return new static(
-            $array['chat_folder_id'],
-            $array['invite_link'],
-            $array['name'],
-            $array['chat_ids'],
+            chatFolderId: $array['chat_folder_id'],
+            chatIds     : $array['chat_ids'],
+            inviteLink  : $array['invite_link'],
+            name        : $array['name'],
         );
     }
 
@@ -99,9 +99,9 @@ class EditChatFolderInviteLink extends TdFunction
         return [
             '@type'          => static::TYPE_NAME,
             'chat_folder_id' => $this->chatFolderId,
+            'chat_ids'       => $this->chatIds,
             'invite_link'    => $this->inviteLink,
             'name'           => $this->name,
-            'chat_ids'       => $this->chatIds,
         ];
     }
 }

@@ -25,7 +25,7 @@ class JsonValueNumber extends JsonValue
     public static function fromArray(array $array): JsonValueNumber
     {
         return new static(
-            $array['value'],
+            value: $array['value'],
         );
     }
 

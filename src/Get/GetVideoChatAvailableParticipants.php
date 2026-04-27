@@ -25,7 +25,7 @@ class GetVideoChatAvailableParticipants extends TdFunction
     public static function fromArray(array $array): GetVideoChatAvailableParticipants
     {
         return new static(
-            $array['chat_id'],
+            chatId: $array['chat_id'],
         );
     }
 

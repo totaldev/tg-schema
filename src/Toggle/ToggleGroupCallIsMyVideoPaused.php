@@ -29,8 +29,8 @@ class ToggleGroupCallIsMyVideoPaused extends TdFunction
     public static function fromArray(array $array): ToggleGroupCallIsMyVideoPaused
     {
         return new static(
-            $array['group_call_id'],
-            $array['is_my_video_paused'],
+            groupCallId    : $array['group_call_id'],
+            isMyVideoPaused: $array['is_my_video_paused'],
         );
     }
 

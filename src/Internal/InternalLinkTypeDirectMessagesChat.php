@@ -26,7 +26,7 @@ class InternalLinkTypeDirectMessagesChat extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeDirectMessagesChat
     {
         return new static(
-            $array['channel_username'],
+            channelUsername: $array['channel_username'],
         );
     }
 

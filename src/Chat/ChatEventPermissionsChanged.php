@@ -17,13 +17,13 @@ class ChatEventPermissionsChanged extends ChatEventAction
 
     public function __construct(
         /**
-         * Previous chat permissions.
-         */
-        protected ChatPermissions $oldPermissions,
-        /**
          * New chat permissions.
          */
         protected ChatPermissions $newPermissions,
+        /**
+         * Previous chat permissions.
+         */
+        protected ChatPermissions $oldPermissions,
     ) {
         parent::__construct();
     }
@@ -31,8 +31,8 @@ class ChatEventPermissionsChanged extends ChatEventAction
     public static function fromArray(array $array): ChatEventPermissionsChanged
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['old_permissions']),
-            TdSchemaRegistry::fromArray($array['new_permissions']),
+            newPermissions: TdSchemaRegistry::fromArray($array['new_permissions']),
+            oldPermissions: TdSchemaRegistry::fromArray($array['old_permissions']),
         );
     }
 
@@ -64,8 +64,8 @@ class ChatEventPermissionsChanged extends ChatEventAction
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'old_permissions' => $this->oldPermissions->typeSerialize(),
-            'new_permissions' => $this->newPermissions->typeSerialize(),
+            'new_permissions' => $this->newPermissions->jsonSerialize(),
+            'old_permissions' => $this->oldPermissions->jsonSerialize(),
         ];
     }
 }

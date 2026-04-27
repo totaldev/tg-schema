@@ -23,21 +23,21 @@ class GetConnectedAffiliatePrograms extends TdFunction
          */
         protected AffiliateType $affiliate,
         /**
-         * Offset of the first affiliate program to return as received from the previous request; use empty string to get the first chunk of results.
-         */
-        protected string        $offset,
-        /**
          * The maximum number of affiliate programs to return.
          */
         protected int           $limit,
+        /**
+         * Offset of the first affiliate program to return as received from the previous request; use empty string to get the first chunk of results.
+         */
+        protected string        $offset,
     ) {}
 
     public static function fromArray(array $array): GetConnectedAffiliatePrograms
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['affiliate']),
-            $array['offset'],
-            $array['limit'],
+            affiliate: TdSchemaRegistry::fromArray($array['affiliate']),
+            limit    : $array['limit'],
+            offset   : $array['offset'],
         );
     }
 
@@ -81,9 +81,9 @@ class GetConnectedAffiliatePrograms extends TdFunction
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'affiliate' => $this->affiliate->typeSerialize(),
-            'offset'    => $this->offset,
+            'affiliate' => $this->affiliate->jsonSerialize(),
             'limit'     => $this->limit,
+            'offset'    => $this->offset,
         ];
     }
 }

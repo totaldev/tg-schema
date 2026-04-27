@@ -18,22 +18,22 @@ class MessageCalendar extends TdObject
 
     public function __construct(
         /**
-         * Total number of found messages.
-         */
-        protected int   $totalCount,
-        /**
          * Information about messages sent.
          *
          * @var MessageCalendarDay[]
          */
         protected array $days,
+        /**
+         * Total number of found messages.
+         */
+        protected int   $totalCount,
     ) {}
 
     public static function fromArray(array $array): MessageCalendar
     {
         return new static(
-            $array['total_count'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['days']),
+            days      : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['days']),
+            totalCount: $array['total_count'],
         );
     }
 
@@ -65,8 +65,8 @@ class MessageCalendar extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
+            'days'        => array_map(static fn($x) => $x->jsonSerialize(), $this->days),
             'total_count' => $this->totalCount,
-            'days'        => array_map(static fn($x) => $x->typeSerialize(), $this->days),
         ];
     }
 }

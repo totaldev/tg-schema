@@ -25,7 +25,7 @@ class ConfirmQrCodeAuthentication extends TdFunction
     public static function fromArray(array $array): ConfirmQrCodeAuthentication
     {
         return new static(
-            $array['link'],
+            link: $array['link'],
         );
     }
 

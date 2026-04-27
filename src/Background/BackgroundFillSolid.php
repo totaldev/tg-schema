@@ -25,7 +25,7 @@ class BackgroundFillSolid extends BackgroundFill
     public static function fromArray(array $array): BackgroundFillSolid
     {
         return new static(
-            $array['color'],
+            color: $array['color'],
         );
     }
 

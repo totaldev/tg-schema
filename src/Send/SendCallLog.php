@@ -31,8 +31,8 @@ class SendCallLog extends TdFunction
     public static function fromArray(array $array): SendCallLog
     {
         return new static(
-            $array['call_id'],
-            TdSchemaRegistry::fromArray($array['log_file']),
+            callId : $array['call_id'],
+            logFile: TdSchemaRegistry::fromArray($array['log_file']),
         );
     }
 
@@ -65,7 +65,7 @@ class SendCallLog extends TdFunction
         return [
             '@type'    => static::TYPE_NAME,
             'call_id'  => $this->callId,
-            'log_file' => $this->logFile->typeSerialize(),
+            'log_file' => $this->logFile->jsonSerialize(),
         ];
     }
 }

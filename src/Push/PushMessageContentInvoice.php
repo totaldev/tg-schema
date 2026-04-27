@@ -15,13 +15,13 @@ class PushMessageContentInvoice extends PushMessageContent
 
     public function __construct(
         /**
-         * Product price.
-         */
-        protected string $price,
-        /**
          * True, if the message is a pinned message with the specified content.
          */
         protected bool   $isPinned,
+        /**
+         * Product price.
+         */
+        protected string $price,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class PushMessageContentInvoice extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentInvoice
     {
         return new static(
-            $array['price'],
-            $array['is_pinned'],
+            isPinned: $array['is_pinned'],
+            price   : $array['price'],
         );
     }
 
@@ -62,8 +62,8 @@ class PushMessageContentInvoice extends PushMessageContent
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'price'     => $this->price,
             'is_pinned' => $this->isPinned,
+            'price'     => $this->price,
         ];
     }
 }

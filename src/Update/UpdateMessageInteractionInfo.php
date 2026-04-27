@@ -22,13 +22,13 @@ class UpdateMessageInteractionInfo extends Update
          */
         protected int                     $chatId,
         /**
-         * Message identifier.
-         */
-        protected int                     $messageId,
-        /**
          * New information about interactions with the message; may be null.
          */
         protected ?MessageInteractionInfo $interactionInfo,
+        /**
+         * Message identifier.
+         */
+        protected int                     $messageId,
     ) {
         parent::__construct();
     }
@@ -36,9 +36,9 @@ class UpdateMessageInteractionInfo extends Update
     public static function fromArray(array $array): UpdateMessageInteractionInfo
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            isset($array['interaction_info']) ? TdSchemaRegistry::fromArray($array['interaction_info']) : null,
+            chatId         : $array['chat_id'],
+            interactionInfo: (isset($array['interaction_info']) ? TdSchemaRegistry::fromArray($array['interaction_info']) : null),
+            messageId      : $array['message_id'],
         );
     }
 
@@ -83,8 +83,8 @@ class UpdateMessageInteractionInfo extends Update
         return [
             '@type'            => static::TYPE_NAME,
             'chat_id'          => $this->chatId,
+            'interaction_info' => (null !== $this->interactionInfo ? $this->interactionInfo->jsonSerialize() : null),
             'message_id'       => $this->messageId,
-            'interaction_info' => $this->interactionInfo ?? null,
         ];
     }
 }

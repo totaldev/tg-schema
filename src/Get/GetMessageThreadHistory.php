@@ -23,31 +23,31 @@ class GetMessageThreadHistory extends TdFunction
          */
         protected int $chatId,
         /**
-         * Message identifier, which thread history needs to be returned.
-         */
-        protected int $messageId,
-        /**
          * Identifier of the message starting from which history must be fetched; use 0 to get results from the last message.
          */
         protected int $fromMessageId,
         /**
-         * Specify 0 to get results from exactly the message from_message_id or a negative number from -99 to -1 to get additionally -offset newer messages.
-         */
-        protected int $offset,
-        /**
          * The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, then the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit.
          */
         protected int $limit,
+        /**
+         * Message identifier, which thread history needs to be returned.
+         */
+        protected int $messageId,
+        /**
+         * Specify 0 to get results from exactly the message from_message_id or a negative number from -99 to -1 to get additionally -offset newer messages.
+         */
+        protected int $offset,
     ) {}
 
     public static function fromArray(array $array): GetMessageThreadHistory
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            $array['from_message_id'],
-            $array['offset'],
-            $array['limit'],
+            chatId       : $array['chat_id'],
+            fromMessageId: $array['from_message_id'],
+            limit        : $array['limit'],
+            messageId    : $array['message_id'],
+            offset       : $array['offset'],
         );
     }
 
@@ -116,10 +116,10 @@ class GetMessageThreadHistory extends TdFunction
         return [
             '@type'           => static::TYPE_NAME,
             'chat_id'         => $this->chatId,
-            'message_id'      => $this->messageId,
             'from_message_id' => $this->fromMessageId,
-            'offset'          => $this->offset,
             'limit'           => $this->limit,
+            'message_id'      => $this->messageId,
+            'offset'          => $this->offset,
         ];
     }
 }

@@ -19,25 +19,25 @@ class AffiliateProgramInfo extends TdObject
 
     public function __construct(
         /**
-         * Parameters of the affiliate program.
+         * The amount of daily revenue per user in Telegram Stars of the bot that created the affiliate program.
          */
-        protected AffiliateProgramParameters $parameters,
+        protected StarAmount                 $dailyRevenuePerUserAmount,
         /**
          * Point in time (Unix timestamp) when the affiliate program will be closed; 0 if the affiliate program isn't scheduled to be closed. If positive, then the program can't be connected using connectAffiliateProgram, but active connections will work until the date.
          */
         protected int                        $endDate,
         /**
-         * The amount of daily revenue per user in Telegram Stars of the bot that created the affiliate program.
+         * Parameters of the affiliate program.
          */
-        protected StarAmount                 $dailyRevenuePerUserAmount,
+        protected AffiliateProgramParameters $parameters,
     ) {}
 
     public static function fromArray(array $array): AffiliateProgramInfo
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['parameters']),
-            $array['end_date'],
-            TdSchemaRegistry::fromArray($array['daily_revenue_per_user_amount']),
+            dailyRevenuePerUserAmount: TdSchemaRegistry::fromArray($array['daily_revenue_per_user_amount']),
+            endDate                  : $array['end_date'],
+            parameters               : TdSchemaRegistry::fromArray($array['parameters']),
         );
     }
 
@@ -81,9 +81,9 @@ class AffiliateProgramInfo extends TdObject
     {
         return [
             '@type'                         => static::TYPE_NAME,
-            'parameters'                    => $this->parameters->typeSerialize(),
+            'daily_revenue_per_user_amount' => $this->dailyRevenuePerUserAmount->jsonSerialize(),
             'end_date'                      => $this->endDate,
-            'daily_revenue_per_user_amount' => $this->dailyRevenuePerUserAmount->typeSerialize(),
+            'parameters'                    => $this->parameters->jsonSerialize(),
         ];
     }
 }

@@ -34,9 +34,9 @@ class SetBotInfoShortDescription extends TdFunction
     public static function fromArray(array $array): SetBotInfoShortDescription
     {
         return new static(
-            $array['bot_user_id'],
-            $array['language_code'],
-            $array['short_description'],
+            botUserId       : $array['bot_user_id'],
+            languageCode    : $array['language_code'],
+            shortDescription: $array['short_description'],
         );
     }
 

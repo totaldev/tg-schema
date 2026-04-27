@@ -28,7 +28,7 @@ class UpdateAgeVerificationParameters extends Update
     public static function fromArray(array $array): UpdateAgeVerificationParameters
     {
         return new static(
-            isset($array['parameters']) ? TdSchemaRegistry::fromArray($array['parameters']) : null,
+            parameters: (isset($array['parameters']) ? TdSchemaRegistry::fromArray($array['parameters']) : null),
         );
     }
 
@@ -48,7 +48,7 @@ class UpdateAgeVerificationParameters extends Update
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'parameters' => $this->parameters ?? null,
+            'parameters' => (null !== $this->parameters ? $this->parameters->jsonSerialize() : null),
         ];
     }
 }

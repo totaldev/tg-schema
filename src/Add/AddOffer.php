@@ -36,9 +36,9 @@ class AddOffer extends TdFunction
     public static function fromArray(array $array): AddOffer
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            TdSchemaRegistry::fromArray($array['options']),
+            chatId   : $array['chat_id'],
+            messageId: $array['message_id'],
+            options  : TdSchemaRegistry::fromArray($array['options']),
         );
     }
 
@@ -84,7 +84,7 @@ class AddOffer extends TdFunction
             '@type'      => static::TYPE_NAME,
             'chat_id'    => $this->chatId,
             'message_id' => $this->messageId,
-            'options'    => $this->options->typeSerialize(),
+            'options'    => $this->options->jsonSerialize(),
         ];
     }
 }

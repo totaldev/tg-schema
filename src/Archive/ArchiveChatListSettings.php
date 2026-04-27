@@ -21,21 +21,21 @@ class ArchiveChatListSettings extends TdObject
          */
         protected bool $archiveAndMuteNewChatsFromUnknownUsers,
         /**
-         * True, if unmuted chats will be kept in the Archive chat list when they get a new message.
-         */
-        protected bool $keepUnmutedChatsArchived,
-        /**
          * True, if unmuted chats, that are always included or pinned in a folder, will be kept in the Archive chat list when they get a new message. Ignored if keep_unmuted_chats_archived == true.
          */
         protected bool $keepChatsFromFoldersArchived,
+        /**
+         * True, if unmuted chats will be kept in the Archive chat list when they get a new message.
+         */
+        protected bool $keepUnmutedChatsArchived,
     ) {}
 
     public static function fromArray(array $array): ArchiveChatListSettings
     {
         return new static(
-            $array['archive_and_mute_new_chats_from_unknown_users'],
-            $array['keep_unmuted_chats_archived'],
-            $array['keep_chats_from_folders_archived'],
+            archiveAndMuteNewChatsFromUnknownUsers: $array['archive_and_mute_new_chats_from_unknown_users'],
+            keepChatsFromFoldersArchived          : $array['keep_chats_from_folders_archived'],
+            keepUnmutedChatsArchived              : $array['keep_unmuted_chats_archived'],
         );
     }
 
@@ -80,8 +80,8 @@ class ArchiveChatListSettings extends TdObject
         return [
             '@type'                                         => static::TYPE_NAME,
             'archive_and_mute_new_chats_from_unknown_users' => $this->archiveAndMuteNewChatsFromUnknownUsers,
-            'keep_unmuted_chats_archived'                   => $this->keepUnmutedChatsArchived,
             'keep_chats_from_folders_archived'              => $this->keepChatsFromFoldersArchived,
+            'keep_unmuted_chats_archived'                   => $this->keepUnmutedChatsArchived,
         ];
     }
 }

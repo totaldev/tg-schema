@@ -27,7 +27,9 @@ class SetDefaultGroupAdministratorRights extends TdFunction
     public static function fromArray(array $array): SetDefaultGroupAdministratorRights
     {
         return new static(
-            isset($array['default_group_administrator_rights']) ? TdSchemaRegistry::fromArray($array['default_group_administrator_rights']) : null,
+            defaultGroupAdministratorRights: (isset($array['default_group_administrator_rights']) ? TdSchemaRegistry::fromArray(
+                $array['default_group_administrator_rights']
+            ) : null),
         );
     }
 
@@ -46,8 +48,9 @@ class SetDefaultGroupAdministratorRights extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'                              => static::TYPE_NAME,
-            'default_group_administrator_rights' => $this->defaultGroupAdministratorRights ?? null,
+            '@type' => static::TYPE_NAME,
+            'default_group_administrator_rights' => (null !== $this->defaultGroupAdministratorRights ? $this->defaultGroupAdministratorRights->jsonSerialize(
+            ) : null),
         ];
     }
 }

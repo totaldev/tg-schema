@@ -25,7 +25,7 @@ class GetJsonValue extends TdFunction
     public static function fromArray(array $array): GetJsonValue
     {
         return new static(
-            $array['json'],
+            json: $array['json'],
         );
     }
 

@@ -28,7 +28,7 @@ class MessagePoll extends MessageContent
     public static function fromArray(array $array): MessagePoll
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['poll']),
+            poll: TdSchemaRegistry::fromArray($array['poll']),
         );
     }
 
@@ -48,7 +48,7 @@ class MessagePoll extends MessageContent
     {
         return [
             '@type' => static::TYPE_NAME,
-            'poll'  => $this->poll->typeSerialize(),
+            'poll'  => $this->poll->jsonSerialize(),
         ];
     }
 }

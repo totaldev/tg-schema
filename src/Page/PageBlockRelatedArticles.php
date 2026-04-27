@@ -18,15 +18,15 @@ class PageBlockRelatedArticles extends PageBlock
 
     public function __construct(
         /**
-         * Block header.
-         */
-        protected RichText $header,
-        /**
          * List of related articles.
          *
          * @var PageBlockRelatedArticle[]
          */
         protected array    $articles,
+        /**
+         * Block header.
+         */
+        protected RichText $header,
     ) {
         parent::__construct();
     }
@@ -34,8 +34,8 @@ class PageBlockRelatedArticles extends PageBlock
     public static function fromArray(array $array): PageBlockRelatedArticles
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['header']),
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['articles']),
+            articles: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['articles']),
+            header  : TdSchemaRegistry::fromArray($array['header']),
         );
     }
 
@@ -67,8 +67,8 @@ class PageBlockRelatedArticles extends PageBlock
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'header'   => $this->header->typeSerialize(),
-            'articles' => array_map(static fn($x) => $x->typeSerialize(), $this->articles),
+            'articles' => array_map(static fn($x) => $x->jsonSerialize(), $this->articles),
+            'header'   => $this->header->jsonSerialize(),
         ];
     }
 }

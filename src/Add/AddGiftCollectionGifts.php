@@ -20,13 +20,13 @@ class AddGiftCollectionGifts extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the user or the channel chat that owns the collection.
-         */
-        protected MessageSender $ownerId,
-        /**
          * Identifier of the gift collection.
          */
         protected int           $collectionId,
+        /**
+         * Identifier of the user or the channel chat that owns the collection.
+         */
+        protected MessageSender $ownerId,
         /**
          * Identifier of the gifts to add to the collection; 1-getOption("gift_collection_gift_count_max") identifiers. If after addition the collection has more than getOption("gift_collection_gift_count_max") gifts, then the last one are removed from the collection.
          *
@@ -38,9 +38,9 @@ class AddGiftCollectionGifts extends TdFunction
     public static function fromArray(array $array): AddGiftCollectionGifts
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['owner_id']),
-            $array['collection_id'],
-            $array['received_gift_ids'],
+            collectionId   : $array['collection_id'],
+            ownerId        : TdSchemaRegistry::fromArray($array['owner_id']),
+            receivedGiftIds: $array['received_gift_ids'],
         );
     }
 
@@ -84,8 +84,8 @@ class AddGiftCollectionGifts extends TdFunction
     {
         return [
             '@type'             => static::TYPE_NAME,
-            'owner_id'          => $this->ownerId->typeSerialize(),
             'collection_id'     => $this->collectionId,
+            'owner_id'          => $this->ownerId->jsonSerialize(),
             'received_gift_ids' => $this->receivedGiftIds,
         ];
     }

@@ -25,7 +25,7 @@ class DatabaseStatistics extends TdObject
     public static function fromArray(array $array): DatabaseStatistics
     {
         return new static(
-            $array['statistics'],
+            statistics: $array['statistics'],
         );
     }
 

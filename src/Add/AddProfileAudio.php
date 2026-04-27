@@ -25,7 +25,7 @@ class AddProfileAudio extends TdFunction
     public static function fromArray(array $array): AddProfileAudio
     {
         return new static(
-            $array['file_id'],
+            fileId: $array['file_id'],
         );
     }
 

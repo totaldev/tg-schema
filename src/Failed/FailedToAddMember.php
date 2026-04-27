@@ -17,25 +17,25 @@ class FailedToAddMember extends TdObject
 
     public function __construct(
         /**
-         * User identifier.
+         * True, if subscription to Telegram Premium is required to send the user chat invite link.
          */
-        protected int  $userId,
+        protected bool $premiumRequiredToSendMessages,
         /**
          * True, if subscription to Telegram Premium would have allowed to add the user to the chat.
          */
         protected bool $premiumWouldAllowInvite,
         /**
-         * True, if subscription to Telegram Premium is required to send the user chat invite link.
+         * User identifier.
          */
-        protected bool $premiumRequiredToSendMessages,
+        protected int  $userId,
     ) {}
 
     public static function fromArray(array $array): FailedToAddMember
     {
         return new static(
-            $array['user_id'],
-            $array['premium_would_allow_invite'],
-            $array['premium_required_to_send_messages'],
+            premiumRequiredToSendMessages: $array['premium_required_to_send_messages'],
+            premiumWouldAllowInvite      : $array['premium_would_allow_invite'],
+            userId                       : $array['user_id'],
         );
     }
 
@@ -79,9 +79,9 @@ class FailedToAddMember extends TdObject
     {
         return [
             '@type'                             => static::TYPE_NAME,
-            'user_id'                           => $this->userId,
-            'premium_would_allow_invite'        => $this->premiumWouldAllowInvite,
             'premium_required_to_send_messages' => $this->premiumRequiredToSendMessages,
+            'premium_would_allow_invite'        => $this->premiumWouldAllowInvite,
+            'user_id'                           => $this->userId,
         ];
     }
 }

@@ -29,8 +29,8 @@ class SetSupergroupUsername extends TdFunction
     public static function fromArray(array $array): SetSupergroupUsername
     {
         return new static(
-            $array['supergroup_id'],
-            $array['username'],
+            supergroupId: $array['supergroup_id'],
+            username    : $array['username'],
         );
     }
 

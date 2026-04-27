@@ -27,7 +27,7 @@ class SetPinnedSavedMessagesTopics extends TdFunction
     public static function fromArray(array $array): SetPinnedSavedMessagesTopics
     {
         return new static(
-            $array['saved_messages_topic_ids'],
+            savedMessagesTopicIds: $array['saved_messages_topic_ids'],
         );
     }
 

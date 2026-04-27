@@ -28,7 +28,7 @@ class LinkPreviewTypeAnimation extends LinkPreviewType
     public static function fromArray(array $array): LinkPreviewTypeAnimation
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['animation']),
+            animation: TdSchemaRegistry::fromArray($array['animation']),
         );
     }
 
@@ -48,7 +48,7 @@ class LinkPreviewTypeAnimation extends LinkPreviewType
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'animation' => $this->animation->typeSerialize(),
+            'animation' => $this->animation->jsonSerialize(),
         ];
     }
 }

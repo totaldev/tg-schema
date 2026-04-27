@@ -28,7 +28,7 @@ class QuickReplyMessages extends TdObject
     public static function fromArray(array $array): QuickReplyMessages
     {
         return new static(
-            isset($array['messages']) ? array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['messages']) : null,
+            messages: (isset($array['messages']) ? array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['messages']) : null),
         );
     }
 
@@ -48,7 +48,7 @@ class QuickReplyMessages extends TdObject
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'messages' => (isset($this->messages) ? array_map(static fn($x) => $x->typeSerialize(), $this->messages) : null),
+            'messages' => (isset($this->messages) ? array_map(static fn($x) => $x->jsonSerialize(), $this->messages) : null),
         ];
     }
 }

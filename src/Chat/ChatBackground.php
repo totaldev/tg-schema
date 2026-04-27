@@ -31,8 +31,8 @@ class ChatBackground extends TdObject
     public static function fromArray(array $array): ChatBackground
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['background']),
-            $array['dark_theme_dimming'],
+            background      : TdSchemaRegistry::fromArray($array['background']),
+            darkThemeDimming: $array['dark_theme_dimming'],
         );
     }
 
@@ -64,7 +64,7 @@ class ChatBackground extends TdObject
     {
         return [
             '@type'              => static::TYPE_NAME,
-            'background'         => $this->background->typeSerialize(),
+            'background'         => $this->background->jsonSerialize(),
             'dark_theme_dimming' => $this->darkThemeDimming,
         ];
     }

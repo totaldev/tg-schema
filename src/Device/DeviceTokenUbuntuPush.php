@@ -25,7 +25,7 @@ class DeviceTokenUbuntuPush extends DeviceToken
     public static function fromArray(array $array): DeviceTokenUbuntuPush
     {
         return new static(
-            $array['token'],
+            token: $array['token'],
         );
     }
 

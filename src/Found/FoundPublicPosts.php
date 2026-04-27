@@ -20,6 +20,10 @@ class FoundPublicPosts extends TdObject
 
     public function __construct(
         /**
+         * True, if the query has failed because search limits are exceeded. In this case search_limits.daily_free_query_count will be equal to 0.
+         */
+        protected bool                    $areLimitsExceeded,
+        /**
          * List of found public posts.
          *
          * @var Message[]
@@ -33,19 +37,15 @@ class FoundPublicPosts extends TdObject
          * Updated public post search limits after the query; repeated requests with the same query will be free; may be null if they didn't change.
          */
         protected ?PublicPostSearchLimits $searchLimits,
-        /**
-         * True, if the query has failed because search limits are exceeded. In this case search_limits.daily_free_query_count will be equal to 0.
-         */
-        protected bool                    $areLimitsExceeded,
     ) {}
 
     public static function fromArray(array $array): FoundPublicPosts
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['messages']),
-            $array['next_offset'],
-            isset($array['search_limits']) ? TdSchemaRegistry::fromArray($array['search_limits']) : null,
-            $array['are_limits_exceeded'],
+            areLimitsExceeded: $array['are_limits_exceeded'],
+            messages         : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['messages']),
+            nextOffset       : $array['next_offset'],
+            searchLimits     : (isset($array['search_limits']) ? TdSchemaRegistry::fromArray($array['search_limits']) : null),
         );
     }
 
@@ -101,10 +101,10 @@ class FoundPublicPosts extends TdObject
     {
         return [
             '@type'               => static::TYPE_NAME,
-            'messages'            => array_map(static fn($x) => $x->typeSerialize(), $this->messages),
-            'next_offset'         => $this->nextOffset,
-            'search_limits'       => $this->searchLimits ?? null,
             'are_limits_exceeded' => $this->areLimitsExceeded,
+            'messages'            => array_map(static fn($x) => $x->jsonSerialize(), $this->messages),
+            'next_offset'         => $this->nextOffset,
+            'search_limits'       => (null !== $this->searchLimits ? $this->searchLimits->jsonSerialize() : null),
         ];
     }
 }

@@ -29,6 +29,14 @@ class BusinessRecipients extends TdObject
          */
         protected array $excludedChatIds,
         /**
+         * If true, then all private chats except the selected are chosen. Otherwise, only the selected chats are chosen.
+         */
+        protected bool  $excludeSelected,
+        /**
+         * True, if all private chats with contacts are selected.
+         */
+        protected bool  $selectContacts,
+        /**
          * True, if all existing private chats are selected.
          */
         protected bool  $selectExistingChats,
@@ -37,29 +45,21 @@ class BusinessRecipients extends TdObject
          */
         protected bool  $selectNewChats,
         /**
-         * True, if all private chats with contacts are selected.
-         */
-        protected bool  $selectContacts,
-        /**
          * True, if all private chats with non-contacts are selected.
          */
         protected bool  $selectNonContacts,
-        /**
-         * If true, then all private chats except the selected are chosen. Otherwise, only the selected chats are chosen.
-         */
-        protected bool  $excludeSelected,
     ) {}
 
     public static function fromArray(array $array): BusinessRecipients
     {
         return new static(
-            $array['chat_ids'],
-            $array['excluded_chat_ids'],
-            $array['select_existing_chats'],
-            $array['select_new_chats'],
-            $array['select_contacts'],
-            $array['select_non_contacts'],
-            $array['exclude_selected'],
+            chatIds            : $array['chat_ids'],
+            excludeSelected    : $array['exclude_selected'],
+            excludedChatIds    : $array['excluded_chat_ids'],
+            selectContacts     : $array['select_contacts'],
+            selectExistingChats: $array['select_existing_chats'],
+            selectNewChats     : $array['select_new_chats'],
+            selectNonContacts  : $array['select_non_contacts'],
         );
     }
 
@@ -152,12 +152,12 @@ class BusinessRecipients extends TdObject
         return [
             '@type'                 => static::TYPE_NAME,
             'chat_ids'              => $this->chatIds,
+            'exclude_selected'      => $this->excludeSelected,
             'excluded_chat_ids'     => $this->excludedChatIds,
+            'select_contacts'       => $this->selectContacts,
             'select_existing_chats' => $this->selectExistingChats,
             'select_new_chats'      => $this->selectNewChats,
-            'select_contacts'       => $this->selectContacts,
             'select_non_contacts'   => $this->selectNonContacts,
-            'exclude_selected'      => $this->excludeSelected,
         ];
     }
 }

@@ -25,7 +25,7 @@ class ChatEventVideoChatMuteNewParticipantsToggled extends ChatEventAction
     public static function fromArray(array $array): ChatEventVideoChatMuteNewParticipantsToggled
     {
         return new static(
-            $array['mute_new_participants'],
+            muteNewParticipants: $array['mute_new_participants'],
         );
     }
 

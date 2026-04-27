@@ -32,8 +32,8 @@ class UpdateChatTheme extends Update
     public static function fromArray(array $array): UpdateChatTheme
     {
         return new static(
-            $array['chat_id'],
-            isset($array['theme']) ? TdSchemaRegistry::fromArray($array['theme']) : null,
+            chatId: $array['chat_id'],
+            theme : (isset($array['theme']) ? TdSchemaRegistry::fromArray($array['theme']) : null),
         );
     }
 
@@ -66,7 +66,7 @@ class UpdateChatTheme extends Update
         return [
             '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
-            'theme'   => $this->theme ?? null,
+            'theme'   => (null !== $this->theme ? $this->theme->jsonSerialize() : null),
         ];
     }
 }

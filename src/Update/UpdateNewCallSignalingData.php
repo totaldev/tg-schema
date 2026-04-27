@@ -29,8 +29,8 @@ class UpdateNewCallSignalingData extends Update
     public static function fromArray(array $array): UpdateNewCallSignalingData
     {
         return new static(
-            $array['call_id'],
-            $array['data'],
+            callId: $array['call_id'],
+            data  : $array['data'],
         );
     }
 

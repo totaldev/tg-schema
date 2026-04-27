@@ -18,17 +18,17 @@ class MessageForumTopicCreated extends MessageContent
 
     public function __construct(
         /**
-         * Name of the topic.
+         * Icon of the topic.
          */
-        protected string         $name,
+        protected ForumTopicIcon $icon,
         /**
          * True, if the name of the topic wasn't added explicitly.
          */
         protected bool           $isNameImplicit,
         /**
-         * Icon of the topic.
+         * Name of the topic.
          */
-        protected ForumTopicIcon $icon,
+        protected string         $name,
     ) {
         parent::__construct();
     }
@@ -36,9 +36,9 @@ class MessageForumTopicCreated extends MessageContent
     public static function fromArray(array $array): MessageForumTopicCreated
     {
         return new static(
-            $array['name'],
-            $array['is_name_implicit'],
-            TdSchemaRegistry::fromArray($array['icon']),
+            icon          : TdSchemaRegistry::fromArray($array['icon']),
+            isNameImplicit: $array['is_name_implicit'],
+            name          : $array['name'],
         );
     }
 
@@ -82,9 +82,9 @@ class MessageForumTopicCreated extends MessageContent
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'name'             => $this->name,
+            'icon'             => $this->icon->jsonSerialize(),
             'is_name_implicit' => $this->isNameImplicit,
-            'icon'             => $this->icon->typeSerialize(),
+            'name'             => $this->name,
         ];
     }
 }

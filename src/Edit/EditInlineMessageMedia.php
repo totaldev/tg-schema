@@ -36,9 +36,9 @@ class EditInlineMessageMedia extends TdFunction
     public static function fromArray(array $array): EditInlineMessageMedia
     {
         return new static(
-            $array['inline_message_id'],
-            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
-            TdSchemaRegistry::fromArray($array['input_message_content']),
+            inlineMessageId    : $array['inline_message_id'],
+            inputMessageContent: TdSchemaRegistry::fromArray($array['input_message_content']),
+            replyMarkup        : (isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null),
         );
     }
 
@@ -83,8 +83,8 @@ class EditInlineMessageMedia extends TdFunction
         return [
             '@type'                 => static::TYPE_NAME,
             'inline_message_id'     => $this->inlineMessageId,
-            'reply_markup'          => $this->replyMarkup ?? null,
-            'input_message_content' => $this->inputMessageContent->typeSerialize(),
+            'input_message_content' => $this->inputMessageContent->jsonSerialize(),
+            'reply_markup'          => (null !== $this->replyMarkup ? $this->replyMarkup->jsonSerialize() : null),
         ];
     }
 }

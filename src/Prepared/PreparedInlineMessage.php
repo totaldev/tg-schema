@@ -20,6 +20,10 @@ class PreparedInlineMessage extends TdObject
 
     public function __construct(
         /**
+         * Types of the chats to which the message can be sent.
+         */
+        protected TargetChatTypes   $chatTypes,
+        /**
          * Unique identifier of the inline query to pass to sendInlineQueryResultMessage.
          */
         protected int               $inlineQueryId,
@@ -27,18 +31,14 @@ class PreparedInlineMessage extends TdObject
          * Resulted inline message of the query.
          */
         protected InlineQueryResult $result,
-        /**
-         * Types of the chats to which the message can be sent.
-         */
-        protected TargetChatTypes   $chatTypes,
     ) {}
 
     public static function fromArray(array $array): PreparedInlineMessage
     {
         return new static(
-            $array['inline_query_id'],
-            TdSchemaRegistry::fromArray($array['result']),
-            TdSchemaRegistry::fromArray($array['chat_types']),
+            chatTypes    : TdSchemaRegistry::fromArray($array['chat_types']),
+            inlineQueryId: $array['inline_query_id'],
+            result       : TdSchemaRegistry::fromArray($array['result']),
         );
     }
 
@@ -82,9 +82,9 @@ class PreparedInlineMessage extends TdObject
     {
         return [
             '@type'           => static::TYPE_NAME,
+            'chat_types'      => $this->chatTypes->jsonSerialize(),
             'inline_query_id' => $this->inlineQueryId,
-            'result'          => $this->result->typeSerialize(),
-            'chat_types'      => $this->chatTypes->typeSerialize(),
+            'result'          => $this->result->jsonSerialize(),
         ];
     }
 }

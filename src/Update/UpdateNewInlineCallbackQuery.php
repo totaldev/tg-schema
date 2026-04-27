@@ -18,25 +18,25 @@ class UpdateNewInlineCallbackQuery extends Update
 
     public function __construct(
         /**
+         * An identifier uniquely corresponding to the chat a message was sent to.
+         */
+        protected int                  $chatInstance,
+        /**
          * Unique query identifier.
          */
         protected int                  $id,
-        /**
-         * Identifier of the user who sent the query.
-         */
-        protected int                  $senderUserId,
         /**
          * Identifier of the inline message from which the query originated.
          */
         protected string               $inlineMessageId,
         /**
-         * An identifier uniquely corresponding to the chat a message was sent to.
-         */
-        protected int                  $chatInstance,
-        /**
          * Query payload.
          */
         protected CallbackQueryPayload $payload,
+        /**
+         * Identifier of the user who sent the query.
+         */
+        protected int                  $senderUserId,
     ) {
         parent::__construct();
     }
@@ -44,11 +44,11 @@ class UpdateNewInlineCallbackQuery extends Update
     public static function fromArray(array $array): UpdateNewInlineCallbackQuery
     {
         return new static(
-            $array['id'],
-            $array['sender_user_id'],
-            $array['inline_message_id'],
-            $array['chat_instance'],
-            TdSchemaRegistry::fromArray($array['payload']),
+            chatInstance   : $array['chat_instance'],
+            id             : $array['id'],
+            inlineMessageId: $array['inline_message_id'],
+            payload        : TdSchemaRegistry::fromArray($array['payload']),
+            senderUserId   : $array['sender_user_id'],
         );
     }
 
@@ -116,11 +116,11 @@ class UpdateNewInlineCallbackQuery extends Update
     {
         return [
             '@type'             => static::TYPE_NAME,
-            'id'                => $this->id,
-            'sender_user_id'    => $this->senderUserId,
-            'inline_message_id' => $this->inlineMessageId,
             'chat_instance'     => $this->chatInstance,
-            'payload'           => $this->payload->typeSerialize(),
+            'id'                => $this->id,
+            'inline_message_id' => $this->inlineMessageId,
+            'payload'           => $this->payload->jsonSerialize(),
+            'sender_user_id'    => $this->senderUserId,
         ];
     }
 }

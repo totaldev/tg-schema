@@ -19,35 +19,35 @@ class TestProxy extends TdFunction
 
     public function __construct(
         /**
-         * Proxy server domain or IP address.
+         * Identifier of a datacenter with which to test connection.
          */
-        protected string    $server,
+        protected int       $dcId,
         /**
          * Proxy server port.
          */
         protected int       $port,
         /**
-         * Proxy type.
+         * Proxy server domain or IP address.
          */
-        protected ProxyType $type,
-        /**
-         * Identifier of a datacenter with which to test connection.
-         */
-        protected int       $dcId,
+        protected string    $server,
         /**
          * The maximum overall timeout for the request.
          */
         protected float     $timeout,
+        /**
+         * Proxy type.
+         */
+        protected ProxyType $type,
     ) {}
 
     public static function fromArray(array $array): TestProxy
     {
         return new static(
-            $array['server'],
-            $array['port'],
-            TdSchemaRegistry::fromArray($array['type']),
-            $array['dc_id'],
-            $array['timeout'],
+            dcId   : $array['dc_id'],
+            port   : $array['port'],
+            server : $array['server'],
+            timeout: $array['timeout'],
+            type   : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -115,11 +115,11 @@ class TestProxy extends TdFunction
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'server'  => $this->server,
-            'port'    => $this->port,
-            'type'    => $this->type->typeSerialize(),
             'dc_id'   => $this->dcId,
+            'port'    => $this->port,
+            'server'  => $this->server,
             'timeout' => $this->timeout,
+            'type'    => $this->type->jsonSerialize(),
         ];
     }
 }

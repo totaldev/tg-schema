@@ -27,7 +27,7 @@ class RichTextStrikethrough extends RichText
     public static function fromArray(array $array): RichTextStrikethrough
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['text']),
+            text: TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -47,7 +47,7 @@ class RichTextStrikethrough extends RichText
     {
         return [
             '@type' => static::TYPE_NAME,
-            'text'  => $this->text->typeSerialize(),
+            'text'  => $this->text->jsonSerialize(),
         ];
     }
 }

@@ -17,20 +17,20 @@ class SearchChatAffiliateProgram extends TdFunction
 
     public function __construct(
         /**
-         * Username of the chat.
-         */
-        protected string $username,
-        /**
          * The referrer from an internalLinkTypeChatAffiliateProgram link.
          */
         protected string $referrer,
+        /**
+         * Username of the chat.
+         */
+        protected string $username,
     ) {}
 
     public static function fromArray(array $array): SearchChatAffiliateProgram
     {
         return new static(
-            $array['username'],
-            $array['referrer'],
+            referrer: $array['referrer'],
+            username: $array['username'],
         );
     }
 
@@ -62,8 +62,8 @@ class SearchChatAffiliateProgram extends TdFunction
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'username' => $this->username,
             'referrer' => $this->referrer,
+            'username' => $this->username,
         ];
     }
 }

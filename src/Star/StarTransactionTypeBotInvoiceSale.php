@@ -19,21 +19,21 @@ class StarTransactionTypeBotInvoiceSale extends StarTransactionType
 
     public function __construct(
         /**
-         * Identifier of the user that bought the product.
+         * Information about the affiliate which received commission from the transaction; may be null if none.
          */
-        protected int            $userId,
-        /**
-         * Information about the bought product.
-         */
-        protected ProductInfo    $productInfo,
+        protected ?AffiliateInfo $affiliate,
         /**
          * Invoice payload.
          */
         protected string         $invoicePayload,
         /**
-         * Information about the affiliate which received commission from the transaction; may be null if none.
+         * Information about the bought product.
          */
-        protected ?AffiliateInfo $affiliate,
+        protected ProductInfo    $productInfo,
+        /**
+         * Identifier of the user that bought the product.
+         */
+        protected int            $userId,
     ) {
         parent::__construct();
     }
@@ -41,10 +41,10 @@ class StarTransactionTypeBotInvoiceSale extends StarTransactionType
     public static function fromArray(array $array): StarTransactionTypeBotInvoiceSale
     {
         return new static(
-            $array['user_id'],
-            TdSchemaRegistry::fromArray($array['product_info']),
-            $array['invoice_payload'],
-            isset($array['affiliate']) ? TdSchemaRegistry::fromArray($array['affiliate']) : null,
+            affiliate     : (isset($array['affiliate']) ? TdSchemaRegistry::fromArray($array['affiliate']) : null),
+            invoicePayload: $array['invoice_payload'],
+            productInfo   : TdSchemaRegistry::fromArray($array['product_info']),
+            userId        : $array['user_id'],
         );
     }
 
@@ -100,10 +100,10 @@ class StarTransactionTypeBotInvoiceSale extends StarTransactionType
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'user_id'         => $this->userId,
-            'product_info'    => $this->productInfo->typeSerialize(),
+            'affiliate'       => (null !== $this->affiliate ? $this->affiliate->jsonSerialize() : null),
             'invoice_payload' => $this->invoicePayload,
-            'affiliate'       => $this->affiliate ?? null,
+            'product_info'    => $this->productInfo->jsonSerialize(),
+            'user_id'         => $this->userId,
         ];
     }
 }

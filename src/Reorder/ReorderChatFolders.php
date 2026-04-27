@@ -31,8 +31,8 @@ class ReorderChatFolders extends TdFunction
     public static function fromArray(array $array): ReorderChatFolders
     {
         return new static(
-            $array['chat_folder_ids'],
-            $array['main_chat_list_position'],
+            chatFolderIds       : $array['chat_folder_ids'],
+            mainChatListPosition: $array['main_chat_list_position'],
         );
     }
 

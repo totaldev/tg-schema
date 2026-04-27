@@ -19,20 +19,20 @@ class GetPassportElement extends TdFunction
 
     public function __construct(
         /**
-         * Telegram Passport element type.
-         */
-        protected PassportElementType $type,
-        /**
          * The 2-step verification password of the current user.
          */
         protected string              $password,
+        /**
+         * Telegram Passport element type.
+         */
+        protected PassportElementType $type,
     ) {}
 
     public static function fromArray(array $array): GetPassportElement
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['type']),
-            $array['password'],
+            password: $array['password'],
+            type    : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -64,8 +64,8 @@ class GetPassportElement extends TdFunction
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'type'     => $this->type->typeSerialize(),
             'password' => $this->password,
+            'type'     => $this->type->jsonSerialize(),
         ];
     }
 }

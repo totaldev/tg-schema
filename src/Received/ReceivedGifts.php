@@ -18,9 +18,9 @@ class ReceivedGifts extends TdObject
 
     public function __construct(
         /**
-         * The total number of received gifts.
+         * True, if notifications about new gifts of the owner are enabled.
          */
-        protected int    $totalCount,
+        protected bool   $areNotificationsEnabled,
         /**
          * The list of gifts.
          *
@@ -28,22 +28,22 @@ class ReceivedGifts extends TdObject
          */
         protected array  $gifts,
         /**
-         * True, if notifications about new gifts of the owner are enabled.
-         */
-        protected bool   $areNotificationsEnabled,
-        /**
          * The offset for the next request. If empty, then there are no more results.
          */
         protected string $nextOffset,
+        /**
+         * The total number of received gifts.
+         */
+        protected int    $totalCount,
     ) {}
 
     public static function fromArray(array $array): ReceivedGifts
     {
         return new static(
-            $array['total_count'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['gifts']),
-            $array['are_notifications_enabled'],
-            $array['next_offset'],
+            areNotificationsEnabled: $array['are_notifications_enabled'],
+            gifts                  : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['gifts']),
+            nextOffset             : $array['next_offset'],
+            totalCount             : $array['total_count'],
         );
     }
 
@@ -99,10 +99,10 @@ class ReceivedGifts extends TdObject
     {
         return [
             '@type'                     => static::TYPE_NAME,
-            'total_count'               => $this->totalCount,
-            'gifts'                     => array_map(static fn($x) => $x->typeSerialize(), $this->gifts),
             'are_notifications_enabled' => $this->areNotificationsEnabled,
+            'gifts'                     => array_map(static fn($x) => $x->jsonSerialize(), $this->gifts),
             'next_offset'               => $this->nextOffset,
+            'total_count'               => $this->totalCount,
         ];
     }
 }

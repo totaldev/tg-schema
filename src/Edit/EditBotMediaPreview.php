@@ -23,26 +23,26 @@ class EditBotMediaPreview extends TdFunction
          */
         protected int               $botUserId,
         /**
-         * Language code of the media preview to edit.
+         * Content of the new preview.
          */
-        protected string            $languageCode,
+        protected InputStoryContent $content,
         /**
          * File identifier of the media to replace.
          */
         protected int               $fileId,
         /**
-         * Content of the new preview.
+         * Language code of the media preview to edit.
          */
-        protected InputStoryContent $content,
+        protected string            $languageCode,
     ) {}
 
     public static function fromArray(array $array): EditBotMediaPreview
     {
         return new static(
-            $array['bot_user_id'],
-            $array['language_code'],
-            $array['file_id'],
-            TdSchemaRegistry::fromArray($array['content']),
+            botUserId   : $array['bot_user_id'],
+            content     : TdSchemaRegistry::fromArray($array['content']),
+            fileId      : $array['file_id'],
+            languageCode: $array['language_code'],
         );
     }
 
@@ -99,9 +99,9 @@ class EditBotMediaPreview extends TdFunction
         return [
             '@type'         => static::TYPE_NAME,
             'bot_user_id'   => $this->botUserId,
-            'language_code' => $this->languageCode,
+            'content'       => $this->content->jsonSerialize(),
             'file_id'       => $this->fileId,
-            'content'       => $this->content->typeSerialize(),
+            'language_code' => $this->languageCode,
         ];
     }
 }

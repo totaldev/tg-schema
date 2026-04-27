@@ -28,7 +28,7 @@ class StoryAreaTypeVenue extends StoryAreaType
     public static function fromArray(array $array): StoryAreaTypeVenue
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['venue']),
+            venue: TdSchemaRegistry::fromArray($array['venue']),
         );
     }
 
@@ -48,7 +48,7 @@ class StoryAreaTypeVenue extends StoryAreaType
     {
         return [
             '@type' => static::TYPE_NAME,
-            'venue' => $this->venue->typeSerialize(),
+            'venue' => $this->venue->jsonSerialize(),
         ];
     }
 }

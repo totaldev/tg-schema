@@ -29,8 +29,8 @@ class DeclineGroupCallInvitation extends TdFunction
     public static function fromArray(array $array): DeclineGroupCallInvitation
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
+            chatId   : $array['chat_id'],
+            messageId: $array['message_id'],
         );
     }
 

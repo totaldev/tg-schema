@@ -22,26 +22,26 @@ class ReactionNotificationSettings extends TdObject
          */
         protected ReactionNotificationSource $messageReactionSource,
         /**
-         * Source of story reactions for which notifications are shown.
+         * True, if reaction sender and emoji must be displayed in notifications.
          */
-        protected ReactionNotificationSource $storyReactionSource,
+        protected bool                       $showPreview,
         /**
          * Identifier of the notification sound to be played; 0 if sound is disabled.
          */
         protected int                        $soundId,
         /**
-         * True, if reaction sender and emoji must be displayed in notifications.
+         * Source of story reactions for which notifications are shown.
          */
-        protected bool                       $showPreview,
+        protected ReactionNotificationSource $storyReactionSource,
     ) {}
 
     public static function fromArray(array $array): ReactionNotificationSettings
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['message_reaction_source']),
-            TdSchemaRegistry::fromArray($array['story_reaction_source']),
-            $array['sound_id'],
-            $array['show_preview'],
+            messageReactionSource: TdSchemaRegistry::fromArray($array['message_reaction_source']),
+            showPreview          : $array['show_preview'],
+            soundId              : $array['sound_id'],
+            storyReactionSource  : TdSchemaRegistry::fromArray($array['story_reaction_source']),
         );
     }
 
@@ -97,10 +97,10 @@ class ReactionNotificationSettings extends TdObject
     {
         return [
             '@type'                   => static::TYPE_NAME,
-            'message_reaction_source' => $this->messageReactionSource->typeSerialize(),
-            'story_reaction_source'   => $this->storyReactionSource->typeSerialize(),
-            'sound_id'                => $this->soundId,
+            'message_reaction_source' => $this->messageReactionSource->jsonSerialize(),
             'show_preview'            => $this->showPreview,
+            'sound_id'                => $this->soundId,
+            'story_reaction_source'   => $this->storyReactionSource->jsonSerialize(),
         ];
     }
 }

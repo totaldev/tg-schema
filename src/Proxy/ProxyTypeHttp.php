@@ -15,17 +15,17 @@ class ProxyTypeHttp extends ProxyType
 
     public function __construct(
         /**
-         * Username for logging in; may be empty.
+         * Pass true if the proxy supports only HTTP requests and doesn't support transparent TCP connections via HTTP CONNECT method.
          */
-        protected string $username,
+        protected bool   $httpOnly,
         /**
          * Password for logging in; may be empty.
          */
         protected string $password,
         /**
-         * Pass true if the proxy supports only HTTP requests and doesn't support transparent TCP connections via HTTP CONNECT method.
+         * Username for logging in; may be empty.
          */
-        protected bool   $httpOnly,
+        protected string $username,
     ) {
         parent::__construct();
     }
@@ -33,9 +33,9 @@ class ProxyTypeHttp extends ProxyType
     public static function fromArray(array $array): ProxyTypeHttp
     {
         return new static(
-            $array['username'],
-            $array['password'],
-            $array['http_only'],
+            httpOnly: $array['http_only'],
+            password: $array['password'],
+            username: $array['username'],
         );
     }
 
@@ -79,9 +79,9 @@ class ProxyTypeHttp extends ProxyType
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'username'  => $this->username,
-            'password'  => $this->password,
             'http_only' => $this->httpOnly,
+            'password'  => $this->password,
+            'username'  => $this->username,
         ];
     }
 }

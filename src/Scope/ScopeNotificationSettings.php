@@ -17,55 +17,55 @@ class ScopeNotificationSettings extends TdObject
 
     public function __construct(
         /**
-         * Time left before notifications will be unmuted, in seconds.
+         * True, if notifications for messages with mentions will be created as for an ordinary unread message.
          */
-        protected int  $muteFor,
-        /**
-         * Identifier of the notification sound to be played; 0 if sound is disabled.
-         */
-        protected int  $soundId,
-        /**
-         * True, if message content must be displayed in notifications.
-         */
-        protected bool $showPreview,
-        /**
-         * If true, story notifications are received only for the first 5 chats from topChatCategoryUsers regardless of the value of mute_stories.
-         */
-        protected bool $useDefaultMuteStories,
-        /**
-         * True, if story notifications are disabled.
-         */
-        protected bool $muteStories,
-        /**
-         * Identifier of the notification sound to be played for stories; 0 if sound is disabled.
-         */
-        protected int  $storySoundId,
-        /**
-         * True, if the chat that posted a story must be displayed in notifications.
-         */
-        protected bool $showStoryPoster,
+        protected bool $disableMentionNotifications,
         /**
          * True, if notifications for incoming pinned messages will be created as for an ordinary unread message.
          */
         protected bool $disablePinnedMessageNotifications,
         /**
-         * True, if notifications for messages with mentions will be created as for an ordinary unread message.
+         * Time left before notifications will be unmuted, in seconds.
          */
-        protected bool $disableMentionNotifications,
+        protected int  $muteFor,
+        /**
+         * True, if story notifications are disabled.
+         */
+        protected bool $muteStories,
+        /**
+         * True, if message content must be displayed in notifications.
+         */
+        protected bool $showPreview,
+        /**
+         * True, if the chat that posted a story must be displayed in notifications.
+         */
+        protected bool $showStoryPoster,
+        /**
+         * Identifier of the notification sound to be played; 0 if sound is disabled.
+         */
+        protected int  $soundId,
+        /**
+         * Identifier of the notification sound to be played for stories; 0 if sound is disabled.
+         */
+        protected int  $storySoundId,
+        /**
+         * If true, story notifications are received only for the first 5 chats from topChatCategoryUsers regardless of the value of mute_stories.
+         */
+        protected bool $useDefaultMuteStories,
     ) {}
 
     public static function fromArray(array $array): ScopeNotificationSettings
     {
         return new static(
-            $array['mute_for'],
-            $array['sound_id'],
-            $array['show_preview'],
-            $array['use_default_mute_stories'],
-            $array['mute_stories'],
-            $array['story_sound_id'],
-            $array['show_story_poster'],
-            $array['disable_pinned_message_notifications'],
-            $array['disable_mention_notifications'],
+            disableMentionNotifications      : $array['disable_mention_notifications'],
+            disablePinnedMessageNotifications: $array['disable_pinned_message_notifications'],
+            muteFor                          : $array['mute_for'],
+            muteStories                      : $array['mute_stories'],
+            showPreview                      : $array['show_preview'],
+            showStoryPoster                  : $array['show_story_poster'],
+            soundId                          : $array['sound_id'],
+            storySoundId                     : $array['story_sound_id'],
+            useDefaultMuteStories            : $array['use_default_mute_stories'],
         );
     }
 
@@ -181,15 +181,15 @@ class ScopeNotificationSettings extends TdObject
     {
         return [
             '@type'                                => static::TYPE_NAME,
-            'mute_for'                             => $this->muteFor,
-            'sound_id'                             => $this->soundId,
-            'show_preview'                         => $this->showPreview,
-            'use_default_mute_stories'             => $this->useDefaultMuteStories,
-            'mute_stories'                         => $this->muteStories,
-            'story_sound_id'                       => $this->storySoundId,
-            'show_story_poster'                    => $this->showStoryPoster,
-            'disable_pinned_message_notifications' => $this->disablePinnedMessageNotifications,
             'disable_mention_notifications'        => $this->disableMentionNotifications,
+            'disable_pinned_message_notifications' => $this->disablePinnedMessageNotifications,
+            'mute_for'                             => $this->muteFor,
+            'mute_stories'                         => $this->muteStories,
+            'show_preview'                         => $this->showPreview,
+            'show_story_poster'                    => $this->showStoryPoster,
+            'sound_id'                             => $this->soundId,
+            'story_sound_id'                       => $this->storySoundId,
+            'use_default_mute_stories'             => $this->useDefaultMuteStories,
         ];
     }
 }

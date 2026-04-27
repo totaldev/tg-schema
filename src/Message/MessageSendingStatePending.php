@@ -25,7 +25,7 @@ class MessageSendingStatePending extends MessageSendingState
     public static function fromArray(array $array): MessageSendingStatePending
     {
         return new static(
-            $array['sending_id'],
+            sendingId: $array['sending_id'],
         );
     }
 

@@ -32,8 +32,8 @@ class SetOption extends TdFunction
     public static function fromArray(array $array): SetOption
     {
         return new static(
-            $array['name'],
-            isset($array['value']) ? TdSchemaRegistry::fromArray($array['value']) : null,
+            name : $array['name'],
+            value: (isset($array['value']) ? TdSchemaRegistry::fromArray($array['value']) : null),
         );
     }
 
@@ -66,7 +66,7 @@ class SetOption extends TdFunction
         return [
             '@type' => static::TYPE_NAME,
             'name'  => $this->name,
-            'value' => $this->value ?? null,
+            'value' => (null !== $this->value ? $this->value->jsonSerialize() : null),
         ];
     }
 }

@@ -19,29 +19,29 @@ class UpdateNewBusinessCallbackQuery extends Update
 
     public function __construct(
         /**
-         * Unique query identifier.
+         * An identifier uniquely corresponding to the chat a message was sent to.
          */
-        protected int                  $id,
-        /**
-         * Identifier of the user who sent the query.
-         */
-        protected int                  $senderUserId,
+        protected int                  $chatInstance,
         /**
          * Unique identifier of the business connection.
          */
         protected string               $connectionId,
         /**
+         * Unique query identifier.
+         */
+        protected int                  $id,
+        /**
          * The message from the business account from which the query originated.
          */
         protected BusinessMessage      $message,
         /**
-         * An identifier uniquely corresponding to the chat a message was sent to.
-         */
-        protected int                  $chatInstance,
-        /**
          * Query payload.
          */
         protected CallbackQueryPayload $payload,
+        /**
+         * Identifier of the user who sent the query.
+         */
+        protected int                  $senderUserId,
     ) {
         parent::__construct();
     }
@@ -49,12 +49,12 @@ class UpdateNewBusinessCallbackQuery extends Update
     public static function fromArray(array $array): UpdateNewBusinessCallbackQuery
     {
         return new static(
-            $array['id'],
-            $array['sender_user_id'],
-            $array['connection_id'],
-            TdSchemaRegistry::fromArray($array['message']),
-            $array['chat_instance'],
-            TdSchemaRegistry::fromArray($array['payload']),
+            chatInstance: $array['chat_instance'],
+            connectionId: $array['connection_id'],
+            id          : $array['id'],
+            message     : TdSchemaRegistry::fromArray($array['message']),
+            payload     : TdSchemaRegistry::fromArray($array['payload']),
+            senderUserId: $array['sender_user_id'],
         );
     }
 
@@ -134,12 +134,12 @@ class UpdateNewBusinessCallbackQuery extends Update
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'id'             => $this->id,
-            'sender_user_id' => $this->senderUserId,
-            'connection_id'  => $this->connectionId,
-            'message'        => $this->message->typeSerialize(),
             'chat_instance'  => $this->chatInstance,
-            'payload'        => $this->payload->typeSerialize(),
+            'connection_id'  => $this->connectionId,
+            'id'             => $this->id,
+            'message'        => $this->message->jsonSerialize(),
+            'payload'        => $this->payload->jsonSerialize(),
+            'sender_user_id' => $this->senderUserId,
         ];
     }
 }

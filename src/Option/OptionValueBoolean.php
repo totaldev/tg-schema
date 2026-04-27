@@ -25,7 +25,7 @@ class OptionValueBoolean extends OptionValue
     public static function fromArray(array $array): OptionValueBoolean
     {
         return new static(
-            $array['value'],
+            value: $array['value'],
         );
     }
 

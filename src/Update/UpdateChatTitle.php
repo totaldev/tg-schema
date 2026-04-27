@@ -29,8 +29,8 @@ class UpdateChatTitle extends Update
     public static function fromArray(array $array): UpdateChatTitle
     {
         return new static(
-            $array['chat_id'],
-            $array['title'],
+            chatId: $array['chat_id'],
+            title : $array['title'],
         );
     }
 

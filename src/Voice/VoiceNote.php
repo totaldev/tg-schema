@@ -24,10 +24,6 @@ class VoiceNote extends TdObject
          */
         protected int                      $duration,
         /**
-         * A waveform representation of the voice note in 5-bit format.
-         */
-        protected string                   $waveform,
-        /**
          * MIME type of the file; as defined by the sender. Usually, one of "audio/ogg" for Opus in an OGG container, "audio/mpeg" for an MP3 audio, or "audio/mp4" for an M4A audio.
          */
         protected string                   $mimeType,
@@ -39,16 +35,20 @@ class VoiceNote extends TdObject
          * File containing the voice note.
          */
         protected File                     $voice,
+        /**
+         * A waveform representation of the voice note in 5-bit format.
+         */
+        protected string                   $waveform,
     ) {}
 
     public static function fromArray(array $array): VoiceNote
     {
         return new static(
-            $array['duration'],
-            $array['waveform'],
-            $array['mime_type'],
-            isset($array['speech_recognition_result']) ? TdSchemaRegistry::fromArray($array['speech_recognition_result']) : null,
-            TdSchemaRegistry::fromArray($array['voice']),
+            duration               : $array['duration'],
+            mimeType               : $array['mime_type'],
+            speechRecognitionResult: (isset($array['speech_recognition_result']) ? TdSchemaRegistry::fromArray($array['speech_recognition_result']) : null),
+            voice                  : TdSchemaRegistry::fromArray($array['voice']),
+            waveform               : $array['waveform'],
         );
     }
 
@@ -117,10 +117,10 @@ class VoiceNote extends TdObject
         return [
             '@type'                     => static::TYPE_NAME,
             'duration'                  => $this->duration,
-            'waveform'                  => $this->waveform,
             'mime_type'                 => $this->mimeType,
-            'speech_recognition_result' => $this->speechRecognitionResult ?? null,
-            'voice'                     => $this->voice->typeSerialize(),
+            'speech_recognition_result' => (null !== $this->speechRecognitionResult ? $this->speechRecognitionResult->jsonSerialize() : null),
+            'voice'                     => $this->voice->jsonSerialize(),
+            'waveform'                  => $this->waveform,
         ];
     }
 }

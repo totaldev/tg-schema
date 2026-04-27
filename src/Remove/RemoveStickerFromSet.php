@@ -27,7 +27,7 @@ class RemoveStickerFromSet extends TdFunction
     public static function fromArray(array $array): RemoveStickerFromSet
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['sticker']),
+            sticker: TdSchemaRegistry::fromArray($array['sticker']),
         );
     }
 
@@ -47,7 +47,7 @@ class RemoveStickerFromSet extends TdFunction
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'sticker' => $this->sticker->typeSerialize(),
+            'sticker' => $this->sticker->jsonSerialize(),
         ];
     }
 }

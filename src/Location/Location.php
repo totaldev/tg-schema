@@ -17,6 +17,10 @@ class Location extends TdObject
 
     public function __construct(
         /**
+         * The estimated horizontal accuracy of the location, in meters; as defined by the sender. 0 if unknown.
+         */
+        protected float $horizontalAccuracy,
+        /**
          * Latitude of the location in degrees; as defined by the sender.
          */
         protected float $latitude,
@@ -24,18 +28,14 @@ class Location extends TdObject
          * Longitude of the location, in degrees; as defined by the sender.
          */
         protected float $longitude,
-        /**
-         * The estimated horizontal accuracy of the location, in meters; as defined by the sender. 0 if unknown.
-         */
-        protected float $horizontalAccuracy,
     ) {}
 
     public static function fromArray(array $array): Location
     {
         return new static(
-            $array['latitude'],
-            $array['longitude'],
-            $array['horizontal_accuracy'],
+            horizontalAccuracy: $array['horizontal_accuracy'],
+            latitude          : $array['latitude'],
+            longitude         : $array['longitude'],
         );
     }
 
@@ -79,9 +79,9 @@ class Location extends TdObject
     {
         return [
             '@type'               => static::TYPE_NAME,
+            'horizontal_accuracy' => $this->horizontalAccuracy,
             'latitude'            => $this->latitude,
             'longitude'           => $this->longitude,
-            'horizontal_accuracy' => $this->horizontalAccuracy,
         ];
     }
 }

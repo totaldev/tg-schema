@@ -33,10 +33,6 @@ class SendBusinessMessageAlbum extends TdFunction
          */
         protected bool                 $disableNotification,
         /**
-         * Pass true if the content of the message must be protected from forwarding and saving.
-         */
-        protected bool                 $protectContent,
-        /**
          * Identifier of the effect to apply to the message.
          */
         protected int                  $effectId,
@@ -47,6 +43,10 @@ class SendBusinessMessageAlbum extends TdFunction
          */
         protected array                $inputMessageContents,
         /**
+         * Pass true if the content of the message must be protected from forwarding and saving.
+         */
+        protected bool                 $protectContent,
+        /**
          * Information about the message to be replied; pass null if none.
          */
         protected ?InputMessageReplyTo $replyTo = null,
@@ -55,13 +55,13 @@ class SendBusinessMessageAlbum extends TdFunction
     public static function fromArray(array $array): SendBusinessMessageAlbum
     {
         return new static(
-            $array['business_connection_id'],
-            $array['chat_id'],
-            isset($array['reply_to']) ? TdSchemaRegistry::fromArray($array['reply_to']) : null,
-            $array['disable_notification'],
-            $array['protect_content'],
-            $array['effect_id'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['input_message_contents']),
+            businessConnectionId: $array['business_connection_id'],
+            chatId              : $array['chat_id'],
+            disableNotification : $array['disable_notification'],
+            effectId            : $array['effect_id'],
+            inputMessageContents: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['input_message_contents']),
+            protectContent      : $array['protect_content'],
+            replyTo             : (isset($array['reply_to']) ? TdSchemaRegistry::fromArray($array['reply_to']) : null),
         );
     }
 
@@ -155,11 +155,11 @@ class SendBusinessMessageAlbum extends TdFunction
             '@type'                  => static::TYPE_NAME,
             'business_connection_id' => $this->businessConnectionId,
             'chat_id'                => $this->chatId,
-            'reply_to'               => $this->replyTo ?? null,
             'disable_notification'   => $this->disableNotification,
-            'protect_content'        => $this->protectContent,
             'effect_id'              => $this->effectId,
-            'input_message_contents' => array_map(static fn($x) => $x->typeSerialize(), $this->inputMessageContents),
+            'input_message_contents' => array_map(static fn($x) => $x->jsonSerialize(), $this->inputMessageContents),
+            'protect_content'        => $this->protectContent,
+            'reply_to'               => (null !== $this->replyTo ? $this->replyTo->jsonSerialize() : null),
         ];
     }
 }

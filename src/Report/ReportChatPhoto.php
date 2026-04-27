@@ -38,10 +38,10 @@ class ReportChatPhoto extends TdFunction
     public static function fromArray(array $array): ReportChatPhoto
     {
         return new static(
-            $array['chat_id'],
-            $array['file_id'],
-            TdSchemaRegistry::fromArray($array['reason']),
-            $array['text'],
+            chatId: $array['chat_id'],
+            fileId: $array['file_id'],
+            reason: TdSchemaRegistry::fromArray($array['reason']),
+            text  : $array['text'],
         );
     }
 
@@ -99,7 +99,7 @@ class ReportChatPhoto extends TdFunction
             '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
             'file_id' => $this->fileId,
-            'reason'  => $this->reason->typeSerialize(),
+            'reason'  => $this->reason->jsonSerialize(),
             'text'    => $this->text,
         ];
     }

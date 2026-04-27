@@ -18,13 +18,13 @@ class MessageSticker extends MessageContent
 
     public function __construct(
         /**
-         * The sticker description.
-         */
-        protected Sticker $sticker,
-        /**
          * True, if premium animation of the sticker must be played.
          */
         protected bool    $isPremium,
+        /**
+         * The sticker description.
+         */
+        protected Sticker $sticker,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class MessageSticker extends MessageContent
     public static function fromArray(array $array): MessageSticker
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['sticker']),
-            $array['is_premium'],
+            isPremium: $array['is_premium'],
+            sticker  : TdSchemaRegistry::fromArray($array['sticker']),
         );
     }
 
@@ -65,8 +65,8 @@ class MessageSticker extends MessageContent
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'sticker'    => $this->sticker->typeSerialize(),
             'is_premium' => $this->isPremium,
+            'sticker'    => $this->sticker->jsonSerialize(),
         ];
     }
 }

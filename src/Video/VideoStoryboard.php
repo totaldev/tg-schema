@@ -19,14 +19,6 @@ class VideoStoryboard extends TdObject
 
     public function __construct(
         /**
-         * A JPEG file that contains tiled previews of video.
-         */
-        protected File $storyboardFile,
-        /**
-         * Width of a tile.
-         */
-        protected int  $width,
-        /**
          * Height of a tile.
          */
         protected int  $height,
@@ -34,15 +26,23 @@ class VideoStoryboard extends TdObject
          * File that describes mapping of position in the video to a tile in the JPEG file.
          */
         protected File $mapFile,
+        /**
+         * A JPEG file that contains tiled previews of video.
+         */
+        protected File $storyboardFile,
+        /**
+         * Width of a tile.
+         */
+        protected int  $width,
     ) {}
 
     public static function fromArray(array $array): VideoStoryboard
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['storyboard_file']),
-            $array['width'],
-            $array['height'],
-            TdSchemaRegistry::fromArray($array['map_file']),
+            height        : $array['height'],
+            mapFile       : TdSchemaRegistry::fromArray($array['map_file']),
+            storyboardFile: TdSchemaRegistry::fromArray($array['storyboard_file']),
+            width         : $array['width'],
         );
     }
 
@@ -98,10 +98,10 @@ class VideoStoryboard extends TdObject
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'storyboard_file' => $this->storyboardFile->typeSerialize(),
-            'width'           => $this->width,
             'height'          => $this->height,
-            'map_file'        => $this->mapFile->typeSerialize(),
+            'map_file'        => $this->mapFile->jsonSerialize(),
+            'storyboard_file' => $this->storyboardFile->jsonSerialize(),
+            'width'           => $this->width,
         ];
     }
 }

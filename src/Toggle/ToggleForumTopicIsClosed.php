@@ -34,9 +34,9 @@ class ToggleForumTopicIsClosed extends TdFunction
     public static function fromArray(array $array): ToggleForumTopicIsClosed
     {
         return new static(
-            $array['chat_id'],
-            $array['forum_topic_id'],
-            $array['is_closed'],
+            chatId      : $array['chat_id'],
+            forumTopicId: $array['forum_topic_id'],
+            isClosed    : $array['is_closed'],
         );
     }
 

@@ -28,7 +28,7 @@ class LinkPreviewTypeUpgradedGift extends LinkPreviewType
     public static function fromArray(array $array): LinkPreviewTypeUpgradedGift
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['gift']),
+            gift: TdSchemaRegistry::fromArray($array['gift']),
         );
     }
 
@@ -48,7 +48,7 @@ class LinkPreviewTypeUpgradedGift extends LinkPreviewType
     {
         return [
             '@type' => static::TYPE_NAME,
-            'gift'  => $this->gift->typeSerialize(),
+            'gift'  => $this->gift->jsonSerialize(),
         ];
     }
 }

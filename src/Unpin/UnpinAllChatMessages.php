@@ -26,7 +26,7 @@ class UnpinAllChatMessages extends TdFunction
     public static function fromArray(array $array): UnpinAllChatMessages
     {
         return new static(
-            $array['chat_id'],
+            chatId: $array['chat_id'],
         );
     }
 

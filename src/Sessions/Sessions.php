@@ -19,22 +19,22 @@ class Sessions extends TdObject
 
     public function __construct(
         /**
+         * Number of days of inactivity before sessions will automatically be terminated; 1-366 days.
+         */
+        protected int   $inactiveSessionTtlDays,
+        /**
          * List of sessions.
          *
          * @var Session[]
          */
         protected array $sessions,
-        /**
-         * Number of days of inactivity before sessions will automatically be terminated; 1-366 days.
-         */
-        protected int   $inactiveSessionTtlDays,
     ) {}
 
     public static function fromArray(array $array): Sessions
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['sessions']),
-            $array['inactive_session_ttl_days'],
+            inactiveSessionTtlDays: $array['inactive_session_ttl_days'],
+            sessions              : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['sessions']),
         );
     }
 
@@ -66,8 +66,8 @@ class Sessions extends TdObject
     {
         return [
             '@type'                     => static::TYPE_NAME,
-            'sessions'                  => array_map(static fn($x) => $x->typeSerialize(), $this->sessions),
             'inactive_session_ttl_days' => $this->inactiveSessionTtlDays,
+            'sessions'                  => array_map(static fn($x) => $x->jsonSerialize(), $this->sessions),
         ];
     }
 }

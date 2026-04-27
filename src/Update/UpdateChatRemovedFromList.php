@@ -32,8 +32,8 @@ class UpdateChatRemovedFromList extends Update
     public static function fromArray(array $array): UpdateChatRemovedFromList
     {
         return new static(
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['chat_list']),
+            chatId  : $array['chat_id'],
+            chatList: TdSchemaRegistry::fromArray($array['chat_list']),
         );
     }
 
@@ -66,7 +66,7 @@ class UpdateChatRemovedFromList extends Update
         return [
             '@type'     => static::TYPE_NAME,
             'chat_id'   => $this->chatId,
-            'chat_list' => $this->chatList->typeSerialize(),
+            'chat_list' => $this->chatList->jsonSerialize(),
         ];
     }
 }

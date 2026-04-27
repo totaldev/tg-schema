@@ -27,7 +27,7 @@ class CheckAuthenticationEmailCode extends TdFunction
     public static function fromArray(array $array): CheckAuthenticationEmailCode
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['code']),
+            code: TdSchemaRegistry::fromArray($array['code']),
         );
     }
 
@@ -47,7 +47,7 @@ class CheckAuthenticationEmailCode extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'code'  => $this->code->typeSerialize(),
+            'code'  => $this->code->jsonSerialize(),
         ];
     }
 }

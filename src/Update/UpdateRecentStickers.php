@@ -31,8 +31,8 @@ class UpdateRecentStickers extends Update
     public static function fromArray(array $array): UpdateRecentStickers
     {
         return new static(
-            $array['is_attached'],
-            $array['sticker_ids'],
+            isAttached: $array['is_attached'],
+            stickerIds: $array['sticker_ids'],
         );
     }
 

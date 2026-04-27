@@ -26,7 +26,7 @@ class InternalLinkTypeBackground extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeBackground
     {
         return new static(
-            $array['background_name'],
+            backgroundName: $array['background_name'],
         );
     }
 

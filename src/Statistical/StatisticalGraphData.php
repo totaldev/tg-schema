@@ -29,8 +29,8 @@ class StatisticalGraphData extends StatisticalGraph
     public static function fromArray(array $array): StatisticalGraphData
     {
         return new static(
-            $array['json_data'],
-            $array['zoom_token'],
+            jsonData : $array['json_data'],
+            zoomToken: $array['zoom_token'],
         );
     }
 

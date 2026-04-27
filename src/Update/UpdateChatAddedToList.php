@@ -32,8 +32,8 @@ class UpdateChatAddedToList extends Update
     public static function fromArray(array $array): UpdateChatAddedToList
     {
         return new static(
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['chat_list']),
+            chatId  : $array['chat_id'],
+            chatList: TdSchemaRegistry::fromArray($array['chat_list']),
         );
     }
 
@@ -66,7 +66,7 @@ class UpdateChatAddedToList extends Update
         return [
             '@type'     => static::TYPE_NAME,
             'chat_id'   => $this->chatId,
-            'chat_list' => $this->chatList->typeSerialize(),
+            'chat_list' => $this->chatList->jsonSerialize(),
         ];
     }
 }

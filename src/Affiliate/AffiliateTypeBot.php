@@ -25,7 +25,7 @@ class AffiliateTypeBot extends AffiliateType
     public static function fromArray(array $array): AffiliateTypeBot
     {
         return new static(
-            $array['user_id'],
+            userId: $array['user_id'],
         );
     }
 

@@ -25,7 +25,7 @@ class LanguagePackStringValueOrdinary extends LanguagePackStringValue
     public static function fromArray(array $array): LanguagePackStringValueOrdinary
     {
         return new static(
-            $array['value'],
+            value: $array['value'],
         );
     }
 

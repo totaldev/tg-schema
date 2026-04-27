@@ -31,8 +31,8 @@ class BanGroupCallParticipants extends TdFunction
     public static function fromArray(array $array): BanGroupCallParticipants
     {
         return new static(
-            $array['group_call_id'],
-            $array['user_ids'],
+            groupCallId: $array['group_call_id'],
+            userIds    : $array['user_ids'],
         );
     }
 

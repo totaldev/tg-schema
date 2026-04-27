@@ -22,13 +22,13 @@ class UpdateMessageReactions extends Update
          */
         protected int   $chatId,
         /**
-         * Message identifier.
-         */
-        protected int   $messageId,
-        /**
          * Point in time (Unix timestamp) when the reactions were changed.
          */
         protected int   $date,
+        /**
+         * Message identifier.
+         */
+        protected int   $messageId,
         /**
          * The list of reactions added to the message.
          *
@@ -42,10 +42,10 @@ class UpdateMessageReactions extends Update
     public static function fromArray(array $array): UpdateMessageReactions
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            $array['date'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['reactions']),
+            chatId   : $array['chat_id'],
+            date     : $array['date'],
+            messageId: $array['message_id'],
+            reactions: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['reactions']),
         );
     }
 
@@ -102,9 +102,9 @@ class UpdateMessageReactions extends Update
         return [
             '@type'      => static::TYPE_NAME,
             'chat_id'    => $this->chatId,
-            'message_id' => $this->messageId,
             'date'       => $this->date,
-            'reactions'  => array_map(static fn($x) => $x->typeSerialize(), $this->reactions),
+            'message_id' => $this->messageId,
+            'reactions'  => array_map(static fn($x) => $x->jsonSerialize(), $this->reactions),
         ];
     }
 }

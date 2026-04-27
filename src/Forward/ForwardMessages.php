@@ -35,33 +35,33 @@ class ForwardMessages extends TdFunction
          */
         protected array               $messageIds,
         /**
-         * Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local. Use messageProperties.can_be_copied and messageProperties.can_be_copied_to_secret_chat to check whether the message is suitable.
-         */
-        protected bool                $sendCopy,
-        /**
          * Pass true to remove media captions of message copies. Ignored if send_copy is false.
          */
         protected bool                $removeCaption,
         /**
-         * Topic in which the messages will be forwarded; message threads aren't supported; pass null if none.
+         * Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local. Use messageProperties.can_be_copied and messageProperties.can_be_copied_to_secret_chat to check whether the message is suitable.
          */
-        protected ?MessageTopic       $topicId = null,
+        protected bool                $sendCopy,
         /**
          * Options to be used to send the messages; pass null to use default options.
          */
         protected ?MessageSendOptions $options = null,
+        /**
+         * Topic in which the messages will be forwarded; message threads aren't supported; pass null if none.
+         */
+        protected ?MessageTopic       $topicId = null,
     ) {}
 
     public static function fromArray(array $array): ForwardMessages
     {
         return new static(
-            $array['chat_id'],
-            isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null,
-            $array['from_chat_id'],
-            $array['message_ids'],
-            isset($array['options']) ? TdSchemaRegistry::fromArray($array['options']) : null,
-            $array['send_copy'],
-            $array['remove_caption'],
+            chatId       : $array['chat_id'],
+            fromChatId   : $array['from_chat_id'],
+            messageIds   : $array['message_ids'],
+            options      : (isset($array['options']) ? TdSchemaRegistry::fromArray($array['options']) : null),
+            removeCaption: $array['remove_caption'],
+            sendCopy     : $array['send_copy'],
+            topicId      : (isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null),
         );
     }
 
@@ -154,12 +154,12 @@ class ForwardMessages extends TdFunction
         return [
             '@type'          => static::TYPE_NAME,
             'chat_id'        => $this->chatId,
-            'topic_id'       => $this->topicId ?? null,
             'from_chat_id'   => $this->fromChatId,
             'message_ids'    => $this->messageIds,
-            'options'        => $this->options ?? null,
-            'send_copy'      => $this->sendCopy,
+            'options'        => (null !== $this->options ? $this->options->jsonSerialize() : null),
             'remove_caption' => $this->removeCaption,
+            'send_copy'      => $this->sendCopy,
+            'topic_id'       => (null !== $this->topicId ? $this->topicId->jsonSerialize() : null),
         ];
     }
 }

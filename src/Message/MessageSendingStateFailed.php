@@ -18,21 +18,21 @@ class MessageSendingStateFailed extends MessageSendingState
 
     public function __construct(
         /**
-         * The cause of the message sending failure.
-         */
-        protected Error $error,
-        /**
          * True, if the message can be re-sent using resendMessages or readdQuickReplyShortcutMessages.
          */
         protected bool  $canRetry,
         /**
-         * True, if the message can be re-sent only on behalf of a different sender.
+         * The cause of the message sending failure.
          */
-        protected bool  $needAnotherSender,
+        protected Error $error,
         /**
          * True, if the message can be re-sent only if another quote is chosen in the message that is replied by the given message.
          */
         protected bool  $needAnotherReplyQuote,
+        /**
+         * True, if the message can be re-sent only on behalf of a different sender.
+         */
+        protected bool  $needAnotherSender,
         /**
          * True, if the message can be re-sent only if the message to be replied is removed. This will be done automatically by resendMessages.
          */
@@ -52,13 +52,13 @@ class MessageSendingStateFailed extends MessageSendingState
     public static function fromArray(array $array): MessageSendingStateFailed
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['error']),
-            $array['can_retry'],
-            $array['need_another_sender'],
-            $array['need_another_reply_quote'],
-            $array['need_drop_reply'],
-            $array['required_paid_message_star_count'],
-            $array['retry_after'],
+            canRetry                    : $array['can_retry'],
+            error                       : TdSchemaRegistry::fromArray($array['error']),
+            needAnotherReplyQuote       : $array['need_another_reply_quote'],
+            needAnotherSender           : $array['need_another_sender'],
+            needDropReply               : $array['need_drop_reply'],
+            requiredPaidMessageStarCount: $array['required_paid_message_star_count'],
+            retryAfter                  : $array['retry_after'],
         );
     }
 
@@ -150,10 +150,10 @@ class MessageSendingStateFailed extends MessageSendingState
     {
         return [
             '@type'                            => static::TYPE_NAME,
-            'error'                            => $this->error->typeSerialize(),
             'can_retry'                        => $this->canRetry,
-            'need_another_sender'              => $this->needAnotherSender,
+            'error'                            => $this->error->jsonSerialize(),
             'need_another_reply_quote'         => $this->needAnotherReplyQuote,
+            'need_another_sender'              => $this->needAnotherSender,
             'need_drop_reply'                  => $this->needDropReply,
             'required_paid_message_star_count' => $this->requiredPaidMessageStarCount,
             'retry_after'                      => $this->retryAfter,

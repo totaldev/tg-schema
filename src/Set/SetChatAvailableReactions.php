@@ -19,20 +19,20 @@ class SetChatAvailableReactions extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the chat.
-         */
-        protected int                    $chatId,
-        /**
          * Reactions available in the chat. All explicitly specified emoji reactions must be active. In channel chats up to the chat's boost level custom emoji reactions can be explicitly specified.
          */
         protected ChatAvailableReactions $availableReactions,
+        /**
+         * Identifier of the chat.
+         */
+        protected int                    $chatId,
     ) {}
 
     public static function fromArray(array $array): SetChatAvailableReactions
     {
         return new static(
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['available_reactions']),
+            availableReactions: TdSchemaRegistry::fromArray($array['available_reactions']),
+            chatId            : $array['chat_id'],
         );
     }
 
@@ -64,8 +64,8 @@ class SetChatAvailableReactions extends TdFunction
     {
         return [
             '@type'               => static::TYPE_NAME,
+            'available_reactions' => $this->availableReactions->jsonSerialize(),
             'chat_id'             => $this->chatId,
-            'available_reactions' => $this->availableReactions->typeSerialize(),
         ];
     }
 }

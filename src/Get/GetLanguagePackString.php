@@ -18,30 +18,30 @@ class GetLanguagePackString extends TdFunction
 
     public function __construct(
         /**
+         * Language pack key of the string to be returned.
+         */
+        protected string $key,
+        /**
          * Path to the language pack database in which strings are stored.
          */
         protected string $languagePackDatabasePath,
-        /**
-         * Localization target to which the language pack belongs.
-         */
-        protected string $localizationTarget,
         /**
          * Language pack identifier.
          */
         protected string $languagePackId,
         /**
-         * Language pack key of the string to be returned.
+         * Localization target to which the language pack belongs.
          */
-        protected string $key,
+        protected string $localizationTarget,
     ) {}
 
     public static function fromArray(array $array): GetLanguagePackString
     {
         return new static(
-            $array['language_pack_database_path'],
-            $array['localization_target'],
-            $array['language_pack_id'],
-            $array['key'],
+            key                     : $array['key'],
+            languagePackDatabasePath: $array['language_pack_database_path'],
+            languagePackId          : $array['language_pack_id'],
+            localizationTarget      : $array['localization_target'],
         );
     }
 
@@ -97,10 +97,10 @@ class GetLanguagePackString extends TdFunction
     {
         return [
             '@type'                       => static::TYPE_NAME,
-            'language_pack_database_path' => $this->languagePackDatabasePath,
-            'localization_target'         => $this->localizationTarget,
-            'language_pack_id'            => $this->languagePackId,
             'key'                         => $this->key,
+            'language_pack_database_path' => $this->languagePackDatabasePath,
+            'language_pack_id'            => $this->languagePackId,
+            'localization_target'         => $this->localizationTarget,
         ];
     }
 }

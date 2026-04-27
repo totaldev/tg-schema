@@ -18,20 +18,20 @@ class ToggleSavedMessagesTopicIsPinned extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of Saved Messages topic to pin or unpin.
-         */
-        protected int  $savedMessagesTopicId,
-        /**
          * Pass true to pin the topic; pass false to unpin it.
          */
         protected bool $isPinned,
+        /**
+         * Identifier of Saved Messages topic to pin or unpin.
+         */
+        protected int  $savedMessagesTopicId,
     ) {}
 
     public static function fromArray(array $array): ToggleSavedMessagesTopicIsPinned
     {
         return new static(
-            $array['saved_messages_topic_id'],
-            $array['is_pinned'],
+            isPinned            : $array['is_pinned'],
+            savedMessagesTopicId: $array['saved_messages_topic_id'],
         );
     }
 
@@ -63,8 +63,8 @@ class ToggleSavedMessagesTopicIsPinned extends TdFunction
     {
         return [
             '@type'                   => static::TYPE_NAME,
-            'saved_messages_topic_id' => $this->savedMessagesTopicId,
             'is_pinned'               => $this->isPinned,
+            'saved_messages_topic_id' => $this->savedMessagesTopicId,
         ];
     }
 }

@@ -25,7 +25,7 @@ class InputInvoiceName extends InputInvoice
     public static function fromArray(array $array): InputInvoiceName
     {
         return new static(
-            $array['name'],
+            name: $array['name'],
         );
     }
 

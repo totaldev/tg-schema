@@ -19,20 +19,20 @@ class SetSupergroupMainProfileTab extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the channel.
-         */
-        protected int        $supergroupId,
-        /**
          * The new value of the main profile tab.
          */
         protected ProfileTab $mainProfileTab,
+        /**
+         * Identifier of the channel.
+         */
+        protected int        $supergroupId,
     ) {}
 
     public static function fromArray(array $array): SetSupergroupMainProfileTab
     {
         return new static(
-            $array['supergroup_id'],
-            TdSchemaRegistry::fromArray($array['main_profile_tab']),
+            mainProfileTab: TdSchemaRegistry::fromArray($array['main_profile_tab']),
+            supergroupId  : $array['supergroup_id'],
         );
     }
 
@@ -64,8 +64,8 @@ class SetSupergroupMainProfileTab extends TdFunction
     {
         return [
             '@type'            => static::TYPE_NAME,
+            'main_profile_tab' => $this->mainProfileTab->jsonSerialize(),
             'supergroup_id'    => $this->supergroupId,
-            'main_profile_tab' => $this->mainProfileTab->typeSerialize(),
         ];
     }
 }

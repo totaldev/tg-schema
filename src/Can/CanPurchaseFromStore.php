@@ -27,7 +27,7 @@ class CanPurchaseFromStore extends TdFunction
     public static function fromArray(array $array): CanPurchaseFromStore
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['purpose']),
+            purpose: TdSchemaRegistry::fromArray($array['purpose']),
         );
     }
 
@@ -47,7 +47,7 @@ class CanPurchaseFromStore extends TdFunction
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'purpose' => $this->purpose->typeSerialize(),
+            'purpose' => $this->purpose->jsonSerialize(),
         ];
     }
 }

@@ -37,9 +37,9 @@ class Usernames extends TdObject
     public static function fromArray(array $array): Usernames
     {
         return new static(
-            $array['active_usernames'],
-            $array['disabled_usernames'],
-            $array['editable_username'],
+            activeUsernames  : $array['active_usernames'],
+            disabledUsernames: $array['disabled_usernames'],
+            editableUsername : $array['editable_username'],
         );
     }
 

@@ -24,26 +24,26 @@ class SearchAffiliatePrograms extends TdFunction
          */
         protected AffiliateType             $affiliate,
         /**
-         * Sort order for the results.
+         * The maximum number of affiliate programs to return.
          */
-        protected AffiliateProgramSortOrder $sortOrder,
+        protected int                       $limit,
         /**
          * Offset of the first affiliate program to return as received from the previous request; use empty string to get the first chunk of results.
          */
         protected string                    $offset,
         /**
-         * The maximum number of affiliate programs to return.
+         * Sort order for the results.
          */
-        protected int                       $limit,
+        protected AffiliateProgramSortOrder $sortOrder,
     ) {}
 
     public static function fromArray(array $array): SearchAffiliatePrograms
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['affiliate']),
-            TdSchemaRegistry::fromArray($array['sort_order']),
-            $array['offset'],
-            $array['limit'],
+            affiliate: TdSchemaRegistry::fromArray($array['affiliate']),
+            limit    : $array['limit'],
+            offset   : $array['offset'],
+            sortOrder: TdSchemaRegistry::fromArray($array['sort_order']),
         );
     }
 
@@ -99,10 +99,10 @@ class SearchAffiliatePrograms extends TdFunction
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'affiliate'  => $this->affiliate->typeSerialize(),
-            'sort_order' => $this->sortOrder->typeSerialize(),
-            'offset'     => $this->offset,
+            'affiliate'  => $this->affiliate->jsonSerialize(),
             'limit'      => $this->limit,
+            'offset'     => $this->offset,
+            'sort_order' => $this->sortOrder->jsonSerialize(),
         ];
     }
 }

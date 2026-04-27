@@ -17,6 +17,10 @@ class RegisterUser extends TdFunction
 
     public function __construct(
         /**
+         * Pass true to disable notification about the current user joining Telegram for other users that added them to contact list.
+         */
+        protected bool   $disableNotification,
+        /**
          * The first name of the user; 1-64 characters.
          */
         protected string $firstName,
@@ -24,18 +28,14 @@ class RegisterUser extends TdFunction
          * The last name of the user; 0-64 characters.
          */
         protected string $lastName,
-        /**
-         * Pass true to disable notification about the current user joining Telegram for other users that added them to contact list.
-         */
-        protected bool   $disableNotification,
     ) {}
 
     public static function fromArray(array $array): RegisterUser
     {
         return new static(
-            $array['first_name'],
-            $array['last_name'],
-            $array['disable_notification'],
+            disableNotification: $array['disable_notification'],
+            firstName          : $array['first_name'],
+            lastName           : $array['last_name'],
         );
     }
 
@@ -79,9 +79,9 @@ class RegisterUser extends TdFunction
     {
         return [
             '@type'                => static::TYPE_NAME,
+            'disable_notification' => $this->disableNotification,
             'first_name'           => $this->firstName,
             'last_name'            => $this->lastName,
-            'disable_notification' => $this->disableNotification,
         ];
     }
 }

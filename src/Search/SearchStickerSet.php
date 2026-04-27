@@ -17,20 +17,20 @@ class SearchStickerSet extends TdFunction
 
     public function __construct(
         /**
-         * Name of the sticker set.
-         */
-        protected string $name,
-        /**
          * Pass true to ignore local cache of sticker sets and always send a network request.
          */
         protected bool   $ignoreCache,
+        /**
+         * Name of the sticker set.
+         */
+        protected string $name,
     ) {}
 
     public static function fromArray(array $array): SearchStickerSet
     {
         return new static(
-            $array['name'],
-            $array['ignore_cache'],
+            ignoreCache: $array['ignore_cache'],
+            name       : $array['name'],
         );
     }
 
@@ -62,8 +62,8 @@ class SearchStickerSet extends TdFunction
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'name'         => $this->name,
             'ignore_cache' => $this->ignoreCache,
+            'name'         => $this->name,
         ];
     }
 }

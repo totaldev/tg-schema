@@ -19,57 +19,41 @@ class GroupCallParticipant extends TdObject
 
     public function __construct(
         /**
-         * Identifier of the group call participant.
-         */
-        protected MessageSender                  $participantId,
-        /**
          * User's audio channel synchronization source identifier.
          */
         protected int                            $audioSourceId,
-        /**
-         * User's screen sharing audio channel synchronization source identifier.
-         */
-        protected int                            $screenSharingAudioSourceId,
-        /**
-         * Information about user's video channel; may be null if there is no active video.
-         */
-        protected ?GroupCallParticipantVideoInfo $videoInfo,
-        /**
-         * Information about user's screen sharing video channel; may be null if there is no active screen sharing video.
-         */
-        protected ?GroupCallParticipantVideoInfo $screenSharingVideoInfo,
         /**
          * The participant user's bio or the participant chat's description.
          */
         protected string                         $bio,
         /**
-         * True, if the participant is the current user.
-         */
-        protected bool                           $isCurrentUser,
-        /**
-         * True, if the participant is speaking as set by setGroupCallParticipantIsSpeaking.
-         */
-        protected bool                           $isSpeaking,
-        /**
-         * True, if the participant hand is raised.
-         */
-        protected bool                           $isHandRaised,
-        /**
          * True, if the current user can mute the participant for all other group call participants.
          */
         protected bool                           $canBeMutedForAllUsers,
-        /**
-         * True, if the current user can allow the participant to unmute themselves or unmute the participant (if the participant is the current user).
-         */
-        protected bool                           $canBeUnmutedForAllUsers,
         /**
          * True, if the current user can mute the participant only for self.
          */
         protected bool                           $canBeMutedForCurrentUser,
         /**
+         * True, if the current user can allow the participant to unmute themselves or unmute the participant (if the participant is the current user).
+         */
+        protected bool                           $canBeUnmutedForAllUsers,
+        /**
          * True, if the current user can unmute the participant for self.
          */
         protected bool                           $canBeUnmutedForCurrentUser,
+        /**
+         * True, if the participant is muted for all users, but can unmute themselves.
+         */
+        protected bool                           $canUnmuteSelf,
+        /**
+         * True, if the participant is the current user.
+         */
+        protected bool                           $isCurrentUser,
+        /**
+         * True, if the participant hand is raised.
+         */
+        protected bool                           $isHandRaised,
         /**
          * True, if the participant is muted for all users.
          */
@@ -79,40 +63,56 @@ class GroupCallParticipant extends TdObject
          */
         protected bool                           $isMutedForCurrentUser,
         /**
-         * True, if the participant is muted for all users, but can unmute themselves.
+         * True, if the participant is speaking as set by setGroupCallParticipantIsSpeaking.
          */
-        protected bool                           $canUnmuteSelf,
-        /**
-         * Participant's volume level; 1-20000 in hundreds of percents.
-         */
-        protected int                            $volumeLevel,
+        protected bool                           $isSpeaking,
         /**
          * User's order in the group call participant list. Orders must be compared lexicographically. The bigger is order, the higher is user in the list. If order is empty, the user must be removed from the participant list.
          */
         protected string                         $order,
+        /**
+         * Identifier of the group call participant.
+         */
+        protected MessageSender                  $participantId,
+        /**
+         * User's screen sharing audio channel synchronization source identifier.
+         */
+        protected int                            $screenSharingAudioSourceId,
+        /**
+         * Information about user's screen sharing video channel; may be null if there is no active screen sharing video.
+         */
+        protected ?GroupCallParticipantVideoInfo $screenSharingVideoInfo,
+        /**
+         * Information about user's video channel; may be null if there is no active video.
+         */
+        protected ?GroupCallParticipantVideoInfo $videoInfo,
+        /**
+         * Participant's volume level; 1-20000 in hundreds of percents.
+         */
+        protected int                            $volumeLevel,
     ) {}
 
     public static function fromArray(array $array): GroupCallParticipant
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['participant_id']),
-            $array['audio_source_id'],
-            $array['screen_sharing_audio_source_id'],
-            isset($array['video_info']) ? TdSchemaRegistry::fromArray($array['video_info']) : null,
-            isset($array['screen_sharing_video_info']) ? TdSchemaRegistry::fromArray($array['screen_sharing_video_info']) : null,
-            $array['bio'],
-            $array['is_current_user'],
-            $array['is_speaking'],
-            $array['is_hand_raised'],
-            $array['can_be_muted_for_all_users'],
-            $array['can_be_unmuted_for_all_users'],
-            $array['can_be_muted_for_current_user'],
-            $array['can_be_unmuted_for_current_user'],
-            $array['is_muted_for_all_users'],
-            $array['is_muted_for_current_user'],
-            $array['can_unmute_self'],
-            $array['volume_level'],
-            $array['order'],
+            audioSourceId             : $array['audio_source_id'],
+            bio                       : $array['bio'],
+            canBeMutedForAllUsers     : $array['can_be_muted_for_all_users'],
+            canBeMutedForCurrentUser  : $array['can_be_muted_for_current_user'],
+            canBeUnmutedForAllUsers   : $array['can_be_unmuted_for_all_users'],
+            canBeUnmutedForCurrentUser: $array['can_be_unmuted_for_current_user'],
+            canUnmuteSelf             : $array['can_unmute_self'],
+            isCurrentUser             : $array['is_current_user'],
+            isHandRaised              : $array['is_hand_raised'],
+            isMutedForAllUsers        : $array['is_muted_for_all_users'],
+            isMutedForCurrentUser     : $array['is_muted_for_current_user'],
+            isSpeaking                : $array['is_speaking'],
+            order                     : $array['order'],
+            participantId             : TdSchemaRegistry::fromArray($array['participant_id']),
+            screenSharingAudioSourceId: $array['screen_sharing_audio_source_id'],
+            screenSharingVideoInfo    : (isset($array['screen_sharing_video_info']) ? TdSchemaRegistry::fromArray($array['screen_sharing_video_info']) : null),
+            videoInfo                 : (isset($array['video_info']) ? TdSchemaRegistry::fromArray($array['video_info']) : null),
+            volumeLevel               : $array['volume_level'],
         );
     }
 
@@ -336,24 +336,24 @@ class GroupCallParticipant extends TdObject
     {
         return [
             '@type'                           => static::TYPE_NAME,
-            'participant_id'                  => $this->participantId->typeSerialize(),
             'audio_source_id'                 => $this->audioSourceId,
-            'screen_sharing_audio_source_id'  => $this->screenSharingAudioSourceId,
-            'video_info'                      => $this->videoInfo ?? null,
-            'screen_sharing_video_info'       => $this->screenSharingVideoInfo ?? null,
             'bio'                             => $this->bio,
-            'is_current_user'                 => $this->isCurrentUser,
-            'is_speaking'                     => $this->isSpeaking,
-            'is_hand_raised'                  => $this->isHandRaised,
             'can_be_muted_for_all_users'      => $this->canBeMutedForAllUsers,
-            'can_be_unmuted_for_all_users'    => $this->canBeUnmutedForAllUsers,
             'can_be_muted_for_current_user'   => $this->canBeMutedForCurrentUser,
+            'can_be_unmuted_for_all_users'    => $this->canBeUnmutedForAllUsers,
             'can_be_unmuted_for_current_user' => $this->canBeUnmutedForCurrentUser,
+            'can_unmute_self'                 => $this->canUnmuteSelf,
+            'is_current_user'                 => $this->isCurrentUser,
+            'is_hand_raised'                  => $this->isHandRaised,
             'is_muted_for_all_users'          => $this->isMutedForAllUsers,
             'is_muted_for_current_user'       => $this->isMutedForCurrentUser,
-            'can_unmute_self'                 => $this->canUnmuteSelf,
-            'volume_level'                    => $this->volumeLevel,
+            'is_speaking'                     => $this->isSpeaking,
             'order'                           => $this->order,
+            'participant_id'                  => $this->participantId->jsonSerialize(),
+            'screen_sharing_audio_source_id'  => $this->screenSharingAudioSourceId,
+            'screen_sharing_video_info'       => (null !== $this->screenSharingVideoInfo ? $this->screenSharingVideoInfo->jsonSerialize() : null),
+            'video_info'                      => (null !== $this->videoInfo ? $this->videoInfo->jsonSerialize() : null),
+            'volume_level'                    => $this->volumeLevel,
         ];
     }
 }

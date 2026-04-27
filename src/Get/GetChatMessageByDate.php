@@ -29,8 +29,8 @@ class GetChatMessageByDate extends TdFunction
     public static function fromArray(array $array): GetChatMessageByDate
     {
         return new static(
-            $array['chat_id'],
-            $array['date'],
+            chatId: $array['chat_id'],
+            date  : $array['date'],
         );
     }
 

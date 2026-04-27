@@ -19,6 +19,14 @@ class GetLoginUrl extends TdFunction
 
     public function __construct(
         /**
+         * Pass true to allow the bot to send messages to the current user.
+         */
+        protected bool $allowWriteAccess,
+        /**
+         * Button identifier.
+         */
+        protected int  $buttonId,
+        /**
          * Chat identifier of the message with the button.
          */
         protected int  $chatId,
@@ -26,23 +34,15 @@ class GetLoginUrl extends TdFunction
          * Message identifier of the message with the button.
          */
         protected int  $messageId,
-        /**
-         * Button identifier.
-         */
-        protected int  $buttonId,
-        /**
-         * Pass true to allow the bot to send messages to the current user.
-         */
-        protected bool $allowWriteAccess,
     ) {}
 
     public static function fromArray(array $array): GetLoginUrl
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            $array['button_id'],
-            $array['allow_write_access'],
+            allowWriteAccess: $array['allow_write_access'],
+            buttonId        : $array['button_id'],
+            chatId          : $array['chat_id'],
+            messageId       : $array['message_id'],
         );
     }
 
@@ -98,10 +98,10 @@ class GetLoginUrl extends TdFunction
     {
         return [
             '@type'              => static::TYPE_NAME,
+            'allow_write_access' => $this->allowWriteAccess,
+            'button_id'          => $this->buttonId,
             'chat_id'            => $this->chatId,
             'message_id'         => $this->messageId,
-            'button_id'          => $this->buttonId,
-            'allow_write_access' => $this->allowWriteAccess,
         ];
     }
 }

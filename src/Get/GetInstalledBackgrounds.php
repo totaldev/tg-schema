@@ -25,7 +25,7 @@ class GetInstalledBackgrounds extends TdFunction
     public static function fromArray(array $array): GetInstalledBackgrounds
     {
         return new static(
-            $array['for_dark_theme'],
+            forDarkTheme: $array['for_dark_theme'],
         );
     }
 

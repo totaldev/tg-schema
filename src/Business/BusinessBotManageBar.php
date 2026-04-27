@@ -21,26 +21,26 @@ class BusinessBotManageBar extends TdObject
          */
         protected int    $botUserId,
         /**
-         * URL to be opened to manage the bot.
+         * True, if the bot can reply.
          */
-        protected string $manageUrl,
+        protected bool   $canBotReply,
         /**
          * True, if the bot is paused. Use toggleBusinessConnectedBotChatIsPaused to change the value of the field.
          */
         protected bool   $isBotPaused,
         /**
-         * True, if the bot can reply.
+         * URL to be opened to manage the bot.
          */
-        protected bool   $canBotReply,
+        protected string $manageUrl,
     ) {}
 
     public static function fromArray(array $array): BusinessBotManageBar
     {
         return new static(
-            $array['bot_user_id'],
-            $array['manage_url'],
-            $array['is_bot_paused'],
-            $array['can_bot_reply'],
+            botUserId  : $array['bot_user_id'],
+            canBotReply: $array['can_bot_reply'],
+            isBotPaused: $array['is_bot_paused'],
+            manageUrl  : $array['manage_url'],
         );
     }
 
@@ -97,9 +97,9 @@ class BusinessBotManageBar extends TdObject
         return [
             '@type'         => static::TYPE_NAME,
             'bot_user_id'   => $this->botUserId,
-            'manage_url'    => $this->manageUrl,
-            'is_bot_paused' => $this->isBotPaused,
             'can_bot_reply' => $this->canBotReply,
+            'is_bot_paused' => $this->isBotPaused,
+            'manage_url'    => $this->manageUrl,
         ];
     }
 }

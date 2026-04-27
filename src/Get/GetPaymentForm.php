@@ -33,8 +33,8 @@ class GetPaymentForm extends TdFunction
     public static function fromArray(array $array): GetPaymentForm
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['input_invoice']),
-            isset($array['theme']) ? TdSchemaRegistry::fromArray($array['theme']) : null,
+            inputInvoice: TdSchemaRegistry::fromArray($array['input_invoice']),
+            theme       : (isset($array['theme']) ? TdSchemaRegistry::fromArray($array['theme']) : null),
         );
     }
 
@@ -66,8 +66,8 @@ class GetPaymentForm extends TdFunction
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'input_invoice' => $this->inputInvoice->typeSerialize(),
-            'theme'         => $this->theme ?? null,
+            'input_invoice' => $this->inputInvoice->jsonSerialize(),
+            'theme'         => (null !== $this->theme ? $this->theme->jsonSerialize() : null),
         ];
     }
 }

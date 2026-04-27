@@ -15,13 +15,13 @@ class ChatPhotoStickerTypeRegularOrMask extends ChatPhotoStickerType
 
     public function __construct(
         /**
-         * Sticker set identifier.
-         */
-        protected int $stickerSetId,
-        /**
          * Identifier of the sticker in the set.
          */
         protected int $stickerId,
+        /**
+         * Sticker set identifier.
+         */
+        protected int $stickerSetId,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class ChatPhotoStickerTypeRegularOrMask extends ChatPhotoStickerType
     public static function fromArray(array $array): ChatPhotoStickerTypeRegularOrMask
     {
         return new static(
-            $array['sticker_set_id'],
-            $array['sticker_id'],
+            stickerId   : $array['sticker_id'],
+            stickerSetId: $array['sticker_set_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class ChatPhotoStickerTypeRegularOrMask extends ChatPhotoStickerType
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'sticker_set_id' => $this->stickerSetId,
             'sticker_id'     => $this->stickerId,
+            'sticker_set_id' => $this->stickerSetId,
         ];
     }
 }

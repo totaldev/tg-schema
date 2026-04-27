@@ -27,7 +27,7 @@ class EmojiStatusCustomEmojis extends TdObject
     public static function fromArray(array $array): EmojiStatusCustomEmojis
     {
         return new static(
-            $array['custom_emoji_ids'],
+            customEmojiIds: $array['custom_emoji_ids'],
         );
     }
 

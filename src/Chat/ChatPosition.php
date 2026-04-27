@@ -18,6 +18,10 @@ class ChatPosition extends TdObject
 
     public function __construct(
         /**
+         * True, if the chat is pinned in the chat list.
+         */
+        protected bool        $isPinned,
+        /**
          * The chat list.
          */
         protected ChatList    $list,
@@ -25,10 +29,6 @@ class ChatPosition extends TdObject
          * A parameter used to determine order of the chat in the chat list. Chats must be sorted by the pair (order, chat.id) in descending order.
          */
         protected int         $order,
-        /**
-         * True, if the chat is pinned in the chat list.
-         */
-        protected bool        $isPinned,
         /**
          * Source of the chat in the chat list; may be null.
          */
@@ -38,10 +38,10 @@ class ChatPosition extends TdObject
     public static function fromArray(array $array): ChatPosition
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['list']),
-            $array['order'],
-            $array['is_pinned'],
-            isset($array['source']) ? TdSchemaRegistry::fromArray($array['source']) : null,
+            isPinned: $array['is_pinned'],
+            list    : TdSchemaRegistry::fromArray($array['list']),
+            order   : $array['order'],
+            source  : (isset($array['source']) ? TdSchemaRegistry::fromArray($array['source']) : null),
         );
     }
 
@@ -97,10 +97,10 @@ class ChatPosition extends TdObject
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'list'      => $this->list->typeSerialize(),
-            'order'     => $this->order,
             'is_pinned' => $this->isPinned,
-            'source'    => $this->source ?? null,
+            'list'      => $this->list->jsonSerialize(),
+            'order'     => $this->order,
+            'source'    => (null !== $this->source ? $this->source->jsonSerialize() : null),
         ];
     }
 }

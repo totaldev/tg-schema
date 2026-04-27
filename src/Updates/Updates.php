@@ -29,7 +29,7 @@ class Updates extends TdObject
     public static function fromArray(array $array): Updates
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['updates']),
+            updates: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['updates']),
         );
     }
 
@@ -49,7 +49,7 @@ class Updates extends TdObject
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'updates' => array_map(static fn($x) => $x->typeSerialize(), $this->updates),
+            'updates' => array_map(static fn($x) => $x->jsonSerialize(), $this->updates),
         ];
     }
 }

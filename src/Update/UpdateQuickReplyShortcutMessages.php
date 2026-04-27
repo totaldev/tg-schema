@@ -18,15 +18,15 @@ class UpdateQuickReplyShortcutMessages extends Update
 
     public function __construct(
         /**
-         * The identifier of the shortcut.
-         */
-        protected int   $shortcutId,
-        /**
          * The new list of quick reply messages for the shortcut in order from the first to the last sent.
          *
          * @var QuickReplyMessage[]
          */
         protected array $messages,
+        /**
+         * The identifier of the shortcut.
+         */
+        protected int   $shortcutId,
     ) {
         parent::__construct();
     }
@@ -34,8 +34,8 @@ class UpdateQuickReplyShortcutMessages extends Update
     public static function fromArray(array $array): UpdateQuickReplyShortcutMessages
     {
         return new static(
-            $array['shortcut_id'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['messages']),
+            messages  : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['messages']),
+            shortcutId: $array['shortcut_id'],
         );
     }
 
@@ -67,8 +67,8 @@ class UpdateQuickReplyShortcutMessages extends Update
     {
         return [
             '@type'       => static::TYPE_NAME,
+            'messages'    => array_map(static fn($x) => $x->jsonSerialize(), $this->messages),
             'shortcut_id' => $this->shortcutId,
-            'messages'    => array_map(static fn($x) => $x->typeSerialize(), $this->messages),
         ];
     }
 }

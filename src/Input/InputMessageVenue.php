@@ -28,7 +28,7 @@ class InputMessageVenue extends InputMessageContent
     public static function fromArray(array $array): InputMessageVenue
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['venue']),
+            venue: TdSchemaRegistry::fromArray($array['venue']),
         );
     }
 
@@ -48,7 +48,7 @@ class InputMessageVenue extends InputMessageContent
     {
         return [
             '@type' => static::TYPE_NAME,
-            'venue' => $this->venue->typeSerialize(),
+            'venue' => $this->venue->jsonSerialize(),
         ];
     }
 }

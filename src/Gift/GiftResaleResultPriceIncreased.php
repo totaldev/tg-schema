@@ -27,7 +27,7 @@ class GiftResaleResultPriceIncreased extends GiftResaleResult
     public static function fromArray(array $array): GiftResaleResultPriceIncreased
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['price']),
+            price: TdSchemaRegistry::fromArray($array['price']),
         );
     }
 
@@ -47,7 +47,7 @@ class GiftResaleResultPriceIncreased extends GiftResaleResult
     {
         return [
             '@type' => static::TYPE_NAME,
-            'price' => $this->price->typeSerialize(),
+            'price' => $this->price->jsonSerialize(),
         ];
     }
 }

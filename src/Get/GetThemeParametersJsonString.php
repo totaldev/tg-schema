@@ -27,7 +27,7 @@ class GetThemeParametersJsonString extends TdFunction
     public static function fromArray(array $array): GetThemeParametersJsonString
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['theme']),
+            theme: TdSchemaRegistry::fromArray($array['theme']),
         );
     }
 
@@ -47,7 +47,7 @@ class GetThemeParametersJsonString extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'theme' => $this->theme->typeSerialize(),
+            'theme' => $this->theme->jsonSerialize(),
         ];
     }
 }

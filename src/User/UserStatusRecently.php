@@ -25,7 +25,7 @@ class UserStatusRecently extends UserStatus
     public static function fromArray(array $array): UserStatusRecently
     {
         return new static(
-            $array['by_my_privacy_settings'],
+            byMyPrivacySettings: $array['by_my_privacy_settings'],
         );
     }
 

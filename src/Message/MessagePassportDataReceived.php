@@ -19,15 +19,15 @@ class MessagePassportDataReceived extends MessageContent
 
     public function __construct(
         /**
+         * Encrypted data credentials.
+         */
+        protected EncryptedCredentials $credentials,
+        /**
          * List of received Telegram Passport elements.
          *
          * @var EncryptedPassportElement[]
          */
         protected array                $elements,
-        /**
-         * Encrypted data credentials.
-         */
-        protected EncryptedCredentials $credentials,
     ) {
         parent::__construct();
     }
@@ -35,8 +35,8 @@ class MessagePassportDataReceived extends MessageContent
     public static function fromArray(array $array): MessagePassportDataReceived
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['elements']),
-            TdSchemaRegistry::fromArray($array['credentials']),
+            credentials: TdSchemaRegistry::fromArray($array['credentials']),
+            elements   : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['elements']),
         );
     }
 
@@ -68,8 +68,8 @@ class MessagePassportDataReceived extends MessageContent
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'elements'    => array_map(static fn($x) => $x->typeSerialize(), $this->elements),
-            'credentials' => $this->credentials->typeSerialize(),
+            'credentials' => $this->credentials->jsonSerialize(),
+            'elements'    => array_map(static fn($x) => $x->jsonSerialize(), $this->elements),
         ];
     }
 }

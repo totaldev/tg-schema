@@ -29,8 +29,8 @@ class SellGift extends TdFunction
     public static function fromArray(array $array): SellGift
     {
         return new static(
-            $array['business_connection_id'],
-            $array['received_gift_id'],
+            businessConnectionId: $array['business_connection_id'],
+            receivedGiftId      : $array['received_gift_id'],
         );
     }
 

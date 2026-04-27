@@ -22,9 +22,13 @@ class InputInlineQueryResultSticker extends InputInlineQueryResult
          */
         protected string              $id,
         /**
-         * URL of the sticker thumbnail, if it exists.
+         * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageSticker, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact.
          */
-        protected string              $thumbnailUrl,
+        protected InputMessageContent $inputMessageContent,
+        /**
+         * Height of the sticker.
+         */
+        protected int                 $stickerHeight,
         /**
          * The URL of the WEBP, TGS, or WEBM sticker (sticker file size must not exceed 5MB).
          */
@@ -34,13 +38,9 @@ class InputInlineQueryResultSticker extends InputInlineQueryResult
          */
         protected int                 $stickerWidth,
         /**
-         * Height of the sticker.
+         * URL of the sticker thumbnail, if it exists.
          */
-        protected int                 $stickerHeight,
-        /**
-         * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageSticker, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact.
-         */
-        protected InputMessageContent $inputMessageContent,
+        protected string              $thumbnailUrl,
         /**
          * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null.
          */
@@ -52,13 +52,13 @@ class InputInlineQueryResultSticker extends InputInlineQueryResult
     public static function fromArray(array $array): InputInlineQueryResultSticker
     {
         return new static(
-            $array['id'],
-            $array['thumbnail_url'],
-            $array['sticker_url'],
-            $array['sticker_width'],
-            $array['sticker_height'],
-            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
-            TdSchemaRegistry::fromArray($array['input_message_content']),
+            id                 : $array['id'],
+            inputMessageContent: TdSchemaRegistry::fromArray($array['input_message_content']),
+            replyMarkup        : (isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null),
+            stickerHeight      : $array['sticker_height'],
+            stickerUrl         : $array['sticker_url'],
+            stickerWidth       : $array['sticker_width'],
+            thumbnailUrl       : $array['thumbnail_url'],
         );
     }
 
@@ -151,12 +151,12 @@ class InputInlineQueryResultSticker extends InputInlineQueryResult
         return [
             '@type'                 => static::TYPE_NAME,
             'id'                    => $this->id,
-            'thumbnail_url'         => $this->thumbnailUrl,
+            'input_message_content' => $this->inputMessageContent->jsonSerialize(),
+            'reply_markup'          => (null !== $this->replyMarkup ? $this->replyMarkup->jsonSerialize() : null),
+            'sticker_height'        => $this->stickerHeight,
             'sticker_url'           => $this->stickerUrl,
             'sticker_width'         => $this->stickerWidth,
-            'sticker_height'        => $this->stickerHeight,
-            'reply_markup'          => $this->replyMarkup ?? null,
-            'input_message_content' => $this->inputMessageContent->typeSerialize(),
+            'thumbnail_url'         => $this->thumbnailUrl,
         ];
     }
 }

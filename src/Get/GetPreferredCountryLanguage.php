@@ -26,7 +26,7 @@ class GetPreferredCountryLanguage extends TdFunction
     public static function fromArray(array $array): GetPreferredCountryLanguage
     {
         return new static(
-            $array['country_code'],
+            countryCode: $array['country_code'],
         );
     }
 

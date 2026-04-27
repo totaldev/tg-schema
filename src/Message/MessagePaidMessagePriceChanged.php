@@ -25,7 +25,7 @@ class MessagePaidMessagePriceChanged extends MessageContent
     public static function fromArray(array $array): MessagePaidMessagePriceChanged
     {
         return new static(
-            $array['paid_message_star_count'],
+            paidMessageStarCount: $array['paid_message_star_count'],
         );
     }
 

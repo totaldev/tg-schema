@@ -19,30 +19,30 @@ class GetAllStickerEmojis extends TdFunction
 
     public function __construct(
         /**
-         * Type of the stickers to search for.
+         * Chat identifier for which to find stickers.
          */
-        protected StickerType $stickerType,
+        protected int         $chatId,
         /**
          * Search query.
          */
         protected string      $query,
         /**
-         * Chat identifier for which to find stickers.
-         */
-        protected int         $chatId,
-        /**
          * Pass true if only main emoji for each found sticker must be included in the result.
          */
         protected bool        $returnOnlyMainEmoji,
+        /**
+         * Type of the stickers to search for.
+         */
+        protected StickerType $stickerType,
     ) {}
 
     public static function fromArray(array $array): GetAllStickerEmojis
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['sticker_type']),
-            $array['query'],
-            $array['chat_id'],
-            $array['return_only_main_emoji'],
+            chatId             : $array['chat_id'],
+            query              : $array['query'],
+            returnOnlyMainEmoji: $array['return_only_main_emoji'],
+            stickerType        : TdSchemaRegistry::fromArray($array['sticker_type']),
         );
     }
 
@@ -98,10 +98,10 @@ class GetAllStickerEmojis extends TdFunction
     {
         return [
             '@type'                  => static::TYPE_NAME,
-            'sticker_type'           => $this->stickerType->typeSerialize(),
-            'query'                  => $this->query,
             'chat_id'                => $this->chatId,
+            'query'                  => $this->query,
             'return_only_main_emoji' => $this->returnOnlyMainEmoji,
+            'sticker_type'           => $this->stickerType->jsonSerialize(),
         ];
     }
 }

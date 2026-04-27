@@ -19,6 +19,10 @@ class ChatRevenueStatistics extends TdObject
 
     public function __construct(
         /**
+         * Amount of earned revenue.
+         */
+        protected ChatRevenueAmount $revenueAmount,
+        /**
          * A graph containing amount of revenue in a given hour.
          */
         protected StatisticalGraph  $revenueByHourGraph,
@@ -26,10 +30,6 @@ class ChatRevenueStatistics extends TdObject
          * A graph containing amount of revenue.
          */
         protected StatisticalGraph  $revenueGraph,
-        /**
-         * Amount of earned revenue.
-         */
-        protected ChatRevenueAmount $revenueAmount,
         /**
          * Current conversion rate of the cryptocurrency in which revenue is calculated to USD.
          */
@@ -39,10 +39,10 @@ class ChatRevenueStatistics extends TdObject
     public static function fromArray(array $array): ChatRevenueStatistics
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['revenue_by_hour_graph']),
-            TdSchemaRegistry::fromArray($array['revenue_graph']),
-            TdSchemaRegistry::fromArray($array['revenue_amount']),
-            $array['usd_rate'],
+            revenueAmount     : TdSchemaRegistry::fromArray($array['revenue_amount']),
+            revenueByHourGraph: TdSchemaRegistry::fromArray($array['revenue_by_hour_graph']),
+            revenueGraph      : TdSchemaRegistry::fromArray($array['revenue_graph']),
+            usdRate           : $array['usd_rate'],
         );
     }
 
@@ -98,9 +98,9 @@ class ChatRevenueStatistics extends TdObject
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'revenue_by_hour_graph' => $this->revenueByHourGraph->typeSerialize(),
-            'revenue_graph'         => $this->revenueGraph->typeSerialize(),
-            'revenue_amount'        => $this->revenueAmount->typeSerialize(),
+            'revenue_amount'        => $this->revenueAmount->jsonSerialize(),
+            'revenue_by_hour_graph' => $this->revenueByHourGraph->jsonSerialize(),
+            'revenue_graph'         => $this->revenueGraph->jsonSerialize(),
             'usd_rate'              => $this->usdRate,
         ];
     }

@@ -27,7 +27,7 @@ class UpdateQuickReplyShortcuts extends Update
     public static function fromArray(array $array): UpdateQuickReplyShortcuts
     {
         return new static(
-            $array['shortcut_ids'],
+            shortcutIds: $array['shortcut_ids'],
         );
     }
 

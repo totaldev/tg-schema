@@ -19,13 +19,13 @@ class MessageDocument extends MessageContent
 
     public function __construct(
         /**
-         * The document description.
-         */
-        protected Document      $document,
-        /**
          * Document caption.
          */
         protected FormattedText $caption,
+        /**
+         * The document description.
+         */
+        protected Document      $document,
     ) {
         parent::__construct();
     }
@@ -33,8 +33,8 @@ class MessageDocument extends MessageContent
     public static function fromArray(array $array): MessageDocument
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['document']),
-            TdSchemaRegistry::fromArray($array['caption']),
+            caption : TdSchemaRegistry::fromArray($array['caption']),
+            document: TdSchemaRegistry::fromArray($array['document']),
         );
     }
 
@@ -66,8 +66,8 @@ class MessageDocument extends MessageContent
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'document' => $this->document->typeSerialize(),
-            'caption'  => $this->caption->typeSerialize(),
+            'caption'  => $this->caption->jsonSerialize(),
+            'document' => $this->document->jsonSerialize(),
         ];
     }
 }

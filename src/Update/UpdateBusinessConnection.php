@@ -28,7 +28,7 @@ class UpdateBusinessConnection extends Update
     public static function fromArray(array $array): UpdateBusinessConnection
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['connection']),
+            connection: TdSchemaRegistry::fromArray($array['connection']),
         );
     }
 
@@ -48,7 +48,7 @@ class UpdateBusinessConnection extends Update
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'connection' => $this->connection->typeSerialize(),
+            'connection' => $this->connection->jsonSerialize(),
         ];
     }
 }

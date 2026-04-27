@@ -19,13 +19,13 @@ class UpdateScopeNotificationSettings extends Update
 
     public function __construct(
         /**
-         * Types of chats for which notification settings were updated.
-         */
-        protected NotificationSettingsScope $scope,
-        /**
          * The new notification settings.
          */
         protected ScopeNotificationSettings $notificationSettings,
+        /**
+         * Types of chats for which notification settings were updated.
+         */
+        protected NotificationSettingsScope $scope,
     ) {
         parent::__construct();
     }
@@ -33,8 +33,8 @@ class UpdateScopeNotificationSettings extends Update
     public static function fromArray(array $array): UpdateScopeNotificationSettings
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['scope']),
-            TdSchemaRegistry::fromArray($array['notification_settings']),
+            notificationSettings: TdSchemaRegistry::fromArray($array['notification_settings']),
+            scope               : TdSchemaRegistry::fromArray($array['scope']),
         );
     }
 
@@ -66,8 +66,8 @@ class UpdateScopeNotificationSettings extends Update
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'scope'                 => $this->scope->typeSerialize(),
-            'notification_settings' => $this->notificationSettings->typeSerialize(),
+            'notification_settings' => $this->notificationSettings->jsonSerialize(),
+            'scope'                 => $this->scope->jsonSerialize(),
         ];
     }
 }

@@ -25,7 +25,7 @@ class GetMessageImportConfirmationText extends TdFunction
     public static function fromArray(array $array): GetMessageImportConfirmationText
     {
         return new static(
-            $array['chat_id'],
+            chatId: $array['chat_id'],
         );
     }
 

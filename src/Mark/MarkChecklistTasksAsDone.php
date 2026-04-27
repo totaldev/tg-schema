@@ -21,10 +21,6 @@ class MarkChecklistTasksAsDone extends TdFunction
          */
         protected int   $chatId,
         /**
-         * Identifier of the message containing the checklist. Use messageProperties.can_mark_tasks_as_done to check whether the tasks can be marked as done or not done.
-         */
-        protected int   $messageId,
-        /**
          * Identifiers of tasks that were marked as done.
          *
          * @var int[]
@@ -36,15 +32,19 @@ class MarkChecklistTasksAsDone extends TdFunction
          * @var int[]
          */
         protected array $markedAsNotDoneTaskIds,
+        /**
+         * Identifier of the message containing the checklist. Use messageProperties.can_mark_tasks_as_done to check whether the tasks can be marked as done or not done.
+         */
+        protected int   $messageId,
     ) {}
 
     public static function fromArray(array $array): MarkChecklistTasksAsDone
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            $array['marked_as_done_task_ids'],
-            $array['marked_as_not_done_task_ids'],
+            chatId                : $array['chat_id'],
+            markedAsDoneTaskIds   : $array['marked_as_done_task_ids'],
+            markedAsNotDoneTaskIds: $array['marked_as_not_done_task_ids'],
+            messageId             : $array['message_id'],
         );
     }
 
@@ -101,9 +101,9 @@ class MarkChecklistTasksAsDone extends TdFunction
         return [
             '@type'                       => static::TYPE_NAME,
             'chat_id'                     => $this->chatId,
-            'message_id'                  => $this->messageId,
             'marked_as_done_task_ids'     => $this->markedAsDoneTaskIds,
             'marked_as_not_done_task_ids' => $this->markedAsNotDoneTaskIds,
+            'message_id'                  => $this->messageId,
         ];
     }
 }

@@ -39,9 +39,9 @@ class UpdateChatLastMessage extends Update
     public static function fromArray(array $array): UpdateChatLastMessage
     {
         return new static(
-            $array['chat_id'],
-            isset($array['last_message']) ? TdSchemaRegistry::fromArray($array['last_message']) : null,
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['positions']),
+            chatId     : $array['chat_id'],
+            lastMessage: (isset($array['last_message']) ? TdSchemaRegistry::fromArray($array['last_message']) : null),
+            positions  : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['positions']),
         );
     }
 
@@ -86,8 +86,8 @@ class UpdateChatLastMessage extends Update
         return [
             '@type'        => static::TYPE_NAME,
             'chat_id'      => $this->chatId,
-            'last_message' => $this->lastMessage ?? null,
-            'positions'    => array_map(static fn($x) => $x->typeSerialize(), $this->positions),
+            'last_message' => (null !== $this->lastMessage ? $this->lastMessage->jsonSerialize() : null),
+            'positions'    => array_map(static fn($x) => $x->jsonSerialize(), $this->positions),
         ];
     }
 }

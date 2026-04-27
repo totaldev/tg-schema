@@ -23,6 +23,10 @@ class AddMessageReaction extends TdFunction
          */
         protected int          $chatId,
         /**
+         * Pass true if the reaction is added with a big animation.
+         */
+        protected bool         $isBig,
+        /**
          * Identifier of the message.
          */
         protected int          $messageId,
@@ -30,10 +34,6 @@ class AddMessageReaction extends TdFunction
          * Type of the reaction to add. Use addPendingPaidMessageReaction instead to add the paid reaction.
          */
         protected ReactionType $reactionType,
-        /**
-         * Pass true if the reaction is added with a big animation.
-         */
-        protected bool         $isBig,
         /**
          * Pass true if the reaction needs to be added to recent reactions; tags are never added to the list of recent reactions.
          */
@@ -43,11 +43,11 @@ class AddMessageReaction extends TdFunction
     public static function fromArray(array $array): AddMessageReaction
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            TdSchemaRegistry::fromArray($array['reaction_type']),
-            $array['is_big'],
-            $array['update_recent_reactions'],
+            chatId               : $array['chat_id'],
+            isBig                : $array['is_big'],
+            messageId            : $array['message_id'],
+            reactionType         : TdSchemaRegistry::fromArray($array['reaction_type']),
+            updateRecentReactions: $array['update_recent_reactions'],
         );
     }
 
@@ -116,9 +116,9 @@ class AddMessageReaction extends TdFunction
         return [
             '@type'                   => static::TYPE_NAME,
             'chat_id'                 => $this->chatId,
-            'message_id'              => $this->messageId,
-            'reaction_type'           => $this->reactionType->typeSerialize(),
             'is_big'                  => $this->isBig,
+            'message_id'              => $this->messageId,
+            'reaction_type'           => $this->reactionType->jsonSerialize(),
             'update_recent_reactions' => $this->updateRecentReactions,
         ];
     }

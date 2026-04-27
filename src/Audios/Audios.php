@@ -19,22 +19,22 @@ class Audios extends TdObject
 
     public function __construct(
         /**
-         * Approximate total number of audio files found.
-         */
-        protected int   $totalCount,
-        /**
          * List of audio files.
          *
          * @var Audio[]
          */
         protected array $audios,
+        /**
+         * Approximate total number of audio files found.
+         */
+        protected int   $totalCount,
     ) {}
 
     public static function fromArray(array $array): Audios
     {
         return new static(
-            $array['total_count'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['audios']),
+            audios    : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['audios']),
+            totalCount: $array['total_count'],
         );
     }
 
@@ -66,8 +66,8 @@ class Audios extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
+            'audios'      => array_map(static fn($x) => $x->jsonSerialize(), $this->audios),
             'total_count' => $this->totalCount,
-            'audios'      => array_map(static fn($x) => $x->typeSerialize(), $this->audios),
         ];
     }
 }

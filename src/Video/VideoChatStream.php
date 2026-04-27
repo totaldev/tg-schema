@@ -33,9 +33,9 @@ class VideoChatStream extends TdObject
     public static function fromArray(array $array): VideoChatStream
     {
         return new static(
-            $array['channel_id'],
-            $array['scale'],
-            $array['time_offset'],
+            channelId : $array['channel_id'],
+            scale     : $array['scale'],
+            timeOffset: $array['time_offset'],
         );
     }
 

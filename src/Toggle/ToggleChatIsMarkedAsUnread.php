@@ -29,8 +29,8 @@ class ToggleChatIsMarkedAsUnread extends TdFunction
     public static function fromArray(array $array): ToggleChatIsMarkedAsUnread
     {
         return new static(
-            $array['chat_id'],
-            $array['is_marked_as_unread'],
+            chatId          : $array['chat_id'],
+            isMarkedAsUnread: $array['is_marked_as_unread'],
         );
     }
 

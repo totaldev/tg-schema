@@ -20,30 +20,30 @@ class SetStickerSetThumbnail extends TdFunction
 
     public function __construct(
         /**
-         * Sticker set owner; ignored for regular users.
-         */
-        protected int            $userId,
-        /**
          * Sticker set name. The sticker set must be owned by the current user.
          */
         protected string         $name,
         /**
-         * Thumbnail to set; pass null to remove the sticker set thumbnail.
+         * Sticker set owner; ignored for regular users.
          */
-        protected ?InputFile     $thumbnail = null,
+        protected int            $userId,
         /**
          * Format of the thumbnail; pass null if thumbnail is removed.
          */
         protected ?StickerFormat $format = null,
+        /**
+         * Thumbnail to set; pass null to remove the sticker set thumbnail.
+         */
+        protected ?InputFile     $thumbnail = null,
     ) {}
 
     public static function fromArray(array $array): SetStickerSetThumbnail
     {
         return new static(
-            $array['user_id'],
-            $array['name'],
-            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
-            isset($array['format']) ? TdSchemaRegistry::fromArray($array['format']) : null,
+            format   : (isset($array['format']) ? TdSchemaRegistry::fromArray($array['format']) : null),
+            name     : $array['name'],
+            thumbnail: (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
+            userId   : $array['user_id'],
         );
     }
 
@@ -99,10 +99,10 @@ class SetStickerSetThumbnail extends TdFunction
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'user_id'   => $this->userId,
+            'format'    => (null !== $this->format ? $this->format->jsonSerialize() : null),
             'name'      => $this->name,
-            'thumbnail' => $this->thumbnail ?? null,
-            'format'    => $this->format ?? null,
+            'thumbnail' => (null !== $this->thumbnail ? $this->thumbnail->jsonSerialize() : null),
+            'user_id'   => $this->userId,
         ];
     }
 }

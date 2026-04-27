@@ -30,8 +30,8 @@ class GetPassportAuthorizationFormAvailableElements extends TdFunction
     public static function fromArray(array $array): GetPassportAuthorizationFormAvailableElements
     {
         return new static(
-            $array['authorization_form_id'],
-            $array['password'],
+            authorizationFormId: $array['authorization_form_id'],
+            password           : $array['password'],
         );
     }
 

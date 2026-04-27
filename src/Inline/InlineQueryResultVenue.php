@@ -23,13 +23,13 @@ class InlineQueryResultVenue extends InlineQueryResult
          */
         protected string     $id,
         /**
-         * Venue result.
-         */
-        protected Venue      $venue,
-        /**
          * Result thumbnail in JPEG format; may be null.
          */
         protected ?Thumbnail $thumbnail,
+        /**
+         * Venue result.
+         */
+        protected Venue      $venue,
     ) {
         parent::__construct();
     }
@@ -37,9 +37,9 @@ class InlineQueryResultVenue extends InlineQueryResult
     public static function fromArray(array $array): InlineQueryResultVenue
     {
         return new static(
-            $array['id'],
-            TdSchemaRegistry::fromArray($array['venue']),
-            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
+            id       : $array['id'],
+            thumbnail: (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
+            venue    : TdSchemaRegistry::fromArray($array['venue']),
         );
     }
 
@@ -84,8 +84,8 @@ class InlineQueryResultVenue extends InlineQueryResult
         return [
             '@type'     => static::TYPE_NAME,
             'id'        => $this->id,
-            'venue'     => $this->venue->typeSerialize(),
-            'thumbnail' => $this->thumbnail ?? null,
+            'thumbnail' => (null !== $this->thumbnail ? $this->thumbnail->jsonSerialize() : null),
+            'venue'     => $this->venue->jsonSerialize(),
         ];
     }
 }

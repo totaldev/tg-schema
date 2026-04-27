@@ -20,33 +20,29 @@ class ChatInviteLinkInfo extends TdObject
 
     public function __construct(
         /**
-         * Chat identifier of the invite link; 0 if the user has no access to the chat before joining.
+         * Identifier of the accent color for chat title and background of chat photo.
          */
-        protected int                             $chatId,
+        protected int                             $accentColorId,
         /**
          * If non-zero, the amount of time for which read access to the chat will remain available, in seconds.
          */
         protected int                             $accessibleFor,
         /**
-         * Type of the chat.
+         * Chat identifier of the invite link; 0 if the user has no access to the chat before joining.
          */
-        protected InviteLinkChatType              $type,
+        protected int                             $chatId,
         /**
-         * Title of the chat.
+         * True, if the link only creates join request.
          */
-        protected string                          $title,
-        /**
-         * Chat photo; may be null.
-         */
-        protected ?ChatPhotoInfo                  $photo,
-        /**
-         * Identifier of the accent color for chat title and background of chat photo.
-         */
-        protected int                             $accentColorId,
+        protected bool                            $createsJoinRequest,
         /**
          * Chat description.
          */
         protected string                          $description,
+        /**
+         * True, if the chat is a public supergroup or channel, i.e. it has a username or it is a location-based supergroup.
+         */
+        protected bool                            $isPublic,
         /**
          * Number of members in the chat.
          */
@@ -58,17 +54,21 @@ class ChatInviteLinkInfo extends TdObject
          */
         protected array                           $memberUserIds,
         /**
+         * Chat photo; may be null.
+         */
+        protected ?ChatPhotoInfo                  $photo,
+        /**
          * Information about subscription plan that must be paid by the user to use the link; may be null if the link doesn't require subscription.
          */
         protected ?ChatInviteLinkSubscriptionInfo $subscriptionInfo,
         /**
-         * True, if the link only creates join request.
+         * Title of the chat.
          */
-        protected bool                            $createsJoinRequest,
+        protected string                          $title,
         /**
-         * True, if the chat is a public supergroup or channel, i.e. it has a username or it is a location-based supergroup.
+         * Type of the chat.
          */
-        protected bool                            $isPublic,
+        protected InviteLinkChatType              $type,
         /**
          * Information about verification status of the chat; may be null if none.
          */
@@ -78,19 +78,19 @@ class ChatInviteLinkInfo extends TdObject
     public static function fromArray(array $array): ChatInviteLinkInfo
     {
         return new static(
-            $array['chat_id'],
-            $array['accessible_for'],
-            TdSchemaRegistry::fromArray($array['type']),
-            $array['title'],
-            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
-            $array['accent_color_id'],
-            $array['description'],
-            $array['member_count'],
-            $array['member_user_ids'],
-            isset($array['subscription_info']) ? TdSchemaRegistry::fromArray($array['subscription_info']) : null,
-            $array['creates_join_request'],
-            $array['is_public'],
-            isset($array['verification_status']) ? TdSchemaRegistry::fromArray($array['verification_status']) : null,
+            accentColorId     : $array['accent_color_id'],
+            accessibleFor     : $array['accessible_for'],
+            chatId            : $array['chat_id'],
+            createsJoinRequest: $array['creates_join_request'],
+            description       : $array['description'],
+            isPublic          : $array['is_public'],
+            memberCount       : $array['member_count'],
+            memberUserIds     : $array['member_user_ids'],
+            photo             : (isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null),
+            subscriptionInfo  : (isset($array['subscription_info']) ? TdSchemaRegistry::fromArray($array['subscription_info']) : null),
+            title             : $array['title'],
+            type              : TdSchemaRegistry::fromArray($array['type']),
+            verificationStatus: (isset($array['verification_status']) ? TdSchemaRegistry::fromArray($array['verification_status']) : null),
         );
     }
 
@@ -254,19 +254,19 @@ class ChatInviteLinkInfo extends TdObject
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'chat_id'              => $this->chatId,
-            'accessible_for'       => $this->accessibleFor,
-            'type'                 => $this->type->typeSerialize(),
-            'title'                => $this->title,
-            'photo'                => $this->photo ?? null,
             'accent_color_id'      => $this->accentColorId,
+            'accessible_for'       => $this->accessibleFor,
+            'chat_id'              => $this->chatId,
+            'creates_join_request' => $this->createsJoinRequest,
             'description'          => $this->description,
+            'is_public'            => $this->isPublic,
             'member_count'         => $this->memberCount,
             'member_user_ids'      => $this->memberUserIds,
-            'subscription_info'    => $this->subscriptionInfo ?? null,
-            'creates_join_request' => $this->createsJoinRequest,
-            'is_public'            => $this->isPublic,
-            'verification_status'  => $this->verificationStatus ?? null,
+            'photo'                => (null !== $this->photo ? $this->photo->jsonSerialize() : null),
+            'subscription_info'    => (null !== $this->subscriptionInfo ? $this->subscriptionInfo->jsonSerialize() : null),
+            'title'                => $this->title,
+            'type'                 => $this->type->jsonSerialize(),
+            'verification_status'  => (null !== $this->verificationStatus ? $this->verificationStatus->jsonSerialize() : null),
         ];
     }
 }

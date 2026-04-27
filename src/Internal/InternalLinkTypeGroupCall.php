@@ -26,7 +26,7 @@ class InternalLinkTypeGroupCall extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeGroupCall
     {
         return new static(
-            $array['invite_link'],
+            inviteLink: $array['invite_link'],
         );
     }
 

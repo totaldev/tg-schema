@@ -17,15 +17,15 @@ class ReportStoryResultOptionRequired extends ReportStoryResult
 
     public function __construct(
         /**
-         * Title for the option choice.
-         */
-        protected string $title,
-        /**
          * List of available options.
          *
          * @var ReportOption[]
          */
         protected array  $options,
+        /**
+         * Title for the option choice.
+         */
+        protected string $title,
     ) {
         parent::__construct();
     }
@@ -33,8 +33,8 @@ class ReportStoryResultOptionRequired extends ReportStoryResult
     public static function fromArray(array $array): ReportStoryResultOptionRequired
     {
         return new static(
-            $array['title'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['options']),
+            options: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['options']),
+            title  : $array['title'],
         );
     }
 
@@ -66,8 +66,8 @@ class ReportStoryResultOptionRequired extends ReportStoryResult
     {
         return [
             '@type'   => static::TYPE_NAME,
+            'options' => array_map(static fn($x) => $x->jsonSerialize(), $this->options),
             'title'   => $this->title,
-            'options' => array_map(static fn($x) => $x->typeSerialize(), $this->options),
         ];
     }
 }

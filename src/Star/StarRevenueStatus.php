@@ -18,35 +18,35 @@ class StarRevenueStatus extends TdObject
 
     public function __construct(
         /**
-         * Total amount of Telegram Stars earned.
+         * The amount of Telegram Stars that are available for withdrawal.
          */
-        protected StarAmount $totalAmount,
+        protected StarAmount $availableAmount,
         /**
          * The amount of Telegram Stars that aren't withdrawn yet.
          */
         protected StarAmount $currentAmount,
         /**
-         * The amount of Telegram Stars that are available for withdrawal.
+         * Time left before the next withdrawal can be started, in seconds; 0 if withdrawal can be started now.
          */
-        protected StarAmount $availableAmount,
+        protected int        $nextWithdrawalIn,
+        /**
+         * Total amount of Telegram Stars earned.
+         */
+        protected StarAmount $totalAmount,
         /**
          * True, if Telegram Stars can be withdrawn now or later.
          */
         protected bool       $withdrawalEnabled,
-        /**
-         * Time left before the next withdrawal can be started, in seconds; 0 if withdrawal can be started now.
-         */
-        protected int        $nextWithdrawalIn,
     ) {}
 
     public static function fromArray(array $array): StarRevenueStatus
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['total_amount']),
-            TdSchemaRegistry::fromArray($array['current_amount']),
-            TdSchemaRegistry::fromArray($array['available_amount']),
-            $array['withdrawal_enabled'],
-            $array['next_withdrawal_in'],
+            availableAmount  : TdSchemaRegistry::fromArray($array['available_amount']),
+            currentAmount    : TdSchemaRegistry::fromArray($array['current_amount']),
+            nextWithdrawalIn : $array['next_withdrawal_in'],
+            totalAmount      : TdSchemaRegistry::fromArray($array['total_amount']),
+            withdrawalEnabled: $array['withdrawal_enabled'],
         );
     }
 
@@ -114,11 +114,11 @@ class StarRevenueStatus extends TdObject
     {
         return [
             '@type'              => static::TYPE_NAME,
-            'total_amount'       => $this->totalAmount->typeSerialize(),
-            'current_amount'     => $this->currentAmount->typeSerialize(),
-            'available_amount'   => $this->availableAmount->typeSerialize(),
-            'withdrawal_enabled' => $this->withdrawalEnabled,
+            'available_amount'   => $this->availableAmount->jsonSerialize(),
+            'current_amount'     => $this->currentAmount->jsonSerialize(),
             'next_withdrawal_in' => $this->nextWithdrawalIn,
+            'total_amount'       => $this->totalAmount->jsonSerialize(),
+            'withdrawal_enabled' => $this->withdrawalEnabled,
         ];
     }
 }

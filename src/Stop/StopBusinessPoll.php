@@ -39,10 +39,10 @@ class StopBusinessPoll extends TdFunction
     public static function fromArray(array $array): StopBusinessPoll
     {
         return new static(
-            $array['business_connection_id'],
-            $array['chat_id'],
-            $array['message_id'],
-            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
+            businessConnectionId: $array['business_connection_id'],
+            chatId              : $array['chat_id'],
+            messageId           : $array['message_id'],
+            replyMarkup         : (isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null),
         );
     }
 
@@ -101,7 +101,7 @@ class StopBusinessPoll extends TdFunction
             'business_connection_id' => $this->businessConnectionId,
             'chat_id'                => $this->chatId,
             'message_id'             => $this->messageId,
-            'reply_markup'           => $this->replyMarkup ?? null,
+            'reply_markup'           => (null !== $this->replyMarkup ? $this->replyMarkup->jsonSerialize() : null),
         ];
     }
 }

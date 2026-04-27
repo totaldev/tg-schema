@@ -18,20 +18,20 @@ class ToggleSupergroupHasAutomaticTranslation extends TdFunction
 
     public function __construct(
         /**
-         * The identifier of the channel.
-         */
-        protected int  $supergroupId,
-        /**
          * The new value of has_automatic_translation.
          */
         protected bool $hasAutomaticTranslation,
+        /**
+         * The identifier of the channel.
+         */
+        protected int  $supergroupId,
     ) {}
 
     public static function fromArray(array $array): ToggleSupergroupHasAutomaticTranslation
     {
         return new static(
-            $array['supergroup_id'],
-            $array['has_automatic_translation'],
+            hasAutomaticTranslation: $array['has_automatic_translation'],
+            supergroupId           : $array['supergroup_id'],
         );
     }
 
@@ -63,8 +63,8 @@ class ToggleSupergroupHasAutomaticTranslation extends TdFunction
     {
         return [
             '@type'                     => static::TYPE_NAME,
-            'supergroup_id'             => $this->supergroupId,
             'has_automatic_translation' => $this->hasAutomaticTranslation,
+            'supergroup_id'             => $this->supergroupId,
         ];
     }
 }

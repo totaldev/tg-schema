@@ -34,8 +34,8 @@ class UpdateStarRevenueStatus extends Update
     public static function fromArray(array $array): UpdateStarRevenueStatus
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['owner_id']),
-            TdSchemaRegistry::fromArray($array['status']),
+            ownerId: TdSchemaRegistry::fromArray($array['owner_id']),
+            status : TdSchemaRegistry::fromArray($array['status']),
         );
     }
 
@@ -67,8 +67,8 @@ class UpdateStarRevenueStatus extends Update
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'owner_id' => $this->ownerId->typeSerialize(),
-            'status'   => $this->status->typeSerialize(),
+            'owner_id' => $this->ownerId->jsonSerialize(),
+            'status'   => $this->status->jsonSerialize(),
         ];
     }
 }

@@ -25,7 +25,7 @@ class ChatEventShowMessageSenderToggled extends ChatEventAction
     public static function fromArray(array $array): ChatEventShowMessageSenderToggled
     {
         return new static(
-            $array['show_message_sender'],
+            showMessageSender: $array['show_message_sender'],
         );
     }
 

@@ -36,9 +36,9 @@ class SetGroupCallParticipantVolumeLevel extends TdFunction
     public static function fromArray(array $array): SetGroupCallParticipantVolumeLevel
     {
         return new static(
-            $array['group_call_id'],
-            TdSchemaRegistry::fromArray($array['participant_id']),
-            $array['volume_level'],
+            groupCallId  : $array['group_call_id'],
+            participantId: TdSchemaRegistry::fromArray($array['participant_id']),
+            volumeLevel  : $array['volume_level'],
         );
     }
 
@@ -83,7 +83,7 @@ class SetGroupCallParticipantVolumeLevel extends TdFunction
         return [
             '@type'          => static::TYPE_NAME,
             'group_call_id'  => $this->groupCallId,
-            'participant_id' => $this->participantId->typeSerialize(),
+            'participant_id' => $this->participantId->jsonSerialize(),
             'volume_level'   => $this->volumeLevel,
         ];
     }

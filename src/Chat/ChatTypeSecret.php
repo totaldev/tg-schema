@@ -29,8 +29,8 @@ class ChatTypeSecret extends ChatType
     public static function fromArray(array $array): ChatTypeSecret
     {
         return new static(
-            $array['secret_chat_id'],
-            $array['user_id'],
+            secretChatId: $array['secret_chat_id'],
+            userId      : $array['user_id'],
         );
     }
 

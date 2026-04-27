@@ -28,7 +28,7 @@ class PassportElementIdentityCard extends PassportElement
     public static function fromArray(array $array): PassportElementIdentityCard
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['identity_card']),
+            identityCard: TdSchemaRegistry::fromArray($array['identity_card']),
         );
     }
 
@@ -48,7 +48,7 @@ class PassportElementIdentityCard extends PassportElement
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'identity_card' => $this->identityCard->typeSerialize(),
+            'identity_card' => $this->identityCard->jsonSerialize(),
         ];
     }
 }

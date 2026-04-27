@@ -17,20 +17,20 @@ class AllowUnpaidMessagesFromUser extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the user.
-         */
-        protected int  $userId,
-        /**
          * Pass true to refund the user previously paid messages.
          */
         protected bool $refundPayments,
+        /**
+         * Identifier of the user.
+         */
+        protected int  $userId,
     ) {}
 
     public static function fromArray(array $array): AllowUnpaidMessagesFromUser
     {
         return new static(
-            $array['user_id'],
-            $array['refund_payments'],
+            refundPayments: $array['refund_payments'],
+            userId        : $array['user_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class AllowUnpaidMessagesFromUser extends TdFunction
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'user_id'         => $this->userId,
             'refund_payments' => $this->refundPayments,
+            'user_id'         => $this->userId,
         ];
     }
 }

@@ -25,7 +25,7 @@ class UserStatusLastMonth extends UserStatus
     public static function fromArray(array $array): UserStatusLastMonth
     {
         return new static(
-            $array['by_my_privacy_settings'],
+            byMyPrivacySettings: $array['by_my_privacy_settings'],
         );
     }
 

@@ -28,7 +28,7 @@ class PaidMediaPhoto extends PaidMedia
     public static function fromArray(array $array): PaidMediaPhoto
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['photo']),
+            photo: TdSchemaRegistry::fromArray($array['photo']),
         );
     }
 
@@ -48,7 +48,7 @@ class PaidMediaPhoto extends PaidMedia
     {
         return [
             '@type' => static::TYPE_NAME,
-            'photo' => $this->photo->typeSerialize(),
+            'photo' => $this->photo->jsonSerialize(),
         ];
     }
 }

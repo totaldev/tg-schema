@@ -20,25 +20,25 @@ class UnreadReaction extends TdObject
 
     public function __construct(
         /**
-         * Type of the reaction.
+         * True, if the reaction was added with a big animation.
          */
-        protected ReactionType  $type,
+        protected bool          $isBig,
         /**
          * Identifier of the sender, added the reaction.
          */
         protected MessageSender $senderId,
         /**
-         * True, if the reaction was added with a big animation.
+         * Type of the reaction.
          */
-        protected bool          $isBig,
+        protected ReactionType  $type,
     ) {}
 
     public static function fromArray(array $array): UnreadReaction
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['type']),
-            TdSchemaRegistry::fromArray($array['sender_id']),
-            $array['is_big'],
+            isBig   : $array['is_big'],
+            senderId: TdSchemaRegistry::fromArray($array['sender_id']),
+            type    : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -82,9 +82,9 @@ class UnreadReaction extends TdObject
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'type'      => $this->type->typeSerialize(),
-            'sender_id' => $this->senderId->typeSerialize(),
             'is_big'    => $this->isBig,
+            'sender_id' => $this->senderId->jsonSerialize(),
+            'type'      => $this->type->jsonSerialize(),
         ];
     }
 }

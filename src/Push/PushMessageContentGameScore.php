@@ -15,17 +15,17 @@ class PushMessageContentGameScore extends PushMessageContent
 
     public function __construct(
         /**
-         * Game title, empty for pinned message.
+         * True, if the message is a pinned message with the specified content.
          */
-        protected string $title,
+        protected bool   $isPinned,
         /**
          * New score, 0 for pinned message.
          */
         protected int    $score,
         /**
-         * True, if the message is a pinned message with the specified content.
+         * Game title, empty for pinned message.
          */
-        protected bool   $isPinned,
+        protected string $title,
     ) {
         parent::__construct();
     }
@@ -33,9 +33,9 @@ class PushMessageContentGameScore extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentGameScore
     {
         return new static(
-            $array['title'],
-            $array['score'],
-            $array['is_pinned'],
+            isPinned: $array['is_pinned'],
+            score   : $array['score'],
+            title   : $array['title'],
         );
     }
 
@@ -79,9 +79,9 @@ class PushMessageContentGameScore extends PushMessageContent
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'title'     => $this->title,
-            'score'     => $this->score,
             'is_pinned' => $this->isPinned,
+            'score'     => $this->score,
+            'title'     => $this->title,
         ];
     }
 }

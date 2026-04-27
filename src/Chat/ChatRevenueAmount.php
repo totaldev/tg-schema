@@ -17,6 +17,14 @@ class ChatRevenueAmount extends TdObject
 
     public function __construct(
         /**
+         * Amount of the cryptocurrency available for withdrawal, in the smallest units of the cryptocurrency.
+         */
+        protected int    $availableAmount,
+        /**
+         * Amount of the cryptocurrency that isn't withdrawn yet, in the smallest units of the cryptocurrency.
+         */
+        protected int    $balanceAmount,
+        /**
          * Cryptocurrency in which revenue is calculated.
          */
         protected string $cryptocurrency,
@@ -24,14 +32,6 @@ class ChatRevenueAmount extends TdObject
          * Total amount of the cryptocurrency earned, in the smallest units of the cryptocurrency.
          */
         protected int    $totalAmount,
-        /**
-         * Amount of the cryptocurrency that isn't withdrawn yet, in the smallest units of the cryptocurrency.
-         */
-        protected int    $balanceAmount,
-        /**
-         * Amount of the cryptocurrency available for withdrawal, in the smallest units of the cryptocurrency.
-         */
-        protected int    $availableAmount,
         /**
          * True, if Telegram Stars can be withdrawn now or later.
          */
@@ -41,11 +41,11 @@ class ChatRevenueAmount extends TdObject
     public static function fromArray(array $array): ChatRevenueAmount
     {
         return new static(
-            $array['cryptocurrency'],
-            $array['total_amount'],
-            $array['balance_amount'],
-            $array['available_amount'],
-            $array['withdrawal_enabled'],
+            availableAmount  : $array['available_amount'],
+            balanceAmount    : $array['balance_amount'],
+            cryptocurrency   : $array['cryptocurrency'],
+            totalAmount      : $array['total_amount'],
+            withdrawalEnabled: $array['withdrawal_enabled'],
         );
     }
 
@@ -113,10 +113,10 @@ class ChatRevenueAmount extends TdObject
     {
         return [
             '@type'              => static::TYPE_NAME,
+            'available_amount'   => $this->availableAmount,
+            'balance_amount'     => $this->balanceAmount,
             'cryptocurrency'     => $this->cryptocurrency,
             'total_amount'       => $this->totalAmount,
-            'balance_amount'     => $this->balanceAmount,
-            'available_amount'   => $this->availableAmount,
             'withdrawal_enabled' => $this->withdrawalEnabled,
         ];
     }

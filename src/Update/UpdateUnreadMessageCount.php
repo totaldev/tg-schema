@@ -36,9 +36,9 @@ class UpdateUnreadMessageCount extends Update
     public static function fromArray(array $array): UpdateUnreadMessageCount
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['chat_list']),
-            $array['unread_count'],
-            $array['unread_unmuted_count'],
+            chatList          : TdSchemaRegistry::fromArray($array['chat_list']),
+            unreadCount       : $array['unread_count'],
+            unreadUnmutedCount: $array['unread_unmuted_count'],
         );
     }
 
@@ -82,7 +82,7 @@ class UpdateUnreadMessageCount extends Update
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'chat_list'            => $this->chatList->typeSerialize(),
+            'chat_list'            => $this->chatList->jsonSerialize(),
             'unread_count'         => $this->unreadCount,
             'unread_unmuted_count' => $this->unreadUnmutedCount,
         ];

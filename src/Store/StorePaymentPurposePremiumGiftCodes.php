@@ -18,6 +18,10 @@ class StorePaymentPurposePremiumGiftCodes extends StorePaymentPurpose
 
     public function __construct(
         /**
+         * Paid amount, in the smallest units of the currency.
+         */
+        protected int           $amount,
+        /**
          * Identifier of the supergroup or channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user.
          */
         protected int           $boostedChatId,
@@ -26,19 +30,15 @@ class StorePaymentPurposePremiumGiftCodes extends StorePaymentPurpose
          */
         protected string        $currency,
         /**
-         * Paid amount, in the smallest units of the currency.
+         * Text to show along with the gift codes; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed.
          */
-        protected int           $amount,
+        protected FormattedText $text,
         /**
          * Identifiers of the users which can activate the gift codes.
          *
          * @var int[]
          */
         protected array         $userIds,
-        /**
-         * Text to show along with the gift codes; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed.
-         */
-        protected FormattedText $text,
     ) {
         parent::__construct();
     }
@@ -46,11 +46,11 @@ class StorePaymentPurposePremiumGiftCodes extends StorePaymentPurpose
     public static function fromArray(array $array): StorePaymentPurposePremiumGiftCodes
     {
         return new static(
-            $array['boosted_chat_id'],
-            $array['currency'],
-            $array['amount'],
-            $array['user_ids'],
-            TdSchemaRegistry::fromArray($array['text']),
+            amount       : $array['amount'],
+            boostedChatId: $array['boosted_chat_id'],
+            currency     : $array['currency'],
+            text         : TdSchemaRegistry::fromArray($array['text']),
+            userIds      : $array['user_ids'],
         );
     }
 
@@ -118,11 +118,11 @@ class StorePaymentPurposePremiumGiftCodes extends StorePaymentPurpose
     {
         return [
             '@type'           => static::TYPE_NAME,
+            'amount'          => $this->amount,
             'boosted_chat_id' => $this->boostedChatId,
             'currency'        => $this->currency,
-            'amount'          => $this->amount,
+            'text'            => $this->text->jsonSerialize(),
             'user_ids'        => $this->userIds,
-            'text'            => $this->text->typeSerialize(),
         ];
     }
 }

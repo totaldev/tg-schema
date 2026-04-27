@@ -17,6 +17,10 @@ class RichTextUrl extends RichText
 
     public function __construct(
         /**
+         * True, if the URL has cached instant view server-side.
+         */
+        protected bool     $isCached,
+        /**
          * Text.
          */
         protected RichText $text,
@@ -24,10 +28,6 @@ class RichTextUrl extends RichText
          * URL.
          */
         protected string   $url,
-        /**
-         * True, if the URL has cached instant view server-side.
-         */
-        protected bool     $isCached,
     ) {
         parent::__construct();
     }
@@ -35,9 +35,9 @@ class RichTextUrl extends RichText
     public static function fromArray(array $array): RichTextUrl
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['text']),
-            $array['url'],
-            $array['is_cached'],
+            isCached: $array['is_cached'],
+            text    : TdSchemaRegistry::fromArray($array['text']),
+            url     : $array['url'],
         );
     }
 
@@ -81,9 +81,9 @@ class RichTextUrl extends RichText
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'text'      => $this->text->typeSerialize(),
-            'url'       => $this->url,
             'is_cached' => $this->isCached,
+            'text'      => $this->text->jsonSerialize(),
+            'url'       => $this->url,
         ];
     }
 }

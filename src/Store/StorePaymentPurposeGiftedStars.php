@@ -15,21 +15,21 @@ class StorePaymentPurposeGiftedStars extends StorePaymentPurpose
 
     public function __construct(
         /**
-         * Identifier of the user to which Telegram Stars are gifted.
+         * Paid amount, in the smallest units of the currency.
          */
-        protected int    $userId,
+        protected int    $amount,
         /**
          * ISO 4217 currency code of the payment currency.
          */
         protected string $currency,
         /**
-         * Paid amount, in the smallest units of the currency.
-         */
-        protected int    $amount,
-        /**
          * Number of bought Telegram Stars.
          */
         protected int    $starCount,
+        /**
+         * Identifier of the user to which Telegram Stars are gifted.
+         */
+        protected int    $userId,
     ) {
         parent::__construct();
     }
@@ -37,10 +37,10 @@ class StorePaymentPurposeGiftedStars extends StorePaymentPurpose
     public static function fromArray(array $array): StorePaymentPurposeGiftedStars
     {
         return new static(
-            $array['user_id'],
-            $array['currency'],
-            $array['amount'],
-            $array['star_count'],
+            amount   : $array['amount'],
+            currency : $array['currency'],
+            starCount: $array['star_count'],
+            userId   : $array['user_id'],
         );
     }
 
@@ -96,10 +96,10 @@ class StorePaymentPurposeGiftedStars extends StorePaymentPurpose
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'user_id'    => $this->userId,
-            'currency'   => $this->currency,
             'amount'     => $this->amount,
+            'currency'   => $this->currency,
             'star_count' => $this->starCount,
+            'user_id'    => $this->userId,
         ];
     }
 }

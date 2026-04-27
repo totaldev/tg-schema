@@ -27,7 +27,7 @@ class SetCloseFriends extends TdFunction
     public static function fromArray(array $array): SetCloseFriends
     {
         return new static(
-            $array['user_ids'],
+            userIds: $array['user_ids'],
         );
     }
 

@@ -23,13 +23,13 @@ class AvailableGift extends TdObject
          */
         protected Gift   $gift,
         /**
-         * Number of gifts that are available for resale.
-         */
-        protected int    $resaleCount,
-        /**
          * The minimum price for the gifts available for resale in Telegram Star equivalent; 0 if there are no such gifts.
          */
         protected int    $minResaleStarCount,
+        /**
+         * Number of gifts that are available for resale.
+         */
+        protected int    $resaleCount,
         /**
          * The title of the upgraded gift; empty if the gift isn't available for resale.
          */
@@ -39,10 +39,10 @@ class AvailableGift extends TdObject
     public static function fromArray(array $array): AvailableGift
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['gift']),
-            $array['resale_count'],
-            $array['min_resale_star_count'],
-            $array['title'],
+            gift              : TdSchemaRegistry::fromArray($array['gift']),
+            minResaleStarCount: $array['min_resale_star_count'],
+            resaleCount       : $array['resale_count'],
+            title             : $array['title'],
         );
     }
 
@@ -98,9 +98,9 @@ class AvailableGift extends TdObject
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'gift'                  => $this->gift->typeSerialize(),
-            'resale_count'          => $this->resaleCount,
+            'gift'                  => $this->gift->jsonSerialize(),
             'min_resale_star_count' => $this->minResaleStarCount,
+            'resale_count'          => $this->resaleCount,
             'title'                 => $this->title,
         ];
     }

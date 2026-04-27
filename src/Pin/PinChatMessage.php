@@ -21,13 +21,13 @@ class PinChatMessage extends TdFunction
          */
         protected int  $chatId,
         /**
-         * Identifier of the new pinned message.
-         */
-        protected int  $messageId,
-        /**
          * Pass true to disable notification about the pinned message. Notifications are always disabled in channels and private chats.
          */
         protected bool $disableNotification,
+        /**
+         * Identifier of the new pinned message.
+         */
+        protected int  $messageId,
         /**
          * Pass true to pin the message only for self; private chats only.
          */
@@ -37,10 +37,10 @@ class PinChatMessage extends TdFunction
     public static function fromArray(array $array): PinChatMessage
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            $array['disable_notification'],
-            $array['only_for_self'],
+            chatId             : $array['chat_id'],
+            disableNotification: $array['disable_notification'],
+            messageId          : $array['message_id'],
+            onlyForSelf        : $array['only_for_self'],
         );
     }
 
@@ -97,8 +97,8 @@ class PinChatMessage extends TdFunction
         return [
             '@type'                => static::TYPE_NAME,
             'chat_id'              => $this->chatId,
-            'message_id'           => $this->messageId,
             'disable_notification' => $this->disableNotification,
+            'message_id'           => $this->messageId,
             'only_for_self'        => $this->onlyForSelf,
         ];
     }

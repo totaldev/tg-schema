@@ -45,11 +45,11 @@ class GetChatSparseMessagePositions extends TdFunction
     public static function fromArray(array $array): GetChatSparseMessagePositions
     {
         return new static(
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['filter']),
-            $array['from_message_id'],
-            $array['limit'],
-            $array['saved_messages_topic_id'],
+            chatId              : $array['chat_id'],
+            filter              : TdSchemaRegistry::fromArray($array['filter']),
+            fromMessageId       : $array['from_message_id'],
+            limit               : $array['limit'],
+            savedMessagesTopicId: $array['saved_messages_topic_id'],
         );
     }
 
@@ -118,7 +118,7 @@ class GetChatSparseMessagePositions extends TdFunction
         return [
             '@type'                   => static::TYPE_NAME,
             'chat_id'                 => $this->chatId,
-            'filter'                  => $this->filter->typeSerialize(),
+            'filter'                  => $this->filter->jsonSerialize(),
             'from_message_id'         => $this->fromMessageId,
             'limit'                   => $this->limit,
             'saved_messages_topic_id' => $this->savedMessagesTopicId,

@@ -24,13 +24,13 @@ class SendPaymentForm extends TdFunction
          */
         protected InputInvoice      $inputInvoice,
         /**
-         * Payment form identifier returned by getPaymentForm.
-         */
-        protected int               $paymentFormId,
-        /**
          * Identifier returned by validateOrderInfo, or an empty string.
          */
         protected string            $orderInfoId,
+        /**
+         * Payment form identifier returned by getPaymentForm.
+         */
+        protected int               $paymentFormId,
         /**
          * Identifier of a chosen shipping option, if applicable.
          */
@@ -48,12 +48,12 @@ class SendPaymentForm extends TdFunction
     public static function fromArray(array $array): SendPaymentForm
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['input_invoice']),
-            $array['payment_form_id'],
-            $array['order_info_id'],
-            $array['shipping_option_id'],
-            isset($array['credentials']) ? TdSchemaRegistry::fromArray($array['credentials']) : null,
-            $array['tip_amount'],
+            credentials     : (isset($array['credentials']) ? TdSchemaRegistry::fromArray($array['credentials']) : null),
+            inputInvoice    : TdSchemaRegistry::fromArray($array['input_invoice']),
+            orderInfoId     : $array['order_info_id'],
+            paymentFormId   : $array['payment_form_id'],
+            shippingOptionId: $array['shipping_option_id'],
+            tipAmount       : $array['tip_amount'],
         );
     }
 
@@ -133,11 +133,11 @@ class SendPaymentForm extends TdFunction
     {
         return [
             '@type'              => static::TYPE_NAME,
-            'input_invoice'      => $this->inputInvoice->typeSerialize(),
-            'payment_form_id'    => $this->paymentFormId,
+            'credentials'        => (null !== $this->credentials ? $this->credentials->jsonSerialize() : null),
+            'input_invoice'      => $this->inputInvoice->jsonSerialize(),
             'order_info_id'      => $this->orderInfoId,
+            'payment_form_id'    => $this->paymentFormId,
             'shipping_option_id' => $this->shippingOptionId,
-            'credentials'        => $this->credentials ?? null,
             'tip_amount'         => $this->tipAmount,
         ];
     }

@@ -19,13 +19,13 @@ class UpdateUserPrivacySettingRules extends Update
 
     public function __construct(
         /**
-         * The privacy setting.
-         */
-        protected UserPrivacySetting      $setting,
-        /**
          * New privacy rules.
          */
         protected UserPrivacySettingRules $rules,
+        /**
+         * The privacy setting.
+         */
+        protected UserPrivacySetting      $setting,
     ) {
         parent::__construct();
     }
@@ -33,8 +33,8 @@ class UpdateUserPrivacySettingRules extends Update
     public static function fromArray(array $array): UpdateUserPrivacySettingRules
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['setting']),
-            TdSchemaRegistry::fromArray($array['rules']),
+            rules  : TdSchemaRegistry::fromArray($array['rules']),
+            setting: TdSchemaRegistry::fromArray($array['setting']),
         );
     }
 
@@ -66,8 +66,8 @@ class UpdateUserPrivacySettingRules extends Update
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'setting' => $this->setting->typeSerialize(),
-            'rules'   => $this->rules->typeSerialize(),
+            'rules'   => $this->rules->jsonSerialize(),
+            'setting' => $this->setting->jsonSerialize(),
         ];
     }
 }

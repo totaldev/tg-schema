@@ -17,20 +17,20 @@ class UserLink extends TdObject
 
     public function __construct(
         /**
-         * The URL.
-         */
-        protected string $url,
-        /**
          * Left time for which the link is valid, in seconds; 0 if the link is a public username link.
          */
         protected int    $expiresIn,
+        /**
+         * The URL.
+         */
+        protected string $url,
     ) {}
 
     public static function fromArray(array $array): UserLink
     {
         return new static(
-            $array['url'],
-            $array['expires_in'],
+            expiresIn: $array['expires_in'],
+            url      : $array['url'],
         );
     }
 
@@ -62,8 +62,8 @@ class UserLink extends TdObject
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'url'        => $this->url,
             'expires_in' => $this->expiresIn,
+            'url'        => $this->url,
         ];
     }
 }

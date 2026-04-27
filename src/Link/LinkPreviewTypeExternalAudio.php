@@ -15,17 +15,17 @@ class LinkPreviewTypeExternalAudio extends LinkPreviewType
 
     public function __construct(
         /**
-         * URL of the audio file.
+         * Duration of the audio, in seconds; 0 if unknown.
          */
-        protected string $url,
+        protected int    $duration,
         /**
          * MIME type of the audio file.
          */
         protected string $mimeType,
         /**
-         * Duration of the audio, in seconds; 0 if unknown.
+         * URL of the audio file.
          */
-        protected int    $duration,
+        protected string $url,
     ) {
         parent::__construct();
     }
@@ -33,9 +33,9 @@ class LinkPreviewTypeExternalAudio extends LinkPreviewType
     public static function fromArray(array $array): LinkPreviewTypeExternalAudio
     {
         return new static(
-            $array['url'],
-            $array['mime_type'],
-            $array['duration'],
+            duration: $array['duration'],
+            mimeType: $array['mime_type'],
+            url     : $array['url'],
         );
     }
 
@@ -79,9 +79,9 @@ class LinkPreviewTypeExternalAudio extends LinkPreviewType
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'url'       => $this->url,
-            'mime_type' => $this->mimeType,
             'duration'  => $this->duration,
+            'mime_type' => $this->mimeType,
+            'url'       => $this->url,
         ];
     }
 }

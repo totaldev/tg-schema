@@ -31,8 +31,8 @@ class MessageStatistics extends TdObject
     public static function fromArray(array $array): MessageStatistics
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['message_interaction_graph']),
-            TdSchemaRegistry::fromArray($array['message_reaction_graph']),
+            messageInteractionGraph: TdSchemaRegistry::fromArray($array['message_interaction_graph']),
+            messageReactionGraph   : TdSchemaRegistry::fromArray($array['message_reaction_graph']),
         );
     }
 
@@ -64,8 +64,8 @@ class MessageStatistics extends TdObject
     {
         return [
             '@type'                     => static::TYPE_NAME,
-            'message_interaction_graph' => $this->messageInteractionGraph->typeSerialize(),
-            'message_reaction_graph'    => $this->messageReactionGraph->typeSerialize(),
+            'message_interaction_graph' => $this->messageInteractionGraph->jsonSerialize(),
+            'message_reaction_graph'    => $this->messageReactionGraph->jsonSerialize(),
         ];
     }
 }

@@ -28,7 +28,7 @@ class CreateBusinessChatLink extends TdFunction
     public static function fromArray(array $array): CreateBusinessChatLink
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['link_info']),
+            linkInfo: TdSchemaRegistry::fromArray($array['link_info']),
         );
     }
 
@@ -48,7 +48,7 @@ class CreateBusinessChatLink extends TdFunction
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'link_info' => $this->linkInfo->typeSerialize(),
+            'link_info' => $this->linkInfo->jsonSerialize(),
         ];
     }
 }

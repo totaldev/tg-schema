@@ -28,7 +28,7 @@ class UpdateStickerSet extends Update
     public static function fromArray(array $array): UpdateStickerSet
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['sticker_set']),
+            stickerSet: TdSchemaRegistry::fromArray($array['sticker_set']),
         );
     }
 
@@ -48,7 +48,7 @@ class UpdateStickerSet extends Update
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'sticker_set' => $this->stickerSet->typeSerialize(),
+            'sticker_set' => $this->stickerSet->jsonSerialize(),
         ];
     }
 }

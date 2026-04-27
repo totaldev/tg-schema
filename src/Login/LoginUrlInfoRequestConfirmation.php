@@ -15,21 +15,21 @@ class LoginUrlInfoRequestConfirmation extends LoginUrlInfo
 
     public function __construct(
         /**
-         * An HTTP URL to be opened.
+         * User identifier of a bot linked with the website.
          */
-        protected string $url,
+        protected int    $botUserId,
         /**
          * A domain of the URL.
          */
         protected string $domain,
         /**
-         * User identifier of a bot linked with the website.
-         */
-        protected int    $botUserId,
-        /**
          * True, if the user must be asked for the permission to the bot to send them messages.
          */
         protected bool   $requestWriteAccess,
+        /**
+         * An HTTP URL to be opened.
+         */
+        protected string $url,
     ) {
         parent::__construct();
     }
@@ -37,10 +37,10 @@ class LoginUrlInfoRequestConfirmation extends LoginUrlInfo
     public static function fromArray(array $array): LoginUrlInfoRequestConfirmation
     {
         return new static(
-            $array['url'],
-            $array['domain'],
-            $array['bot_user_id'],
-            $array['request_write_access'],
+            botUserId         : $array['bot_user_id'],
+            domain            : $array['domain'],
+            requestWriteAccess: $array['request_write_access'],
+            url               : $array['url'],
         );
     }
 
@@ -96,10 +96,10 @@ class LoginUrlInfoRequestConfirmation extends LoginUrlInfo
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'url'                  => $this->url,
-            'domain'               => $this->domain,
             'bot_user_id'          => $this->botUserId,
+            'domain'               => $this->domain,
             'request_write_access' => $this->requestWriteAccess,
+            'url'                  => $this->url,
         ];
     }
 }

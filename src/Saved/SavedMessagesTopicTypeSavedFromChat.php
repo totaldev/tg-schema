@@ -25,7 +25,7 @@ class SavedMessagesTopicTypeSavedFromChat extends SavedMessagesTopicType
     public static function fromArray(array $array): SavedMessagesTopicTypeSavedFromChat
     {
         return new static(
-            $array['chat_id'],
+            chatId: $array['chat_id'],
         );
     }
 

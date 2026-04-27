@@ -20,17 +20,55 @@ class StickerSetInfo extends TdObject
 
     public function __construct(
         /**
+         * Up to the first 5 stickers from the set, depending on the context. If the application needs more stickers the full sticker set needs to be requested.
+         *
+         * @var Sticker[]
+         */
+        protected array       $covers,
+        /**
          * Identifier of the sticker set.
          */
         protected int         $id,
         /**
-         * Title of the sticker set.
+         * True, if stickers in the sticker set are custom emoji that can be used as chat emoji status; for custom emoji sticker sets only.
          */
-        protected string      $title,
+        protected bool        $isAllowedAsChatEmojiStatus,
+        /**
+         * True, if the sticker set has been archived. A sticker set can't be installed and archived simultaneously.
+         */
+        protected bool        $isArchived,
+        /**
+         * True, if the sticker set has been installed by the current user.
+         */
+        protected bool        $isInstalled,
+        /**
+         * True, if the sticker set is official.
+         */
+        protected bool        $isOfficial,
+        /**
+         * True, if the sticker set is owned by the current user.
+         */
+        protected bool        $isOwned,
+        /**
+         * True for already viewed trending sticker sets.
+         */
+        protected bool        $isViewed,
         /**
          * Name of the sticker set.
          */
         protected string      $name,
+        /**
+         * True, if stickers in the sticker set are custom emoji that must be repainted; for custom emoji sticker sets only.
+         */
+        protected bool        $needsRepainting,
+        /**
+         * Total number of stickers in the set.
+         */
+        protected int         $size,
+        /**
+         * Type of the stickers in the set.
+         */
+        protected StickerType $stickerType,
         /**
          * Sticker set thumbnail in WEBP, TGS, or WEBM format with width and height 100; may be null. The file can be downloaded only before the thumbnail is changed.
          */
@@ -40,67 +78,29 @@ class StickerSetInfo extends TdObject
          */
         protected ?Outline    $thumbnailOutline,
         /**
-         * True, if the sticker set is owned by the current user.
+         * Title of the sticker set.
          */
-        protected bool        $isOwned,
-        /**
-         * True, if the sticker set has been installed by the current user.
-         */
-        protected bool        $isInstalled,
-        /**
-         * True, if the sticker set has been archived. A sticker set can't be installed and archived simultaneously.
-         */
-        protected bool        $isArchived,
-        /**
-         * True, if the sticker set is official.
-         */
-        protected bool        $isOfficial,
-        /**
-         * Type of the stickers in the set.
-         */
-        protected StickerType $stickerType,
-        /**
-         * True, if stickers in the sticker set are custom emoji that must be repainted; for custom emoji sticker sets only.
-         */
-        protected bool        $needsRepainting,
-        /**
-         * True, if stickers in the sticker set are custom emoji that can be used as chat emoji status; for custom emoji sticker sets only.
-         */
-        protected bool        $isAllowedAsChatEmojiStatus,
-        /**
-         * True for already viewed trending sticker sets.
-         */
-        protected bool        $isViewed,
-        /**
-         * Total number of stickers in the set.
-         */
-        protected int         $size,
-        /**
-         * Up to the first 5 stickers from the set, depending on the context. If the application needs more stickers the full sticker set needs to be requested.
-         *
-         * @var Sticker[]
-         */
-        protected array       $covers,
+        protected string      $title,
     ) {}
 
     public static function fromArray(array $array): StickerSetInfo
     {
         return new static(
-            $array['id'],
-            $array['title'],
-            $array['name'],
-            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
-            isset($array['thumbnail_outline']) ? TdSchemaRegistry::fromArray($array['thumbnail_outline']) : null,
-            $array['is_owned'],
-            $array['is_installed'],
-            $array['is_archived'],
-            $array['is_official'],
-            TdSchemaRegistry::fromArray($array['sticker_type']),
-            $array['needs_repainting'],
-            $array['is_allowed_as_chat_emoji_status'],
-            $array['is_viewed'],
-            $array['size'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['covers']),
+            covers                    : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['covers']),
+            id                        : $array['id'],
+            isAllowedAsChatEmojiStatus: $array['is_allowed_as_chat_emoji_status'],
+            isArchived                : $array['is_archived'],
+            isInstalled               : $array['is_installed'],
+            isOfficial                : $array['is_official'],
+            isOwned                   : $array['is_owned'],
+            isViewed                  : $array['is_viewed'],
+            name                      : $array['name'],
+            needsRepainting           : $array['needs_repainting'],
+            size                      : $array['size'],
+            stickerType               : TdSchemaRegistry::fromArray($array['sticker_type']),
+            thumbnail                 : (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
+            thumbnailOutline          : (isset($array['thumbnail_outline']) ? TdSchemaRegistry::fromArray($array['thumbnail_outline']) : null),
+            title                     : $array['title'],
         );
     }
 
@@ -288,21 +288,21 @@ class StickerSetInfo extends TdObject
     {
         return [
             '@type'                           => static::TYPE_NAME,
+            'covers'                          => array_map(static fn($x) => $x->jsonSerialize(), $this->covers),
             'id'                              => $this->id,
-            'title'                           => $this->title,
-            'name'                            => $this->name,
-            'thumbnail'                       => $this->thumbnail ?? null,
-            'thumbnail_outline'               => $this->thumbnailOutline ?? null,
-            'is_owned'                        => $this->isOwned,
-            'is_installed'                    => $this->isInstalled,
-            'is_archived'                     => $this->isArchived,
-            'is_official'                     => $this->isOfficial,
-            'sticker_type'                    => $this->stickerType->typeSerialize(),
-            'needs_repainting'                => $this->needsRepainting,
             'is_allowed_as_chat_emoji_status' => $this->isAllowedAsChatEmojiStatus,
+            'is_archived'                     => $this->isArchived,
+            'is_installed'                    => $this->isInstalled,
+            'is_official'                     => $this->isOfficial,
+            'is_owned'                        => $this->isOwned,
             'is_viewed'                       => $this->isViewed,
+            'name'                            => $this->name,
+            'needs_repainting'                => $this->needsRepainting,
             'size'                            => $this->size,
-            'covers'                          => array_map(static fn($x) => $x->typeSerialize(), $this->covers),
+            'sticker_type'                    => $this->stickerType->jsonSerialize(),
+            'thumbnail'                       => (null !== $this->thumbnail ? $this->thumbnail->jsonSerialize() : null),
+            'thumbnail_outline'               => (null !== $this->thumbnailOutline ? $this->thumbnailOutline->jsonSerialize() : null),
+            'title'                           => $this->title,
         ];
     }
 }

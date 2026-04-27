@@ -19,10 +19,6 @@ class TermsOfService extends TdObject
 
     public function __construct(
         /**
-         * Text of the terms of service.
-         */
-        protected FormattedText $text,
-        /**
          * The minimum age of a user to be able to accept the terms; 0 if age isn't restricted.
          */
         protected int           $minUserAge,
@@ -30,14 +26,18 @@ class TermsOfService extends TdObject
          * True, if a blocking popup with terms of service must be shown to the user.
          */
         protected bool          $showPopup,
+        /**
+         * Text of the terms of service.
+         */
+        protected FormattedText $text,
     ) {}
 
     public static function fromArray(array $array): TermsOfService
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['text']),
-            $array['min_user_age'],
-            $array['show_popup'],
+            minUserAge: $array['min_user_age'],
+            showPopup : $array['show_popup'],
+            text      : TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -81,9 +81,9 @@ class TermsOfService extends TdObject
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'text'         => $this->text->typeSerialize(),
             'min_user_age' => $this->minUserAge,
             'show_popup'   => $this->showPopup,
+            'text'         => $this->text->jsonSerialize(),
         ];
     }
 }

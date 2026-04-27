@@ -25,7 +25,7 @@ class CheckStickerSetName extends TdFunction
     public static function fromArray(array $array): CheckStickerSetName
     {
         return new static(
-            $array['name'],
+            name: $array['name'],
         );
     }
 

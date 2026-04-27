@@ -22,9 +22,9 @@ class CreateChatInviteLink extends TdFunction
          */
         protected int    $chatId,
         /**
-         * Invite link name; 0-32 characters.
+         * Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0.
          */
-        protected string $name,
+        protected bool   $createsJoinRequest,
         /**
          * Point in time (Unix timestamp) when the link will expire; pass 0 if never.
          */
@@ -34,19 +34,19 @@ class CreateChatInviteLink extends TdFunction
          */
         protected int    $memberLimit,
         /**
-         * Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0.
+         * Invite link name; 0-32 characters.
          */
-        protected bool   $createsJoinRequest,
+        protected string $name,
     ) {}
 
     public static function fromArray(array $array): CreateChatInviteLink
     {
         return new static(
-            $array['chat_id'],
-            $array['name'],
-            $array['expiration_date'],
-            $array['member_limit'],
-            $array['creates_join_request'],
+            chatId            : $array['chat_id'],
+            createsJoinRequest: $array['creates_join_request'],
+            expirationDate    : $array['expiration_date'],
+            memberLimit       : $array['member_limit'],
+            name              : $array['name'],
         );
     }
 
@@ -115,10 +115,10 @@ class CreateChatInviteLink extends TdFunction
         return [
             '@type'                => static::TYPE_NAME,
             'chat_id'              => $this->chatId,
-            'name'                 => $this->name,
+            'creates_join_request' => $this->createsJoinRequest,
             'expiration_date'      => $this->expirationDate,
             'member_limit'         => $this->memberLimit,
-            'creates_join_request' => $this->createsJoinRequest,
+            'name'                 => $this->name,
         ];
     }
 }

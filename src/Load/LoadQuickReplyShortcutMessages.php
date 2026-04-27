@@ -25,7 +25,7 @@ class LoadQuickReplyShortcutMessages extends TdFunction
     public static function fromArray(array $array): LoadQuickReplyShortcutMessages
     {
         return new static(
-            $array['shortcut_id'],
+            shortcutId: $array['shortcut_id'],
         );
     }
 

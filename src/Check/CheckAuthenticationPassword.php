@@ -25,7 +25,7 @@ class CheckAuthenticationPassword extends TdFunction
     public static function fromArray(array $array): CheckAuthenticationPassword
     {
         return new static(
-            $array['password'],
+            password: $array['password'],
         );
     }
 

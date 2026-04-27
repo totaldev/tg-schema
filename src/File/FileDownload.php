@@ -19,14 +19,6 @@ class FileDownload extends TdObject
 
     public function __construct(
         /**
-         * File identifier.
-         */
-        protected int     $fileId,
-        /**
-         * The message with the file.
-         */
-        protected Message $message,
-        /**
          * Point in time (Unix timestamp) when the file was added to the download list.
          */
         protected int     $addDate,
@@ -35,19 +27,27 @@ class FileDownload extends TdObject
          */
         protected int     $completeDate,
         /**
+         * File identifier.
+         */
+        protected int     $fileId,
+        /**
          * True, if downloading of the file is paused.
          */
         protected bool    $isPaused,
+        /**
+         * The message with the file.
+         */
+        protected Message $message,
     ) {}
 
     public static function fromArray(array $array): FileDownload
     {
         return new static(
-            $array['file_id'],
-            TdSchemaRegistry::fromArray($array['message']),
-            $array['add_date'],
-            $array['complete_date'],
-            $array['is_paused'],
+            addDate     : $array['add_date'],
+            completeDate: $array['complete_date'],
+            fileId      : $array['file_id'],
+            isPaused    : $array['is_paused'],
+            message     : TdSchemaRegistry::fromArray($array['message']),
         );
     }
 
@@ -115,11 +115,11 @@ class FileDownload extends TdObject
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'file_id'       => $this->fileId,
-            'message'       => $this->message->typeSerialize(),
             'add_date'      => $this->addDate,
             'complete_date' => $this->completeDate,
+            'file_id'       => $this->fileId,
             'is_paused'     => $this->isPaused,
+            'message'       => $this->message->jsonSerialize(),
         ];
     }
 }

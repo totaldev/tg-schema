@@ -25,7 +25,7 @@ class MessageSenderChat extends MessageSender
     public static function fromArray(array $array): MessageSenderChat
     {
         return new static(
-            $array['chat_id'],
+            chatId: $array['chat_id'],
         );
     }
 

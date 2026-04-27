@@ -19,20 +19,20 @@ class MainWebApp extends TdObject
 
     public function __construct(
         /**
-         * URL of the Web App to open.
-         */
-        protected string         $url,
-        /**
          * The mode in which the Web App must be opened.
          */
         protected WebAppOpenMode $mode,
+        /**
+         * URL of the Web App to open.
+         */
+        protected string         $url,
     ) {}
 
     public static function fromArray(array $array): MainWebApp
     {
         return new static(
-            $array['url'],
-            TdSchemaRegistry::fromArray($array['mode']),
+            mode: TdSchemaRegistry::fromArray($array['mode']),
+            url : $array['url'],
         );
     }
 
@@ -64,8 +64,8 @@ class MainWebApp extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
+            'mode'  => $this->mode->jsonSerialize(),
             'url'   => $this->url,
-            'mode'  => $this->mode->typeSerialize(),
         ];
     }
 }

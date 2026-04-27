@@ -30,7 +30,7 @@ class LinkPreviewTypeGiftCollection extends LinkPreviewType
     public static function fromArray(array $array): LinkPreviewTypeGiftCollection
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['icons']),
+            icons: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['icons']),
         );
     }
 
@@ -50,7 +50,7 @@ class LinkPreviewTypeGiftCollection extends LinkPreviewType
     {
         return [
             '@type' => static::TYPE_NAME,
-            'icons' => array_map(static fn($x) => $x->typeSerialize(), $this->icons),
+            'icons' => array_map(static fn($x) => $x->jsonSerialize(), $this->icons),
         ];
     }
 }

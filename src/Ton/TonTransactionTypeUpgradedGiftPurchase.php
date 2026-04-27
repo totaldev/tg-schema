@@ -18,13 +18,13 @@ class TonTransactionTypeUpgradedGiftPurchase extends TonTransactionType
 
     public function __construct(
         /**
-         * Identifier of the user that sold the gift.
-         */
-        protected int          $userId,
-        /**
          * The gift.
          */
         protected UpgradedGift $gift,
+        /**
+         * Identifier of the user that sold the gift.
+         */
+        protected int          $userId,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class TonTransactionTypeUpgradedGiftPurchase extends TonTransactionType
     public static function fromArray(array $array): TonTransactionTypeUpgradedGiftPurchase
     {
         return new static(
-            $array['user_id'],
-            TdSchemaRegistry::fromArray($array['gift']),
+            gift  : TdSchemaRegistry::fromArray($array['gift']),
+            userId: $array['user_id'],
         );
     }
 
@@ -65,8 +65,8 @@ class TonTransactionTypeUpgradedGiftPurchase extends TonTransactionType
     {
         return [
             '@type'   => static::TYPE_NAME,
+            'gift'    => $this->gift->jsonSerialize(),
             'user_id' => $this->userId,
-            'gift'    => $this->gift->typeSerialize(),
         ];
     }
 }

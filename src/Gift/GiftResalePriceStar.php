@@ -25,7 +25,7 @@ class GiftResalePriceStar extends GiftResalePrice
     public static function fromArray(array $array): GiftResalePriceStar
     {
         return new static(
-            $array['star_count'],
+            starCount: $array['star_count'],
         );
     }
 

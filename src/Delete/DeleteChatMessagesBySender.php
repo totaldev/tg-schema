@@ -31,8 +31,8 @@ class DeleteChatMessagesBySender extends TdFunction
     public static function fromArray(array $array): DeleteChatMessagesBySender
     {
         return new static(
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['sender_id']),
+            chatId  : $array['chat_id'],
+            senderId: TdSchemaRegistry::fromArray($array['sender_id']),
         );
     }
 
@@ -65,7 +65,7 @@ class DeleteChatMessagesBySender extends TdFunction
         return [
             '@type'     => static::TYPE_NAME,
             'chat_id'   => $this->chatId,
-            'sender_id' => $this->senderId->typeSerialize(),
+            'sender_id' => $this->senderId->jsonSerialize(),
         ];
     }
 }

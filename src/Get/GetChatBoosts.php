@@ -21,26 +21,26 @@ class GetChatBoosts extends TdFunction
          */
         protected int    $chatId,
         /**
-         * Pass true to receive only boosts received from gift codes and giveaways created by the chat.
+         * The maximum number of boosts to be returned; up to 100. For optimal performance, the number of returned boosts can be smaller than the specified limit.
          */
-        protected bool   $onlyGiftCodes,
+        protected int    $limit,
         /**
          * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
          */
         protected string $offset,
         /**
-         * The maximum number of boosts to be returned; up to 100. For optimal performance, the number of returned boosts can be smaller than the specified limit.
+         * Pass true to receive only boosts received from gift codes and giveaways created by the chat.
          */
-        protected int    $limit,
+        protected bool   $onlyGiftCodes,
     ) {}
 
     public static function fromArray(array $array): GetChatBoosts
     {
         return new static(
-            $array['chat_id'],
-            $array['only_gift_codes'],
-            $array['offset'],
-            $array['limit'],
+            chatId       : $array['chat_id'],
+            limit        : $array['limit'],
+            offset       : $array['offset'],
+            onlyGiftCodes: $array['only_gift_codes'],
         );
     }
 
@@ -97,9 +97,9 @@ class GetChatBoosts extends TdFunction
         return [
             '@type'           => static::TYPE_NAME,
             'chat_id'         => $this->chatId,
-            'only_gift_codes' => $this->onlyGiftCodes,
-            'offset'          => $this->offset,
             'limit'           => $this->limit,
+            'offset'          => $this->offset,
+            'only_gift_codes' => $this->onlyGiftCodes,
         ];
     }
 }

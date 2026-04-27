@@ -29,8 +29,8 @@ class CancelDownloadFile extends TdFunction
     public static function fromArray(array $array): CancelDownloadFile
     {
         return new static(
-            $array['file_id'],
-            $array['only_if_pending'],
+            fileId       : $array['file_id'],
+            onlyIfPending: $array['only_if_pending'],
         );
     }
 

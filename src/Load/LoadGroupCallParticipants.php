@@ -30,8 +30,8 @@ class LoadGroupCallParticipants extends TdFunction
     public static function fromArray(array $array): LoadGroupCallParticipants
     {
         return new static(
-            $array['group_call_id'],
-            $array['limit'],
+            groupCallId: $array['group_call_id'],
+            limit      : $array['limit'],
         );
     }
 

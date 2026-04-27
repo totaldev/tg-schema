@@ -20,30 +20,30 @@ class ReplaceStickerInSet extends TdFunction
 
     public function __construct(
         /**
-         * Sticker set owner; ignored for regular users.
-         */
-        protected int          $userId,
-        /**
          * Sticker set name. The sticker set must be owned by the current user.
          */
         protected string       $name,
+        /**
+         * Sticker to add to the set.
+         */
+        protected InputSticker $newSticker,
         /**
          * Sticker to remove from the set.
          */
         protected InputFile    $oldSticker,
         /**
-         * Sticker to add to the set.
+         * Sticker set owner; ignored for regular users.
          */
-        protected InputSticker $newSticker,
+        protected int          $userId,
     ) {}
 
     public static function fromArray(array $array): ReplaceStickerInSet
     {
         return new static(
-            $array['user_id'],
-            $array['name'],
-            TdSchemaRegistry::fromArray($array['old_sticker']),
-            TdSchemaRegistry::fromArray($array['new_sticker']),
+            name      : $array['name'],
+            newSticker: TdSchemaRegistry::fromArray($array['new_sticker']),
+            oldSticker: TdSchemaRegistry::fromArray($array['old_sticker']),
+            userId    : $array['user_id'],
         );
     }
 
@@ -99,10 +99,10 @@ class ReplaceStickerInSet extends TdFunction
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'user_id'     => $this->userId,
             'name'        => $this->name,
-            'old_sticker' => $this->oldSticker->typeSerialize(),
-            'new_sticker' => $this->newSticker->typeSerialize(),
+            'new_sticker' => $this->newSticker->jsonSerialize(),
+            'old_sticker' => $this->oldSticker->jsonSerialize(),
+            'user_id'     => $this->userId,
         ];
     }
 }

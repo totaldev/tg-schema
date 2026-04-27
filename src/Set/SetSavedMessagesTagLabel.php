@@ -19,20 +19,20 @@ class SetSavedMessagesTagLabel extends TdFunction
 
     public function __construct(
         /**
-         * The tag which label will be changed.
-         */
-        protected ReactionType $tag,
-        /**
          * New label for the tag; 0-12 characters.
          */
         protected string       $label,
+        /**
+         * The tag which label will be changed.
+         */
+        protected ReactionType $tag,
     ) {}
 
     public static function fromArray(array $array): SetSavedMessagesTagLabel
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['tag']),
-            $array['label'],
+            label: $array['label'],
+            tag  : TdSchemaRegistry::fromArray($array['tag']),
         );
     }
 
@@ -64,8 +64,8 @@ class SetSavedMessagesTagLabel extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'tag'   => $this->tag->typeSerialize(),
             'label' => $this->label,
+            'tag'   => $this->tag->jsonSerialize(),
         ];
     }
 }

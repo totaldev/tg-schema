@@ -25,7 +25,7 @@ class ResetPasswordResultPending extends ResetPasswordResult
     public static function fromArray(array $array): ResetPasswordResultPending
     {
         return new static(
-            $array['pending_reset_date'],
+            pendingResetDate: $array['pending_reset_date'],
         );
     }
 

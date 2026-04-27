@@ -24,10 +24,6 @@ class GetChatEventLog extends TdFunction
          */
         protected int                  $chatId,
         /**
-         * Search query by which to filter events.
-         */
-        protected string               $query,
-        /**
          * Identifier of an event from which to return results. Use 0 to get results from the latest events.
          */
         protected int                  $fromEventId,
@@ -35,6 +31,10 @@ class GetChatEventLog extends TdFunction
          * The maximum number of events to return; up to 100.
          */
         protected int                  $limit,
+        /**
+         * Search query by which to filter events.
+         */
+        protected string               $query,
         /**
          * User identifiers by which to filter events. By default, events relating to all users will be returned.
          *
@@ -50,12 +50,12 @@ class GetChatEventLog extends TdFunction
     public static function fromArray(array $array): GetChatEventLog
     {
         return new static(
-            $array['chat_id'],
-            $array['query'],
-            $array['from_event_id'],
-            $array['limit'],
-            isset($array['filters']) ? TdSchemaRegistry::fromArray($array['filters']) : null,
-            $array['user_ids'],
+            chatId     : $array['chat_id'],
+            filters    : (isset($array['filters']) ? TdSchemaRegistry::fromArray($array['filters']) : null),
+            fromEventId: $array['from_event_id'],
+            limit      : $array['limit'],
+            query      : $array['query'],
+            userIds    : $array['user_ids'],
         );
     }
 
@@ -136,10 +136,10 @@ class GetChatEventLog extends TdFunction
         return [
             '@type'         => static::TYPE_NAME,
             'chat_id'       => $this->chatId,
-            'query'         => $this->query,
+            'filters'       => (null !== $this->filters ? $this->filters->jsonSerialize() : null),
             'from_event_id' => $this->fromEventId,
             'limit'         => $this->limit,
-            'filters'       => $this->filters ?? null,
+            'query'         => $this->query,
             'user_ids'      => $this->userIds,
         ];
     }

@@ -25,7 +25,7 @@ class InputCredentialsGooglePay extends InputCredentials
     public static function fromArray(array $array): InputCredentialsGooglePay
     {
         return new static(
-            $array['data'],
+            data: $array['data'],
         );
     }
 

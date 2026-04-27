@@ -29,8 +29,8 @@ class SendCallDebugInformation extends TdFunction
     public static function fromArray(array $array): SendCallDebugInformation
     {
         return new static(
-            $array['call_id'],
-            $array['debug_information'],
+            callId          : $array['call_id'],
+            debugInformation: $array['debug_information'],
         );
     }
 

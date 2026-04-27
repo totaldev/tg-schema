@@ -18,13 +18,13 @@ class MessageSuggestedPostRefunded extends MessageContent
 
     public function __construct(
         /**
-         * Identifier of the message with the suggested post; can be 0 if the message was deleted.
-         */
-        protected int                       $suggestedPostMessageId,
-        /**
          * Reason of the refund.
          */
         protected SuggestedPostRefundReason $reason,
+        /**
+         * Identifier of the message with the suggested post; can be 0 if the message was deleted.
+         */
+        protected int                       $suggestedPostMessageId,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class MessageSuggestedPostRefunded extends MessageContent
     public static function fromArray(array $array): MessageSuggestedPostRefunded
     {
         return new static(
-            $array['suggested_post_message_id'],
-            TdSchemaRegistry::fromArray($array['reason']),
+            reason                : TdSchemaRegistry::fromArray($array['reason']),
+            suggestedPostMessageId: $array['suggested_post_message_id'],
         );
     }
 
@@ -65,8 +65,8 @@ class MessageSuggestedPostRefunded extends MessageContent
     {
         return [
             '@type'                     => static::TYPE_NAME,
+            'reason'                    => $this->reason->jsonSerialize(),
             'suggested_post_message_id' => $this->suggestedPostMessageId,
-            'reason'                    => $this->reason->typeSerialize(),
         ];
     }
 }

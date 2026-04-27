@@ -36,9 +36,9 @@ class SetDefaultBackground extends TdFunction
     public static function fromArray(array $array): SetDefaultBackground
     {
         return new static(
-            isset($array['background']) ? TdSchemaRegistry::fromArray($array['background']) : null,
-            isset($array['type']) ? TdSchemaRegistry::fromArray($array['type']) : null,
-            $array['for_dark_theme'],
+            background  : (isset($array['background']) ? TdSchemaRegistry::fromArray($array['background']) : null),
+            forDarkTheme: $array['for_dark_theme'],
+            type        : (isset($array['type']) ? TdSchemaRegistry::fromArray($array['type']) : null),
         );
     }
 
@@ -82,9 +82,9 @@ class SetDefaultBackground extends TdFunction
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'background'     => $this->background ?? null,
-            'type'           => $this->type ?? null,
+            'background'     => (null !== $this->background ? $this->background->jsonSerialize() : null),
             'for_dark_theme' => $this->forDarkTheme,
+            'type'           => (null !== $this->type ? $this->type->jsonSerialize() : null),
         ];
     }
 }

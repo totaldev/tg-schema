@@ -28,7 +28,7 @@ class PageBlockParagraph extends PageBlock
     public static function fromArray(array $array): PageBlockParagraph
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['text']),
+            text: TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -48,7 +48,7 @@ class PageBlockParagraph extends PageBlock
     {
         return [
             '@type' => static::TYPE_NAME,
-            'text'  => $this->text->typeSerialize(),
+            'text'  => $this->text->jsonSerialize(),
         ];
     }
 }

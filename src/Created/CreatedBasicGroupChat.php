@@ -31,8 +31,8 @@ class CreatedBasicGroupChat extends TdObject
     public static function fromArray(array $array): CreatedBasicGroupChat
     {
         return new static(
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['failed_to_add_members']),
+            chatId            : $array['chat_id'],
+            failedToAddMembers: TdSchemaRegistry::fromArray($array['failed_to_add_members']),
         );
     }
 
@@ -65,7 +65,7 @@ class CreatedBasicGroupChat extends TdObject
         return [
             '@type'                 => static::TYPE_NAME,
             'chat_id'               => $this->chatId,
-            'failed_to_add_members' => $this->failedToAddMembers->typeSerialize(),
+            'failed_to_add_members' => $this->failedToAddMembers->jsonSerialize(),
         ];
     }
 }

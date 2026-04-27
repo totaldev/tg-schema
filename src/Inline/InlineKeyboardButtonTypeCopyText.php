@@ -25,7 +25,7 @@ class InlineKeyboardButtonTypeCopyText extends InlineKeyboardButtonType
     public static function fromArray(array $array): InlineKeyboardButtonTypeCopyText
     {
         return new static(
-            $array['text'],
+            text: $array['text'],
         );
     }
 

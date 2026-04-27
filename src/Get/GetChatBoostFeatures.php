@@ -25,7 +25,7 @@ class GetChatBoostFeatures extends TdFunction
     public static function fromArray(array $array): GetChatBoostFeatures
     {
         return new static(
-            $array['is_channel'],
+            isChannel: $array['is_channel'],
         );
     }
 

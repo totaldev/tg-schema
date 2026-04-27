@@ -17,17 +17,21 @@ class Address extends TdObject
 
     public function __construct(
         /**
+         * City.
+         */
+        protected string $city,
+        /**
          * A two-letter ISO 3166-1 alpha-2 country code.
          */
         protected string $countryCode,
         /**
+         * Address postal code.
+         */
+        protected string $postalCode,
+        /**
          * State, if applicable.
          */
         protected string $state,
-        /**
-         * City.
-         */
-        protected string $city,
         /**
          * First line of the address.
          */
@@ -36,21 +40,17 @@ class Address extends TdObject
          * Second line of the address.
          */
         protected string $streetLine2,
-        /**
-         * Address postal code.
-         */
-        protected string $postalCode,
     ) {}
 
     public static function fromArray(array $array): Address
     {
         return new static(
-            $array['country_code'],
-            $array['state'],
-            $array['city'],
-            $array['street_line1'],
-            $array['street_line2'],
-            $array['postal_code'],
+            city       : $array['city'],
+            countryCode: $array['country_code'],
+            postalCode : $array['postal_code'],
+            state      : $array['state'],
+            streetLine1: $array['street_line1'],
+            streetLine2: $array['street_line2'],
         );
     }
 
@@ -130,12 +130,12 @@ class Address extends TdObject
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'country_code' => $this->countryCode,
-            'state'        => $this->state,
             'city'         => $this->city,
+            'country_code' => $this->countryCode,
+            'postal_code'  => $this->postalCode,
+            'state'        => $this->state,
             'street_line1' => $this->streetLine1,
             'street_line2' => $this->streetLine2,
-            'postal_code'  => $this->postalCode,
         ];
     }
 }

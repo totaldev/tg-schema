@@ -31,8 +31,8 @@ class ReorderSupergroupActiveUsernames extends TdFunction
     public static function fromArray(array $array): ReorderSupergroupActiveUsernames
     {
         return new static(
-            $array['supergroup_id'],
-            $array['usernames'],
+            supergroupId: $array['supergroup_id'],
+            usernames   : $array['usernames'],
         );
     }
 

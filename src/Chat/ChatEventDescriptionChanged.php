@@ -15,13 +15,13 @@ class ChatEventDescriptionChanged extends ChatEventAction
 
     public function __construct(
         /**
-         * Previous chat description.
-         */
-        protected string $oldDescription,
-        /**
          * New chat description.
          */
         protected string $newDescription,
+        /**
+         * Previous chat description.
+         */
+        protected string $oldDescription,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class ChatEventDescriptionChanged extends ChatEventAction
     public static function fromArray(array $array): ChatEventDescriptionChanged
     {
         return new static(
-            $array['old_description'],
-            $array['new_description'],
+            newDescription: $array['new_description'],
+            oldDescription: $array['old_description'],
         );
     }
 
@@ -62,8 +62,8 @@ class ChatEventDescriptionChanged extends ChatEventAction
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'old_description' => $this->oldDescription,
             'new_description' => $this->newDescription,
+            'old_description' => $this->oldDescription,
         ];
     }
 }

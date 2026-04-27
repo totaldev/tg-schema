@@ -20,13 +20,13 @@ class ChatActionBarReportAddBlock extends ChatActionBar
 
     public function __construct(
         /**
-         * If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings.
-         */
-        protected bool         $canUnarchive,
-        /**
          * Basic information about the other user in the chat; may be null if unknown.
          */
         protected ?AccountInfo $accountInfo,
+        /**
+         * If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings.
+         */
+        protected bool         $canUnarchive,
     ) {
         parent::__construct();
     }
@@ -34,8 +34,8 @@ class ChatActionBarReportAddBlock extends ChatActionBar
     public static function fromArray(array $array): ChatActionBarReportAddBlock
     {
         return new static(
-            $array['can_unarchive'],
-            isset($array['account_info']) ? TdSchemaRegistry::fromArray($array['account_info']) : null,
+            accountInfo : (isset($array['account_info']) ? TdSchemaRegistry::fromArray($array['account_info']) : null),
+            canUnarchive: $array['can_unarchive'],
         );
     }
 
@@ -67,8 +67,8 @@ class ChatActionBarReportAddBlock extends ChatActionBar
     {
         return [
             '@type'         => static::TYPE_NAME,
+            'account_info'  => (null !== $this->accountInfo ? $this->accountInfo->jsonSerialize() : null),
             'can_unarchive' => $this->canUnarchive,
-            'account_info'  => $this->accountInfo ?? null,
         ];
     }
 }

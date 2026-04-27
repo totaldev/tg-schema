@@ -26,7 +26,7 @@ class InternalLinkTypeMessage extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeMessage
     {
         return new static(
-            $array['url'],
+            url: $array['url'],
         );
     }
 

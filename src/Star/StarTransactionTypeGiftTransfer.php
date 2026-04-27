@@ -19,13 +19,13 @@ class StarTransactionTypeGiftTransfer extends StarTransactionType
 
     public function __construct(
         /**
-         * Identifier of the user or the channel that received the gift.
-         */
-        protected MessageSender $ownerId,
-        /**
          * The gift.
          */
         protected UpgradedGift  $gift,
+        /**
+         * Identifier of the user or the channel that received the gift.
+         */
+        protected MessageSender $ownerId,
     ) {
         parent::__construct();
     }
@@ -33,8 +33,8 @@ class StarTransactionTypeGiftTransfer extends StarTransactionType
     public static function fromArray(array $array): StarTransactionTypeGiftTransfer
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['owner_id']),
-            TdSchemaRegistry::fromArray($array['gift']),
+            gift   : TdSchemaRegistry::fromArray($array['gift']),
+            ownerId: TdSchemaRegistry::fromArray($array['owner_id']),
         );
     }
 
@@ -66,8 +66,8 @@ class StarTransactionTypeGiftTransfer extends StarTransactionType
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'owner_id' => $this->ownerId->typeSerialize(),
-            'gift'     => $this->gift->typeSerialize(),
+            'gift'     => $this->gift->jsonSerialize(),
+            'owner_id' => $this->ownerId->jsonSerialize(),
         ];
     }
 }

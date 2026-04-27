@@ -27,14 +27,6 @@ class PhoneNumberAuthenticationSettings extends TdObject
          */
         protected bool                            $allowMissedCall,
         /**
-         * Pass true if the authenticated phone number is used on the current device.
-         */
-        protected bool                            $isCurrentPhoneNumber,
-        /**
-         * Pass true if there is a SIM card in the current device, but it is not possible to check whether phone number matches.
-         */
-        protected bool                            $hasUnknownPhoneNumber,
-        /**
          * For official applications only. True, if the application can use Android SMS Retriever API (requires Google Play Services >= 10.2) to automatically receive the authentication code from the SMS. See https://developers.google.com/identity/sms-retriever/ for more details.
          */
         protected bool                            $allowSmsRetrieverApi,
@@ -45,6 +37,14 @@ class PhoneNumberAuthenticationSettings extends TdObject
          */
         protected array                           $authenticationTokens,
         /**
+         * Pass true if there is a SIM card in the current device, but it is not possible to check whether phone number matches.
+         */
+        protected bool                            $hasUnknownPhoneNumber,
+        /**
+         * Pass true if the authenticated phone number is used on the current device.
+         */
+        protected bool                            $isCurrentPhoneNumber,
+        /**
          * For official Android and iOS applications only; pass null otherwise. Settings for Firebase Authentication.
          */
         protected ?FirebaseAuthenticationSettings $firebaseAuthenticationSettings = null,
@@ -53,13 +53,15 @@ class PhoneNumberAuthenticationSettings extends TdObject
     public static function fromArray(array $array): PhoneNumberAuthenticationSettings
     {
         return new static(
-            $array['allow_flash_call'],
-            $array['allow_missed_call'],
-            $array['is_current_phone_number'],
-            $array['has_unknown_phone_number'],
-            $array['allow_sms_retriever_api'],
-            isset($array['firebase_authentication_settings']) ? TdSchemaRegistry::fromArray($array['firebase_authentication_settings']) : null,
-            $array['authentication_tokens'],
+            allowFlashCall                : $array['allow_flash_call'],
+            allowMissedCall               : $array['allow_missed_call'],
+            allowSmsRetrieverApi          : $array['allow_sms_retriever_api'],
+            authenticationTokens          : $array['authentication_tokens'],
+            firebaseAuthenticationSettings: (isset($array['firebase_authentication_settings']) ? TdSchemaRegistry::fromArray(
+                $array['firebase_authentication_settings']
+            ) : null),
+            hasUnknownPhoneNumber         : $array['has_unknown_phone_number'],
+            isCurrentPhoneNumber          : $array['is_current_phone_number'],
         );
     }
 
@@ -153,11 +155,12 @@ class PhoneNumberAuthenticationSettings extends TdObject
             '@type'                            => static::TYPE_NAME,
             'allow_flash_call'                 => $this->allowFlashCall,
             'allow_missed_call'                => $this->allowMissedCall,
-            'is_current_phone_number'          => $this->isCurrentPhoneNumber,
-            'has_unknown_phone_number'         => $this->hasUnknownPhoneNumber,
             'allow_sms_retriever_api'          => $this->allowSmsRetrieverApi,
-            'firebase_authentication_settings' => $this->firebaseAuthenticationSettings ?? null,
             'authentication_tokens'            => $this->authenticationTokens,
+            'firebase_authentication_settings' => (null !== $this->firebaseAuthenticationSettings ? $this->firebaseAuthenticationSettings->jsonSerialize(
+            ) : null),
+            'has_unknown_phone_number'         => $this->hasUnknownPhoneNumber,
+            'is_current_phone_number'          => $this->isCurrentPhoneNumber,
         ];
     }
 }

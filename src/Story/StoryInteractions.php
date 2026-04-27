@@ -18,6 +18,16 @@ class StoryInteractions extends TdObject
 
     public function __construct(
         /**
+         * List of story interactions.
+         *
+         * @var StoryInteraction[]
+         */
+        protected array  $interactions,
+        /**
+         * The offset for the next request. If empty, then there are no more results.
+         */
+        protected string $nextOffset,
+        /**
          * Approximate total number of interactions found.
          */
         protected int    $totalCount,
@@ -29,26 +39,16 @@ class StoryInteractions extends TdObject
          * Approximate total number of found reactions; always 0 for chat stories.
          */
         protected int    $totalReactionCount,
-        /**
-         * List of story interactions.
-         *
-         * @var StoryInteraction[]
-         */
-        protected array  $interactions,
-        /**
-         * The offset for the next request. If empty, then there are no more results.
-         */
-        protected string $nextOffset,
     ) {}
 
     public static function fromArray(array $array): StoryInteractions
     {
         return new static(
-            $array['total_count'],
-            $array['total_forward_count'],
-            $array['total_reaction_count'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['interactions']),
-            $array['next_offset'],
+            interactions      : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['interactions']),
+            nextOffset        : $array['next_offset'],
+            totalCount        : $array['total_count'],
+            totalForwardCount : $array['total_forward_count'],
+            totalReactionCount: $array['total_reaction_count'],
         );
     }
 
@@ -116,11 +116,11 @@ class StoryInteractions extends TdObject
     {
         return [
             '@type'                => static::TYPE_NAME,
+            'interactions'         => array_map(static fn($x) => $x->jsonSerialize(), $this->interactions),
+            'next_offset'          => $this->nextOffset,
             'total_count'          => $this->totalCount,
             'total_forward_count'  => $this->totalForwardCount,
             'total_reaction_count' => $this->totalReactionCount,
-            'interactions'         => array_map(static fn($x) => $x->typeSerialize(), $this->interactions),
-            'next_offset'          => $this->nextOffset,
         ];
     }
 }

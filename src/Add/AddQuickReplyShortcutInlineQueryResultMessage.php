@@ -19,35 +19,35 @@ class AddQuickReplyShortcutInlineQueryResultMessage extends TdFunction
 
     public function __construct(
         /**
-         * Name of the target shortcut.
+         * Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username").
          */
-        protected string $shortcutName,
-        /**
-         * Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none.
-         */
-        protected int    $replyToMessageId,
+        protected bool   $hideViaBot,
         /**
          * Identifier of the inline query.
          */
         protected int    $queryId,
         /**
+         * Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none.
+         */
+        protected int    $replyToMessageId,
+        /**
          * Identifier of the inline query result.
          */
         protected string $resultId,
         /**
-         * Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username").
+         * Name of the target shortcut.
          */
-        protected bool   $hideViaBot,
+        protected string $shortcutName,
     ) {}
 
     public static function fromArray(array $array): AddQuickReplyShortcutInlineQueryResultMessage
     {
         return new static(
-            $array['shortcut_name'],
-            $array['reply_to_message_id'],
-            $array['query_id'],
-            $array['result_id'],
-            $array['hide_via_bot'],
+            hideViaBot      : $array['hide_via_bot'],
+            queryId         : $array['query_id'],
+            replyToMessageId: $array['reply_to_message_id'],
+            resultId        : $array['result_id'],
+            shortcutName    : $array['shortcut_name'],
         );
     }
 
@@ -115,11 +115,11 @@ class AddQuickReplyShortcutInlineQueryResultMessage extends TdFunction
     {
         return [
             '@type'               => static::TYPE_NAME,
-            'shortcut_name'       => $this->shortcutName,
-            'reply_to_message_id' => $this->replyToMessageId,
-            'query_id'            => $this->queryId,
-            'result_id'           => $this->resultId,
             'hide_via_bot'        => $this->hideViaBot,
+            'query_id'            => $this->queryId,
+            'reply_to_message_id' => $this->replyToMessageId,
+            'result_id'           => $this->resultId,
+            'shortcut_name'       => $this->shortcutName,
         ];
     }
 }

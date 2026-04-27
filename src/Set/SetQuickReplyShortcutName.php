@@ -17,20 +17,20 @@ class SetQuickReplyShortcutName extends TdFunction
 
     public function __construct(
         /**
-         * Unique identifier of the quick reply shortcut.
-         */
-        protected int    $shortcutId,
-        /**
          * New name for the shortcut. Use checkQuickReplyShortcutName to check its validness.
          */
         protected string $name,
+        /**
+         * Unique identifier of the quick reply shortcut.
+         */
+        protected int    $shortcutId,
     ) {}
 
     public static function fromArray(array $array): SetQuickReplyShortcutName
     {
         return new static(
-            $array['shortcut_id'],
-            $array['name'],
+            name      : $array['name'],
+            shortcutId: $array['shortcut_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class SetQuickReplyShortcutName extends TdFunction
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'shortcut_id' => $this->shortcutId,
             'name'        => $this->name,
+            'shortcut_id' => $this->shortcutId,
         ];
     }
 }

@@ -25,7 +25,7 @@ class PushMessageContentChatSetTheme extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentChatSetTheme
     {
         return new static(
-            $array['name'],
+            name: $array['name'],
         );
     }
 

@@ -18,14 +18,6 @@ class InputInlineQueryResultDocument extends InputInlineQueryResult
 
     public function __construct(
         /**
-         * Unique identifier of the query result.
-         */
-        protected string              $id,
-        /**
-         * Title of the resulting file.
-         */
-        protected string              $title,
-        /**
          * Short description of the result, if known.
          */
         protected string              $description,
@@ -34,9 +26,21 @@ class InputInlineQueryResultDocument extends InputInlineQueryResult
          */
         protected string              $documentUrl,
         /**
+         * Unique identifier of the query result.
+         */
+        protected string              $id,
+        /**
+         * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageDocument, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact.
+         */
+        protected InputMessageContent $inputMessageContent,
+        /**
          * MIME type of the file content; only "application/pdf" and "application/zip" are currently allowed.
          */
         protected string              $mimeType,
+        /**
+         * Height of the thumbnail.
+         */
+        protected int                 $thumbnailHeight,
         /**
          * The URL of the file thumbnail, if it exists.
          */
@@ -46,13 +50,9 @@ class InputInlineQueryResultDocument extends InputInlineQueryResult
          */
         protected int                 $thumbnailWidth,
         /**
-         * Height of the thumbnail.
+         * Title of the resulting file.
          */
-        protected int                 $thumbnailHeight,
-        /**
-         * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageDocument, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact.
-         */
-        protected InputMessageContent $inputMessageContent,
+        protected string              $title,
         /**
          * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null.
          */
@@ -64,16 +64,16 @@ class InputInlineQueryResultDocument extends InputInlineQueryResult
     public static function fromArray(array $array): InputInlineQueryResultDocument
     {
         return new static(
-            $array['id'],
-            $array['title'],
-            $array['description'],
-            $array['document_url'],
-            $array['mime_type'],
-            $array['thumbnail_url'],
-            $array['thumbnail_width'],
-            $array['thumbnail_height'],
-            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
-            TdSchemaRegistry::fromArray($array['input_message_content']),
+            description        : $array['description'],
+            documentUrl        : $array['document_url'],
+            id                 : $array['id'],
+            inputMessageContent: TdSchemaRegistry::fromArray($array['input_message_content']),
+            mimeType           : $array['mime_type'],
+            replyMarkup        : (isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null),
+            thumbnailHeight    : $array['thumbnail_height'],
+            thumbnailUrl       : $array['thumbnail_url'],
+            thumbnailWidth     : $array['thumbnail_width'],
+            title              : $array['title'],
         );
     }
 
@@ -201,16 +201,16 @@ class InputInlineQueryResultDocument extends InputInlineQueryResult
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'id'                    => $this->id,
-            'title'                 => $this->title,
             'description'           => $this->description,
             'document_url'          => $this->documentUrl,
+            'id'                    => $this->id,
+            'input_message_content' => $this->inputMessageContent->jsonSerialize(),
             'mime_type'             => $this->mimeType,
+            'reply_markup'          => (null !== $this->replyMarkup ? $this->replyMarkup->jsonSerialize() : null),
+            'thumbnail_height'      => $this->thumbnailHeight,
             'thumbnail_url'         => $this->thumbnailUrl,
             'thumbnail_width'       => $this->thumbnailWidth,
-            'thumbnail_height'      => $this->thumbnailHeight,
-            'reply_markup'          => $this->replyMarkup ?? null,
-            'input_message_content' => $this->inputMessageContent->typeSerialize(),
+            'title'                 => $this->title,
         ];
     }
 }

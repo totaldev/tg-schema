@@ -31,8 +31,8 @@ class SetBusinessAccountGiftSettings extends TdFunction
     public static function fromArray(array $array): SetBusinessAccountGiftSettings
     {
         return new static(
-            $array['business_connection_id'],
-            TdSchemaRegistry::fromArray($array['settings']),
+            businessConnectionId: $array['business_connection_id'],
+            settings            : TdSchemaRegistry::fromArray($array['settings']),
         );
     }
 
@@ -65,7 +65,7 @@ class SetBusinessAccountGiftSettings extends TdFunction
         return [
             '@type'                  => static::TYPE_NAME,
             'business_connection_id' => $this->businessConnectionId,
-            'settings'               => $this->settings->typeSerialize(),
+            'settings'               => $this->settings->jsonSerialize(),
         ];
     }
 }

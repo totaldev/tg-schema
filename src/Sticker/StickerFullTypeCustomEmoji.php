@@ -29,8 +29,8 @@ class StickerFullTypeCustomEmoji extends StickerFullType
     public static function fromArray(array $array): StickerFullTypeCustomEmoji
     {
         return new static(
-            $array['custom_emoji_id'],
-            $array['needs_repainting'],
+            customEmojiId  : $array['custom_emoji_id'],
+            needsRepainting: $array['needs_repainting'],
         );
     }
 

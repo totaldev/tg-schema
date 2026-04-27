@@ -29,7 +29,7 @@ class SetNetworkType extends TdFunction
     public static function fromArray(array $array): SetNetworkType
     {
         return new static(
-            isset($array['type']) ? TdSchemaRegistry::fromArray($array['type']) : null,
+            type: (isset($array['type']) ? TdSchemaRegistry::fromArray($array['type']) : null),
         );
     }
 
@@ -49,7 +49,7 @@ class SetNetworkType extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'type'  => $this->type ?? null,
+            'type'  => (null !== $this->type ? $this->type->jsonSerialize() : null),
         ];
     }
 }

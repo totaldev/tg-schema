@@ -34,9 +34,9 @@ class GetChatArchivedStories extends TdFunction
     public static function fromArray(array $array): GetChatArchivedStories
     {
         return new static(
-            $array['chat_id'],
-            $array['from_story_id'],
-            $array['limit'],
+            chatId     : $array['chat_id'],
+            fromStoryId: $array['from_story_id'],
+            limit      : $array['limit'],
         );
     }
 

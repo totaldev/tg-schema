@@ -33,9 +33,9 @@ class GetStatisticalGraph extends TdFunction
     public static function fromArray(array $array): GetStatisticalGraph
     {
         return new static(
-            $array['chat_id'],
-            $array['token'],
-            $array['x'],
+            chatId: $array['chat_id'],
+            token : $array['token'],
+            x     : $array['x'],
         );
     }
 

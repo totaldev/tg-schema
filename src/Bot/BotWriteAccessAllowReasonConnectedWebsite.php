@@ -25,7 +25,7 @@ class BotWriteAccessAllowReasonConnectedWebsite extends BotWriteAccessAllowReaso
     public static function fromArray(array $array): BotWriteAccessAllowReasonConnectedWebsite
     {
         return new static(
-            $array['domain_name'],
+            domainName: $array['domain_name'],
         );
     }
 

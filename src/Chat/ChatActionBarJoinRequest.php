@@ -15,10 +15,6 @@ class ChatActionBarJoinRequest extends ChatActionBar
 
     public function __construct(
         /**
-         * Title of the chat to which the join request was sent.
-         */
-        protected string $title,
-        /**
          * True, if the join request was sent to a channel chat.
          */
         protected bool   $isChannel,
@@ -26,6 +22,10 @@ class ChatActionBarJoinRequest extends ChatActionBar
          * Point in time (Unix timestamp) when the join request was sent.
          */
         protected int    $requestDate,
+        /**
+         * Title of the chat to which the join request was sent.
+         */
+        protected string $title,
     ) {
         parent::__construct();
     }
@@ -33,9 +33,9 @@ class ChatActionBarJoinRequest extends ChatActionBar
     public static function fromArray(array $array): ChatActionBarJoinRequest
     {
         return new static(
-            $array['title'],
-            $array['is_channel'],
-            $array['request_date'],
+            isChannel  : $array['is_channel'],
+            requestDate: $array['request_date'],
+            title      : $array['title'],
         );
     }
 
@@ -79,9 +79,9 @@ class ChatActionBarJoinRequest extends ChatActionBar
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'title'        => $this->title,
             'is_channel'   => $this->isChannel,
             'request_date' => $this->requestDate,
+            'title'        => $this->title,
         ];
     }
 }

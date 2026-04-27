@@ -15,13 +15,13 @@ class MessageReplyToStory extends MessageReplyTo
 
     public function __construct(
         /**
-         * The identifier of the poster of the story.
-         */
-        protected int $storyPosterChatId,
-        /**
          * The identifier of the story.
          */
         protected int $storyId,
+        /**
+         * The identifier of the poster of the story.
+         */
+        protected int $storyPosterChatId,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class MessageReplyToStory extends MessageReplyTo
     public static function fromArray(array $array): MessageReplyToStory
     {
         return new static(
-            $array['story_poster_chat_id'],
-            $array['story_id'],
+            storyId          : $array['story_id'],
+            storyPosterChatId: $array['story_poster_chat_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class MessageReplyToStory extends MessageReplyTo
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'story_poster_chat_id' => $this->storyPosterChatId,
             'story_id'             => $this->storyId,
+            'story_poster_chat_id' => $this->storyPosterChatId,
         ];
     }
 }

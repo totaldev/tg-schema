@@ -31,8 +31,8 @@ class ReorderStoryAlbums extends TdFunction
     public static function fromArray(array $array): ReorderStoryAlbums
     {
         return new static(
-            $array['chat_id'],
-            $array['story_album_ids'],
+            chatId       : $array['chat_id'],
+            storyAlbumIds: $array['story_album_ids'],
         );
     }
 

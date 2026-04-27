@@ -25,7 +25,7 @@ class UpgradedGiftAttributeIdBackdrop extends UpgradedGiftAttributeId
     public static function fromArray(array $array): UpgradedGiftAttributeIdBackdrop
     {
         return new static(
-            $array['backdrop_id'],
+            backdropId: $array['backdrop_id'],
         );
     }
 

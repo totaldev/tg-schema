@@ -23,17 +23,17 @@ class SearchSecretMessages extends TdFunction
          */
         protected int                   $chatId,
         /**
-         * Query to search for. If empty, searchChatMessages must be used instead.
+         * The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit.
          */
-        protected string                $query,
+        protected int                   $limit,
         /**
          * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
          */
         protected string                $offset,
         /**
-         * The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit.
+         * Query to search for. If empty, searchChatMessages must be used instead.
          */
-        protected int                   $limit,
+        protected string                $query,
         /**
          * Additional filter for messages to search; pass null to search for all messages.
          */
@@ -43,11 +43,11 @@ class SearchSecretMessages extends TdFunction
     public static function fromArray(array $array): SearchSecretMessages
     {
         return new static(
-            $array['chat_id'],
-            $array['query'],
-            $array['offset'],
-            $array['limit'],
-            isset($array['filter']) ? TdSchemaRegistry::fromArray($array['filter']) : null,
+            chatId: $array['chat_id'],
+            filter: (isset($array['filter']) ? TdSchemaRegistry::fromArray($array['filter']) : null),
+            limit : $array['limit'],
+            offset: $array['offset'],
+            query : $array['query'],
         );
     }
 
@@ -116,10 +116,10 @@ class SearchSecretMessages extends TdFunction
         return [
             '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
-            'query'   => $this->query,
-            'offset'  => $this->offset,
+            'filter'  => (null !== $this->filter ? $this->filter->jsonSerialize() : null),
             'limit'   => $this->limit,
-            'filter'  => $this->filter ?? null,
+            'offset'  => $this->offset,
+            'query'   => $this->query,
         ];
     }
 }

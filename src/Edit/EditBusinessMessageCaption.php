@@ -36,24 +36,24 @@ class EditBusinessMessageCaption extends TdFunction
          */
         protected bool           $showCaptionAboveMedia,
         /**
-         * The new message reply markup; pass null if none.
-         */
-        protected ?ReplyMarkup   $replyMarkup = null,
-        /**
          * New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters.
          */
         protected ?FormattedText $caption = null,
+        /**
+         * The new message reply markup; pass null if none.
+         */
+        protected ?ReplyMarkup   $replyMarkup = null,
     ) {}
 
     public static function fromArray(array $array): EditBusinessMessageCaption
     {
         return new static(
-            $array['business_connection_id'],
-            $array['chat_id'],
-            $array['message_id'],
-            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
-            isset($array['caption']) ? TdSchemaRegistry::fromArray($array['caption']) : null,
-            $array['show_caption_above_media'],
+            businessConnectionId : $array['business_connection_id'],
+            caption              : (isset($array['caption']) ? TdSchemaRegistry::fromArray($array['caption']) : null),
+            chatId               : $array['chat_id'],
+            messageId            : $array['message_id'],
+            replyMarkup          : (isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null),
+            showCaptionAboveMedia: $array['show_caption_above_media'],
         );
     }
 
@@ -134,10 +134,10 @@ class EditBusinessMessageCaption extends TdFunction
         return [
             '@type'                    => static::TYPE_NAME,
             'business_connection_id'   => $this->businessConnectionId,
+            'caption'                  => (null !== $this->caption ? $this->caption->jsonSerialize() : null),
             'chat_id'                  => $this->chatId,
             'message_id'               => $this->messageId,
-            'reply_markup'             => $this->replyMarkup ?? null,
-            'caption'                  => $this->caption ?? null,
+            'reply_markup'             => (null !== $this->replyMarkup ? $this->replyMarkup->jsonSerialize() : null),
             'show_caption_above_media' => $this->showCaptionAboveMedia,
         ];
     }

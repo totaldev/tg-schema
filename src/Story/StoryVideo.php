@@ -21,21 +21,21 @@ class StoryVideo extends TdObject
 
     public function __construct(
         /**
+         * Timestamp of the frame used as video thumbnail.
+         */
+        protected float          $coverFrameTimestamp,
+        /**
          * Duration of the video, in seconds.
          */
         protected float          $duration,
         /**
-         * Video width.
+         * True, if stickers were added to the video. The list of corresponding sticker sets can be received using getAttachedStickerSets.
          */
-        protected int            $width,
+        protected bool           $hasStickers,
         /**
          * Video height.
          */
         protected int            $height,
-        /**
-         * True, if stickers were added to the video. The list of corresponding sticker sets can be received using getAttachedStickerSets.
-         */
-        protected bool           $hasStickers,
         /**
          * True, if the video has no sound.
          */
@@ -45,36 +45,36 @@ class StoryVideo extends TdObject
          */
         protected ?Minithumbnail $minithumbnail,
         /**
-         * Video thumbnail in JPEG or MPEG4 format; may be null.
-         */
-        protected ?Thumbnail     $thumbnail,
-        /**
          * Size of file prefix, which is expected to be preloaded, in bytes.
          */
         protected int            $preloadPrefixSize,
         /**
-         * Timestamp of the frame used as video thumbnail.
+         * Video thumbnail in JPEG or MPEG4 format; may be null.
          */
-        protected float          $coverFrameTimestamp,
+        protected ?Thumbnail     $thumbnail,
         /**
          * File containing the video.
          */
         protected File           $video,
+        /**
+         * Video width.
+         */
+        protected int            $width,
     ) {}
 
     public static function fromArray(array $array): StoryVideo
     {
         return new static(
-            $array['duration'],
-            $array['width'],
-            $array['height'],
-            $array['has_stickers'],
-            $array['is_animation'],
-            isset($array['minithumbnail']) ? TdSchemaRegistry::fromArray($array['minithumbnail']) : null,
-            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
-            $array['preload_prefix_size'],
-            $array['cover_frame_timestamp'],
-            TdSchemaRegistry::fromArray($array['video']),
+            coverFrameTimestamp: $array['cover_frame_timestamp'],
+            duration           : $array['duration'],
+            hasStickers        : $array['has_stickers'],
+            height             : $array['height'],
+            isAnimation        : $array['is_animation'],
+            minithumbnail      : (isset($array['minithumbnail']) ? TdSchemaRegistry::fromArray($array['minithumbnail']) : null),
+            preloadPrefixSize  : $array['preload_prefix_size'],
+            thumbnail          : (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
+            video              : TdSchemaRegistry::fromArray($array['video']),
+            width              : $array['width'],
         );
     }
 
@@ -202,16 +202,16 @@ class StoryVideo extends TdObject
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'duration'              => $this->duration,
-            'width'                 => $this->width,
-            'height'                => $this->height,
-            'has_stickers'          => $this->hasStickers,
-            'is_animation'          => $this->isAnimation,
-            'minithumbnail'         => $this->minithumbnail ?? null,
-            'thumbnail'             => $this->thumbnail ?? null,
-            'preload_prefix_size'   => $this->preloadPrefixSize,
             'cover_frame_timestamp' => $this->coverFrameTimestamp,
-            'video'                 => $this->video->typeSerialize(),
+            'duration'              => $this->duration,
+            'has_stickers'          => $this->hasStickers,
+            'height'                => $this->height,
+            'is_animation'          => $this->isAnimation,
+            'minithumbnail'         => (null !== $this->minithumbnail ? $this->minithumbnail->jsonSerialize() : null),
+            'preload_prefix_size'   => $this->preloadPrefixSize,
+            'thumbnail'             => (null !== $this->thumbnail ? $this->thumbnail->jsonSerialize() : null),
+            'video'                 => $this->video->jsonSerialize(),
+            'width'                 => $this->width,
         ];
     }
 }

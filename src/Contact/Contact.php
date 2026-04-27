@@ -17,10 +17,6 @@ class Contact extends TdObject
 
     public function __construct(
         /**
-         * Phone number of the user.
-         */
-        protected string $phoneNumber,
-        /**
          * First name of the user; 1-64 characters.
          */
         protected string $firstName,
@@ -29,23 +25,27 @@ class Contact extends TdObject
          */
         protected string $lastName,
         /**
-         * Additional data about the user in a form of vCard; 0-2048 bytes in length.
+         * Phone number of the user.
          */
-        protected string $vcard,
+        protected string $phoneNumber,
         /**
          * Identifier of the user, if known; 0 otherwise.
          */
         protected int    $userId,
+        /**
+         * Additional data about the user in a form of vCard; 0-2048 bytes in length.
+         */
+        protected string $vcard,
     ) {}
 
     public static function fromArray(array $array): Contact
     {
         return new static(
-            $array['phone_number'],
-            $array['first_name'],
-            $array['last_name'],
-            $array['vcard'],
-            $array['user_id'],
+            firstName  : $array['first_name'],
+            lastName   : $array['last_name'],
+            phoneNumber: $array['phone_number'],
+            userId     : $array['user_id'],
+            vcard      : $array['vcard'],
         );
     }
 
@@ -113,11 +113,11 @@ class Contact extends TdObject
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'phone_number' => $this->phoneNumber,
             'first_name'   => $this->firstName,
             'last_name'    => $this->lastName,
-            'vcard'        => $this->vcard,
+            'phone_number' => $this->phoneNumber,
             'user_id'      => $this->userId,
+            'vcard'        => $this->vcard,
         ];
     }
 }

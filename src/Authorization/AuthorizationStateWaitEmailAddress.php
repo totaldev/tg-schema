@@ -30,8 +30,8 @@ class AuthorizationStateWaitEmailAddress extends AuthorizationState
     public static function fromArray(array $array): AuthorizationStateWaitEmailAddress
     {
         return new static(
-            $array['allow_apple_id'],
-            $array['allow_google_id'],
+            allowAppleId : $array['allow_apple_id'],
+            allowGoogleId: $array['allow_google_id'],
         );
     }
 

@@ -17,6 +17,32 @@ class CallStateReady extends CallState
 
     public function __construct(
         /**
+         * True, if peer-to-peer connection is allowed by users privacy settings.
+         */
+        protected bool         $allowP2p,
+        /**
+         * A JSON-encoded call config.
+         */
+        protected string       $config,
+        /**
+         * Custom JSON-encoded call parameters to be passed to tgcalls.
+         */
+        protected string       $customParameters,
+        /**
+         * Encryption key fingerprint represented as 4 emoji.
+         *
+         * @var string[]
+         */
+        protected array        $emojis,
+        /**
+         * Call encryption key.
+         */
+        protected string       $encryptionKey,
+        /**
+         * True, if the other party supports upgrading of the call to a group call.
+         */
+        protected bool         $isGroupCallSupported,
+        /**
          * Call protocols supported by the other call participant.
          */
         protected CallProtocol $protocol,
@@ -26,32 +52,6 @@ class CallStateReady extends CallState
          * @var CallServer[]
          */
         protected array        $servers,
-        /**
-         * A JSON-encoded call config.
-         */
-        protected string       $config,
-        /**
-         * Call encryption key.
-         */
-        protected string       $encryptionKey,
-        /**
-         * Encryption key fingerprint represented as 4 emoji.
-         *
-         * @var string[]
-         */
-        protected array        $emojis,
-        /**
-         * True, if peer-to-peer connection is allowed by users privacy settings.
-         */
-        protected bool         $allowP2p,
-        /**
-         * True, if the other party supports upgrading of the call to a group call.
-         */
-        protected bool         $isGroupCallSupported,
-        /**
-         * Custom JSON-encoded call parameters to be passed to tgcalls.
-         */
-        protected string       $customParameters,
     ) {
         parent::__construct();
     }
@@ -59,14 +59,14 @@ class CallStateReady extends CallState
     public static function fromArray(array $array): CallStateReady
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['protocol']),
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['servers']),
-            $array['config'],
-            $array['encryption_key'],
-            $array['emojis'],
-            $array['allow_p2p'],
-            $array['is_group_call_supported'],
-            $array['custom_parameters'],
+            allowP2p            : $array['allow_p2p'],
+            config              : $array['config'],
+            customParameters    : $array['custom_parameters'],
+            emojis              : $array['emojis'],
+            encryptionKey       : $array['encryption_key'],
+            isGroupCallSupported: $array['is_group_call_supported'],
+            protocol            : TdSchemaRegistry::fromArray($array['protocol']),
+            servers             : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['servers']),
         );
     }
 
@@ -170,14 +170,14 @@ class CallStateReady extends CallState
     {
         return [
             '@type'                   => static::TYPE_NAME,
-            'protocol'                => $this->protocol->typeSerialize(),
-            'servers'                 => array_map(static fn($x) => $x->typeSerialize(), $this->servers),
-            'config'                  => $this->config,
-            'encryption_key'          => $this->encryptionKey,
-            'emojis'                  => $this->emojis,
             'allow_p2p'               => $this->allowP2p,
-            'is_group_call_supported' => $this->isGroupCallSupported,
+            'config'                  => $this->config,
             'custom_parameters'       => $this->customParameters,
+            'emojis'                  => $this->emojis,
+            'encryption_key'          => $this->encryptionKey,
+            'is_group_call_supported' => $this->isGroupCallSupported,
+            'protocol'                => $this->protocol->jsonSerialize(),
+            'servers'                 => array_map(static fn($x) => $x->jsonSerialize(), $this->servers),
         ];
     }
 }

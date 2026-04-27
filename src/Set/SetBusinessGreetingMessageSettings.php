@@ -27,7 +27,7 @@ class SetBusinessGreetingMessageSettings extends TdFunction
     public static function fromArray(array $array): SetBusinessGreetingMessageSettings
     {
         return new static(
-            isset($array['greeting_message_settings']) ? TdSchemaRegistry::fromArray($array['greeting_message_settings']) : null,
+            greetingMessageSettings: (isset($array['greeting_message_settings']) ? TdSchemaRegistry::fromArray($array['greeting_message_settings']) : null),
         );
     }
 
@@ -47,7 +47,7 @@ class SetBusinessGreetingMessageSettings extends TdFunction
     {
         return [
             '@type'                     => static::TYPE_NAME,
-            'greeting_message_settings' => $this->greetingMessageSettings ?? null,
+            'greeting_message_settings' => (null !== $this->greetingMessageSettings ? $this->greetingMessageSettings->jsonSerialize() : null),
         ];
     }
 }

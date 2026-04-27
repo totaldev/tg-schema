@@ -18,17 +18,13 @@ class TelegramPaymentPurposePremiumGift extends TelegramPaymentPurpose
 
     public function __construct(
         /**
-         * ISO 4217 currency code of the payment currency, or "XTR" for payments in Telegram Stars.
-         */
-        protected string        $currency,
-        /**
          * Paid amount, in the smallest units of the currency.
          */
         protected int           $amount,
         /**
-         * Identifier of the user which will receive Telegram Premium.
+         * ISO 4217 currency code of the payment currency, or "XTR" for payments in Telegram Stars.
          */
-        protected int           $userId,
+        protected string        $currency,
         /**
          * Number of months the Telegram Premium subscription will be active for the user.
          */
@@ -37,6 +33,10 @@ class TelegramPaymentPurposePremiumGift extends TelegramPaymentPurpose
          * Text to show to the user receiving Telegram Premium; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed.
          */
         protected FormattedText $text,
+        /**
+         * Identifier of the user which will receive Telegram Premium.
+         */
+        protected int           $userId,
     ) {
         parent::__construct();
     }
@@ -44,11 +44,11 @@ class TelegramPaymentPurposePremiumGift extends TelegramPaymentPurpose
     public static function fromArray(array $array): TelegramPaymentPurposePremiumGift
     {
         return new static(
-            $array['currency'],
-            $array['amount'],
-            $array['user_id'],
-            $array['month_count'],
-            TdSchemaRegistry::fromArray($array['text']),
+            amount    : $array['amount'],
+            currency  : $array['currency'],
+            monthCount: $array['month_count'],
+            text      : TdSchemaRegistry::fromArray($array['text']),
+            userId    : $array['user_id'],
         );
     }
 
@@ -116,11 +116,11 @@ class TelegramPaymentPurposePremiumGift extends TelegramPaymentPurpose
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'currency'    => $this->currency,
             'amount'      => $this->amount,
-            'user_id'     => $this->userId,
+            'currency'    => $this->currency,
             'month_count' => $this->monthCount,
-            'text'        => $this->text->typeSerialize(),
+            'text'        => $this->text->jsonSerialize(),
+            'user_id'     => $this->userId,
         ];
     }
 }

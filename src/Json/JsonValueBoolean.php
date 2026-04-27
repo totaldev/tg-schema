@@ -25,7 +25,7 @@ class JsonValueBoolean extends JsonValue
     public static function fromArray(array $array): JsonValueBoolean
     {
         return new static(
-            $array['value'],
+            value: $array['value'],
         );
     }
 

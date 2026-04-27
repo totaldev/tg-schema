@@ -25,7 +25,7 @@ class DeleteProfilePhoto extends TdFunction
     public static function fromArray(array $array): DeleteProfilePhoto
     {
         return new static(
-            $array['profile_photo_id'],
+            profilePhotoId: $array['profile_photo_id'],
         );
     }
 

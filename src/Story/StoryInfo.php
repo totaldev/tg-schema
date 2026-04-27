@@ -17,10 +17,6 @@ class StoryInfo extends TdObject
 
     public function __construct(
         /**
-         * Unique story identifier among stories of the chat.
-         */
-        protected int  $storyId,
-        /**
          * Point in time (Unix timestamp) when the story was published.
          */
         protected int  $date,
@@ -28,14 +24,18 @@ class StoryInfo extends TdObject
          * True, if the story is available only to close friends.
          */
         protected bool $isForCloseFriends,
+        /**
+         * Unique story identifier among stories of the chat.
+         */
+        protected int  $storyId,
     ) {}
 
     public static function fromArray(array $array): StoryInfo
     {
         return new static(
-            $array['story_id'],
-            $array['date'],
-            $array['is_for_close_friends'],
+            date             : $array['date'],
+            isForCloseFriends: $array['is_for_close_friends'],
+            storyId          : $array['story_id'],
         );
     }
 
@@ -79,9 +79,9 @@ class StoryInfo extends TdObject
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'story_id'             => $this->storyId,
             'date'                 => $this->date,
             'is_for_close_friends' => $this->isForCloseFriends,
+            'story_id'             => $this->storyId,
         ];
     }
 }

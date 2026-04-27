@@ -25,7 +25,7 @@ class StarTransactionTypeSuggestedPostPaymentSend extends StarTransactionType
     public static function fromArray(array $array): StarTransactionTypeSuggestedPostPaymentSend
     {
         return new static(
-            $array['chat_id'],
+            chatId: $array['chat_id'],
         );
     }
 

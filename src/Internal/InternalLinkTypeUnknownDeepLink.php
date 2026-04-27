@@ -25,7 +25,7 @@ class InternalLinkTypeUnknownDeepLink extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeUnknownDeepLink
     {
         return new static(
-            $array['link'],
+            link: $array['link'],
         );
     }
 

@@ -18,10 +18,6 @@ class StarSubscription extends TdObject
 
     public function __construct(
         /**
-         * Unique identifier of the subscription.
-         */
-        protected string                  $id,
-        /**
          * Identifier of the chat that is subscribed.
          */
         protected int                     $chatId,
@@ -29,6 +25,10 @@ class StarSubscription extends TdObject
          * Point in time (Unix timestamp) when the subscription will expire or expired.
          */
         protected int                     $expirationDate,
+        /**
+         * Unique identifier of the subscription.
+         */
+        protected string                  $id,
         /**
          * True, if the subscription was canceled.
          */
@@ -50,13 +50,13 @@ class StarSubscription extends TdObject
     public static function fromArray(array $array): StarSubscription
     {
         return new static(
-            $array['id'],
-            $array['chat_id'],
-            $array['expiration_date'],
-            $array['is_canceled'],
-            $array['is_expiring'],
-            TdSchemaRegistry::fromArray($array['pricing']),
-            TdSchemaRegistry::fromArray($array['type']),
+            chatId        : $array['chat_id'],
+            expirationDate: $array['expiration_date'],
+            id            : $array['id'],
+            isCanceled    : $array['is_canceled'],
+            isExpiring    : $array['is_expiring'],
+            pricing       : TdSchemaRegistry::fromArray($array['pricing']),
+            type          : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -148,13 +148,13 @@ class StarSubscription extends TdObject
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'id'              => $this->id,
             'chat_id'         => $this->chatId,
             'expiration_date' => $this->expirationDate,
+            'id'              => $this->id,
             'is_canceled'     => $this->isCanceled,
             'is_expiring'     => $this->isExpiring,
-            'pricing'         => $this->pricing->typeSerialize(),
-            'type'            => $this->type->typeSerialize(),
+            'pricing'         => $this->pricing->jsonSerialize(),
+            'type'            => $this->type->jsonSerialize(),
         ];
     }
 }

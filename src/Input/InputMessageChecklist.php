@@ -27,7 +27,7 @@ class InputMessageChecklist extends InputMessageContent
     public static function fromArray(array $array): InputMessageChecklist
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['checklist']),
+            checklist: TdSchemaRegistry::fromArray($array['checklist']),
         );
     }
 
@@ -47,7 +47,7 @@ class InputMessageChecklist extends InputMessageContent
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'checklist' => $this->checklist->typeSerialize(),
+            'checklist' => $this->checklist->jsonSerialize(),
         ];
     }
 }

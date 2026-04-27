@@ -18,6 +18,10 @@ class ProfileAccentColor extends TdObject
 
     public function __construct(
         /**
+         * Accent colors expected to be used in dark themes.
+         */
+        protected ProfileAccentColors $darkThemeColors,
+        /**
          * Profile accent color identifier.
          */
         protected int                 $id,
@@ -26,27 +30,23 @@ class ProfileAccentColor extends TdObject
          */
         protected ProfileAccentColors $lightThemeColors,
         /**
-         * Accent colors expected to be used in dark themes.
+         * The minimum chat boost level required to use the color in a channel chat.
          */
-        protected ProfileAccentColors $darkThemeColors,
+        protected int                 $minChannelChatBoostLevel,
         /**
          * The minimum chat boost level required to use the color in a supergroup chat.
          */
         protected int                 $minSupergroupChatBoostLevel,
-        /**
-         * The minimum chat boost level required to use the color in a channel chat.
-         */
-        protected int                 $minChannelChatBoostLevel,
     ) {}
 
     public static function fromArray(array $array): ProfileAccentColor
     {
         return new static(
-            $array['id'],
-            TdSchemaRegistry::fromArray($array['light_theme_colors']),
-            TdSchemaRegistry::fromArray($array['dark_theme_colors']),
-            $array['min_supergroup_chat_boost_level'],
-            $array['min_channel_chat_boost_level'],
+            darkThemeColors            : TdSchemaRegistry::fromArray($array['dark_theme_colors']),
+            id                         : $array['id'],
+            lightThemeColors           : TdSchemaRegistry::fromArray($array['light_theme_colors']),
+            minChannelChatBoostLevel   : $array['min_channel_chat_boost_level'],
+            minSupergroupChatBoostLevel: $array['min_supergroup_chat_boost_level'],
         );
     }
 
@@ -114,11 +114,11 @@ class ProfileAccentColor extends TdObject
     {
         return [
             '@type'                           => static::TYPE_NAME,
+            'dark_theme_colors'               => $this->darkThemeColors->jsonSerialize(),
             'id'                              => $this->id,
-            'light_theme_colors'              => $this->lightThemeColors->typeSerialize(),
-            'dark_theme_colors'               => $this->darkThemeColors->typeSerialize(),
-            'min_supergroup_chat_boost_level' => $this->minSupergroupChatBoostLevel,
+            'light_theme_colors'              => $this->lightThemeColors->jsonSerialize(),
             'min_channel_chat_boost_level'    => $this->minChannelChatBoostLevel,
+            'min_supergroup_chat_boost_level' => $this->minSupergroupChatBoostLevel,
         ];
     }
 }

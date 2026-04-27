@@ -28,7 +28,7 @@ class LoadActiveStories extends TdFunction
     public static function fromArray(array $array): LoadActiveStories
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['story_list']),
+            storyList: TdSchemaRegistry::fromArray($array['story_list']),
         );
     }
 
@@ -48,7 +48,7 @@ class LoadActiveStories extends TdFunction
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'story_list' => $this->storyList->typeSerialize(),
+            'story_list' => $this->storyList->jsonSerialize(),
         ];
     }
 }

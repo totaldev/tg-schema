@@ -25,7 +25,7 @@ class SuggestedActionSetPassword extends SuggestedAction
     public static function fromArray(array $array): SuggestedActionSetPassword
     {
         return new static(
-            $array['authorization_delay'],
+            authorizationDelay: $array['authorization_delay'],
         );
     }
 

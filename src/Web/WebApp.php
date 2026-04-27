@@ -20,13 +20,9 @@ class WebApp extends TdObject
 
     public function __construct(
         /**
-         * Web App short name.
+         * Web App animation; may be null.
          */
-        protected string     $shortName,
-        /**
-         * Web App title.
-         */
-        protected string     $title,
+        protected ?Animation $animation,
         /**
          * Web App description.
          */
@@ -36,19 +32,23 @@ class WebApp extends TdObject
          */
         protected Photo      $photo,
         /**
-         * Web App animation; may be null.
+         * Web App short name.
          */
-        protected ?Animation $animation,
+        protected string     $shortName,
+        /**
+         * Web App title.
+         */
+        protected string     $title,
     ) {}
 
     public static function fromArray(array $array): WebApp
     {
         return new static(
-            $array['short_name'],
-            $array['title'],
-            $array['description'],
-            TdSchemaRegistry::fromArray($array['photo']),
-            isset($array['animation']) ? TdSchemaRegistry::fromArray($array['animation']) : null,
+            animation  : (isset($array['animation']) ? TdSchemaRegistry::fromArray($array['animation']) : null),
+            description: $array['description'],
+            photo      : TdSchemaRegistry::fromArray($array['photo']),
+            shortName  : $array['short_name'],
+            title      : $array['title'],
         );
     }
 
@@ -116,11 +116,11 @@ class WebApp extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
+            'animation'   => (null !== $this->animation ? $this->animation->jsonSerialize() : null),
+            'description' => $this->description,
+            'photo'       => $this->photo->jsonSerialize(),
             'short_name'  => $this->shortName,
             'title'       => $this->title,
-            'description' => $this->description,
-            'photo'       => $this->photo->typeSerialize(),
-            'animation'   => $this->animation ?? null,
         ];
     }
 }

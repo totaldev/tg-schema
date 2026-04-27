@@ -17,30 +17,30 @@ class GetSavedMessagesTopicHistory extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of Saved Messages topic which messages will be fetched.
-         */
-        protected int $savedMessagesTopicId,
-        /**
          * Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message.
          */
         protected int $fromMessageId,
+        /**
+         * The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, then the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit.
+         */
+        protected int $limit,
         /**
          * Specify 0 to get results from exactly the message from_message_id or a negative number from -99 to -1 to get additionally -offset newer messages.
          */
         protected int $offset,
         /**
-         * The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, then the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit.
+         * Identifier of Saved Messages topic which messages will be fetched.
          */
-        protected int $limit,
+        protected int $savedMessagesTopicId,
     ) {}
 
     public static function fromArray(array $array): GetSavedMessagesTopicHistory
     {
         return new static(
-            $array['saved_messages_topic_id'],
-            $array['from_message_id'],
-            $array['offset'],
-            $array['limit'],
+            fromMessageId       : $array['from_message_id'],
+            limit               : $array['limit'],
+            offset              : $array['offset'],
+            savedMessagesTopicId: $array['saved_messages_topic_id'],
         );
     }
 
@@ -96,10 +96,10 @@ class GetSavedMessagesTopicHistory extends TdFunction
     {
         return [
             '@type'                   => static::TYPE_NAME,
-            'saved_messages_topic_id' => $this->savedMessagesTopicId,
             'from_message_id'         => $this->fromMessageId,
-            'offset'                  => $this->offset,
             'limit'                   => $this->limit,
+            'offset'                  => $this->offset,
+            'saved_messages_topic_id' => $this->savedMessagesTopicId,
         ];
     }
 }

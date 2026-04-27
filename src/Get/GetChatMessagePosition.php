@@ -41,10 +41,10 @@ class GetChatMessagePosition extends TdFunction
     public static function fromArray(array $array): GetChatMessagePosition
     {
         return new static(
-            $array['chat_id'],
-            isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null,
-            TdSchemaRegistry::fromArray($array['filter']),
-            $array['message_id'],
+            chatId   : $array['chat_id'],
+            filter   : TdSchemaRegistry::fromArray($array['filter']),
+            messageId: $array['message_id'],
+            topicId  : (isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null),
         );
     }
 
@@ -101,9 +101,9 @@ class GetChatMessagePosition extends TdFunction
         return [
             '@type'      => static::TYPE_NAME,
             'chat_id'    => $this->chatId,
-            'topic_id'   => $this->topicId ?? null,
-            'filter'     => $this->filter->typeSerialize(),
+            'filter'     => $this->filter->jsonSerialize(),
             'message_id' => $this->messageId,
+            'topic_id'   => (null !== $this->topicId ? $this->topicId->jsonSerialize() : null),
         ];
     }
 }

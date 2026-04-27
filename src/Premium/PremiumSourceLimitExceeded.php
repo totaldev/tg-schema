@@ -27,7 +27,7 @@ class PremiumSourceLimitExceeded extends PremiumSource
     public static function fromArray(array $array): PremiumSourceLimitExceeded
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['limit_type']),
+            limitType: TdSchemaRegistry::fromArray($array['limit_type']),
         );
     }
 
@@ -47,7 +47,7 @@ class PremiumSourceLimitExceeded extends PremiumSource
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'limit_type' => $this->limitType->typeSerialize(),
+            'limit_type' => $this->limitType->jsonSerialize(),
         ];
     }
 }

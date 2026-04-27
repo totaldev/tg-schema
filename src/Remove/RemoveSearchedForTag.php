@@ -25,7 +25,7 @@ class RemoveSearchedForTag extends TdFunction
     public static function fromArray(array $array): RemoveSearchedForTag
     {
         return new static(
-            $array['tag'],
+            tag: $array['tag'],
         );
     }
 

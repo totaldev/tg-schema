@@ -15,10 +15,6 @@ class BackgroundFillGradient extends BackgroundFill
 
     public function __construct(
         /**
-         * A top color of the background in the RGB format.
-         */
-        protected int $topColor,
-        /**
          * A bottom color of the background in the RGB format.
          */
         protected int $bottomColor,
@@ -26,6 +22,10 @@ class BackgroundFillGradient extends BackgroundFill
          * Clockwise rotation angle of the gradient, in degrees; 0-359. Must always be divisible by 45.
          */
         protected int $rotationAngle,
+        /**
+         * A top color of the background in the RGB format.
+         */
+        protected int $topColor,
     ) {
         parent::__construct();
     }
@@ -33,9 +33,9 @@ class BackgroundFillGradient extends BackgroundFill
     public static function fromArray(array $array): BackgroundFillGradient
     {
         return new static(
-            $array['top_color'],
-            $array['bottom_color'],
-            $array['rotation_angle'],
+            bottomColor  : $array['bottom_color'],
+            rotationAngle: $array['rotation_angle'],
+            topColor     : $array['top_color'],
         );
     }
 
@@ -79,9 +79,9 @@ class BackgroundFillGradient extends BackgroundFill
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'top_color'      => $this->topColor,
             'bottom_color'   => $this->bottomColor,
             'rotation_angle' => $this->rotationAngle,
+            'top_color'      => $this->topColor,
         ];
     }
 }

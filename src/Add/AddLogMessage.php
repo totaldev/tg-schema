@@ -17,20 +17,20 @@ class AddLogMessage extends TdFunction
 
     public function __construct(
         /**
-         * The minimum verbosity level needed for the message to be logged; 0-1023.
-         */
-        protected int    $verbosityLevel,
-        /**
          * Text of a message to log.
          */
         protected string $text,
+        /**
+         * The minimum verbosity level needed for the message to be logged; 0-1023.
+         */
+        protected int    $verbosityLevel,
     ) {}
 
     public static function fromArray(array $array): AddLogMessage
     {
         return new static(
-            $array['verbosity_level'],
-            $array['text'],
+            text          : $array['text'],
+            verbosityLevel: $array['verbosity_level'],
         );
     }
 
@@ -62,8 +62,8 @@ class AddLogMessage extends TdFunction
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'verbosity_level' => $this->verbosityLevel,
             'text'            => $this->text,
+            'verbosity_level' => $this->verbosityLevel,
         ];
     }
 }

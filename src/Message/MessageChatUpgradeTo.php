@@ -25,7 +25,7 @@ class MessageChatUpgradeTo extends MessageContent
     public static function fromArray(array $array): MessageChatUpgradeTo
     {
         return new static(
-            $array['supergroup_id'],
+            supergroupId: $array['supergroup_id'],
         );
     }
 

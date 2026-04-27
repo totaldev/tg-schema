@@ -17,10 +17,6 @@ class StoryInteractionInfo extends TdObject
 
     public function __construct(
         /**
-         * Number of times the story was viewed.
-         */
-        protected int   $viewCount,
-        /**
          * Number of times the story was forwarded; 0 if none or unknown.
          */
         protected int   $forwardCount,
@@ -34,15 +30,19 @@ class StoryInteractionInfo extends TdObject
          * @var int[]
          */
         protected array $recentViewerUserIds,
+        /**
+         * Number of times the story was viewed.
+         */
+        protected int   $viewCount,
     ) {}
 
     public static function fromArray(array $array): StoryInteractionInfo
     {
         return new static(
-            $array['view_count'],
-            $array['forward_count'],
-            $array['reaction_count'],
-            $array['recent_viewer_user_ids'],
+            forwardCount       : $array['forward_count'],
+            reactionCount      : $array['reaction_count'],
+            recentViewerUserIds: $array['recent_viewer_user_ids'],
+            viewCount          : $array['view_count'],
         );
     }
 
@@ -98,10 +98,10 @@ class StoryInteractionInfo extends TdObject
     {
         return [
             '@type'                  => static::TYPE_NAME,
-            'view_count'             => $this->viewCount,
             'forward_count'          => $this->forwardCount,
             'reaction_count'         => $this->reactionCount,
             'recent_viewer_user_ids' => $this->recentViewerUserIds,
+            'view_count'             => $this->viewCount,
         ];
     }
 }

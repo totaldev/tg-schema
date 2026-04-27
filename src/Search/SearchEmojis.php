@@ -17,22 +17,22 @@ class SearchEmojis extends TdFunction
 
     public function __construct(
         /**
-         * Text to search for.
-         */
-        protected string $text,
-        /**
          * List of possible IETF language tags of the user's input language; may be empty if unknown.
          *
          * @var string[]
          */
         protected array  $inputLanguageCodes,
+        /**
+         * Text to search for.
+         */
+        protected string $text,
     ) {}
 
     public static function fromArray(array $array): SearchEmojis
     {
         return new static(
-            $array['text'],
-            $array['input_language_codes'],
+            inputLanguageCodes: $array['input_language_codes'],
+            text              : $array['text'],
         );
     }
 
@@ -64,8 +64,8 @@ class SearchEmojis extends TdFunction
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'text'                 => $this->text,
             'input_language_codes' => $this->inputLanguageCodes,
+            'text'                 => $this->text,
         ];
     }
 }

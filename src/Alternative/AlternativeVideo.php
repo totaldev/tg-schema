@@ -19,40 +19,40 @@ class AlternativeVideo extends TdObject
 
     public function __construct(
         /**
-         * Unique identifier of the alternative video, which is used in the HLS file.
+         * Codec used for video file encoding, for example, "h264", "h265", or "av1".
          */
-        protected int    $id,
-        /**
-         * Video width.
-         */
-        protected int    $width,
+        protected string $codec,
         /**
          * Video height.
          */
         protected int    $height,
         /**
-         * Codec used for video file encoding, for example, "h264", "h265", or "av1".
-         */
-        protected string $codec,
-        /**
          * HLS file describing the video.
          */
         protected File   $hlsFile,
         /**
+         * Unique identifier of the alternative video, which is used in the HLS file.
+         */
+        protected int    $id,
+        /**
          * File containing the video.
          */
         protected File   $video,
+        /**
+         * Video width.
+         */
+        protected int    $width,
     ) {}
 
     public static function fromArray(array $array): AlternativeVideo
     {
         return new static(
-            $array['id'],
-            $array['width'],
-            $array['height'],
-            $array['codec'],
-            TdSchemaRegistry::fromArray($array['hls_file']),
-            TdSchemaRegistry::fromArray($array['video']),
+            codec  : $array['codec'],
+            height : $array['height'],
+            hlsFile: TdSchemaRegistry::fromArray($array['hls_file']),
+            id     : $array['id'],
+            video  : TdSchemaRegistry::fromArray($array['video']),
+            width  : $array['width'],
         );
     }
 
@@ -132,12 +132,12 @@ class AlternativeVideo extends TdObject
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'id'       => $this->id,
-            'width'    => $this->width,
-            'height'   => $this->height,
             'codec'    => $this->codec,
-            'hls_file' => $this->hlsFile->typeSerialize(),
-            'video'    => $this->video->typeSerialize(),
+            'height'   => $this->height,
+            'hls_file' => $this->hlsFile->jsonSerialize(),
+            'id'       => $this->id,
+            'video'    => $this->video->jsonSerialize(),
+            'width'    => $this->width,
         ];
     }
 }

@@ -18,23 +18,23 @@ class InputMessagePaidMedia extends InputMessageContent
 
     public function __construct(
         /**
-         * The number of Telegram Stars that must be paid to see the media; 1-getOption("paid_media_message_star_count_max").
-         */
-        protected int            $starCount,
-        /**
          * The content of the paid media.
          *
          * @var InputPaidMedia[]
          */
         protected array          $paidMedia,
         /**
+         * Bot-provided data for the paid media; bots only.
+         */
+        protected string         $payload,
+        /**
          * True, if the caption must be shown above the media; otherwise, the caption must be shown below the media; not supported in secret chats.
          */
         protected bool           $showCaptionAboveMedia,
         /**
-         * Bot-provided data for the paid media; bots only.
+         * The number of Telegram Stars that must be paid to see the media; 1-getOption("paid_media_message_star_count_max").
          */
-        protected string         $payload,
+        protected int            $starCount,
         /**
          * Message caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters.
          */
@@ -46,11 +46,11 @@ class InputMessagePaidMedia extends InputMessageContent
     public static function fromArray(array $array): InputMessagePaidMedia
     {
         return new static(
-            $array['star_count'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['paid_media']),
-            isset($array['caption']) ? TdSchemaRegistry::fromArray($array['caption']) : null,
-            $array['show_caption_above_media'],
-            $array['payload'],
+            caption              : (isset($array['caption']) ? TdSchemaRegistry::fromArray($array['caption']) : null),
+            paidMedia            : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['paid_media']),
+            payload              : $array['payload'],
+            showCaptionAboveMedia: $array['show_caption_above_media'],
+            starCount            : $array['star_count'],
         );
     }
 
@@ -118,11 +118,11 @@ class InputMessagePaidMedia extends InputMessageContent
     {
         return [
             '@type'                    => static::TYPE_NAME,
-            'star_count'               => $this->starCount,
-            'paid_media'               => array_map(static fn($x) => $x->typeSerialize(), $this->paidMedia),
-            'caption'                  => $this->caption ?? null,
-            'show_caption_above_media' => $this->showCaptionAboveMedia,
+            'caption'                  => (null !== $this->caption ? $this->caption->jsonSerialize() : null),
+            'paid_media'               => array_map(static fn($x) => $x->jsonSerialize(), $this->paidMedia),
             'payload'                  => $this->payload,
+            'show_caption_above_media' => $this->showCaptionAboveMedia,
+            'star_count'               => $this->starCount,
         ];
     }
 }

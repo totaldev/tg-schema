@@ -18,13 +18,13 @@ class StarTransactionTypeUserDeposit extends StarTransactionType
 
     public function __construct(
         /**
-         * Identifier of the user that gifted Telegram Stars; 0 if the user was anonymous.
-         */
-        protected int      $userId,
-        /**
          * The sticker to be shown in the transaction information; may be null if unknown.
          */
         protected ?Sticker $sticker,
+        /**
+         * Identifier of the user that gifted Telegram Stars; 0 if the user was anonymous.
+         */
+        protected int      $userId,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class StarTransactionTypeUserDeposit extends StarTransactionType
     public static function fromArray(array $array): StarTransactionTypeUserDeposit
     {
         return new static(
-            $array['user_id'],
-            isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null,
+            sticker: (isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null),
+            userId : $array['user_id'],
         );
     }
 
@@ -65,8 +65,8 @@ class StarTransactionTypeUserDeposit extends StarTransactionType
     {
         return [
             '@type'   => static::TYPE_NAME,
+            'sticker' => (null !== $this->sticker ? $this->sticker->jsonSerialize() : null),
             'user_id' => $this->userId,
-            'sticker' => $this->sticker ?? null,
         ];
     }
 }

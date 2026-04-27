@@ -32,8 +32,8 @@ class NotificationTypeNewMessage extends NotificationType
     public static function fromArray(array $array): NotificationTypeNewMessage
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['message']),
-            $array['show_preview'],
+            message    : TdSchemaRegistry::fromArray($array['message']),
+            showPreview: $array['show_preview'],
         );
     }
 
@@ -65,7 +65,7 @@ class NotificationTypeNewMessage extends NotificationType
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'message'      => $this->message->typeSerialize(),
+            'message'      => $this->message->jsonSerialize(),
             'show_preview' => $this->showPreview,
         ];
     }

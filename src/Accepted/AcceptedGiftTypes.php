@@ -17,30 +17,30 @@ class AcceptedGiftTypes extends TdObject
 
     public function __construct(
         /**
-         * True, if unlimited regular gifts are accepted.
-         */
-        protected bool $unlimitedGifts,
-        /**
          * True, if limited regular gifts are accepted.
          */
         protected bool $limitedGifts,
         /**
-         * True, if upgraded gifts and regular gifts that can be upgraded for free are accepted.
-         */
-        protected bool $upgradedGifts,
-        /**
          * True, if Telegram Premium subscription is accepted.
          */
         protected bool $premiumSubscription,
+        /**
+         * True, if unlimited regular gifts are accepted.
+         */
+        protected bool $unlimitedGifts,
+        /**
+         * True, if upgraded gifts and regular gifts that can be upgraded for free are accepted.
+         */
+        protected bool $upgradedGifts,
     ) {}
 
     public static function fromArray(array $array): AcceptedGiftTypes
     {
         return new static(
-            $array['unlimited_gifts'],
-            $array['limited_gifts'],
-            $array['upgraded_gifts'],
-            $array['premium_subscription'],
+            limitedGifts       : $array['limited_gifts'],
+            premiumSubscription: $array['premium_subscription'],
+            unlimitedGifts     : $array['unlimited_gifts'],
+            upgradedGifts      : $array['upgraded_gifts'],
         );
     }
 
@@ -96,10 +96,10 @@ class AcceptedGiftTypes extends TdObject
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'unlimited_gifts'      => $this->unlimitedGifts,
             'limited_gifts'        => $this->limitedGifts,
-            'upgraded_gifts'       => $this->upgradedGifts,
             'premium_subscription' => $this->premiumSubscription,
+            'unlimited_gifts'      => $this->unlimitedGifts,
+            'upgraded_gifts'       => $this->upgradedGifts,
         ];
     }
 }

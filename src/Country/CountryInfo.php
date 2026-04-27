@@ -17,13 +17,15 @@ class CountryInfo extends TdObject
 
     public function __construct(
         /**
+         * List of country calling codes.
+         *
+         * @var string[]
+         */
+        protected array  $callingCodes,
+        /**
          * A two-letter ISO 3166-1 alpha-2 country code.
          */
         protected string $countryCode,
-        /**
-         * Native name of the country.
-         */
-        protected string $name,
         /**
          * English name of the country.
          */
@@ -33,21 +35,19 @@ class CountryInfo extends TdObject
          */
         protected bool   $isHidden,
         /**
-         * List of country calling codes.
-         *
-         * @var string[]
+         * Native name of the country.
          */
-        protected array  $callingCodes,
+        protected string $name,
     ) {}
 
     public static function fromArray(array $array): CountryInfo
     {
         return new static(
-            $array['country_code'],
-            $array['name'],
-            $array['english_name'],
-            $array['is_hidden'],
-            $array['calling_codes'],
+            callingCodes: $array['calling_codes'],
+            countryCode : $array['country_code'],
+            englishName : $array['english_name'],
+            isHidden    : $array['is_hidden'],
+            name        : $array['name'],
         );
     }
 
@@ -115,11 +115,11 @@ class CountryInfo extends TdObject
     {
         return [
             '@type'         => static::TYPE_NAME,
+            'calling_codes' => $this->callingCodes,
             'country_code'  => $this->countryCode,
-            'name'          => $this->name,
             'english_name'  => $this->englishName,
             'is_hidden'     => $this->isHidden,
-            'calling_codes' => $this->callingCodes,
+            'name'          => $this->name,
         ];
     }
 }

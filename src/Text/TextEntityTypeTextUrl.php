@@ -25,7 +25,7 @@ class TextEntityTypeTextUrl extends TextEntityType
     public static function fromArray(array $array): TextEntityTypeTextUrl
     {
         return new static(
-            $array['url'],
+            url: $array['url'],
         );
     }
 

@@ -29,8 +29,8 @@ class MessageVideoChatScheduled extends MessageContent
     public static function fromArray(array $array): MessageVideoChatScheduled
     {
         return new static(
-            $array['group_call_id'],
-            $array['start_date'],
+            groupCallId: $array['group_call_id'],
+            startDate  : $array['start_date'],
         );
     }
 

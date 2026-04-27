@@ -20,10 +20,6 @@ class SearchQuote extends TdFunction
 
     public function __construct(
         /**
-         * Text in which to search for the quote.
-         */
-        protected FormattedText $text,
-        /**
          * Quote to search for.
          */
         protected FormattedText $quote,
@@ -31,14 +27,18 @@ class SearchQuote extends TdFunction
          * Approximate quote position in UTF-16 code units.
          */
         protected int           $quotePosition,
+        /**
+         * Text in which to search for the quote.
+         */
+        protected FormattedText $text,
     ) {}
 
     public static function fromArray(array $array): SearchQuote
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['text']),
-            TdSchemaRegistry::fromArray($array['quote']),
-            $array['quote_position'],
+            quote        : TdSchemaRegistry::fromArray($array['quote']),
+            quotePosition: $array['quote_position'],
+            text         : TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -82,9 +82,9 @@ class SearchQuote extends TdFunction
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'text'           => $this->text->typeSerialize(),
-            'quote'          => $this->quote->typeSerialize(),
+            'quote'          => $this->quote->jsonSerialize(),
             'quote_position' => $this->quotePosition,
+            'text'           => $this->text->jsonSerialize(),
         ];
     }
 }

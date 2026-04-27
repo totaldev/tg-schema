@@ -35,9 +35,9 @@ class SetPaidMessageReactionType extends TdFunction
     public static function fromArray(array $array): SetPaidMessageReactionType
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            TdSchemaRegistry::fromArray($array['type']),
+            chatId   : $array['chat_id'],
+            messageId: $array['message_id'],
+            type     : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -83,7 +83,7 @@ class SetPaidMessageReactionType extends TdFunction
             '@type'      => static::TYPE_NAME,
             'chat_id'    => $this->chatId,
             'message_id' => $this->messageId,
-            'type'       => $this->type->typeSerialize(),
+            'type'       => $this->type->jsonSerialize(),
         ];
     }
 }

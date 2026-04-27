@@ -26,7 +26,7 @@ class AuthenticationCodeTypeFlashCall extends AuthenticationCodeType
     public static function fromArray(array $array): AuthenticationCodeTypeFlashCall
     {
         return new static(
-            $array['pattern'],
+            pattern: $array['pattern'],
         );
     }
 

@@ -42,10 +42,10 @@ class PageBlockTable extends PageBlock
     public static function fromArray(array $array): PageBlockTable
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['caption']),
-            array_map(static fn($x) => array_map(static fn($y) => TdSchemaRegistry::fromArray($y), $x), $array['cells']),
-            $array['is_bordered'],
-            $array['is_striped'],
+            caption   : TdSchemaRegistry::fromArray($array['caption']),
+            cells     : array_map(static fn($x) => array_map(static fn($y) => TdSchemaRegistry::fromArray($y), $x), $array['cells']),
+            isBordered: $array['is_bordered'],
+            isStriped : $array['is_striped'],
         );
     }
 
@@ -101,8 +101,8 @@ class PageBlockTable extends PageBlock
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'caption'     => $this->caption->typeSerialize(),
-            'cells'       => array_map(static fn($x) => array_map(static fn($y) => $y->typeSerialize(), $x), $this->cells),
+            'caption'     => $this->caption->jsonSerialize(),
+            'cells'       => array_map(static fn($x) => array_map(static fn($y) => $y->jsonSerialize(), $x), $this->cells),
             'is_bordered' => $this->isBordered,
             'is_striped'  => $this->isStriped,
         ];

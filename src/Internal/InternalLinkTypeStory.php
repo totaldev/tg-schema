@@ -16,13 +16,13 @@ class InternalLinkTypeStory extends InternalLinkType
 
     public function __construct(
         /**
-         * Username of the poster of the story.
-         */
-        protected string $storyPosterUsername,
-        /**
          * Story identifier.
          */
         protected int    $storyId,
+        /**
+         * Username of the poster of the story.
+         */
+        protected string $storyPosterUsername,
     ) {
         parent::__construct();
     }
@@ -30,8 +30,8 @@ class InternalLinkTypeStory extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeStory
     {
         return new static(
-            $array['story_poster_username'],
-            $array['story_id'],
+            storyId            : $array['story_id'],
+            storyPosterUsername: $array['story_poster_username'],
         );
     }
 
@@ -63,8 +63,8 @@ class InternalLinkTypeStory extends InternalLinkType
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'story_poster_username' => $this->storyPosterUsername,
             'story_id'              => $this->storyId,
+            'story_poster_username' => $this->storyPosterUsername,
         ];
     }
 }

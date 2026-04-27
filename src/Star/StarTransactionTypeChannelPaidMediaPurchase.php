@@ -22,15 +22,15 @@ class StarTransactionTypeChannelPaidMediaPurchase extends StarTransactionType
          */
         protected int   $chatId,
         /**
-         * Identifier of the corresponding message with paid media; can be 0 or an identifier of a deleted message.
-         */
-        protected int   $messageId,
-        /**
          * The bought media if the transaction wasn't refunded.
          *
          * @var PaidMedia[]
          */
         protected array $media,
+        /**
+         * Identifier of the corresponding message with paid media; can be 0 or an identifier of a deleted message.
+         */
+        protected int   $messageId,
     ) {
         parent::__construct();
     }
@@ -38,9 +38,9 @@ class StarTransactionTypeChannelPaidMediaPurchase extends StarTransactionType
     public static function fromArray(array $array): StarTransactionTypeChannelPaidMediaPurchase
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['media']),
+            chatId   : $array['chat_id'],
+            media    : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['media']),
+            messageId: $array['message_id'],
         );
     }
 
@@ -85,8 +85,8 @@ class StarTransactionTypeChannelPaidMediaPurchase extends StarTransactionType
         return [
             '@type'      => static::TYPE_NAME,
             'chat_id'    => $this->chatId,
+            'media'      => array_map(static fn($x) => $x->jsonSerialize(), $this->media),
             'message_id' => $this->messageId,
-            'media'      => array_map(static fn($x) => $x->typeSerialize(), $this->media),
         ];
     }
 }

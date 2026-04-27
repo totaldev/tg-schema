@@ -17,25 +17,25 @@ class ChatJoinRequest extends TdObject
 
     public function __construct(
         /**
-         * User identifier.
+         * A short bio of the user.
          */
-        protected int    $userId,
+        protected string $bio,
         /**
          * Point in time (Unix timestamp) when the user sent the join request.
          */
         protected int    $date,
         /**
-         * A short bio of the user.
+         * User identifier.
          */
-        protected string $bio,
+        protected int    $userId,
     ) {}
 
     public static function fromArray(array $array): ChatJoinRequest
     {
         return new static(
-            $array['user_id'],
-            $array['date'],
-            $array['bio'],
+            bio   : $array['bio'],
+            date  : $array['date'],
+            userId: $array['user_id'],
         );
     }
 
@@ -79,9 +79,9 @@ class ChatJoinRequest extends TdObject
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'user_id' => $this->userId,
-            'date'    => $this->date,
             'bio'     => $this->bio,
+            'date'    => $this->date,
+            'user_id' => $this->userId,
         ];
     }
 }

@@ -20,17 +20,17 @@ class GetSupergroupMembers extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the supergroup or channel.
+         * The maximum number of users to be returned; up to 200.
          */
-        protected int                      $supergroupId,
+        protected int                      $limit,
         /**
          * Number of users to skip.
          */
         protected int                      $offset,
         /**
-         * The maximum number of users to be returned; up to 200.
+         * Identifier of the supergroup or channel.
          */
-        protected int                      $limit,
+        protected int                      $supergroupId,
         /**
          * The type of users to return; pass null to use supergroupMembersFilterRecent.
          */
@@ -40,10 +40,10 @@ class GetSupergroupMembers extends TdFunction
     public static function fromArray(array $array): GetSupergroupMembers
     {
         return new static(
-            $array['supergroup_id'],
-            isset($array['filter']) ? TdSchemaRegistry::fromArray($array['filter']) : null,
-            $array['offset'],
-            $array['limit'],
+            filter      : (isset($array['filter']) ? TdSchemaRegistry::fromArray($array['filter']) : null),
+            limit       : $array['limit'],
+            offset      : $array['offset'],
+            supergroupId: $array['supergroup_id'],
         );
     }
 
@@ -99,10 +99,10 @@ class GetSupergroupMembers extends TdFunction
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'supergroup_id' => $this->supergroupId,
-            'filter'        => $this->filter ?? null,
-            'offset'        => $this->offset,
+            'filter'        => (null !== $this->filter ? $this->filter->jsonSerialize() : null),
             'limit'         => $this->limit,
+            'offset'        => $this->offset,
+            'supergroup_id' => $this->supergroupId,
         ];
     }
 }

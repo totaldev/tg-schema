@@ -29,8 +29,8 @@ class ToggleGroupCallScreenSharingIsPaused extends TdFunction
     public static function fromArray(array $array): ToggleGroupCallScreenSharingIsPaused
     {
         return new static(
-            $array['group_call_id'],
-            $array['is_paused'],
+            groupCallId: $array['group_call_id'],
+            isPaused   : $array['is_paused'],
         );
     }
 

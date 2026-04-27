@@ -18,13 +18,13 @@ class UpdateChatBoost extends Update
 
     public function __construct(
         /**
-         * Chat identifier.
-         */
-        protected int       $chatId,
-        /**
          * New information about the boost.
          */
         protected ChatBoost $boost,
+        /**
+         * Chat identifier.
+         */
+        protected int       $chatId,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class UpdateChatBoost extends Update
     public static function fromArray(array $array): UpdateChatBoost
     {
         return new static(
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['boost']),
+            boost : TdSchemaRegistry::fromArray($array['boost']),
+            chatId: $array['chat_id'],
         );
     }
 
@@ -65,8 +65,8 @@ class UpdateChatBoost extends Update
     {
         return [
             '@type'   => static::TYPE_NAME,
+            'boost'   => $this->boost->jsonSerialize(),
             'chat_id' => $this->chatId,
-            'boost'   => $this->boost->typeSerialize(),
         ];
     }
 }

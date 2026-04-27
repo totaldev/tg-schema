@@ -18,21 +18,21 @@ class InputMessageDocument extends InputMessageContent
 
     public function __construct(
         /**
-         * Document to be sent.
-         */
-        protected InputFile       $document,
-        /**
          * Pass true to disable automatic file type detection and send the document as a file. Always true for files sent to secret chats.
          */
         protected bool            $disableContentTypeDetection,
         /**
-         * Document thumbnail; pass null to skip thumbnail uploading.
+         * Document to be sent.
          */
-        protected ?InputThumbnail $thumbnail = null,
+        protected InputFile       $document,
         /**
          * Document caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters.
          */
         protected ?FormattedText  $caption = null,
+        /**
+         * Document thumbnail; pass null to skip thumbnail uploading.
+         */
+        protected ?InputThumbnail $thumbnail = null,
     ) {
         parent::__construct();
     }
@@ -40,10 +40,10 @@ class InputMessageDocument extends InputMessageContent
     public static function fromArray(array $array): InputMessageDocument
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['document']),
-            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
-            $array['disable_content_type_detection'],
-            isset($array['caption']) ? TdSchemaRegistry::fromArray($array['caption']) : null,
+            caption                    : (isset($array['caption']) ? TdSchemaRegistry::fromArray($array['caption']) : null),
+            disableContentTypeDetection: $array['disable_content_type_detection'],
+            document                   : TdSchemaRegistry::fromArray($array['document']),
+            thumbnail                  : (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
         );
     }
 
@@ -99,10 +99,10 @@ class InputMessageDocument extends InputMessageContent
     {
         return [
             '@type'                          => static::TYPE_NAME,
-            'document'                       => $this->document->typeSerialize(),
-            'thumbnail'                      => $this->thumbnail ?? null,
+            'caption'                        => (null !== $this->caption ? $this->caption->jsonSerialize() : null),
             'disable_content_type_detection' => $this->disableContentTypeDetection,
-            'caption'                        => $this->caption ?? null,
+            'document'                       => $this->document->jsonSerialize(),
+            'thumbnail'                      => (null !== $this->thumbnail ? $this->thumbnail->jsonSerialize() : null),
         ];
     }
 }

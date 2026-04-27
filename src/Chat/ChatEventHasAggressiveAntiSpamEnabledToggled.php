@@ -25,7 +25,7 @@ class ChatEventHasAggressiveAntiSpamEnabledToggled extends ChatEventAction
     public static function fromArray(array $array): ChatEventHasAggressiveAntiSpamEnabledToggled
     {
         return new static(
-            $array['has_aggressive_anti_spam_enabled'],
+            hasAggressiveAntiSpamEnabled: $array['has_aggressive_anti_spam_enabled'],
         );
     }
 

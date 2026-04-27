@@ -25,7 +25,7 @@ class GetReceivedGift extends TdFunction
     public static function fromArray(array $array): GetReceivedGift
     {
         return new static(
-            $array['received_gift_id'],
+            receivedGiftId: $array['received_gift_id'],
         );
     }
 

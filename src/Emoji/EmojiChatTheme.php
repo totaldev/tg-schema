@@ -19,25 +19,25 @@ class EmojiChatTheme extends TdObject
 
     public function __construct(
         /**
-         * Theme name.
+         * Theme settings for a dark chat theme.
          */
-        protected string        $name,
+        protected ThemeSettings $darkSettings,
         /**
          * Theme settings for a light chat theme.
          */
         protected ThemeSettings $lightSettings,
         /**
-         * Theme settings for a dark chat theme.
+         * Theme name.
          */
-        protected ThemeSettings $darkSettings,
+        protected string        $name,
     ) {}
 
     public static function fromArray(array $array): EmojiChatTheme
     {
         return new static(
-            $array['name'],
-            TdSchemaRegistry::fromArray($array['light_settings']),
-            TdSchemaRegistry::fromArray($array['dark_settings']),
+            darkSettings : TdSchemaRegistry::fromArray($array['dark_settings']),
+            lightSettings: TdSchemaRegistry::fromArray($array['light_settings']),
+            name         : $array['name'],
         );
     }
 
@@ -81,9 +81,9 @@ class EmojiChatTheme extends TdObject
     {
         return [
             '@type'          => static::TYPE_NAME,
+            'dark_settings'  => $this->darkSettings->jsonSerialize(),
+            'light_settings' => $this->lightSettings->jsonSerialize(),
             'name'           => $this->name,
-            'light_settings' => $this->lightSettings->typeSerialize(),
-            'dark_settings'  => $this->darkSettings->typeSerialize(),
         ];
     }
 }

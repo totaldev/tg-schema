@@ -18,21 +18,21 @@ class PushMessageContentPhoto extends PushMessageContent
 
     public function __construct(
         /**
-         * Message content; may be null.
-         */
-        protected ?Photo $photo,
-        /**
          * Photo caption.
          */
         protected string $caption,
+        /**
+         * True, if the message is a pinned message with the specified content.
+         */
+        protected bool   $isPinned,
         /**
          * True, if the photo is secret.
          */
         protected bool   $isSecret,
         /**
-         * True, if the message is a pinned message with the specified content.
+         * Message content; may be null.
          */
-        protected bool   $isPinned,
+        protected ?Photo $photo,
     ) {
         parent::__construct();
     }
@@ -40,10 +40,10 @@ class PushMessageContentPhoto extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentPhoto
     {
         return new static(
-            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
-            $array['caption'],
-            $array['is_secret'],
-            $array['is_pinned'],
+            caption : $array['caption'],
+            isPinned: $array['is_pinned'],
+            isSecret: $array['is_secret'],
+            photo   : (isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null),
         );
     }
 
@@ -99,10 +99,10 @@ class PushMessageContentPhoto extends PushMessageContent
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'photo'     => $this->photo ?? null,
             'caption'   => $this->caption,
-            'is_secret' => $this->isSecret,
             'is_pinned' => $this->isPinned,
+            'is_secret' => $this->isSecret,
+            'photo'     => (null !== $this->photo ? $this->photo->jsonSerialize() : null),
         ];
     }
 }

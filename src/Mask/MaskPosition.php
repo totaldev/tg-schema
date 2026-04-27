@@ -22,6 +22,10 @@ class MaskPosition extends TdObject
          */
         protected MaskPoint $point,
         /**
+         * Mask scaling coefficient. (For example, 2.0 means a doubled size).
+         */
+        protected float     $scale,
+        /**
          * Shift by X-axis measured in widths of the mask scaled to the face size, from left to right. (For example, -1.0 will place the mask just to the left of the default mask position).
          */
         protected float     $xShift,
@@ -29,19 +33,15 @@ class MaskPosition extends TdObject
          * Shift by Y-axis measured in heights of the mask scaled to the face size, from top to bottom. (For example, 1.0 will place the mask just below the default mask position).
          */
         protected float     $yShift,
-        /**
-         * Mask scaling coefficient. (For example, 2.0 means a doubled size).
-         */
-        protected float     $scale,
     ) {}
 
     public static function fromArray(array $array): MaskPosition
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['point']),
-            $array['x_shift'],
-            $array['y_shift'],
-            $array['scale'],
+            point : TdSchemaRegistry::fromArray($array['point']),
+            scale : $array['scale'],
+            xShift: $array['x_shift'],
+            yShift: $array['y_shift'],
         );
     }
 
@@ -97,10 +97,10 @@ class MaskPosition extends TdObject
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'point'   => $this->point->typeSerialize(),
+            'point'   => $this->point->jsonSerialize(),
+            'scale'   => $this->scale,
             'x_shift' => $this->xShift,
             'y_shift' => $this->yShift,
-            'scale'   => $this->scale,
         ];
     }
 }

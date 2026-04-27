@@ -27,46 +27,46 @@ class SearchChatMessages extends TdFunction
          */
         protected int                   $chatId,
         /**
-         * Query to search for.
-         */
-        protected string                $query,
-        /**
          * Identifier of the message starting from which history must be fetched; use 0 to get results from the last message.
          */
         protected int                   $fromMessageId,
-        /**
-         * Specify 0 to get results from exactly the message from_message_id or a negative number to get the specified message and some newer messages.
-         */
-        protected int                   $offset,
         /**
          * The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, then the limit must be greater than -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit.
          */
         protected int                   $limit,
         /**
-         * Pass topic identifier to search messages only in specific topic; pass null to search for messages in all topics.
+         * Specify 0 to get results from exactly the message from_message_id or a negative number to get the specified message and some newer messages.
          */
-        protected ?MessageTopic         $topicId = null,
+        protected int                   $offset,
+        /**
+         * Query to search for.
+         */
+        protected string                $query,
+        /**
+         * Additional filter for messages to search; pass null to search for all messages.
+         */
+        protected ?SearchMessagesFilter $filter = null,
         /**
          * Identifier of the sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats.
          */
         protected ?MessageSender        $senderId = null,
         /**
-         * Additional filter for messages to search; pass null to search for all messages.
+         * Pass topic identifier to search messages only in specific topic; pass null to search for messages in all topics.
          */
-        protected ?SearchMessagesFilter $filter = null,
+        protected ?MessageTopic         $topicId = null,
     ) {}
 
     public static function fromArray(array $array): SearchChatMessages
     {
         return new static(
-            $array['chat_id'],
-            isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null,
-            $array['query'],
-            isset($array['sender_id']) ? TdSchemaRegistry::fromArray($array['sender_id']) : null,
-            $array['from_message_id'],
-            $array['offset'],
-            $array['limit'],
-            isset($array['filter']) ? TdSchemaRegistry::fromArray($array['filter']) : null,
+            chatId       : $array['chat_id'],
+            filter       : (isset($array['filter']) ? TdSchemaRegistry::fromArray($array['filter']) : null),
+            fromMessageId: $array['from_message_id'],
+            limit        : $array['limit'],
+            offset       : $array['offset'],
+            query        : $array['query'],
+            senderId     : (isset($array['sender_id']) ? TdSchemaRegistry::fromArray($array['sender_id']) : null),
+            topicId      : (isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null),
         );
     }
 
@@ -171,13 +171,13 @@ class SearchChatMessages extends TdFunction
         return [
             '@type'           => static::TYPE_NAME,
             'chat_id'         => $this->chatId,
-            'topic_id'        => $this->topicId ?? null,
-            'query'           => $this->query,
-            'sender_id'       => $this->senderId ?? null,
+            'filter'          => (null !== $this->filter ? $this->filter->jsonSerialize() : null),
             'from_message_id' => $this->fromMessageId,
-            'offset'          => $this->offset,
             'limit'           => $this->limit,
-            'filter'          => $this->filter ?? null,
+            'offset'          => $this->offset,
+            'query'           => $this->query,
+            'sender_id'       => (null !== $this->senderId ? $this->senderId->jsonSerialize() : null),
+            'topic_id'        => (null !== $this->topicId ? $this->topicId->jsonSerialize() : null),
         ];
     }
 }

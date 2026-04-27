@@ -17,6 +17,10 @@ class ShareUsersWithBot extends TdFunction
 
     public function __construct(
         /**
+         * Identifier of the button.
+         */
+        protected int   $buttonId,
+        /**
          * Identifier of the chat with the bot.
          */
         protected int   $chatId,
@@ -25,29 +29,25 @@ class ShareUsersWithBot extends TdFunction
          */
         protected int   $messageId,
         /**
-         * Identifier of the button.
+         * Pass true to check that the users can be shared by the button instead of actually sharing them.
          */
-        protected int   $buttonId,
+        protected bool  $onlyCheck,
         /**
          * Identifiers of the shared users.
          *
          * @var int[]
          */
         protected array $sharedUserIds,
-        /**
-         * Pass true to check that the users can be shared by the button instead of actually sharing them.
-         */
-        protected bool  $onlyCheck,
     ) {}
 
     public static function fromArray(array $array): ShareUsersWithBot
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            $array['button_id'],
-            $array['shared_user_ids'],
-            $array['only_check'],
+            buttonId     : $array['button_id'],
+            chatId       : $array['chat_id'],
+            messageId    : $array['message_id'],
+            onlyCheck    : $array['only_check'],
+            sharedUserIds: $array['shared_user_ids'],
         );
     }
 
@@ -115,11 +115,11 @@ class ShareUsersWithBot extends TdFunction
     {
         return [
             '@type'           => static::TYPE_NAME,
+            'button_id'       => $this->buttonId,
             'chat_id'         => $this->chatId,
             'message_id'      => $this->messageId,
-            'button_id'       => $this->buttonId,
-            'shared_user_ids' => $this->sharedUserIds,
             'only_check'      => $this->onlyCheck,
+            'shared_user_ids' => $this->sharedUserIds,
         ];
     }
 }

@@ -29,8 +29,8 @@ class GetChatSimilarChatCount extends TdFunction
     public static function fromArray(array $array): GetChatSimilarChatCount
     {
         return new static(
-            $array['chat_id'],
-            $array['return_local'],
+            chatId     : $array['chat_id'],
+            returnLocal: $array['return_local'],
         );
     }
 

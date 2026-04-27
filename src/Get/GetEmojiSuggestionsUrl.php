@@ -26,7 +26,7 @@ class GetEmojiSuggestionsUrl extends TdFunction
     public static function fromArray(array $array): GetEmojiSuggestionsUrl
     {
         return new static(
-            $array['language_code'],
+            languageCode: $array['language_code'],
         );
     }
 

@@ -31,8 +31,8 @@ class InputBusinessChatLink extends TdObject
     public static function fromArray(array $array): InputBusinessChatLink
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['text']),
-            $array['title'],
+            text : TdSchemaRegistry::fromArray($array['text']),
+            title: $array['title'],
         );
     }
 
@@ -64,7 +64,7 @@ class InputBusinessChatLink extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            'text'  => $this->text->typeSerialize(),
+            'text'  => $this->text->jsonSerialize(),
             'title' => $this->title,
         ];
     }

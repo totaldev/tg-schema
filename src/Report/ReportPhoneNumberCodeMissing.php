@@ -25,7 +25,7 @@ class ReportPhoneNumberCodeMissing extends TdFunction
     public static function fromArray(array $array): ReportPhoneNumberCodeMissing
     {
         return new static(
-            $array['mobile_network_code'],
+            mobileNetworkCode: $array['mobile_network_code'],
         );
     }
 

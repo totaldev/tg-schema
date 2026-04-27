@@ -29,8 +29,8 @@ class DropGiftOriginalDetails extends TdFunction
     public static function fromArray(array $array): DropGiftOriginalDetails
     {
         return new static(
-            $array['received_gift_id'],
-            $array['star_count'],
+            receivedGiftId: $array['received_gift_id'],
+            starCount     : $array['star_count'],
         );
     }
 

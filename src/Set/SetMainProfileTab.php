@@ -27,7 +27,7 @@ class SetMainProfileTab extends TdFunction
     public static function fromArray(array $array): SetMainProfileTab
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['main_profile_tab']),
+            mainProfileTab: TdSchemaRegistry::fromArray($array['main_profile_tab']),
         );
     }
 
@@ -47,7 +47,7 @@ class SetMainProfileTab extends TdFunction
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'main_profile_tab' => $this->mainProfileTab->typeSerialize(),
+            'main_profile_tab' => $this->mainProfileTab->jsonSerialize(),
         ];
     }
 }

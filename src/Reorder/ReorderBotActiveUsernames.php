@@ -31,8 +31,8 @@ class ReorderBotActiveUsernames extends TdFunction
     public static function fromArray(array $array): ReorderBotActiveUsernames
     {
         return new static(
-            $array['bot_user_id'],
-            $array['usernames'],
+            botUserId: $array['bot_user_id'],
+            usernames: $array['usernames'],
         );
     }
 

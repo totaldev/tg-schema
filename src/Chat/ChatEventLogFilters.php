@@ -17,17 +17,21 @@ class ChatEventLogFilters extends TdObject
 
     public function __construct(
         /**
-         * True, if message edits need to be returned.
+         * True, if forum-related actions need to be returned.
          */
-        protected bool $messageEdits,
+        protected bool $forumChanges,
         /**
-         * True, if message deletions need to be returned.
+         * True, if changes in chat information need to be returned.
          */
-        protected bool $messageDeletions,
+        protected bool $infoChanges,
         /**
-         * True, if pin/unpin events need to be returned.
+         * True, if changes to invite links need to be returned.
          */
-        protected bool $messagePins,
+        protected bool $inviteLinkChanges,
+        /**
+         * True, if invited member events need to be returned.
+         */
+        protected bool $memberInvites,
         /**
          * True, if members joining events need to be returned.
          */
@@ -37,10 +41,6 @@ class ChatEventLogFilters extends TdObject
          */
         protected bool $memberLeaves,
         /**
-         * True, if invited member events need to be returned.
-         */
-        protected bool $memberInvites,
-        /**
          * True, if member promotion/demotion events need to be returned.
          */
         protected bool $memberPromotions,
@@ -49,48 +49,48 @@ class ChatEventLogFilters extends TdObject
          */
         protected bool $memberRestrictions,
         /**
-         * True, if changes in chat information need to be returned.
+         * True, if message deletions need to be returned.
          */
-        protected bool $infoChanges,
+        protected bool $messageDeletions,
+        /**
+         * True, if message edits need to be returned.
+         */
+        protected bool $messageEdits,
+        /**
+         * True, if pin/unpin events need to be returned.
+         */
+        protected bool $messagePins,
         /**
          * True, if changes in chat settings need to be returned.
          */
         protected bool $settingChanges,
         /**
-         * True, if changes to invite links need to be returned.
+         * True, if subscription extensions need to be returned.
          */
-        protected bool $inviteLinkChanges,
+        protected bool $subscriptionExtensions,
         /**
          * True, if video chat actions need to be returned.
          */
         protected bool $videoChatChanges,
-        /**
-         * True, if forum-related actions need to be returned.
-         */
-        protected bool $forumChanges,
-        /**
-         * True, if subscription extensions need to be returned.
-         */
-        protected bool $subscriptionExtensions,
     ) {}
 
     public static function fromArray(array $array): ChatEventLogFilters
     {
         return new static(
-            $array['message_edits'],
-            $array['message_deletions'],
-            $array['message_pins'],
-            $array['member_joins'],
-            $array['member_leaves'],
-            $array['member_invites'],
-            $array['member_promotions'],
-            $array['member_restrictions'],
-            $array['info_changes'],
-            $array['setting_changes'],
-            $array['invite_link_changes'],
-            $array['video_chat_changes'],
-            $array['forum_changes'],
-            $array['subscription_extensions'],
+            forumChanges          : $array['forum_changes'],
+            infoChanges           : $array['info_changes'],
+            inviteLinkChanges     : $array['invite_link_changes'],
+            memberInvites         : $array['member_invites'],
+            memberJoins           : $array['member_joins'],
+            memberLeaves          : $array['member_leaves'],
+            memberPromotions      : $array['member_promotions'],
+            memberRestrictions    : $array['member_restrictions'],
+            messageDeletions      : $array['message_deletions'],
+            messageEdits          : $array['message_edits'],
+            messagePins           : $array['message_pins'],
+            settingChanges        : $array['setting_changes'],
+            subscriptionExtensions: $array['subscription_extensions'],
+            videoChatChanges      : $array['video_chat_changes'],
         );
     }
 
@@ -266,20 +266,20 @@ class ChatEventLogFilters extends TdObject
     {
         return [
             '@type'                   => static::TYPE_NAME,
-            'message_edits'           => $this->messageEdits,
-            'message_deletions'       => $this->messageDeletions,
-            'message_pins'            => $this->messagePins,
+            'forum_changes'           => $this->forumChanges,
+            'info_changes'            => $this->infoChanges,
+            'invite_link_changes'     => $this->inviteLinkChanges,
+            'member_invites'          => $this->memberInvites,
             'member_joins'            => $this->memberJoins,
             'member_leaves'           => $this->memberLeaves,
-            'member_invites'          => $this->memberInvites,
             'member_promotions'       => $this->memberPromotions,
             'member_restrictions'     => $this->memberRestrictions,
-            'info_changes'            => $this->infoChanges,
+            'message_deletions'       => $this->messageDeletions,
+            'message_edits'           => $this->messageEdits,
+            'message_pins'            => $this->messagePins,
             'setting_changes'         => $this->settingChanges,
-            'invite_link_changes'     => $this->inviteLinkChanges,
-            'video_chat_changes'      => $this->videoChatChanges,
-            'forum_changes'           => $this->forumChanges,
             'subscription_extensions' => $this->subscriptionExtensions,
+            'video_chat_changes'      => $this->videoChatChanges,
         ];
     }
 }

@@ -18,32 +18,32 @@ class StorageStatisticsByChat extends TdObject
 
     public function __construct(
         /**
-         * Chat identifier; 0 if none.
-         */
-        protected int   $chatId,
-        /**
-         * Total size of the files in the chat, in bytes.
-         */
-        protected int   $size,
-        /**
-         * Total number of files in the chat.
-         */
-        protected int   $count,
-        /**
          * Statistics split by file types.
          *
          * @var StorageStatisticsByFileType[]
          */
         protected array $byFileType,
+        /**
+         * Chat identifier; 0 if none.
+         */
+        protected int   $chatId,
+        /**
+         * Total number of files in the chat.
+         */
+        protected int   $count,
+        /**
+         * Total size of the files in the chat, in bytes.
+         */
+        protected int   $size,
     ) {}
 
     public static function fromArray(array $array): StorageStatisticsByChat
     {
         return new static(
-            $array['chat_id'],
-            $array['size'],
-            $array['count'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['by_file_type']),
+            byFileType: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['by_file_type']),
+            chatId    : $array['chat_id'],
+            count     : $array['count'],
+            size      : $array['size'],
         );
     }
 
@@ -99,10 +99,10 @@ class StorageStatisticsByChat extends TdObject
     {
         return [
             '@type'        => static::TYPE_NAME,
+            'by_file_type' => array_map(static fn($x) => $x->jsonSerialize(), $this->byFileType),
             'chat_id'      => $this->chatId,
-            'size'         => $this->size,
             'count'        => $this->count,
-            'by_file_type' => array_map(static fn($x) => $x->typeSerialize(), $this->byFileType),
+            'size'         => $this->size,
         ];
     }
 }

@@ -15,13 +15,13 @@ class InputCredentialsNew extends InputCredentials
 
     public function __construct(
         /**
-         * JSON-encoded data with the credential identifier from the payment provider.
-         */
-        protected string $data,
-        /**
          * True, if the credential identifier can be saved on the server side.
          */
         protected bool   $allowSave,
+        /**
+         * JSON-encoded data with the credential identifier from the payment provider.
+         */
+        protected string $data,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class InputCredentialsNew extends InputCredentials
     public static function fromArray(array $array): InputCredentialsNew
     {
         return new static(
-            $array['data'],
-            $array['allow_save'],
+            allowSave: $array['allow_save'],
+            data     : $array['data'],
         );
     }
 
@@ -62,8 +62,8 @@ class InputCredentialsNew extends InputCredentials
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'data'       => $this->data,
             'allow_save' => $this->allowSave,
+            'data'       => $this->data,
         ];
     }
 }

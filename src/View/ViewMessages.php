@@ -25,15 +25,15 @@ class ViewMessages extends TdFunction
          */
         protected int            $chatId,
         /**
+         * Pass true to mark as read the specified messages even if the chat is closed.
+         */
+        protected bool           $forceRead,
+        /**
          * The identifiers of the messages being viewed.
          *
          * @var int[]
          */
         protected array          $messageIds,
-        /**
-         * Pass true to mark as read the specified messages even if the chat is closed.
-         */
-        protected bool           $forceRead,
         /**
          * Source of the message view; pass null to guess the source based on chat open state.
          */
@@ -43,10 +43,10 @@ class ViewMessages extends TdFunction
     public static function fromArray(array $array): ViewMessages
     {
         return new static(
-            $array['chat_id'],
-            $array['message_ids'],
-            isset($array['source']) ? TdSchemaRegistry::fromArray($array['source']) : null,
-            $array['force_read'],
+            chatId    : $array['chat_id'],
+            forceRead : $array['force_read'],
+            messageIds: $array['message_ids'],
+            source    : (isset($array['source']) ? TdSchemaRegistry::fromArray($array['source']) : null),
         );
     }
 
@@ -103,9 +103,9 @@ class ViewMessages extends TdFunction
         return [
             '@type'       => static::TYPE_NAME,
             'chat_id'     => $this->chatId,
-            'message_ids' => $this->messageIds,
-            'source'      => $this->source ?? null,
             'force_read'  => $this->forceRead,
+            'message_ids' => $this->messageIds,
+            'source'      => (null !== $this->source ? $this->source->jsonSerialize() : null),
         ];
     }
 }

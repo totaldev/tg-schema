@@ -32,8 +32,8 @@ class SetMessageSenderBlockList extends TdFunction
     public static function fromArray(array $array): SetMessageSenderBlockList
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['sender_id']),
-            isset($array['block_list']) ? TdSchemaRegistry::fromArray($array['block_list']) : null,
+            blockList: (isset($array['block_list']) ? TdSchemaRegistry::fromArray($array['block_list']) : null),
+            senderId : TdSchemaRegistry::fromArray($array['sender_id']),
         );
     }
 
@@ -65,8 +65,8 @@ class SetMessageSenderBlockList extends TdFunction
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'sender_id'  => $this->senderId->typeSerialize(),
-            'block_list' => $this->blockList ?? null,
+            'block_list' => (null !== $this->blockList ? $this->blockList->jsonSerialize() : null),
+            'sender_id'  => $this->senderId->jsonSerialize(),
         ];
     }
 }

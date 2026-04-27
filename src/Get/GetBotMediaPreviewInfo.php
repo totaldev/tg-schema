@@ -29,8 +29,8 @@ class GetBotMediaPreviewInfo extends TdFunction
     public static function fromArray(array $array): GetBotMediaPreviewInfo
     {
         return new static(
-            $array['bot_user_id'],
-            $array['language_code'],
+            botUserId   : $array['bot_user_id'],
+            languageCode: $array['language_code'],
         );
     }
 

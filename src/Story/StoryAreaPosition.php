@@ -17,17 +17,9 @@ class StoryAreaPosition extends TdObject
 
     public function __construct(
         /**
-         * The abscissa of the rectangle's center, as a percentage of the media width.
+         * The radius of the rectangle corner rounding, as a percentage of the media width.
          */
-        protected float $xPercentage,
-        /**
-         * The ordinate of the rectangle's center, as a percentage of the media height.
-         */
-        protected float $yPercentage,
-        /**
-         * The width of the rectangle, as a percentage of the media width.
-         */
-        protected float $widthPercentage,
+        protected float $cornerRadiusPercentage,
         /**
          * The height of the rectangle, as a percentage of the media height.
          */
@@ -37,20 +29,28 @@ class StoryAreaPosition extends TdObject
          */
         protected float $rotationAngle,
         /**
-         * The radius of the rectangle corner rounding, as a percentage of the media width.
+         * The width of the rectangle, as a percentage of the media width.
          */
-        protected float $cornerRadiusPercentage,
+        protected float $widthPercentage,
+        /**
+         * The abscissa of the rectangle's center, as a percentage of the media width.
+         */
+        protected float $xPercentage,
+        /**
+         * The ordinate of the rectangle's center, as a percentage of the media height.
+         */
+        protected float $yPercentage,
     ) {}
 
     public static function fromArray(array $array): StoryAreaPosition
     {
         return new static(
-            $array['x_percentage'],
-            $array['y_percentage'],
-            $array['width_percentage'],
-            $array['height_percentage'],
-            $array['rotation_angle'],
-            $array['corner_radius_percentage'],
+            cornerRadiusPercentage: $array['corner_radius_percentage'],
+            heightPercentage      : $array['height_percentage'],
+            rotationAngle         : $array['rotation_angle'],
+            widthPercentage       : $array['width_percentage'],
+            xPercentage           : $array['x_percentage'],
+            yPercentage           : $array['y_percentage'],
         );
     }
 
@@ -130,12 +130,12 @@ class StoryAreaPosition extends TdObject
     {
         return [
             '@type'                    => static::TYPE_NAME,
-            'x_percentage'             => $this->xPercentage,
-            'y_percentage'             => $this->yPercentage,
-            'width_percentage'         => $this->widthPercentage,
+            'corner_radius_percentage' => $this->cornerRadiusPercentage,
             'height_percentage'        => $this->heightPercentage,
             'rotation_angle'           => $this->rotationAngle,
-            'corner_radius_percentage' => $this->cornerRadiusPercentage,
+            'width_percentage'         => $this->widthPercentage,
+            'x_percentage'             => $this->xPercentage,
+            'y_percentage'             => $this->yPercentage,
         ];
     }
 }

@@ -38,9 +38,9 @@ class PreliminaryUploadFile extends TdFunction
     public static function fromArray(array $array): PreliminaryUploadFile
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['file']),
-            isset($array['file_type']) ? TdSchemaRegistry::fromArray($array['file_type']) : null,
-            $array['priority'],
+            file    : TdSchemaRegistry::fromArray($array['file']),
+            fileType: (isset($array['file_type']) ? TdSchemaRegistry::fromArray($array['file_type']) : null),
+            priority: $array['priority'],
         );
     }
 
@@ -84,8 +84,8 @@ class PreliminaryUploadFile extends TdFunction
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'file'      => $this->file->typeSerialize(),
-            'file_type' => $this->fileType ?? null,
+            'file'      => $this->file->jsonSerialize(),
+            'file_type' => (null !== $this->fileType ? $this->fileType->jsonSerialize() : null),
             'priority'  => $this->priority,
         ];
     }

@@ -22,13 +22,13 @@ class UpdateMessageFactCheck extends Update
          */
         protected int       $chatId,
         /**
-         * Message identifier.
-         */
-        protected int       $messageId,
-        /**
          * The new fact-check.
          */
         protected FactCheck $factCheck,
+        /**
+         * Message identifier.
+         */
+        protected int       $messageId,
     ) {
         parent::__construct();
     }
@@ -36,9 +36,9 @@ class UpdateMessageFactCheck extends Update
     public static function fromArray(array $array): UpdateMessageFactCheck
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            TdSchemaRegistry::fromArray($array['fact_check']),
+            chatId   : $array['chat_id'],
+            factCheck: TdSchemaRegistry::fromArray($array['fact_check']),
+            messageId: $array['message_id'],
         );
     }
 
@@ -83,8 +83,8 @@ class UpdateMessageFactCheck extends Update
         return [
             '@type'      => static::TYPE_NAME,
             'chat_id'    => $this->chatId,
+            'fact_check' => $this->factCheck->jsonSerialize(),
             'message_id' => $this->messageId,
-            'fact_check' => $this->factCheck->typeSerialize(),
         ];
     }
 }

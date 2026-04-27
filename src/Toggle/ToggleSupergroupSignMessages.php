@@ -17,25 +17,25 @@ class ToggleSupergroupSignMessages extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the channel.
+         * New value of show_message_sender.
          */
-        protected int  $supergroupId,
+        protected bool $showMessageSender,
         /**
          * New value of sign_messages.
          */
         protected bool $signMessages,
         /**
-         * New value of show_message_sender.
+         * Identifier of the channel.
          */
-        protected bool $showMessageSender,
+        protected int  $supergroupId,
     ) {}
 
     public static function fromArray(array $array): ToggleSupergroupSignMessages
     {
         return new static(
-            $array['supergroup_id'],
-            $array['sign_messages'],
-            $array['show_message_sender'],
+            showMessageSender: $array['show_message_sender'],
+            signMessages     : $array['sign_messages'],
+            supergroupId     : $array['supergroup_id'],
         );
     }
 
@@ -79,9 +79,9 @@ class ToggleSupergroupSignMessages extends TdFunction
     {
         return [
             '@type'               => static::TYPE_NAME,
-            'supergroup_id'       => $this->supergroupId,
-            'sign_messages'       => $this->signMessages,
             'show_message_sender' => $this->showMessageSender,
+            'sign_messages'       => $this->signMessages,
+            'supergroup_id'       => $this->supergroupId,
         ];
     }
 }

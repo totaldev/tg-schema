@@ -28,7 +28,7 @@ class SpeechRecognitionResultError extends SpeechRecognitionResult
     public static function fromArray(array $array): SpeechRecognitionResultError
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['error']),
+            error: TdSchemaRegistry::fromArray($array['error']),
         );
     }
 
@@ -48,7 +48,7 @@ class SpeechRecognitionResultError extends SpeechRecognitionResult
     {
         return [
             '@type' => static::TYPE_NAME,
-            'error' => $this->error->typeSerialize(),
+            'error' => $this->error->jsonSerialize(),
         ];
     }
 }

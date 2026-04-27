@@ -25,7 +25,7 @@ class GetUser extends TdFunction
     public static function fromArray(array $array): GetUser
     {
         return new static(
-            $array['user_id'],
+            userId: $array['user_id'],
         );
     }
 

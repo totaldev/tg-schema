@@ -17,20 +17,20 @@ class RtmpUrl extends TdObject
 
     public function __construct(
         /**
-         * The URL.
-         */
-        protected string $url,
-        /**
          * Stream key.
          */
         protected string $streamKey,
+        /**
+         * The URL.
+         */
+        protected string $url,
     ) {}
 
     public static function fromArray(array $array): RtmpUrl
     {
         return new static(
-            $array['url'],
-            $array['stream_key'],
+            streamKey: $array['stream_key'],
+            url      : $array['url'],
         );
     }
 
@@ -62,8 +62,8 @@ class RtmpUrl extends TdObject
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'url'        => $this->url,
             'stream_key' => $this->streamKey,
+            'url'        => $this->url,
         ];
     }
 }

@@ -19,22 +19,22 @@ class ReorderGiftCollections extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the user or the channel chat that owns the collection.
-         */
-        protected MessageSender $ownerId,
-        /**
          * New order of gift collections.
          *
          * @var int[]
          */
         protected array         $collectionIds,
+        /**
+         * Identifier of the user or the channel chat that owns the collection.
+         */
+        protected MessageSender $ownerId,
     ) {}
 
     public static function fromArray(array $array): ReorderGiftCollections
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['owner_id']),
-            $array['collection_ids'],
+            collectionIds: $array['collection_ids'],
+            ownerId      : TdSchemaRegistry::fromArray($array['owner_id']),
         );
     }
 
@@ -66,8 +66,8 @@ class ReorderGiftCollections extends TdFunction
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'owner_id'       => $this->ownerId->typeSerialize(),
             'collection_ids' => $this->collectionIds,
+            'owner_id'       => $this->ownerId->jsonSerialize(),
         ];
     }
 }

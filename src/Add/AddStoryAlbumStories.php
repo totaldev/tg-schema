@@ -36,9 +36,9 @@ class AddStoryAlbumStories extends TdFunction
     public static function fromArray(array $array): AddStoryAlbumStories
     {
         return new static(
-            $array['chat_id'],
-            $array['story_album_id'],
-            $array['story_ids'],
+            chatId      : $array['chat_id'],
+            storyAlbumId: $array['story_album_id'],
+            storyIds    : $array['story_ids'],
         );
     }
 

@@ -18,13 +18,13 @@ class ChatEventForumTopicPinned extends ChatEventAction
 
     public function __construct(
         /**
-         * Information about the old pinned topic; may be null.
-         */
-        protected ?ForumTopicInfo $oldTopicInfo,
-        /**
          * Information about the new pinned topic; may be null.
          */
         protected ?ForumTopicInfo $newTopicInfo,
+        /**
+         * Information about the old pinned topic; may be null.
+         */
+        protected ?ForumTopicInfo $oldTopicInfo,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class ChatEventForumTopicPinned extends ChatEventAction
     public static function fromArray(array $array): ChatEventForumTopicPinned
     {
         return new static(
-            isset($array['old_topic_info']) ? TdSchemaRegistry::fromArray($array['old_topic_info']) : null,
-            isset($array['new_topic_info']) ? TdSchemaRegistry::fromArray($array['new_topic_info']) : null,
+            newTopicInfo: (isset($array['new_topic_info']) ? TdSchemaRegistry::fromArray($array['new_topic_info']) : null),
+            oldTopicInfo: (isset($array['old_topic_info']) ? TdSchemaRegistry::fromArray($array['old_topic_info']) : null),
         );
     }
 
@@ -65,8 +65,8 @@ class ChatEventForumTopicPinned extends ChatEventAction
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'old_topic_info' => $this->oldTopicInfo ?? null,
-            'new_topic_info' => $this->newTopicInfo ?? null,
+            'new_topic_info' => (null !== $this->newTopicInfo ? $this->newTopicInfo->jsonSerialize() : null),
+            'old_topic_info' => (null !== $this->oldTopicInfo ? $this->oldTopicInfo->jsonSerialize() : null),
         ];
     }
 }

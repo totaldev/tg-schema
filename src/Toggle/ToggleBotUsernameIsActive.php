@@ -22,21 +22,21 @@ class ToggleBotUsernameIsActive extends TdFunction
          */
         protected int    $botUserId,
         /**
-         * The username to change.
-         */
-        protected string $username,
-        /**
          * Pass true to activate the username; pass false to disable it.
          */
         protected bool   $isActive,
+        /**
+         * The username to change.
+         */
+        protected string $username,
     ) {}
 
     public static function fromArray(array $array): ToggleBotUsernameIsActive
     {
         return new static(
-            $array['bot_user_id'],
-            $array['username'],
-            $array['is_active'],
+            botUserId: $array['bot_user_id'],
+            isActive : $array['is_active'],
+            username : $array['username'],
         );
     }
 
@@ -81,8 +81,8 @@ class ToggleBotUsernameIsActive extends TdFunction
         return [
             '@type'       => static::TYPE_NAME,
             'bot_user_id' => $this->botUserId,
-            'username'    => $this->username,
             'is_active'   => $this->isActive,
+            'username'    => $this->username,
         ];
     }
 }

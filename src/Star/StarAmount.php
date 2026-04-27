@@ -17,20 +17,20 @@ class StarAmount extends TdObject
 
     public function __construct(
         /**
-         * The integer amount of Telegram Stars rounded to 0.
-         */
-        protected int $starCount,
-        /**
          * The number of 1/1000000000 shares of Telegram Stars; from -999999999 to 999999999.
          */
         protected int $nanostarCount,
+        /**
+         * The integer amount of Telegram Stars rounded to 0.
+         */
+        protected int $starCount,
     ) {}
 
     public static function fromArray(array $array): StarAmount
     {
         return new static(
-            $array['star_count'],
-            $array['nanostar_count'],
+            nanostarCount: $array['nanostar_count'],
+            starCount    : $array['star_count'],
         );
     }
 
@@ -62,8 +62,8 @@ class StarAmount extends TdObject
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'star_count'     => $this->starCount,
             'nanostar_count' => $this->nanostarCount,
+            'star_count'     => $this->starCount,
         ];
     }
 }

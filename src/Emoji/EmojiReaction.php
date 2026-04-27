@@ -19,37 +19,13 @@ class EmojiReaction extends TdObject
 
     public function __construct(
         /**
-         * Text representation of the reaction.
-         */
-        protected string   $emoji,
-        /**
-         * Reaction title.
-         */
-        protected string   $title,
-        /**
-         * True, if the reaction can be added to new messages and enabled in chats.
-         */
-        protected bool     $isActive,
-        /**
-         * Static icon for the reaction.
-         */
-        protected Sticker  $staticIcon,
-        /**
-         * Appear animation for the reaction.
-         */
-        protected Sticker  $appearAnimation,
-        /**
-         * Select animation for the reaction.
-         */
-        protected Sticker  $selectAnimation,
-        /**
          * Activate animation for the reaction.
          */
         protected Sticker  $activateAnimation,
         /**
-         * Effect animation for the reaction.
+         * Appear animation for the reaction.
          */
-        protected Sticker  $effectAnimation,
+        protected Sticker  $appearAnimation,
         /**
          * Around animation for the reaction; may be null.
          */
@@ -58,21 +34,45 @@ class EmojiReaction extends TdObject
          * Center animation for the reaction; may be null.
          */
         protected ?Sticker $centerAnimation,
+        /**
+         * Effect animation for the reaction.
+         */
+        protected Sticker  $effectAnimation,
+        /**
+         * Text representation of the reaction.
+         */
+        protected string   $emoji,
+        /**
+         * True, if the reaction can be added to new messages and enabled in chats.
+         */
+        protected bool     $isActive,
+        /**
+         * Select animation for the reaction.
+         */
+        protected Sticker  $selectAnimation,
+        /**
+         * Static icon for the reaction.
+         */
+        protected Sticker  $staticIcon,
+        /**
+         * Reaction title.
+         */
+        protected string   $title,
     ) {}
 
     public static function fromArray(array $array): EmojiReaction
     {
         return new static(
-            $array['emoji'],
-            $array['title'],
-            $array['is_active'],
-            TdSchemaRegistry::fromArray($array['static_icon']),
-            TdSchemaRegistry::fromArray($array['appear_animation']),
-            TdSchemaRegistry::fromArray($array['select_animation']),
-            TdSchemaRegistry::fromArray($array['activate_animation']),
-            TdSchemaRegistry::fromArray($array['effect_animation']),
-            isset($array['around_animation']) ? TdSchemaRegistry::fromArray($array['around_animation']) : null,
-            isset($array['center_animation']) ? TdSchemaRegistry::fromArray($array['center_animation']) : null,
+            activateAnimation: TdSchemaRegistry::fromArray($array['activate_animation']),
+            appearAnimation  : TdSchemaRegistry::fromArray($array['appear_animation']),
+            aroundAnimation  : (isset($array['around_animation']) ? TdSchemaRegistry::fromArray($array['around_animation']) : null),
+            centerAnimation  : (isset($array['center_animation']) ? TdSchemaRegistry::fromArray($array['center_animation']) : null),
+            effectAnimation  : TdSchemaRegistry::fromArray($array['effect_animation']),
+            emoji            : $array['emoji'],
+            isActive         : $array['is_active'],
+            selectAnimation  : TdSchemaRegistry::fromArray($array['select_animation']),
+            staticIcon       : TdSchemaRegistry::fromArray($array['static_icon']),
+            title            : $array['title'],
         );
     }
 
@@ -200,16 +200,16 @@ class EmojiReaction extends TdObject
     {
         return [
             '@type'              => static::TYPE_NAME,
+            'activate_animation' => $this->activateAnimation->jsonSerialize(),
+            'appear_animation'   => $this->appearAnimation->jsonSerialize(),
+            'around_animation'   => (null !== $this->aroundAnimation ? $this->aroundAnimation->jsonSerialize() : null),
+            'center_animation'   => (null !== $this->centerAnimation ? $this->centerAnimation->jsonSerialize() : null),
+            'effect_animation'   => $this->effectAnimation->jsonSerialize(),
             'emoji'              => $this->emoji,
-            'title'              => $this->title,
             'is_active'          => $this->isActive,
-            'static_icon'        => $this->staticIcon->typeSerialize(),
-            'appear_animation'   => $this->appearAnimation->typeSerialize(),
-            'select_animation'   => $this->selectAnimation->typeSerialize(),
-            'activate_animation' => $this->activateAnimation->typeSerialize(),
-            'effect_animation'   => $this->effectAnimation->typeSerialize(),
-            'around_animation'   => $this->aroundAnimation ?? null,
-            'center_animation'   => $this->centerAnimation ?? null,
+            'select_animation'   => $this->selectAnimation->jsonSerialize(),
+            'static_icon'        => $this->staticIcon->jsonSerialize(),
+            'title'              => $this->title,
         ];
     }
 }

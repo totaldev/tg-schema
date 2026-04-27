@@ -19,13 +19,13 @@ class LinkPreviewTypeBackground extends LinkPreviewType
 
     public function __construct(
         /**
-         * Document with the background; may be null for filled backgrounds.
-         */
-        protected ?Document       $document,
-        /**
          * Type of the background; may be null if unknown.
          */
         protected ?BackgroundType $backgroundType,
+        /**
+         * Document with the background; may be null for filled backgrounds.
+         */
+        protected ?Document       $document,
     ) {
         parent::__construct();
     }
@@ -33,8 +33,8 @@ class LinkPreviewTypeBackground extends LinkPreviewType
     public static function fromArray(array $array): LinkPreviewTypeBackground
     {
         return new static(
-            isset($array['document']) ? TdSchemaRegistry::fromArray($array['document']) : null,
-            isset($array['background_type']) ? TdSchemaRegistry::fromArray($array['background_type']) : null,
+            backgroundType: (isset($array['background_type']) ? TdSchemaRegistry::fromArray($array['background_type']) : null),
+            document      : (isset($array['document']) ? TdSchemaRegistry::fromArray($array['document']) : null),
         );
     }
 
@@ -66,8 +66,8 @@ class LinkPreviewTypeBackground extends LinkPreviewType
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'document'        => $this->document ?? null,
-            'background_type' => $this->backgroundType ?? null,
+            'background_type' => (null !== $this->backgroundType ? $this->backgroundType->jsonSerialize() : null),
+            'document'        => (null !== $this->document ? $this->document->jsonSerialize() : null),
         ];
     }
 }

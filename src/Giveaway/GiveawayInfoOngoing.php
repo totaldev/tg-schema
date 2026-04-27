@@ -21,13 +21,13 @@ class GiveawayInfoOngoing extends GiveawayInfo
          */
         protected int                       $creationDate,
         /**
-         * Status of the current user in the giveaway.
-         */
-        protected GiveawayParticipantStatus $status,
-        /**
          * True, if the giveaway has ended and results are being prepared.
          */
         protected bool                      $isEnded,
+        /**
+         * Status of the current user in the giveaway.
+         */
+        protected GiveawayParticipantStatus $status,
     ) {
         parent::__construct();
     }
@@ -35,9 +35,9 @@ class GiveawayInfoOngoing extends GiveawayInfo
     public static function fromArray(array $array): GiveawayInfoOngoing
     {
         return new static(
-            $array['creation_date'],
-            TdSchemaRegistry::fromArray($array['status']),
-            $array['is_ended'],
+            creationDate: $array['creation_date'],
+            isEnded     : $array['is_ended'],
+            status      : TdSchemaRegistry::fromArray($array['status']),
         );
     }
 
@@ -82,8 +82,8 @@ class GiveawayInfoOngoing extends GiveawayInfo
         return [
             '@type'         => static::TYPE_NAME,
             'creation_date' => $this->creationDate,
-            'status'        => $this->status->typeSerialize(),
             'is_ended'      => $this->isEnded,
+            'status'        => $this->status->jsonSerialize(),
         ];
     }
 }

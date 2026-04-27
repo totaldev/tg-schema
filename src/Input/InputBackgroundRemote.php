@@ -25,7 +25,7 @@ class InputBackgroundRemote extends InputBackground
     public static function fromArray(array $array): InputBackgroundRemote
     {
         return new static(
-            $array['background_id'],
+            backgroundId: $array['background_id'],
         );
     }
 

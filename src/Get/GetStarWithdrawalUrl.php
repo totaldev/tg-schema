@@ -23,21 +23,21 @@ class GetStarWithdrawalUrl extends TdFunction
          */
         protected MessageSender $ownerId,
         /**
-         * The number of Telegram Stars to withdraw; must be between getOption("star_withdrawal_count_min") and getOption("star_withdrawal_count_max").
-         */
-        protected int           $starCount,
-        /**
          * The 2-step verification password of the current user.
          */
         protected string        $password,
+        /**
+         * The number of Telegram Stars to withdraw; must be between getOption("star_withdrawal_count_min") and getOption("star_withdrawal_count_max").
+         */
+        protected int           $starCount,
     ) {}
 
     public static function fromArray(array $array): GetStarWithdrawalUrl
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['owner_id']),
-            $array['star_count'],
-            $array['password'],
+            ownerId  : TdSchemaRegistry::fromArray($array['owner_id']),
+            password : $array['password'],
+            starCount: $array['star_count'],
         );
     }
 
@@ -81,9 +81,9 @@ class GetStarWithdrawalUrl extends TdFunction
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'owner_id'   => $this->ownerId->typeSerialize(),
-            'star_count' => $this->starCount,
+            'owner_id'   => $this->ownerId->jsonSerialize(),
             'password'   => $this->password,
+            'star_count' => $this->starCount,
         ];
     }
 }

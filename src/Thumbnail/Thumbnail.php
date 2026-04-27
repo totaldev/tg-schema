@@ -19,30 +19,30 @@ class Thumbnail extends TdObject
 
     public function __construct(
         /**
+         * The thumbnail.
+         */
+        protected File            $file,
+        /**
          * Thumbnail format.
          */
         protected ThumbnailFormat $format,
-        /**
-         * Thumbnail width.
-         */
-        protected int             $width,
         /**
          * Thumbnail height.
          */
         protected int             $height,
         /**
-         * The thumbnail.
+         * Thumbnail width.
          */
-        protected File            $file,
+        protected int             $width,
     ) {}
 
     public static function fromArray(array $array): Thumbnail
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['format']),
-            $array['width'],
-            $array['height'],
-            TdSchemaRegistry::fromArray($array['file']),
+            file  : TdSchemaRegistry::fromArray($array['file']),
+            format: TdSchemaRegistry::fromArray($array['format']),
+            height: $array['height'],
+            width : $array['width'],
         );
     }
 
@@ -98,10 +98,10 @@ class Thumbnail extends TdObject
     {
         return [
             '@type'  => static::TYPE_NAME,
-            'format' => $this->format->typeSerialize(),
-            'width'  => $this->width,
+            'file'   => $this->file->jsonSerialize(),
+            'format' => $this->format->jsonSerialize(),
             'height' => $this->height,
-            'file'   => $this->file->typeSerialize(),
+            'width'  => $this->width,
         ];
     }
 }

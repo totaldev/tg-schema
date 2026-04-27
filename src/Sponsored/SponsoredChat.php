@@ -17,9 +17,9 @@ class SponsoredChat extends TdObject
 
     public function __construct(
         /**
-         * Unique identifier of this result.
+         * If non-empty, additional information about the sponsored chat to be shown along with the chat.
          */
-        protected int    $uniqueId,
+        protected string $additionalInfo,
         /**
          * Chat identifier.
          */
@@ -29,18 +29,18 @@ class SponsoredChat extends TdObject
          */
         protected string $sponsorInfo,
         /**
-         * If non-empty, additional information about the sponsored chat to be shown along with the chat.
+         * Unique identifier of this result.
          */
-        protected string $additionalInfo,
+        protected int    $uniqueId,
     ) {}
 
     public static function fromArray(array $array): SponsoredChat
     {
         return new static(
-            $array['unique_id'],
-            $array['chat_id'],
-            $array['sponsor_info'],
-            $array['additional_info'],
+            additionalInfo: $array['additional_info'],
+            chatId        : $array['chat_id'],
+            sponsorInfo   : $array['sponsor_info'],
+            uniqueId      : $array['unique_id'],
         );
     }
 
@@ -96,10 +96,10 @@ class SponsoredChat extends TdObject
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'unique_id'       => $this->uniqueId,
+            'additional_info' => $this->additionalInfo,
             'chat_id'         => $this->chatId,
             'sponsor_info'    => $this->sponsorInfo,
-            'additional_info' => $this->additionalInfo,
+            'unique_id'       => $this->uniqueId,
         ];
     }
 }

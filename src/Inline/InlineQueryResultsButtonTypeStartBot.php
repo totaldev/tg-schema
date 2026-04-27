@@ -25,7 +25,7 @@ class InlineQueryResultsButtonTypeStartBot extends InlineQueryResultsButtonType
     public static function fromArray(array $array): InlineQueryResultsButtonTypeStartBot
     {
         return new static(
-            $array['parameter'],
+            parameter: $array['parameter'],
         );
     }
 

@@ -25,7 +25,7 @@ class CheckRecoveryEmailAddressCode extends TdFunction
     public static function fromArray(array $array): CheckRecoveryEmailAddressCode
     {
         return new static(
-            $array['code'],
+            code: $array['code'],
         );
     }
 

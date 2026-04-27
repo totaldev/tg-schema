@@ -19,10 +19,6 @@ class ImportedContact extends TdObject
 
     public function __construct(
         /**
-         * Phone number of the user.
-         */
-        protected string         $phoneNumber,
-        /**
          * First name of the user; 1-64 characters.
          */
         protected string         $firstName,
@@ -30,6 +26,10 @@ class ImportedContact extends TdObject
          * Last name of the user; 0-64 characters.
          */
         protected string         $lastName,
+        /**
+         * Phone number of the user.
+         */
+        protected string         $phoneNumber,
         /**
          * Note to add about the user; 0-getOption("user_note_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed; pass null to keep the current user's note.
          */
@@ -39,10 +39,10 @@ class ImportedContact extends TdObject
     public static function fromArray(array $array): ImportedContact
     {
         return new static(
-            $array['phone_number'],
-            $array['first_name'],
-            $array['last_name'],
-            isset($array['note']) ? TdSchemaRegistry::fromArray($array['note']) : null,
+            firstName  : $array['first_name'],
+            lastName   : $array['last_name'],
+            note       : (isset($array['note']) ? TdSchemaRegistry::fromArray($array['note']) : null),
+            phoneNumber: $array['phone_number'],
         );
     }
 
@@ -98,10 +98,10 @@ class ImportedContact extends TdObject
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'phone_number' => $this->phoneNumber,
             'first_name'   => $this->firstName,
             'last_name'    => $this->lastName,
-            'note'         => $this->note ?? null,
+            'note'         => (null !== $this->note ? $this->note->jsonSerialize() : null),
+            'phone_number' => $this->phoneNumber,
         ];
     }
 }

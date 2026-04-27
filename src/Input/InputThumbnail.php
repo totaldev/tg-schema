@@ -18,6 +18,10 @@ class InputThumbnail extends TdObject
 
     public function __construct(
         /**
+         * Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown.
+         */
+        protected int       $height,
+        /**
          * Thumbnail file to send. Sending thumbnails by file_id is currently not supported.
          */
         protected InputFile $thumbnail,
@@ -25,18 +29,14 @@ class InputThumbnail extends TdObject
          * Thumbnail width, usually shouldn't exceed 320. Use 0 if unknown.
          */
         protected int       $width,
-        /**
-         * Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown.
-         */
-        protected int       $height,
     ) {}
 
     public static function fromArray(array $array): InputThumbnail
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['thumbnail']),
-            $array['width'],
-            $array['height'],
+            height   : $array['height'],
+            thumbnail: TdSchemaRegistry::fromArray($array['thumbnail']),
+            width    : $array['width'],
         );
     }
 
@@ -80,9 +80,9 @@ class InputThumbnail extends TdObject
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'thumbnail' => $this->thumbnail->typeSerialize(),
-            'width'     => $this->width,
             'height'    => $this->height,
+            'thumbnail' => $this->thumbnail->jsonSerialize(),
+            'width'     => $this->width,
         ];
     }
 }

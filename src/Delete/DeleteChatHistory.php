@@ -34,9 +34,9 @@ class DeleteChatHistory extends TdFunction
     public static function fromArray(array $array): DeleteChatHistory
     {
         return new static(
-            $array['chat_id'],
-            $array['remove_from_chat_list'],
-            $array['revoke'],
+            chatId            : $array['chat_id'],
+            removeFromChatList: $array['remove_from_chat_list'],
+            revoke            : $array['revoke'],
         );
     }
 

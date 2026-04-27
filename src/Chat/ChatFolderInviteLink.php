@@ -17,6 +17,12 @@ class ChatFolderInviteLink extends TdObject
 
     public function __construct(
         /**
+         * Identifiers of chats, included in the link.
+         *
+         * @var int[]
+         */
+        protected array  $chatIds,
+        /**
          * The chat folder invite link.
          */
         protected string $inviteLink,
@@ -24,20 +30,14 @@ class ChatFolderInviteLink extends TdObject
          * Name of the link.
          */
         protected string $name,
-        /**
-         * Identifiers of chats, included in the link.
-         *
-         * @var int[]
-         */
-        protected array  $chatIds,
     ) {}
 
     public static function fromArray(array $array): ChatFolderInviteLink
     {
         return new static(
-            $array['invite_link'],
-            $array['name'],
-            $array['chat_ids'],
+            chatIds   : $array['chat_ids'],
+            inviteLink: $array['invite_link'],
+            name      : $array['name'],
         );
     }
 
@@ -81,9 +81,9 @@ class ChatFolderInviteLink extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
+            'chat_ids'    => $this->chatIds,
             'invite_link' => $this->inviteLink,
             'name'        => $this->name,
-            'chat_ids'    => $this->chatIds,
         ];
     }
 }

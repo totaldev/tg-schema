@@ -29,8 +29,8 @@ class UpdateChatViewAsTopics extends Update
     public static function fromArray(array $array): UpdateChatViewAsTopics
     {
         return new static(
-            $array['chat_id'],
-            $array['view_as_topics'],
+            chatId      : $array['chat_id'],
+            viewAsTopics: $array['view_as_topics'],
         );
     }
 

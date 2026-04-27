@@ -27,7 +27,7 @@ class ResendPhoneNumberCode extends TdFunction
     public static function fromArray(array $array): ResendPhoneNumberCode
     {
         return new static(
-            isset($array['reason']) ? TdSchemaRegistry::fromArray($array['reason']) : null,
+            reason: (isset($array['reason']) ? TdSchemaRegistry::fromArray($array['reason']) : null),
         );
     }
 
@@ -47,7 +47,7 @@ class ResendPhoneNumberCode extends TdFunction
     {
         return [
             '@type'  => static::TYPE_NAME,
-            'reason' => $this->reason ?? null,
+            'reason' => (null !== $this->reason ? $this->reason->jsonSerialize() : null),
         ];
     }
 }

@@ -36,9 +36,9 @@ class UpdateMessageContent extends Update
     public static function fromArray(array $array): UpdateMessageContent
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            TdSchemaRegistry::fromArray($array['new_content']),
+            chatId    : $array['chat_id'],
+            messageId : $array['message_id'],
+            newContent: TdSchemaRegistry::fromArray($array['new_content']),
         );
     }
 
@@ -84,7 +84,7 @@ class UpdateMessageContent extends Update
             '@type'       => static::TYPE_NAME,
             'chat_id'     => $this->chatId,
             'message_id'  => $this->messageId,
-            'new_content' => $this->newContent->typeSerialize(),
+            'new_content' => $this->newContent->jsonSerialize(),
         ];
     }
 }

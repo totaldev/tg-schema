@@ -19,13 +19,13 @@ class AffiliateInfo extends TdObject
 
     public function __construct(
         /**
-         * The number of Telegram Stars received by the affiliate for each 1000 Telegram Stars received by the program owner.
-         */
-        protected int        $commissionPerMille,
-        /**
          * Identifier of the chat which received the commission.
          */
         protected int        $affiliateChatId,
+        /**
+         * The number of Telegram Stars received by the affiliate for each 1000 Telegram Stars received by the program owner.
+         */
+        protected int        $commissionPerMille,
         /**
          * The amount of Telegram Stars that were received by the affiliate; can be negative for refunds.
          */
@@ -35,9 +35,9 @@ class AffiliateInfo extends TdObject
     public static function fromArray(array $array): AffiliateInfo
     {
         return new static(
-            $array['commission_per_mille'],
-            $array['affiliate_chat_id'],
-            TdSchemaRegistry::fromArray($array['star_amount']),
+            affiliateChatId   : $array['affiliate_chat_id'],
+            commissionPerMille: $array['commission_per_mille'],
+            starAmount        : TdSchemaRegistry::fromArray($array['star_amount']),
         );
     }
 
@@ -81,9 +81,9 @@ class AffiliateInfo extends TdObject
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'commission_per_mille' => $this->commissionPerMille,
             'affiliate_chat_id'    => $this->affiliateChatId,
-            'star_amount'          => $this->starAmount->typeSerialize(),
+            'commission_per_mille' => $this->commissionPerMille,
+            'star_amount'          => $this->starAmount->jsonSerialize(),
         ];
     }
 }

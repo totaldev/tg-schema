@@ -19,30 +19,30 @@ class GetMainWebApp extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the chat in which the Web App is opened; pass 0 if none.
-         */
-        protected int                  $chatId,
-        /**
          * Identifier of the target bot. If the bot is restricted for the current user, then show an error instead of calling the method.
          */
         protected int                  $botUserId,
         /**
-         * Start parameter from internalLinkTypeMainWebApp.
+         * Identifier of the chat in which the Web App is opened; pass 0 if none.
          */
-        protected string               $startParameter,
+        protected int                  $chatId,
         /**
          * Parameters to use to open the Web App.
          */
         protected WebAppOpenParameters $parameters,
+        /**
+         * Start parameter from internalLinkTypeMainWebApp.
+         */
+        protected string               $startParameter,
     ) {}
 
     public static function fromArray(array $array): GetMainWebApp
     {
         return new static(
-            $array['chat_id'],
-            $array['bot_user_id'],
-            $array['start_parameter'],
-            TdSchemaRegistry::fromArray($array['parameters']),
+            botUserId     : $array['bot_user_id'],
+            chatId        : $array['chat_id'],
+            parameters    : TdSchemaRegistry::fromArray($array['parameters']),
+            startParameter: $array['start_parameter'],
         );
     }
 
@@ -98,10 +98,10 @@ class GetMainWebApp extends TdFunction
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'chat_id'         => $this->chatId,
             'bot_user_id'     => $this->botUserId,
+            'chat_id'         => $this->chatId,
+            'parameters'      => $this->parameters->jsonSerialize(),
             'start_parameter' => $this->startParameter,
-            'parameters'      => $this->parameters->typeSerialize(),
         ];
     }
 }

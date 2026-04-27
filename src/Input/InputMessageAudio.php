@@ -26,13 +26,13 @@ class InputMessageAudio extends InputMessageContent
          */
         protected int             $duration,
         /**
-         * Title of the audio; 0-64 characters; may be replaced by the server.
-         */
-        protected string          $title,
-        /**
          * Performer of the audio; 0-64 characters, may be replaced by the server.
          */
         protected string          $performer,
+        /**
+         * Title of the audio; 0-64 characters; may be replaced by the server.
+         */
+        protected string          $title,
         /**
          * Thumbnail of the cover for the album; pass null to skip thumbnail uploading.
          */
@@ -48,12 +48,12 @@ class InputMessageAudio extends InputMessageContent
     public static function fromArray(array $array): InputMessageAudio
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['audio']),
-            isset($array['album_cover_thumbnail']) ? TdSchemaRegistry::fromArray($array['album_cover_thumbnail']) : null,
-            $array['duration'],
-            $array['title'],
-            $array['performer'],
-            isset($array['caption']) ? TdSchemaRegistry::fromArray($array['caption']) : null,
+            albumCoverThumbnail: (isset($array['album_cover_thumbnail']) ? TdSchemaRegistry::fromArray($array['album_cover_thumbnail']) : null),
+            audio              : TdSchemaRegistry::fromArray($array['audio']),
+            caption            : (isset($array['caption']) ? TdSchemaRegistry::fromArray($array['caption']) : null),
+            duration           : $array['duration'],
+            performer          : $array['performer'],
+            title              : $array['title'],
         );
     }
 
@@ -133,12 +133,12 @@ class InputMessageAudio extends InputMessageContent
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'audio'                 => $this->audio->typeSerialize(),
-            'album_cover_thumbnail' => $this->albumCoverThumbnail ?? null,
+            'album_cover_thumbnail' => (null !== $this->albumCoverThumbnail ? $this->albumCoverThumbnail->jsonSerialize() : null),
+            'audio'                 => $this->audio->jsonSerialize(),
+            'caption'               => (null !== $this->caption ? $this->caption->jsonSerialize() : null),
             'duration'              => $this->duration,
-            'title'                 => $this->title,
             'performer'             => $this->performer,
-            'caption'               => $this->caption ?? null,
+            'title'                 => $this->title,
         ];
     }
 }

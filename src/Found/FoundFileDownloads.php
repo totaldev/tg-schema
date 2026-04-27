@@ -20,10 +20,6 @@ class FoundFileDownloads extends TdObject
 
     public function __construct(
         /**
-         * Total number of suitable files, ignoring offset.
-         */
-        protected DownloadedFileCounts $totalCounts,
-        /**
          * The list of files.
          *
          * @var FileDownload[]
@@ -33,14 +29,18 @@ class FoundFileDownloads extends TdObject
          * The offset for the next request. If empty, then there are no more results.
          */
         protected string               $nextOffset,
+        /**
+         * Total number of suitable files, ignoring offset.
+         */
+        protected DownloadedFileCounts $totalCounts,
     ) {}
 
     public static function fromArray(array $array): FoundFileDownloads
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['total_counts']),
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['files']),
-            $array['next_offset'],
+            files      : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['files']),
+            nextOffset : $array['next_offset'],
+            totalCounts: TdSchemaRegistry::fromArray($array['total_counts']),
         );
     }
 
@@ -84,9 +84,9 @@ class FoundFileDownloads extends TdObject
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'total_counts' => $this->totalCounts->typeSerialize(),
-            'files'        => array_map(static fn($x) => $x->typeSerialize(), $this->files),
+            'files'        => array_map(static fn($x) => $x->jsonSerialize(), $this->files),
             'next_offset'  => $this->nextOffset,
+            'total_counts' => $this->totalCounts->jsonSerialize(),
         ];
     }
 }

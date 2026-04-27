@@ -25,7 +25,7 @@ class StarTransactionTypeBusinessBotTransferReceive extends StarTransactionType
     public static function fromArray(array $array): StarTransactionTypeBusinessBotTransferReceive
     {
         return new static(
-            $array['user_id'],
+            userId: $array['user_id'],
         );
     }
 

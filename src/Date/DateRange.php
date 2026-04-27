@@ -17,20 +17,20 @@ class DateRange extends TdObject
 
     public function __construct(
         /**
-         * Point in time (Unix timestamp) at which the date range begins.
-         */
-        protected int $startDate,
-        /**
          * Point in time (Unix timestamp) at which the date range ends.
          */
         protected int $endDate,
+        /**
+         * Point in time (Unix timestamp) at which the date range begins.
+         */
+        protected int $startDate,
     ) {}
 
     public static function fromArray(array $array): DateRange
     {
         return new static(
-            $array['start_date'],
-            $array['end_date'],
+            endDate  : $array['end_date'],
+            startDate: $array['start_date'],
         );
     }
 
@@ -62,8 +62,8 @@ class DateRange extends TdObject
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'start_date' => $this->startDate,
             'end_date'   => $this->endDate,
+            'start_date' => $this->startDate,
         ];
     }
 }

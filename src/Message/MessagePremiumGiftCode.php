@@ -19,29 +19,17 @@ class MessagePremiumGiftCode extends MessageContent
 
     public function __construct(
         /**
-         * Identifier of a chat or a user that created the gift code; may be null if unknown.
-         */
-        protected ?MessageSender $creatorId,
-        /**
-         * Message added to the gift.
-         */
-        protected FormattedText  $text,
-        /**
-         * True, if the gift code was created for a giveaway.
-         */
-        protected bool           $isFromGiveaway,
-        /**
-         * True, if the winner for the corresponding Telegram Premium subscription wasn't chosen.
-         */
-        protected bool           $isUnclaimed,
-        /**
-         * Currency for the paid amount; empty if unknown.
-         */
-        protected string         $currency,
-        /**
          * The paid amount, in the smallest units of the currency; 0 if unknown.
          */
         protected int            $amount,
+        /**
+         * The gift code.
+         */
+        protected string         $code,
+        /**
+         * Identifier of a chat or a user that created the gift code; may be null if unknown.
+         */
+        protected ?MessageSender $creatorId,
         /**
          * Cryptocurrency used to pay for the gift; may be empty if none or unknown.
          */
@@ -51,6 +39,18 @@ class MessagePremiumGiftCode extends MessageContent
          */
         protected int            $cryptocurrencyAmount,
         /**
+         * Currency for the paid amount; empty if unknown.
+         */
+        protected string         $currency,
+        /**
+         * True, if the gift code was created for a giveaway.
+         */
+        protected bool           $isFromGiveaway,
+        /**
+         * True, if the winner for the corresponding Telegram Premium subscription wasn't chosen.
+         */
+        protected bool           $isUnclaimed,
+        /**
          * Number of months the Telegram Premium subscription will be active after code activation.
          */
         protected int            $monthCount,
@@ -59,9 +59,9 @@ class MessagePremiumGiftCode extends MessageContent
          */
         protected ?Sticker       $sticker,
         /**
-         * The gift code.
+         * Message added to the gift.
          */
-        protected string         $code,
+        protected FormattedText  $text,
     ) {
         parent::__construct();
     }
@@ -69,17 +69,17 @@ class MessagePremiumGiftCode extends MessageContent
     public static function fromArray(array $array): MessagePremiumGiftCode
     {
         return new static(
-            isset($array['creator_id']) ? TdSchemaRegistry::fromArray($array['creator_id']) : null,
-            TdSchemaRegistry::fromArray($array['text']),
-            $array['is_from_giveaway'],
-            $array['is_unclaimed'],
-            $array['currency'],
-            $array['amount'],
-            $array['cryptocurrency'],
-            $array['cryptocurrency_amount'],
-            $array['month_count'],
-            isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null,
-            $array['code'],
+            amount              : $array['amount'],
+            code                : $array['code'],
+            creatorId           : (isset($array['creator_id']) ? TdSchemaRegistry::fromArray($array['creator_id']) : null),
+            cryptocurrency      : $array['cryptocurrency'],
+            cryptocurrencyAmount: $array['cryptocurrency_amount'],
+            currency            : $array['currency'],
+            isFromGiveaway      : $array['is_from_giveaway'],
+            isUnclaimed         : $array['is_unclaimed'],
+            monthCount          : $array['month_count'],
+            sticker             : (isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null),
+            text                : TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -219,17 +219,17 @@ class MessagePremiumGiftCode extends MessageContent
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'creator_id'            => $this->creatorId ?? null,
-            'text'                  => $this->text->typeSerialize(),
-            'is_from_giveaway'      => $this->isFromGiveaway,
-            'is_unclaimed'          => $this->isUnclaimed,
-            'currency'              => $this->currency,
             'amount'                => $this->amount,
+            'code'                  => $this->code,
+            'creator_id'            => (null !== $this->creatorId ? $this->creatorId->jsonSerialize() : null),
             'cryptocurrency'        => $this->cryptocurrency,
             'cryptocurrency_amount' => $this->cryptocurrencyAmount,
+            'currency'              => $this->currency,
+            'is_from_giveaway'      => $this->isFromGiveaway,
+            'is_unclaimed'          => $this->isUnclaimed,
             'month_count'           => $this->monthCount,
-            'sticker'               => $this->sticker ?? null,
-            'code'                  => $this->code,
+            'sticker'               => (null !== $this->sticker ? $this->sticker->jsonSerialize() : null),
+            'text'                  => $this->text->jsonSerialize(),
         ];
     }
 }

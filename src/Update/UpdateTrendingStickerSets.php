@@ -19,13 +19,13 @@ class UpdateTrendingStickerSets extends Update
 
     public function __construct(
         /**
-         * Type of the affected stickers.
-         */
-        protected StickerType         $stickerType,
-        /**
          * The prefix of the list of trending sticker sets with the newest trending sticker sets.
          */
         protected TrendingStickerSets $stickerSets,
+        /**
+         * Type of the affected stickers.
+         */
+        protected StickerType         $stickerType,
     ) {
         parent::__construct();
     }
@@ -33,8 +33,8 @@ class UpdateTrendingStickerSets extends Update
     public static function fromArray(array $array): UpdateTrendingStickerSets
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['sticker_type']),
-            TdSchemaRegistry::fromArray($array['sticker_sets']),
+            stickerSets: TdSchemaRegistry::fromArray($array['sticker_sets']),
+            stickerType: TdSchemaRegistry::fromArray($array['sticker_type']),
         );
     }
 
@@ -66,8 +66,8 @@ class UpdateTrendingStickerSets extends Update
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'sticker_type' => $this->stickerType->typeSerialize(),
-            'sticker_sets' => $this->stickerSets->typeSerialize(),
+            'sticker_sets' => $this->stickerSets->jsonSerialize(),
+            'sticker_type' => $this->stickerType->jsonSerialize(),
         ];
     }
 }

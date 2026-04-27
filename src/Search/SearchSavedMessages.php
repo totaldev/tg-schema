@@ -21,25 +21,25 @@ class SearchSavedMessages extends TdFunction
 
     public function __construct(
         /**
-         * If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages.
-         */
-        protected int           $savedMessagesTopicId,
-        /**
-         * Query to search for.
-         */
-        protected string        $query,
-        /**
          * Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message.
          */
         protected int           $fromMessageId,
+        /**
+         * The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, then the limit must be greater than -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit.
+         */
+        protected int           $limit,
         /**
          * Specify 0 to get results from exactly the message from_message_id or a negative number to get the specified message and some newer messages.
          */
         protected int           $offset,
         /**
-         * The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, then the limit must be greater than -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit.
+         * Query to search for.
          */
-        protected int           $limit,
+        protected string        $query,
+        /**
+         * If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages.
+         */
+        protected int           $savedMessagesTopicId,
         /**
          * Tag to search for; pass null to return all suitable messages.
          */
@@ -49,12 +49,12 @@ class SearchSavedMessages extends TdFunction
     public static function fromArray(array $array): SearchSavedMessages
     {
         return new static(
-            $array['saved_messages_topic_id'],
-            isset($array['tag']) ? TdSchemaRegistry::fromArray($array['tag']) : null,
-            $array['query'],
-            $array['from_message_id'],
-            $array['offset'],
-            $array['limit'],
+            fromMessageId       : $array['from_message_id'],
+            limit               : $array['limit'],
+            offset              : $array['offset'],
+            query               : $array['query'],
+            savedMessagesTopicId: $array['saved_messages_topic_id'],
+            tag                 : (isset($array['tag']) ? TdSchemaRegistry::fromArray($array['tag']) : null),
         );
     }
 
@@ -134,12 +134,12 @@ class SearchSavedMessages extends TdFunction
     {
         return [
             '@type'                   => static::TYPE_NAME,
-            'saved_messages_topic_id' => $this->savedMessagesTopicId,
-            'tag'                     => $this->tag ?? null,
-            'query'                   => $this->query,
             'from_message_id'         => $this->fromMessageId,
-            'offset'                  => $this->offset,
             'limit'                   => $this->limit,
+            'offset'                  => $this->offset,
+            'query'                   => $this->query,
+            'saved_messages_topic_id' => $this->savedMessagesTopicId,
+            'tag'                     => (null !== $this->tag ? $this->tag->jsonSerialize() : null),
         ];
     }
 }

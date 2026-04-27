@@ -31,8 +31,8 @@ class SetChatPermissions extends TdFunction
     public static function fromArray(array $array): SetChatPermissions
     {
         return new static(
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['permissions']),
+            chatId     : $array['chat_id'],
+            permissions: TdSchemaRegistry::fromArray($array['permissions']),
         );
     }
 
@@ -65,7 +65,7 @@ class SetChatPermissions extends TdFunction
         return [
             '@type'       => static::TYPE_NAME,
             'chat_id'     => $this->chatId,
-            'permissions' => $this->permissions->typeSerialize(),
+            'permissions' => $this->permissions->jsonSerialize(),
         ];
     }
 }

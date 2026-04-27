@@ -33,8 +33,8 @@ class RegisterDevice extends TdFunction
     public static function fromArray(array $array): RegisterDevice
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['device_token']),
-            $array['other_user_ids'],
+            deviceToken : TdSchemaRegistry::fromArray($array['device_token']),
+            otherUserIds: $array['other_user_ids'],
         );
     }
 
@@ -66,7 +66,7 @@ class RegisterDevice extends TdFunction
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'device_token'   => $this->deviceToken->typeSerialize(),
+            'device_token'   => $this->deviceToken->jsonSerialize(),
             'other_user_ids' => $this->otherUserIds,
         ];
     }

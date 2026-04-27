@@ -23,6 +23,10 @@ class BasicGroup extends TdObject
          */
         protected int              $id,
         /**
+         * True, if the group is active.
+         */
+        protected bool             $isActive,
+        /**
          * Number of members in the group.
          */
         protected int              $memberCount,
@@ -30,10 +34,6 @@ class BasicGroup extends TdObject
          * Status of the current user in the group.
          */
         protected ChatMemberStatus $status,
-        /**
-         * True, if the group is active.
-         */
-        protected bool             $isActive,
         /**
          * Identifier of the supergroup to which this group was upgraded; 0 if none.
          */
@@ -43,11 +43,11 @@ class BasicGroup extends TdObject
     public static function fromArray(array $array): BasicGroup
     {
         return new static(
-            $array['id'],
-            $array['member_count'],
-            TdSchemaRegistry::fromArray($array['status']),
-            $array['is_active'],
-            $array['upgraded_to_supergroup_id'],
+            id                    : $array['id'],
+            isActive              : $array['is_active'],
+            memberCount           : $array['member_count'],
+            status                : TdSchemaRegistry::fromArray($array['status']),
+            upgradedToSupergroupId: $array['upgraded_to_supergroup_id'],
         );
     }
 
@@ -116,9 +116,9 @@ class BasicGroup extends TdObject
         return [
             '@type'                     => static::TYPE_NAME,
             'id'                        => $this->id,
-            'member_count'              => $this->memberCount,
-            'status'                    => $this->status->typeSerialize(),
             'is_active'                 => $this->isActive,
+            'member_count'              => $this->memberCount,
+            'status'                    => $this->status->jsonSerialize(),
             'upgraded_to_supergroup_id' => $this->upgradedToSupergroupId,
         ];
     }

@@ -29,8 +29,8 @@ class Error extends TdObject
     public static function fromArray(array $array): Error
     {
         return new static(
-            $array['code'],
-            $array['message'],
+            code   : $array['code'],
+            message: $array['message'],
         );
     }
 

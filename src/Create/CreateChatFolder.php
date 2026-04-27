@@ -28,7 +28,7 @@ class CreateChatFolder extends TdFunction
     public static function fromArray(array $array): CreateChatFolder
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['folder']),
+            folder: TdSchemaRegistry::fromArray($array['folder']),
         );
     }
 
@@ -48,7 +48,7 @@ class CreateChatFolder extends TdFunction
     {
         return [
             '@type'  => static::TYPE_NAME,
-            'folder' => $this->folder->typeSerialize(),
+            'folder' => $this->folder->jsonSerialize(),
         ];
     }
 }

@@ -18,37 +18,37 @@ class PageBlockEmbedded extends PageBlock
 
     public function __construct(
         /**
-         * URL of the embedded page, if available.
+         * True, if scrolling needs to be allowed.
          */
-        protected string           $url,
-        /**
-         * HTML-markup of the embedded page.
-         */
-        protected string           $html,
-        /**
-         * Poster photo, if available; may be null.
-         */
-        protected ?Photo           $posterPhoto,
-        /**
-         * Block width; 0 if unknown.
-         */
-        protected int              $width,
-        /**
-         * Block height; 0 if unknown.
-         */
-        protected int              $height,
+        protected bool             $allowScrolling,
         /**
          * Block caption.
          */
         protected PageBlockCaption $caption,
         /**
+         * Block height; 0 if unknown.
+         */
+        protected int              $height,
+        /**
+         * HTML-markup of the embedded page.
+         */
+        protected string           $html,
+        /**
          * True, if the block must be full width.
          */
         protected bool             $isFullWidth,
         /**
-         * True, if scrolling needs to be allowed.
+         * Poster photo, if available; may be null.
          */
-        protected bool             $allowScrolling,
+        protected ?Photo           $posterPhoto,
+        /**
+         * URL of the embedded page, if available.
+         */
+        protected string           $url,
+        /**
+         * Block width; 0 if unknown.
+         */
+        protected int              $width,
     ) {
         parent::__construct();
     }
@@ -56,14 +56,14 @@ class PageBlockEmbedded extends PageBlock
     public static function fromArray(array $array): PageBlockEmbedded
     {
         return new static(
-            $array['url'],
-            $array['html'],
-            isset($array['poster_photo']) ? TdSchemaRegistry::fromArray($array['poster_photo']) : null,
-            $array['width'],
-            $array['height'],
-            TdSchemaRegistry::fromArray($array['caption']),
-            $array['is_full_width'],
-            $array['allow_scrolling'],
+            allowScrolling: $array['allow_scrolling'],
+            caption       : TdSchemaRegistry::fromArray($array['caption']),
+            height        : $array['height'],
+            html          : $array['html'],
+            isFullWidth   : $array['is_full_width'],
+            posterPhoto   : (isset($array['poster_photo']) ? TdSchemaRegistry::fromArray($array['poster_photo']) : null),
+            url           : $array['url'],
+            width         : $array['width'],
         );
     }
 
@@ -167,14 +167,14 @@ class PageBlockEmbedded extends PageBlock
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'url'             => $this->url,
-            'html'            => $this->html,
-            'poster_photo'    => $this->posterPhoto ?? null,
-            'width'           => $this->width,
-            'height'          => $this->height,
-            'caption'         => $this->caption->typeSerialize(),
-            'is_full_width'   => $this->isFullWidth,
             'allow_scrolling' => $this->allowScrolling,
+            'caption'         => $this->caption->jsonSerialize(),
+            'height'          => $this->height,
+            'html'            => $this->html,
+            'is_full_width'   => $this->isFullWidth,
+            'poster_photo'    => (null !== $this->posterPhoto ? $this->posterPhoto->jsonSerialize() : null),
+            'url'             => $this->url,
+            'width'           => $this->width,
         ];
     }
 }

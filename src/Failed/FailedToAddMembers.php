@@ -28,7 +28,7 @@ class FailedToAddMembers extends TdObject
     public static function fromArray(array $array): FailedToAddMembers
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['failed_to_add_members']),
+            failedToAddMembers: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['failed_to_add_members']),
         );
     }
 
@@ -48,7 +48,7 @@ class FailedToAddMembers extends TdObject
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'failed_to_add_members' => array_map(static fn($x) => $x->typeSerialize(), $this->failedToAddMembers),
+            'failed_to_add_members' => array_map(static fn($x) => $x->jsonSerialize(), $this->failedToAddMembers),
         ];
     }
 }

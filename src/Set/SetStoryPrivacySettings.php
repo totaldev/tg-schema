@@ -19,20 +19,20 @@ class SetStoryPrivacySettings extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the story.
-         */
-        protected int                  $storyId,
-        /**
          * The new privacy settings for the story.
          */
         protected StoryPrivacySettings $privacySettings,
+        /**
+         * Identifier of the story.
+         */
+        protected int                  $storyId,
     ) {}
 
     public static function fromArray(array $array): SetStoryPrivacySettings
     {
         return new static(
-            $array['story_id'],
-            TdSchemaRegistry::fromArray($array['privacy_settings']),
+            privacySettings: TdSchemaRegistry::fromArray($array['privacy_settings']),
+            storyId        : $array['story_id'],
         );
     }
 
@@ -64,8 +64,8 @@ class SetStoryPrivacySettings extends TdFunction
     {
         return [
             '@type'            => static::TYPE_NAME,
+            'privacy_settings' => $this->privacySettings->jsonSerialize(),
             'story_id'         => $this->storyId,
-            'privacy_settings' => $this->privacySettings->typeSerialize(),
         ];
     }
 }

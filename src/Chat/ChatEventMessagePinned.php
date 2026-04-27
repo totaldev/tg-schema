@@ -28,7 +28,7 @@ class ChatEventMessagePinned extends ChatEventAction
     public static function fromArray(array $array): ChatEventMessagePinned
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['message']),
+            message: TdSchemaRegistry::fromArray($array['message']),
         );
     }
 
@@ -48,7 +48,7 @@ class ChatEventMessagePinned extends ChatEventAction
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'message' => $this->message->typeSerialize(),
+            'message' => $this->message->jsonSerialize(),
         ];
     }
 }

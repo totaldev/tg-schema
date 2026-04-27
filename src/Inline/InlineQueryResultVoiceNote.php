@@ -22,13 +22,13 @@ class InlineQueryResultVoiceNote extends InlineQueryResult
          */
         protected string    $id,
         /**
-         * Voice note.
-         */
-        protected VoiceNote $voiceNote,
-        /**
          * Title of the voice note.
          */
         protected string    $title,
+        /**
+         * Voice note.
+         */
+        protected VoiceNote $voiceNote,
     ) {
         parent::__construct();
     }
@@ -36,9 +36,9 @@ class InlineQueryResultVoiceNote extends InlineQueryResult
     public static function fromArray(array $array): InlineQueryResultVoiceNote
     {
         return new static(
-            $array['id'],
-            TdSchemaRegistry::fromArray($array['voice_note']),
-            $array['title'],
+            id       : $array['id'],
+            title    : $array['title'],
+            voiceNote: TdSchemaRegistry::fromArray($array['voice_note']),
         );
     }
 
@@ -83,8 +83,8 @@ class InlineQueryResultVoiceNote extends InlineQueryResult
         return [
             '@type'      => static::TYPE_NAME,
             'id'         => $this->id,
-            'voice_note' => $this->voiceNote->typeSerialize(),
             'title'      => $this->title,
+            'voice_note' => $this->voiceNote->jsonSerialize(),
         ];
     }
 }

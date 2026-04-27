@@ -18,22 +18,22 @@ class ChatJoinRequests extends TdObject
 
     public function __construct(
         /**
-         * Approximate total number of requests found.
-         */
-        protected int   $totalCount,
-        /**
          * List of the requests.
          *
          * @var ChatJoinRequest[]
          */
         protected array $requests,
+        /**
+         * Approximate total number of requests found.
+         */
+        protected int   $totalCount,
     ) {}
 
     public static function fromArray(array $array): ChatJoinRequests
     {
         return new static(
-            $array['total_count'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['requests']),
+            requests  : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['requests']),
+            totalCount: $array['total_count'],
         );
     }
 
@@ -65,8 +65,8 @@ class ChatJoinRequests extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
+            'requests'    => array_map(static fn($x) => $x->jsonSerialize(), $this->requests),
             'total_count' => $this->totalCount,
-            'requests'    => array_map(static fn($x) => $x->typeSerialize(), $this->requests),
         ];
     }
 }

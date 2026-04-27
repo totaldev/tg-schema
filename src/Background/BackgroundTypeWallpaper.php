@@ -29,8 +29,8 @@ class BackgroundTypeWallpaper extends BackgroundType
     public static function fromArray(array $array): BackgroundTypeWallpaper
     {
         return new static(
-            $array['is_blurred'],
-            $array['is_moving'],
+            isBlurred: $array['is_blurred'],
+            isMoving : $array['is_moving'],
         );
     }
 

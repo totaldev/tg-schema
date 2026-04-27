@@ -17,32 +17,32 @@ class SearchStringsByPrefix extends TdFunction
 
     public function __construct(
         /**
-         * The strings to search in for the query.
-         *
-         * @var string[]
+         * The maximum number of objects to return.
          */
-        protected array  $strings,
+        protected int    $limit,
         /**
          * Query to search for.
          */
         protected string $query,
         /**
-         * The maximum number of objects to return.
-         */
-        protected int    $limit,
-        /**
          * Pass true to receive no results for an empty query.
          */
         protected bool   $returnNoneForEmptyQuery,
+        /**
+         * The strings to search in for the query.
+         *
+         * @var string[]
+         */
+        protected array  $strings,
     ) {}
 
     public static function fromArray(array $array): SearchStringsByPrefix
     {
         return new static(
-            $array['strings'],
-            $array['query'],
-            $array['limit'],
-            $array['return_none_for_empty_query'],
+            limit                  : $array['limit'],
+            query                  : $array['query'],
+            returnNoneForEmptyQuery: $array['return_none_for_empty_query'],
+            strings                : $array['strings'],
         );
     }
 
@@ -98,10 +98,10 @@ class SearchStringsByPrefix extends TdFunction
     {
         return [
             '@type'                       => static::TYPE_NAME,
-            'strings'                     => $this->strings,
-            'query'                       => $this->query,
             'limit'                       => $this->limit,
+            'query'                       => $this->query,
             'return_none_for_empty_query' => $this->returnNoneForEmptyQuery,
+            'strings'                     => $this->strings,
         ];
     }
 }

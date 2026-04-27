@@ -29,8 +29,8 @@ class ToggleBotCanManageEmojiStatus extends TdFunction
     public static function fromArray(array $array): ToggleBotCanManageEmojiStatus
     {
         return new static(
-            $array['bot_user_id'],
-            $array['can_manage_emoji_status'],
+            botUserId           : $array['bot_user_id'],
+            canManageEmojiStatus: $array['can_manage_emoji_status'],
         );
     }
 

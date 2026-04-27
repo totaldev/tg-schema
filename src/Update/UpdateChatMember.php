@@ -19,13 +19,13 @@ class UpdateChatMember extends Update
 
     public function __construct(
         /**
-         * Chat identifier.
-         */
-        protected int             $chatId,
-        /**
          * Identifier of the user, changing the rights.
          */
         protected int             $actorUserId,
+        /**
+         * Chat identifier.
+         */
+        protected int             $chatId,
         /**
          * Point in time (Unix timestamp) when the user rights were changed.
          */
@@ -35,21 +35,21 @@ class UpdateChatMember extends Update
          */
         protected ?ChatInviteLink $inviteLink,
         /**
-         * True, if the user has joined the chat after sending a join request and being approved by an administrator.
+         * New chat member.
          */
-        protected bool            $viaJoinRequest,
-        /**
-         * True, if the user has joined the chat using an invite link for a chat folder.
-         */
-        protected bool            $viaChatFolderInviteLink,
+        protected ChatMember      $newChatMember,
         /**
          * Previous chat member.
          */
         protected ChatMember      $oldChatMember,
         /**
-         * New chat member.
+         * True, if the user has joined the chat using an invite link for a chat folder.
          */
-        protected ChatMember      $newChatMember,
+        protected bool            $viaChatFolderInviteLink,
+        /**
+         * True, if the user has joined the chat after sending a join request and being approved by an administrator.
+         */
+        protected bool            $viaJoinRequest,
     ) {
         parent::__construct();
     }
@@ -57,14 +57,14 @@ class UpdateChatMember extends Update
     public static function fromArray(array $array): UpdateChatMember
     {
         return new static(
-            $array['chat_id'],
-            $array['actor_user_id'],
-            $array['date'],
-            isset($array['invite_link']) ? TdSchemaRegistry::fromArray($array['invite_link']) : null,
-            $array['via_join_request'],
-            $array['via_chat_folder_invite_link'],
-            TdSchemaRegistry::fromArray($array['old_chat_member']),
-            TdSchemaRegistry::fromArray($array['new_chat_member']),
+            actorUserId            : $array['actor_user_id'],
+            chatId                 : $array['chat_id'],
+            date                   : $array['date'],
+            inviteLink             : (isset($array['invite_link']) ? TdSchemaRegistry::fromArray($array['invite_link']) : null),
+            newChatMember          : TdSchemaRegistry::fromArray($array['new_chat_member']),
+            oldChatMember          : TdSchemaRegistry::fromArray($array['old_chat_member']),
+            viaChatFolderInviteLink: $array['via_chat_folder_invite_link'],
+            viaJoinRequest         : $array['via_join_request'],
         );
     }
 
@@ -168,14 +168,14 @@ class UpdateChatMember extends Update
     {
         return [
             '@type'                       => static::TYPE_NAME,
-            'chat_id'                     => $this->chatId,
             'actor_user_id'               => $this->actorUserId,
+            'chat_id'                     => $this->chatId,
             'date'                        => $this->date,
-            'invite_link'                 => $this->inviteLink ?? null,
-            'via_join_request'            => $this->viaJoinRequest,
+            'invite_link'                 => (null !== $this->inviteLink ? $this->inviteLink->jsonSerialize() : null),
+            'new_chat_member'             => $this->newChatMember->jsonSerialize(),
+            'old_chat_member'             => $this->oldChatMember->jsonSerialize(),
             'via_chat_folder_invite_link' => $this->viaChatFolderInviteLink,
-            'old_chat_member'             => $this->oldChatMember->typeSerialize(),
-            'new_chat_member'             => $this->newChatMember->typeSerialize(),
+            'via_join_request'            => $this->viaJoinRequest,
         ];
     }
 }

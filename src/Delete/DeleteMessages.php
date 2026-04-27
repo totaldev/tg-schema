@@ -35,9 +35,9 @@ class DeleteMessages extends TdFunction
     public static function fromArray(array $array): DeleteMessages
     {
         return new static(
-            $array['chat_id'],
-            $array['message_ids'],
-            $array['revoke'],
+            chatId    : $array['chat_id'],
+            messageIds: $array['message_ids'],
+            revoke    : $array['revoke'],
         );
     }
 

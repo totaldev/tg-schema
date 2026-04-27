@@ -17,27 +17,15 @@ class GiveawayParameters extends TdObject
 
     public function __construct(
         /**
-         * Identifier of the supergroup or channel chat, which will be automatically boosted by the winners of the giveaway for duration of the Telegram Premium subscription, or for the specified time. If the chat is a channel, then can_post_messages administrator right is required in the channel, otherwise, the user must be an administrator in the supergroup.
-         */
-        protected int    $boostedChatId,
-        /**
          * Identifiers of other supergroup or channel chats that must be subscribed by the users to be eligible for the giveaway. There can be up to getOption("giveaway_additional_chat_count_max") additional chats.
          *
          * @var int[]
          */
         protected array  $additionalChatIds,
         /**
-         * Point in time (Unix timestamp) when the giveaway is expected to be performed; must be 60-getOption("giveaway_duration_max") seconds in the future in scheduled giveaways.
+         * Identifier of the supergroup or channel chat, which will be automatically boosted by the winners of the giveaway for duration of the Telegram Premium subscription, or for the specified time. If the chat is a channel, then can_post_messages administrator right is required in the channel, otherwise, the user must be an administrator in the supergroup.
          */
-        protected int    $winnersSelectionDate,
-        /**
-         * True, if only new members of the chats will be eligible for the giveaway.
-         */
-        protected bool   $onlyNewMembers,
-        /**
-         * True, if the list of winners of the giveaway will be available to everyone.
-         */
-        protected bool   $hasPublicWinners,
+        protected int    $boostedChatId,
         /**
          * The list of two-letter ISO 3166-1 alpha-2 codes of countries, users from which will be eligible for the giveaway. If empty, then all users can participate in the giveaway. There can be up to getOption("giveaway_country_count_max") chosen countries. Users with phone number that was bought at https://fragment.com can participate in any giveaway and the country code "FT" must not be specified in the list.
          *
@@ -45,21 +33,33 @@ class GiveawayParameters extends TdObject
          */
         protected array  $countryCodes,
         /**
+         * True, if the list of winners of the giveaway will be available to everyone.
+         */
+        protected bool   $hasPublicWinners,
+        /**
+         * True, if only new members of the chats will be eligible for the giveaway.
+         */
+        protected bool   $onlyNewMembers,
+        /**
          * Additional description of the giveaway prize; 0-128 characters.
          */
         protected string $prizeDescription,
+        /**
+         * Point in time (Unix timestamp) when the giveaway is expected to be performed; must be 60-getOption("giveaway_duration_max") seconds in the future in scheduled giveaways.
+         */
+        protected int    $winnersSelectionDate,
     ) {}
 
     public static function fromArray(array $array): GiveawayParameters
     {
         return new static(
-            $array['boosted_chat_id'],
-            $array['additional_chat_ids'],
-            $array['winners_selection_date'],
-            $array['only_new_members'],
-            $array['has_public_winners'],
-            $array['country_codes'],
-            $array['prize_description'],
+            additionalChatIds   : $array['additional_chat_ids'],
+            boostedChatId       : $array['boosted_chat_id'],
+            countryCodes        : $array['country_codes'],
+            hasPublicWinners    : $array['has_public_winners'],
+            onlyNewMembers      : $array['only_new_members'],
+            prizeDescription    : $array['prize_description'],
+            winnersSelectionDate: $array['winners_selection_date'],
         );
     }
 
@@ -151,13 +151,13 @@ class GiveawayParameters extends TdObject
     {
         return [
             '@type'                  => static::TYPE_NAME,
-            'boosted_chat_id'        => $this->boostedChatId,
             'additional_chat_ids'    => $this->additionalChatIds,
-            'winners_selection_date' => $this->winnersSelectionDate,
-            'only_new_members'       => $this->onlyNewMembers,
-            'has_public_winners'     => $this->hasPublicWinners,
+            'boosted_chat_id'        => $this->boostedChatId,
             'country_codes'          => $this->countryCodes,
+            'has_public_winners'     => $this->hasPublicWinners,
+            'only_new_members'       => $this->onlyNewMembers,
             'prize_description'      => $this->prizeDescription,
+            'winners_selection_date' => $this->winnersSelectionDate,
         ];
     }
 }

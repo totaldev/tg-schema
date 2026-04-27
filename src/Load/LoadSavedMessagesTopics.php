@@ -26,7 +26,7 @@ class LoadSavedMessagesTopics extends TdFunction
     public static function fromArray(array $array): LoadSavedMessagesTopics
     {
         return new static(
-            $array['limit'],
+            limit: $array['limit'],
         );
     }
 

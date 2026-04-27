@@ -25,7 +25,7 @@ class SearchBackground extends TdFunction
     public static function fromArray(array $array): SearchBackground
     {
         return new static(
-            $array['name'],
+            name: $array['name'],
         );
     }
 

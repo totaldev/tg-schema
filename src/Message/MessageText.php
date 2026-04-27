@@ -20,10 +20,6 @@ class MessageText extends MessageContent
 
     public function __construct(
         /**
-         * Text of the message.
-         */
-        protected FormattedText       $text,
-        /**
          * A link preview attached to the message; may be null.
          */
         protected ?LinkPreview        $linkPreview,
@@ -31,6 +27,10 @@ class MessageText extends MessageContent
          * Options which were used for generation of the link preview; may be null if default options were used.
          */
         protected ?LinkPreviewOptions $linkPreviewOptions,
+        /**
+         * Text of the message.
+         */
+        protected FormattedText       $text,
     ) {
         parent::__construct();
     }
@@ -38,9 +38,9 @@ class MessageText extends MessageContent
     public static function fromArray(array $array): MessageText
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['text']),
-            isset($array['link_preview']) ? TdSchemaRegistry::fromArray($array['link_preview']) : null,
-            isset($array['link_preview_options']) ? TdSchemaRegistry::fromArray($array['link_preview_options']) : null,
+            linkPreview       : (isset($array['link_preview']) ? TdSchemaRegistry::fromArray($array['link_preview']) : null),
+            linkPreviewOptions: (isset($array['link_preview_options']) ? TdSchemaRegistry::fromArray($array['link_preview_options']) : null),
+            text              : TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -84,9 +84,9 @@ class MessageText extends MessageContent
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'text'                 => $this->text->typeSerialize(),
-            'link_preview'         => $this->linkPreview ?? null,
-            'link_preview_options' => $this->linkPreviewOptions ?? null,
+            'link_preview'         => (null !== $this->linkPreview ? $this->linkPreview->jsonSerialize() : null),
+            'link_preview_options' => (null !== $this->linkPreviewOptions ? $this->linkPreviewOptions->jsonSerialize() : null),
+            'text'                 => $this->text->jsonSerialize(),
         ];
     }
 }

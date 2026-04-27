@@ -15,17 +15,9 @@ class ChatBoostSourceGiveaway extends ChatBoostSource
 
     public function __construct(
         /**
-         * Identifier of a user that won in the giveaway; 0 if none.
-         */
-        protected int    $userId,
-        /**
          * The created Telegram Premium gift code if it was used by the user or can be claimed by the current user; an empty string otherwise; for Telegram Premium giveways only.
          */
         protected string $giftCode,
-        /**
-         * Number of Telegram Stars distributed among winners of the giveaway.
-         */
-        protected int    $starCount,
         /**
          * Identifier of the corresponding giveaway message; can be an identifier of a deleted message.
          */
@@ -34,6 +26,14 @@ class ChatBoostSourceGiveaway extends ChatBoostSource
          * True, if the winner for the corresponding giveaway prize wasn't chosen, because there were not enough participants.
          */
         protected bool   $isUnclaimed,
+        /**
+         * Number of Telegram Stars distributed among winners of the giveaway.
+         */
+        protected int    $starCount,
+        /**
+         * Identifier of a user that won in the giveaway; 0 if none.
+         */
+        protected int    $userId,
     ) {
         parent::__construct();
     }
@@ -41,11 +41,11 @@ class ChatBoostSourceGiveaway extends ChatBoostSource
     public static function fromArray(array $array): ChatBoostSourceGiveaway
     {
         return new static(
-            $array['user_id'],
-            $array['gift_code'],
-            $array['star_count'],
-            $array['giveaway_message_id'],
-            $array['is_unclaimed'],
+            giftCode         : $array['gift_code'],
+            giveawayMessageId: $array['giveaway_message_id'],
+            isUnclaimed      : $array['is_unclaimed'],
+            starCount        : $array['star_count'],
+            userId           : $array['user_id'],
         );
     }
 
@@ -113,11 +113,11 @@ class ChatBoostSourceGiveaway extends ChatBoostSource
     {
         return [
             '@type'               => static::TYPE_NAME,
-            'user_id'             => $this->userId,
             'gift_code'           => $this->giftCode,
-            'star_count'          => $this->starCount,
             'giveaway_message_id' => $this->giveawayMessageId,
             'is_unclaimed'        => $this->isUnclaimed,
+            'star_count'          => $this->starCount,
+            'user_id'             => $this->userId,
         ];
     }
 }

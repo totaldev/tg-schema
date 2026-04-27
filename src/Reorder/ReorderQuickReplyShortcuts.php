@@ -27,7 +27,7 @@ class ReorderQuickReplyShortcuts extends TdFunction
     public static function fromArray(array $array): ReorderQuickReplyShortcuts
     {
         return new static(
-            $array['shortcut_ids'],
+            shortcutIds: $array['shortcut_ids'],
         );
     }
 

@@ -23,13 +23,13 @@ class SendTextMessageDraft extends TdFunction
          */
         protected int           $chatId,
         /**
-         * The forum topic identifier in which the message will be sent; pass 0 if none.
-         */
-        protected int           $forumTopicId,
-        /**
          * Unique identifier of the draft.
          */
         protected int           $draftId,
+        /**
+         * The forum topic identifier in which the message will be sent; pass 0 if none.
+         */
+        protected int           $forumTopicId,
         /**
          * Draft text of the message.
          */
@@ -39,10 +39,10 @@ class SendTextMessageDraft extends TdFunction
     public static function fromArray(array $array): SendTextMessageDraft
     {
         return new static(
-            $array['chat_id'],
-            $array['forum_topic_id'],
-            $array['draft_id'],
-            TdSchemaRegistry::fromArray($array['text']),
+            chatId      : $array['chat_id'],
+            draftId     : $array['draft_id'],
+            forumTopicId: $array['forum_topic_id'],
+            text        : TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -99,9 +99,9 @@ class SendTextMessageDraft extends TdFunction
         return [
             '@type'          => static::TYPE_NAME,
             'chat_id'        => $this->chatId,
-            'forum_topic_id' => $this->forumTopicId,
             'draft_id'       => $this->draftId,
-            'text'           => $this->text->typeSerialize(),
+            'forum_topic_id' => $this->forumTopicId,
+            'text'           => $this->text->jsonSerialize(),
         ];
     }
 }

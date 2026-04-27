@@ -17,20 +17,20 @@ class EditStarSubscription extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the subscription to change.
-         */
-        protected string $subscriptionId,
-        /**
          * New value of is_canceled.
          */
         protected bool   $isCanceled,
+        /**
+         * Identifier of the subscription to change.
+         */
+        protected string $subscriptionId,
     ) {}
 
     public static function fromArray(array $array): EditStarSubscription
     {
         return new static(
-            $array['subscription_id'],
-            $array['is_canceled'],
+            isCanceled    : $array['is_canceled'],
+            subscriptionId: $array['subscription_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class EditStarSubscription extends TdFunction
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'subscription_id' => $this->subscriptionId,
             'is_canceled'     => $this->isCanceled,
+            'subscription_id' => $this->subscriptionId,
         ];
     }
 }

@@ -25,7 +25,7 @@ class GetProxyLink extends TdFunction
     public static function fromArray(array $array): GetProxyLink
     {
         return new static(
-            $array['proxy_id'],
+            proxyId: $array['proxy_id'],
         );
     }
 

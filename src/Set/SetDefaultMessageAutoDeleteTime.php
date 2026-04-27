@@ -27,7 +27,7 @@ class SetDefaultMessageAutoDeleteTime extends TdFunction
     public static function fromArray(array $array): SetDefaultMessageAutoDeleteTime
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['message_auto_delete_time']),
+            messageAutoDeleteTime: TdSchemaRegistry::fromArray($array['message_auto_delete_time']),
         );
     }
 
@@ -47,7 +47,7 @@ class SetDefaultMessageAutoDeleteTime extends TdFunction
     {
         return [
             '@type'                    => static::TYPE_NAME,
-            'message_auto_delete_time' => $this->messageAutoDeleteTime->typeSerialize(),
+            'message_auto_delete_time' => $this->messageAutoDeleteTime->jsonSerialize(),
         ];
     }
 }

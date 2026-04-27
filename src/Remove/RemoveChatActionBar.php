@@ -25,7 +25,7 @@ class RemoveChatActionBar extends TdFunction
     public static function fromArray(array $array): RemoveChatActionBar
     {
         return new static(
-            $array['chat_id'],
+            chatId: $array['chat_id'],
         );
     }
 

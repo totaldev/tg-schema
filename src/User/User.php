@@ -24,85 +24,25 @@ class User extends TdObject
 
     public function __construct(
         /**
-         * User identifier.
-         */
-        protected int                 $id,
-        /**
-         * First name of the user.
-         */
-        protected string              $firstName,
-        /**
-         * Last name of the user.
-         */
-        protected string              $lastName,
-        /**
-         * Usernames of the user; may be null.
-         */
-        protected ?Usernames          $usernames,
-        /**
-         * Phone number of the user.
-         */
-        protected string              $phoneNumber,
-        /**
-         * Current online status of the user.
-         */
-        protected UserStatus          $status,
-        /**
-         * Profile photo of the user; may be null.
-         */
-        protected ?ProfilePhoto       $profilePhoto,
-        /**
          * Identifier of the accent color for name, and backgrounds of profile photo, reply header, and link preview.
          */
         protected int                 $accentColorId,
+        /**
+         * True, if the user added the current bot to attachment menu; only available to bots.
+         */
+        protected bool                $addedToAttachmentMenu,
         /**
          * Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none.
          */
         protected int                 $backgroundCustomEmojiId,
         /**
-         * Color scheme based on an upgraded gift to be used for the user instead of accent_color_id and background_custom_emoji_id; may be null if none.
-         */
-        protected ?UpgradedGiftColors $upgradedGiftColors,
-        /**
-         * Identifier of the accent color for the user's profile; -1 if none.
-         */
-        protected int                 $profileAccentColorId,
-        /**
-         * Identifier of a custom emoji to be shown on the background of the user's profile; 0 if none.
-         */
-        protected int                 $profileBackgroundCustomEmojiId,
-        /**
          * Emoji status to be shown instead of the default Telegram Premium badge; may be null.
          */
         protected ?EmojiStatus        $emojiStatus,
         /**
-         * The user is a contact of the current user.
+         * First name of the user.
          */
-        protected bool                $isContact,
-        /**
-         * The user is a contact of the current user and the current user is a contact of the user.
-         */
-        protected bool                $isMutualContact,
-        /**
-         * The user is a close friend of the current user; implies that the user is a contact.
-         */
-        protected bool                $isCloseFriend,
-        /**
-         * Information about verification status of the user; may be null if none.
-         */
-        protected ?VerificationStatus $verificationStatus,
-        /**
-         * True, if the user is a Telegram Premium user.
-         */
-        protected bool                $isPremium,
-        /**
-         * True, if the user is Telegram support account.
-         */
-        protected bool                $isSupport,
-        /**
-         * Information about restrictions that must be applied to the corresponding private chat; may be null if none.
-         */
-        protected ?RestrictionInfo    $restrictionInfo,
+        protected string              $firstName,
         /**
          * True, if the user has non-expired stories available to the current user.
          */
@@ -112,62 +52,122 @@ class User extends TdObject
          */
         protected bool                $hasUnreadActiveStories,
         /**
-         * True, if the user may restrict new chats with non-contacts. Use canSendMessageToUser to check whether the current user can message the user or try to create a chat with them.
-         */
-        protected bool                $restrictsNewChats,
-        /**
-         * Number of Telegram Stars that must be paid by general user for each sent message to the user. If positive and userFullInfo is unknown, use canSendMessageToUser to check whether the current user must pay.
-         */
-        protected int                 $paidMessageStarCount,
-        /**
          * If false, the user is inaccessible, and the only information known about the user is inside this class. Identifier of the user can't be passed to any method.
          */
         protected bool                $haveAccess,
         /**
-         * Type of the user.
+         * User identifier.
          */
-        protected UserType            $type,
+        protected int                 $id,
+        /**
+         * The user is a close friend of the current user; implies that the user is a contact.
+         */
+        protected bool                $isCloseFriend,
+        /**
+         * The user is a contact of the current user.
+         */
+        protected bool                $isContact,
+        /**
+         * The user is a contact of the current user and the current user is a contact of the user.
+         */
+        protected bool                $isMutualContact,
+        /**
+         * True, if the user is a Telegram Premium user.
+         */
+        protected bool                $isPremium,
+        /**
+         * True, if the user is Telegram support account.
+         */
+        protected bool                $isSupport,
         /**
          * IETF language tag of the user's language; only available to bots.
          */
         protected string              $languageCode,
         /**
-         * True, if the user added the current bot to attachment menu; only available to bots.
+         * Last name of the user.
          */
-        protected bool                $addedToAttachmentMenu,
+        protected string              $lastName,
+        /**
+         * Number of Telegram Stars that must be paid by general user for each sent message to the user. If positive and userFullInfo is unknown, use canSendMessageToUser to check whether the current user must pay.
+         */
+        protected int                 $paidMessageStarCount,
+        /**
+         * Phone number of the user.
+         */
+        protected string              $phoneNumber,
+        /**
+         * Identifier of the accent color for the user's profile; -1 if none.
+         */
+        protected int                 $profileAccentColorId,
+        /**
+         * Identifier of a custom emoji to be shown on the background of the user's profile; 0 if none.
+         */
+        protected int                 $profileBackgroundCustomEmojiId,
+        /**
+         * Profile photo of the user; may be null.
+         */
+        protected ?ProfilePhoto       $profilePhoto,
+        /**
+         * Information about restrictions that must be applied to the corresponding private chat; may be null if none.
+         */
+        protected ?RestrictionInfo    $restrictionInfo,
+        /**
+         * True, if the user may restrict new chats with non-contacts. Use canSendMessageToUser to check whether the current user can message the user or try to create a chat with them.
+         */
+        protected bool                $restrictsNewChats,
+        /**
+         * Current online status of the user.
+         */
+        protected UserStatus          $status,
+        /**
+         * Type of the user.
+         */
+        protected UserType            $type,
+        /**
+         * Color scheme based on an upgraded gift to be used for the user instead of accent_color_id and background_custom_emoji_id; may be null if none.
+         */
+        protected ?UpgradedGiftColors $upgradedGiftColors,
+        /**
+         * Usernames of the user; may be null.
+         */
+        protected ?Usernames          $usernames,
+        /**
+         * Information about verification status of the user; may be null if none.
+         */
+        protected ?VerificationStatus $verificationStatus,
     ) {}
 
     public static function fromArray(array $array): User
     {
         return new static(
-            $array['id'],
-            $array['first_name'],
-            $array['last_name'],
-            isset($array['usernames']) ? TdSchemaRegistry::fromArray($array['usernames']) : null,
-            $array['phone_number'],
-            TdSchemaRegistry::fromArray($array['status']),
-            isset($array['profile_photo']) ? TdSchemaRegistry::fromArray($array['profile_photo']) : null,
-            $array['accent_color_id'],
-            $array['background_custom_emoji_id'],
-            isset($array['upgraded_gift_colors']) ? TdSchemaRegistry::fromArray($array['upgraded_gift_colors']) : null,
-            $array['profile_accent_color_id'],
-            $array['profile_background_custom_emoji_id'],
-            isset($array['emoji_status']) ? TdSchemaRegistry::fromArray($array['emoji_status']) : null,
-            $array['is_contact'],
-            $array['is_mutual_contact'],
-            $array['is_close_friend'],
-            isset($array['verification_status']) ? TdSchemaRegistry::fromArray($array['verification_status']) : null,
-            $array['is_premium'],
-            $array['is_support'],
-            isset($array['restriction_info']) ? TdSchemaRegistry::fromArray($array['restriction_info']) : null,
-            $array['has_active_stories'],
-            $array['has_unread_active_stories'],
-            $array['restricts_new_chats'],
-            $array['paid_message_star_count'],
-            $array['have_access'],
-            TdSchemaRegistry::fromArray($array['type']),
-            $array['language_code'],
-            $array['added_to_attachment_menu'],
+            accentColorId                 : $array['accent_color_id'],
+            addedToAttachmentMenu         : $array['added_to_attachment_menu'],
+            backgroundCustomEmojiId       : $array['background_custom_emoji_id'],
+            emojiStatus                   : (isset($array['emoji_status']) ? TdSchemaRegistry::fromArray($array['emoji_status']) : null),
+            firstName                     : $array['first_name'],
+            hasActiveStories              : $array['has_active_stories'],
+            hasUnreadActiveStories        : $array['has_unread_active_stories'],
+            haveAccess                    : $array['have_access'],
+            id                            : $array['id'],
+            isCloseFriend                 : $array['is_close_friend'],
+            isContact                     : $array['is_contact'],
+            isMutualContact               : $array['is_mutual_contact'],
+            isPremium                     : $array['is_premium'],
+            isSupport                     : $array['is_support'],
+            languageCode                  : $array['language_code'],
+            lastName                      : $array['last_name'],
+            paidMessageStarCount          : $array['paid_message_star_count'],
+            phoneNumber                   : $array['phone_number'],
+            profileAccentColorId          : $array['profile_accent_color_id'],
+            profileBackgroundCustomEmojiId: $array['profile_background_custom_emoji_id'],
+            profilePhoto                  : (isset($array['profile_photo']) ? TdSchemaRegistry::fromArray($array['profile_photo']) : null),
+            restrictionInfo               : (isset($array['restriction_info']) ? TdSchemaRegistry::fromArray($array['restriction_info']) : null),
+            restrictsNewChats             : $array['restricts_new_chats'],
+            status                        : TdSchemaRegistry::fromArray($array['status']),
+            type                          : TdSchemaRegistry::fromArray($array['type']),
+            upgradedGiftColors            : (isset($array['upgraded_gift_colors']) ? TdSchemaRegistry::fromArray($array['upgraded_gift_colors']) : null),
+            usernames                     : (isset($array['usernames']) ? TdSchemaRegistry::fromArray($array['usernames']) : null),
+            verificationStatus            : (isset($array['verification_status']) ? TdSchemaRegistry::fromArray($array['verification_status']) : null),
         );
     }
 
@@ -511,34 +511,34 @@ class User extends TdObject
     {
         return [
             '@type'                              => static::TYPE_NAME,
-            'id'                                 => $this->id,
-            'first_name'                         => $this->firstName,
-            'last_name'                          => $this->lastName,
-            'usernames'                          => $this->usernames ?? null,
-            'phone_number'                       => $this->phoneNumber,
-            'status'                             => $this->status->typeSerialize(),
-            'profile_photo'                      => $this->profilePhoto ?? null,
             'accent_color_id'                    => $this->accentColorId,
+            'added_to_attachment_menu'           => $this->addedToAttachmentMenu,
             'background_custom_emoji_id'         => $this->backgroundCustomEmojiId,
-            'upgraded_gift_colors'               => $this->upgradedGiftColors ?? null,
-            'profile_accent_color_id'            => $this->profileAccentColorId,
-            'profile_background_custom_emoji_id' => $this->profileBackgroundCustomEmojiId,
-            'emoji_status'                       => $this->emojiStatus ?? null,
-            'is_contact'                         => $this->isContact,
-            'is_mutual_contact'                  => $this->isMutualContact,
-            'is_close_friend'                    => $this->isCloseFriend,
-            'verification_status'                => $this->verificationStatus ?? null,
-            'is_premium'                         => $this->isPremium,
-            'is_support'                         => $this->isSupport,
-            'restriction_info'                   => $this->restrictionInfo ?? null,
+            'emoji_status'                       => (null !== $this->emojiStatus ? $this->emojiStatus->jsonSerialize() : null),
+            'first_name'                         => $this->firstName,
             'has_active_stories'                 => $this->hasActiveStories,
             'has_unread_active_stories'          => $this->hasUnreadActiveStories,
-            'restricts_new_chats'                => $this->restrictsNewChats,
-            'paid_message_star_count'            => $this->paidMessageStarCount,
             'have_access'                        => $this->haveAccess,
-            'type'                               => $this->type->typeSerialize(),
+            'id'                                 => $this->id,
+            'is_close_friend'                    => $this->isCloseFriend,
+            'is_contact'                         => $this->isContact,
+            'is_mutual_contact'                  => $this->isMutualContact,
+            'is_premium'                         => $this->isPremium,
+            'is_support'                         => $this->isSupport,
             'language_code'                      => $this->languageCode,
-            'added_to_attachment_menu'           => $this->addedToAttachmentMenu,
+            'last_name'                          => $this->lastName,
+            'paid_message_star_count'            => $this->paidMessageStarCount,
+            'phone_number'                       => $this->phoneNumber,
+            'profile_accent_color_id'            => $this->profileAccentColorId,
+            'profile_background_custom_emoji_id' => $this->profileBackgroundCustomEmojiId,
+            'profile_photo'                      => (null !== $this->profilePhoto ? $this->profilePhoto->jsonSerialize() : null),
+            'restriction_info'                   => (null !== $this->restrictionInfo ? $this->restrictionInfo->jsonSerialize() : null),
+            'restricts_new_chats'                => $this->restrictsNewChats,
+            'status'                             => $this->status->jsonSerialize(),
+            'type'                               => $this->type->jsonSerialize(),
+            'upgraded_gift_colors'               => (null !== $this->upgradedGiftColors ? $this->upgradedGiftColors->jsonSerialize() : null),
+            'usernames'                          => (null !== $this->usernames ? $this->usernames->jsonSerialize() : null),
+            'verification_status'                => (null !== $this->verificationStatus ? $this->verificationStatus->jsonSerialize() : null),
         ];
     }
 }

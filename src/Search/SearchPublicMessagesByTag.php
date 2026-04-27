@@ -18,25 +18,25 @@ class SearchPublicMessagesByTag extends TdFunction
 
     public function __construct(
         /**
-         * Hashtag or cashtag to search for.
+         * The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit.
          */
-        protected string $tag,
+        protected int    $limit,
         /**
          * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
          */
         protected string $offset,
         /**
-         * The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit.
+         * Hashtag or cashtag to search for.
          */
-        protected int    $limit,
+        protected string $tag,
     ) {}
 
     public static function fromArray(array $array): SearchPublicMessagesByTag
     {
         return new static(
-            $array['tag'],
-            $array['offset'],
-            $array['limit'],
+            limit : $array['limit'],
+            offset: $array['offset'],
+            tag   : $array['tag'],
         );
     }
 
@@ -80,9 +80,9 @@ class SearchPublicMessagesByTag extends TdFunction
     {
         return [
             '@type'  => static::TYPE_NAME,
-            'tag'    => $this->tag,
-            'offset' => $this->offset,
             'limit'  => $this->limit,
+            'offset' => $this->offset,
+            'tag'    => $this->tag,
         ];
     }
 }

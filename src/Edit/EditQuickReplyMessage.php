@@ -21,25 +21,25 @@ class EditQuickReplyMessage extends TdFunction
 
     public function __construct(
         /**
-         * Unique identifier of the quick reply shortcut with the message.
+         * New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageChecklist, inputMessageDocument, inputMessagePhoto, inputMessageText, or inputMessageVideo.
          */
-        protected int                 $shortcutId,
+        protected InputMessageContent $inputMessageContent,
         /**
          * Identifier of the message.
          */
         protected int                 $messageId,
         /**
-         * New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageChecklist, inputMessageDocument, inputMessagePhoto, inputMessageText, or inputMessageVideo.
+         * Unique identifier of the quick reply shortcut with the message.
          */
-        protected InputMessageContent $inputMessageContent,
+        protected int                 $shortcutId,
     ) {}
 
     public static function fromArray(array $array): EditQuickReplyMessage
     {
         return new static(
-            $array['shortcut_id'],
-            $array['message_id'],
-            TdSchemaRegistry::fromArray($array['input_message_content']),
+            inputMessageContent: TdSchemaRegistry::fromArray($array['input_message_content']),
+            messageId          : $array['message_id'],
+            shortcutId         : $array['shortcut_id'],
         );
     }
 
@@ -83,9 +83,9 @@ class EditQuickReplyMessage extends TdFunction
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'shortcut_id'           => $this->shortcutId,
+            'input_message_content' => $this->inputMessageContent->jsonSerialize(),
             'message_id'            => $this->messageId,
-            'input_message_content' => $this->inputMessageContent->typeSerialize(),
+            'shortcut_id'           => $this->shortcutId,
         ];
     }
 }

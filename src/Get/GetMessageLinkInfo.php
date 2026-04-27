@@ -25,7 +25,7 @@ class GetMessageLinkInfo extends TdFunction
     public static function fromArray(array $array): GetMessageLinkInfo
     {
         return new static(
-            $array['url'],
+            url: $array['url'],
         );
     }
 

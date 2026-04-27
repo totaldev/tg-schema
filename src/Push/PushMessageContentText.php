@@ -15,13 +15,13 @@ class PushMessageContentText extends PushMessageContent
 
     public function __construct(
         /**
-         * Message text.
-         */
-        protected string $text,
-        /**
          * True, if the message is a pinned message with the specified content.
          */
         protected bool   $isPinned,
+        /**
+         * Message text.
+         */
+        protected string $text,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class PushMessageContentText extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentText
     {
         return new static(
-            $array['text'],
-            $array['is_pinned'],
+            isPinned: $array['is_pinned'],
+            text    : $array['text'],
         );
     }
 
@@ -62,8 +62,8 @@ class PushMessageContentText extends PushMessageContent
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'text'      => $this->text,
             'is_pinned' => $this->isPinned,
+            'text'      => $this->text,
         ];
     }
 }

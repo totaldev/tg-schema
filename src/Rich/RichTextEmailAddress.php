@@ -17,13 +17,13 @@ class RichTextEmailAddress extends RichText
 
     public function __construct(
         /**
-         * Text.
-         */
-        protected RichText $text,
-        /**
          * Email address.
          */
         protected string   $emailAddress,
+        /**
+         * Text.
+         */
+        protected RichText $text,
     ) {
         parent::__construct();
     }
@@ -31,8 +31,8 @@ class RichTextEmailAddress extends RichText
     public static function fromArray(array $array): RichTextEmailAddress
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['text']),
-            $array['email_address'],
+            emailAddress: $array['email_address'],
+            text        : TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -64,8 +64,8 @@ class RichTextEmailAddress extends RichText
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'text'          => $this->text->typeSerialize(),
             'email_address' => $this->emailAddress,
+            'text'          => $this->text->jsonSerialize(),
         ];
     }
 }

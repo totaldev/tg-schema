@@ -17,10 +17,6 @@ class SetChatAccentColor extends TdFunction
 
     public function __construct(
         /**
-         * Chat identifier.
-         */
-        protected int $chatId,
-        /**
          * Identifier of the accent color to use. The chat must have at least accentColor.min_channel_chat_boost_level boost level to pass the corresponding color.
          */
         protected int $accentColorId,
@@ -28,14 +24,18 @@ class SetChatAccentColor extends TdFunction
          * Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none. Use chatBoostLevelFeatures.can_set_background_custom_emoji to check whether a custom emoji can be set.
          */
         protected int $backgroundCustomEmojiId,
+        /**
+         * Chat identifier.
+         */
+        protected int $chatId,
     ) {}
 
     public static function fromArray(array $array): SetChatAccentColor
     {
         return new static(
-            $array['chat_id'],
-            $array['accent_color_id'],
-            $array['background_custom_emoji_id'],
+            accentColorId          : $array['accent_color_id'],
+            backgroundCustomEmojiId: $array['background_custom_emoji_id'],
+            chatId                 : $array['chat_id'],
         );
     }
 
@@ -79,9 +79,9 @@ class SetChatAccentColor extends TdFunction
     {
         return [
             '@type'                      => static::TYPE_NAME,
-            'chat_id'                    => $this->chatId,
             'accent_color_id'            => $this->accentColorId,
             'background_custom_emoji_id' => $this->backgroundCustomEmojiId,
+            'chat_id'                    => $this->chatId,
         ];
     }
 }

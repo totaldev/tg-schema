@@ -19,20 +19,20 @@ class ChatPhotoSticker extends TdObject
 
     public function __construct(
         /**
-         * Type of the sticker.
-         */
-        protected ChatPhotoStickerType $type,
-        /**
          * The fill to be used as background for the sticker; rotation angle in backgroundFillGradient isn't supported.
          */
         protected BackgroundFill       $backgroundFill,
+        /**
+         * Type of the sticker.
+         */
+        protected ChatPhotoStickerType $type,
     ) {}
 
     public static function fromArray(array $array): ChatPhotoSticker
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['type']),
-            TdSchemaRegistry::fromArray($array['background_fill']),
+            backgroundFill: TdSchemaRegistry::fromArray($array['background_fill']),
+            type          : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -64,8 +64,8 @@ class ChatPhotoSticker extends TdObject
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'type'            => $this->type->typeSerialize(),
-            'background_fill' => $this->backgroundFill->typeSerialize(),
+            'background_fill' => $this->backgroundFill->jsonSerialize(),
+            'type'            => $this->type->jsonSerialize(),
         ];
     }
 }

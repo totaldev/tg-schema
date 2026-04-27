@@ -22,23 +22,11 @@ class BasicGroupFullInfo extends TdObject
 
     public function __construct(
         /**
-         * Chat photo; may be null if empty or unknown. If non-null, then it is the same photo as in chat.photo.
-         */
-        protected ?ChatPhoto      $photo,
-        /**
-         * Group description. Updated only after the basic group is opened.
-         */
-        protected string          $description,
-        /**
-         * User identifier of the creator of the group; 0 if unknown.
-         */
-        protected int             $creatorUserId,
-        /**
-         * Group members.
+         * List of commands of bots in the group.
          *
-         * @var ChatMember[]
+         * @var BotCommands[]
          */
-        protected array           $members,
+        protected array           $botCommands,
         /**
          * True, if non-administrators and non-bots can be hidden in responses to getSupergroupMembers and searchChatMembers for non-administrators after upgrading the basic group to a supergroup.
          */
@@ -48,28 +36,40 @@ class BasicGroupFullInfo extends TdObject
          */
         protected bool            $canToggleAggressiveAntiSpam,
         /**
+         * User identifier of the creator of the group; 0 if unknown.
+         */
+        protected int             $creatorUserId,
+        /**
+         * Group description. Updated only after the basic group is opened.
+         */
+        protected string          $description,
+        /**
          * Primary invite link for this group; may be null. For chat administrators with can_invite_users right only. Updated only after the basic group is opened.
          */
         protected ?ChatInviteLink $inviteLink,
         /**
-         * List of commands of bots in the group.
+         * Group members.
          *
-         * @var BotCommands[]
+         * @var ChatMember[]
          */
-        protected array           $botCommands,
+        protected array           $members,
+        /**
+         * Chat photo; may be null if empty or unknown. If non-null, then it is the same photo as in chat.photo.
+         */
+        protected ?ChatPhoto      $photo,
     ) {}
 
     public static function fromArray(array $array): BasicGroupFullInfo
     {
         return new static(
-            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
-            $array['description'],
-            $array['creator_user_id'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['members']),
-            $array['can_hide_members'],
-            $array['can_toggle_aggressive_anti_spam'],
-            isset($array['invite_link']) ? TdSchemaRegistry::fromArray($array['invite_link']) : null,
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['bot_commands']),
+            botCommands                : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['bot_commands']),
+            canHideMembers             : $array['can_hide_members'],
+            canToggleAggressiveAntiSpam: $array['can_toggle_aggressive_anti_spam'],
+            creatorUserId              : $array['creator_user_id'],
+            description                : $array['description'],
+            inviteLink                 : (isset($array['invite_link']) ? TdSchemaRegistry::fromArray($array['invite_link']) : null),
+            members                    : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['members']),
+            photo                      : (isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null),
         );
     }
 
@@ -173,14 +173,14 @@ class BasicGroupFullInfo extends TdObject
     {
         return [
             '@type'                           => static::TYPE_NAME,
-            'photo'                           => $this->photo ?? null,
-            'description'                     => $this->description,
-            'creator_user_id'                 => $this->creatorUserId,
-            'members'                         => array_map(static fn($x) => $x->typeSerialize(), $this->members),
+            'bot_commands'                    => array_map(static fn($x) => $x->jsonSerialize(), $this->botCommands),
             'can_hide_members'                => $this->canHideMembers,
             'can_toggle_aggressive_anti_spam' => $this->canToggleAggressiveAntiSpam,
-            'invite_link'                     => $this->inviteLink ?? null,
-            'bot_commands'                    => array_map(static fn($x) => $x->typeSerialize(), $this->botCommands),
+            'creator_user_id'                 => $this->creatorUserId,
+            'description'                     => $this->description,
+            'invite_link'                     => (null !== $this->inviteLink ? $this->inviteLink->jsonSerialize() : null),
+            'members'                         => array_map(static fn($x) => $x->jsonSerialize(), $this->members),
+            'photo'                           => (null !== $this->photo ? $this->photo->jsonSerialize() : null),
         ];
     }
 }

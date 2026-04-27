@@ -29,7 +29,7 @@ class PageBlockList extends PageBlock
     public static function fromArray(array $array): PageBlockList
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['items']),
+            items: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['items']),
         );
     }
 
@@ -49,7 +49,7 @@ class PageBlockList extends PageBlock
     {
         return [
             '@type' => static::TYPE_NAME,
-            'items' => array_map(static fn($x) => $x->typeSerialize(), $this->items),
+            'items' => array_map(static fn($x) => $x->jsonSerialize(), $this->items),
         ];
     }
 }

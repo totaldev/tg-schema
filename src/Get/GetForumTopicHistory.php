@@ -30,23 +30,23 @@ class GetForumTopicHistory extends TdFunction
          */
         protected int $fromMessageId,
         /**
-         * Specify 0 to get results from exactly the message from_message_id or a negative number from -99 to -1 to get additionally -offset newer messages.
-         */
-        protected int $offset,
-        /**
          * The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, then the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit.
          */
         protected int $limit,
+        /**
+         * Specify 0 to get results from exactly the message from_message_id or a negative number from -99 to -1 to get additionally -offset newer messages.
+         */
+        protected int $offset,
     ) {}
 
     public static function fromArray(array $array): GetForumTopicHistory
     {
         return new static(
-            $array['chat_id'],
-            $array['forum_topic_id'],
-            $array['from_message_id'],
-            $array['offset'],
-            $array['limit'],
+            chatId       : $array['chat_id'],
+            forumTopicId : $array['forum_topic_id'],
+            fromMessageId: $array['from_message_id'],
+            limit        : $array['limit'],
+            offset       : $array['offset'],
         );
     }
 
@@ -117,8 +117,8 @@ class GetForumTopicHistory extends TdFunction
             'chat_id'         => $this->chatId,
             'forum_topic_id'  => $this->forumTopicId,
             'from_message_id' => $this->fromMessageId,
-            'offset'          => $this->offset,
             'limit'           => $this->limit,
+            'offset'          => $this->offset,
         ];
     }
 }

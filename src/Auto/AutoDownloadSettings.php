@@ -21,6 +21,10 @@ class AutoDownloadSettings extends TdObject
          */
         protected bool $isAutoDownloadEnabled,
         /**
+         * The maximum size of other file types to be auto-downloaded, in bytes.
+         */
+        protected int  $maxOtherFileSize,
+        /**
          * The maximum size of a photo file to be auto-downloaded, in bytes.
          */
         protected int  $maxPhotoFileSize,
@@ -28,14 +32,6 @@ class AutoDownloadSettings extends TdObject
          * The maximum size of a video file to be auto-downloaded, in bytes.
          */
         protected int  $maxVideoFileSize,
-        /**
-         * The maximum size of other file types to be auto-downloaded, in bytes.
-         */
-        protected int  $maxOtherFileSize,
-        /**
-         * The maximum suggested bitrate for uploaded videos, in kbit/s.
-         */
-        protected int  $videoUploadBitrate,
         /**
          * True, if the beginning of video files needs to be preloaded for instant playback.
          */
@@ -52,20 +48,24 @@ class AutoDownloadSettings extends TdObject
          * True, if "use less data for calls" option needs to be enabled.
          */
         protected bool $useLessDataForCalls,
+        /**
+         * The maximum suggested bitrate for uploaded videos, in kbit/s.
+         */
+        protected int  $videoUploadBitrate,
     ) {}
 
     public static function fromArray(array $array): AutoDownloadSettings
     {
         return new static(
-            $array['is_auto_download_enabled'],
-            $array['max_photo_file_size'],
-            $array['max_video_file_size'],
-            $array['max_other_file_size'],
-            $array['video_upload_bitrate'],
-            $array['preload_large_videos'],
-            $array['preload_next_audio'],
-            $array['preload_stories'],
-            $array['use_less_data_for_calls'],
+            isAutoDownloadEnabled: $array['is_auto_download_enabled'],
+            maxOtherFileSize     : $array['max_other_file_size'],
+            maxPhotoFileSize     : $array['max_photo_file_size'],
+            maxVideoFileSize     : $array['max_video_file_size'],
+            preloadLargeVideos   : $array['preload_large_videos'],
+            preloadNextAudio     : $array['preload_next_audio'],
+            preloadStories       : $array['preload_stories'],
+            useLessDataForCalls  : $array['use_less_data_for_calls'],
+            videoUploadBitrate   : $array['video_upload_bitrate'],
         );
     }
 
@@ -182,14 +182,14 @@ class AutoDownloadSettings extends TdObject
         return [
             '@type'                    => static::TYPE_NAME,
             'is_auto_download_enabled' => $this->isAutoDownloadEnabled,
+            'max_other_file_size'      => $this->maxOtherFileSize,
             'max_photo_file_size'      => $this->maxPhotoFileSize,
             'max_video_file_size'      => $this->maxVideoFileSize,
-            'max_other_file_size'      => $this->maxOtherFileSize,
-            'video_upload_bitrate'     => $this->videoUploadBitrate,
             'preload_large_videos'     => $this->preloadLargeVideos,
             'preload_next_audio'       => $this->preloadNextAudio,
             'preload_stories'          => $this->preloadStories,
             'use_less_data_for_calls'  => $this->useLessDataForCalls,
+            'video_upload_bitrate'     => $this->videoUploadBitrate,
         ];
     }
 }

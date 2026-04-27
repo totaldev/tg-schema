@@ -33,8 +33,8 @@ class SetPinnedGifts extends TdFunction
     public static function fromArray(array $array): SetPinnedGifts
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['owner_id']),
-            $array['received_gift_ids'],
+            ownerId        : TdSchemaRegistry::fromArray($array['owner_id']),
+            receivedGiftIds: $array['received_gift_ids'],
         );
     }
 
@@ -66,7 +66,7 @@ class SetPinnedGifts extends TdFunction
     {
         return [
             '@type'             => static::TYPE_NAME,
-            'owner_id'          => $this->ownerId->typeSerialize(),
+            'owner_id'          => $this->ownerId->jsonSerialize(),
             'received_gift_ids' => $this->receivedGiftIds,
         ];
     }

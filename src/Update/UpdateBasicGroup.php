@@ -28,7 +28,7 @@ class UpdateBasicGroup extends Update
     public static function fromArray(array $array): UpdateBasicGroup
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['basic_group']),
+            basicGroup: TdSchemaRegistry::fromArray($array['basic_group']),
         );
     }
 
@@ -48,7 +48,7 @@ class UpdateBasicGroup extends Update
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'basic_group' => $this->basicGroup->typeSerialize(),
+            'basic_group' => $this->basicGroup->jsonSerialize(),
         ];
     }
 }

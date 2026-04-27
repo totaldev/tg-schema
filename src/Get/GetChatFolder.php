@@ -25,7 +25,7 @@ class GetChatFolder extends TdFunction
     public static function fromArray(array $array): GetChatFolder
     {
         return new static(
-            $array['chat_folder_id'],
+            chatFolderId: $array['chat_folder_id'],
         );
     }
 

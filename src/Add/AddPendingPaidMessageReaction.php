@@ -39,10 +39,10 @@ class AddPendingPaidMessageReaction extends TdFunction
     public static function fromArray(array $array): AddPendingPaidMessageReaction
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            $array['star_count'],
-            isset($array['type']) ? TdSchemaRegistry::fromArray($array['type']) : null,
+            chatId   : $array['chat_id'],
+            messageId: $array['message_id'],
+            starCount: $array['star_count'],
+            type     : (isset($array['type']) ? TdSchemaRegistry::fromArray($array['type']) : null),
         );
     }
 
@@ -101,7 +101,7 @@ class AddPendingPaidMessageReaction extends TdFunction
             'chat_id'    => $this->chatId,
             'message_id' => $this->messageId,
             'star_count' => $this->starCount,
-            'type'       => $this->type ?? null,
+            'type'       => (null !== $this->type ? $this->type->jsonSerialize() : null),
         ];
     }
 }

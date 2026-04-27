@@ -18,13 +18,13 @@ class PageBlockPullQuote extends PageBlock
 
     public function __construct(
         /**
-         * Quote text.
-         */
-        protected RichText $text,
-        /**
          * Quote credit.
          */
         protected RichText $credit,
+        /**
+         * Quote text.
+         */
+        protected RichText $text,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class PageBlockPullQuote extends PageBlock
     public static function fromArray(array $array): PageBlockPullQuote
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['text']),
-            TdSchemaRegistry::fromArray($array['credit']),
+            credit: TdSchemaRegistry::fromArray($array['credit']),
+            text  : TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -65,8 +65,8 @@ class PageBlockPullQuote extends PageBlock
     {
         return [
             '@type'  => static::TYPE_NAME,
-            'text'   => $this->text->typeSerialize(),
-            'credit' => $this->credit->typeSerialize(),
+            'credit' => $this->credit->jsonSerialize(),
+            'text'   => $this->text->jsonSerialize(),
         ];
     }
 }

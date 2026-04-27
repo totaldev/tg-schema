@@ -21,21 +21,21 @@ class RateSpeechRecognition extends TdFunction
          */
         protected int  $chatId,
         /**
-         * Identifier of the message.
-         */
-        protected int  $messageId,
-        /**
          * Pass true if the speech recognition is good.
          */
         protected bool $isGood,
+        /**
+         * Identifier of the message.
+         */
+        protected int  $messageId,
     ) {}
 
     public static function fromArray(array $array): RateSpeechRecognition
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            $array['is_good'],
+            chatId   : $array['chat_id'],
+            isGood   : $array['is_good'],
+            messageId: $array['message_id'],
         );
     }
 
@@ -80,8 +80,8 @@ class RateSpeechRecognition extends TdFunction
         return [
             '@type'      => static::TYPE_NAME,
             'chat_id'    => $this->chatId,
-            'message_id' => $this->messageId,
             'is_good'    => $this->isGood,
+            'message_id' => $this->messageId,
         ];
     }
 }

@@ -27,7 +27,7 @@ class ReadChatList extends TdFunction
     public static function fromArray(array $array): ReadChatList
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['chat_list']),
+            chatList: TdSchemaRegistry::fromArray($array['chat_list']),
         );
     }
 
@@ -47,7 +47,7 @@ class ReadChatList extends TdFunction
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'chat_list' => $this->chatList->typeSerialize(),
+            'chat_list' => $this->chatList->jsonSerialize(),
         ];
     }
 }

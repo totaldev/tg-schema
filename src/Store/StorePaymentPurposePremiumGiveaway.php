@@ -18,17 +18,17 @@ class StorePaymentPurposePremiumGiveaway extends StorePaymentPurpose
 
     public function __construct(
         /**
-         * Giveaway parameters.
+         * Paid amount, in the smallest units of the currency.
          */
-        protected GiveawayParameters $parameters,
+        protected int                $amount,
         /**
          * ISO 4217 currency code of the payment currency.
          */
         protected string             $currency,
         /**
-         * Paid amount, in the smallest units of the currency.
+         * Giveaway parameters.
          */
-        protected int                $amount,
+        protected GiveawayParameters $parameters,
     ) {
         parent::__construct();
     }
@@ -36,9 +36,9 @@ class StorePaymentPurposePremiumGiveaway extends StorePaymentPurpose
     public static function fromArray(array $array): StorePaymentPurposePremiumGiveaway
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['parameters']),
-            $array['currency'],
-            $array['amount'],
+            amount    : $array['amount'],
+            currency  : $array['currency'],
+            parameters: TdSchemaRegistry::fromArray($array['parameters']),
         );
     }
 
@@ -82,9 +82,9 @@ class StorePaymentPurposePremiumGiveaway extends StorePaymentPurpose
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'parameters' => $this->parameters->typeSerialize(),
-            'currency'   => $this->currency,
             'amount'     => $this->amount,
+            'currency'   => $this->currency,
+            'parameters' => $this->parameters->jsonSerialize(),
         ];
     }
 }

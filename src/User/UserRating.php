@@ -17,35 +17,35 @@ class UserRating extends TdObject
 
     public function __construct(
         /**
-         * The level of the user; may be negative.
+         * The rating required for the current level.
          */
-        protected int  $level,
+        protected int  $currentLevelRating,
         /**
          * True, if the maximum level is reached.
          */
         protected bool $isMaximumLevelReached,
         /**
-         * Numerical value of the rating.
+         * The level of the user; may be negative.
          */
-        protected int  $rating,
-        /**
-         * The rating required for the current level.
-         */
-        protected int  $currentLevelRating,
+        protected int  $level,
         /**
          * The rating required for the next level; 0 if the maximum level is reached.
          */
         protected int  $nextLevelRating,
+        /**
+         * Numerical value of the rating.
+         */
+        protected int  $rating,
     ) {}
 
     public static function fromArray(array $array): UserRating
     {
         return new static(
-            $array['level'],
-            $array['is_maximum_level_reached'],
-            $array['rating'],
-            $array['current_level_rating'],
-            $array['next_level_rating'],
+            currentLevelRating   : $array['current_level_rating'],
+            isMaximumLevelReached: $array['is_maximum_level_reached'],
+            level                : $array['level'],
+            nextLevelRating      : $array['next_level_rating'],
+            rating               : $array['rating'],
         );
     }
 
@@ -113,11 +113,11 @@ class UserRating extends TdObject
     {
         return [
             '@type'                    => static::TYPE_NAME,
-            'level'                    => $this->level,
-            'is_maximum_level_reached' => $this->isMaximumLevelReached,
-            'rating'                   => $this->rating,
             'current_level_rating'     => $this->currentLevelRating,
+            'is_maximum_level_reached' => $this->isMaximumLevelReached,
+            'level'                    => $this->level,
             'next_level_rating'        => $this->nextLevelRating,
+            'rating'                   => $this->rating,
         ];
     }
 }

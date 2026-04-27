@@ -17,13 +17,13 @@ class CallbackQueryAnswer extends TdObject
 
     public function __construct(
         /**
-         * Text of the answer.
-         */
-        protected string $text,
-        /**
          * True, if an alert must be shown to the user instead of a toast notification.
          */
         protected bool   $showAlert,
+        /**
+         * Text of the answer.
+         */
+        protected string $text,
         /**
          * URL to be opened.
          */
@@ -33,9 +33,9 @@ class CallbackQueryAnswer extends TdObject
     public static function fromArray(array $array): CallbackQueryAnswer
     {
         return new static(
-            $array['text'],
-            $array['show_alert'],
-            $array['url'],
+            showAlert: $array['show_alert'],
+            text     : $array['text'],
+            url      : $array['url'],
         );
     }
 
@@ -79,8 +79,8 @@ class CallbackQueryAnswer extends TdObject
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'text'       => $this->text,
             'show_alert' => $this->showAlert,
+            'text'       => $this->text,
             'url'        => $this->url,
         ];
     }

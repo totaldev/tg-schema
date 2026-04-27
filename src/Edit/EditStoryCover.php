@@ -17,25 +17,25 @@ class EditStoryCover extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the chat that posted the story.
+         * New timestamp of the frame, which will be used as video thumbnail.
          */
-        protected int   $storyPosterChatId,
+        protected float $coverFrameTimestamp,
         /**
          * Identifier of the story to edit.
          */
         protected int   $storyId,
         /**
-         * New timestamp of the frame, which will be used as video thumbnail.
+         * Identifier of the chat that posted the story.
          */
-        protected float $coverFrameTimestamp,
+        protected int   $storyPosterChatId,
     ) {}
 
     public static function fromArray(array $array): EditStoryCover
     {
         return new static(
-            $array['story_poster_chat_id'],
-            $array['story_id'],
-            $array['cover_frame_timestamp'],
+            coverFrameTimestamp: $array['cover_frame_timestamp'],
+            storyId            : $array['story_id'],
+            storyPosterChatId  : $array['story_poster_chat_id'],
         );
     }
 
@@ -79,9 +79,9 @@ class EditStoryCover extends TdFunction
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'story_poster_chat_id'  => $this->storyPosterChatId,
-            'story_id'              => $this->storyId,
             'cover_frame_timestamp' => $this->coverFrameTimestamp,
+            'story_id'              => $this->storyId,
+            'story_poster_chat_id'  => $this->storyPosterChatId,
         ];
     }
 }

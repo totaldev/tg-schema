@@ -18,13 +18,13 @@ class UpdateLanguagePackStrings extends Update
 
     public function __construct(
         /**
-         * Localization target to which the language pack belongs.
-         */
-        protected string $localizationTarget,
-        /**
          * Identifier of the updated language pack.
          */
         protected string $languagePackId,
+        /**
+         * Localization target to which the language pack belongs.
+         */
+        protected string $localizationTarget,
         /**
          * List of changed language pack strings; empty if all strings have changed.
          *
@@ -38,9 +38,9 @@ class UpdateLanguagePackStrings extends Update
     public static function fromArray(array $array): UpdateLanguagePackStrings
     {
         return new static(
-            $array['localization_target'],
-            $array['language_pack_id'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['strings']),
+            languagePackId    : $array['language_pack_id'],
+            localizationTarget: $array['localization_target'],
+            strings           : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['strings']),
         );
     }
 
@@ -84,9 +84,9 @@ class UpdateLanguagePackStrings extends Update
     {
         return [
             '@type'               => static::TYPE_NAME,
-            'localization_target' => $this->localizationTarget,
             'language_pack_id'    => $this->languagePackId,
-            'strings'             => array_map(static fn($x) => $x->typeSerialize(), $this->strings),
+            'localization_target' => $this->localizationTarget,
+            'strings'             => array_map(static fn($x) => $x->jsonSerialize(), $this->strings),
         ];
     }
 }

@@ -25,7 +25,7 @@ class ToggleAllDownloadsArePaused extends TdFunction
     public static function fromArray(array $array): ToggleAllDownloadsArePaused
     {
         return new static(
-            $array['are_paused'],
+            arePaused: $array['are_paused'],
         );
     }
 

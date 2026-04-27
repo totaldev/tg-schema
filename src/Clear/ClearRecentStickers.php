@@ -25,7 +25,7 @@ class ClearRecentStickers extends TdFunction
     public static function fromArray(array $array): ClearRecentStickers
     {
         return new static(
-            $array['is_attached'],
+            isAttached: $array['is_attached'],
         );
     }
 

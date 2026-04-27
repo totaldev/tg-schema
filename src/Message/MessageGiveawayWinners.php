@@ -18,6 +18,14 @@ class MessageGiveawayWinners extends MessageContent
 
     public function __construct(
         /**
+         * Point in time (Unix timestamp) when the winners were selected. May be bigger than winners selection date specified in parameters of the giveaway.
+         */
+        protected int           $actualWinnersSelectionDate,
+        /**
+         * Number of other chats that participated in the giveaway.
+         */
+        protected int           $additionalChatCount,
+        /**
          * Identifier of the supergroup or channel chat, which was automatically boosted by the winners of the giveaway.
          */
         protected int           $boostedChatId,
@@ -26,21 +34,9 @@ class MessageGiveawayWinners extends MessageContent
          */
         protected int           $giveawayMessageId,
         /**
-         * Number of other chats that participated in the giveaway.
-         */
-        protected int           $additionalChatCount,
-        /**
-         * Point in time (Unix timestamp) when the winners were selected. May be bigger than winners selection date specified in parameters of the giveaway.
-         */
-        protected int           $actualWinnersSelectionDate,
-        /**
          * True, if only new members of the chats were eligible for the giveaway.
          */
         protected bool          $onlyNewMembers,
-        /**
-         * True, if the giveaway was canceled and was fully refunded.
-         */
-        protected bool          $wasRefunded,
         /**
          * Prize of the giveaway.
          */
@@ -49,6 +45,14 @@ class MessageGiveawayWinners extends MessageContent
          * Additional description of the giveaway prize.
          */
         protected string        $prizeDescription,
+        /**
+         * Number of undistributed prizes; for Telegram Premium giveaways only.
+         */
+        protected int           $unclaimedPrizeCount,
+        /**
+         * True, if the giveaway was canceled and was fully refunded.
+         */
+        protected bool          $wasRefunded,
         /**
          * Total number of winners in the giveaway.
          */
@@ -59,10 +63,6 @@ class MessageGiveawayWinners extends MessageContent
          * @var int[]
          */
         protected array         $winnerUserIds,
-        /**
-         * Number of undistributed prizes; for Telegram Premium giveaways only.
-         */
-        protected int           $unclaimedPrizeCount,
     ) {
         parent::__construct();
     }
@@ -70,17 +70,17 @@ class MessageGiveawayWinners extends MessageContent
     public static function fromArray(array $array): MessageGiveawayWinners
     {
         return new static(
-            $array['boosted_chat_id'],
-            $array['giveaway_message_id'],
-            $array['additional_chat_count'],
-            $array['actual_winners_selection_date'],
-            $array['only_new_members'],
-            $array['was_refunded'],
-            TdSchemaRegistry::fromArray($array['prize']),
-            $array['prize_description'],
-            $array['winner_count'],
-            $array['winner_user_ids'],
-            $array['unclaimed_prize_count'],
+            actualWinnersSelectionDate: $array['actual_winners_selection_date'],
+            additionalChatCount       : $array['additional_chat_count'],
+            boostedChatId             : $array['boosted_chat_id'],
+            giveawayMessageId         : $array['giveaway_message_id'],
+            onlyNewMembers            : $array['only_new_members'],
+            prize                     : TdSchemaRegistry::fromArray($array['prize']),
+            prizeDescription          : $array['prize_description'],
+            unclaimedPrizeCount       : $array['unclaimed_prize_count'],
+            wasRefunded               : $array['was_refunded'],
+            winnerCount               : $array['winner_count'],
+            winnerUserIds             : $array['winner_user_ids'],
         );
     }
 
@@ -220,17 +220,17 @@ class MessageGiveawayWinners extends MessageContent
     {
         return [
             '@type'                         => static::TYPE_NAME,
+            'actual_winners_selection_date' => $this->actualWinnersSelectionDate,
+            'additional_chat_count'         => $this->additionalChatCount,
             'boosted_chat_id'               => $this->boostedChatId,
             'giveaway_message_id'           => $this->giveawayMessageId,
-            'additional_chat_count'         => $this->additionalChatCount,
-            'actual_winners_selection_date' => $this->actualWinnersSelectionDate,
             'only_new_members'              => $this->onlyNewMembers,
-            'was_refunded'                  => $this->wasRefunded,
-            'prize'                         => $this->prize->typeSerialize(),
+            'prize'                         => $this->prize->jsonSerialize(),
             'prize_description'             => $this->prizeDescription,
+            'unclaimed_prize_count'         => $this->unclaimedPrizeCount,
+            'was_refunded'                  => $this->wasRefunded,
             'winner_count'                  => $this->winnerCount,
             'winner_user_ids'               => $this->winnerUserIds,
-            'unclaimed_prize_count'         => $this->unclaimedPrizeCount,
         ];
     }
 }

@@ -30,7 +30,7 @@ class UpdateEmojiChatThemes extends Update
     public static function fromArray(array $array): UpdateEmojiChatThemes
     {
         return new static(
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['chat_themes']),
+            chatThemes: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['chat_themes']),
         );
     }
 
@@ -50,7 +50,7 @@ class UpdateEmojiChatThemes extends Update
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'chat_themes' => array_map(static fn($x) => $x->typeSerialize(), $this->chatThemes),
+            'chat_themes' => array_map(static fn($x) => $x->jsonSerialize(), $this->chatThemes),
         ];
     }
 }

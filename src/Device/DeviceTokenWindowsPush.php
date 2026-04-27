@@ -25,7 +25,7 @@ class DeviceTokenWindowsPush extends DeviceToken
     public static function fromArray(array $array): DeviceTokenWindowsPush
     {
         return new static(
-            $array['access_token'],
+            accessToken: $array['access_token'],
         );
     }
 

@@ -25,7 +25,7 @@ class StatisticalGraphError extends StatisticalGraph
     public static function fromArray(array $array): StatisticalGraphError
     {
         return new static(
-            $array['error_message'],
+            errorMessage: $array['error_message'],
         );
     }
 

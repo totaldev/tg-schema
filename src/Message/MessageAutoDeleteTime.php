@@ -25,7 +25,7 @@ class MessageAutoDeleteTime extends TdObject
     public static function fromArray(array $array): MessageAutoDeleteTime
     {
         return new static(
-            $array['time'],
+            time: $array['time'],
         );
     }
 

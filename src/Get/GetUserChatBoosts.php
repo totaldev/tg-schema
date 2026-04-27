@@ -29,8 +29,8 @@ class GetUserChatBoosts extends TdFunction
     public static function fromArray(array $array): GetUserChatBoosts
     {
         return new static(
-            $array['chat_id'],
-            $array['user_id'],
+            chatId: $array['chat_id'],
+            userId: $array['user_id'],
         );
     }
 

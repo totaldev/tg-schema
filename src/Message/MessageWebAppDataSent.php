@@ -25,7 +25,7 @@ class MessageWebAppDataSent extends MessageContent
     public static function fromArray(array $array): MessageWebAppDataSent
     {
         return new static(
-            $array['button_text'],
+            buttonText: $array['button_text'],
         );
     }
 

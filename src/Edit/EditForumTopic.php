@@ -22,31 +22,31 @@ class EditForumTopic extends TdFunction
          */
         protected int    $chatId,
         /**
-         * Forum topic identifier.
-         */
-        protected int    $forumTopicId,
-        /**
-         * New name of the topic; 0-128 characters. If empty, the previous topic name is kept.
-         */
-        protected string $name,
-        /**
          * Pass true to edit the icon of the topic. Icon of the General topic can't be edited.
          */
         protected bool   $editIconCustomEmoji,
         /**
+         * Forum topic identifier.
+         */
+        protected int    $forumTopicId,
+        /**
          * Identifier of the new custom emoji for topic icon; pass 0 to remove the custom emoji. Ignored if edit_icon_custom_emoji is false. Telegram Premium users can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons.
          */
         protected int    $iconCustomEmojiId,
+        /**
+         * New name of the topic; 0-128 characters. If empty, the previous topic name is kept.
+         */
+        protected string $name,
     ) {}
 
     public static function fromArray(array $array): EditForumTopic
     {
         return new static(
-            $array['chat_id'],
-            $array['forum_topic_id'],
-            $array['name'],
-            $array['edit_icon_custom_emoji'],
-            $array['icon_custom_emoji_id'],
+            chatId             : $array['chat_id'],
+            editIconCustomEmoji: $array['edit_icon_custom_emoji'],
+            forumTopicId       : $array['forum_topic_id'],
+            iconCustomEmojiId  : $array['icon_custom_emoji_id'],
+            name               : $array['name'],
         );
     }
 
@@ -115,10 +115,10 @@ class EditForumTopic extends TdFunction
         return [
             '@type'                  => static::TYPE_NAME,
             'chat_id'                => $this->chatId,
-            'forum_topic_id'         => $this->forumTopicId,
-            'name'                   => $this->name,
             'edit_icon_custom_emoji' => $this->editIconCustomEmoji,
+            'forum_topic_id'         => $this->forumTopicId,
             'icon_custom_emoji_id'   => $this->iconCustomEmojiId,
+            'name'                   => $this->name,
         ];
     }
 }

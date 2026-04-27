@@ -26,13 +26,13 @@ class InternalLinkTypeMainWebApp extends InternalLinkType
          */
         protected string         $botUsername,
         /**
-         * Start parameter to be passed to getMainWebApp.
-         */
-        protected string         $startParameter,
-        /**
          * The mode to be passed to getMainWebApp.
          */
         protected WebAppOpenMode $mode,
+        /**
+         * Start parameter to be passed to getMainWebApp.
+         */
+        protected string         $startParameter,
     ) {
         parent::__construct();
     }
@@ -40,9 +40,9 @@ class InternalLinkTypeMainWebApp extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeMainWebApp
     {
         return new static(
-            $array['bot_username'],
-            $array['start_parameter'],
-            TdSchemaRegistry::fromArray($array['mode']),
+            botUsername   : $array['bot_username'],
+            mode          : TdSchemaRegistry::fromArray($array['mode']),
+            startParameter: $array['start_parameter'],
         );
     }
 
@@ -87,8 +87,8 @@ class InternalLinkTypeMainWebApp extends InternalLinkType
         return [
             '@type'           => static::TYPE_NAME,
             'bot_username'    => $this->botUsername,
+            'mode'            => $this->mode->jsonSerialize(),
             'start_parameter' => $this->startParameter,
-            'mode'            => $this->mode->typeSerialize(),
         ];
     }
 }

@@ -25,7 +25,7 @@ class UpdateFileGenerationStop extends Update
     public static function fromArray(array $array): UpdateFileGenerationStop
     {
         return new static(
-            $array['generation_id'],
+            generationId: $array['generation_id'],
         );
     }
 

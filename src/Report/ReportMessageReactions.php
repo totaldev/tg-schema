@@ -35,9 +35,9 @@ class ReportMessageReactions extends TdFunction
     public static function fromArray(array $array): ReportMessageReactions
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            TdSchemaRegistry::fromArray($array['sender_id']),
+            chatId   : $array['chat_id'],
+            messageId: $array['message_id'],
+            senderId : TdSchemaRegistry::fromArray($array['sender_id']),
         );
     }
 
@@ -83,7 +83,7 @@ class ReportMessageReactions extends TdFunction
             '@type'      => static::TYPE_NAME,
             'chat_id'    => $this->chatId,
             'message_id' => $this->messageId,
-            'sender_id'  => $this->senderId->typeSerialize(),
+            'sender_id'  => $this->senderId->jsonSerialize(),
         ];
     }
 }

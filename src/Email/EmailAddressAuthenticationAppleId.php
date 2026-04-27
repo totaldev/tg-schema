@@ -25,7 +25,7 @@ class EmailAddressAuthenticationAppleId extends EmailAddressAuthentication
     public static function fromArray(array $array): EmailAddressAuthenticationAppleId
     {
         return new static(
-            $array['token'],
+            token: $array['token'],
         );
     }
 

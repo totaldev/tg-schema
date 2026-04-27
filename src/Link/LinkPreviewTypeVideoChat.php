@@ -18,10 +18,6 @@ class LinkPreviewTypeVideoChat extends LinkPreviewType
 
     public function __construct(
         /**
-         * Photo of the chat with the video chat; may be null if none.
-         */
-        protected ?ChatPhoto $photo,
-        /**
          * True, if the video chat is expected to be a live stream in a channel or a broadcast group.
          */
         protected bool       $isLiveStream,
@@ -29,6 +25,10 @@ class LinkPreviewTypeVideoChat extends LinkPreviewType
          * True, if the user can use the link to join the video chat without being muted by administrators.
          */
         protected bool       $joinsAsSpeaker,
+        /**
+         * Photo of the chat with the video chat; may be null if none.
+         */
+        protected ?ChatPhoto $photo,
     ) {
         parent::__construct();
     }
@@ -36,9 +36,9 @@ class LinkPreviewTypeVideoChat extends LinkPreviewType
     public static function fromArray(array $array): LinkPreviewTypeVideoChat
     {
         return new static(
-            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
-            $array['is_live_stream'],
-            $array['joins_as_speaker'],
+            isLiveStream  : $array['is_live_stream'],
+            joinsAsSpeaker: $array['joins_as_speaker'],
+            photo         : (isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null),
         );
     }
 
@@ -82,9 +82,9 @@ class LinkPreviewTypeVideoChat extends LinkPreviewType
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'photo'            => $this->photo ?? null,
             'is_live_stream'   => $this->isLiveStream,
             'joins_as_speaker' => $this->joinsAsSpeaker,
+            'photo'            => (null !== $this->photo ? $this->photo->jsonSerialize() : null),
         ];
     }
 }

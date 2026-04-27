@@ -27,7 +27,7 @@ class GetGiftCollections extends TdFunction
     public static function fromArray(array $array): GetGiftCollections
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['owner_id']),
+            ownerId: TdSchemaRegistry::fromArray($array['owner_id']),
         );
     }
 
@@ -47,7 +47,7 @@ class GetGiftCollections extends TdFunction
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'owner_id' => $this->ownerId->typeSerialize(),
+            'owner_id' => $this->ownerId->jsonSerialize(),
         ];
     }
 }

@@ -26,7 +26,7 @@ class InternalLinkTypeChatFolderInvite extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeChatFolderInvite
     {
         return new static(
-            $array['invite_link'],
+            inviteLink: $array['invite_link'],
         );
     }
 

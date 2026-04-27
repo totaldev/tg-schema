@@ -19,37 +19,37 @@ class PhotoSize extends TdObject
 
     public function __construct(
         /**
-         * Image type (see https://core.telegram.org/constructor/photoSize).
+         * Image height.
          */
-        protected string $type,
+        protected int    $height,
         /**
          * Information about the image file.
          */
         protected File   $photo,
-        /**
-         * Image width.
-         */
-        protected int    $width,
-        /**
-         * Image height.
-         */
-        protected int    $height,
         /**
          * Sizes of progressive JPEG file prefixes, which can be used to preliminarily show the image; in bytes.
          *
          * @var int[]
          */
         protected array  $progressiveSizes,
+        /**
+         * Image type (see https://core.telegram.org/constructor/photoSize).
+         */
+        protected string $type,
+        /**
+         * Image width.
+         */
+        protected int    $width,
     ) {}
 
     public static function fromArray(array $array): PhotoSize
     {
         return new static(
-            $array['type'],
-            TdSchemaRegistry::fromArray($array['photo']),
-            $array['width'],
-            $array['height'],
-            $array['progressive_sizes'],
+            height          : $array['height'],
+            photo           : TdSchemaRegistry::fromArray($array['photo']),
+            progressiveSizes: $array['progressive_sizes'],
+            type            : $array['type'],
+            width           : $array['width'],
         );
     }
 
@@ -117,11 +117,11 @@ class PhotoSize extends TdObject
     {
         return [
             '@type'             => static::TYPE_NAME,
-            'type'              => $this->type,
-            'photo'             => $this->photo->typeSerialize(),
-            'width'             => $this->width,
             'height'            => $this->height,
+            'photo'             => $this->photo->jsonSerialize(),
             'progressive_sizes' => $this->progressiveSizes,
+            'type'              => $this->type,
+            'width'             => $this->width,
         ];
     }
 }

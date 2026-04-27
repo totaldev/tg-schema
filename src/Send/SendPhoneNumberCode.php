@@ -36,9 +36,9 @@ class SendPhoneNumberCode extends TdFunction
     public static function fromArray(array $array): SendPhoneNumberCode
     {
         return new static(
-            $array['phone_number'],
-            isset($array['settings']) ? TdSchemaRegistry::fromArray($array['settings']) : null,
-            TdSchemaRegistry::fromArray($array['type']),
+            phoneNumber: $array['phone_number'],
+            settings   : (isset($array['settings']) ? TdSchemaRegistry::fromArray($array['settings']) : null),
+            type       : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -83,8 +83,8 @@ class SendPhoneNumberCode extends TdFunction
         return [
             '@type'        => static::TYPE_NAME,
             'phone_number' => $this->phoneNumber,
-            'settings'     => $this->settings ?? null,
-            'type'         => $this->type->typeSerialize(),
+            'settings'     => (null !== $this->settings ? $this->settings->jsonSerialize() : null),
+            'type'         => $this->type->jsonSerialize(),
         ];
     }
 }

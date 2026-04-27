@@ -18,40 +18,40 @@ class BusinessConnection extends TdObject
 
     public function __construct(
         /**
+         * Point in time (Unix timestamp) when the connection was established.
+         */
+        protected int                $date,
+        /**
          * Unique identifier of the connection.
          */
         protected string             $id,
         /**
-         * Identifier of the business user that created the connection.
+         * True, if the connection is enabled; false otherwise.
          */
-        protected int                $userId,
-        /**
-         * Chat identifier of the private chat with the user.
-         */
-        protected int                $userChatId,
-        /**
-         * Point in time (Unix timestamp) when the connection was established.
-         */
-        protected int                $date,
+        protected bool               $isEnabled,
         /**
          * Rights of the bot; may be null if the connection was disabled.
          */
         protected ?BusinessBotRights $rights,
         /**
-         * True, if the connection is enabled; false otherwise.
+         * Chat identifier of the private chat with the user.
          */
-        protected bool               $isEnabled,
+        protected int                $userChatId,
+        /**
+         * Identifier of the business user that created the connection.
+         */
+        protected int                $userId,
     ) {}
 
     public static function fromArray(array $array): BusinessConnection
     {
         return new static(
-            $array['id'],
-            $array['user_id'],
-            $array['user_chat_id'],
-            $array['date'],
-            isset($array['rights']) ? TdSchemaRegistry::fromArray($array['rights']) : null,
-            $array['is_enabled'],
+            date      : $array['date'],
+            id        : $array['id'],
+            isEnabled : $array['is_enabled'],
+            rights    : (isset($array['rights']) ? TdSchemaRegistry::fromArray($array['rights']) : null),
+            userChatId: $array['user_chat_id'],
+            userId    : $array['user_id'],
         );
     }
 
@@ -131,12 +131,12 @@ class BusinessConnection extends TdObject
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'id'           => $this->id,
-            'user_id'      => $this->userId,
-            'user_chat_id' => $this->userChatId,
             'date'         => $this->date,
-            'rights'       => $this->rights ?? null,
+            'id'           => $this->id,
             'is_enabled'   => $this->isEnabled,
+            'rights'       => (null !== $this->rights ? $this->rights->jsonSerialize() : null),
+            'user_chat_id' => $this->userChatId,
+            'user_id'      => $this->userId,
         ];
     }
 }

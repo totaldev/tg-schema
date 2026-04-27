@@ -18,13 +18,13 @@ class InlineQueryResultAnimation extends InlineQueryResult
 
     public function __construct(
         /**
-         * Unique identifier of the query result.
-         */
-        protected string    $id,
-        /**
          * Animation file.
          */
         protected Animation $animation,
+        /**
+         * Unique identifier of the query result.
+         */
+        protected string    $id,
         /**
          * Animation title.
          */
@@ -36,9 +36,9 @@ class InlineQueryResultAnimation extends InlineQueryResult
     public static function fromArray(array $array): InlineQueryResultAnimation
     {
         return new static(
-            $array['id'],
-            TdSchemaRegistry::fromArray($array['animation']),
-            $array['title'],
+            animation: TdSchemaRegistry::fromArray($array['animation']),
+            id       : $array['id'],
+            title    : $array['title'],
         );
     }
 
@@ -82,8 +82,8 @@ class InlineQueryResultAnimation extends InlineQueryResult
     {
         return [
             '@type'     => static::TYPE_NAME,
+            'animation' => $this->animation->jsonSerialize(),
             'id'        => $this->id,
-            'animation' => $this->animation->typeSerialize(),
             'title'     => $this->title,
         ];
     }

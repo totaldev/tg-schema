@@ -19,13 +19,13 @@ class InlineQueryResultContact extends InlineQueryResult
 
     public function __construct(
         /**
-         * Unique identifier of the query result.
-         */
-        protected string     $id,
-        /**
          * A user contact.
          */
         protected Contact    $contact,
+        /**
+         * Unique identifier of the query result.
+         */
+        protected string     $id,
         /**
          * Result thumbnail in JPEG format; may be null.
          */
@@ -37,9 +37,9 @@ class InlineQueryResultContact extends InlineQueryResult
     public static function fromArray(array $array): InlineQueryResultContact
     {
         return new static(
-            $array['id'],
-            TdSchemaRegistry::fromArray($array['contact']),
-            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
+            contact  : TdSchemaRegistry::fromArray($array['contact']),
+            id       : $array['id'],
+            thumbnail: (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
         );
     }
 
@@ -83,9 +83,9 @@ class InlineQueryResultContact extends InlineQueryResult
     {
         return [
             '@type'     => static::TYPE_NAME,
+            'contact'   => $this->contact->jsonSerialize(),
             'id'        => $this->id,
-            'contact'   => $this->contact->typeSerialize(),
-            'thumbnail' => $this->thumbnail ?? null,
+            'thumbnail' => (null !== $this->thumbnail ? $this->thumbnail->jsonSerialize() : null),
         ];
     }
 }

@@ -15,13 +15,13 @@ class MessageOriginChat extends MessageOrigin
 
     public function __construct(
         /**
-         * Identifier of the chat that originally sent the message.
-         */
-        protected int    $senderChatId,
-        /**
          * For messages originally sent by an anonymous chat administrator, original message author signature.
          */
         protected string $authorSignature,
+        /**
+         * Identifier of the chat that originally sent the message.
+         */
+        protected int    $senderChatId,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class MessageOriginChat extends MessageOrigin
     public static function fromArray(array $array): MessageOriginChat
     {
         return new static(
-            $array['sender_chat_id'],
-            $array['author_signature'],
+            authorSignature: $array['author_signature'],
+            senderChatId   : $array['sender_chat_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class MessageOriginChat extends MessageOrigin
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'sender_chat_id'   => $this->senderChatId,
             'author_signature' => $this->authorSignature,
+            'sender_chat_id'   => $this->senderChatId,
         ];
     }
 }

@@ -25,7 +25,7 @@ class ReuseStarSubscription extends TdFunction
     public static function fromArray(array $array): ReuseStarSubscription
     {
         return new static(
-            $array['subscription_id'],
+            subscriptionId: $array['subscription_id'],
         );
     }
 

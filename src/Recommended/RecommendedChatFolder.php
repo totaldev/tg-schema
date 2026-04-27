@@ -19,20 +19,20 @@ class RecommendedChatFolder extends TdObject
 
     public function __construct(
         /**
-         * The chat folder.
-         */
-        protected ChatFolder $folder,
-        /**
          * Chat folder description.
          */
         protected string     $description,
+        /**
+         * The chat folder.
+         */
+        protected ChatFolder $folder,
     ) {}
 
     public static function fromArray(array $array): RecommendedChatFolder
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['folder']),
-            $array['description'],
+            description: $array['description'],
+            folder     : TdSchemaRegistry::fromArray($array['folder']),
         );
     }
 
@@ -64,8 +64,8 @@ class RecommendedChatFolder extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'folder'      => $this->folder->typeSerialize(),
             'description' => $this->description,
+            'folder'      => $this->folder->jsonSerialize(),
         ];
     }
 }

@@ -25,7 +25,7 @@ class UpdateSavedMessagesTopicCount extends Update
     public static function fromArray(array $array): UpdateSavedMessagesTopicCount
     {
         return new static(
-            $array['topic_count'],
+            topicCount: $array['topic_count'],
         );
     }
 

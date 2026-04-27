@@ -37,9 +37,9 @@ class UpdateAnimatedEmojiMessageClicked extends Update
     public static function fromArray(array $array): UpdateAnimatedEmojiMessageClicked
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            TdSchemaRegistry::fromArray($array['sticker']),
+            chatId   : $array['chat_id'],
+            messageId: $array['message_id'],
+            sticker  : TdSchemaRegistry::fromArray($array['sticker']),
         );
     }
 
@@ -85,7 +85,7 @@ class UpdateAnimatedEmojiMessageClicked extends Update
             '@type'      => static::TYPE_NAME,
             'chat_id'    => $this->chatId,
             'message_id' => $this->messageId,
-            'sticker'    => $this->sticker->typeSerialize(),
+            'sticker'    => $this->sticker->jsonSerialize(),
         ];
     }
 }

@@ -17,20 +17,20 @@ class ToggleSupergroupHasAggressiveAntiSpamEnabled extends TdFunction
 
     public function __construct(
         /**
-         * The identifier of the supergroup, which isn't a broadcast group.
-         */
-        protected int  $supergroupId,
-        /**
          * The new value of has_aggressive_anti_spam_enabled.
          */
         protected bool $hasAggressiveAntiSpamEnabled,
+        /**
+         * The identifier of the supergroup, which isn't a broadcast group.
+         */
+        protected int  $supergroupId,
     ) {}
 
     public static function fromArray(array $array): ToggleSupergroupHasAggressiveAntiSpamEnabled
     {
         return new static(
-            $array['supergroup_id'],
-            $array['has_aggressive_anti_spam_enabled'],
+            hasAggressiveAntiSpamEnabled: $array['has_aggressive_anti_spam_enabled'],
+            supergroupId                : $array['supergroup_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class ToggleSupergroupHasAggressiveAntiSpamEnabled extends TdFunction
     {
         return [
             '@type'                            => static::TYPE_NAME,
-            'supergroup_id'                    => $this->supergroupId,
             'has_aggressive_anti_spam_enabled' => $this->hasAggressiveAntiSpamEnabled,
+            'supergroup_id'                    => $this->supergroupId,
         ];
     }
 }

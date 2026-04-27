@@ -25,7 +25,7 @@ class MessageSenderUser extends MessageSender
     public static function fromArray(array $array): MessageSenderUser
     {
         return new static(
-            $array['user_id'],
+            userId: $array['user_id'],
         );
     }
 

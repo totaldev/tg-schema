@@ -27,7 +27,7 @@ class RemoveSavedAnimation extends TdFunction
     public static function fromArray(array $array): RemoveSavedAnimation
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['animation']),
+            animation: TdSchemaRegistry::fromArray($array['animation']),
         );
     }
 
@@ -47,7 +47,7 @@ class RemoveSavedAnimation extends TdFunction
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'animation' => $this->animation->typeSerialize(),
+            'animation' => $this->animation->jsonSerialize(),
         ];
     }
 }

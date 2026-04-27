@@ -25,7 +25,7 @@ class InputFileLocal extends InputFile
     public static function fromArray(array $array): InputFileLocal
     {
         return new static(
-            $array['path'],
+            path: $array['path'],
         );
     }
 

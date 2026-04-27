@@ -25,7 +25,7 @@ class DeleteDefaultBackground extends TdFunction
     public static function fromArray(array $array): DeleteDefaultBackground
     {
         return new static(
-            $array['for_dark_theme'],
+            forDarkTheme: $array['for_dark_theme'],
         );
     }
 

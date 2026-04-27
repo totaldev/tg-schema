@@ -30,8 +30,8 @@ class UpgradedGiftModelCount extends TdObject
     public static function fromArray(array $array): UpgradedGiftModelCount
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['model']),
-            $array['total_count'],
+            model     : TdSchemaRegistry::fromArray($array['model']),
+            totalCount: $array['total_count'],
         );
     }
 
@@ -63,7 +63,7 @@ class UpgradedGiftModelCount extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'model'       => $this->model->typeSerialize(),
+            'model'       => $this->model->jsonSerialize(),
             'total_count' => $this->totalCount,
         ];
     }

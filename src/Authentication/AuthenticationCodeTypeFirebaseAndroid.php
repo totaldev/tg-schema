@@ -32,8 +32,8 @@ class AuthenticationCodeTypeFirebaseAndroid extends AuthenticationCodeType
     public static function fromArray(array $array): AuthenticationCodeTypeFirebaseAndroid
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['device_verification_parameters']),
-            $array['length'],
+            deviceVerificationParameters: TdSchemaRegistry::fromArray($array['device_verification_parameters']),
+            length                      : $array['length'],
         );
     }
 
@@ -65,7 +65,7 @@ class AuthenticationCodeTypeFirebaseAndroid extends AuthenticationCodeType
     {
         return [
             '@type'                          => static::TYPE_NAME,
-            'device_verification_parameters' => $this->deviceVerificationParameters->typeSerialize(),
+            'device_verification_parameters' => $this->deviceVerificationParameters->jsonSerialize(),
             'length'                         => $this->length,
         ];
     }

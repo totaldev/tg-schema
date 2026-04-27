@@ -32,8 +32,8 @@ class UpdateChatPendingJoinRequests extends Update
     public static function fromArray(array $array): UpdateChatPendingJoinRequests
     {
         return new static(
-            $array['chat_id'],
-            isset($array['pending_join_requests']) ? TdSchemaRegistry::fromArray($array['pending_join_requests']) : null,
+            chatId             : $array['chat_id'],
+            pendingJoinRequests: (isset($array['pending_join_requests']) ? TdSchemaRegistry::fromArray($array['pending_join_requests']) : null),
         );
     }
 
@@ -66,7 +66,7 @@ class UpdateChatPendingJoinRequests extends Update
         return [
             '@type'                 => static::TYPE_NAME,
             'chat_id'               => $this->chatId,
-            'pending_join_requests' => $this->pendingJoinRequests ?? null,
+            'pending_join_requests' => (null !== $this->pendingJoinRequests ? $this->pendingJoinRequests->jsonSerialize() : null),
         ];
     }
 }

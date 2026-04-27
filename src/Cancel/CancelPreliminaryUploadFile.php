@@ -25,7 +25,7 @@ class CancelPreliminaryUploadFile extends TdFunction
     public static function fromArray(array $array): CancelPreliminaryUploadFile
     {
         return new static(
-            $array['file_id'],
+            fileId: $array['file_id'],
         );
     }
 

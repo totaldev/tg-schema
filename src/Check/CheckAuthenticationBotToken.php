@@ -26,7 +26,7 @@ class CheckAuthenticationBotToken extends TdFunction
     public static function fromArray(array $array): CheckAuthenticationBotToken
     {
         return new static(
-            $array['token'],
+            token: $array['token'],
         );
     }
 

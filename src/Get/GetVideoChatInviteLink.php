@@ -17,20 +17,20 @@ class GetVideoChatInviteLink extends TdFunction
 
     public function __construct(
         /**
-         * Group call identifier.
-         */
-        protected int  $groupCallId,
-        /**
          * Pass true if the invite link needs to contain an invite hash, passing which to joinVideoChat would allow the invited user to unmute themselves. Requires groupCall.can_be_managed right.
          */
         protected bool $canSelfUnmute,
+        /**
+         * Group call identifier.
+         */
+        protected int  $groupCallId,
     ) {}
 
     public static function fromArray(array $array): GetVideoChatInviteLink
     {
         return new static(
-            $array['group_call_id'],
-            $array['can_self_unmute'],
+            canSelfUnmute: $array['can_self_unmute'],
+            groupCallId  : $array['group_call_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class GetVideoChatInviteLink extends TdFunction
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'group_call_id'   => $this->groupCallId,
             'can_self_unmute' => $this->canSelfUnmute,
+            'group_call_id'   => $this->groupCallId,
         ];
     }
 }

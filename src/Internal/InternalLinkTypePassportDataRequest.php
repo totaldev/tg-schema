@@ -20,21 +20,21 @@ class InternalLinkTypePassportDataRequest extends InternalLinkType
          */
         protected int    $botUserId,
         /**
-         * Telegram Passport element types requested by the service.
+         * An HTTP URL to open once the request is finished, canceled, or failed with the parameters tg_passport=success, tg_passport=cancel, or tg_passport=error&error=... respectively. If empty, then onActivityResult method must be used to return response on Android, or the link tgbot{bot_user_id}://passport/success or tgbot{bot_user_id}://passport/cancel must be opened otherwise.
          */
-        protected string $scope,
-        /**
-         * Service's public key.
-         */
-        protected string $publicKey,
+        protected string $callbackUrl,
         /**
          * Unique request identifier provided by the service.
          */
         protected string $nonce,
         /**
-         * An HTTP URL to open once the request is finished, canceled, or failed with the parameters tg_passport=success, tg_passport=cancel, or tg_passport=error&error=... respectively. If empty, then onActivityResult method must be used to return response on Android, or the link tgbot{bot_user_id}://passport/success or tgbot{bot_user_id}://passport/cancel must be opened otherwise.
+         * Service's public key.
          */
-        protected string $callbackUrl,
+        protected string $publicKey,
+        /**
+         * Telegram Passport element types requested by the service.
+         */
+        protected string $scope,
     ) {
         parent::__construct();
     }
@@ -42,11 +42,11 @@ class InternalLinkTypePassportDataRequest extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypePassportDataRequest
     {
         return new static(
-            $array['bot_user_id'],
-            $array['scope'],
-            $array['public_key'],
-            $array['nonce'],
-            $array['callback_url'],
+            botUserId  : $array['bot_user_id'],
+            callbackUrl: $array['callback_url'],
+            nonce      : $array['nonce'],
+            publicKey  : $array['public_key'],
+            scope      : $array['scope'],
         );
     }
 
@@ -115,10 +115,10 @@ class InternalLinkTypePassportDataRequest extends InternalLinkType
         return [
             '@type'        => static::TYPE_NAME,
             'bot_user_id'  => $this->botUserId,
-            'scope'        => $this->scope,
-            'public_key'   => $this->publicKey,
-            'nonce'        => $this->nonce,
             'callback_url' => $this->callbackUrl,
+            'nonce'        => $this->nonce,
+            'public_key'   => $this->publicKey,
+            'scope'        => $this->scope,
         ];
     }
 }

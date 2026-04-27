@@ -22,40 +22,40 @@ class OpenWebApp extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats.
-         */
-        protected int                  $chatId,
-        /**
          * Identifier of the bot, providing the Web App. If the bot is restricted for the current user, then show an error instead of calling the method.
          */
         protected int                  $botUserId,
         /**
-         * The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise.
+         * Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats.
          */
-        protected string               $url,
+        protected int                  $chatId,
         /**
          * Parameters to use to open the Web App.
          */
         protected WebAppOpenParameters $parameters,
         /**
-         * Topic in which the message will be sent; pass null if none.
+         * The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise.
          */
-        protected ?MessageTopic        $topicId = null,
+        protected string               $url,
         /**
          * Information about the message or story to be replied in the message sent by the Web App; pass null if none.
          */
         protected ?InputMessageReplyTo $replyTo = null,
+        /**
+         * Topic in which the message will be sent; pass null if none.
+         */
+        protected ?MessageTopic        $topicId = null,
     ) {}
 
     public static function fromArray(array $array): OpenWebApp
     {
         return new static(
-            $array['chat_id'],
-            $array['bot_user_id'],
-            $array['url'],
-            isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null,
-            isset($array['reply_to']) ? TdSchemaRegistry::fromArray($array['reply_to']) : null,
-            TdSchemaRegistry::fromArray($array['parameters']),
+            botUserId : $array['bot_user_id'],
+            chatId    : $array['chat_id'],
+            parameters: TdSchemaRegistry::fromArray($array['parameters']),
+            replyTo   : (isset($array['reply_to']) ? TdSchemaRegistry::fromArray($array['reply_to']) : null),
+            topicId   : (isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null),
+            url       : $array['url'],
         );
     }
 
@@ -135,12 +135,12 @@ class OpenWebApp extends TdFunction
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'chat_id'     => $this->chatId,
             'bot_user_id' => $this->botUserId,
+            'chat_id'     => $this->chatId,
+            'parameters'  => $this->parameters->jsonSerialize(),
+            'reply_to'    => (null !== $this->replyTo ? $this->replyTo->jsonSerialize() : null),
+            'topic_id'    => (null !== $this->topicId ? $this->topicId->jsonSerialize() : null),
             'url'         => $this->url,
-            'topic_id'    => $this->topicId ?? null,
-            'reply_to'    => $this->replyTo ?? null,
-            'parameters'  => $this->parameters->typeSerialize(),
         ];
     }
 }

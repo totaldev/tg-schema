@@ -21,10 +21,6 @@ class GroupCallJoinParameters extends TdObject
          */
         protected int    $audioSourceId,
         /**
-         * Group call join payload; received from tgcalls.
-         */
-        protected string $payload,
-        /**
          * Pass true to join the call with muted microphone.
          */
         protected bool   $isMuted,
@@ -32,15 +28,19 @@ class GroupCallJoinParameters extends TdObject
          * Pass true if the user's video is enabled.
          */
         protected bool   $isMyVideoEnabled,
+        /**
+         * Group call join payload; received from tgcalls.
+         */
+        protected string $payload,
     ) {}
 
     public static function fromArray(array $array): GroupCallJoinParameters
     {
         return new static(
-            $array['audio_source_id'],
-            $array['payload'],
-            $array['is_muted'],
-            $array['is_my_video_enabled'],
+            audioSourceId   : $array['audio_source_id'],
+            isMuted         : $array['is_muted'],
+            isMyVideoEnabled: $array['is_my_video_enabled'],
+            payload         : $array['payload'],
         );
     }
 
@@ -97,9 +97,9 @@ class GroupCallJoinParameters extends TdObject
         return [
             '@type'               => static::TYPE_NAME,
             'audio_source_id'     => $this->audioSourceId,
-            'payload'             => $this->payload,
             'is_muted'            => $this->isMuted,
             'is_my_video_enabled' => $this->isMyVideoEnabled,
+            'payload'             => $this->payload,
         ];
     }
 }

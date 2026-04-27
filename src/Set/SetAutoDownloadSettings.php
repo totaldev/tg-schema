@@ -32,8 +32,8 @@ class SetAutoDownloadSettings extends TdFunction
     public static function fromArray(array $array): SetAutoDownloadSettings
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['settings']),
-            TdSchemaRegistry::fromArray($array['type']),
+            settings: TdSchemaRegistry::fromArray($array['settings']),
+            type    : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -65,8 +65,8 @@ class SetAutoDownloadSettings extends TdFunction
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'settings' => $this->settings->typeSerialize(),
-            'type'     => $this->type->typeSerialize(),
+            'settings' => $this->settings->jsonSerialize(),
+            'type'     => $this->type->jsonSerialize(),
         ];
     }
 }

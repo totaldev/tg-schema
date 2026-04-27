@@ -29,8 +29,8 @@ class TransferBusinessAccountStars extends TdFunction
     public static function fromArray(array $array): TransferBusinessAccountStars
     {
         return new static(
-            $array['business_connection_id'],
-            $array['star_count'],
+            businessConnectionId: $array['business_connection_id'],
+            starCount           : $array['star_count'],
         );
     }
 

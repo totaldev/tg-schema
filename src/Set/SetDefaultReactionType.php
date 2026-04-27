@@ -27,7 +27,7 @@ class SetDefaultReactionType extends TdFunction
     public static function fromArray(array $array): SetDefaultReactionType
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['reaction_type']),
+            reactionType: TdSchemaRegistry::fromArray($array['reaction_type']),
         );
     }
 
@@ -47,7 +47,7 @@ class SetDefaultReactionType extends TdFunction
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'reaction_type' => $this->reactionType->typeSerialize(),
+            'reaction_type' => $this->reactionType->jsonSerialize(),
         ];
     }
 }

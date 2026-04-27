@@ -23,67 +23,13 @@ class BotInfo extends TdObject
 
     public function __construct(
         /**
-         * The text that is shown on the bot's profile page and is sent together with the link when users share the bot.
-         */
-        protected string                     $shortDescription,
-        /**
-         * The text shown in the chat with the bot if the chat is empty.
-         */
-        protected string                     $description,
-        /**
-         * Photo shown in the chat with the bot if the chat is empty; may be null.
-         */
-        protected ?Photo                     $photo,
-        /**
-         * Animation shown in the chat with the bot if the chat is empty; may be null.
-         */
-        protected ?Animation                 $animation,
-        /**
-         * Information about a button to show instead of the bot commands menu button; may be null if ordinary bot commands menu must be shown.
-         */
-        protected ?BotMenuButton             $menuButton,
-        /**
-         * List of the bot commands.
-         *
-         * @var BotCommand[]
-         */
-        protected array                      $commands,
-        /**
-         * The HTTP link to the privacy policy of the bot. If empty, then /privacy command must be used if supported by the bot. If the command isn't supported, then https://telegram.org/privacy-tpa must be opened.
-         */
-        protected string                     $privacyPolicyUrl,
-        /**
-         * Default administrator rights for adding the bot to basic group and supergroup chats; may be null.
-         */
-        protected ?ChatAdministratorRights   $defaultGroupAdministratorRights,
-        /**
-         * Default administrator rights for adding the bot to channels; may be null.
-         */
-        protected ?ChatAdministratorRights   $defaultChannelAdministratorRights,
-        /**
          * Information about the affiliate program of the bot; may be null if none.
          */
         protected ?AffiliateProgramInfo      $affiliateProgram,
         /**
-         * Default light background color for bot Web Apps; -1 if not specified.
+         * Animation shown in the chat with the bot if the chat is empty; may be null.
          */
-        protected int                        $webAppBackgroundLightColor,
-        /**
-         * Default dark background color for bot Web Apps; -1 if not specified.
-         */
-        protected int                        $webAppBackgroundDarkColor,
-        /**
-         * Default light header color for bot Web Apps; -1 if not specified.
-         */
-        protected int                        $webAppHeaderLightColor,
-        /**
-         * Default dark header color for bot Web Apps; -1 if not specified.
-         */
-        protected int                        $webAppHeaderDarkColor,
-        /**
-         * Parameters of the verification that can be provided by the bot; may be null if none or the current user isn't the owner of the bot.
-         */
-        protected ?BotVerificationParameters $verificationParameters,
+        protected ?Animation                 $animation,
         /**
          * True, if the bot's revenue statistics are available to the current user.
          */
@@ -93,9 +39,23 @@ class BotInfo extends TdObject
          */
         protected bool                       $canManageEmojiStatus,
         /**
-         * True, if the bot has media previews.
+         * List of the bot commands.
+         *
+         * @var BotCommand[]
          */
-        protected bool                       $hasMediaPreviews,
+        protected array                      $commands,
+        /**
+         * Default administrator rights for adding the bot to channels; may be null.
+         */
+        protected ?ChatAdministratorRights   $defaultChannelAdministratorRights,
+        /**
+         * Default administrator rights for adding the bot to basic group and supergroup chats; may be null.
+         */
+        protected ?ChatAdministratorRights   $defaultGroupAdministratorRights,
+        /**
+         * The text shown in the chat with the bot if the chat is empty.
+         */
+        protected string                     $description,
         /**
          * The internal link, which can be used to edit bot commands; may be null.
          */
@@ -112,33 +72,81 @@ class BotInfo extends TdObject
          * The internal link, which can be used to edit bot settings; may be null.
          */
         protected ?InternalLinkType          $editSettingsLink,
+        /**
+         * True, if the bot has media previews.
+         */
+        protected bool                       $hasMediaPreviews,
+        /**
+         * Information about a button to show instead of the bot commands menu button; may be null if ordinary bot commands menu must be shown.
+         */
+        protected ?BotMenuButton             $menuButton,
+        /**
+         * Photo shown in the chat with the bot if the chat is empty; may be null.
+         */
+        protected ?Photo                     $photo,
+        /**
+         * The HTTP link to the privacy policy of the bot. If empty, then /privacy command must be used if supported by the bot. If the command isn't supported, then https://telegram.org/privacy-tpa must be opened.
+         */
+        protected string                     $privacyPolicyUrl,
+        /**
+         * The text that is shown on the bot's profile page and is sent together with the link when users share the bot.
+         */
+        protected string                     $shortDescription,
+        /**
+         * Parameters of the verification that can be provided by the bot; may be null if none or the current user isn't the owner of the bot.
+         */
+        protected ?BotVerificationParameters $verificationParameters,
+        /**
+         * Default dark background color for bot Web Apps; -1 if not specified.
+         */
+        protected int                        $webAppBackgroundDarkColor,
+        /**
+         * Default light background color for bot Web Apps; -1 if not specified.
+         */
+        protected int                        $webAppBackgroundLightColor,
+        /**
+         * Default dark header color for bot Web Apps; -1 if not specified.
+         */
+        protected int                        $webAppHeaderDarkColor,
+        /**
+         * Default light header color for bot Web Apps; -1 if not specified.
+         */
+        protected int                        $webAppHeaderLightColor,
     ) {}
 
     public static function fromArray(array $array): BotInfo
     {
         return new static(
-            $array['short_description'],
-            $array['description'],
-            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
-            isset($array['animation']) ? TdSchemaRegistry::fromArray($array['animation']) : null,
-            isset($array['menu_button']) ? TdSchemaRegistry::fromArray($array['menu_button']) : null,
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['commands']),
-            $array['privacy_policy_url'],
-            isset($array['default_group_administrator_rights']) ? TdSchemaRegistry::fromArray($array['default_group_administrator_rights']) : null,
-            isset($array['default_channel_administrator_rights']) ? TdSchemaRegistry::fromArray($array['default_channel_administrator_rights']) : null,
-            isset($array['affiliate_program']) ? TdSchemaRegistry::fromArray($array['affiliate_program']) : null,
-            $array['web_app_background_light_color'],
-            $array['web_app_background_dark_color'],
-            $array['web_app_header_light_color'],
-            $array['web_app_header_dark_color'],
-            isset($array['verification_parameters']) ? TdSchemaRegistry::fromArray($array['verification_parameters']) : null,
-            $array['can_get_revenue_statistics'],
-            $array['can_manage_emoji_status'],
-            $array['has_media_previews'],
-            isset($array['edit_commands_link']) ? TdSchemaRegistry::fromArray($array['edit_commands_link']) : null,
-            isset($array['edit_description_link']) ? TdSchemaRegistry::fromArray($array['edit_description_link']) : null,
-            isset($array['edit_description_media_link']) ? TdSchemaRegistry::fromArray($array['edit_description_media_link']) : null,
-            isset($array['edit_settings_link']) ? TdSchemaRegistry::fromArray($array['edit_settings_link']) : null,
+            affiliateProgram                 : (isset($array['affiliate_program']) ? TdSchemaRegistry::fromArray($array['affiliate_program']) : null),
+            animation                        : (isset($array['animation']) ? TdSchemaRegistry::fromArray($array['animation']) : null),
+            canGetRevenueStatistics          : $array['can_get_revenue_statistics'],
+            canManageEmojiStatus             : $array['can_manage_emoji_status'],
+            commands                         : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['commands']),
+            defaultChannelAdministratorRights: (isset($array['default_channel_administrator_rights']) ? TdSchemaRegistry::fromArray(
+                $array['default_channel_administrator_rights']
+            ) : null),
+            defaultGroupAdministratorRights  : (isset($array['default_group_administrator_rights']) ? TdSchemaRegistry::fromArray(
+                $array['default_group_administrator_rights']
+            ) : null),
+            description                      : $array['description'],
+            editCommandsLink                 : (isset($array['edit_commands_link']) ? TdSchemaRegistry::fromArray($array['edit_commands_link']) : null),
+            editDescriptionLink              : (isset($array['edit_description_link']) ? TdSchemaRegistry::fromArray($array['edit_description_link']) : null),
+            editDescriptionMediaLink         : (isset($array['edit_description_media_link']) ? TdSchemaRegistry::fromArray(
+                $array['edit_description_media_link']
+            ) : null),
+            editSettingsLink                 : (isset($array['edit_settings_link']) ? TdSchemaRegistry::fromArray($array['edit_settings_link']) : null),
+            hasMediaPreviews                 : $array['has_media_previews'],
+            menuButton                       : (isset($array['menu_button']) ? TdSchemaRegistry::fromArray($array['menu_button']) : null),
+            photo                            : (isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null),
+            privacyPolicyUrl                 : $array['privacy_policy_url'],
+            shortDescription                 : $array['short_description'],
+            verificationParameters           : (isset($array['verification_parameters']) ? TdSchemaRegistry::fromArray(
+                $array['verification_parameters']
+            ) : null),
+            webAppBackgroundDarkColor        : $array['web_app_background_dark_color'],
+            webAppBackgroundLightColor       : $array['web_app_background_light_color'],
+            webAppHeaderDarkColor            : $array['web_app_header_dark_color'],
+            webAppHeaderLightColor           : $array['web_app_header_light_color'],
         );
     }
 
@@ -410,28 +418,30 @@ class BotInfo extends TdObject
     {
         return [
             '@type'                                => static::TYPE_NAME,
-            'short_description'                    => $this->shortDescription,
-            'description'                          => $this->description,
-            'photo'                                => $this->photo ?? null,
-            'animation'                            => $this->animation ?? null,
-            'menu_button'                          => $this->menuButton ?? null,
-            'commands'                             => array_map(static fn($x) => $x->typeSerialize(), $this->commands),
-            'privacy_policy_url'                   => $this->privacyPolicyUrl,
-            'default_group_administrator_rights'   => $this->defaultGroupAdministratorRights ?? null,
-            'default_channel_administrator_rights' => $this->defaultChannelAdministratorRights ?? null,
-            'affiliate_program'                    => $this->affiliateProgram ?? null,
-            'web_app_background_light_color'       => $this->webAppBackgroundLightColor,
-            'web_app_background_dark_color'        => $this->webAppBackgroundDarkColor,
-            'web_app_header_light_color'           => $this->webAppHeaderLightColor,
-            'web_app_header_dark_color'            => $this->webAppHeaderDarkColor,
-            'verification_parameters'              => $this->verificationParameters ?? null,
+            'affiliate_program'                    => (null !== $this->affiliateProgram ? $this->affiliateProgram->jsonSerialize() : null),
+            'animation'                            => (null !== $this->animation ? $this->animation->jsonSerialize() : null),
             'can_get_revenue_statistics'           => $this->canGetRevenueStatistics,
             'can_manage_emoji_status'              => $this->canManageEmojiStatus,
+            'commands'                             => array_map(static fn($x) => $x->jsonSerialize(), $this->commands),
+            'default_channel_administrator_rights' => (null !== $this->defaultChannelAdministratorRights ? $this->defaultChannelAdministratorRights->jsonSerialize(
+            ) : null),
+            'default_group_administrator_rights'   => (null !== $this->defaultGroupAdministratorRights ? $this->defaultGroupAdministratorRights->jsonSerialize(
+            ) : null),
+            'description'                          => $this->description,
+            'edit_commands_link'                   => (null !== $this->editCommandsLink ? $this->editCommandsLink->jsonSerialize() : null),
+            'edit_description_link'                => (null !== $this->editDescriptionLink ? $this->editDescriptionLink->jsonSerialize() : null),
+            'edit_description_media_link'          => (null !== $this->editDescriptionMediaLink ? $this->editDescriptionMediaLink->jsonSerialize() : null),
+            'edit_settings_link'                   => (null !== $this->editSettingsLink ? $this->editSettingsLink->jsonSerialize() : null),
             'has_media_previews'                   => $this->hasMediaPreviews,
-            'edit_commands_link'                   => $this->editCommandsLink ?? null,
-            'edit_description_link'                => $this->editDescriptionLink ?? null,
-            'edit_description_media_link'          => $this->editDescriptionMediaLink ?? null,
-            'edit_settings_link'                   => $this->editSettingsLink ?? null,
+            'menu_button'                          => (null !== $this->menuButton ? $this->menuButton->jsonSerialize() : null),
+            'photo'                                => (null !== $this->photo ? $this->photo->jsonSerialize() : null),
+            'privacy_policy_url'                   => $this->privacyPolicyUrl,
+            'short_description'                    => $this->shortDescription,
+            'verification_parameters'              => (null !== $this->verificationParameters ? $this->verificationParameters->jsonSerialize() : null),
+            'web_app_background_dark_color'        => $this->webAppBackgroundDarkColor,
+            'web_app_background_light_color'       => $this->webAppBackgroundLightColor,
+            'web_app_header_dark_color'            => $this->webAppHeaderDarkColor,
+            'web_app_header_light_color'           => $this->webAppHeaderLightColor,
         ];
     }
 }

@@ -17,20 +17,20 @@ class RefundStarPayment extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the user that did the payment.
-         */
-        protected int    $userId,
-        /**
          * Telegram payment identifier.
          */
         protected string $telegramPaymentChargeId,
+        /**
+         * Identifier of the user that did the payment.
+         */
+        protected int    $userId,
     ) {}
 
     public static function fromArray(array $array): RefundStarPayment
     {
         return new static(
-            $array['user_id'],
-            $array['telegram_payment_charge_id'],
+            telegramPaymentChargeId: $array['telegram_payment_charge_id'],
+            userId                 : $array['user_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class RefundStarPayment extends TdFunction
     {
         return [
             '@type'                      => static::TYPE_NAME,
-            'user_id'                    => $this->userId,
             'telegram_payment_charge_id' => $this->telegramPaymentChargeId,
+            'user_id'                    => $this->userId,
         ];
     }
 }

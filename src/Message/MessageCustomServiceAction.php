@@ -25,7 +25,7 @@ class MessageCustomServiceAction extends MessageContent
     public static function fromArray(array $array): MessageCustomServiceAction
     {
         return new static(
-            $array['text'],
+            text: $array['text'],
         );
     }
 

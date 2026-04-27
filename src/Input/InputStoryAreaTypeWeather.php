@@ -15,17 +15,17 @@ class InputStoryAreaTypeWeather extends InputStoryAreaType
 
     public function __construct(
         /**
-         * Temperature, in degree Celsius.
+         * A color of the area background in the ARGB format.
          */
-        protected float  $temperature,
+        protected int    $backgroundColor,
         /**
          * Emoji representing the weather.
          */
         protected string $emoji,
         /**
-         * A color of the area background in the ARGB format.
+         * Temperature, in degree Celsius.
          */
-        protected int    $backgroundColor,
+        protected float  $temperature,
     ) {
         parent::__construct();
     }
@@ -33,9 +33,9 @@ class InputStoryAreaTypeWeather extends InputStoryAreaType
     public static function fromArray(array $array): InputStoryAreaTypeWeather
     {
         return new static(
-            $array['temperature'],
-            $array['emoji'],
-            $array['background_color'],
+            backgroundColor: $array['background_color'],
+            emoji          : $array['emoji'],
+            temperature    : $array['temperature'],
         );
     }
 
@@ -79,9 +79,9 @@ class InputStoryAreaTypeWeather extends InputStoryAreaType
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'temperature'      => $this->temperature,
-            'emoji'            => $this->emoji,
             'background_color' => $this->backgroundColor,
+            'emoji'            => $this->emoji,
+            'temperature'      => $this->temperature,
         ];
     }
 }

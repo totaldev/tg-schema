@@ -35,9 +35,9 @@ class RemoveMessageReaction extends TdFunction
     public static function fromArray(array $array): RemoveMessageReaction
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            TdSchemaRegistry::fromArray($array['reaction_type']),
+            chatId      : $array['chat_id'],
+            messageId   : $array['message_id'],
+            reactionType: TdSchemaRegistry::fromArray($array['reaction_type']),
         );
     }
 
@@ -83,7 +83,7 @@ class RemoveMessageReaction extends TdFunction
             '@type'         => static::TYPE_NAME,
             'chat_id'       => $this->chatId,
             'message_id'    => $this->messageId,
-            'reaction_type' => $this->reactionType->typeSerialize(),
+            'reaction_type' => $this->reactionType->jsonSerialize(),
         ];
     }
 }

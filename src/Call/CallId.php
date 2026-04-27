@@ -25,7 +25,7 @@ class CallId extends TdObject
     public static function fromArray(array $array): CallId
     {
         return new static(
-            $array['id'],
+            id: $array['id'],
         );
     }
 

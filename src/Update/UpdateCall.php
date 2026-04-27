@@ -28,7 +28,7 @@ class UpdateCall extends Update
     public static function fromArray(array $array): UpdateCall
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['call']),
+            call: TdSchemaRegistry::fromArray($array['call']),
         );
     }
 
@@ -48,7 +48,7 @@ class UpdateCall extends Update
     {
         return [
             '@type' => static::TYPE_NAME,
-            'call'  => $this->call->typeSerialize(),
+            'call'  => $this->call->jsonSerialize(),
         ];
     }
 }

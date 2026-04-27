@@ -27,7 +27,7 @@ class InputPassportElementPassportRegistration extends InputPassportElement
     public static function fromArray(array $array): InputPassportElementPassportRegistration
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['passport_registration']),
+            passportRegistration: TdSchemaRegistry::fromArray($array['passport_registration']),
         );
     }
 
@@ -47,7 +47,7 @@ class InputPassportElementPassportRegistration extends InputPassportElement
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'passport_registration' => $this->passportRegistration->typeSerialize(),
+            'passport_registration' => $this->passportRegistration->jsonSerialize(),
         ];
     }
 }

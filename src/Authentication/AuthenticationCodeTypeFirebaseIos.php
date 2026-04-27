@@ -15,17 +15,17 @@ class AuthenticationCodeTypeFirebaseIos extends AuthenticationCodeType
 
     public function __construct(
         /**
-         * Receipt of successful application token validation to compare with receipt from push notification.
+         * Length of the code.
          */
-        protected string $receipt,
+        protected int    $length,
         /**
          * Time after the next authentication method is expected to be used if verification push notification isn't received, in seconds.
          */
         protected int    $pushTimeout,
         /**
-         * Length of the code.
+         * Receipt of successful application token validation to compare with receipt from push notification.
          */
-        protected int    $length,
+        protected string $receipt,
     ) {
         parent::__construct();
     }
@@ -33,9 +33,9 @@ class AuthenticationCodeTypeFirebaseIos extends AuthenticationCodeType
     public static function fromArray(array $array): AuthenticationCodeTypeFirebaseIos
     {
         return new static(
-            $array['receipt'],
-            $array['push_timeout'],
-            $array['length'],
+            length     : $array['length'],
+            pushTimeout: $array['push_timeout'],
+            receipt    : $array['receipt'],
         );
     }
 
@@ -79,9 +79,9 @@ class AuthenticationCodeTypeFirebaseIos extends AuthenticationCodeType
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'receipt'      => $this->receipt,
-            'push_timeout' => $this->pushTimeout,
             'length'       => $this->length,
+            'push_timeout' => $this->pushTimeout,
+            'receipt'      => $this->receipt,
         ];
     }
 }

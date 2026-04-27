@@ -29,8 +29,8 @@ class BankCardActionOpenUrl extends TdObject
     public static function fromArray(array $array): BankCardActionOpenUrl
     {
         return new static(
-            $array['text'],
-            $array['url'],
+            text: $array['text'],
+            url : $array['url'],
         );
     }
 

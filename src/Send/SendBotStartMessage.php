@@ -35,9 +35,9 @@ class SendBotStartMessage extends TdFunction
     public static function fromArray(array $array): SendBotStartMessage
     {
         return new static(
-            $array['bot_user_id'],
-            $array['chat_id'],
-            $array['parameter'],
+            botUserId: $array['bot_user_id'],
+            chatId   : $array['chat_id'],
+            parameter: $array['parameter'],
         );
     }
 

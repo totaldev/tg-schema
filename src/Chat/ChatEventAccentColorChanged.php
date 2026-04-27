@@ -15,14 +15,6 @@ class ChatEventAccentColorChanged extends ChatEventAction
 
     public function __construct(
         /**
-         * Previous identifier of chat accent color.
-         */
-        protected int $oldAccentColorId,
-        /**
-         * Previous identifier of the custom emoji; 0 if none.
-         */
-        protected int $oldBackgroundCustomEmojiId,
-        /**
          * New identifier of chat accent color.
          */
         protected int $newAccentColorId,
@@ -30,6 +22,14 @@ class ChatEventAccentColorChanged extends ChatEventAction
          * New identifier of the custom emoji; 0 if none.
          */
         protected int $newBackgroundCustomEmojiId,
+        /**
+         * Previous identifier of chat accent color.
+         */
+        protected int $oldAccentColorId,
+        /**
+         * Previous identifier of the custom emoji; 0 if none.
+         */
+        protected int $oldBackgroundCustomEmojiId,
     ) {
         parent::__construct();
     }
@@ -37,10 +37,10 @@ class ChatEventAccentColorChanged extends ChatEventAction
     public static function fromArray(array $array): ChatEventAccentColorChanged
     {
         return new static(
-            $array['old_accent_color_id'],
-            $array['old_background_custom_emoji_id'],
-            $array['new_accent_color_id'],
-            $array['new_background_custom_emoji_id'],
+            newAccentColorId          : $array['new_accent_color_id'],
+            newBackgroundCustomEmojiId: $array['new_background_custom_emoji_id'],
+            oldAccentColorId          : $array['old_accent_color_id'],
+            oldBackgroundCustomEmojiId: $array['old_background_custom_emoji_id'],
         );
     }
 
@@ -96,10 +96,10 @@ class ChatEventAccentColorChanged extends ChatEventAction
     {
         return [
             '@type'                          => static::TYPE_NAME,
-            'old_accent_color_id'            => $this->oldAccentColorId,
-            'old_background_custom_emoji_id' => $this->oldBackgroundCustomEmojiId,
             'new_accent_color_id'            => $this->newAccentColorId,
             'new_background_custom_emoji_id' => $this->newBackgroundCustomEmojiId,
+            'old_accent_color_id'            => $this->oldAccentColorId,
+            'old_background_custom_emoji_id' => $this->oldBackgroundCustomEmojiId,
         ];
     }
 }

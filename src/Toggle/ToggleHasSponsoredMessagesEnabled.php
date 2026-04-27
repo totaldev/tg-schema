@@ -26,7 +26,7 @@ class ToggleHasSponsoredMessagesEnabled extends TdFunction
     public static function fromArray(array $array): ToggleHasSponsoredMessagesEnabled
     {
         return new static(
-            $array['has_sponsored_messages_enabled'],
+            hasSponsoredMessagesEnabled: $array['has_sponsored_messages_enabled'],
         );
     }
 

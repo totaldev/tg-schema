@@ -19,13 +19,13 @@ class PaymentReceipt extends TdObject
 
     public function __construct(
         /**
-         * Information about the product.
-         */
-        protected ProductInfo        $productInfo,
-        /**
          * Point in time (Unix timestamp) when the payment was made.
          */
         protected int                $date,
+        /**
+         * Information about the product.
+         */
+        protected ProductInfo        $productInfo,
         /**
          * User identifier of the seller bot.
          */
@@ -39,10 +39,10 @@ class PaymentReceipt extends TdObject
     public static function fromArray(array $array): PaymentReceipt
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['product_info']),
-            $array['date'],
-            $array['seller_bot_user_id'],
-            TdSchemaRegistry::fromArray($array['type']),
+            date           : $array['date'],
+            productInfo    : TdSchemaRegistry::fromArray($array['product_info']),
+            sellerBotUserId: $array['seller_bot_user_id'],
+            type           : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -98,10 +98,10 @@ class PaymentReceipt extends TdObject
     {
         return [
             '@type'              => static::TYPE_NAME,
-            'product_info'       => $this->productInfo->typeSerialize(),
             'date'               => $this->date,
+            'product_info'       => $this->productInfo->jsonSerialize(),
             'seller_bot_user_id' => $this->sellerBotUserId,
-            'type'               => $this->type->typeSerialize(),
+            'type'               => $this->type->jsonSerialize(),
         ];
     }
 }

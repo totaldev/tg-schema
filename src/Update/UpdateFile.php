@@ -28,7 +28,7 @@ class UpdateFile extends Update
     public static function fromArray(array $array): UpdateFile
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['file']),
+            file: TdSchemaRegistry::fromArray($array['file']),
         );
     }
 
@@ -48,7 +48,7 @@ class UpdateFile extends Update
     {
         return [
             '@type' => static::TYPE_NAME,
-            'file'  => $this->file->typeSerialize(),
+            'file'  => $this->file->jsonSerialize(),
         ];
     }
 }

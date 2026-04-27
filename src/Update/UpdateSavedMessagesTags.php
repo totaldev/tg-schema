@@ -32,8 +32,8 @@ class UpdateSavedMessagesTags extends Update
     public static function fromArray(array $array): UpdateSavedMessagesTags
     {
         return new static(
-            $array['saved_messages_topic_id'],
-            TdSchemaRegistry::fromArray($array['tags']),
+            savedMessagesTopicId: $array['saved_messages_topic_id'],
+            tags                : TdSchemaRegistry::fromArray($array['tags']),
         );
     }
 
@@ -66,7 +66,7 @@ class UpdateSavedMessagesTags extends Update
         return [
             '@type'                   => static::TYPE_NAME,
             'saved_messages_topic_id' => $this->savedMessagesTopicId,
-            'tags'                    => $this->tags->typeSerialize(),
+            'tags'                    => $this->tags->jsonSerialize(),
         ];
     }
 }

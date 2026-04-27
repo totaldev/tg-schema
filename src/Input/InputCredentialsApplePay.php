@@ -25,7 +25,7 @@ class InputCredentialsApplePay extends InputCredentials
     public static function fromArray(array $array): InputCredentialsApplePay
     {
         return new static(
-            $array['data'],
+            data: $array['data'],
         );
     }
 

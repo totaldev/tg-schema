@@ -28,7 +28,7 @@ class CheckCreatedPublicChatsLimit extends TdFunction
     public static function fromArray(array $array): CheckCreatedPublicChatsLimit
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['type']),
+            type: TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -48,7 +48,7 @@ class CheckCreatedPublicChatsLimit extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'type'  => $this->type->typeSerialize(),
+            'type'  => $this->type->jsonSerialize(),
         ];
     }
 }

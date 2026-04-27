@@ -30,8 +30,8 @@ class GetChatStatistics extends TdFunction
     public static function fromArray(array $array): GetChatStatistics
     {
         return new static(
-            $array['chat_id'],
-            $array['is_dark'],
+            chatId: $array['chat_id'],
+            isDark: $array['is_dark'],
         );
     }
 

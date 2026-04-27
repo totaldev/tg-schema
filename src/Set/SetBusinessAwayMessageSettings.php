@@ -27,7 +27,7 @@ class SetBusinessAwayMessageSettings extends TdFunction
     public static function fromArray(array $array): SetBusinessAwayMessageSettings
     {
         return new static(
-            isset($array['away_message_settings']) ? TdSchemaRegistry::fromArray($array['away_message_settings']) : null,
+            awayMessageSettings: (isset($array['away_message_settings']) ? TdSchemaRegistry::fromArray($array['away_message_settings']) : null),
         );
     }
 
@@ -47,7 +47,7 @@ class SetBusinessAwayMessageSettings extends TdFunction
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'away_message_settings' => $this->awayMessageSettings ?? null,
+            'away_message_settings' => (null !== $this->awayMessageSettings ? $this->awayMessageSettings->jsonSerialize() : null),
         ];
     }
 }

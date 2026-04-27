@@ -18,13 +18,13 @@ class ChatRevenueTransactionTypeFragmentWithdrawal extends ChatRevenueTransactio
 
     public function __construct(
         /**
-         * Point in time (Unix timestamp) when the earnings withdrawal started.
-         */
-        protected int                    $withdrawalDate,
-        /**
          * State of the withdrawal.
          */
         protected RevenueWithdrawalState $state,
+        /**
+         * Point in time (Unix timestamp) when the earnings withdrawal started.
+         */
+        protected int                    $withdrawalDate,
     ) {
         parent::__construct();
     }
@@ -32,8 +32,8 @@ class ChatRevenueTransactionTypeFragmentWithdrawal extends ChatRevenueTransactio
     public static function fromArray(array $array): ChatRevenueTransactionTypeFragmentWithdrawal
     {
         return new static(
-            $array['withdrawal_date'],
-            TdSchemaRegistry::fromArray($array['state']),
+            state         : TdSchemaRegistry::fromArray($array['state']),
+            withdrawalDate: $array['withdrawal_date'],
         );
     }
 
@@ -65,8 +65,8 @@ class ChatRevenueTransactionTypeFragmentWithdrawal extends ChatRevenueTransactio
     {
         return [
             '@type'           => static::TYPE_NAME,
+            'state'           => $this->state->jsonSerialize(),
             'withdrawal_date' => $this->withdrawalDate,
-            'state'           => $this->state->typeSerialize(),
         ];
     }
 }

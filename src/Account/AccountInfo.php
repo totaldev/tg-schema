@@ -17,18 +17,6 @@ class AccountInfo extends TdObject
 
     public function __construct(
         /**
-         * Month when the user was registered in Telegram; 0-12; may be 0 if unknown.
-         */
-        protected int    $registrationMonth,
-        /**
-         * Year when the user was registered in Telegram; 0-9999; may be 0 if unknown.
-         */
-        protected int    $registrationYear,
-        /**
-         * A two-letter ISO 3166-1 alpha-2 country code based on the phone number of the user; may be empty if unknown.
-         */
-        protected string $phoneNumberCountryCode,
-        /**
          * Point in time (Unix timestamp) when the user changed name last time; 0 if unknown.
          */
         protected int    $lastNameChangeDate,
@@ -36,16 +24,28 @@ class AccountInfo extends TdObject
          * Point in time (Unix timestamp) when the user changed photo last time; 0 if unknown.
          */
         protected int    $lastPhotoChangeDate,
+        /**
+         * A two-letter ISO 3166-1 alpha-2 country code based on the phone number of the user; may be empty if unknown.
+         */
+        protected string $phoneNumberCountryCode,
+        /**
+         * Month when the user was registered in Telegram; 0-12; may be 0 if unknown.
+         */
+        protected int    $registrationMonth,
+        /**
+         * Year when the user was registered in Telegram; 0-9999; may be 0 if unknown.
+         */
+        protected int    $registrationYear,
     ) {}
 
     public static function fromArray(array $array): AccountInfo
     {
         return new static(
-            $array['registration_month'],
-            $array['registration_year'],
-            $array['phone_number_country_code'],
-            $array['last_name_change_date'],
-            $array['last_photo_change_date'],
+            lastNameChangeDate    : $array['last_name_change_date'],
+            lastPhotoChangeDate   : $array['last_photo_change_date'],
+            phoneNumberCountryCode: $array['phone_number_country_code'],
+            registrationMonth     : $array['registration_month'],
+            registrationYear      : $array['registration_year'],
         );
     }
 
@@ -113,11 +113,11 @@ class AccountInfo extends TdObject
     {
         return [
             '@type'                     => static::TYPE_NAME,
-            'registration_month'        => $this->registrationMonth,
-            'registration_year'         => $this->registrationYear,
-            'phone_number_country_code' => $this->phoneNumberCountryCode,
             'last_name_change_date'     => $this->lastNameChangeDate,
             'last_photo_change_date'    => $this->lastPhotoChangeDate,
+            'phone_number_country_code' => $this->phoneNumberCountryCode,
+            'registration_month'        => $this->registrationMonth,
+            'registration_year'         => $this->registrationYear,
         ];
     }
 }

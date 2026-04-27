@@ -18,21 +18,21 @@ class PageBlockVideo extends PageBlock
 
     public function __construct(
         /**
-         * Video file; may be null.
-         */
-        protected ?Video           $video,
-        /**
          * Video caption.
          */
         protected PageBlockCaption $caption,
+        /**
+         * True, if the video must be looped.
+         */
+        protected bool             $isLooped,
         /**
          * True, if the video must be played automatically.
          */
         protected bool             $needAutoplay,
         /**
-         * True, if the video must be looped.
+         * Video file; may be null.
          */
-        protected bool             $isLooped,
+        protected ?Video           $video,
     ) {
         parent::__construct();
     }
@@ -40,10 +40,10 @@ class PageBlockVideo extends PageBlock
     public static function fromArray(array $array): PageBlockVideo
     {
         return new static(
-            isset($array['video']) ? TdSchemaRegistry::fromArray($array['video']) : null,
-            TdSchemaRegistry::fromArray($array['caption']),
-            $array['need_autoplay'],
-            $array['is_looped'],
+            caption     : TdSchemaRegistry::fromArray($array['caption']),
+            isLooped    : $array['is_looped'],
+            needAutoplay: $array['need_autoplay'],
+            video       : (isset($array['video']) ? TdSchemaRegistry::fromArray($array['video']) : null),
         );
     }
 
@@ -99,10 +99,10 @@ class PageBlockVideo extends PageBlock
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'video'         => $this->video ?? null,
-            'caption'       => $this->caption->typeSerialize(),
-            'need_autoplay' => $this->needAutoplay,
+            'caption'       => $this->caption->jsonSerialize(),
             'is_looped'     => $this->isLooped,
+            'need_autoplay' => $this->needAutoplay,
+            'video'         => (null !== $this->video ? $this->video->jsonSerialize() : null),
         ];
     }
 }

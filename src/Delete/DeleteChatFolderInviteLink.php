@@ -29,8 +29,8 @@ class DeleteChatFolderInviteLink extends TdFunction
     public static function fromArray(array $array): DeleteChatFolderInviteLink
     {
         return new static(
-            $array['chat_folder_id'],
-            $array['invite_link'],
+            chatFolderId: $array['chat_folder_id'],
+            inviteLink  : $array['invite_link'],
         );
     }
 

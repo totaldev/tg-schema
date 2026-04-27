@@ -17,20 +17,20 @@ class RemoveFileFromDownloads extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the downloaded file.
-         */
-        protected int  $fileId,
-        /**
          * Pass true to delete the file from the TDLib file cache.
          */
         protected bool $deleteFromCache,
+        /**
+         * Identifier of the downloaded file.
+         */
+        protected int  $fileId,
     ) {}
 
     public static function fromArray(array $array): RemoveFileFromDownloads
     {
         return new static(
-            $array['file_id'],
-            $array['delete_from_cache'],
+            deleteFromCache: $array['delete_from_cache'],
+            fileId         : $array['file_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class RemoveFileFromDownloads extends TdFunction
     {
         return [
             '@type'             => static::TYPE_NAME,
-            'file_id'           => $this->fileId,
             'delete_from_cache' => $this->deleteFromCache,
+            'file_id'           => $this->fileId,
         ];
     }
 }

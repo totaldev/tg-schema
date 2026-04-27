@@ -30,8 +30,8 @@ class InlineQueryResultsButton extends TdObject
     public static function fromArray(array $array): InlineQueryResultsButton
     {
         return new static(
-            $array['text'],
-            TdSchemaRegistry::fromArray($array['type']),
+            text: $array['text'],
+            type: TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -64,7 +64,7 @@ class InlineQueryResultsButton extends TdObject
         return [
             '@type' => static::TYPE_NAME,
             'text'  => $this->text,
-            'type'  => $this->type->typeSerialize(),
+            'type'  => $this->type->jsonSerialize(),
         ];
     }
 }

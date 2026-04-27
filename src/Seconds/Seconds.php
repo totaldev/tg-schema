@@ -25,7 +25,7 @@ class Seconds extends TdObject
     public static function fromArray(array $array): Seconds
     {
         return new static(
-            $array['seconds'],
+            seconds: $array['seconds'],
         );
     }
 

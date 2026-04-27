@@ -36,9 +36,9 @@ class PageBlockAnimation extends PageBlock
     public static function fromArray(array $array): PageBlockAnimation
     {
         return new static(
-            isset($array['animation']) ? TdSchemaRegistry::fromArray($array['animation']) : null,
-            TdSchemaRegistry::fromArray($array['caption']),
-            $array['need_autoplay'],
+            animation   : (isset($array['animation']) ? TdSchemaRegistry::fromArray($array['animation']) : null),
+            caption     : TdSchemaRegistry::fromArray($array['caption']),
+            needAutoplay: $array['need_autoplay'],
         );
     }
 
@@ -82,8 +82,8 @@ class PageBlockAnimation extends PageBlock
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'animation'     => $this->animation ?? null,
-            'caption'       => $this->caption->typeSerialize(),
+            'animation'     => (null !== $this->animation ? $this->animation->jsonSerialize() : null),
+            'caption'       => $this->caption->jsonSerialize(),
             'need_autoplay' => $this->needAutoplay,
         ];
     }

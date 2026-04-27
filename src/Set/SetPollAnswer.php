@@ -35,9 +35,9 @@ class SetPollAnswer extends TdFunction
     public static function fromArray(array $array): SetPollAnswer
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            $array['option_ids'],
+            chatId   : $array['chat_id'],
+            messageId: $array['message_id'],
+            optionIds: $array['option_ids'],
         );
     }
 

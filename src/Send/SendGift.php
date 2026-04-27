@@ -24,31 +24,31 @@ class SendGift extends TdFunction
          */
         protected int           $giftId,
         /**
-         * Identifier of the user or the channel chat that will receive the gift; limited gifts can't be sent to channel chats.
-         */
-        protected MessageSender $ownerId,
-        /**
-         * Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed. Must be empty if the receiver enabled paid messages.
-         */
-        protected FormattedText $text,
-        /**
          * Pass true to show gift text and sender only to the gift receiver; otherwise, everyone will be able to see them.
          */
         protected bool          $isPrivate,
         /**
+         * Identifier of the user or the channel chat that will receive the gift; limited gifts can't be sent to channel chats.
+         */
+        protected MessageSender $ownerId,
+        /**
          * Pass true to additionally pay for the gift upgrade and allow the receiver to upgrade it for free.
          */
         protected bool          $payForUpgrade,
+        /**
+         * Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed. Must be empty if the receiver enabled paid messages.
+         */
+        protected FormattedText $text,
     ) {}
 
     public static function fromArray(array $array): SendGift
     {
         return new static(
-            $array['gift_id'],
-            TdSchemaRegistry::fromArray($array['owner_id']),
-            TdSchemaRegistry::fromArray($array['text']),
-            $array['is_private'],
-            $array['pay_for_upgrade'],
+            giftId       : $array['gift_id'],
+            isPrivate    : $array['is_private'],
+            ownerId      : TdSchemaRegistry::fromArray($array['owner_id']),
+            payForUpgrade: $array['pay_for_upgrade'],
+            text         : TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -117,10 +117,10 @@ class SendGift extends TdFunction
         return [
             '@type'           => static::TYPE_NAME,
             'gift_id'         => $this->giftId,
-            'owner_id'        => $this->ownerId->typeSerialize(),
-            'text'            => $this->text->typeSerialize(),
             'is_private'      => $this->isPrivate,
+            'owner_id'        => $this->ownerId->jsonSerialize(),
             'pay_for_upgrade' => $this->payForUpgrade,
+            'text'            => $this->text->jsonSerialize(),
         ];
     }
 }

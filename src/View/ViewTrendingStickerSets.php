@@ -27,7 +27,7 @@ class ViewTrendingStickerSets extends TdFunction
     public static function fromArray(array $array): ViewTrendingStickerSets
     {
         return new static(
-            $array['sticker_set_ids'],
+            stickerSetIds: $array['sticker_set_ids'],
         );
     }
 

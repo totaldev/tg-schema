@@ -25,7 +25,7 @@ class DeleteStickerSet extends TdFunction
     public static function fromArray(array $array): DeleteStickerSet
     {
         return new static(
-            $array['name'],
+            name: $array['name'],
         );
     }
 

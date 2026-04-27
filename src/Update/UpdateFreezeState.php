@@ -15,21 +15,21 @@ class UpdateFreezeState extends Update
 
     public function __construct(
         /**
-         * True, if the account is frozen.
+         * The link to open to send an appeal to unfreeze the account.
          */
-        protected bool   $isFrozen,
-        /**
-         * Point in time (Unix timestamp) when the account was frozen; 0 if the account isn't frozen.
-         */
-        protected int    $freezingDate,
+        protected string $appealLink,
         /**
          * Point in time (Unix timestamp) when the account will be deleted and can't be unfrozen; 0 if the account isn't frozen.
          */
         protected int    $deletionDate,
         /**
-         * The link to open to send an appeal to unfreeze the account.
+         * Point in time (Unix timestamp) when the account was frozen; 0 if the account isn't frozen.
          */
-        protected string $appealLink,
+        protected int    $freezingDate,
+        /**
+         * True, if the account is frozen.
+         */
+        protected bool   $isFrozen,
     ) {
         parent::__construct();
     }
@@ -37,10 +37,10 @@ class UpdateFreezeState extends Update
     public static function fromArray(array $array): UpdateFreezeState
     {
         return new static(
-            $array['is_frozen'],
-            $array['freezing_date'],
-            $array['deletion_date'],
-            $array['appeal_link'],
+            appealLink  : $array['appeal_link'],
+            deletionDate: $array['deletion_date'],
+            freezingDate: $array['freezing_date'],
+            isFrozen    : $array['is_frozen'],
         );
     }
 
@@ -96,10 +96,10 @@ class UpdateFreezeState extends Update
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'is_frozen'     => $this->isFrozen,
-            'freezing_date' => $this->freezingDate,
-            'deletion_date' => $this->deletionDate,
             'appeal_link'   => $this->appealLink,
+            'deletion_date' => $this->deletionDate,
+            'freezing_date' => $this->freezingDate,
+            'is_frozen'     => $this->isFrozen,
         ];
     }
 }

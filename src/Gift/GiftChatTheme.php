@@ -20,6 +20,10 @@ class GiftChatTheme extends TdObject
 
     public function __construct(
         /**
+         * Theme settings for a dark chat theme.
+         */
+        protected ThemeSettings $darkSettings,
+        /**
          * The gift.
          */
         protected UpgradedGift  $gift,
@@ -27,18 +31,14 @@ class GiftChatTheme extends TdObject
          * Theme settings for a light chat theme.
          */
         protected ThemeSettings $lightSettings,
-        /**
-         * Theme settings for a dark chat theme.
-         */
-        protected ThemeSettings $darkSettings,
     ) {}
 
     public static function fromArray(array $array): GiftChatTheme
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['gift']),
-            TdSchemaRegistry::fromArray($array['light_settings']),
-            TdSchemaRegistry::fromArray($array['dark_settings']),
+            darkSettings : TdSchemaRegistry::fromArray($array['dark_settings']),
+            gift         : TdSchemaRegistry::fromArray($array['gift']),
+            lightSettings: TdSchemaRegistry::fromArray($array['light_settings']),
         );
     }
 
@@ -82,9 +82,9 @@ class GiftChatTheme extends TdObject
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'gift'           => $this->gift->typeSerialize(),
-            'light_settings' => $this->lightSettings->typeSerialize(),
-            'dark_settings'  => $this->darkSettings->typeSerialize(),
+            'dark_settings'  => $this->darkSettings->jsonSerialize(),
+            'gift'           => $this->gift->jsonSerialize(),
+            'light_settings' => $this->lightSettings->jsonSerialize(),
         ];
     }
 }

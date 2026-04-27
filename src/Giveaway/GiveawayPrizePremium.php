@@ -25,7 +25,7 @@ class GiveawayPrizePremium extends GiveawayPrize
     public static function fromArray(array $array): GiveawayPrizePremium
     {
         return new static(
-            $array['month_count'],
+            monthCount: $array['month_count'],
         );
     }
 

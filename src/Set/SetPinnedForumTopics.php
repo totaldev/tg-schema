@@ -32,8 +32,8 @@ class SetPinnedForumTopics extends TdFunction
     public static function fromArray(array $array): SetPinnedForumTopics
     {
         return new static(
-            $array['chat_id'],
-            $array['forum_topic_ids'],
+            chatId       : $array['chat_id'],
+            forumTopicIds: $array['forum_topic_ids'],
         );
     }
 

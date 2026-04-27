@@ -36,9 +36,9 @@ class EditMessageSchedulingState extends TdFunction
     public static function fromArray(array $array): EditMessageSchedulingState
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            isset($array['scheduling_state']) ? TdSchemaRegistry::fromArray($array['scheduling_state']) : null,
+            chatId         : $array['chat_id'],
+            messageId      : $array['message_id'],
+            schedulingState: (isset($array['scheduling_state']) ? TdSchemaRegistry::fromArray($array['scheduling_state']) : null),
         );
     }
 
@@ -84,7 +84,7 @@ class EditMessageSchedulingState extends TdFunction
             '@type'            => static::TYPE_NAME,
             'chat_id'          => $this->chatId,
             'message_id'       => $this->messageId,
-            'scheduling_state' => $this->schedulingState ?? null,
+            'scheduling_state' => (null !== $this->schedulingState ? $this->schedulingState->jsonSerialize() : null),
         ];
     }
 }

@@ -25,7 +25,7 @@ class ChatActionUploadingVoiceNote extends ChatAction
     public static function fromArray(array $array): ChatActionUploadingVoiceNote
     {
         return new static(
-            $array['progress'],
+            progress: $array['progress'],
         );
     }
 

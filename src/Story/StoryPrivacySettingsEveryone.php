@@ -27,7 +27,7 @@ class StoryPrivacySettingsEveryone extends StoryPrivacySettings
     public static function fromArray(array $array): StoryPrivacySettingsEveryone
     {
         return new static(
-            $array['except_user_ids'],
+            exceptUserIds: $array['except_user_ids'],
         );
     }
 

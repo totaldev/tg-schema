@@ -29,8 +29,8 @@ class StarTransactionTypeChannelSubscriptionPurchase extends StarTransactionType
     public static function fromArray(array $array): StarTransactionTypeChannelSubscriptionPurchase
     {
         return new static(
-            $array['chat_id'],
-            $array['subscription_period'],
+            chatId            : $array['chat_id'],
+            subscriptionPeriod: $array['subscription_period'],
         );
     }
 

@@ -23,26 +23,26 @@ class PaymentForm extends TdObject
          */
         protected int             $id,
         /**
-         * Type of the payment form.
+         * Information about the product.
          */
-        protected PaymentFormType $type,
+        protected ProductInfo     $productInfo,
         /**
          * User identifier of the seller bot.
          */
         protected int             $sellerBotUserId,
         /**
-         * Information about the product.
+         * Type of the payment form.
          */
-        protected ProductInfo     $productInfo,
+        protected PaymentFormType $type,
     ) {}
 
     public static function fromArray(array $array): PaymentForm
     {
         return new static(
-            $array['id'],
-            TdSchemaRegistry::fromArray($array['type']),
-            $array['seller_bot_user_id'],
-            TdSchemaRegistry::fromArray($array['product_info']),
+            id             : $array['id'],
+            productInfo    : TdSchemaRegistry::fromArray($array['product_info']),
+            sellerBotUserId: $array['seller_bot_user_id'],
+            type           : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -99,9 +99,9 @@ class PaymentForm extends TdObject
         return [
             '@type'              => static::TYPE_NAME,
             'id'                 => $this->id,
-            'type'               => $this->type->typeSerialize(),
+            'product_info'       => $this->productInfo->jsonSerialize(),
             'seller_bot_user_id' => $this->sellerBotUserId,
-            'product_info'       => $this->productInfo->typeSerialize(),
+            'type'               => $this->type->jsonSerialize(),
         ];
     }
 }

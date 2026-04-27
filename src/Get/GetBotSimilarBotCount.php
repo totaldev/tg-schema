@@ -29,8 +29,8 @@ class GetBotSimilarBotCount extends TdFunction
     public static function fromArray(array $array): GetBotSimilarBotCount
     {
         return new static(
-            $array['bot_user_id'],
-            $array['return_local'],
+            botUserId  : $array['bot_user_id'],
+            returnLocal: $array['return_local'],
         );
     }
 

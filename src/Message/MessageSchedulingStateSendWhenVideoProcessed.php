@@ -25,7 +25,7 @@ class MessageSchedulingStateSendWhenVideoProcessed extends MessageSchedulingStat
     public static function fromArray(array $array): MessageSchedulingStateSendWhenVideoProcessed
     {
         return new static(
-            $array['send_date'],
+            sendDate: $array['send_date'],
         );
     }
 

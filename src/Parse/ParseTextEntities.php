@@ -20,20 +20,20 @@ class ParseTextEntities extends TdFunction
 
     public function __construct(
         /**
-         * The text to parse.
-         */
-        protected string        $text,
-        /**
          * Text parse mode.
          */
         protected TextParseMode $parseMode,
+        /**
+         * The text to parse.
+         */
+        protected string        $text,
     ) {}
 
     public static function fromArray(array $array): ParseTextEntities
     {
         return new static(
-            $array['text'],
-            TdSchemaRegistry::fromArray($array['parse_mode']),
+            parseMode: TdSchemaRegistry::fromArray($array['parse_mode']),
+            text     : $array['text'],
         );
     }
 
@@ -65,8 +65,8 @@ class ParseTextEntities extends TdFunction
     {
         return [
             '@type'      => static::TYPE_NAME,
+            'parse_mode' => $this->parseMode->jsonSerialize(),
             'text'       => $this->text,
-            'parse_mode' => $this->parseMode->typeSerialize(),
         ];
     }
 }

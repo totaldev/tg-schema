@@ -21,26 +21,26 @@ class GetPassportAuthorizationForm extends TdFunction
          */
         protected int    $botUserId,
         /**
-         * Telegram Passport element types requested by the service.
+         * Unique request identifier provided by the service.
          */
-        protected string $scope,
+        protected string $nonce,
         /**
          * Service's public key.
          */
         protected string $publicKey,
         /**
-         * Unique request identifier provided by the service.
+         * Telegram Passport element types requested by the service.
          */
-        protected string $nonce,
+        protected string $scope,
     ) {}
 
     public static function fromArray(array $array): GetPassportAuthorizationForm
     {
         return new static(
-            $array['bot_user_id'],
-            $array['scope'],
-            $array['public_key'],
-            $array['nonce'],
+            botUserId: $array['bot_user_id'],
+            nonce    : $array['nonce'],
+            publicKey: $array['public_key'],
+            scope    : $array['scope'],
         );
     }
 
@@ -97,9 +97,9 @@ class GetPassportAuthorizationForm extends TdFunction
         return [
             '@type'       => static::TYPE_NAME,
             'bot_user_id' => $this->botUserId,
-            'scope'       => $this->scope,
-            'public_key'  => $this->publicKey,
             'nonce'       => $this->nonce,
+            'public_key'  => $this->publicKey,
+            'scope'       => $this->scope,
         ];
     }
 }

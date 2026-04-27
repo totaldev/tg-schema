@@ -29,8 +29,8 @@ class BotCommand extends TdObject
     public static function fromArray(array $array): BotCommand
     {
         return new static(
-            $array['command'],
-            $array['description'],
+            command    : $array['command'],
+            description: $array['description'],
         );
     }
 

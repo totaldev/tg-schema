@@ -25,7 +25,7 @@ class GetStoryAvailableReactions extends TdFunction
     public static function fromArray(array $array): GetStoryAvailableReactions
     {
         return new static(
-            $array['row_size'],
+            rowSize: $array['row_size'],
         );
     }
 

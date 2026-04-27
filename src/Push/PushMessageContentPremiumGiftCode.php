@@ -25,7 +25,7 @@ class PushMessageContentPremiumGiftCode extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentPremiumGiftCode
     {
         return new static(
-            $array['month_count'],
+            monthCount: $array['month_count'],
         );
     }
 

@@ -17,29 +17,29 @@ class MessagePaymentRefunded extends MessageContent
 
     public function __construct(
         /**
-         * Identifier of the previous owner of the Telegram Stars that refunds them.
-         */
-        protected MessageSender $ownerId,
-        /**
          * Currency for the price of the product.
          */
         protected string        $currency,
-        /**
-         * Total price for the product, in the smallest units of the currency.
-         */
-        protected int           $totalAmount,
         /**
          * Invoice payload; only for bots.
          */
         protected string        $invoicePayload,
         /**
-         * Telegram payment identifier.
+         * Identifier of the previous owner of the Telegram Stars that refunds them.
          */
-        protected string        $telegramPaymentChargeId,
+        protected MessageSender $ownerId,
         /**
          * Provider payment identifier.
          */
         protected string        $providerPaymentChargeId,
+        /**
+         * Telegram payment identifier.
+         */
+        protected string        $telegramPaymentChargeId,
+        /**
+         * Total price for the product, in the smallest units of the currency.
+         */
+        protected int           $totalAmount,
     ) {
         parent::__construct();
     }
@@ -47,12 +47,12 @@ class MessagePaymentRefunded extends MessageContent
     public static function fromArray(array $array): MessagePaymentRefunded
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['owner_id']),
-            $array['currency'],
-            $array['total_amount'],
-            $array['invoice_payload'],
-            $array['telegram_payment_charge_id'],
-            $array['provider_payment_charge_id'],
+            currency               : $array['currency'],
+            invoicePayload         : $array['invoice_payload'],
+            ownerId                : TdSchemaRegistry::fromArray($array['owner_id']),
+            providerPaymentChargeId: $array['provider_payment_charge_id'],
+            telegramPaymentChargeId: $array['telegram_payment_charge_id'],
+            totalAmount            : $array['total_amount'],
         );
     }
 
@@ -132,12 +132,12 @@ class MessagePaymentRefunded extends MessageContent
     {
         return [
             '@type'                      => static::TYPE_NAME,
-            'owner_id'                   => $this->ownerId->typeSerialize(),
             'currency'                   => $this->currency,
-            'total_amount'               => $this->totalAmount,
             'invoice_payload'            => $this->invoicePayload,
-            'telegram_payment_charge_id' => $this->telegramPaymentChargeId,
+            'owner_id'                   => $this->ownerId->jsonSerialize(),
             'provider_payment_charge_id' => $this->providerPaymentChargeId,
+            'telegram_payment_charge_id' => $this->telegramPaymentChargeId,
+            'total_amount'               => $this->totalAmount,
         ];
     }
 }

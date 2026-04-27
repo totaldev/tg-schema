@@ -23,17 +23,17 @@ class MessageRefundedUpgradedGift extends MessageContent
          */
         protected Gift               $gift,
         /**
-         * Sender of the gift.
+         * Origin of the upgraded gift.
          */
-        protected MessageSender      $senderId,
+        protected UpgradedGiftOrigin $origin,
         /**
          * Receiver of the gift.
          */
         protected MessageSender      $receiverId,
         /**
-         * Origin of the upgraded gift.
+         * Sender of the gift.
          */
-        protected UpgradedGiftOrigin $origin,
+        protected MessageSender      $senderId,
     ) {
         parent::__construct();
     }
@@ -41,10 +41,10 @@ class MessageRefundedUpgradedGift extends MessageContent
     public static function fromArray(array $array): MessageRefundedUpgradedGift
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['gift']),
-            TdSchemaRegistry::fromArray($array['sender_id']),
-            TdSchemaRegistry::fromArray($array['receiver_id']),
-            TdSchemaRegistry::fromArray($array['origin']),
+            gift      : TdSchemaRegistry::fromArray($array['gift']),
+            origin    : TdSchemaRegistry::fromArray($array['origin']),
+            receiverId: TdSchemaRegistry::fromArray($array['receiver_id']),
+            senderId  : TdSchemaRegistry::fromArray($array['sender_id']),
         );
     }
 
@@ -100,10 +100,10 @@ class MessageRefundedUpgradedGift extends MessageContent
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'gift'        => $this->gift->typeSerialize(),
-            'sender_id'   => $this->senderId->typeSerialize(),
-            'receiver_id' => $this->receiverId->typeSerialize(),
-            'origin'      => $this->origin->typeSerialize(),
+            'gift'        => $this->gift->jsonSerialize(),
+            'origin'      => $this->origin->jsonSerialize(),
+            'receiver_id' => $this->receiverId->jsonSerialize(),
+            'sender_id'   => $this->senderId->jsonSerialize(),
         ];
     }
 }

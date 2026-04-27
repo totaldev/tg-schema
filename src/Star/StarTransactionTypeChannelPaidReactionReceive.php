@@ -15,13 +15,13 @@ class StarTransactionTypeChannelPaidReactionReceive extends StarTransactionType
 
     public function __construct(
         /**
-         * Identifier of the user that added the paid reaction.
-         */
-        protected int $userId,
-        /**
          * Identifier of the reacted message; can be 0 or an identifier of a deleted message.
          */
         protected int $messageId,
+        /**
+         * Identifier of the user that added the paid reaction.
+         */
+        protected int $userId,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class StarTransactionTypeChannelPaidReactionReceive extends StarTransactionType
     public static function fromArray(array $array): StarTransactionTypeChannelPaidReactionReceive
     {
         return new static(
-            $array['user_id'],
-            $array['message_id'],
+            messageId: $array['message_id'],
+            userId   : $array['user_id'],
         );
     }
 
@@ -62,8 +62,8 @@ class StarTransactionTypeChannelPaidReactionReceive extends StarTransactionType
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'user_id'    => $this->userId,
             'message_id' => $this->messageId,
+            'user_id'    => $this->userId,
         ];
     }
 }

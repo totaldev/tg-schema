@@ -18,13 +18,13 @@ class InternalLinkTypeProxy extends InternalLinkType
 
     public function __construct(
         /**
-         * Proxy server domain or IP address.
-         */
-        protected string    $server,
-        /**
          * Proxy server port.
          */
         protected int       $port,
+        /**
+         * Proxy server domain or IP address.
+         */
+        protected string    $server,
         /**
          * Type of the proxy.
          */
@@ -36,9 +36,9 @@ class InternalLinkTypeProxy extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeProxy
     {
         return new static(
-            $array['server'],
-            $array['port'],
-            TdSchemaRegistry::fromArray($array['type']),
+            port  : $array['port'],
+            server: $array['server'],
+            type  : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -82,9 +82,9 @@ class InternalLinkTypeProxy extends InternalLinkType
     {
         return [
             '@type'  => static::TYPE_NAME,
-            'server' => $this->server,
             'port'   => $this->port,
-            'type'   => $this->type->typeSerialize(),
+            'server' => $this->server,
+            'type'   => $this->type->jsonSerialize(),
         ];
     }
 }

@@ -17,20 +17,20 @@ class CurrentWeather extends TdObject
 
     public function __construct(
         /**
-         * Temperature, in degree Celsius.
-         */
-        protected float  $temperature,
-        /**
          * Emoji representing the weather.
          */
         protected string $emoji,
+        /**
+         * Temperature, in degree Celsius.
+         */
+        protected float  $temperature,
     ) {}
 
     public static function fromArray(array $array): CurrentWeather
     {
         return new static(
-            $array['temperature'],
-            $array['emoji'],
+            emoji      : $array['emoji'],
+            temperature: $array['temperature'],
         );
     }
 
@@ -62,8 +62,8 @@ class CurrentWeather extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'temperature' => $this->temperature,
             'emoji'       => $this->emoji,
+            'temperature' => $this->temperature,
         ];
     }
 }

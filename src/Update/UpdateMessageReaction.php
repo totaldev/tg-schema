@@ -19,33 +19,33 @@ class UpdateMessageReaction extends Update
 
     public function __construct(
         /**
-         * Chat identifier.
-         */
-        protected int           $chatId,
-        /**
-         * Message identifier.
-         */
-        protected int           $messageId,
-        /**
          * Identifier of the user or chat that changed reactions.
          */
         protected MessageSender $actorId,
+        /**
+         * Chat identifier.
+         */
+        protected int           $chatId,
         /**
          * Point in time (Unix timestamp) when the reactions were changed.
          */
         protected int           $date,
         /**
-         * Old list of chosen reactions.
-         *
-         * @var ReactionType[]
+         * Message identifier.
          */
-        protected array         $oldReactionTypes,
+        protected int           $messageId,
         /**
          * New list of chosen reactions.
          *
          * @var ReactionType[]
          */
         protected array         $newReactionTypes,
+        /**
+         * Old list of chosen reactions.
+         *
+         * @var ReactionType[]
+         */
+        protected array         $oldReactionTypes,
     ) {
         parent::__construct();
     }
@@ -53,12 +53,12 @@ class UpdateMessageReaction extends Update
     public static function fromArray(array $array): UpdateMessageReaction
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
-            TdSchemaRegistry::fromArray($array['actor_id']),
-            $array['date'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['old_reaction_types']),
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['new_reaction_types']),
+            actorId         : TdSchemaRegistry::fromArray($array['actor_id']),
+            chatId          : $array['chat_id'],
+            date            : $array['date'],
+            messageId       : $array['message_id'],
+            newReactionTypes: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['new_reaction_types']),
+            oldReactionTypes: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['old_reaction_types']),
         );
     }
 
@@ -138,12 +138,12 @@ class UpdateMessageReaction extends Update
     {
         return [
             '@type'              => static::TYPE_NAME,
+            'actor_id'           => $this->actorId->jsonSerialize(),
             'chat_id'            => $this->chatId,
-            'message_id'         => $this->messageId,
-            'actor_id'           => $this->actorId->typeSerialize(),
             'date'               => $this->date,
-            'old_reaction_types' => array_map(static fn($x) => $x->typeSerialize(), $this->oldReactionTypes),
-            'new_reaction_types' => array_map(static fn($x) => $x->typeSerialize(), $this->newReactionTypes),
+            'message_id'         => $this->messageId,
+            'new_reaction_types' => array_map(static fn($x) => $x->jsonSerialize(), $this->newReactionTypes),
+            'old_reaction_types' => array_map(static fn($x) => $x->jsonSerialize(), $this->oldReactionTypes),
         ];
     }
 }

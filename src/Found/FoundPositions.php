@@ -17,22 +17,22 @@ class FoundPositions extends TdObject
 
     public function __construct(
         /**
-         * Total number of matched objects.
-         */
-        protected int   $totalCount,
-        /**
          * The positions of the matched objects.
          *
          * @var int[]
          */
         protected array $positions,
+        /**
+         * Total number of matched objects.
+         */
+        protected int   $totalCount,
     ) {}
 
     public static function fromArray(array $array): FoundPositions
     {
         return new static(
-            $array['total_count'],
-            $array['positions'],
+            positions : $array['positions'],
+            totalCount: $array['total_count'],
         );
     }
 
@@ -64,8 +64,8 @@ class FoundPositions extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'total_count' => $this->totalCount,
             'positions'   => $this->positions,
+            'total_count' => $this->totalCount,
         ];
     }
 }

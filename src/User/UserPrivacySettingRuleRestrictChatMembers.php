@@ -27,7 +27,7 @@ class UserPrivacySettingRuleRestrictChatMembers extends UserPrivacySettingRule
     public static function fromArray(array $array): UserPrivacySettingRuleRestrictChatMembers
     {
         return new static(
-            $array['chat_ids'],
+            chatIds: $array['chat_ids'],
         );
     }
 

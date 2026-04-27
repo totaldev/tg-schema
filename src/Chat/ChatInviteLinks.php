@@ -18,22 +18,22 @@ class ChatInviteLinks extends TdObject
 
     public function __construct(
         /**
-         * Approximate total number of chat invite links found.
-         */
-        protected int   $totalCount,
-        /**
          * List of invite links.
          *
          * @var ChatInviteLink[]
          */
         protected array $inviteLinks,
+        /**
+         * Approximate total number of chat invite links found.
+         */
+        protected int   $totalCount,
     ) {}
 
     public static function fromArray(array $array): ChatInviteLinks
     {
         return new static(
-            $array['total_count'],
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['invite_links']),
+            inviteLinks: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['invite_links']),
+            totalCount : $array['total_count'],
         );
     }
 
@@ -65,8 +65,8 @@ class ChatInviteLinks extends TdObject
     {
         return [
             '@type'        => static::TYPE_NAME,
+            'invite_links' => array_map(static fn($x) => $x->jsonSerialize(), $this->inviteLinks),
             'total_count'  => $this->totalCount,
-            'invite_links' => array_map(static fn($x) => $x->typeSerialize(), $this->inviteLinks),
         ];
     }
 }

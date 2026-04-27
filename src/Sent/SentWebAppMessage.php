@@ -25,7 +25,7 @@ class SentWebAppMessage extends TdObject
     public static function fromArray(array $array): SentWebAppMessage
     {
         return new static(
-            $array['inline_message_id'],
+            inlineMessageId: $array['inline_message_id'],
         );
     }
 

@@ -25,7 +25,7 @@ class ChatStatisticsObjectTypeStory extends ChatStatisticsObjectType
     public static function fromArray(array $array): ChatStatisticsObjectTypeStory
     {
         return new static(
-            $array['story_id'],
+            storyId: $array['story_id'],
         );
     }
 

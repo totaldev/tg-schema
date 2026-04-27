@@ -33,9 +33,9 @@ class SendWebAppCustomRequest extends TdFunction
     public static function fromArray(array $array): SendWebAppCustomRequest
     {
         return new static(
-            $array['bot_user_id'],
-            $array['method'],
-            $array['parameters'],
+            botUserId : $array['bot_user_id'],
+            method    : $array['method'],
+            parameters: $array['parameters'],
         );
     }
 

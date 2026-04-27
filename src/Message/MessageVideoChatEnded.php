@@ -25,7 +25,7 @@ class MessageVideoChatEnded extends MessageContent
     public static function fromArray(array $array): MessageVideoChatEnded
     {
         return new static(
-            $array['duration'],
+            duration: $array['duration'],
         );
     }
 

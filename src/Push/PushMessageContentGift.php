@@ -15,13 +15,13 @@ class PushMessageContentGift extends PushMessageContent
 
     public function __construct(
         /**
-         * Number of Telegram Stars that sender paid for the gift.
-         */
-        protected int  $starCount,
-        /**
          * True, if the message is about prepaid upgrade of the gift by another user instead of actual receiving of a new gift.
          */
         protected bool $isPrepaidUpgrade,
+        /**
+         * Number of Telegram Stars that sender paid for the gift.
+         */
+        protected int  $starCount,
     ) {
         parent::__construct();
     }
@@ -29,8 +29,8 @@ class PushMessageContentGift extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentGift
     {
         return new static(
-            $array['star_count'],
-            $array['is_prepaid_upgrade'],
+            isPrepaidUpgrade: $array['is_prepaid_upgrade'],
+            starCount       : $array['star_count'],
         );
     }
 
@@ -62,8 +62,8 @@ class PushMessageContentGift extends PushMessageContent
     {
         return [
             '@type'              => static::TYPE_NAME,
-            'star_count'         => $this->starCount,
             'is_prepaid_upgrade' => $this->isPrepaidUpgrade,
+            'star_count'         => $this->starCount,
         ];
     }
 }

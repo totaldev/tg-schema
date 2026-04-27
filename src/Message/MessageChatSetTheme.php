@@ -28,7 +28,7 @@ class MessageChatSetTheme extends MessageContent
     public static function fromArray(array $array): MessageChatSetTheme
     {
         return new static(
-            isset($array['theme']) ? TdSchemaRegistry::fromArray($array['theme']) : null,
+            theme: (isset($array['theme']) ? TdSchemaRegistry::fromArray($array['theme']) : null),
         );
     }
 
@@ -48,7 +48,7 @@ class MessageChatSetTheme extends MessageContent
     {
         return [
             '@type' => static::TYPE_NAME,
-            'theme' => $this->theme ?? null,
+            'theme' => (null !== $this->theme ? $this->theme->jsonSerialize() : null),
         ];
     }
 }

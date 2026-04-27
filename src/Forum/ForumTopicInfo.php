@@ -23,18 +23,6 @@ class ForumTopicInfo extends TdObject
          */
         protected int            $chatId,
         /**
-         * Forum topic identifier of the topic.
-         */
-        protected int            $forumTopicId,
-        /**
-         * Name of the topic.
-         */
-        protected string         $name,
-        /**
-         * Icon of the topic.
-         */
-        protected ForumTopicIcon $icon,
-        /**
          * Point in time (Unix timestamp) when the topic was created.
          */
         protected int            $creationDate,
@@ -43,17 +31,21 @@ class ForumTopicInfo extends TdObject
          */
         protected MessageSender  $creatorId,
         /**
-         * True, if the topic is the General topic.
+         * Forum topic identifier of the topic.
          */
-        protected bool           $isGeneral,
+        protected int            $forumTopicId,
         /**
-         * True, if the topic was created by the current user.
+         * Icon of the topic.
          */
-        protected bool           $isOutgoing,
+        protected ForumTopicIcon $icon,
         /**
          * True, if the topic is closed. If the topic is closed, then the user must have can_manage_topics administrator right in the supergroup or must be the creator of the topic to send messages there.
          */
         protected bool           $isClosed,
+        /**
+         * True, if the topic is the General topic.
+         */
+        protected bool           $isGeneral,
         /**
          * True, if the topic is hidden above the topic list and closed; for General topic only.
          */
@@ -62,22 +54,30 @@ class ForumTopicInfo extends TdObject
          * True, if the name of the topic wasn't added explicitly.
          */
         protected bool           $isNameImplicit,
+        /**
+         * True, if the topic was created by the current user.
+         */
+        protected bool           $isOutgoing,
+        /**
+         * Name of the topic.
+         */
+        protected string         $name,
     ) {}
 
     public static function fromArray(array $array): ForumTopicInfo
     {
         return new static(
-            $array['chat_id'],
-            $array['forum_topic_id'],
-            $array['name'],
-            TdSchemaRegistry::fromArray($array['icon']),
-            $array['creation_date'],
-            TdSchemaRegistry::fromArray($array['creator_id']),
-            $array['is_general'],
-            $array['is_outgoing'],
-            $array['is_closed'],
-            $array['is_hidden'],
-            $array['is_name_implicit'],
+            chatId        : $array['chat_id'],
+            creationDate  : $array['creation_date'],
+            creatorId     : TdSchemaRegistry::fromArray($array['creator_id']),
+            forumTopicId  : $array['forum_topic_id'],
+            icon          : TdSchemaRegistry::fromArray($array['icon']),
+            isClosed      : $array['is_closed'],
+            isGeneral     : $array['is_general'],
+            isHidden      : $array['is_hidden'],
+            isNameImplicit: $array['is_name_implicit'],
+            isOutgoing    : $array['is_outgoing'],
+            name          : $array['name'],
         );
     }
 
@@ -218,16 +218,16 @@ class ForumTopicInfo extends TdObject
         return [
             '@type'            => static::TYPE_NAME,
             'chat_id'          => $this->chatId,
-            'forum_topic_id'   => $this->forumTopicId,
-            'name'             => $this->name,
-            'icon'             => $this->icon->typeSerialize(),
             'creation_date'    => $this->creationDate,
-            'creator_id'       => $this->creatorId->typeSerialize(),
-            'is_general'       => $this->isGeneral,
-            'is_outgoing'      => $this->isOutgoing,
+            'creator_id'       => $this->creatorId->jsonSerialize(),
+            'forum_topic_id'   => $this->forumTopicId,
+            'icon'             => $this->icon->jsonSerialize(),
             'is_closed'        => $this->isClosed,
+            'is_general'       => $this->isGeneral,
             'is_hidden'        => $this->isHidden,
             'is_name_implicit' => $this->isNameImplicit,
+            'is_outgoing'      => $this->isOutgoing,
+            'name'             => $this->name,
         ];
     }
 }

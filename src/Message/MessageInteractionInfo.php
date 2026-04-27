@@ -18,30 +18,30 @@ class MessageInteractionInfo extends TdObject
 
     public function __construct(
         /**
-         * Number of times the message was viewed.
-         */
-        protected int               $viewCount,
-        /**
          * Number of times the message was forwarded.
          */
         protected int               $forwardCount,
+        /**
+         * The list of reactions or tags added to the message; may be null.
+         */
+        protected ?MessageReactions $reactions,
         /**
          * Information about direct or indirect replies to the message; may be null. Currently, available only in channels with a discussion supergroup and discussion supergroups for messages, which are not replies itself.
          */
         protected ?MessageReplyInfo $replyInfo,
         /**
-         * The list of reactions or tags added to the message; may be null.
+         * Number of times the message was viewed.
          */
-        protected ?MessageReactions $reactions,
+        protected int               $viewCount,
     ) {}
 
     public static function fromArray(array $array): MessageInteractionInfo
     {
         return new static(
-            $array['view_count'],
-            $array['forward_count'],
-            isset($array['reply_info']) ? TdSchemaRegistry::fromArray($array['reply_info']) : null,
-            isset($array['reactions']) ? TdSchemaRegistry::fromArray($array['reactions']) : null,
+            forwardCount: $array['forward_count'],
+            reactions   : (isset($array['reactions']) ? TdSchemaRegistry::fromArray($array['reactions']) : null),
+            replyInfo   : (isset($array['reply_info']) ? TdSchemaRegistry::fromArray($array['reply_info']) : null),
+            viewCount   : $array['view_count'],
         );
     }
 
@@ -97,10 +97,10 @@ class MessageInteractionInfo extends TdObject
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'view_count'    => $this->viewCount,
             'forward_count' => $this->forwardCount,
-            'reply_info'    => $this->replyInfo ?? null,
-            'reactions'     => $this->reactions ?? null,
+            'reactions'     => (null !== $this->reactions ? $this->reactions->jsonSerialize() : null),
+            'reply_info'    => (null !== $this->replyInfo ? $this->replyInfo->jsonSerialize() : null),
+            'view_count'    => $this->viewCount,
         ];
     }
 }

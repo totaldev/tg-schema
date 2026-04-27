@@ -25,7 +25,7 @@ class ToggleChatFolderTags extends TdFunction
     public static function fromArray(array $array): ToggleChatFolderTags
     {
         return new static(
-            $array['are_tags_enabled'],
+            areTagsEnabled: $array['are_tags_enabled'],
         );
     }
 

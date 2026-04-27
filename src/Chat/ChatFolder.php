@@ -18,33 +18,13 @@ class ChatFolder extends TdObject
 
     public function __construct(
         /**
-         * The name of the folder.
-         */
-        protected ChatFolderName  $name,
-        /**
-         * The chosen icon for the chat folder; may be null. If null, use getChatFolderDefaultIconName to get default icon name for the folder.
-         */
-        protected ?ChatFolderIcon $icon,
-        /**
          * The identifier of the chosen color for the chat folder icon; from -1 to 6. If -1, then color is disabled. Can't be changed if folder tags are disabled or the current user doesn't have Telegram Premium subscription.
          */
         protected int             $colorId,
         /**
-         * True, if at least one link has been created for the folder.
+         * True, if archived chats need to be excluded.
          */
-        protected bool            $isShareable,
-        /**
-         * The chat identifiers of pinned chats in the folder. There can be up to getOption("chat_folder_chosen_chat_count_max") pinned and always included non-secret chats and the same number of secret chats, but the limit can be increased with Telegram Premium.
-         *
-         * @var int[]
-         */
-        protected array           $pinnedChatIds,
-        /**
-         * The chat identifiers of always included chats in the folder. There can be up to getOption("chat_folder_chosen_chat_count_max") pinned and always included non-secret chats and the same number of secret chats, but the limit can be increased with Telegram Premium.
-         *
-         * @var int[]
-         */
-        protected array           $includedChatIds,
+        protected bool            $excludeArchived,
         /**
          * The chat identifiers of always excluded chats in the folder. There can be up to getOption("chat_folder_chosen_chat_count_max") always excluded non-secret chats and the same number of secret chats, but the limit can be increased with Telegram Premium.
          *
@@ -60,49 +40,69 @@ class ChatFolder extends TdObject
          */
         protected bool            $excludeRead,
         /**
-         * True, if archived chats need to be excluded.
+         * The chosen icon for the chat folder; may be null. If null, use getChatFolderDefaultIconName to get default icon name for the folder.
          */
-        protected bool            $excludeArchived,
-        /**
-         * True, if contacts need to be included.
-         */
-        protected bool            $includeContacts,
-        /**
-         * True, if non-contact users need to be included.
-         */
-        protected bool            $includeNonContacts,
+        protected ?ChatFolderIcon $icon,
         /**
          * True, if bots need to be included.
          */
         protected bool            $includeBots,
         /**
+         * True, if channels need to be included.
+         */
+        protected bool            $includeChannels,
+        /**
+         * True, if contacts need to be included.
+         */
+        protected bool            $includeContacts,
+        /**
+         * The chat identifiers of always included chats in the folder. There can be up to getOption("chat_folder_chosen_chat_count_max") pinned and always included non-secret chats and the same number of secret chats, but the limit can be increased with Telegram Premium.
+         *
+         * @var int[]
+         */
+        protected array           $includedChatIds,
+        /**
          * True, if basic groups and supergroups need to be included.
          */
         protected bool            $includeGroups,
         /**
-         * True, if channels need to be included.
+         * True, if non-contact users need to be included.
          */
-        protected bool            $includeChannels,
+        protected bool            $includeNonContacts,
+        /**
+         * True, if at least one link has been created for the folder.
+         */
+        protected bool            $isShareable,
+        /**
+         * The name of the folder.
+         */
+        protected ChatFolderName  $name,
+        /**
+         * The chat identifiers of pinned chats in the folder. There can be up to getOption("chat_folder_chosen_chat_count_max") pinned and always included non-secret chats and the same number of secret chats, but the limit can be increased with Telegram Premium.
+         *
+         * @var int[]
+         */
+        protected array           $pinnedChatIds,
     ) {}
 
     public static function fromArray(array $array): ChatFolder
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['name']),
-            isset($array['icon']) ? TdSchemaRegistry::fromArray($array['icon']) : null,
-            $array['color_id'],
-            $array['is_shareable'],
-            $array['pinned_chat_ids'],
-            $array['included_chat_ids'],
-            $array['excluded_chat_ids'],
-            $array['exclude_muted'],
-            $array['exclude_read'],
-            $array['exclude_archived'],
-            $array['include_contacts'],
-            $array['include_non_contacts'],
-            $array['include_bots'],
-            $array['include_groups'],
-            $array['include_channels'],
+            colorId           : $array['color_id'],
+            excludeArchived   : $array['exclude_archived'],
+            excludeMuted      : $array['exclude_muted'],
+            excludeRead       : $array['exclude_read'],
+            excludedChatIds   : $array['excluded_chat_ids'],
+            icon              : (isset($array['icon']) ? TdSchemaRegistry::fromArray($array['icon']) : null),
+            includeBots       : $array['include_bots'],
+            includeChannels   : $array['include_channels'],
+            includeContacts   : $array['include_contacts'],
+            includeGroups     : $array['include_groups'],
+            includeNonContacts: $array['include_non_contacts'],
+            includedChatIds   : $array['included_chat_ids'],
+            isShareable       : $array['is_shareable'],
+            name              : TdSchemaRegistry::fromArray($array['name']),
+            pinnedChatIds     : $array['pinned_chat_ids'],
         );
     }
 
@@ -290,21 +290,21 @@ class ChatFolder extends TdObject
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'name'                 => $this->name->typeSerialize(),
-            'icon'                 => $this->icon ?? null,
             'color_id'             => $this->colorId,
-            'is_shareable'         => $this->isShareable,
-            'pinned_chat_ids'      => $this->pinnedChatIds,
-            'included_chat_ids'    => $this->includedChatIds,
-            'excluded_chat_ids'    => $this->excludedChatIds,
+            'exclude_archived'     => $this->excludeArchived,
             'exclude_muted'        => $this->excludeMuted,
             'exclude_read'         => $this->excludeRead,
-            'exclude_archived'     => $this->excludeArchived,
-            'include_contacts'     => $this->includeContacts,
-            'include_non_contacts' => $this->includeNonContacts,
+            'excluded_chat_ids'    => $this->excludedChatIds,
+            'icon'                 => (null !== $this->icon ? $this->icon->jsonSerialize() : null),
             'include_bots'         => $this->includeBots,
-            'include_groups'       => $this->includeGroups,
             'include_channels'     => $this->includeChannels,
+            'include_contacts'     => $this->includeContacts,
+            'include_groups'       => $this->includeGroups,
+            'include_non_contacts' => $this->includeNonContacts,
+            'included_chat_ids'    => $this->includedChatIds,
+            'is_shareable'         => $this->isShareable,
+            'name'                 => $this->name->jsonSerialize(),
+            'pinned_chat_ids'      => $this->pinnedChatIds,
         ];
     }
 }

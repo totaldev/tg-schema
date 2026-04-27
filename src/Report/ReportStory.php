@@ -17,17 +17,17 @@ class ReportStory extends TdFunction
 
     public function __construct(
         /**
-         * The identifier of the poster of the story to report.
+         * Option identifier chosen by the user; leave empty for the initial request.
          */
-        protected int    $storyPosterChatId,
+        protected string $optionId,
         /**
          * The identifier of the story to report.
          */
         protected int    $storyId,
         /**
-         * Option identifier chosen by the user; leave empty for the initial request.
+         * The identifier of the poster of the story to report.
          */
-        protected string $optionId,
+        protected int    $storyPosterChatId,
         /**
          * Additional report details; 0-1024 characters; leave empty for the initial request.
          */
@@ -37,10 +37,10 @@ class ReportStory extends TdFunction
     public static function fromArray(array $array): ReportStory
     {
         return new static(
-            $array['story_poster_chat_id'],
-            $array['story_id'],
-            $array['option_id'],
-            $array['text'],
+            optionId         : $array['option_id'],
+            storyId          : $array['story_id'],
+            storyPosterChatId: $array['story_poster_chat_id'],
+            text             : $array['text'],
         );
     }
 
@@ -96,9 +96,9 @@ class ReportStory extends TdFunction
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'story_poster_chat_id' => $this->storyPosterChatId,
-            'story_id'             => $this->storyId,
             'option_id'            => $this->optionId,
+            'story_id'             => $this->storyId,
+            'story_poster_chat_id' => $this->storyPosterChatId,
             'text'                 => $this->text,
         ];
     }

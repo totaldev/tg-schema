@@ -19,13 +19,9 @@ class PageBlockRelatedArticle extends TdObject
 
     public function __construct(
         /**
-         * Related article URL.
+         * Article author; may be empty.
          */
-        protected string $url,
-        /**
-         * Article title; may be empty.
-         */
-        protected string $title,
+        protected string $author,
         /**
          * Article description; may be empty.
          */
@@ -35,24 +31,28 @@ class PageBlockRelatedArticle extends TdObject
          */
         protected ?Photo $photo,
         /**
-         * Article author; may be empty.
-         */
-        protected string $author,
-        /**
          * Point in time (Unix timestamp) when the article was published; 0 if unknown.
          */
         protected int    $publishDate,
+        /**
+         * Article title; may be empty.
+         */
+        protected string $title,
+        /**
+         * Related article URL.
+         */
+        protected string $url,
     ) {}
 
     public static function fromArray(array $array): PageBlockRelatedArticle
     {
         return new static(
-            $array['url'],
-            $array['title'],
-            $array['description'],
-            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
-            $array['author'],
-            $array['publish_date'],
+            author     : $array['author'],
+            description: $array['description'],
+            photo      : (isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null),
+            publishDate: $array['publish_date'],
+            title      : $array['title'],
+            url        : $array['url'],
         );
     }
 
@@ -132,12 +132,12 @@ class PageBlockRelatedArticle extends TdObject
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'url'          => $this->url,
-            'title'        => $this->title,
-            'description'  => $this->description,
-            'photo'        => $this->photo ?? null,
             'author'       => $this->author,
+            'description'  => $this->description,
+            'photo'        => (null !== $this->photo ? $this->photo->jsonSerialize() : null),
             'publish_date' => $this->publishDate,
+            'title'        => $this->title,
+            'url'          => $this->url,
         ];
     }
 }

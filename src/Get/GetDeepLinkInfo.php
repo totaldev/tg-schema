@@ -26,7 +26,7 @@ class GetDeepLinkInfo extends TdFunction
     public static function fromArray(array $array): GetDeepLinkInfo
     {
         return new static(
-            $array['link'],
+            link: $array['link'],
         );
     }
 

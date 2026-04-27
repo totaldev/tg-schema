@@ -20,27 +20,31 @@ class PaymentFormTypeRegular extends PaymentFormType
 
     public function __construct(
         /**
-         * Full information about the invoice.
-         */
-        protected Invoice         $invoice,
-        /**
-         * User identifier of the payment provider bot.
-         */
-        protected int             $paymentProviderUserId,
-        /**
-         * Information about the payment provider.
-         */
-        protected PaymentProvider $paymentProvider,
-        /**
          * The list of additional payment options.
          *
          * @var PaymentOption[]
          */
         protected array           $additionalPaymentOptions,
         /**
-         * Saved server-side order information; may be null.
+         * True, if the user can choose to save credentials.
          */
-        protected ?OrderInfo      $savedOrderInfo,
+        protected bool            $canSaveCredentials,
+        /**
+         * Full information about the invoice.
+         */
+        protected Invoice         $invoice,
+        /**
+         * True, if the user will be able to save credentials, if sets up a 2-step verification password.
+         */
+        protected bool            $needPassword,
+        /**
+         * Information about the payment provider.
+         */
+        protected PaymentProvider $paymentProvider,
+        /**
+         * User identifier of the payment provider bot.
+         */
+        protected int             $paymentProviderUserId,
         /**
          * The list of saved payment credentials.
          *
@@ -48,13 +52,9 @@ class PaymentFormTypeRegular extends PaymentFormType
          */
         protected array           $savedCredentials,
         /**
-         * True, if the user can choose to save credentials.
+         * Saved server-side order information; may be null.
          */
-        protected bool            $canSaveCredentials,
-        /**
-         * True, if the user will be able to save credentials, if sets up a 2-step verification password.
-         */
-        protected bool            $needPassword,
+        protected ?OrderInfo      $savedOrderInfo,
     ) {
         parent::__construct();
     }
@@ -62,14 +62,14 @@ class PaymentFormTypeRegular extends PaymentFormType
     public static function fromArray(array $array): PaymentFormTypeRegular
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['invoice']),
-            $array['payment_provider_user_id'],
-            TdSchemaRegistry::fromArray($array['payment_provider']),
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['additional_payment_options']),
-            isset($array['saved_order_info']) ? TdSchemaRegistry::fromArray($array['saved_order_info']) : null,
-            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['saved_credentials']),
-            $array['can_save_credentials'],
-            $array['need_password'],
+            additionalPaymentOptions: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['additional_payment_options']),
+            canSaveCredentials      : $array['can_save_credentials'],
+            invoice                 : TdSchemaRegistry::fromArray($array['invoice']),
+            needPassword            : $array['need_password'],
+            paymentProvider         : TdSchemaRegistry::fromArray($array['payment_provider']),
+            paymentProviderUserId   : $array['payment_provider_user_id'],
+            savedCredentials        : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['saved_credentials']),
+            savedOrderInfo          : (isset($array['saved_order_info']) ? TdSchemaRegistry::fromArray($array['saved_order_info']) : null),
         );
     }
 
@@ -173,14 +173,14 @@ class PaymentFormTypeRegular extends PaymentFormType
     {
         return [
             '@type'                      => static::TYPE_NAME,
-            'invoice'                    => $this->invoice->typeSerialize(),
-            'payment_provider_user_id'   => $this->paymentProviderUserId,
-            'payment_provider'           => $this->paymentProvider->typeSerialize(),
-            'additional_payment_options' => array_map(static fn($x) => $x->typeSerialize(), $this->additionalPaymentOptions),
-            'saved_order_info'           => $this->savedOrderInfo ?? null,
-            'saved_credentials'          => array_map(static fn($x) => $x->typeSerialize(), $this->savedCredentials),
+            'additional_payment_options' => array_map(static fn($x) => $x->jsonSerialize(), $this->additionalPaymentOptions),
             'can_save_credentials'       => $this->canSaveCredentials,
+            'invoice'                    => $this->invoice->jsonSerialize(),
             'need_password'              => $this->needPassword,
+            'payment_provider'           => $this->paymentProvider->jsonSerialize(),
+            'payment_provider_user_id'   => $this->paymentProviderUserId,
+            'saved_credentials'          => array_map(static fn($x) => $x->jsonSerialize(), $this->savedCredentials),
+            'saved_order_info'           => (null !== $this->savedOrderInfo ? $this->savedOrderInfo->jsonSerialize() : null),
         ];
     }
 }

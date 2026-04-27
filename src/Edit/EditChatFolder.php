@@ -31,8 +31,8 @@ class EditChatFolder extends TdFunction
     public static function fromArray(array $array): EditChatFolder
     {
         return new static(
-            $array['chat_folder_id'],
-            TdSchemaRegistry::fromArray($array['folder']),
+            chatFolderId: $array['chat_folder_id'],
+            folder      : TdSchemaRegistry::fromArray($array['folder']),
         );
     }
 
@@ -65,7 +65,7 @@ class EditChatFolder extends TdFunction
         return [
             '@type'          => static::TYPE_NAME,
             'chat_folder_id' => $this->chatFolderId,
-            'folder'         => $this->folder->typeSerialize(),
+            'folder'         => $this->folder->jsonSerialize(),
         ];
     }
 }

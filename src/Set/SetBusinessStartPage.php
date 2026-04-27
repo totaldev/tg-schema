@@ -27,7 +27,7 @@ class SetBusinessStartPage extends TdFunction
     public static function fromArray(array $array): SetBusinessStartPage
     {
         return new static(
-            isset($array['start_page']) ? TdSchemaRegistry::fromArray($array['start_page']) : null,
+            startPage: (isset($array['start_page']) ? TdSchemaRegistry::fromArray($array['start_page']) : null),
         );
     }
 
@@ -47,7 +47,7 @@ class SetBusinessStartPage extends TdFunction
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'start_page' => $this->startPage ?? null,
+            'start_page' => (null !== $this->startPage ? $this->startPage->jsonSerialize() : null),
         ];
     }
 }

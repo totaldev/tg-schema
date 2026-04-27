@@ -31,8 +31,8 @@ class SendGroupCallMessage extends TdFunction
     public static function fromArray(array $array): SendGroupCallMessage
     {
         return new static(
-            $array['group_call_id'],
-            TdSchemaRegistry::fromArray($array['text']),
+            groupCallId: $array['group_call_id'],
+            text       : TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -65,7 +65,7 @@ class SendGroupCallMessage extends TdFunction
         return [
             '@type'         => static::TYPE_NAME,
             'group_call_id' => $this->groupCallId,
-            'text'          => $this->text->typeSerialize(),
+            'text'          => $this->text->jsonSerialize(),
         ];
     }
 }

@@ -32,8 +32,8 @@ class UpdateChatVideoChat extends Update
     public static function fromArray(array $array): UpdateChatVideoChat
     {
         return new static(
-            $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['video_chat']),
+            chatId   : $array['chat_id'],
+            videoChat: TdSchemaRegistry::fromArray($array['video_chat']),
         );
     }
 
@@ -66,7 +66,7 @@ class UpdateChatVideoChat extends Update
         return [
             '@type'      => static::TYPE_NAME,
             'chat_id'    => $this->chatId,
-            'video_chat' => $this->videoChat->typeSerialize(),
+            'video_chat' => $this->videoChat->jsonSerialize(),
         ];
     }
 }

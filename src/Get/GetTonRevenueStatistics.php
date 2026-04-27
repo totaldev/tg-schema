@@ -25,7 +25,7 @@ class GetTonRevenueStatistics extends TdFunction
     public static function fromArray(array $array): GetTonRevenueStatistics
     {
         return new static(
-            $array['is_dark'],
+            isDark: $array['is_dark'],
         );
     }
 

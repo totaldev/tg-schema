@@ -25,7 +25,7 @@ class InternalLinkTypeTheme extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeTheme
     {
         return new static(
-            $array['theme_name'],
+            themeName: $array['theme_name'],
         );
     }
 

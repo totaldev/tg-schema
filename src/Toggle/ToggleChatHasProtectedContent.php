@@ -29,8 +29,8 @@ class ToggleChatHasProtectedContent extends TdFunction
     public static function fromArray(array $array): ToggleChatHasProtectedContent
     {
         return new static(
-            $array['chat_id'],
-            $array['has_protected_content'],
+            chatId             : $array['chat_id'],
+            hasProtectedContent: $array['has_protected_content'],
         );
     }
 

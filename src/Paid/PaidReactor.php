@@ -19,6 +19,18 @@ class PaidReactor extends TdObject
 
     public function __construct(
         /**
+         * True, if the reactor is anonymous.
+         */
+        protected bool           $isAnonymous,
+        /**
+         * True, if the paid reaction was added by the current user.
+         */
+        protected bool           $isMe,
+        /**
+         * True, if the reactor is one of the most active reactors; may be false if the reactor is the current user.
+         */
+        protected bool           $isTop,
+        /**
          * Identifier of the user or chat that added the reactions; may be null for anonymous reactors that aren't the current user.
          */
         protected ?MessageSender $senderId,
@@ -26,28 +38,16 @@ class PaidReactor extends TdObject
          * Number of Telegram Stars added.
          */
         protected int            $starCount,
-        /**
-         * True, if the reactor is one of the most active reactors; may be false if the reactor is the current user.
-         */
-        protected bool           $isTop,
-        /**
-         * True, if the paid reaction was added by the current user.
-         */
-        protected bool           $isMe,
-        /**
-         * True, if the reactor is anonymous.
-         */
-        protected bool           $isAnonymous,
     ) {}
 
     public static function fromArray(array $array): PaidReactor
     {
         return new static(
-            isset($array['sender_id']) ? TdSchemaRegistry::fromArray($array['sender_id']) : null,
-            $array['star_count'],
-            $array['is_top'],
-            $array['is_me'],
-            $array['is_anonymous'],
+            isAnonymous: $array['is_anonymous'],
+            isMe       : $array['is_me'],
+            isTop      : $array['is_top'],
+            senderId   : (isset($array['sender_id']) ? TdSchemaRegistry::fromArray($array['sender_id']) : null),
+            starCount  : $array['star_count'],
         );
     }
 
@@ -115,11 +115,11 @@ class PaidReactor extends TdObject
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'sender_id'    => $this->senderId ?? null,
-            'star_count'   => $this->starCount,
-            'is_top'       => $this->isTop,
-            'is_me'        => $this->isMe,
             'is_anonymous' => $this->isAnonymous,
+            'is_me'        => $this->isMe,
+            'is_top'       => $this->isTop,
+            'sender_id'    => (null !== $this->senderId ? $this->senderId->jsonSerialize() : null),
+            'star_count'   => $this->starCount,
         ];
     }
 }

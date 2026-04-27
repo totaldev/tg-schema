@@ -17,25 +17,25 @@ class MessagePosition extends TdObject
 
     public function __construct(
         /**
-         * 0-based message position in the full list of suitable messages.
+         * Point in time (Unix timestamp) when the message was sent.
          */
-        protected int $position,
+        protected int $date,
         /**
          * Message identifier.
          */
         protected int $messageId,
         /**
-         * Point in time (Unix timestamp) when the message was sent.
+         * 0-based message position in the full list of suitable messages.
          */
-        protected int $date,
+        protected int $position,
     ) {}
 
     public static function fromArray(array $array): MessagePosition
     {
         return new static(
-            $array['position'],
-            $array['message_id'],
-            $array['date'],
+            date     : $array['date'],
+            messageId: $array['message_id'],
+            position : $array['position'],
         );
     }
 
@@ -79,9 +79,9 @@ class MessagePosition extends TdObject
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'position'   => $this->position,
-            'message_id' => $this->messageId,
             'date'       => $this->date,
+            'message_id' => $this->messageId,
+            'position'   => $this->position,
         ];
     }
 }

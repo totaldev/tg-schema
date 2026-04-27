@@ -33,8 +33,8 @@ class AddChatMembers extends TdFunction
     public static function fromArray(array $array): AddChatMembers
     {
         return new static(
-            $array['chat_id'],
-            $array['user_ids'],
+            chatId : $array['chat_id'],
+            userIds: $array['user_ids'],
         );
     }
 

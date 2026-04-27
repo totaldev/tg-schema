@@ -25,7 +25,7 @@ class ChatActionUploadingDocument extends ChatAction
     public static function fromArray(array $array): ChatActionUploadingDocument
     {
         return new static(
-            $array['progress'],
+            progress: $array['progress'],
         );
     }
 

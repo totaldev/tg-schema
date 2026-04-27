@@ -18,20 +18,20 @@ class ToggleSupergroupCanHaveSponsoredMessages extends TdFunction
 
     public function __construct(
         /**
-         * The identifier of the channel.
-         */
-        protected int  $supergroupId,
-        /**
          * The new value of can_have_sponsored_messages.
          */
         protected bool $canHaveSponsoredMessages,
+        /**
+         * The identifier of the channel.
+         */
+        protected int  $supergroupId,
     ) {}
 
     public static function fromArray(array $array): ToggleSupergroupCanHaveSponsoredMessages
     {
         return new static(
-            $array['supergroup_id'],
-            $array['can_have_sponsored_messages'],
+            canHaveSponsoredMessages: $array['can_have_sponsored_messages'],
+            supergroupId            : $array['supergroup_id'],
         );
     }
 
@@ -63,8 +63,8 @@ class ToggleSupergroupCanHaveSponsoredMessages extends TdFunction
     {
         return [
             '@type'                       => static::TYPE_NAME,
-            'supergroup_id'               => $this->supergroupId,
             'can_have_sponsored_messages' => $this->canHaveSponsoredMessages,
+            'supergroup_id'               => $this->supergroupId,
         ];
     }
 }

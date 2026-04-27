@@ -25,7 +25,7 @@ class ChatEventIsForumToggled extends ChatEventAction
     public static function fromArray(array $array): ChatEventIsForumToggled
     {
         return new static(
-            $array['is_forum'],
+            isForum: $array['is_forum'],
         );
     }
 

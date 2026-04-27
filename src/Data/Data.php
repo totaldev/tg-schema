@@ -25,7 +25,7 @@ class Data extends TdObject
     public static function fromArray(array $array): Data
     {
         return new static(
-            $array['data'],
+            data: $array['data'],
         );
     }
 

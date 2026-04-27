@@ -19,13 +19,13 @@ class InternalLinkTypeMessageDraft extends InternalLinkType
 
     public function __construct(
         /**
-         * Message draft text.
-         */
-        protected FormattedText $text,
-        /**
          * True, if the first line of the text contains a link. If true, the input field needs to be focused and the text after the link must be selected.
          */
         protected bool          $containsLink,
+        /**
+         * Message draft text.
+         */
+        protected FormattedText $text,
     ) {
         parent::__construct();
     }
@@ -33,8 +33,8 @@ class InternalLinkTypeMessageDraft extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeMessageDraft
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['text']),
-            $array['contains_link'],
+            containsLink: $array['contains_link'],
+            text        : TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -66,8 +66,8 @@ class InternalLinkTypeMessageDraft extends InternalLinkType
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'text'          => $this->text->typeSerialize(),
             'contains_link' => $this->containsLink,
+            'text'          => $this->text->jsonSerialize(),
         ];
     }
 }

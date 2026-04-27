@@ -19,25 +19,25 @@ class SearchInstalledStickerSets extends TdFunction
 
     public function __construct(
         /**
-         * Type of the sticker sets to search for.
+         * The maximum number of sticker sets to return.
          */
-        protected StickerType $stickerType,
+        protected int         $limit,
         /**
          * Query to search for.
          */
         protected string      $query,
         /**
-         * The maximum number of sticker sets to return.
+         * Type of the sticker sets to search for.
          */
-        protected int         $limit,
+        protected StickerType $stickerType,
     ) {}
 
     public static function fromArray(array $array): SearchInstalledStickerSets
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['sticker_type']),
-            $array['query'],
-            $array['limit'],
+            limit      : $array['limit'],
+            query      : $array['query'],
+            stickerType: TdSchemaRegistry::fromArray($array['sticker_type']),
         );
     }
 
@@ -81,9 +81,9 @@ class SearchInstalledStickerSets extends TdFunction
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'sticker_type' => $this->stickerType->typeSerialize(),
-            'query'        => $this->query,
             'limit'        => $this->limit,
+            'query'        => $this->query,
+            'sticker_type' => $this->stickerType->jsonSerialize(),
         ];
     }
 }

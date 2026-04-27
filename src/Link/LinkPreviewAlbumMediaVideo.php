@@ -28,7 +28,7 @@ class LinkPreviewAlbumMediaVideo extends LinkPreviewAlbumMedia
     public static function fromArray(array $array): LinkPreviewAlbumMediaVideo
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['video']),
+            video: TdSchemaRegistry::fromArray($array['video']),
         );
     }
 
@@ -48,7 +48,7 @@ class LinkPreviewAlbumMediaVideo extends LinkPreviewAlbumMedia
     {
         return [
             '@type' => static::TYPE_NAME,
-            'video' => $this->video->typeSerialize(),
+            'video' => $this->video->jsonSerialize(),
         ];
     }
 }

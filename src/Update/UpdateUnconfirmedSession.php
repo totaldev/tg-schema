@@ -28,7 +28,7 @@ class UpdateUnconfirmedSession extends Update
     public static function fromArray(array $array): UpdateUnconfirmedSession
     {
         return new static(
-            isset($array['session']) ? TdSchemaRegistry::fromArray($array['session']) : null,
+            session: (isset($array['session']) ? TdSchemaRegistry::fromArray($array['session']) : null),
         );
     }
 
@@ -48,7 +48,7 @@ class UpdateUnconfirmedSession extends Update
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'session' => $this->session ?? null,
+            'session' => (null !== $this->session ? $this->session->jsonSerialize() : null),
         ];
     }
 }

@@ -19,10 +19,6 @@ class LinkPreviewTypeVideo extends LinkPreviewType
 
     public function __construct(
         /**
-         * The video description.
-         */
-        protected Video  $video,
-        /**
          * Cover of the video; may be null if none.
          */
         protected ?Photo $cover,
@@ -30,6 +26,10 @@ class LinkPreviewTypeVideo extends LinkPreviewType
          * Timestamp from which the video playing must start, in seconds.
          */
         protected int    $startTimestamp,
+        /**
+         * The video description.
+         */
+        protected Video  $video,
     ) {
         parent::__construct();
     }
@@ -37,9 +37,9 @@ class LinkPreviewTypeVideo extends LinkPreviewType
     public static function fromArray(array $array): LinkPreviewTypeVideo
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['video']),
-            isset($array['cover']) ? TdSchemaRegistry::fromArray($array['cover']) : null,
-            $array['start_timestamp'],
+            cover         : (isset($array['cover']) ? TdSchemaRegistry::fromArray($array['cover']) : null),
+            startTimestamp: $array['start_timestamp'],
+            video         : TdSchemaRegistry::fromArray($array['video']),
         );
     }
 
@@ -83,9 +83,9 @@ class LinkPreviewTypeVideo extends LinkPreviewType
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'video'           => $this->video->typeSerialize(),
-            'cover'           => $this->cover ?? null,
+            'cover'           => (null !== $this->cover ? $this->cover->jsonSerialize() : null),
             'start_timestamp' => $this->startTimestamp,
+            'video'           => $this->video->jsonSerialize(),
         ];
     }
 }

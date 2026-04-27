@@ -45,11 +45,11 @@ class SetChatBackground extends TdFunction
     public static function fromArray(array $array): SetChatBackground
     {
         return new static(
-            $array['chat_id'],
-            isset($array['background']) ? TdSchemaRegistry::fromArray($array['background']) : null,
-            isset($array['type']) ? TdSchemaRegistry::fromArray($array['type']) : null,
-            $array['dark_theme_dimming'],
-            $array['only_for_self'],
+            background      : (isset($array['background']) ? TdSchemaRegistry::fromArray($array['background']) : null),
+            chatId          : $array['chat_id'],
+            darkThemeDimming: $array['dark_theme_dimming'],
+            onlyForSelf     : $array['only_for_self'],
+            type            : (isset($array['type']) ? TdSchemaRegistry::fromArray($array['type']) : null),
         );
     }
 
@@ -117,11 +117,11 @@ class SetChatBackground extends TdFunction
     {
         return [
             '@type'              => static::TYPE_NAME,
+            'background'         => (null !== $this->background ? $this->background->jsonSerialize() : null),
             'chat_id'            => $this->chatId,
-            'background'         => $this->background ?? null,
-            'type'               => $this->type ?? null,
             'dark_theme_dimming' => $this->darkThemeDimming,
             'only_for_self'      => $this->onlyForSelf,
+            'type'               => (null !== $this->type ? $this->type->jsonSerialize() : null),
         ];
     }
 }

@@ -19,37 +19,17 @@ class MessageGift extends MessageContent
 
     public function __construct(
         /**
+         * True, if the gift can be upgraded to a unique gift; only for the receiver of the gift.
+         */
+        protected bool           $canBeUpgraded,
+        /**
          * The gift.
          */
         protected Gift           $gift,
         /**
-         * Sender of the gift; may be null for outgoing messages about prepaid upgrade of gifts from unknown users.
+         * True, if the message is about prepaid upgrade of the gift by another user.
          */
-        protected ?MessageSender $senderId,
-        /**
-         * Receiver of the gift.
-         */
-        protected MessageSender  $receiverId,
-        /**
-         * Unique identifier of the received gift for the current user; only for the receiver of the gift.
-         */
-        protected string         $receivedGiftId,
-        /**
-         * Message added to the gift.
-         */
-        protected FormattedText  $text,
-        /**
-         * Number of Telegram Stars that can be claimed by the receiver instead of the regular gift; 0 if the gift can't be sold by the receiver.
-         */
-        protected int            $sellStarCount,
-        /**
-         * Number of Telegram Stars that were paid by the sender for the ability to upgrade the gift.
-         */
-        protected int            $prepaidUpgradeStarCount,
-        /**
-         * True, if the upgrade was bought after the gift was sent. In this case, prepaid upgrade cost must not be added to the gift cost.
-         */
-        protected bool           $isUpgradeSeparate,
+        protected bool           $isPrepaidUpgrade,
         /**
          * True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone will be able to see them.
          */
@@ -59,33 +39,53 @@ class MessageGift extends MessageContent
          */
         protected bool           $isSaved,
         /**
-         * True, if the message is about prepaid upgrade of the gift by another user.
+         * True, if the upgrade was bought after the gift was sent. In this case, prepaid upgrade cost must not be added to the gift cost.
          */
-        protected bool           $isPrepaidUpgrade,
+        protected bool           $isUpgradeSeparate,
         /**
-         * True, if the gift can be upgraded to a unique gift; only for the receiver of the gift.
+         * If non-empty, then the user can pay for an upgrade of the gift using buyGiftUpgrade.
          */
-        protected bool           $canBeUpgraded,
+        protected string         $prepaidUpgradeHash,
         /**
-         * True, if the gift was converted to Telegram Stars; only for the receiver of the gift.
+         * Number of Telegram Stars that were paid by the sender for the ability to upgrade the gift.
          */
-        protected bool           $wasConverted,
+        protected int            $prepaidUpgradeStarCount,
         /**
-         * True, if the gift was upgraded to a unique gift.
+         * Unique identifier of the received gift for the current user; only for the receiver of the gift.
          */
-        protected bool           $wasUpgraded,
+        protected string         $receivedGiftId,
         /**
-         * True, if the gift was refunded and isn't available anymore.
+         * Receiver of the gift.
          */
-        protected bool           $wasRefunded,
+        protected MessageSender  $receiverId,
+        /**
+         * Number of Telegram Stars that can be claimed by the receiver instead of the regular gift; 0 if the gift can't be sold by the receiver.
+         */
+        protected int            $sellStarCount,
+        /**
+         * Sender of the gift; may be null for outgoing messages about prepaid upgrade of gifts from unknown users.
+         */
+        protected ?MessageSender $senderId,
+        /**
+         * Message added to the gift.
+         */
+        protected FormattedText  $text,
         /**
          * Identifier of the corresponding upgraded gift; may be empty if unknown. Use getReceivedGift to get information about the gift.
          */
         protected string         $upgradedReceivedGiftId,
         /**
-         * If non-empty, then the user can pay for an upgrade of the gift using buyGiftUpgrade.
+         * True, if the gift was converted to Telegram Stars; only for the receiver of the gift.
          */
-        protected string         $prepaidUpgradeHash,
+        protected bool           $wasConverted,
+        /**
+         * True, if the gift was refunded and isn't available anymore.
+         */
+        protected bool           $wasRefunded,
+        /**
+         * True, if the gift was upgraded to a unique gift.
+         */
+        protected bool           $wasUpgraded,
     ) {
         parent::__construct();
     }
@@ -93,23 +93,23 @@ class MessageGift extends MessageContent
     public static function fromArray(array $array): MessageGift
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['gift']),
-            isset($array['sender_id']) ? TdSchemaRegistry::fromArray($array['sender_id']) : null,
-            TdSchemaRegistry::fromArray($array['receiver_id']),
-            $array['received_gift_id'],
-            TdSchemaRegistry::fromArray($array['text']),
-            $array['sell_star_count'],
-            $array['prepaid_upgrade_star_count'],
-            $array['is_upgrade_separate'],
-            $array['is_private'],
-            $array['is_saved'],
-            $array['is_prepaid_upgrade'],
-            $array['can_be_upgraded'],
-            $array['was_converted'],
-            $array['was_upgraded'],
-            $array['was_refunded'],
-            $array['upgraded_received_gift_id'],
-            $array['prepaid_upgrade_hash'],
+            canBeUpgraded          : $array['can_be_upgraded'],
+            gift                   : TdSchemaRegistry::fromArray($array['gift']),
+            isPrepaidUpgrade       : $array['is_prepaid_upgrade'],
+            isPrivate              : $array['is_private'],
+            isSaved                : $array['is_saved'],
+            isUpgradeSeparate      : $array['is_upgrade_separate'],
+            prepaidUpgradeHash     : $array['prepaid_upgrade_hash'],
+            prepaidUpgradeStarCount: $array['prepaid_upgrade_star_count'],
+            receivedGiftId         : $array['received_gift_id'],
+            receiverId             : TdSchemaRegistry::fromArray($array['receiver_id']),
+            sellStarCount          : $array['sell_star_count'],
+            senderId               : (isset($array['sender_id']) ? TdSchemaRegistry::fromArray($array['sender_id']) : null),
+            text                   : TdSchemaRegistry::fromArray($array['text']),
+            upgradedReceivedGiftId : $array['upgraded_received_gift_id'],
+            wasConverted           : $array['was_converted'],
+            wasRefunded            : $array['was_refunded'],
+            wasUpgraded            : $array['was_upgraded'],
         );
     }
 
@@ -321,23 +321,23 @@ class MessageGift extends MessageContent
     {
         return [
             '@type'                      => static::TYPE_NAME,
-            'gift'                       => $this->gift->typeSerialize(),
-            'sender_id'                  => $this->senderId ?? null,
-            'receiver_id'                => $this->receiverId->typeSerialize(),
-            'received_gift_id'           => $this->receivedGiftId,
-            'text'                       => $this->text->typeSerialize(),
-            'sell_star_count'            => $this->sellStarCount,
-            'prepaid_upgrade_star_count' => $this->prepaidUpgradeStarCount,
-            'is_upgrade_separate'        => $this->isUpgradeSeparate,
+            'can_be_upgraded'            => $this->canBeUpgraded,
+            'gift'                       => $this->gift->jsonSerialize(),
+            'is_prepaid_upgrade'         => $this->isPrepaidUpgrade,
             'is_private'                 => $this->isPrivate,
             'is_saved'                   => $this->isSaved,
-            'is_prepaid_upgrade'         => $this->isPrepaidUpgrade,
-            'can_be_upgraded'            => $this->canBeUpgraded,
-            'was_converted'              => $this->wasConverted,
-            'was_upgraded'               => $this->wasUpgraded,
-            'was_refunded'               => $this->wasRefunded,
-            'upgraded_received_gift_id'  => $this->upgradedReceivedGiftId,
+            'is_upgrade_separate'        => $this->isUpgradeSeparate,
             'prepaid_upgrade_hash'       => $this->prepaidUpgradeHash,
+            'prepaid_upgrade_star_count' => $this->prepaidUpgradeStarCount,
+            'received_gift_id'           => $this->receivedGiftId,
+            'receiver_id'                => $this->receiverId->jsonSerialize(),
+            'sell_star_count'            => $this->sellStarCount,
+            'sender_id'                  => (null !== $this->senderId ? $this->senderId->jsonSerialize() : null),
+            'text'                       => $this->text->jsonSerialize(),
+            'upgraded_received_gift_id'  => $this->upgradedReceivedGiftId,
+            'was_converted'              => $this->wasConverted,
+            'was_refunded'               => $this->wasRefunded,
+            'was_upgraded'               => $this->wasUpgraded,
         ];
     }
 }

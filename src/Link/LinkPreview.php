@@ -19,37 +19,29 @@ class LinkPreview extends TdObject
 
     public function __construct(
         /**
-         * Original URL of the link.
+         * Author of the content.
          */
-        protected string          $url,
-        /**
-         * URL to display.
-         */
-        protected string          $displayUrl,
-        /**
-         * Short name of the site (e.g., Google Docs, App Store).
-         */
-        protected string          $siteName,
-        /**
-         * Title of the content.
-         */
-        protected string          $title,
+        protected string          $author,
         /**
          * Description of the content.
          */
         protected FormattedText   $description,
         /**
-         * Author of the content.
+         * URL to display.
          */
-        protected string          $author,
-        /**
-         * Type of the link preview.
-         */
-        protected LinkPreviewType $type,
+        protected string          $displayUrl,
         /**
          * True, if size of media in the preview can be changed.
          */
         protected bool            $hasLargeMedia,
+        /**
+         * Version of instant view (currently, can be 1 or 2) for the web page; 0 if none.
+         */
+        protected int             $instantViewVersion,
+        /**
+         * True, if the link preview must be shown above message text; otherwise, the link preview must be shown below the message text.
+         */
+        protected bool            $showAboveText,
         /**
          * True, if large media preview must be shown; otherwise, the media preview must be shown small and only the first frame must be shown for videos.
          */
@@ -59,35 +51,43 @@ class LinkPreview extends TdObject
          */
         protected bool            $showMediaAboveDescription,
         /**
+         * Short name of the site (e.g., Google Docs, App Store).
+         */
+        protected string          $siteName,
+        /**
          * True, if there is no need to show an ordinary open URL confirmation, when opening the URL from the preview, because the URL is shown in the message text in clear.
          */
         protected bool            $skipConfirmation,
         /**
-         * True, if the link preview must be shown above message text; otherwise, the link preview must be shown below the message text.
+         * Title of the content.
          */
-        protected bool            $showAboveText,
+        protected string          $title,
         /**
-         * Version of instant view (currently, can be 1 or 2) for the web page; 0 if none.
+         * Type of the link preview.
          */
-        protected int             $instantViewVersion,
+        protected LinkPreviewType $type,
+        /**
+         * Original URL of the link.
+         */
+        protected string          $url,
     ) {}
 
     public static function fromArray(array $array): LinkPreview
     {
         return new static(
-            $array['url'],
-            $array['display_url'],
-            $array['site_name'],
-            $array['title'],
-            TdSchemaRegistry::fromArray($array['description']),
-            $array['author'],
-            TdSchemaRegistry::fromArray($array['type']),
-            $array['has_large_media'],
-            $array['show_large_media'],
-            $array['show_media_above_description'],
-            $array['skip_confirmation'],
-            $array['show_above_text'],
-            $array['instant_view_version'],
+            author                   : $array['author'],
+            description              : TdSchemaRegistry::fromArray($array['description']),
+            displayUrl               : $array['display_url'],
+            hasLargeMedia            : $array['has_large_media'],
+            instantViewVersion       : $array['instant_view_version'],
+            showAboveText            : $array['show_above_text'],
+            showLargeMedia           : $array['show_large_media'],
+            showMediaAboveDescription: $array['show_media_above_description'],
+            siteName                 : $array['site_name'],
+            skipConfirmation         : $array['skip_confirmation'],
+            title                    : $array['title'],
+            type                     : TdSchemaRegistry::fromArray($array['type']),
+            url                      : $array['url'],
         );
     }
 
@@ -251,19 +251,19 @@ class LinkPreview extends TdObject
     {
         return [
             '@type'                        => static::TYPE_NAME,
-            'url'                          => $this->url,
-            'display_url'                  => $this->displayUrl,
-            'site_name'                    => $this->siteName,
-            'title'                        => $this->title,
-            'description'                  => $this->description->typeSerialize(),
             'author'                       => $this->author,
-            'type'                         => $this->type->typeSerialize(),
+            'description'                  => $this->description->jsonSerialize(),
+            'display_url'                  => $this->displayUrl,
             'has_large_media'              => $this->hasLargeMedia,
+            'instant_view_version'         => $this->instantViewVersion,
+            'show_above_text'              => $this->showAboveText,
             'show_large_media'             => $this->showLargeMedia,
             'show_media_above_description' => $this->showMediaAboveDescription,
+            'site_name'                    => $this->siteName,
             'skip_confirmation'            => $this->skipConfirmation,
-            'show_above_text'              => $this->showAboveText,
-            'instant_view_version'         => $this->instantViewVersion,
+            'title'                        => $this->title,
+            'type'                         => $this->type->jsonSerialize(),
+            'url'                          => $this->url,
         ];
     }
 }

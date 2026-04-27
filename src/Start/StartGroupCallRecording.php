@@ -21,13 +21,13 @@ class StartGroupCallRecording extends TdFunction
          */
         protected int    $groupCallId,
         /**
-         * Group call recording title; 0-64 characters.
-         */
-        protected string $title,
-        /**
          * Pass true to record a video file instead of an audio file.
          */
         protected bool   $recordVideo,
+        /**
+         * Group call recording title; 0-64 characters.
+         */
+        protected string $title,
         /**
          * Pass true to use portrait orientation for video instead of landscape one.
          */
@@ -37,10 +37,10 @@ class StartGroupCallRecording extends TdFunction
     public static function fromArray(array $array): StartGroupCallRecording
     {
         return new static(
-            $array['group_call_id'],
-            $array['title'],
-            $array['record_video'],
-            $array['use_portrait_orientation'],
+            groupCallId           : $array['group_call_id'],
+            recordVideo           : $array['record_video'],
+            title                 : $array['title'],
+            usePortraitOrientation: $array['use_portrait_orientation'],
         );
     }
 
@@ -97,8 +97,8 @@ class StartGroupCallRecording extends TdFunction
         return [
             '@type'                    => static::TYPE_NAME,
             'group_call_id'            => $this->groupCallId,
-            'title'                    => $this->title,
             'record_video'             => $this->recordVideo,
+            'title'                    => $this->title,
             'use_portrait_orientation' => $this->usePortraitOrientation,
         ];
     }

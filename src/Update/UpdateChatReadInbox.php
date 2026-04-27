@@ -33,9 +33,9 @@ class UpdateChatReadInbox extends Update
     public static function fromArray(array $array): UpdateChatReadInbox
     {
         return new static(
-            $array['chat_id'],
-            $array['last_read_inbox_message_id'],
-            $array['unread_count'],
+            chatId                : $array['chat_id'],
+            lastReadInboxMessageId: $array['last_read_inbox_message_id'],
+            unreadCount           : $array['unread_count'],
         );
     }
 

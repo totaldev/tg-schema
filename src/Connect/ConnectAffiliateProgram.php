@@ -31,8 +31,8 @@ class ConnectAffiliateProgram extends TdFunction
     public static function fromArray(array $array): ConnectAffiliateProgram
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['affiliate']),
-            $array['bot_user_id'],
+            affiliate: TdSchemaRegistry::fromArray($array['affiliate']),
+            botUserId: $array['bot_user_id'],
         );
     }
 
@@ -64,7 +64,7 @@ class ConnectAffiliateProgram extends TdFunction
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'affiliate'   => $this->affiliate->typeSerialize(),
+            'affiliate'   => $this->affiliate->jsonSerialize(),
             'bot_user_id' => $this->botUserId,
         ];
     }

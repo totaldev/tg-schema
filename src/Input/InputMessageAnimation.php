@@ -18,23 +18,23 @@ class InputMessageAnimation extends InputMessageContent
 
     public function __construct(
         /**
-         * Animation file to be sent.
-         */
-        protected InputFile       $animation,
-        /**
          * File identifiers of the stickers added to the animation, if applicable.
          *
          * @var int[]
          */
         protected array           $addedStickerFileIds,
         /**
+         * Animation file to be sent.
+         */
+        protected InputFile       $animation,
+        /**
          * Duration of the animation, in seconds.
          */
         protected int             $duration,
         /**
-         * Width of the animation; may be replaced by the server.
+         * True, if the animation preview must be covered by a spoiler animation; not supported in secret chats.
          */
-        protected int             $width,
+        protected bool            $hasSpoiler,
         /**
          * Height of the animation; may be replaced by the server.
          */
@@ -44,17 +44,17 @@ class InputMessageAnimation extends InputMessageContent
          */
         protected bool            $showCaptionAboveMedia,
         /**
-         * True, if the animation preview must be covered by a spoiler animation; not supported in secret chats.
+         * Width of the animation; may be replaced by the server.
          */
-        protected bool            $hasSpoiler,
-        /**
-         * Animation thumbnail; pass null to skip thumbnail uploading.
-         */
-        protected ?InputThumbnail $thumbnail = null,
+        protected int             $width,
         /**
          * Animation caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters.
          */
         protected ?FormattedText  $caption = null,
+        /**
+         * Animation thumbnail; pass null to skip thumbnail uploading.
+         */
+        protected ?InputThumbnail $thumbnail = null,
     ) {
         parent::__construct();
     }
@@ -62,15 +62,15 @@ class InputMessageAnimation extends InputMessageContent
     public static function fromArray(array $array): InputMessageAnimation
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['animation']),
-            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
-            $array['added_sticker_file_ids'],
-            $array['duration'],
-            $array['width'],
-            $array['height'],
-            isset($array['caption']) ? TdSchemaRegistry::fromArray($array['caption']) : null,
-            $array['show_caption_above_media'],
-            $array['has_spoiler'],
+            addedStickerFileIds  : $array['added_sticker_file_ids'],
+            animation            : TdSchemaRegistry::fromArray($array['animation']),
+            caption              : (isset($array['caption']) ? TdSchemaRegistry::fromArray($array['caption']) : null),
+            duration             : $array['duration'],
+            hasSpoiler           : $array['has_spoiler'],
+            height               : $array['height'],
+            showCaptionAboveMedia: $array['show_caption_above_media'],
+            thumbnail            : (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
+            width                : $array['width'],
         );
     }
 
@@ -186,15 +186,15 @@ class InputMessageAnimation extends InputMessageContent
     {
         return [
             '@type'                    => static::TYPE_NAME,
-            'animation'                => $this->animation->typeSerialize(),
-            'thumbnail'                => $this->thumbnail ?? null,
             'added_sticker_file_ids'   => $this->addedStickerFileIds,
+            'animation'                => $this->animation->jsonSerialize(),
+            'caption'                  => (null !== $this->caption ? $this->caption->jsonSerialize() : null),
             'duration'                 => $this->duration,
-            'width'                    => $this->width,
-            'height'                   => $this->height,
-            'caption'                  => $this->caption ?? null,
-            'show_caption_above_media' => $this->showCaptionAboveMedia,
             'has_spoiler'              => $this->hasSpoiler,
+            'height'                   => $this->height,
+            'show_caption_above_media' => $this->showCaptionAboveMedia,
+            'thumbnail'                => (null !== $this->thumbnail ? $this->thumbnail->jsonSerialize() : null),
+            'width'                    => $this->width,
         ];
     }
 }

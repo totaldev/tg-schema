@@ -18,35 +18,35 @@ class SetPassword extends TdFunction
 
     public function __construct(
         /**
-         * Previous 2-step verification password of the user.
+         * New password hint; may be empty.
          */
-        protected string $oldPassword,
+        protected string $newHint,
         /**
          * New 2-step verification password of the user; may be empty to remove the password.
          */
         protected string $newPassword,
         /**
-         * New password hint; may be empty.
+         * New recovery email address; may be empty.
          */
-        protected string $newHint,
+        protected string $newRecoveryEmailAddress,
+        /**
+         * Previous 2-step verification password of the user.
+         */
+        protected string $oldPassword,
         /**
          * Pass true to change also the recovery email address.
          */
         protected bool   $setRecoveryEmailAddress,
-        /**
-         * New recovery email address; may be empty.
-         */
-        protected string $newRecoveryEmailAddress,
     ) {}
 
     public static function fromArray(array $array): SetPassword
     {
         return new static(
-            $array['old_password'],
-            $array['new_password'],
-            $array['new_hint'],
-            $array['set_recovery_email_address'],
-            $array['new_recovery_email_address'],
+            newHint                : $array['new_hint'],
+            newPassword            : $array['new_password'],
+            newRecoveryEmailAddress: $array['new_recovery_email_address'],
+            oldPassword            : $array['old_password'],
+            setRecoveryEmailAddress: $array['set_recovery_email_address'],
         );
     }
 
@@ -114,11 +114,11 @@ class SetPassword extends TdFunction
     {
         return [
             '@type'                      => static::TYPE_NAME,
-            'old_password'               => $this->oldPassword,
-            'new_password'               => $this->newPassword,
             'new_hint'                   => $this->newHint,
-            'set_recovery_email_address' => $this->setRecoveryEmailAddress,
+            'new_password'               => $this->newPassword,
             'new_recovery_email_address' => $this->newRecoveryEmailAddress,
+            'old_password'               => $this->oldPassword,
+            'set_recovery_email_address' => $this->setRecoveryEmailAddress,
         ];
     }
 }
