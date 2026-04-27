@@ -29,6 +29,10 @@ class MessageCall extends MessageContent
          * True, if the call was a video call.
          */
         protected bool              $isVideo,
+        /**
+         * Persistent unique call identifier; 0 for calls from other devices, which can't be passed as inputCallFromMessage.
+         */
+        protected int               $uniqueId,
     ) {
         parent::__construct();
     }
@@ -39,6 +43,7 @@ class MessageCall extends MessageContent
             discardReason: TdSchemaRegistry::fromArray($array['discard_reason']),
             duration     : $array['duration'],
             isVideo      : $array['is_video'],
+            uniqueId     : $array['unique_id'],
         );
     }
 
@@ -55,6 +60,11 @@ class MessageCall extends MessageContent
     public function getIsVideo(): bool
     {
         return $this->isVideo;
+    }
+
+    public function getUniqueId(): int
+    {
+        return $this->uniqueId;
     }
 
     public function setDiscardReason(CallDiscardReason $value): static
@@ -78,6 +88,13 @@ class MessageCall extends MessageContent
         return $this;
     }
 
+    public function setUniqueId(int $value): static
+    {
+        $this->uniqueId = $value;
+
+        return $this;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -85,6 +102,7 @@ class MessageCall extends MessageContent
             'discard_reason' => $this->discardReason->jsonSerialize(),
             'duration'       => $this->duration,
             'is_video'       => $this->isVideo,
+            'unique_id'      => $this->uniqueId,
         ];
     }
 }

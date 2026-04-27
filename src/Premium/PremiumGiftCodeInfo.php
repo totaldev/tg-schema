@@ -23,11 +23,15 @@ class PremiumGiftCodeInfo extends TdObject
          */
         protected int            $creationDate,
         /**
-         * Identifier of a chat or a user that created the gift code; may be null if unknown. If null and the code is from messagePremiumGiftCode message, then creator_id from the message can be used.
+         * Identifier of a chat or a user who created the gift code; may be null if unknown. If null and the code is from messagePremiumGiftCode message, then creator_id from the message can be used.
          */
         protected ?MessageSender $creatorId,
         /**
-         * Identifier of the corresponding giveaway message in the creator_id chat; can be 0 or an identifier of a deleted message.
+         * Number of days the Telegram Premium subscription will be active after code activation.
+         */
+        protected int            $dayCount,
+        /**
+         * Identifier of the corresponding giveaway message in the creator_id chat; may be 0 or an identifier of a deleted message.
          */
         protected int            $giveawayMessageId,
         /**
@@ -35,7 +39,7 @@ class PremiumGiftCodeInfo extends TdObject
          */
         protected bool           $isFromGiveaway,
         /**
-         * Number of months the Telegram Premium subscription will be active after code activation.
+         * Number of months the Telegram Premium subscription will be active after code activation; 0 if the number of months isn't integer.
          */
         protected int            $monthCount,
         /**
@@ -53,6 +57,7 @@ class PremiumGiftCodeInfo extends TdObject
         return new static(
             creationDate     : $array['creation_date'],
             creatorId        : (isset($array['creator_id']) ? TdSchemaRegistry::fromArray($array['creator_id']) : null),
+            dayCount         : $array['day_count'],
             giveawayMessageId: $array['giveaway_message_id'],
             isFromGiveaway   : $array['is_from_giveaway'],
             monthCount       : $array['month_count'],
@@ -69,6 +74,11 @@ class PremiumGiftCodeInfo extends TdObject
     public function getCreatorId(): ?MessageSender
     {
         return $this->creatorId;
+    }
+
+    public function getDayCount(): int
+    {
+        return $this->dayCount;
     }
 
     public function getGiveawayMessageId(): int
@@ -106,6 +116,13 @@ class PremiumGiftCodeInfo extends TdObject
     public function setCreatorId(?MessageSender $value): static
     {
         $this->creatorId = $value;
+
+        return $this;
+    }
+
+    public function setDayCount(int $value): static
+    {
+        $this->dayCount = $value;
 
         return $this;
     }
@@ -151,6 +168,7 @@ class PremiumGiftCodeInfo extends TdObject
             '@type'               => static::TYPE_NAME,
             'creation_date'       => $this->creationDate,
             'creator_id'          => (null !== $this->creatorId ? $this->creatorId->jsonSerialize() : null),
+            'day_count'           => $this->dayCount,
             'giveaway_message_id' => $this->giveawayMessageId,
             'is_from_giveaway'    => $this->isFromGiveaway,
             'month_count'         => $this->monthCount,

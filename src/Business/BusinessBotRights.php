@@ -69,7 +69,7 @@ class BusinessBotRights extends TdObject
          */
         protected bool $canTransferStars,
         /**
-         * True, if the bot can view gifts and amount of Telegram Stars owned by the business account.
+         * True, if the bot can view gifts and Telegram Star amount owned by the business account.
          */
         protected bool $canViewGiftsAndStars,
     ) {}

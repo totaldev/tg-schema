@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Can;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Check whether the current user can message another user or try to create a chat with them.
+ * Checks whether the current user can message another user or try to create a chat with them.
  */
 class CanSendMessageToUser extends TdFunction
 {

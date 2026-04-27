@@ -49,6 +49,10 @@ class ChatAdministratorRights extends TdObject
          */
         protected bool $canManageDirectMessages,
         /**
+         * True, if the administrator can change tags of other users; applicable to basic groups and supergroups only.
+         */
+        protected bool $canManageTags,
+        /**
          * True, if the administrator can create, rename, close, reopen, hide, and unhide forum topics; applicable to forum supergroups only.
          */
         protected bool $canManageTopics,
@@ -73,7 +77,7 @@ class ChatAdministratorRights extends TdObject
          */
         protected bool $canPromoteMembers,
         /**
-         * True, if the administrator can restrict, ban, or unban chat members or view supergroup statistics; always true for channels.
+         * True, if the administrator can restrict, ban, or unban chat members or view supergroup statistics.
          */
         protected bool $canRestrictMembers,
         /**
@@ -93,6 +97,7 @@ class ChatAdministratorRights extends TdObject
             canInviteUsers         : $array['can_invite_users'],
             canManageChat          : $array['can_manage_chat'],
             canManageDirectMessages: $array['can_manage_direct_messages'],
+            canManageTags          : $array['can_manage_tags'],
             canManageTopics        : $array['can_manage_topics'],
             canManageVideoChats    : $array['can_manage_video_chats'],
             canPinMessages         : $array['can_pin_messages'],
@@ -142,6 +147,11 @@ class ChatAdministratorRights extends TdObject
     public function getCanManageDirectMessages(): bool
     {
         return $this->canManageDirectMessages;
+    }
+
+    public function getCanManageTags(): bool
+    {
+        return $this->canManageTags;
     }
 
     public function getCanManageTopics(): bool
@@ -240,6 +250,13 @@ class ChatAdministratorRights extends TdObject
         return $this;
     }
 
+    public function setCanManageTags(bool $value): static
+    {
+        $this->canManageTags = $value;
+
+        return $this;
+    }
+
     public function setCanManageTopics(bool $value): static
     {
         $this->canManageTopics = $value;
@@ -308,6 +325,7 @@ class ChatAdministratorRights extends TdObject
             'can_invite_users'           => $this->canInviteUsers,
             'can_manage_chat'            => $this->canManageChat,
             'can_manage_direct_messages' => $this->canManageDirectMessages,
+            'can_manage_tags'            => $this->canManageTags,
             'can_manage_topics'          => $this->canManageTopics,
             'can_manage_video_chats'     => $this->canManageVideoChats,
             'can_pin_messages'           => $this->canPinMessages,

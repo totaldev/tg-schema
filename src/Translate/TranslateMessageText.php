@@ -9,8 +9,8 @@ namespace Totaldev\TgSchema\Translate;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Extracts text or caption of the given message and translates it to the given language. If the current user is a Telegram Premium user, then text formatting
- * is preserved.
+ * Extracts text or caption of the given message and translates it to the given language; must not be used in secret chats. If the current user is a Telegram
+ * Premium user, then text formatting is preserved.
  */
 class TranslateMessageText extends TdFunction
 {
@@ -26,9 +26,13 @@ class TranslateMessageText extends TdFunction
          */
         protected int    $messageId,
         /**
-         * Language code of the language to which the message is translated. Must be one of "af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-CN", "zh", "zh-Hans", "zh-TW", "zh-Hant", "co", "hr", "cs", "da", "nl", "en", "eo", "et", "fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "iw", "hi", "hmn", "hu", "is", "ig", "id", "in", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko", "ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr", "st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "ji", "yo", "zu".
+         * Language code of the language to which the message is translated. See translateText.to_language_code for the list of supported values.
          */
         protected string $toLanguageCode,
+        /**
+         * Tone of the translation; see translateText.tone for the list of supported values.
+         */
+        protected string $tone,
     ) {}
 
     public static function fromArray(array $array): TranslateMessageText
@@ -37,6 +41,7 @@ class TranslateMessageText extends TdFunction
             chatId        : $array['chat_id'],
             messageId     : $array['message_id'],
             toLanguageCode: $array['to_language_code'],
+            tone          : $array['tone'],
         );
     }
 
@@ -53,6 +58,11 @@ class TranslateMessageText extends TdFunction
     public function getToLanguageCode(): string
     {
         return $this->toLanguageCode;
+    }
+
+    public function getTone(): string
+    {
+        return $this->tone;
     }
 
     public function setChatId(int $value): static
@@ -76,6 +86,13 @@ class TranslateMessageText extends TdFunction
         return $this;
     }
 
+    public function setTone(string $value): static
+    {
+        $this->tone = $value;
+
+        return $this;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -83,6 +100,7 @@ class TranslateMessageText extends TdFunction
             'chat_id'          => $this->chatId,
             'message_id'       => $this->messageId,
             'to_language_code' => $this->toLanguageCode,
+            'tone'             => $this->tone,
         ];
     }
 }

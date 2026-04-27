@@ -23,7 +23,7 @@ class MessagePaymentSuccessful extends MessageContent
          */
         protected int    $invoiceChatId,
         /**
-         * Identifier of the message with the corresponding invoice; can be 0 or an identifier of a deleted message.
+         * Identifier of the message with the corresponding invoice; may be 0 or an identifier of a deleted message.
          */
         protected int    $invoiceMessageId,
         /**

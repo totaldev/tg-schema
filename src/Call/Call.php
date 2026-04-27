@@ -34,6 +34,10 @@ class Call extends TdObject
          */
         protected CallState $state,
         /**
+         * Persistent unique call identifier; 0 if isn't assigned yet by the server.
+         */
+        protected int       $uniqueId,
+        /**
          * User identifier of the other call participant.
          */
         protected int       $userId,
@@ -46,6 +50,7 @@ class Call extends TdObject
             isOutgoing: $array['is_outgoing'],
             isVideo   : $array['is_video'],
             state     : TdSchemaRegistry::fromArray($array['state']),
+            uniqueId  : $array['unique_id'],
             userId    : $array['user_id'],
         );
     }
@@ -68,6 +73,11 @@ class Call extends TdObject
     public function getState(): CallState
     {
         return $this->state;
+    }
+
+    public function getUniqueId(): int
+    {
+        return $this->uniqueId;
     }
 
     public function getUserId(): int
@@ -103,6 +113,13 @@ class Call extends TdObject
         return $this;
     }
 
+    public function setUniqueId(int $value): static
+    {
+        $this->uniqueId = $value;
+
+        return $this;
+    }
+
     public function setUserId(int $value): static
     {
         $this->userId = $value;
@@ -118,6 +135,7 @@ class Call extends TdObject
             'is_outgoing' => $this->isOutgoing,
             'is_video'    => $this->isVideo,
             'state'       => $this->state->jsonSerialize(),
+            'unique_id'   => $this->uniqueId,
             'user_id'     => $this->userId,
         ];
     }

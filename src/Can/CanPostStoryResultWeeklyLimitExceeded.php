@@ -15,7 +15,7 @@ class CanPostStoryResultWeeklyLimitExceeded extends CanPostStoryResult
 
     public function __construct(
         /**
-         * Time left before the user can post the next story.
+         * Time left before the user can post the next story, in seconds.
          */
         protected int $retryAfter
     ) {

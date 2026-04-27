@@ -9,8 +9,8 @@ namespace Totaldev\TgSchema\Transfer;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Changes the owner of a chat; requires owner privileges in the chat. Use the method canTransferOwnership to check whether the ownership can be transferred
- * from the current session. Available only for supergroups and channel chats.
+ * Changes the owner of a chat; for basic groups, supergroups and channel chats only; requires owner privileges in the chat. Use the method
+ * canTransferOwnership to check whether the ownership can be transferred from the current session.
  */
 class TransferChatOwnership extends TdFunction
 {

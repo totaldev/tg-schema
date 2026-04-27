@@ -7,7 +7,7 @@
 namespace Totaldev\TgSchema\Premium;
 
 /**
- * A user opened an internal link of the type internalLinkTypePremiumFeatures.
+ * A user opened an internal link of the type internalLinkTypePremiumFeaturesPage.
  */
 class PremiumSourceLink extends PremiumSource
 {

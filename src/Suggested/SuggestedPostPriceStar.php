@@ -15,7 +15,7 @@ class SuggestedPostPriceStar extends SuggestedPostPrice
 
     public function __construct(
         /**
-         * The amount of Telegram Stars expected to be paid for the post; getOption("suggested_post_star_count_min")-getOption("suggested_post_star_count_max").
+         * The Telegram Star amount expected to be paid for the post; getOption("suggested_post_star_count_min")-getOption("suggested_post_star_count_max").
          */
         protected int $starCount
     ) {

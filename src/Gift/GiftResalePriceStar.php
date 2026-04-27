@@ -15,7 +15,7 @@ class GiftResalePriceStar extends GiftResalePrice
 
     public function __construct(
         /**
-         * The amount of Telegram Stars expected to be paid for the gift. Must be in range getOption("gift_resale_star_count_min")-getOption("gift_resale_star_count_max") for gifts put for resale.
+         * The Telegram Star amount expected to be paid for the gift. Must be in the range getOption("gift_resale_star_count_min")-getOption("gift_resale_star_count_max") for gifts put for resale.
          */
         protected int $starCount
     ) {

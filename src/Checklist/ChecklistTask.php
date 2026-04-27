@@ -7,6 +7,7 @@
 namespace Totaldev\TgSchema\Checklist;
 
 use Totaldev\TgSchema\Formatted\FormattedText;
+use Totaldev\TgSchema\Message\MessageSender;
 use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
@@ -19,36 +20,36 @@ class ChecklistTask extends TdObject
 
     public function __construct(
         /**
-         * Identifier of the user that completed the task; 0 if the task isn't completed.
+         * Identifier of the user or chat that completed the task; may be null if the task isn't completed yet.
          */
-        protected int           $completedByUserId,
+        protected ?MessageSender $completedBy,
         /**
          * Point in time (Unix timestamp) when the task was completed; 0 if the task isn't completed.
          */
-        protected int           $completionDate,
+        protected int            $completionDate,
         /**
          * Unique identifier of the task.
          */
-        protected int           $id,
+        protected int            $id,
         /**
-         * Text of the task; may contain only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Url, EmailAddress, Mention, Hashtag, Cashtag and PhoneNumber entities.
+         * Text of the task; may contain only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, DateTime and automatically found entities.
          */
-        protected FormattedText $text,
+        protected FormattedText  $text,
     ) {}
 
     public static function fromArray(array $array): ChecklistTask
     {
         return new static(
-            completedByUserId: $array['completed_by_user_id'],
-            completionDate   : $array['completion_date'],
-            id               : $array['id'],
-            text             : TdSchemaRegistry::fromArray($array['text']),
+            completedBy   : (isset($array['completed_by']) ? TdSchemaRegistry::fromArray($array['completed_by']) : null),
+            completionDate: $array['completion_date'],
+            id            : $array['id'],
+            text          : TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
-    public function getCompletedByUserId(): int
+    public function getCompletedBy(): ?MessageSender
     {
-        return $this->completedByUserId;
+        return $this->completedBy;
     }
 
     public function getCompletionDate(): int
@@ -66,9 +67,9 @@ class ChecklistTask extends TdObject
         return $this->text;
     }
 
-    public function setCompletedByUserId(int $value): static
+    public function setCompletedBy(?MessageSender $value): static
     {
-        $this->completedByUserId = $value;
+        $this->completedBy = $value;
 
         return $this;
     }
@@ -97,11 +98,11 @@ class ChecklistTask extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type'                => static::TYPE_NAME,
-            'completed_by_user_id' => $this->completedByUserId,
-            'completion_date'      => $this->completionDate,
-            'id'                   => $this->id,
-            'text'                 => $this->text->jsonSerialize(),
+            '@type'           => static::TYPE_NAME,
+            'completed_by'    => (null !== $this->completedBy ? $this->completedBy->jsonSerialize() : null),
+            'completion_date' => $this->completionDate,
+            'id'              => $this->id,
+            'text'            => $this->text->jsonSerialize(),
         ];
     }
 }

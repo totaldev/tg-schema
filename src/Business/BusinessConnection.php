@@ -38,7 +38,7 @@ class BusinessConnection extends TdObject
          */
         protected int                $userChatId,
         /**
-         * Identifier of the business user that created the connection.
+         * Identifier of the business user who created the connection.
          */
         protected int                $userId,
     ) {}

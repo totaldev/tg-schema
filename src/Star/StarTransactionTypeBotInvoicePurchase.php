@@ -10,7 +10,7 @@ use Totaldev\TgSchema\Product\ProductInfo;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The transaction is a purchase of a product from a bot or a business account by the current user; for regular users only.
+ * The transaction is a purchase of a product from a bot or a business account by the current user; relevant for regular users only.
  */
 class StarTransactionTypeBotInvoicePurchase extends StarTransactionType
 {
@@ -22,7 +22,7 @@ class StarTransactionTypeBotInvoicePurchase extends StarTransactionType
          */
         protected ProductInfo $productInfo,
         /**
-         * Identifier of the bot or the business account user that created the invoice.
+         * Identifier of the bot or the business account user who created the invoice.
          */
         protected int         $userId,
     ) {

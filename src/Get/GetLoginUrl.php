@@ -19,7 +19,7 @@ class GetLoginUrl extends TdFunction
 
     public function __construct(
         /**
-         * Pass true to allow the bot to send messages to the current user.
+         * Pass true to allow the bot to send messages to the current user. Phone number access can't be requested using the button.
          */
         protected bool $allowWriteAccess,
         /**

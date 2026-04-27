@@ -10,7 +10,7 @@ use Totaldev\TgSchema\Gift\Gift;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The transaction is a sale of a received gift; for regular users and channel chats only.
+ * The transaction is a sale of a received gift; relevant for regular users and channel chats only.
  */
 class StarTransactionTypeGiftSale extends StarTransactionType
 {
@@ -22,7 +22,7 @@ class StarTransactionTypeGiftSale extends StarTransactionType
          */
         protected Gift $gift,
         /**
-         * Identifier of the user that sent the gift.
+         * Identifier of the user who sent the gift.
          */
         protected int  $userId,
     ) {

@@ -121,7 +121,7 @@ class MessageProperties extends TdObject
          */
         protected bool $canGetStatistics,
         /**
-         * True, if advertisements for video of the message can be received though getVideoMessageAdvertisements.
+         * True, if advertisements for video of the message can be received through getVideoMessageAdvertisements.
          */
         protected bool $canGetVideoAdvertisements,
         /**
@@ -153,6 +153,14 @@ class MessageProperties extends TdObject
          */
         protected bool $canSetFactCheck,
         /**
+         * True, if content of the message can't be saved locally, because it is protected by the current user; if true, then can_be_saved is false.
+         */
+        protected bool $hasProtectedContentByCurrentUser,
+        /**
+         * True, if content of the message can't be saved locally, because it is protected by the other user; if true, then can_be_saved is false.
+         */
+        protected bool $hasProtectedContentByOtherUser,
+        /**
          * True, if message statistics must be available from context menu of the message.
          */
         protected bool $needShowStatistics,
@@ -161,41 +169,43 @@ class MessageProperties extends TdObject
     public static function fromArray(array $array): MessageProperties
     {
         return new static(
-            canAddOffer              : $array['can_add_offer'],
-            canAddTasks              : $array['can_add_tasks'],
-            canBeApproved            : $array['can_be_approved'],
-            canBeCopied              : $array['can_be_copied'],
-            canBeCopiedToSecretChat  : $array['can_be_copied_to_secret_chat'],
-            canBeDeclined            : $array['can_be_declined'],
-            canBeDeletedForAllUsers  : $array['can_be_deleted_for_all_users'],
-            canBeDeletedOnlyForSelf  : $array['can_be_deleted_only_for_self'],
-            canBeEdited              : $array['can_be_edited'],
-            canBeForwarded           : $array['can_be_forwarded'],
-            canBePaid                : $array['can_be_paid'],
-            canBePinned              : $array['can_be_pinned'],
-            canBeReplied             : $array['can_be_replied'],
-            canBeRepliedInAnotherChat: $array['can_be_replied_in_another_chat'],
-            canBeSaved               : $array['can_be_saved'],
-            canBeSharedInStory       : $array['can_be_shared_in_story'],
-            canEditMedia             : $array['can_edit_media'],
-            canEditSchedulingState   : $array['can_edit_scheduling_state'],
-            canEditSuggestedPostInfo : $array['can_edit_suggested_post_info'],
-            canGetAuthor             : $array['can_get_author'],
-            canGetEmbeddingCode      : $array['can_get_embedding_code'],
-            canGetLink               : $array['can_get_link'],
-            canGetMediaTimestampLinks: $array['can_get_media_timestamp_links'],
-            canGetMessageThread      : $array['can_get_message_thread'],
-            canGetReadDate           : $array['can_get_read_date'],
-            canGetStatistics         : $array['can_get_statistics'],
-            canGetVideoAdvertisements: $array['can_get_video_advertisements'],
-            canGetViewers            : $array['can_get_viewers'],
-            canMarkTasksAsDone       : $array['can_mark_tasks_as_done'],
-            canRecognizeSpeech       : $array['can_recognize_speech'],
-            canReportChat            : $array['can_report_chat'],
-            canReportReactions       : $array['can_report_reactions'],
-            canReportSupergroupSpam  : $array['can_report_supergroup_spam'],
-            canSetFactCheck          : $array['can_set_fact_check'],
-            needShowStatistics       : $array['need_show_statistics'],
+            canAddOffer                     : $array['can_add_offer'],
+            canAddTasks                     : $array['can_add_tasks'],
+            canBeApproved                   : $array['can_be_approved'],
+            canBeCopied                     : $array['can_be_copied'],
+            canBeCopiedToSecretChat         : $array['can_be_copied_to_secret_chat'],
+            canBeDeclined                   : $array['can_be_declined'],
+            canBeDeletedForAllUsers         : $array['can_be_deleted_for_all_users'],
+            canBeDeletedOnlyForSelf         : $array['can_be_deleted_only_for_self'],
+            canBeEdited                     : $array['can_be_edited'],
+            canBeForwarded                  : $array['can_be_forwarded'],
+            canBePaid                       : $array['can_be_paid'],
+            canBePinned                     : $array['can_be_pinned'],
+            canBeReplied                    : $array['can_be_replied'],
+            canBeRepliedInAnotherChat       : $array['can_be_replied_in_another_chat'],
+            canBeSaved                      : $array['can_be_saved'],
+            canBeSharedInStory              : $array['can_be_shared_in_story'],
+            canEditMedia                    : $array['can_edit_media'],
+            canEditSchedulingState          : $array['can_edit_scheduling_state'],
+            canEditSuggestedPostInfo        : $array['can_edit_suggested_post_info'],
+            canGetAuthor                    : $array['can_get_author'],
+            canGetEmbeddingCode             : $array['can_get_embedding_code'],
+            canGetLink                      : $array['can_get_link'],
+            canGetMediaTimestampLinks       : $array['can_get_media_timestamp_links'],
+            canGetMessageThread             : $array['can_get_message_thread'],
+            canGetReadDate                  : $array['can_get_read_date'],
+            canGetStatistics                : $array['can_get_statistics'],
+            canGetVideoAdvertisements       : $array['can_get_video_advertisements'],
+            canGetViewers                   : $array['can_get_viewers'],
+            canMarkTasksAsDone              : $array['can_mark_tasks_as_done'],
+            canRecognizeSpeech              : $array['can_recognize_speech'],
+            canReportChat                   : $array['can_report_chat'],
+            canReportReactions              : $array['can_report_reactions'],
+            canReportSupergroupSpam         : $array['can_report_supergroup_spam'],
+            canSetFactCheck                 : $array['can_set_fact_check'],
+            hasProtectedContentByCurrentUser: $array['has_protected_content_by_current_user'],
+            hasProtectedContentByOtherUser  : $array['has_protected_content_by_other_user'],
+            needShowStatistics              : $array['need_show_statistics'],
         );
     }
 
@@ -367,6 +377,16 @@ class MessageProperties extends TdObject
     public function getCanSetFactCheck(): bool
     {
         return $this->canSetFactCheck;
+    }
+
+    public function getHasProtectedContentByCurrentUser(): bool
+    {
+        return $this->hasProtectedContentByCurrentUser;
+    }
+
+    public function getHasProtectedContentByOtherUser(): bool
+    {
+        return $this->hasProtectedContentByOtherUser;
     }
 
     public function getNeedShowStatistics(): bool
@@ -612,6 +632,20 @@ class MessageProperties extends TdObject
         return $this;
     }
 
+    public function setHasProtectedContentByCurrentUser(bool $value): static
+    {
+        $this->hasProtectedContentByCurrentUser = $value;
+
+        return $this;
+    }
+
+    public function setHasProtectedContentByOtherUser(bool $value): static
+    {
+        $this->hasProtectedContentByOtherUser = $value;
+
+        return $this;
+    }
+
     public function setNeedShowStatistics(bool $value): static
     {
         $this->needShowStatistics = $value;
@@ -622,42 +656,44 @@ class MessageProperties extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type'                          => static::TYPE_NAME,
-            'can_add_offer'                  => $this->canAddOffer,
-            'can_add_tasks'                  => $this->canAddTasks,
-            'can_be_approved'                => $this->canBeApproved,
-            'can_be_copied'                  => $this->canBeCopied,
-            'can_be_copied_to_secret_chat'   => $this->canBeCopiedToSecretChat,
-            'can_be_declined'                => $this->canBeDeclined,
-            'can_be_deleted_for_all_users'   => $this->canBeDeletedForAllUsers,
-            'can_be_deleted_only_for_self'   => $this->canBeDeletedOnlyForSelf,
-            'can_be_edited'                  => $this->canBeEdited,
-            'can_be_forwarded'               => $this->canBeForwarded,
-            'can_be_paid'                    => $this->canBePaid,
-            'can_be_pinned'                  => $this->canBePinned,
-            'can_be_replied'                 => $this->canBeReplied,
-            'can_be_replied_in_another_chat' => $this->canBeRepliedInAnotherChat,
-            'can_be_saved'                   => $this->canBeSaved,
-            'can_be_shared_in_story'         => $this->canBeSharedInStory,
-            'can_edit_media'                 => $this->canEditMedia,
-            'can_edit_scheduling_state'      => $this->canEditSchedulingState,
-            'can_edit_suggested_post_info'   => $this->canEditSuggestedPostInfo,
-            'can_get_author'                 => $this->canGetAuthor,
-            'can_get_embedding_code'         => $this->canGetEmbeddingCode,
-            'can_get_link'                   => $this->canGetLink,
-            'can_get_media_timestamp_links'  => $this->canGetMediaTimestampLinks,
-            'can_get_message_thread'         => $this->canGetMessageThread,
-            'can_get_read_date'              => $this->canGetReadDate,
-            'can_get_statistics'             => $this->canGetStatistics,
-            'can_get_video_advertisements'   => $this->canGetVideoAdvertisements,
-            'can_get_viewers'                => $this->canGetViewers,
-            'can_mark_tasks_as_done'         => $this->canMarkTasksAsDone,
-            'can_recognize_speech'           => $this->canRecognizeSpeech,
-            'can_report_chat'                => $this->canReportChat,
-            'can_report_reactions'           => $this->canReportReactions,
-            'can_report_supergroup_spam'     => $this->canReportSupergroupSpam,
-            'can_set_fact_check'             => $this->canSetFactCheck,
-            'need_show_statistics'           => $this->needShowStatistics,
+            '@type'                                 => static::TYPE_NAME,
+            'can_add_offer'                         => $this->canAddOffer,
+            'can_add_tasks'                         => $this->canAddTasks,
+            'can_be_approved'                       => $this->canBeApproved,
+            'can_be_copied'                         => $this->canBeCopied,
+            'can_be_copied_to_secret_chat'          => $this->canBeCopiedToSecretChat,
+            'can_be_declined'                       => $this->canBeDeclined,
+            'can_be_deleted_for_all_users'          => $this->canBeDeletedForAllUsers,
+            'can_be_deleted_only_for_self'          => $this->canBeDeletedOnlyForSelf,
+            'can_be_edited'                         => $this->canBeEdited,
+            'can_be_forwarded'                      => $this->canBeForwarded,
+            'can_be_paid'                           => $this->canBePaid,
+            'can_be_pinned'                         => $this->canBePinned,
+            'can_be_replied'                        => $this->canBeReplied,
+            'can_be_replied_in_another_chat'        => $this->canBeRepliedInAnotherChat,
+            'can_be_saved'                          => $this->canBeSaved,
+            'can_be_shared_in_story'                => $this->canBeSharedInStory,
+            'can_edit_media'                        => $this->canEditMedia,
+            'can_edit_scheduling_state'             => $this->canEditSchedulingState,
+            'can_edit_suggested_post_info'          => $this->canEditSuggestedPostInfo,
+            'can_get_author'                        => $this->canGetAuthor,
+            'can_get_embedding_code'                => $this->canGetEmbeddingCode,
+            'can_get_link'                          => $this->canGetLink,
+            'can_get_media_timestamp_links'         => $this->canGetMediaTimestampLinks,
+            'can_get_message_thread'                => $this->canGetMessageThread,
+            'can_get_read_date'                     => $this->canGetReadDate,
+            'can_get_statistics'                    => $this->canGetStatistics,
+            'can_get_video_advertisements'          => $this->canGetVideoAdvertisements,
+            'can_get_viewers'                       => $this->canGetViewers,
+            'can_mark_tasks_as_done'                => $this->canMarkTasksAsDone,
+            'can_recognize_speech'                  => $this->canRecognizeSpeech,
+            'can_report_chat'                       => $this->canReportChat,
+            'can_report_reactions'                  => $this->canReportReactions,
+            'can_report_supergroup_spam'            => $this->canReportSupergroupSpam,
+            'can_set_fact_check'                    => $this->canSetFactCheck,
+            'has_protected_content_by_current_user' => $this->hasProtectedContentByCurrentUser,
+            'has_protected_content_by_other_user'   => $this->hasProtectedContentByOtherUser,
+            'need_show_statistics'                  => $this->needShowStatistics,
         ];
     }
 }

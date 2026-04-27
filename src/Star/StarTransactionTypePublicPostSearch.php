@@ -7,7 +7,7 @@
 namespace Totaldev\TgSchema\Star;
 
 /**
- * The transaction is a payment for search of posts in public Telegram channels; for regular users only.
+ * The transaction is a payment for search of posts in public Telegram channels; relevant for regular users only.
  */
 class StarTransactionTypePublicPostSearch extends StarTransactionType
 {

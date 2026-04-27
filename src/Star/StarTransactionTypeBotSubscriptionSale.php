@@ -11,7 +11,7 @@ use Totaldev\TgSchema\Product\ProductInfo;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The transaction is a sale of a subscription by the bot; for bots only.
+ * The transaction is a sale of a subscription by the bot; relevant for bots only.
  */
 class StarTransactionTypeBotSubscriptionSale extends StarTransactionType
 {
@@ -35,7 +35,7 @@ class StarTransactionTypeBotSubscriptionSale extends StarTransactionType
          */
         protected int            $subscriptionPeriod,
         /**
-         * Identifier of the user that bought the subscription.
+         * Identifier of the user who bought the subscription.
          */
         protected int            $userId,
     ) {

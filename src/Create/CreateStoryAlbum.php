@@ -21,7 +21,7 @@ class CreateStoryAlbum extends TdFunction
          */
         protected string $name,
         /**
-         * Identifiers of stories to add to the album; 0-getOption("story_album_story_count_max") identifiers.
+         * Identifiers of stories to add to the album; 0-getOption("story_album_size_max") identifiers.
          *
          * @var int[]
          */

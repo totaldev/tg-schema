@@ -6,6 +6,7 @@
 
 namespace Totaldev\TgSchema\Group;
 
+use Totaldev\TgSchema\Message\MessageSender;
 use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
@@ -18,120 +19,146 @@ class GroupCall extends TdObject
 
     public function __construct(
         /**
-         * True, if the current user can manage the group call; for video chats only.
+         * True, if sending of messages is allowed in the group call.
          */
-        protected bool   $canBeManaged,
+        protected bool           $areMessagesAllowed,
+        /**
+         * True, if the current user can manage the group call; for video chats and live stories only.
+         */
+        protected bool           $canBeManaged,
+        /**
+         * True, if the user can delete messages in the group call.
+         */
+        protected bool           $canDeleteMessages,
         /**
          * True, if the current user can broadcast video or share screen.
          */
-        protected bool   $canEnableVideo,
+        protected bool           $canEnableVideo,
         /**
-         * True, if users can send messages to the group call.
+         * True, if the current user can send messages to the group call.
          */
-        protected bool   $canSendMessages,
+        protected bool           $canSendMessages,
         /**
-         * True, if the current user can enable or disable sending messages in the group call.
+         * True, if the current user can enable or disable sending of messages in the group call.
          */
-        protected bool   $canToggleCanSendMessages,
+        protected bool           $canToggleAreMessagesAllowed,
         /**
          * True, if the current user can enable or disable mute_new_participants setting; for video chats only.
          */
-        protected bool   $canToggleMuteNewParticipants,
+        protected bool           $canToggleMuteNewParticipants,
         /**
          * Call duration, in seconds; for ended calls only.
          */
-        protected int    $duration,
+        protected int            $duration,
         /**
          * True, if the group call is scheduled and the current user will receive a notification when the group call starts; for video chats only.
          */
-        protected bool   $enabledStartNotification,
+        protected bool           $enabledStartNotification,
         /**
          * True, if group call participants, which are muted, aren't returned in participant list; for video chats only.
          */
-        protected bool   $hasHiddenListeners,
+        protected bool           $hasHiddenListeners,
         /**
          * Group call identifier.
          */
-        protected int    $id,
+        protected int            $id,
         /**
-         * Invite link for the group call; for group calls that aren't bound to a chat. For video chats call getVideoChatInviteLink to get the link.
+         * Invite link for the group call; for group calls that aren't bound to a chat. For video chats call getVideoChatInviteLink to get the link. For live stories in chats with username call getInternalLink with internalLinkTypeLiveStory.
          */
-        protected string $inviteLink,
+        protected string         $inviteLink,
         /**
          * True, if the call is active.
          */
-        protected bool   $isActive,
+        protected bool           $isActive,
         /**
          * True, if the call is joined.
          */
-        protected bool   $isJoined,
+        protected bool           $isJoined,
+        /**
+         * True, if the call is a live story of a chat.
+         */
+        protected bool           $isLiveStory,
         /**
          * True, if the current user's video is enabled.
          */
-        protected bool   $isMyVideoEnabled,
+        protected bool           $isMyVideoEnabled,
         /**
          * True, if the current user's video is paused.
          */
-        protected bool   $isMyVideoPaused,
+        protected bool           $isMyVideoPaused,
         /**
          * True, if the user is the owner of the call and can end the call, change volume level of other users, or ban users there; for group calls that aren't bound to a chat.
          */
-        protected bool   $isOwned,
+        protected bool           $isOwned,
         /**
-         * True, if the call is an RTMP stream instead of an ordinary video chat; for video chats only.
+         * True, if the call is an RTMP stream instead of an ordinary video chat; for video chats and live stories only.
          */
-        protected bool   $isRtmpStream,
+        protected bool           $isRtmpStream,
         /**
          * True, if the call is bound to a chat.
          */
-        protected bool   $isVideoChat,
+        protected bool           $isVideoChat,
         /**
          * True, if a video file is being recorded for the call.
          */
-        protected bool   $isVideoRecorded,
+        protected bool           $isVideoRecorded,
         /**
          * True, if all group call participants are loaded.
          */
-        protected bool   $loadedAllParticipants,
+        protected bool           $loadedAllParticipants,
+        /**
+         * Message sender chosen to send messages to the group call; for live stories only; may be null if the call isn't a live story.
+         */
+        protected ?MessageSender $messageSenderId,
         /**
          * True, if only group call administrators can unmute new participants; for video chats only.
          */
-        protected bool   $muteNewParticipants,
+        protected bool           $muteNewParticipants,
         /**
          * True, if user was kicked from the call because of network loss and the call needs to be rejoined.
          */
-        protected bool   $needRejoin,
+        protected bool           $needRejoin,
+        /**
+         * The minimum number of Telegram Stars that must be paid by general participant for each sent message to the call; for live stories only.
+         */
+        protected int            $paidMessageStarCount,
         /**
          * Number of participants in the group call.
          */
-        protected int    $participantCount,
+        protected int            $participantCount,
         /**
          * At most 3 recently speaking users in the group call.
          *
          * @var GroupCallRecentSpeaker[]
          */
-        protected array  $recentSpeakers,
+        protected array          $recentSpeakers,
         /**
          * Duration of the ongoing group call recording, in seconds; 0 if none. An updateGroupCall update is not triggered when value of this field changes, but the same recording goes on.
          */
-        protected int    $recordDuration,
+        protected int            $recordDuration,
         /**
          * Point in time (Unix timestamp) when the group call is expected to be started by an administrator; 0 if it is already active or was ended; for video chats only.
          */
-        protected int    $scheduledStartDate,
+        protected int            $scheduledStartDate,
         /**
          * Group call title; for video chats only.
          */
-        protected string $title,
+        protected string         $title,
+        /**
+         * Persistent unique group call identifier.
+         */
+        protected int            $uniqueId,
     ) {}
 
     public static function fromArray(array $array): GroupCall
     {
         return new static(
+            areMessagesAllowed          : $array['are_messages_allowed'],
             canBeManaged                : $array['can_be_managed'],
+            canDeleteMessages           : $array['can_delete_messages'],
             canEnableVideo              : $array['can_enable_video'],
             canSendMessages             : $array['can_send_messages'],
-            canToggleCanSendMessages    : $array['can_toggle_can_send_messages'],
+            canToggleAreMessagesAllowed : $array['can_toggle_are_messages_allowed'],
             canToggleMuteNewParticipants: $array['can_toggle_mute_new_participants'],
             duration                    : $array['duration'],
             enabledStartNotification    : $array['enabled_start_notification'],
@@ -140,6 +167,7 @@ class GroupCall extends TdObject
             inviteLink                  : $array['invite_link'],
             isActive                    : $array['is_active'],
             isJoined                    : $array['is_joined'],
+            isLiveStory                 : $array['is_live_story'],
             isMyVideoEnabled            : $array['is_my_video_enabled'],
             isMyVideoPaused             : $array['is_my_video_paused'],
             isOwned                     : $array['is_owned'],
@@ -147,19 +175,32 @@ class GroupCall extends TdObject
             isVideoChat                 : $array['is_video_chat'],
             isVideoRecorded             : $array['is_video_recorded'],
             loadedAllParticipants       : $array['loaded_all_participants'],
+            messageSenderId             : (isset($array['message_sender_id']) ? TdSchemaRegistry::fromArray($array['message_sender_id']) : null),
             muteNewParticipants         : $array['mute_new_participants'],
             needRejoin                  : $array['need_rejoin'],
+            paidMessageStarCount        : $array['paid_message_star_count'],
             participantCount            : $array['participant_count'],
             recentSpeakers              : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['recent_speakers']),
             recordDuration              : $array['record_duration'],
             scheduledStartDate          : $array['scheduled_start_date'],
             title                       : $array['title'],
+            uniqueId                    : $array['unique_id'],
         );
+    }
+
+    public function getAreMessagesAllowed(): bool
+    {
+        return $this->areMessagesAllowed;
     }
 
     public function getCanBeManaged(): bool
     {
         return $this->canBeManaged;
+    }
+
+    public function getCanDeleteMessages(): bool
+    {
+        return $this->canDeleteMessages;
     }
 
     public function getCanEnableVideo(): bool
@@ -172,9 +213,9 @@ class GroupCall extends TdObject
         return $this->canSendMessages;
     }
 
-    public function getCanToggleCanSendMessages(): bool
+    public function getCanToggleAreMessagesAllowed(): bool
     {
-        return $this->canToggleCanSendMessages;
+        return $this->canToggleAreMessagesAllowed;
     }
 
     public function getCanToggleMuteNewParticipants(): bool
@@ -217,6 +258,11 @@ class GroupCall extends TdObject
         return $this->isJoined;
     }
 
+    public function getIsLiveStory(): bool
+    {
+        return $this->isLiveStory;
+    }
+
     public function getIsMyVideoEnabled(): bool
     {
         return $this->isMyVideoEnabled;
@@ -252,6 +298,11 @@ class GroupCall extends TdObject
         return $this->loadedAllParticipants;
     }
 
+    public function getMessageSenderId(): ?MessageSender
+    {
+        return $this->messageSenderId;
+    }
+
     public function getMuteNewParticipants(): bool
     {
         return $this->muteNewParticipants;
@@ -260,6 +311,11 @@ class GroupCall extends TdObject
     public function getNeedRejoin(): bool
     {
         return $this->needRejoin;
+    }
+
+    public function getPaidMessageStarCount(): int
+    {
+        return $this->paidMessageStarCount;
     }
 
     public function getParticipantCount(): int
@@ -287,9 +343,28 @@ class GroupCall extends TdObject
         return $this->title;
     }
 
+    public function getUniqueId(): int
+    {
+        return $this->uniqueId;
+    }
+
+    public function setAreMessagesAllowed(bool $value): static
+    {
+        $this->areMessagesAllowed = $value;
+
+        return $this;
+    }
+
     public function setCanBeManaged(bool $value): static
     {
         $this->canBeManaged = $value;
+
+        return $this;
+    }
+
+    public function setCanDeleteMessages(bool $value): static
+    {
+        $this->canDeleteMessages = $value;
 
         return $this;
     }
@@ -308,9 +383,9 @@ class GroupCall extends TdObject
         return $this;
     }
 
-    public function setCanToggleCanSendMessages(bool $value): static
+    public function setCanToggleAreMessagesAllowed(bool $value): static
     {
-        $this->canToggleCanSendMessages = $value;
+        $this->canToggleAreMessagesAllowed = $value;
 
         return $this;
     }
@@ -371,6 +446,13 @@ class GroupCall extends TdObject
         return $this;
     }
 
+    public function setIsLiveStory(bool $value): static
+    {
+        $this->isLiveStory = $value;
+
+        return $this;
+    }
+
     public function setIsMyVideoEnabled(bool $value): static
     {
         $this->isMyVideoEnabled = $value;
@@ -420,6 +502,13 @@ class GroupCall extends TdObject
         return $this;
     }
 
+    public function setMessageSenderId(?MessageSender $value): static
+    {
+        $this->messageSenderId = $value;
+
+        return $this;
+    }
+
     public function setMuteNewParticipants(bool $value): static
     {
         $this->muteNewParticipants = $value;
@@ -430,6 +519,13 @@ class GroupCall extends TdObject
     public function setNeedRejoin(bool $value): static
     {
         $this->needRejoin = $value;
+
+        return $this;
+    }
+
+    public function setPaidMessageStarCount(int $value): static
+    {
+        $this->paidMessageStarCount = $value;
 
         return $this;
     }
@@ -469,14 +565,23 @@ class GroupCall extends TdObject
         return $this;
     }
 
+    public function setUniqueId(int $value): static
+    {
+        $this->uniqueId = $value;
+
+        return $this;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type'                            => static::TYPE_NAME,
+            'are_messages_allowed'             => $this->areMessagesAllowed,
             'can_be_managed'                   => $this->canBeManaged,
+            'can_delete_messages'              => $this->canDeleteMessages,
             'can_enable_video'                 => $this->canEnableVideo,
             'can_send_messages'                => $this->canSendMessages,
-            'can_toggle_can_send_messages'     => $this->canToggleCanSendMessages,
+            'can_toggle_are_messages_allowed'  => $this->canToggleAreMessagesAllowed,
             'can_toggle_mute_new_participants' => $this->canToggleMuteNewParticipants,
             'duration'                         => $this->duration,
             'enabled_start_notification'       => $this->enabledStartNotification,
@@ -485,6 +590,7 @@ class GroupCall extends TdObject
             'invite_link'                      => $this->inviteLink,
             'is_active'                        => $this->isActive,
             'is_joined'                        => $this->isJoined,
+            'is_live_story'                    => $this->isLiveStory,
             'is_my_video_enabled'              => $this->isMyVideoEnabled,
             'is_my_video_paused'               => $this->isMyVideoPaused,
             'is_owned'                         => $this->isOwned,
@@ -492,13 +598,16 @@ class GroupCall extends TdObject
             'is_video_chat'                    => $this->isVideoChat,
             'is_video_recorded'                => $this->isVideoRecorded,
             'loaded_all_participants'          => $this->loadedAllParticipants,
+            'message_sender_id'                => (null !== $this->messageSenderId ? $this->messageSenderId->jsonSerialize() : null),
             'mute_new_participants'            => $this->muteNewParticipants,
             'need_rejoin'                      => $this->needRejoin,
+            'paid_message_star_count'          => $this->paidMessageStarCount,
             'participant_count'                => $this->participantCount,
             'recent_speakers'                  => array_map(static fn($x) => $x->jsonSerialize(), $this->recentSpeakers),
             'record_duration'                  => $this->recordDuration,
             'scheduled_start_date'             => $this->scheduledStartDate,
             'title'                            => $this->title,
+            'unique_id'                        => $this->uniqueId,
         ];
     }
 }

@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Star;
 use Totaldev\TgSchema\TdObject;
 
 /**
- * Describes a possibly non-integer amount of Telegram Stars.
+ * Describes a possibly non-integer Telegram Star amount.
  */
 class StarAmount extends TdObject
 {
@@ -21,7 +21,7 @@ class StarAmount extends TdObject
          */
         protected int $nanostarCount,
         /**
-         * The integer amount of Telegram Stars rounded to 0.
+         * The integer Telegram Star amount rounded to 0.
          */
         protected int $starCount,
     ) {}

@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Start;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Starts screen sharing in a joined group call. Returns join response payload for tgcalls.
+ * Starts screen sharing in a joined group call; not supported in live stories. Returns join response payload for tgcalls.
  */
 class StartGroupCallScreenSharing extends TdFunction
 {

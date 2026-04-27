@@ -77,6 +77,10 @@ class BotInfo extends TdObject
          */
         protected bool                       $hasMediaPreviews,
         /**
+         * Identifier of the bot, which manages the bot; 0 if none or unknown; for owner of the bot only.
+         */
+        protected int                        $managerBotUserId,
+        /**
          * Information about a button to show instead of the bot commands menu button; may be null if ordinary bot commands menu must be shown.
          */
         protected ?BotMenuButton             $menuButton,
@@ -136,6 +140,7 @@ class BotInfo extends TdObject
             ) : null),
             editSettingsLink                 : (isset($array['edit_settings_link']) ? TdSchemaRegistry::fromArray($array['edit_settings_link']) : null),
             hasMediaPreviews                 : $array['has_media_previews'],
+            managerBotUserId                 : $array['manager_bot_user_id'],
             menuButton                       : (isset($array['menu_button']) ? TdSchemaRegistry::fromArray($array['menu_button']) : null),
             photo                            : (isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null),
             privacyPolicyUrl                 : $array['privacy_policy_url'],
@@ -213,6 +218,11 @@ class BotInfo extends TdObject
     public function getHasMediaPreviews(): bool
     {
         return $this->hasMediaPreviews;
+    }
+
+    public function getManagerBotUserId(): int
+    {
+        return $this->managerBotUserId;
     }
 
     public function getMenuButton(): ?BotMenuButton
@@ -351,6 +361,13 @@ class BotInfo extends TdObject
         return $this;
     }
 
+    public function setManagerBotUserId(int $value): static
+    {
+        $this->managerBotUserId = $value;
+
+        return $this;
+    }
+
     public function setMenuButton(?BotMenuButton $value): static
     {
         $this->menuButton = $value;
@@ -433,6 +450,7 @@ class BotInfo extends TdObject
             'edit_description_media_link'          => (null !== $this->editDescriptionMediaLink ? $this->editDescriptionMediaLink->jsonSerialize() : null),
             'edit_settings_link'                   => (null !== $this->editSettingsLink ? $this->editSettingsLink->jsonSerialize() : null),
             'has_media_previews'                   => $this->hasMediaPreviews,
+            'manager_bot_user_id'                  => $this->managerBotUserId,
             'menu_button'                          => (null !== $this->menuButton ? $this->menuButton->jsonSerialize() : null),
             'photo'                                => (null !== $this->photo ? $this->photo->jsonSerialize() : null),
             'privacy_policy_url'                   => $this->privacyPolicyUrl,

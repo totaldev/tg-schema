@@ -7,7 +7,7 @@
 namespace Totaldev\TgSchema\Star;
 
 /**
- * The transaction is a withdrawal of earned Telegram Stars to Telegram Ad platform; for bots and channel chats only.
+ * The transaction is a withdrawal of earned Telegram Stars to Telegram Ad platform; relevant for bots and channel chats only.
  */
 class StarTransactionTypeTelegramAdsWithdrawal extends StarTransactionType
 {

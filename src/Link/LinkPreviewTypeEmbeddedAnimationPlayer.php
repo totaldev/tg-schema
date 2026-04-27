@@ -6,6 +6,7 @@
 
 namespace Totaldev\TgSchema\Link;
 
+use Totaldev\TgSchema\Animation\Animation;
 use Totaldev\TgSchema\Photo\Photo;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
@@ -18,25 +19,29 @@ class LinkPreviewTypeEmbeddedAnimationPlayer extends LinkPreviewType
 
     public function __construct(
         /**
+         * The cached animation; may be null if unknown.
+         */
+        protected ?Animation $animation,
+        /**
          * Duration of the animation, in seconds.
          */
-        protected int    $duration,
+        protected int        $duration,
         /**
          * Expected height of the embedded player.
          */
-        protected int    $height,
+        protected int        $height,
         /**
          * Thumbnail of the animation; may be null if unknown.
          */
-        protected ?Photo $thumbnail,
+        protected ?Photo     $thumbnail,
         /**
          * URL of the external animation player.
          */
-        protected string $url,
+        protected string     $url,
         /**
          * Expected width of the embedded player.
          */
-        protected int    $width,
+        protected int        $width,
     ) {
         parent::__construct();
     }
@@ -44,12 +49,18 @@ class LinkPreviewTypeEmbeddedAnimationPlayer extends LinkPreviewType
     public static function fromArray(array $array): LinkPreviewTypeEmbeddedAnimationPlayer
     {
         return new static(
+            animation: (isset($array['animation']) ? TdSchemaRegistry::fromArray($array['animation']) : null),
             duration : $array['duration'],
             height   : $array['height'],
             thumbnail: (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
             url      : $array['url'],
             width    : $array['width'],
         );
+    }
+
+    public function getAnimation(): ?Animation
+    {
+        return $this->animation;
     }
 
     public function getDuration(): int
@@ -75,6 +86,13 @@ class LinkPreviewTypeEmbeddedAnimationPlayer extends LinkPreviewType
     public function getWidth(): int
     {
         return $this->width;
+    }
+
+    public function setAnimation(?Animation $value): static
+    {
+        $this->animation = $value;
+
+        return $this;
     }
 
     public function setDuration(int $value): static
@@ -116,6 +134,7 @@ class LinkPreviewTypeEmbeddedAnimationPlayer extends LinkPreviewType
     {
         return [
             '@type'     => static::TYPE_NAME,
+            'animation' => (null !== $this->animation ? $this->animation->jsonSerialize() : null),
             'duration'  => $this->duration,
             'height'    => $this->height,
             'thumbnail' => (null !== $this->thumbnail ? $this->thumbnail->jsonSerialize() : null),

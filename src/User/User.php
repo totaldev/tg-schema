@@ -6,6 +6,7 @@
 
 namespace Totaldev\TgSchema\User;
 
+use Totaldev\TgSchema\Active\ActiveStoryState;
 use Totaldev\TgSchema\Emoji\EmojiStatus;
 use Totaldev\TgSchema\Profile\ProfilePhoto;
 use Totaldev\TgSchema\Restriction\RestrictionInfo;
@@ -28,6 +29,10 @@ class User extends TdObject
          */
         protected int                 $accentColorId,
         /**
+         * State of active stories of the user; may be null if the user has no active stories.
+         */
+        protected ?ActiveStoryState   $activeStoryState,
+        /**
          * True, if the user added the current bot to attachment menu; only available to bots.
          */
         protected bool                $addedToAttachmentMenu,
@@ -43,14 +48,6 @@ class User extends TdObject
          * First name of the user.
          */
         protected string              $firstName,
-        /**
-         * True, if the user has non-expired stories available to the current user.
-         */
-        protected bool                $hasActiveStories,
-        /**
-         * True, if the user has unread non-expired stories available to the current user.
-         */
-        protected bool                $hasUnreadActiveStories,
         /**
          * If false, the user is inaccessible, and the only information known about the user is inside this class. Identifier of the user can't be passed to any method.
          */
@@ -141,12 +138,11 @@ class User extends TdObject
     {
         return new static(
             accentColorId                 : $array['accent_color_id'],
+            activeStoryState              : (isset($array['active_story_state']) ? TdSchemaRegistry::fromArray($array['active_story_state']) : null),
             addedToAttachmentMenu         : $array['added_to_attachment_menu'],
             backgroundCustomEmojiId       : $array['background_custom_emoji_id'],
             emojiStatus                   : (isset($array['emoji_status']) ? TdSchemaRegistry::fromArray($array['emoji_status']) : null),
             firstName                     : $array['first_name'],
-            hasActiveStories              : $array['has_active_stories'],
-            hasUnreadActiveStories        : $array['has_unread_active_stories'],
             haveAccess                    : $array['have_access'],
             id                            : $array['id'],
             isCloseFriend                 : $array['is_close_friend'],
@@ -176,6 +172,11 @@ class User extends TdObject
         return $this->accentColorId;
     }
 
+    public function getActiveStoryState(): ?ActiveStoryState
+    {
+        return $this->activeStoryState;
+    }
+
     public function getAddedToAttachmentMenu(): bool
     {
         return $this->addedToAttachmentMenu;
@@ -194,16 +195,6 @@ class User extends TdObject
     public function getFirstName(): string
     {
         return $this->firstName;
-    }
-
-    public function getHasActiveStories(): bool
-    {
-        return $this->hasActiveStories;
-    }
-
-    public function getHasUnreadActiveStories(): bool
-    {
-        return $this->hasUnreadActiveStories;
     }
 
     public function getHaveAccess(): bool
@@ -318,6 +309,13 @@ class User extends TdObject
         return $this;
     }
 
+    public function setActiveStoryState(?ActiveStoryState $value): static
+    {
+        $this->activeStoryState = $value;
+
+        return $this;
+    }
+
     public function setAddedToAttachmentMenu(bool $value): static
     {
         $this->addedToAttachmentMenu = $value;
@@ -342,20 +340,6 @@ class User extends TdObject
     public function setFirstName(string $value): static
     {
         $this->firstName = $value;
-
-        return $this;
-    }
-
-    public function setHasActiveStories(bool $value): static
-    {
-        $this->hasActiveStories = $value;
-
-        return $this;
-    }
-
-    public function setHasUnreadActiveStories(bool $value): static
-    {
-        $this->hasUnreadActiveStories = $value;
 
         return $this;
     }
@@ -512,12 +496,11 @@ class User extends TdObject
         return [
             '@type'                              => static::TYPE_NAME,
             'accent_color_id'                    => $this->accentColorId,
+            'active_story_state'                 => (null !== $this->activeStoryState ? $this->activeStoryState->jsonSerialize() : null),
             'added_to_attachment_menu'           => $this->addedToAttachmentMenu,
             'background_custom_emoji_id'         => $this->backgroundCustomEmojiId,
             'emoji_status'                       => (null !== $this->emojiStatus ? $this->emojiStatus->jsonSerialize() : null),
             'first_name'                         => $this->firstName,
-            'has_active_stories'                 => $this->hasActiveStories,
-            'has_unread_active_stories'          => $this->hasUnreadActiveStories,
             'have_access'                        => $this->haveAccess,
             'id'                                 => $this->id,
             'is_close_friend'                    => $this->isCloseFriend,

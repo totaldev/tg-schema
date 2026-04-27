@@ -11,7 +11,7 @@ use Totaldev\TgSchema\Message\MessageSender;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The transaction is a purchase of an upgrade of a gift owned by another user or channel; for regular users only.
+ * The transaction is a purchase of an upgrade of a gift owned by another user or channel; relevant for regular users only.
  */
 class StarTransactionTypeGiftUpgradePurchase extends StarTransactionType
 {

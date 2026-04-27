@@ -31,7 +31,7 @@ class ChatBoostSourceGiveaway extends ChatBoostSource
          */
         protected int    $starCount,
         /**
-         * Identifier of a user that won in the giveaway; 0 if none.
+         * Identifier of a user who won in the giveaway; 0 if none.
          */
         protected int    $userId,
     ) {

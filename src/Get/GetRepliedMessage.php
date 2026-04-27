@@ -14,7 +14,9 @@ use Totaldev\TgSchema\TdFunction;
  * giveaway message for messageGiveawayCompleted, the checklist message for messageChecklistTasksDone, messageChecklistTasksAdded, the message with suggested
  * post information for messageSuggestedPostApprovalFailed, messageSuggestedPostApproved, messageSuggestedPostDeclined, messageSuggestedPostPaid,
  * messageSuggestedPostRefunded, the message with the regular gift that was upgraded for messageUpgradedGift with origin of the type upgradedGiftOriginUpgrade,
- * and the topic creation message for topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist.
+ * the message with gift purchase offer for messageUpgradedGiftPurchaseOfferRejected, the message with the request to disable content protection for
+ * messageChatHasProtectedContentToggled, the message with the poll for messagePollOptionAdded and messagePollOptionDeleted, and the topic creation message for
+ * topic messages without non-bundled replied message. Returns a 404 error if the message doesn't exist.
  */
 class GetRepliedMessage extends TdFunction
 {

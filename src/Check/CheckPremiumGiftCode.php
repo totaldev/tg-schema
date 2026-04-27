@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Check;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Return information about a Telegram Premium gift code.
+ * Returns information about a Telegram Premium gift code.
  */
 class CheckPremiumGiftCode extends TdFunction
 {

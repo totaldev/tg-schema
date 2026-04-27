@@ -34,7 +34,7 @@ class TelegramPaymentPurposePremiumGiftCodes extends TelegramPaymentPurpose
          */
         protected int           $monthCount,
         /**
-         * Text to show along with the gift codes; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed.
+         * Text to show along with the gift codes; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed.
          */
         protected FormattedText $text,
         /**

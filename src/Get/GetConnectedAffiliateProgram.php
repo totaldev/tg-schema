@@ -11,7 +11,7 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns an affiliate program that were connected to the given affiliate by identifier of the bot that created the program.
+ * Returns an affiliate program that was connected to the given affiliate by identifier of the bot that created the program.
  */
 class GetConnectedAffiliateProgram extends TdFunction
 {

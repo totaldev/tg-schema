@@ -19,26 +19,36 @@ class UpgradedGiftModel extends TdObject
 
     public function __construct(
         /**
+         * True, if the model can be obtained only through gift crafting.
+         */
+        protected bool                        $isCrafted,
+        /**
          * Name of the model.
          */
-        protected string  $name,
+        protected string                      $name,
         /**
-         * The number of upgraded gifts that receive this model for each 1000 gifts upgraded.
+         * The rarity of the model.
          */
-        protected int     $rarityPerMille,
+        protected UpgradedGiftAttributeRarity $rarity,
         /**
          * The sticker representing the upgraded gift.
          */
-        protected Sticker $sticker,
+        protected Sticker                     $sticker,
     ) {}
 
     public static function fromArray(array $array): UpgradedGiftModel
     {
         return new static(
-            name          : $array['name'],
-            rarityPerMille: $array['rarity_per_mille'],
-            sticker       : TdSchemaRegistry::fromArray($array['sticker']),
+            isCrafted: $array['is_crafted'],
+            name     : $array['name'],
+            rarity   : TdSchemaRegistry::fromArray($array['rarity']),
+            sticker  : TdSchemaRegistry::fromArray($array['sticker']),
         );
+    }
+
+    public function getIsCrafted(): bool
+    {
+        return $this->isCrafted;
     }
 
     public function getName(): string
@@ -46,14 +56,21 @@ class UpgradedGiftModel extends TdObject
         return $this->name;
     }
 
-    public function getRarityPerMille(): int
+    public function getRarity(): UpgradedGiftAttributeRarity
     {
-        return $this->rarityPerMille;
+        return $this->rarity;
     }
 
     public function getSticker(): Sticker
     {
         return $this->sticker;
+    }
+
+    public function setIsCrafted(bool $value): static
+    {
+        $this->isCrafted = $value;
+
+        return $this;
     }
 
     public function setName(string $value): static
@@ -63,9 +80,9 @@ class UpgradedGiftModel extends TdObject
         return $this;
     }
 
-    public function setRarityPerMille(int $value): static
+    public function setRarity(UpgradedGiftAttributeRarity $value): static
     {
-        $this->rarityPerMille = $value;
+        $this->rarity = $value;
 
         return $this;
     }
@@ -80,10 +97,11 @@ class UpgradedGiftModel extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type'            => static::TYPE_NAME,
-            'name'             => $this->name,
-            'rarity_per_mille' => $this->rarityPerMille,
-            'sticker'          => $this->sticker->jsonSerialize(),
+            '@type'      => static::TYPE_NAME,
+            'is_crafted' => $this->isCrafted,
+            'name'       => $this->name,
+            'rarity'     => $this->rarity->jsonSerialize(),
+            'sticker'    => $this->sticker->jsonSerialize(),
         ];
     }
 }

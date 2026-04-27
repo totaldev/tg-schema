@@ -20,28 +20,28 @@ class UpgradedGiftBackdrop extends TdObject
         /**
          * Colors of the backdrop.
          */
-        protected UpgradedGiftBackdropColors $colors,
+        protected UpgradedGiftBackdropColors  $colors,
         /**
          * Unique identifier of the backdrop.
          */
-        protected int                        $id,
+        protected int                         $id,
         /**
          * Name of the backdrop.
          */
-        protected string                     $name,
+        protected string                      $name,
         /**
-         * The number of upgraded gifts that receive this backdrop for each 1000 gifts upgraded.
+         * The rarity of the backdrop.
          */
-        protected int                        $rarityPerMille,
+        protected UpgradedGiftAttributeRarity $rarity,
     ) {}
 
     public static function fromArray(array $array): UpgradedGiftBackdrop
     {
         return new static(
-            colors        : TdSchemaRegistry::fromArray($array['colors']),
-            id            : $array['id'],
-            name          : $array['name'],
-            rarityPerMille: $array['rarity_per_mille'],
+            colors: TdSchemaRegistry::fromArray($array['colors']),
+            id    : $array['id'],
+            name  : $array['name'],
+            rarity: TdSchemaRegistry::fromArray($array['rarity']),
         );
     }
 
@@ -60,9 +60,9 @@ class UpgradedGiftBackdrop extends TdObject
         return $this->name;
     }
 
-    public function getRarityPerMille(): int
+    public function getRarity(): UpgradedGiftAttributeRarity
     {
-        return $this->rarityPerMille;
+        return $this->rarity;
     }
 
     public function setColors(UpgradedGiftBackdropColors $value): static
@@ -86,9 +86,9 @@ class UpgradedGiftBackdrop extends TdObject
         return $this;
     }
 
-    public function setRarityPerMille(int $value): static
+    public function setRarity(UpgradedGiftAttributeRarity $value): static
     {
-        $this->rarityPerMille = $value;
+        $this->rarity = $value;
 
         return $this;
     }
@@ -96,11 +96,11 @@ class UpgradedGiftBackdrop extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type'            => static::TYPE_NAME,
-            'colors'           => $this->colors->jsonSerialize(),
-            'id'               => $this->id,
-            'name'             => $this->name,
-            'rarity_per_mille' => $this->rarityPerMille,
+            '@type'  => static::TYPE_NAME,
+            'colors' => $this->colors->jsonSerialize(),
+            'id'     => $this->id,
+            'name'   => $this->name,
+            'rarity' => $this->rarity->jsonSerialize(),
         ];
     }
 }

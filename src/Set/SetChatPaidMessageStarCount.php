@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Set;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Changes the amount of Telegram Stars that must be paid to send a message to a supergroup chat; requires can_restrict_members administrator right and
+ * Changes the Telegram Star amount that must be paid to send a message to a supergroup chat; requires can_restrict_members administrator right and
  * supergroupFullInfo.can_enable_paid_messages.
  */
 class SetChatPaidMessageStarCount extends TdFunction

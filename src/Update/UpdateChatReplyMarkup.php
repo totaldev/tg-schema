@@ -6,9 +6,11 @@
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Message\Message;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
- * The default chat reply markup was changed. Can occur because new messages with reply markup were received or because an old reply markup was hidden by the
- * user.
+ * The chat reply markup was changed.
  */
 class UpdateChatReplyMarkup extends Update
 {
@@ -18,11 +20,11 @@ class UpdateChatReplyMarkup extends Update
         /**
          * Chat identifier.
          */
-        protected int $chatId,
+        protected int      $chatId,
         /**
-         * Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat.
+         * The message from which the reply markup must be used; may be null if there is no default reply markup in the chat.
          */
-        protected int $replyMarkupMessageId,
+        protected ?Message $replyMarkupMessage,
     ) {
         parent::__construct();
     }
@@ -30,8 +32,8 @@ class UpdateChatReplyMarkup extends Update
     public static function fromArray(array $array): UpdateChatReplyMarkup
     {
         return new static(
-            chatId              : $array['chat_id'],
-            replyMarkupMessageId: $array['reply_markup_message_id'],
+            chatId            : $array['chat_id'],
+            replyMarkupMessage: (isset($array['reply_markup_message']) ? TdSchemaRegistry::fromArray($array['reply_markup_message']) : null),
         );
     }
 
@@ -40,9 +42,9 @@ class UpdateChatReplyMarkup extends Update
         return $this->chatId;
     }
 
-    public function getReplyMarkupMessageId(): int
+    public function getReplyMarkupMessage(): ?Message
     {
-        return $this->replyMarkupMessageId;
+        return $this->replyMarkupMessage;
     }
 
     public function setChatId(int $value): static
@@ -52,9 +54,9 @@ class UpdateChatReplyMarkup extends Update
         return $this;
     }
 
-    public function setReplyMarkupMessageId(int $value): static
+    public function setReplyMarkupMessage(?Message $value): static
     {
-        $this->replyMarkupMessageId = $value;
+        $this->replyMarkupMessage = $value;
 
         return $this;
     }
@@ -62,9 +64,9 @@ class UpdateChatReplyMarkup extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type'                   => static::TYPE_NAME,
-            'chat_id'                 => $this->chatId,
-            'reply_markup_message_id' => $this->replyMarkupMessageId,
+            '@type'                => static::TYPE_NAME,
+            'chat_id'              => $this->chatId,
+            'reply_markup_message' => (null !== $this->replyMarkupMessage ? $this->replyMarkupMessage->jsonSerialize() : null),
         ];
     }
 }

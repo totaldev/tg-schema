@@ -29,7 +29,7 @@ class CreateGiftCollection extends TdFunction
          */
         protected MessageSender $ownerId,
         /**
-         * Identifier of the gifts to add to the collection; 0-getOption("gift_collection_gift_count_max") identifiers.
+         * Identifier of the gifts to add to the collection; 0-getOption("gift_collection_size_max") identifiers.
          *
          * @var string[]
          */

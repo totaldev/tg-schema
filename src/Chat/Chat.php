@@ -158,7 +158,7 @@ class Chat extends TdObject
          */
         protected int                      $profileBackgroundCustomEmojiId,
         /**
-         * Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat.
+         * Identifier of the message from which reply markup needs to be used; 0 if there is no reply markup in the chat.
          */
         protected int                      $replyMarkupMessageId,
         /**
@@ -181,6 +181,10 @@ class Chat extends TdObject
          * Number of unread messages with a mention/reply in the chat.
          */
         protected int                      $unreadMentionCount,
+        /**
+         * Number of messages with unread poll votes in the chat.
+         */
+        protected int                      $unreadPollVoteCount,
         /**
          * Number of messages with unread reactions in the chat.
          */
@@ -240,6 +244,7 @@ class Chat extends TdObject
             type                          : TdSchemaRegistry::fromArray($array['type']),
             unreadCount                   : $array['unread_count'],
             unreadMentionCount            : $array['unread_mention_count'],
+            unreadPollVoteCount           : $array['unread_poll_vote_count'],
             unreadReactionCount           : $array['unread_reaction_count'],
             upgradedGiftColors            : (isset($array['upgraded_gift_colors']) ? TdSchemaRegistry::fromArray($array['upgraded_gift_colors']) : null),
             videoChat                     : TdSchemaRegistry::fromArray($array['video_chat']),
@@ -435,6 +440,11 @@ class Chat extends TdObject
     public function getUnreadMentionCount(): int
     {
         return $this->unreadMentionCount;
+    }
+
+    public function getUnreadPollVoteCount(): int
+    {
+        return $this->unreadPollVoteCount;
     }
 
     public function getUnreadReactionCount(): int
@@ -723,6 +733,13 @@ class Chat extends TdObject
         return $this;
     }
 
+    public function setUnreadPollVoteCount(int $value): static
+    {
+        $this->unreadPollVoteCount = $value;
+
+        return $this;
+    }
+
     public function setUnreadReactionCount(int $value): static
     {
         $this->unreadReactionCount = $value;
@@ -793,6 +810,7 @@ class Chat extends TdObject
             'type'                               => $this->type->jsonSerialize(),
             'unread_count'                       => $this->unreadCount,
             'unread_mention_count'               => $this->unreadMentionCount,
+            'unread_poll_vote_count'             => $this->unreadPollVoteCount,
             'unread_reaction_count'              => $this->unreadReactionCount,
             'upgraded_gift_colors'               => (null !== $this->upgradedGiftColors ? $this->upgradedGiftColors->jsonSerialize() : null),
             'video_chat'                         => $this->videoChat->jsonSerialize(),

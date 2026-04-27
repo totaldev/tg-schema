@@ -6,6 +6,7 @@
 
 namespace Totaldev\TgSchema\Send;
 
+use Totaldev\TgSchema\Input\InputCall;
 use Totaldev\TgSchema\Input\InputFile;
 use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
@@ -21,7 +22,7 @@ class SendCallLog extends TdFunction
         /**
          * Call identifier.
          */
-        protected int       $callId,
+        protected InputCall $callId,
         /**
          * Call log file. Only inputFileLocal and inputFileGenerated are supported.
          */
@@ -31,12 +32,12 @@ class SendCallLog extends TdFunction
     public static function fromArray(array $array): SendCallLog
     {
         return new static(
-            callId : $array['call_id'],
+            callId : TdSchemaRegistry::fromArray($array['call_id']),
             logFile: TdSchemaRegistry::fromArray($array['log_file']),
         );
     }
 
-    public function getCallId(): int
+    public function getCallId(): InputCall
     {
         return $this->callId;
     }
@@ -46,7 +47,7 @@ class SendCallLog extends TdFunction
         return $this->logFile;
     }
 
-    public function setCallId(int $value): static
+    public function setCallId(InputCall $value): static
     {
         $this->callId = $value;
 
@@ -64,7 +65,7 @@ class SendCallLog extends TdFunction
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'call_id'  => $this->callId,
+            'call_id'  => $this->callId->jsonSerialize(),
             'log_file' => $this->logFile->jsonSerialize(),
         ];
     }

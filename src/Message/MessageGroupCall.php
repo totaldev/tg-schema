@@ -38,6 +38,10 @@ class MessageGroupCall extends MessageContent
          */
         protected array $otherParticipantIds,
         /**
+         * Persistent unique group call identifier.
+         */
+        protected int   $uniqueId,
+        /**
          * True, if the called user missed or declined the call.
          */
         protected bool  $wasMissed,
@@ -52,6 +56,7 @@ class MessageGroupCall extends MessageContent
             isActive           : $array['is_active'],
             isVideo            : $array['is_video'],
             otherParticipantIds: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['other_participant_ids']),
+            uniqueId           : $array['unique_id'],
             wasMissed          : $array['was_missed'],
         );
     }
@@ -74,6 +79,11 @@ class MessageGroupCall extends MessageContent
     public function getOtherParticipantIds(): array
     {
         return $this->otherParticipantIds;
+    }
+
+    public function getUniqueId(): int
+    {
+        return $this->uniqueId;
     }
 
     public function getWasMissed(): bool
@@ -109,6 +119,13 @@ class MessageGroupCall extends MessageContent
         return $this;
     }
 
+    public function setUniqueId(int $value): static
+    {
+        $this->uniqueId = $value;
+
+        return $this;
+    }
+
     public function setWasMissed(bool $value): static
     {
         $this->wasMissed = $value;
@@ -124,6 +141,7 @@ class MessageGroupCall extends MessageContent
             'is_active'             => $this->isActive,
             'is_video'              => $this->isVideo,
             'other_participant_ids' => array_map(static fn($x) => $x->jsonSerialize(), $this->otherParticipantIds),
+            'unique_id'             => $this->uniqueId,
             'was_missed'            => $this->wasMissed,
         ];
     }

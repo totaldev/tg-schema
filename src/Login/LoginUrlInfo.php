@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Login;
 use Totaldev\TgSchema\TdObject;
 
 /**
- * Contains information about an inline button of type inlineKeyboardButtonTypeLoginUrl.
+ * Contains information about an inline button of type inlineKeyboardButtonTypeLoginUrl or an external link.
  */
 class LoginUrlInfo extends TdObject
 {

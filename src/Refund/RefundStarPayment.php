@@ -21,7 +21,7 @@ class RefundStarPayment extends TdFunction
          */
         protected string $telegramPaymentChargeId,
         /**
-         * Identifier of the user that did the payment.
+         * Identifier of the user who did the payment.
          */
         protected int    $userId,
     ) {}

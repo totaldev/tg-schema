@@ -35,7 +35,7 @@ class PremiumGiftPaymentOption extends TdObject
          */
         protected int      $monthCount,
         /**
-         * The alternative amount of Telegram Stars to pay; 0 if payment in Telegram Stars is not possible.
+         * The alternative Telegram Star amount to pay; 0 if payment in Telegram Stars is not possible.
          */
         protected int      $starCount,
         /**

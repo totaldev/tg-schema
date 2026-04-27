@@ -22,6 +22,10 @@ class MessageLinkInfo extends TdObject
          */
         protected int           $chatId,
         /**
+         * Identifier of the checklist task that is linked; 0 if none.
+         */
+        protected int           $checklistTaskId,
+        /**
          * True, if the whole media album to which the message belongs is linked.
          */
         protected bool          $forAlbum,
@@ -38,6 +42,10 @@ class MessageLinkInfo extends TdObject
          */
         protected ?Message      $message,
         /**
+         * Identifier of the poll option that is linked; empty if none.
+         */
+        protected string        $pollOptionId,
+        /**
          * Identifier of the specific topic in which the message must be opened, or a topic to open if the message is missing; may be null if none.
          */
         protected ?MessageTopic $topicId,
@@ -46,18 +54,25 @@ class MessageLinkInfo extends TdObject
     public static function fromArray(array $array): MessageLinkInfo
     {
         return new static(
-            chatId        : $array['chat_id'],
-            forAlbum      : $array['for_album'],
-            isPublic      : $array['is_public'],
-            mediaTimestamp: $array['media_timestamp'],
-            message       : (isset($array['message']) ? TdSchemaRegistry::fromArray($array['message']) : null),
-            topicId       : (isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null),
+            chatId         : $array['chat_id'],
+            checklistTaskId: $array['checklist_task_id'],
+            forAlbum       : $array['for_album'],
+            isPublic       : $array['is_public'],
+            mediaTimestamp : $array['media_timestamp'],
+            message        : (isset($array['message']) ? TdSchemaRegistry::fromArray($array['message']) : null),
+            pollOptionId   : $array['poll_option_id'],
+            topicId        : (isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null),
         );
     }
 
     public function getChatId(): int
     {
         return $this->chatId;
+    }
+
+    public function getChecklistTaskId(): int
+    {
+        return $this->checklistTaskId;
     }
 
     public function getForAlbum(): bool
@@ -80,6 +95,11 @@ class MessageLinkInfo extends TdObject
         return $this->message;
     }
 
+    public function getPollOptionId(): string
+    {
+        return $this->pollOptionId;
+    }
+
     public function getTopicId(): ?MessageTopic
     {
         return $this->topicId;
@@ -88,6 +108,13 @@ class MessageLinkInfo extends TdObject
     public function setChatId(int $value): static
     {
         $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setChecklistTaskId(int $value): static
+    {
+        $this->checklistTaskId = $value;
 
         return $this;
     }
@@ -120,6 +147,13 @@ class MessageLinkInfo extends TdObject
         return $this;
     }
 
+    public function setPollOptionId(string $value): static
+    {
+        $this->pollOptionId = $value;
+
+        return $this;
+    }
+
     public function setTopicId(?MessageTopic $value): static
     {
         $this->topicId = $value;
@@ -130,13 +164,15 @@ class MessageLinkInfo extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type'           => static::TYPE_NAME,
-            'chat_id'         => $this->chatId,
-            'for_album'       => $this->forAlbum,
-            'is_public'       => $this->isPublic,
-            'media_timestamp' => $this->mediaTimestamp,
-            'message'         => (null !== $this->message ? $this->message->jsonSerialize() : null),
-            'topic_id'        => (null !== $this->topicId ? $this->topicId->jsonSerialize() : null),
+            '@type'             => static::TYPE_NAME,
+            'chat_id'           => $this->chatId,
+            'checklist_task_id' => $this->checklistTaskId,
+            'for_album'         => $this->forAlbum,
+            'is_public'         => $this->isPublic,
+            'media_timestamp'   => $this->mediaTimestamp,
+            'message'           => (null !== $this->message ? $this->message->jsonSerialize() : null),
+            'poll_option_id'    => $this->pollOptionId,
+            'topic_id'          => (null !== $this->topicId ? $this->topicId->jsonSerialize() : null),
         ];
     }
 }

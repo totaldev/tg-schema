@@ -18,11 +18,17 @@ class UpdatePollAnswer extends Update
 
     public function __construct(
         /**
-         * 0-based identifiers of answer options, chosen by the user.
+         * Unique identifiers of answer options, that were chosen by the user.
+         *
+         * @var string[]
+         */
+        protected array         $optionIds,
+        /**
+         * 0-based identifiers of answer options, that were chosen by the user.
          *
          * @var int[]
          */
-        protected array         $optionIds,
+        protected array         $optionPositions,
         /**
          * Unique poll identifier.
          */
@@ -38,15 +44,21 @@ class UpdatePollAnswer extends Update
     public static function fromArray(array $array): UpdatePollAnswer
     {
         return new static(
-            optionIds: $array['option_ids'],
-            pollId   : $array['poll_id'],
-            voterId  : TdSchemaRegistry::fromArray($array['voter_id']),
+            optionIds      : $array['option_ids'],
+            optionPositions: $array['option_positions'],
+            pollId         : $array['poll_id'],
+            voterId        : TdSchemaRegistry::fromArray($array['voter_id']),
         );
     }
 
     public function getOptionIds(): array
     {
         return $this->optionIds;
+    }
+
+    public function getOptionPositions(): array
+    {
+        return $this->optionPositions;
     }
 
     public function getPollId(): int
@@ -62,6 +74,13 @@ class UpdatePollAnswer extends Update
     public function setOptionIds(array $value): static
     {
         $this->optionIds = $value;
+
+        return $this;
+    }
+
+    public function setOptionPositions(array $value): static
+    {
+        $this->optionPositions = $value;
 
         return $this;
     }
@@ -83,10 +102,11 @@ class UpdatePollAnswer extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type'      => static::TYPE_NAME,
-            'option_ids' => $this->optionIds,
-            'poll_id'    => $this->pollId,
-            'voter_id'   => $this->voterId->jsonSerialize(),
+            '@type'            => static::TYPE_NAME,
+            'option_ids'       => $this->optionIds,
+            'option_positions' => $this->optionPositions,
+            'poll_id'          => $this->pollId,
+            'voter_id'         => $this->voterId->jsonSerialize(),
         ];
     }
 }

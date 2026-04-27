@@ -6,6 +6,7 @@
 
 namespace Totaldev\TgSchema\Link;
 
+use Totaldev\TgSchema\Audio\Audio;
 use Totaldev\TgSchema\Photo\Photo;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
@@ -17,6 +18,10 @@ class LinkPreviewTypeEmbeddedAudioPlayer extends LinkPreviewType
     public const string TYPE_NAME = 'linkPreviewTypeEmbeddedAudioPlayer';
 
     public function __construct(
+        /**
+         * The cached audio; may be null if unknown.
+         */
+        protected ?Audio $audio,
         /**
          * Duration of the audio, in seconds.
          */
@@ -44,12 +49,18 @@ class LinkPreviewTypeEmbeddedAudioPlayer extends LinkPreviewType
     public static function fromArray(array $array): LinkPreviewTypeEmbeddedAudioPlayer
     {
         return new static(
+            audio    : (isset($array['audio']) ? TdSchemaRegistry::fromArray($array['audio']) : null),
             duration : $array['duration'],
             height   : $array['height'],
             thumbnail: (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
             url      : $array['url'],
             width    : $array['width'],
         );
+    }
+
+    public function getAudio(): ?Audio
+    {
+        return $this->audio;
     }
 
     public function getDuration(): int
@@ -75,6 +86,13 @@ class LinkPreviewTypeEmbeddedAudioPlayer extends LinkPreviewType
     public function getWidth(): int
     {
         return $this->width;
+    }
+
+    public function setAudio(?Audio $value): static
+    {
+        $this->audio = $value;
+
+        return $this;
     }
 
     public function setDuration(int $value): static
@@ -116,6 +134,7 @@ class LinkPreviewTypeEmbeddedAudioPlayer extends LinkPreviewType
     {
         return [
             '@type'     => static::TYPE_NAME,
+            'audio'     => (null !== $this->audio ? $this->audio->jsonSerialize() : null),
             'duration'  => $this->duration,
             'height'    => $this->height,
             'thumbnail' => (null !== $this->thumbnail ? $this->thumbnail->jsonSerialize() : null),

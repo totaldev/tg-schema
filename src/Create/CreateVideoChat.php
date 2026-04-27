@@ -9,8 +9,7 @@ namespace Totaldev\TgSchema\Create;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats
- * administrator right.
+ * Creates a video chat (a group call bound to a chat); for basic groups, supergroups and channels only; requires can_manage_video_chats administrator right.
  */
 class CreateVideoChat extends TdFunction
 {

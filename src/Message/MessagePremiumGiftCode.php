@@ -27,7 +27,7 @@ class MessagePremiumGiftCode extends MessageContent
          */
         protected string         $code,
         /**
-         * Identifier of a chat or a user that created the gift code; may be null if unknown.
+         * Identifier of a chat or a user who created the gift code; may be null if unknown.
          */
         protected ?MessageSender $creatorId,
         /**
@@ -43,6 +43,10 @@ class MessagePremiumGiftCode extends MessageContent
          */
         protected string         $currency,
         /**
+         * Number of days the Telegram Premium subscription will be active after code activation.
+         */
+        protected int            $dayCount,
+        /**
          * True, if the gift code was created for a giveaway.
          */
         protected bool           $isFromGiveaway,
@@ -51,7 +55,7 @@ class MessagePremiumGiftCode extends MessageContent
          */
         protected bool           $isUnclaimed,
         /**
-         * Number of months the Telegram Premium subscription will be active after code activation.
+         * Number of months the Telegram Premium subscription will be active after code activation; 0 if the number of months isn't integer.
          */
         protected int            $monthCount,
         /**
@@ -75,6 +79,7 @@ class MessagePremiumGiftCode extends MessageContent
             cryptocurrency      : $array['cryptocurrency'],
             cryptocurrencyAmount: $array['cryptocurrency_amount'],
             currency            : $array['currency'],
+            dayCount            : $array['day_count'],
             isFromGiveaway      : $array['is_from_giveaway'],
             isUnclaimed         : $array['is_unclaimed'],
             monthCount          : $array['month_count'],
@@ -111,6 +116,11 @@ class MessagePremiumGiftCode extends MessageContent
     public function getCurrency(): string
     {
         return $this->currency;
+    }
+
+    public function getDayCount(): int
+    {
+        return $this->dayCount;
     }
 
     public function getIsFromGiveaway(): bool
@@ -180,6 +190,13 @@ class MessagePremiumGiftCode extends MessageContent
         return $this;
     }
 
+    public function setDayCount(int $value): static
+    {
+        $this->dayCount = $value;
+
+        return $this;
+    }
+
     public function setIsFromGiveaway(bool $value): static
     {
         $this->isFromGiveaway = $value;
@@ -225,6 +242,7 @@ class MessagePremiumGiftCode extends MessageContent
             'cryptocurrency'        => $this->cryptocurrency,
             'cryptocurrency_amount' => $this->cryptocurrencyAmount,
             'currency'              => $this->currency,
+            'day_count'             => $this->dayCount,
             'is_from_giveaway'      => $this->isFromGiveaway,
             'is_unclaimed'          => $this->isUnclaimed,
             'month_count'           => $this->monthCount,

@@ -22,7 +22,7 @@ class VideoChatStreams extends TdObject
          *
          * @var VideoChatStream[]
          */
-        protected array $streams
+        protected array $streams,
     ) {}
 
     public static function fromArray(array $array): VideoChatStreams

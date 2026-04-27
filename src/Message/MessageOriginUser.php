@@ -15,7 +15,7 @@ class MessageOriginUser extends MessageOrigin
 
     public function __construct(
         /**
-         * Identifier of the user that originally sent the message.
+         * Identifier of the user who originally sent the message.
          */
         protected int $senderUserId
     ) {

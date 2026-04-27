@@ -28,7 +28,7 @@ class AddGiftCollectionGifts extends TdFunction
          */
         protected MessageSender $ownerId,
         /**
-         * Identifier of the gifts to add to the collection; 1-getOption("gift_collection_gift_count_max") identifiers. If after addition the collection has more than getOption("gift_collection_gift_count_max") gifts, then the last one are removed from the collection.
+         * Identifier of the gifts to add to the collection; 1-getOption("gift_collection_size_max") identifiers. If after addition the collection has more than getOption("gift_collection_size_max") gifts, then the last one are removed from the collection.
          *
          * @var string[]
          */

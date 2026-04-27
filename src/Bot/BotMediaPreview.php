@@ -19,7 +19,7 @@ class BotMediaPreview extends TdObject
 
     public function __construct(
         /**
-         * Content of the preview.
+         * Content of the preview; may only be of the types storyContentPhoto, storyContentVideo, or storyContentUnsupported.
          */
         protected StoryContent $content,
         /**

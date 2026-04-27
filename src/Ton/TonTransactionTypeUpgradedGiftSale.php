@@ -10,7 +10,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Upgraded\UpgradedGift;
 
 /**
- * The transaction is a sale of an upgraded gift; for regular users only.
+ * The transaction is a sale of an upgraded gift.
  */
 class TonTransactionTypeUpgradedGiftSale extends TonTransactionType
 {
@@ -22,7 +22,7 @@ class TonTransactionTypeUpgradedGiftSale extends TonTransactionType
          */
         protected int          $commissionPerMille,
         /**
-         * The amount of Toncoins that were received by the Telegram; in the smallest units of the currency.
+         * The Toncoin amount that was received by the Telegram; in the smallest units of the currency.
          */
         protected int          $commissionToncoinAmount,
         /**
@@ -30,9 +30,13 @@ class TonTransactionTypeUpgradedGiftSale extends TonTransactionType
          */
         protected UpgradedGift $gift,
         /**
-         * Identifier of the user that bought the gift.
+         * Identifier of the user who bought the gift.
          */
         protected int          $userId,
+        /**
+         * True, if the gift was sold through a purchase offer.
+         */
+        protected bool         $viaOffer,
     ) {
         parent::__construct();
     }
@@ -44,6 +48,7 @@ class TonTransactionTypeUpgradedGiftSale extends TonTransactionType
             commissionToncoinAmount: $array['commission_toncoin_amount'],
             gift                   : TdSchemaRegistry::fromArray($array['gift']),
             userId                 : $array['user_id'],
+            viaOffer               : $array['via_offer'],
         );
     }
 
@@ -65,6 +70,11 @@ class TonTransactionTypeUpgradedGiftSale extends TonTransactionType
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function getViaOffer(): bool
+    {
+        return $this->viaOffer;
     }
 
     public function setCommissionPerMille(int $value): static
@@ -95,6 +105,13 @@ class TonTransactionTypeUpgradedGiftSale extends TonTransactionType
         return $this;
     }
 
+    public function setViaOffer(bool $value): static
+    {
+        $this->viaOffer = $value;
+
+        return $this;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -103,6 +120,7 @@ class TonTransactionTypeUpgradedGiftSale extends TonTransactionType
             'commission_toncoin_amount' => $this->commissionToncoinAmount,
             'gift'                      => $this->gift->jsonSerialize(),
             'user_id'                   => $this->userId,
+            'via_offer'                 => $this->viaOffer,
         ];
     }
 }

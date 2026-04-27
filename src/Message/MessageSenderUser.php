@@ -15,7 +15,7 @@ class MessageSenderUser extends MessageSender
 
     public function __construct(
         /**
-         * Identifier of the user that sent the message.
+         * Identifier of the user who sent the message.
          */
         protected int $userId
     ) {

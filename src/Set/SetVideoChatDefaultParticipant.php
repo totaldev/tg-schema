@@ -23,7 +23,7 @@ class SetVideoChatDefaultParticipant extends TdFunction
          */
         protected int           $chatId,
         /**
-         * Default group call participant identifier to join the video chats.
+         * Default group call participant identifier to join the video chats in the chat.
          */
         protected MessageSender $defaultParticipantId,
     ) {}

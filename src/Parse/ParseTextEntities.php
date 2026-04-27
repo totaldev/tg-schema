@@ -11,8 +11,8 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Text\TextParseMode;
 
 /**
- * Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl and MentionName entities
- * from a marked-up text. Can be called synchronously.
+ * Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl, MentionName, and
+ * DateTime entities from a marked-up text. Can be called synchronously.
  */
 class ParseTextEntities extends TdFunction
 {

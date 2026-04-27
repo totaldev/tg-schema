@@ -7,6 +7,7 @@
 namespace Totaldev\TgSchema\Send;
 
 use Totaldev\TgSchema\Call\CallProblem;
+use Totaldev\TgSchema\Input\InputCall;
 use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
@@ -21,34 +22,34 @@ class SendCallRating extends TdFunction
         /**
          * Call identifier.
          */
-        protected int    $callId,
+        protected InputCall $callId,
         /**
          * An optional user comment if the rating is less than 5.
          */
-        protected string $comment,
+        protected string    $comment,
         /**
          * List of the exact types of problems with the call, specified by the user.
          *
          * @var CallProblem[]
          */
-        protected array  $problems,
+        protected array     $problems,
         /**
          * Call rating; 1-5.
          */
-        protected int    $rating,
+        protected int       $rating,
     ) {}
 
     public static function fromArray(array $array): SendCallRating
     {
         return new static(
-            callId  : $array['call_id'],
+            callId  : TdSchemaRegistry::fromArray($array['call_id']),
             comment : $array['comment'],
             problems: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['problems']),
             rating  : $array['rating'],
         );
     }
 
-    public function getCallId(): int
+    public function getCallId(): InputCall
     {
         return $this->callId;
     }
@@ -68,7 +69,7 @@ class SendCallRating extends TdFunction
         return $this->rating;
     }
 
-    public function setCallId(int $value): static
+    public function setCallId(InputCall $value): static
     {
         $this->callId = $value;
 
@@ -100,7 +101,7 @@ class SendCallRating extends TdFunction
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'call_id'  => $this->callId,
+            'call_id'  => $this->callId->jsonSerialize(),
             'comment'  => $this->comment,
             'problems' => array_map(static fn($x) => $x->jsonSerialize(), $this->problems),
             'rating'   => $this->rating,

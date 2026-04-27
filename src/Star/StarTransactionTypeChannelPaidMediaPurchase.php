@@ -10,7 +10,7 @@ use Totaldev\TgSchema\Paid\PaidMedia;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The transaction is a purchase of paid media from a channel by the current user; for regular users only.
+ * The transaction is a purchase of paid media from a channel by the current user; relevant for regular users only.
  */
 class StarTransactionTypeChannelPaidMediaPurchase extends StarTransactionType
 {
@@ -28,7 +28,7 @@ class StarTransactionTypeChannelPaidMediaPurchase extends StarTransactionType
          */
         protected array $media,
         /**
-         * Identifier of the corresponding message with paid media; can be 0 or an identifier of a deleted message.
+         * Identifier of the corresponding message with paid media; may be 0 or an identifier of a deleted message.
          */
         protected int   $messageId,
     ) {

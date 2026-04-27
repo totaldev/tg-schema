@@ -10,7 +10,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Upgraded\UpgradedGift;
 
 /**
- * The transaction is an upgrade of a gift; for regular users only.
+ * The transaction is an upgrade of a gift; relevant for regular users only.
  */
 class StarTransactionTypeGiftUpgrade extends StarTransactionType
 {
@@ -22,7 +22,7 @@ class StarTransactionTypeGiftUpgrade extends StarTransactionType
          */
         protected UpgradedGift $gift,
         /**
-         * Identifier of the user that initially sent the gift.
+         * Identifier of the user who initially sent the gift.
          */
         protected int          $userId,
     ) {

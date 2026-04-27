@@ -7,6 +7,7 @@
 namespace Totaldev\TgSchema\Update;
 
 use Totaldev\TgSchema\Chat\ChatNotificationSettings;
+use Totaldev\TgSchema\Draft\DraftMessage;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
@@ -21,6 +22,10 @@ class UpdateForumTopic extends Update
          * Chat identifier.
          */
         protected int                      $chatId,
+        /**
+         * A draft of a message in the topic; may be null if none.
+         */
+        protected ?DraftMessage            $draftMessage,
         /**
          * Forum topic identifier of the topic.
          */
@@ -46,6 +51,10 @@ class UpdateForumTopic extends Update
          */
         protected int                      $unreadMentionCount,
         /**
+         * Number of messages with unread poll votes in the topic.
+         */
+        protected int                      $unreadPollVoteCount,
+        /**
          * Number of messages with unread reactions in the topic.
          */
         protected int                      $unreadReactionCount,
@@ -57,12 +66,14 @@ class UpdateForumTopic extends Update
     {
         return new static(
             chatId                 : $array['chat_id'],
+            draftMessage           : (isset($array['draft_message']) ? TdSchemaRegistry::fromArray($array['draft_message']) : null),
             forumTopicId           : $array['forum_topic_id'],
             isPinned               : $array['is_pinned'],
             lastReadInboxMessageId : $array['last_read_inbox_message_id'],
             lastReadOutboxMessageId: $array['last_read_outbox_message_id'],
             notificationSettings   : TdSchemaRegistry::fromArray($array['notification_settings']),
             unreadMentionCount     : $array['unread_mention_count'],
+            unreadPollVoteCount    : $array['unread_poll_vote_count'],
             unreadReactionCount    : $array['unread_reaction_count'],
         );
     }
@@ -70,6 +81,11 @@ class UpdateForumTopic extends Update
     public function getChatId(): int
     {
         return $this->chatId;
+    }
+
+    public function getDraftMessage(): ?DraftMessage
+    {
+        return $this->draftMessage;
     }
 
     public function getForumTopicId(): int
@@ -102,6 +118,11 @@ class UpdateForumTopic extends Update
         return $this->unreadMentionCount;
     }
 
+    public function getUnreadPollVoteCount(): int
+    {
+        return $this->unreadPollVoteCount;
+    }
+
     public function getUnreadReactionCount(): int
     {
         return $this->unreadReactionCount;
@@ -110,6 +131,13 @@ class UpdateForumTopic extends Update
     public function setChatId(int $value): static
     {
         $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setDraftMessage(?DraftMessage $value): static
+    {
+        $this->draftMessage = $value;
 
         return $this;
     }
@@ -156,6 +184,13 @@ class UpdateForumTopic extends Update
         return $this;
     }
 
+    public function setUnreadPollVoteCount(int $value): static
+    {
+        $this->unreadPollVoteCount = $value;
+
+        return $this;
+    }
+
     public function setUnreadReactionCount(int $value): static
     {
         $this->unreadReactionCount = $value;
@@ -168,12 +203,14 @@ class UpdateForumTopic extends Update
         return [
             '@type'                       => static::TYPE_NAME,
             'chat_id'                     => $this->chatId,
+            'draft_message'               => (null !== $this->draftMessage ? $this->draftMessage->jsonSerialize() : null),
             'forum_topic_id'              => $this->forumTopicId,
             'is_pinned'                   => $this->isPinned,
             'last_read_inbox_message_id'  => $this->lastReadInboxMessageId,
             'last_read_outbox_message_id' => $this->lastReadOutboxMessageId,
             'notification_settings'       => $this->notificationSettings->jsonSerialize(),
             'unread_mention_count'        => $this->unreadMentionCount,
+            'unread_poll_vote_count'      => $this->unreadPollVoteCount,
             'unread_reaction_count'       => $this->unreadReactionCount,
         ];
     }

@@ -41,7 +41,7 @@ class Checklist extends TdObject
          */
         protected array         $tasks,
         /**
-         * Title of the checklist; may contain only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities.
+         * Title of the checklist; may contain only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities.
          */
         protected FormattedText $title,
     ) {}

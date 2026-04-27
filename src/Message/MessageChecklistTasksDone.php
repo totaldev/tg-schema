@@ -15,7 +15,7 @@ class MessageChecklistTasksDone extends MessageContent
 
     public function __construct(
         /**
-         * Identifier of the message with the checklist; can be 0 if the message was deleted.
+         * Identifier of the message with the checklist; may be 0 or an identifier of a deleted message.
          */
         protected int   $checklistMessageId,
         /**

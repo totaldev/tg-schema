@@ -27,7 +27,7 @@ class AffiliateInfo extends TdObject
          */
         protected int        $commissionPerMille,
         /**
-         * The amount of Telegram Stars that were received by the affiliate; can be negative for refunds.
+         * The Telegram Star amount that was received by the affiliate; can be negative for refunds.
          */
         protected StarAmount $starAmount,
     ) {}

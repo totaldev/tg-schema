@@ -15,7 +15,7 @@ class GiftResalePriceTon extends GiftResalePrice
 
     public function __construct(
         /**
-         * The amount of 1/100 of Toncoin expected to be paid for the gift. Must be in range getOption("gift_resale_toncoin_cent_count_min")-getOption("gift_resale_toncoin_cent_count_max").
+         * The amount of 1/100 of Toncoin expected to be paid for the gift. Must be in the range getOption("gift_resale_toncoin_cent_count_min")-getOption("gift_resale_toncoin_cent_count_max").
          */
         protected int $toncoinCentCount
     ) {

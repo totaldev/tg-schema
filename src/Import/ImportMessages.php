@@ -11,7 +11,7 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Imports messages exported from another app.
+ * Imports messages exported from another application.
  */
 class ImportMessages extends TdFunction
 {

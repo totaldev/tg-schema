@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Get;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns a user that can be contacted to get support.
+ * Returns a user who can be contacted to get support.
  */
 class GetSupportUser extends TdFunction
 {

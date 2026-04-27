@@ -33,7 +33,7 @@ class InputChecklist extends TdObject
          */
         protected array         $tasks,
         /**
-         * Title of the checklist; 1-getOption("checklist_title_length_max") characters. May contain only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities.
+         * Title of the checklist; 1-getOption("checklist_title_length_max") characters. May contain only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities.
          */
         protected FormattedText $title,
     ) {}

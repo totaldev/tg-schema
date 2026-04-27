@@ -30,7 +30,7 @@ class SearchPublicPosts extends TdFunction
          */
         protected string $query,
         /**
-         * The amount of Telegram Stars the user agreed to pay for the search; pass 0 for free searches.
+         * The Telegram Star amount the user agreed to pay for the search; pass 0 for free searches.
          */
         protected int    $starCount,
     ) {}

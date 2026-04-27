@@ -25,6 +25,10 @@ class StoryInfo extends TdObject
          */
         protected bool $isForCloseFriends,
         /**
+         * True, if the story is a live story.
+         */
+        protected bool $isLive,
+        /**
          * Unique story identifier among stories of the chat.
          */
         protected int  $storyId,
@@ -35,6 +39,7 @@ class StoryInfo extends TdObject
         return new static(
             date             : $array['date'],
             isForCloseFriends: $array['is_for_close_friends'],
+            isLive           : $array['is_live'],
             storyId          : $array['story_id'],
         );
     }
@@ -47,6 +52,11 @@ class StoryInfo extends TdObject
     public function getIsForCloseFriends(): bool
     {
         return $this->isForCloseFriends;
+    }
+
+    public function getIsLive(): bool
+    {
+        return $this->isLive;
     }
 
     public function getStoryId(): int
@@ -68,6 +78,13 @@ class StoryInfo extends TdObject
         return $this;
     }
 
+    public function setIsLive(bool $value): static
+    {
+        $this->isLive = $value;
+
+        return $this;
+    }
+
     public function setStoryId(int $value): static
     {
         $this->storyId = $value;
@@ -81,6 +98,7 @@ class StoryInfo extends TdObject
             '@type'                => static::TYPE_NAME,
             'date'                 => $this->date,
             'is_for_close_friends' => $this->isForCloseFriends,
+            'is_live'              => $this->isLive,
             'story_id'             => $this->storyId,
         ];
     }

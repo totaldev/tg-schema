@@ -11,7 +11,7 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Toggles whether a participant of an active group call is muted, unmuted, or allowed to unmute themselves.
+ * Toggles whether a participant of an active group call is muted, unmuted, or allowed to unmute themselves; not supported for live stories.
  */
 class ToggleGroupCallParticipantIsMuted extends TdFunction
 {

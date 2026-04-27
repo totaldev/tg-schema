@@ -10,7 +10,7 @@ use Totaldev\TgSchema\Revenue\RevenueWithdrawalState;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The transaction is a withdrawal of earned Telegram Stars to Fragment; for regular users, bots, supergroup and channel chats only.
+ * The transaction is a withdrawal of earned Telegram Stars to Fragment; relevant for regular users, bots, supergroup and channel chats only.
  */
 class StarTransactionTypeFragmentWithdrawal extends StarTransactionType
 {

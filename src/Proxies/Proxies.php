@@ -23,7 +23,7 @@ class Proxies extends TdObject
          *
          * @var Proxy[]
          */
-        protected array $proxies
+        protected array $proxies,
     ) {}
 
     public static function fromArray(array $array): Proxies

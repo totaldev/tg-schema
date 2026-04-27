@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Account;
 use Totaldev\TgSchema\TdObject;
 
 /**
- * Contains basic information about another user that started a chat with the current user.
+ * Contains basic information about another user who started a chat with the current user.
  */
 class AccountInfo extends TdObject
 {

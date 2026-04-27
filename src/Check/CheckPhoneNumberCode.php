@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Check;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Check the authentication code and completes the request for which the code was sent if appropriate.
+ * Checks the authentication code and completes the request for which the code was sent if appropriate.
  */
 class CheckPhoneNumberCode extends TdFunction
 {

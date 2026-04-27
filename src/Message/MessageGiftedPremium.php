@@ -35,15 +35,19 @@ class MessageGiftedPremium extends MessageContent
          */
         protected string        $currency,
         /**
-         * The identifier of a user that gifted Telegram Premium; 0 if the gift was anonymous or is outgoing.
+         * Number of days the Telegram Premium subscription will be active.
+         */
+        protected int           $dayCount,
+        /**
+         * The identifier of a user who gifted Telegram Premium; 0 if the gift was anonymous or is outgoing.
          */
         protected int           $gifterUserId,
         /**
-         * Number of months the Telegram Premium subscription will be active.
+         * Number of months the Telegram Premium subscription will be active after code activation; 0 if the number of months isn't integer.
          */
         protected int           $monthCount,
         /**
-         * The identifier of a user that received Telegram Premium; 0 if the gift is incoming.
+         * The identifier of a user who received Telegram Premium; 0 if the gift is incoming.
          */
         protected int           $receiverUserId,
         /**
@@ -65,6 +69,7 @@ class MessageGiftedPremium extends MessageContent
             cryptocurrency      : $array['cryptocurrency'],
             cryptocurrencyAmount: $array['cryptocurrency_amount'],
             currency            : $array['currency'],
+            dayCount            : $array['day_count'],
             gifterUserId        : $array['gifter_user_id'],
             monthCount          : $array['month_count'],
             receiverUserId      : $array['receiver_user_id'],
@@ -91,6 +96,11 @@ class MessageGiftedPremium extends MessageContent
     public function getCurrency(): string
     {
         return $this->currency;
+    }
+
+    public function getDayCount(): int
+    {
+        return $this->dayCount;
     }
 
     public function getGifterUserId(): int
@@ -146,6 +156,13 @@ class MessageGiftedPremium extends MessageContent
         return $this;
     }
 
+    public function setDayCount(int $value): static
+    {
+        $this->dayCount = $value;
+
+        return $this;
+    }
+
     public function setGifterUserId(int $value): static
     {
         $this->gifterUserId = $value;
@@ -189,6 +206,7 @@ class MessageGiftedPremium extends MessageContent
             'cryptocurrency'        => $this->cryptocurrency,
             'cryptocurrency_amount' => $this->cryptocurrencyAmount,
             'currency'              => $this->currency,
+            'day_count'             => $this->dayCount,
             'gifter_user_id'        => $this->gifterUserId,
             'month_count'           => $this->monthCount,
             'receiver_user_id'      => $this->receiverUserId,

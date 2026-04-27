@@ -7,7 +7,7 @@
 namespace Totaldev\TgSchema\Star;
 
 /**
- * The transaction is a payment for a suggested post; for regular users only.
+ * The transaction is a payment for a suggested post; relevant for regular users only.
  */
 class StarTransactionTypeSuggestedPostPaymentSend extends StarTransactionType
 {

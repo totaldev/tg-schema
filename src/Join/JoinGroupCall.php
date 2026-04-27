@@ -12,7 +12,7 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Joins a group call that is not bound to a chat.
+ * Joins a regular group call that is not bound to a chat.
  */
 class JoinGroupCall extends TdFunction
 {

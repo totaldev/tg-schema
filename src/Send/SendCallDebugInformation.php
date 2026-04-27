@@ -6,7 +6,9 @@
 
 namespace Totaldev\TgSchema\Send;
 
+use Totaldev\TgSchema\Input\InputCall;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Sends debug information for a call to Telegram servers.
@@ -19,22 +21,22 @@ class SendCallDebugInformation extends TdFunction
         /**
          * Call identifier.
          */
-        protected int    $callId,
+        protected InputCall $callId,
         /**
          * Debug information in application-specific format.
          */
-        protected string $debugInformation,
+        protected string    $debugInformation,
     ) {}
 
     public static function fromArray(array $array): SendCallDebugInformation
     {
         return new static(
-            callId          : $array['call_id'],
+            callId          : TdSchemaRegistry::fromArray($array['call_id']),
             debugInformation: $array['debug_information'],
         );
     }
 
-    public function getCallId(): int
+    public function getCallId(): InputCall
     {
         return $this->callId;
     }
@@ -44,7 +46,7 @@ class SendCallDebugInformation extends TdFunction
         return $this->debugInformation;
     }
 
-    public function setCallId(int $value): static
+    public function setCallId(InputCall $value): static
     {
         $this->callId = $value;
 
@@ -62,7 +64,7 @@ class SendCallDebugInformation extends TdFunction
     {
         return [
             '@type'             => static::TYPE_NAME,
-            'call_id'           => $this->callId,
+            'call_id'           => $this->callId->jsonSerialize(),
             'debug_information' => $this->debugInformation,
         ];
     }

@@ -29,6 +29,10 @@ class InputMessageReplyToExternalMessage extends InputMessageReplyTo
          */
         protected int             $messageId,
         /**
+         * Identifier of the poll option in the message to be replied; pass an empty string if none.
+         */
+        protected string          $pollOptionId,
+        /**
          * Quote from the message to be replied; pass null if none.
          */
         protected ?InputTextQuote $quote = null,
@@ -42,6 +46,7 @@ class InputMessageReplyToExternalMessage extends InputMessageReplyTo
             chatId         : $array['chat_id'],
             checklistTaskId: $array['checklist_task_id'],
             messageId      : $array['message_id'],
+            pollOptionId   : $array['poll_option_id'],
             quote          : (isset($array['quote']) ? TdSchemaRegistry::fromArray($array['quote']) : null),
         );
     }
@@ -59,6 +64,11 @@ class InputMessageReplyToExternalMessage extends InputMessageReplyTo
     public function getMessageId(): int
     {
         return $this->messageId;
+    }
+
+    public function getPollOptionId(): string
+    {
+        return $this->pollOptionId;
     }
 
     public function getQuote(): ?InputTextQuote
@@ -87,6 +97,13 @@ class InputMessageReplyToExternalMessage extends InputMessageReplyTo
         return $this;
     }
 
+    public function setPollOptionId(string $value): static
+    {
+        $this->pollOptionId = $value;
+
+        return $this;
+    }
+
     public function setQuote(?InputTextQuote $value): static
     {
         $this->quote = $value;
@@ -101,6 +118,7 @@ class InputMessageReplyToExternalMessage extends InputMessageReplyTo
             'chat_id'           => $this->chatId,
             'checklist_task_id' => $this->checklistTaskId,
             'message_id'        => $this->messageId,
+            'poll_option_id'    => $this->pollOptionId,
             'quote'             => (null !== $this->quote ? $this->quote->jsonSerialize() : null),
         ];
     }

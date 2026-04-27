@@ -26,6 +26,14 @@ class SearchGiftsForResale extends TdFunction
          */
         protected array              $attributes,
         /**
+         * Pass true to get only gifts suitable for crafting.
+         */
+        protected bool               $forCrafting,
+        /**
+         * Pass true to get only gifts that can be bought using Telegram Stars.
+         */
+        protected bool               $forStars,
+        /**
          * Identifier of the regular gift that was upgraded to a unique gift.
          */
         protected int                $giftId,
@@ -46,17 +54,29 @@ class SearchGiftsForResale extends TdFunction
     public static function fromArray(array $array): SearchGiftsForResale
     {
         return new static(
-            attributes: array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['attributes']),
-            giftId    : $array['gift_id'],
-            limit     : $array['limit'],
-            offset    : $array['offset'],
-            order     : TdSchemaRegistry::fromArray($array['order']),
+            attributes : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['attributes']),
+            forCrafting: $array['for_crafting'],
+            forStars   : $array['for_stars'],
+            giftId     : $array['gift_id'],
+            limit      : $array['limit'],
+            offset     : $array['offset'],
+            order      : TdSchemaRegistry::fromArray($array['order']),
         );
     }
 
     public function getAttributes(): array
     {
         return $this->attributes;
+    }
+
+    public function getForCrafting(): bool
+    {
+        return $this->forCrafting;
+    }
+
+    public function getForStars(): bool
+    {
+        return $this->forStars;
     }
 
     public function getGiftId(): int
@@ -82,6 +102,20 @@ class SearchGiftsForResale extends TdFunction
     public function setAttributes(array $value): static
     {
         $this->attributes = $value;
+
+        return $this;
+    }
+
+    public function setForCrafting(bool $value): static
+    {
+        $this->forCrafting = $value;
+
+        return $this;
+    }
+
+    public function setForStars(bool $value): static
+    {
+        $this->forStars = $value;
 
         return $this;
     }
@@ -117,12 +151,14 @@ class SearchGiftsForResale extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'      => static::TYPE_NAME,
-            'attributes' => array_map(static fn($x) => $x->jsonSerialize(), $this->attributes),
-            'gift_id'    => $this->giftId,
-            'limit'      => $this->limit,
-            'offset'     => $this->offset,
-            'order'      => $this->order->jsonSerialize(),
+            '@type'        => static::TYPE_NAME,
+            'attributes'   => array_map(static fn($x) => $x->jsonSerialize(), $this->attributes),
+            'for_crafting' => $this->forCrafting,
+            'for_stars'    => $this->forStars,
+            'gift_id'      => $this->giftId,
+            'limit'        => $this->limit,
+            'offset'       => $this->offset,
+            'order'        => $this->order->jsonSerialize(),
         ];
     }
 }

@@ -18,11 +18,11 @@ class MessageGiftedTon extends MessageContent
 
     public function __construct(
         /**
-         * The identifier of a user that gifted Toncoins; 0 if the gift was anonymous or is outgoing.
+         * The identifier of a user who gifted Toncoins; 0 if the gift was anonymous or is outgoing.
          */
         protected int      $gifterUserId,
         /**
-         * The identifier of a user that received Toncoins; 0 if the gift is incoming.
+         * The identifier of a user who received Toncoins; 0 if the gift is incoming.
          */
         protected int      $receiverUserId,
         /**
@@ -30,7 +30,7 @@ class MessageGiftedTon extends MessageContent
          */
         protected ?Sticker $sticker,
         /**
-         * The received amount of Toncoins, in the smallest units of the cryptocurrency.
+         * The received Toncoin amount, in the smallest units of the cryptocurrency.
          */
         protected int      $tonAmount,
         /**

@@ -7,8 +7,8 @@
 namespace Totaldev\TgSchema\Search;
 
 /**
- * Returns only messages with unread reactions for the current user. When using this filter the results can't be additionally filtered by a query, a message
- * thread or by the sending user.
+ * Returns only messages with unread reactions for the current user. When using this filter the results can't be additionally filtered by a query or by the
+ * sending user.
  */
 class SearchMessagesFilterUnreadReaction extends SearchMessagesFilter
 {

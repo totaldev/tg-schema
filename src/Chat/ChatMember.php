@@ -19,7 +19,7 @@ class ChatMember extends TdObject
 
     public function __construct(
         /**
-         * Identifier of a user that invited/promoted/banned this member in the chat; 0 if unknown.
+         * Identifier of a user who invited/promoted/banned this member in the chat; 0 if unknown.
          */
         protected int              $inviterUserId,
         /**
@@ -34,6 +34,10 @@ class ChatMember extends TdObject
          * Status of the member in the chat.
          */
         protected ChatMemberStatus $status,
+        /**
+         * Tag of the chat member or its custom title if the member is an administrator of the chat; 0-16 characters without emoji; applicable to basic groups and supergroups only.
+         */
+        protected string           $tag,
     ) {}
 
     public static function fromArray(array $array): ChatMember
@@ -43,6 +47,7 @@ class ChatMember extends TdObject
             joinedChatDate: $array['joined_chat_date'],
             memberId      : TdSchemaRegistry::fromArray($array['member_id']),
             status        : TdSchemaRegistry::fromArray($array['status']),
+            tag           : $array['tag'],
         );
     }
 
@@ -64,6 +69,11 @@ class ChatMember extends TdObject
     public function getStatus(): ChatMemberStatus
     {
         return $this->status;
+    }
+
+    public function getTag(): string
+    {
+        return $this->tag;
     }
 
     public function setInviterUserId(int $value): static
@@ -94,6 +104,13 @@ class ChatMember extends TdObject
         return $this;
     }
 
+    public function setTag(string $value): static
+    {
+        $this->tag = $value;
+
+        return $this;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -102,6 +119,7 @@ class ChatMember extends TdObject
             'joined_chat_date' => $this->joinedChatDate,
             'member_id'        => $this->memberId->jsonSerialize(),
             'status'           => $this->status->jsonSerialize(),
+            'tag'              => $this->tag,
         ];
     }
 }

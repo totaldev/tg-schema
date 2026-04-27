@@ -35,6 +35,10 @@ class ReceivedGift extends TdObject
          */
         protected array          $collectionIds,
         /**
+         * Point in time (Unix timestamp) when the gift can be used to craft another gift can be in the past; only for the receiver of the gift.
+         */
+        protected int            $craftDate,
+        /**
          * Point in time (Unix timestamp) when the gift was sent.
          */
         protected int            $date,
@@ -103,6 +107,10 @@ class ReceivedGift extends TdObject
          */
         protected int            $transferStarCount,
         /**
+         * Unique number of the gift among gifts upgraded from the same gift after upgrade; 0 if yet unassigned.
+         */
+        protected int            $uniqueGiftNumber,
+        /**
          * True, if the gift was refunded and isn't available anymore.
          */
         protected bool           $wasRefunded,
@@ -114,6 +122,7 @@ class ReceivedGift extends TdObject
             canBeTransferred            : $array['can_be_transferred'],
             canBeUpgraded               : $array['can_be_upgraded'],
             collectionIds               : $array['collection_ids'],
+            craftDate                   : $array['craft_date'],
             date                        : $array['date'],
             dropOriginalDetailsStarCount: $array['drop_original_details_star_count'],
             exportDate                  : $array['export_date'],
@@ -131,6 +140,7 @@ class ReceivedGift extends TdObject
             senderId                    : (isset($array['sender_id']) ? TdSchemaRegistry::fromArray($array['sender_id']) : null),
             text                        : TdSchemaRegistry::fromArray($array['text']),
             transferStarCount           : $array['transfer_star_count'],
+            uniqueGiftNumber            : $array['unique_gift_number'],
             wasRefunded                 : $array['was_refunded'],
         );
     }
@@ -148,6 +158,11 @@ class ReceivedGift extends TdObject
     public function getCollectionIds(): array
     {
         return $this->collectionIds;
+    }
+
+    public function getCraftDate(): int
+    {
+        return $this->craftDate;
     }
 
     public function getDate(): int
@@ -235,6 +250,11 @@ class ReceivedGift extends TdObject
         return $this->transferStarCount;
     }
 
+    public function getUniqueGiftNumber(): int
+    {
+        return $this->uniqueGiftNumber;
+    }
+
     public function getWasRefunded(): bool
     {
         return $this->wasRefunded;
@@ -257,6 +277,13 @@ class ReceivedGift extends TdObject
     public function setCollectionIds(array $value): static
     {
         $this->collectionIds = $value;
+
+        return $this;
+    }
+
+    public function setCraftDate(int $value): static
+    {
+        $this->craftDate = $value;
 
         return $this;
     }
@@ -380,6 +407,13 @@ class ReceivedGift extends TdObject
         return $this;
     }
 
+    public function setUniqueGiftNumber(int $value): static
+    {
+        $this->uniqueGiftNumber = $value;
+
+        return $this;
+    }
+
     public function setWasRefunded(bool $value): static
     {
         $this->wasRefunded = $value;
@@ -394,6 +428,7 @@ class ReceivedGift extends TdObject
             'can_be_transferred'               => $this->canBeTransferred,
             'can_be_upgraded'                  => $this->canBeUpgraded,
             'collection_ids'                   => $this->collectionIds,
+            'craft_date'                       => $this->craftDate,
             'date'                             => $this->date,
             'drop_original_details_star_count' => $this->dropOriginalDetailsStarCount,
             'export_date'                      => $this->exportDate,
@@ -411,6 +446,7 @@ class ReceivedGift extends TdObject
             'sender_id'                        => (null !== $this->senderId ? $this->senderId->jsonSerialize() : null),
             'text'                             => $this->text->jsonSerialize(),
             'transfer_star_count'              => $this->transferStarCount,
+            'unique_gift_number'               => $this->uniqueGiftNumber,
             'was_refunded'                     => $this->wasRefunded,
         ];
     }

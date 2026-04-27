@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Toggle;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Pauses or unpauses screen sharing in a joined group call.
+ * Pauses or unpauses screen sharing in a joined group call; not supported in live stories.
  */
 class ToggleGroupCallScreenSharingIsPaused extends TdFunction
 {

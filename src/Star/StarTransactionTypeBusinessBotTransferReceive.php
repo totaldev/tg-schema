@@ -7,7 +7,7 @@
 namespace Totaldev\TgSchema\Star;
 
 /**
- * The transaction is a transfer of Telegram Stars from a business account; for bots only.
+ * The transaction is a transfer of Telegram Stars from a business account; relevant for bots only.
  */
 class StarTransactionTypeBusinessBotTransferReceive extends StarTransactionType
 {
@@ -15,7 +15,7 @@ class StarTransactionTypeBusinessBotTransferReceive extends StarTransactionType
 
     public function __construct(
         /**
-         * Identifier of the user that sent Telegram Stars.
+         * Identifier of the user who sent Telegram Stars.
          */
         protected int $userId
     ) {

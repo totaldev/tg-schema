@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\End;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Ends screen sharing in a joined group call.
+ * Ends screen sharing in a joined group call; not supported in live stories.
  */
 class EndGroupCallScreenSharing extends TdFunction
 {

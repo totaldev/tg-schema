@@ -10,7 +10,7 @@ use Totaldev\TgSchema\TdFunction;
 
 /**
  * Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. Use the method
- * getExternalLinkInfo to find whether a prior user confirmation is needed.
+ * getExternalLinkInfo to find whether a prior user confirmation is needed. May return an empty link if just a toast about successful login has to be shown.
  */
 class GetExternalLink extends TdFunction
 {
@@ -18,7 +18,7 @@ class GetExternalLink extends TdFunction
 
     public function __construct(
         /**
-         * Pass true if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages.
+         * Pass true if the current user allowed the bot that was returned in getExternalLinkInfo, to send them messages.
          */
         protected bool   $allowWriteAccess,
         /**

@@ -29,6 +29,10 @@ class ChatPermissions extends TdObject
          */
         protected bool $canCreateTopics,
         /**
+         * True, if the user may change the tag of self.
+         */
+        protected bool $canEditTag,
+        /**
          * True, if the user can invite new users to the chat.
          */
         protected bool $canInviteUsers,
@@ -80,6 +84,7 @@ class ChatPermissions extends TdObject
             canAddLinkPreviews  : $array['can_add_link_previews'],
             canChangeInfo       : $array['can_change_info'],
             canCreateTopics     : $array['can_create_topics'],
+            canEditTag          : $array['can_edit_tag'],
             canInviteUsers      : $array['can_invite_users'],
             canPinMessages      : $array['can_pin_messages'],
             canSendAudios       : $array['can_send_audios'],
@@ -107,6 +112,11 @@ class ChatPermissions extends TdObject
     public function getCanCreateTopics(): bool
     {
         return $this->canCreateTopics;
+    }
+
+    public function getCanEditTag(): bool
+    {
+        return $this->canEditTag;
     }
 
     public function getCanInviteUsers(): bool
@@ -181,6 +191,13 @@ class ChatPermissions extends TdObject
     public function setCanCreateTopics(bool $value): static
     {
         $this->canCreateTopics = $value;
+
+        return $this;
+    }
+
+    public function setCanEditTag(bool $value): static
+    {
+        $this->canEditTag = $value;
 
         return $this;
     }
@@ -269,6 +286,7 @@ class ChatPermissions extends TdObject
             'can_add_link_previews'   => $this->canAddLinkPreviews,
             'can_change_info'         => $this->canChangeInfo,
             'can_create_topics'       => $this->canCreateTopics,
+            'can_edit_tag'            => $this->canEditTag,
             'can_invite_users'        => $this->canInviteUsers,
             'can_pin_messages'        => $this->canPinMessages,
             'can_send_audios'         => $this->canSendAudios,

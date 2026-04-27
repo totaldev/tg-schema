@@ -10,7 +10,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Upgraded\UpgradedGift;
 
 /**
- * The transaction is a purchase of an upgraded gift for some user or channel; for regular users only.
+ * The transaction is a purchase of an upgraded gift for some user or channel.
  */
 class TonTransactionTypeUpgradedGiftPurchase extends TonTransactionType
 {
@@ -22,7 +22,7 @@ class TonTransactionTypeUpgradedGiftPurchase extends TonTransactionType
          */
         protected UpgradedGift $gift,
         /**
-         * Identifier of the user that sold the gift.
+         * Identifier of the user who sold the gift.
          */
         protected int          $userId,
     ) {

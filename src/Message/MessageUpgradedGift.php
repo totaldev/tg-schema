@@ -23,6 +23,10 @@ class MessageUpgradedGift extends MessageContent
          */
         protected bool               $canBeTransferred,
         /**
+         * Point in time (Unix timestamp) when the gift can be used to craft another gift can be in the past; only for the receiver of the gift.
+         */
+        protected int                $craftDate,
+        /**
          * Number of Telegram Stars that must be paid to drop original details of the upgraded gift; 0 if not available; only for the receiver of the gift.
          */
         protected int                $dropOriginalDetailsStarCount,
@@ -78,6 +82,7 @@ class MessageUpgradedGift extends MessageContent
     {
         return new static(
             canBeTransferred            : $array['can_be_transferred'],
+            craftDate                   : $array['craft_date'],
             dropOriginalDetailsStarCount: $array['drop_original_details_star_count'],
             exportDate                  : $array['export_date'],
             gift                        : TdSchemaRegistry::fromArray($array['gift']),
@@ -96,6 +101,11 @@ class MessageUpgradedGift extends MessageContent
     public function getCanBeTransferred(): bool
     {
         return $this->canBeTransferred;
+    }
+
+    public function getCraftDate(): int
+    {
+        return $this->craftDate;
     }
 
     public function getDropOriginalDetailsStarCount(): int
@@ -161,6 +171,13 @@ class MessageUpgradedGift extends MessageContent
     public function setCanBeTransferred(bool $value): static
     {
         $this->canBeTransferred = $value;
+
+        return $this;
+    }
+
+    public function setCraftDate(int $value): static
+    {
+        $this->craftDate = $value;
 
         return $this;
     }
@@ -254,6 +271,7 @@ class MessageUpgradedGift extends MessageContent
         return [
             '@type'                            => static::TYPE_NAME,
             'can_be_transferred'               => $this->canBeTransferred,
+            'craft_date'                       => $this->craftDate,
             'drop_original_details_star_count' => $this->dropOriginalDetailsStarCount,
             'export_date'                      => $this->exportDate,
             'gift'                             => $this->gift->jsonSerialize(),

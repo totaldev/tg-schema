@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Get;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Return emojis matching the keyword. Supported only if the file database is enabled. Order of results is unspecified.
+ * Returns emojis matching the keyword. Supported only if the file database is enabled. Order of results is unspecified.
  */
 class GetKeywordEmojis extends TdFunction
 {

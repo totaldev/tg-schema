@@ -22,7 +22,7 @@ class MessageGiveawayPrizeStars extends MessageContent
          */
         protected int      $boostedChatId,
         /**
-         * Identifier of the message with the giveaway in the boosted chat; can be 0 if the message was deleted.
+         * Identifier of the message with the giveaway in the boosted chat; may be 0 or an identifier of a deleted message.
          */
         protected int      $giveawayMessageId,
         /**

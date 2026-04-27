@@ -56,6 +56,10 @@ class InputMessagePhoto extends InputMessageContent
          * Photo thumbnail to be sent; pass null to skip thumbnail uploading. The thumbnail is sent to the other party only in secret chats.
          */
         protected ?InputThumbnail          $thumbnail = null,
+        /**
+         * Video of the live photo; not supported in secret chats; pass null if the photo isn't a live photo.
+         */
+        protected ?InputFile               $video = null,
     ) {
         parent::__construct();
     }
@@ -71,6 +75,7 @@ class InputMessagePhoto extends InputMessageContent
             selfDestructType     : (isset($array['self_destruct_type']) ? TdSchemaRegistry::fromArray($array['self_destruct_type']) : null),
             showCaptionAboveMedia: $array['show_caption_above_media'],
             thumbnail            : (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
+            video                : (isset($array['video']) ? TdSchemaRegistry::fromArray($array['video']) : null),
             width                : $array['width'],
         );
     }
@@ -113,6 +118,11 @@ class InputMessagePhoto extends InputMessageContent
     public function getThumbnail(): ?InputThumbnail
     {
         return $this->thumbnail;
+    }
+
+    public function getVideo(): ?InputFile
+    {
+        return $this->video;
     }
 
     public function getWidth(): int
@@ -176,6 +186,13 @@ class InputMessagePhoto extends InputMessageContent
         return $this;
     }
 
+    public function setVideo(?InputFile $value): static
+    {
+        $this->video = $value;
+
+        return $this;
+    }
+
     public function setWidth(int $value): static
     {
         $this->width = $value;
@@ -195,6 +212,7 @@ class InputMessagePhoto extends InputMessageContent
             'self_destruct_type'       => (null !== $this->selfDestructType ? $this->selfDestructType->jsonSerialize() : null),
             'show_caption_above_media' => $this->showCaptionAboveMedia,
             'thumbnail'                => (null !== $this->thumbnail ? $this->thumbnail->jsonSerialize() : null),
+            'video'                    => (null !== $this->video ? $this->video->jsonSerialize() : null),
             'width'                    => $this->width,
         ];
     }

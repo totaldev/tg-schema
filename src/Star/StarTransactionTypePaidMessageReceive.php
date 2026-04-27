@@ -10,7 +10,7 @@ use Totaldev\TgSchema\Message\MessageSender;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The transaction is a receiving of a paid message; for regular users, supergroup and channel chats only.
+ * The transaction is a receiving of a paid message; relevant for regular users, supergroup and channel chats only.
  */
 class StarTransactionTypePaidMessageReceive extends StarTransactionType
 {
@@ -22,7 +22,7 @@ class StarTransactionTypePaidMessageReceive extends StarTransactionType
          */
         protected int           $commissionPerMille,
         /**
-         * The amount of Telegram Stars that were received by Telegram; can be negative for refunds.
+         * The Telegram Star amount that was received by Telegram; can be negative for refunds.
          */
         protected StarAmount    $commissionStarAmount,
         /**

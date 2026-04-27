@@ -24,7 +24,7 @@ class MessageSenders extends TdObject
          */
         protected array $senders,
         /**
-         * Approximate total number of messages senders found.
+         * Approximate total number of message senders found.
          */
         protected int   $totalCount,
     ) {}

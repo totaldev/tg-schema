@@ -27,7 +27,7 @@ class BuyGiftUpgrade extends TdFunction
          */
         protected string        $prepaidUpgradeHash,
         /**
-         * The amount of Telegram Stars the user agreed to pay for the upgrade; must be equal to gift.upgrade_star_count.
+         * The Telegram Star amount the user agreed to pay for the upgrade; must be equal to gift.upgrade_star_count.
          */
         protected int           $starCount,
     ) {}

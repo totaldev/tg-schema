@@ -17,6 +17,10 @@ class ChatAdministrator extends TdObject
 
     public function __construct(
         /**
+         * True, if the current user can edit the administrator privileges for the administrator.
+         */
+        protected bool   $canBeEdited,
+        /**
          * Custom title of the administrator.
          */
         protected string $customTitle,
@@ -33,10 +37,16 @@ class ChatAdministrator extends TdObject
     public static function fromArray(array $array): ChatAdministrator
     {
         return new static(
+            canBeEdited: $array['can_be_edited'],
             customTitle: $array['custom_title'],
             isOwner    : $array['is_owner'],
             userId     : $array['user_id'],
         );
+    }
+
+    public function getCanBeEdited(): bool
+    {
+        return $this->canBeEdited;
     }
 
     public function getCustomTitle(): string
@@ -52,6 +62,13 @@ class ChatAdministrator extends TdObject
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setCanBeEdited(bool $value): static
+    {
+        $this->canBeEdited = $value;
+
+        return $this;
     }
 
     public function setCustomTitle(string $value): static
@@ -78,10 +95,11 @@ class ChatAdministrator extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type'        => static::TYPE_NAME,
-            'custom_title' => $this->customTitle,
-            'is_owner'     => $this->isOwner,
-            'user_id'      => $this->userId,
+            '@type'         => static::TYPE_NAME,
+            'can_be_edited' => $this->canBeEdited,
+            'custom_title'  => $this->customTitle,
+            'is_owner'      => $this->isOwner,
+            'user_id'       => $this->userId,
         ];
     }
 }

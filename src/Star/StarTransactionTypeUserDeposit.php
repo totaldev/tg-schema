@@ -10,7 +10,7 @@ use Totaldev\TgSchema\Sticker\Sticker;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The transaction is a deposit of Telegram Stars by another user; for regular users only.
+ * The transaction is a deposit of Telegram Stars by another user; relevant for regular users only.
  */
 class StarTransactionTypeUserDeposit extends StarTransactionType
 {
@@ -22,7 +22,7 @@ class StarTransactionTypeUserDeposit extends StarTransactionType
          */
         protected ?Sticker $sticker,
         /**
-         * Identifier of the user that gifted Telegram Stars; 0 if the user was anonymous.
+         * Identifier of the user who gifted Telegram Stars; 0 if the user was anonymous.
          */
         protected int      $userId,
     ) {

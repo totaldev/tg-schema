@@ -11,7 +11,7 @@ use Totaldev\TgSchema\Paid\PaidMedia;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The transaction is a sale of paid media by the bot or a business account managed by the bot; for bots only.
+ * The transaction is a sale of paid media by the bot or a business account managed by the bot; relevant for bots only.
  */
 class StarTransactionTypeBotPaidMediaSale extends StarTransactionType
 {
@@ -33,7 +33,7 @@ class StarTransactionTypeBotPaidMediaSale extends StarTransactionType
          */
         protected string         $payload,
         /**
-         * Identifier of the user that bought the media.
+         * Identifier of the user who bought the media.
          */
         protected int            $userId,
     ) {

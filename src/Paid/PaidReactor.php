@@ -11,7 +11,7 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about a user that added paid reactions.
+ * Contains information about a user who added paid reactions.
  */
 class PaidReactor extends TdObject
 {

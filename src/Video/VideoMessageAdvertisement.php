@@ -11,7 +11,7 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes an advertisent to be shown while a video from a message is watched.
+ * Describes an advertisement to be shown while a video from a message is watched.
  */
 class VideoMessageAdvertisement extends TdObject
 {

@@ -22,19 +22,19 @@ class SendChatAction extends TdFunction
         /**
          * Unique identifier of business connection on behalf of which to send the request; for bots only.
          */
-        protected string       $businessConnectionId,
+        protected string        $businessConnectionId,
         /**
          * Chat identifier.
          */
-        protected int          $chatId,
-        /**
-         * Identifier of the topic in which the action is performed.
-         */
-        protected MessageTopic $topicId,
+        protected int           $chatId,
         /**
          * The action description; pass null to cancel the currently active action.
          */
-        protected ?ChatAction  $action = null,
+        protected ?ChatAction   $action = null,
+        /**
+         * Identifier of the topic in which the action is performed; pass null if none.
+         */
+        protected ?MessageTopic $topicId = null,
     ) {}
 
     public static function fromArray(array $array): SendChatAction
@@ -43,7 +43,7 @@ class SendChatAction extends TdFunction
             action              : (isset($array['action']) ? TdSchemaRegistry::fromArray($array['action']) : null),
             businessConnectionId: $array['business_connection_id'],
             chatId              : $array['chat_id'],
-            topicId             : TdSchemaRegistry::fromArray($array['topic_id']),
+            topicId             : (isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null),
         );
     }
 
@@ -62,7 +62,7 @@ class SendChatAction extends TdFunction
         return $this->chatId;
     }
 
-    public function getTopicId(): MessageTopic
+    public function getTopicId(): ?MessageTopic
     {
         return $this->topicId;
     }
@@ -88,7 +88,7 @@ class SendChatAction extends TdFunction
         return $this;
     }
 
-    public function setTopicId(MessageTopic $value): static
+    public function setTopicId(?MessageTopic $value): static
     {
         $this->topicId = $value;
 
@@ -102,7 +102,7 @@ class SendChatAction extends TdFunction
             'action'                 => (null !== $this->action ? $this->action->jsonSerialize() : null),
             'business_connection_id' => $this->businessConnectionId,
             'chat_id'                => $this->chatId,
-            'topic_id'               => $this->topicId->jsonSerialize(),
+            'topic_id'               => (null !== $this->topicId ? $this->topicId->jsonSerialize() : null),
         ];
     }
 }

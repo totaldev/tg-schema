@@ -29,7 +29,7 @@ class UpgradeGift extends TdFunction
          */
         protected string $receivedGiftId,
         /**
-         * The amount of Telegram Stars required to pay for the upgrade. It the gift has prepaid_upgrade_star_count > 0, then pass 0, otherwise, pass gift.upgrade_star_count.
+         * The Telegram Star amount required to pay for the upgrade. It the gift has prepaid_upgrade_star_count > 0, then pass 0, otherwise, pass gift.upgrade_star_count.
          */
         protected int    $starCount,
     ) {}

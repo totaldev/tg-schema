@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Built;
 use Totaldev\TgSchema\TdObject;
 
 /**
- * Describes a built-in theme of an official app.
+ * Describes a built-in theme of an official application.
  */
 class BuiltInTheme extends TdObject
 {

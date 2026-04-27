@@ -11,7 +11,7 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Traverse all chats in a chat list and marks all messages in the chats as read.
+ * Traverses all chats in a chat list and marks all messages in the chats as read.
  */
 class ReadChatList extends TdFunction
 {

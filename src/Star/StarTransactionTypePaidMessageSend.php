@@ -7,7 +7,7 @@
 namespace Totaldev\TgSchema\Star;
 
 /**
- * The transaction is a sending of a paid message; for regular users only.
+ * The transaction is a sending of a paid message; relevant for regular users only.
  */
 class StarTransactionTypePaidMessageSend extends StarTransactionType
 {

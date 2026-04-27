@@ -17,6 +17,10 @@ class AcceptedGiftTypes extends TdObject
 
     public function __construct(
         /**
+         * True, if gifts from channels are accepted subject to other restrictions.
+         */
+        protected bool $giftsFromChannels,
+        /**
          * True, if limited regular gifts are accepted.
          */
         protected bool $limitedGifts,
@@ -37,11 +41,17 @@ class AcceptedGiftTypes extends TdObject
     public static function fromArray(array $array): AcceptedGiftTypes
     {
         return new static(
+            giftsFromChannels  : $array['gifts_from_channels'],
             limitedGifts       : $array['limited_gifts'],
             premiumSubscription: $array['premium_subscription'],
             unlimitedGifts     : $array['unlimited_gifts'],
             upgradedGifts      : $array['upgraded_gifts'],
         );
+    }
+
+    public function getGiftsFromChannels(): bool
+    {
+        return $this->giftsFromChannels;
     }
 
     public function getLimitedGifts(): bool
@@ -62,6 +72,13 @@ class AcceptedGiftTypes extends TdObject
     public function getUpgradedGifts(): bool
     {
         return $this->upgradedGifts;
+    }
+
+    public function setGiftsFromChannels(bool $value): static
+    {
+        $this->giftsFromChannels = $value;
+
+        return $this;
     }
 
     public function setLimitedGifts(bool $value): static
@@ -96,6 +113,7 @@ class AcceptedGiftTypes extends TdObject
     {
         return [
             '@type'                => static::TYPE_NAME,
+            'gifts_from_channels'  => $this->giftsFromChannels,
             'limited_gifts'        => $this->limitedGifts,
             'premium_subscription' => $this->premiumSubscription,
             'unlimited_gifts'      => $this->unlimitedGifts,

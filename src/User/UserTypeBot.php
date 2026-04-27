@@ -19,6 +19,10 @@ class UserTypeBot extends UserType
          */
         protected int    $activeUserCount,
         /**
+         * True, if users can create and delete topics in the chat with the bot.
+         */
+        protected bool   $allowsUsersToCreateTopics,
+        /**
          * True, if the bot can be added to attachment or side menu.
          */
         protected bool   $canBeAddedToAttachmentMenu,
@@ -34,6 +38,10 @@ class UserTypeBot extends UserType
          * True, if the bot can be invited to basic group and supergroup chats.
          */
         protected bool   $canJoinGroups,
+        /**
+         * True, if the bot can manage other bots.
+         */
+        protected bool   $canManageBots,
         /**
          * True, if the bot can read all messages in basic group or supergroup chats and not just those addressed to the bot. In private and channel chats a bot can always read all messages.
          */
@@ -66,10 +74,12 @@ class UserTypeBot extends UserType
     {
         return new static(
             activeUserCount           : $array['active_user_count'],
+            allowsUsersToCreateTopics : $array['allows_users_to_create_topics'],
             canBeAddedToAttachmentMenu: $array['can_be_added_to_attachment_menu'],
             canBeEdited               : $array['can_be_edited'],
             canConnectToBusiness      : $array['can_connect_to_business'],
             canJoinGroups             : $array['can_join_groups'],
+            canManageBots             : $array['can_manage_bots'],
             canReadAllGroupMessages   : $array['can_read_all_group_messages'],
             hasMainWebApp             : $array['has_main_web_app'],
             hasTopics                 : $array['has_topics'],
@@ -82,6 +92,11 @@ class UserTypeBot extends UserType
     public function getActiveUserCount(): int
     {
         return $this->activeUserCount;
+    }
+
+    public function getAllowsUsersToCreateTopics(): bool
+    {
+        return $this->allowsUsersToCreateTopics;
     }
 
     public function getCanBeAddedToAttachmentMenu(): bool
@@ -102,6 +117,11 @@ class UserTypeBot extends UserType
     public function getCanJoinGroups(): bool
     {
         return $this->canJoinGroups;
+    }
+
+    public function getCanManageBots(): bool
+    {
+        return $this->canManageBots;
     }
 
     public function getCanReadAllGroupMessages(): bool
@@ -141,6 +161,13 @@ class UserTypeBot extends UserType
         return $this;
     }
 
+    public function setAllowsUsersToCreateTopics(bool $value): static
+    {
+        $this->allowsUsersToCreateTopics = $value;
+
+        return $this;
+    }
+
     public function setCanBeAddedToAttachmentMenu(bool $value): static
     {
         $this->canBeAddedToAttachmentMenu = $value;
@@ -165,6 +192,13 @@ class UserTypeBot extends UserType
     public function setCanJoinGroups(bool $value): static
     {
         $this->canJoinGroups = $value;
+
+        return $this;
+    }
+
+    public function setCanManageBots(bool $value): static
+    {
+        $this->canManageBots = $value;
 
         return $this;
     }
@@ -216,10 +250,12 @@ class UserTypeBot extends UserType
         return [
             '@type'                           => static::TYPE_NAME,
             'active_user_count'               => $this->activeUserCount,
+            'allows_users_to_create_topics'   => $this->allowsUsersToCreateTopics,
             'can_be_added_to_attachment_menu' => $this->canBeAddedToAttachmentMenu,
             'can_be_edited'                   => $this->canBeEdited,
             'can_connect_to_business'         => $this->canConnectToBusiness,
             'can_join_groups'                 => $this->canJoinGroups,
+            'can_manage_bots'                 => $this->canManageBots,
             'can_read_all_group_messages'     => $this->canReadAllGroupMessages,
             'has_main_web_app'                => $this->hasMainWebApp,
             'has_topics'                      => $this->hasTopics,

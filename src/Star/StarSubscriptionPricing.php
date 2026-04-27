@@ -21,7 +21,7 @@ class StarSubscriptionPricing extends TdObject
          */
         protected int $period,
         /**
-         * The amount of Telegram Stars that must be paid for each period.
+         * The Telegram Star amount that must be paid for each period.
          */
         protected int $starCount,
     ) {}

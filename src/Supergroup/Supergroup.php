@@ -6,6 +6,7 @@
 
 namespace Totaldev\TgSchema\Supergroup;
 
+use Totaldev\TgSchema\Active\ActiveStoryState;
 use Totaldev\TgSchema\Chat\ChatMemberStatus;
 use Totaldev\TgSchema\Restriction\RestrictionInfo;
 use Totaldev\TgSchema\TdObject;
@@ -24,6 +25,10 @@ class Supergroup extends TdObject
 
     public function __construct(
         /**
+         * State of active stories of the supergroup or channel; may be null if there are no active stories.
+         */
+        protected ?ActiveStoryState   $activeStoryState,
+        /**
          * Approximate boost level for the chat.
          */
         protected int                 $boostLevel,
@@ -31,10 +36,6 @@ class Supergroup extends TdObject
          * Point in time (Unix timestamp) when the current user joined, or the point in time when the supergroup or channel was created, in case the user is not a member.
          */
         protected int                 $date,
-        /**
-         * True, if the supergroup or channel has non-expired stories available to the current user.
-         */
-        protected bool                $hasActiveStories,
         /**
          * True, if automatic translation of messages is enabled in the channel.
          */
@@ -55,10 +56,6 @@ class Supergroup extends TdObject
          * True, if the supergroup is connected to a location, i.e. the supergroup is a location-based supergroup.
          */
         protected bool                $hasLocation,
-        /**
-         * True, if the supergroup or channel has unread non-expired stories available to the current user.
-         */
-        protected bool                $hasUnreadActiveStories,
         /**
          * Supergroup or channel identifier.
          */
@@ -88,7 +85,7 @@ class Supergroup extends TdObject
          */
         protected bool                $isSlowModeEnabled,
         /**
-         * True, if all users directly joining the supergroup need to be approved by supergroup administrators. Can be true only for non-broadcast supergroups with username, location, or a linked chat.
+         * True, if all users directly joining the supergroup need to be approved by supergroup administrators. May be true only for non-broadcast supergroups with username, location, or a linked chat.
          */
         protected bool                $joinByRequest,
         /**
@@ -116,7 +113,7 @@ class Supergroup extends TdObject
          */
         protected bool                $signMessages,
         /**
-         * Status of the current user in the supergroup or channel; custom title will always be empty.
+         * Status of the current user in the supergroup or channel.
          */
         protected ChatMemberStatus    $status,
         /**
@@ -132,15 +129,14 @@ class Supergroup extends TdObject
     public static function fromArray(array $array): Supergroup
     {
         return new static(
+            activeStoryState                 : (isset($array['active_story_state']) ? TdSchemaRegistry::fromArray($array['active_story_state']) : null),
             boostLevel                       : $array['boost_level'],
             date                             : $array['date'],
-            hasActiveStories                 : $array['has_active_stories'],
             hasAutomaticTranslation          : $array['has_automatic_translation'],
             hasDirectMessagesGroup           : $array['has_direct_messages_group'],
             hasForumTabs                     : $array['has_forum_tabs'],
             hasLinkedChat                    : $array['has_linked_chat'],
             hasLocation                      : $array['has_location'],
-            hasUnreadActiveStories           : $array['has_unread_active_stories'],
             id                               : $array['id'],
             isAdministeredDirectMessagesGroup: $array['is_administered_direct_messages_group'],
             isBroadcastGroup                 : $array['is_broadcast_group'],
@@ -161,6 +157,11 @@ class Supergroup extends TdObject
         );
     }
 
+    public function getActiveStoryState(): ?ActiveStoryState
+    {
+        return $this->activeStoryState;
+    }
+
     public function getBoostLevel(): int
     {
         return $this->boostLevel;
@@ -169,11 +170,6 @@ class Supergroup extends TdObject
     public function getDate(): int
     {
         return $this->date;
-    }
-
-    public function getHasActiveStories(): bool
-    {
-        return $this->hasActiveStories;
     }
 
     public function getHasAutomaticTranslation(): bool
@@ -199,11 +195,6 @@ class Supergroup extends TdObject
     public function getHasLocation(): bool
     {
         return $this->hasLocation;
-    }
-
-    public function getHasUnreadActiveStories(): bool
-    {
-        return $this->hasUnreadActiveStories;
     }
 
     public function getId(): int
@@ -291,6 +282,13 @@ class Supergroup extends TdObject
         return $this->verificationStatus;
     }
 
+    public function setActiveStoryState(?ActiveStoryState $value): static
+    {
+        $this->activeStoryState = $value;
+
+        return $this;
+    }
+
     public function setBoostLevel(int $value): static
     {
         $this->boostLevel = $value;
@@ -301,13 +299,6 @@ class Supergroup extends TdObject
     public function setDate(int $value): static
     {
         $this->date = $value;
-
-        return $this;
-    }
-
-    public function setHasActiveStories(bool $value): static
-    {
-        $this->hasActiveStories = $value;
 
         return $this;
     }
@@ -343,13 +334,6 @@ class Supergroup extends TdObject
     public function setHasLocation(bool $value): static
     {
         $this->hasLocation = $value;
-
-        return $this;
-    }
-
-    public function setHasUnreadActiveStories(bool $value): static
-    {
-        $this->hasUnreadActiveStories = $value;
 
         return $this;
     }
@@ -477,15 +461,14 @@ class Supergroup extends TdObject
     {
         return [
             '@type'                                 => static::TYPE_NAME,
+            'active_story_state'                    => (null !== $this->activeStoryState ? $this->activeStoryState->jsonSerialize() : null),
             'boost_level'                           => $this->boostLevel,
             'date'                                  => $this->date,
-            'has_active_stories'                    => $this->hasActiveStories,
             'has_automatic_translation'             => $this->hasAutomaticTranslation,
             'has_direct_messages_group'             => $this->hasDirectMessagesGroup,
             'has_forum_tabs'                        => $this->hasForumTabs,
             'has_linked_chat'                       => $this->hasLinkedChat,
             'has_location'                          => $this->hasLocation,
-            'has_unread_active_stories'             => $this->hasUnreadActiveStories,
             'id'                                    => $this->id,
             'is_administered_direct_messages_group' => $this->isAdministeredDirectMessagesGroup,
             'is_broadcast_group'                    => $this->isBroadcastGroup,

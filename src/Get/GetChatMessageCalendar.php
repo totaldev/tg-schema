@@ -25,7 +25,7 @@ class GetChatMessageCalendar extends TdFunction
          */
         protected int                  $chatId,
         /**
-         * Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function.
+         * Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterUnreadPollVote are unsupported in this function.
          */
         protected SearchMessagesFilter $filter,
         /**

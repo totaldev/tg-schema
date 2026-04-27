@@ -17,7 +17,7 @@ class GetStarGiftPaymentOptions extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the user that will receive Telegram Stars; pass 0 to get options for an unspecified user.
+         * Identifier of the user who will receive Telegram Stars; pass 0 to get options for an unspecified user.
          */
         protected int $userId
     ) {}

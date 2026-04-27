@@ -11,7 +11,7 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a user that had or will have a birthday soon.
+ * Describes a user who had or will have a birthday soon.
  */
 class CloseBirthdayUser extends TdObject
 {

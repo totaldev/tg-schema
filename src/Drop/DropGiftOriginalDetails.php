@@ -21,7 +21,7 @@ class DropGiftOriginalDetails extends TdFunction
          */
         protected string $receivedGiftId,
         /**
-         * The amount of Telegram Stars required to pay for the operation.
+         * The Telegram Star amount required to pay for the operation.
          */
         protected int    $starCount,
     ) {}

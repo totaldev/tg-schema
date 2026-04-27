@@ -23,13 +23,19 @@ class Usernames extends TdObject
          */
         protected array  $activeUsernames,
         /**
+         * Collectible usernames that were purchased at https://fragment.com and can be passed to getCollectibleItemInfo for more details.
+         *
+         * @var string[]
+         */
+        protected array  $collectibleUsernames,
+        /**
          * List of currently disabled usernames; the username can be activated with toggleUsernameIsActive, toggleBotUsernameIsActive, or toggleSupergroupUsernameIsActive.
          *
          * @var string[]
          */
         protected array  $disabledUsernames,
         /**
-         * Active or disabled username, which may be changed with setUsername or setSupergroupUsername. Information about other active usernames can be received using getCollectibleItemInfo.
+         * Active or disabled username, which may be changed with setUsername or setSupergroupUsername.
          */
         protected string $editableUsername,
     ) {}
@@ -37,15 +43,21 @@ class Usernames extends TdObject
     public static function fromArray(array $array): Usernames
     {
         return new static(
-            activeUsernames  : $array['active_usernames'],
-            disabledUsernames: $array['disabled_usernames'],
-            editableUsername : $array['editable_username'],
+            activeUsernames     : $array['active_usernames'],
+            collectibleUsernames: $array['collectible_usernames'],
+            disabledUsernames   : $array['disabled_usernames'],
+            editableUsername    : $array['editable_username'],
         );
     }
 
     public function getActiveUsernames(): array
     {
         return $this->activeUsernames;
+    }
+
+    public function getCollectibleUsernames(): array
+    {
+        return $this->collectibleUsernames;
     }
 
     public function getDisabledUsernames(): array
@@ -61,6 +73,13 @@ class Usernames extends TdObject
     public function setActiveUsernames(array $value): static
     {
         $this->activeUsernames = $value;
+
+        return $this;
+    }
+
+    public function setCollectibleUsernames(array $value): static
+    {
+        $this->collectibleUsernames = $value;
 
         return $this;
     }
@@ -82,10 +101,11 @@ class Usernames extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type'              => static::TYPE_NAME,
-            'active_usernames'   => $this->activeUsernames,
-            'disabled_usernames' => $this->disabledUsernames,
-            'editable_username'  => $this->editableUsername,
+            '@type'                 => static::TYPE_NAME,
+            'active_usernames'      => $this->activeUsernames,
+            'collectible_usernames' => $this->collectibleUsernames,
+            'disabled_usernames'    => $this->disabledUsernames,
+            'editable_username'     => $this->editableUsername,
         ];
     }
 }

@@ -11,7 +11,7 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes chosen reaction on a story that has already been sent.
+ * Changes chosen reaction on a story that has already been sent; not supported for live stories.
  */
 class SetStoryReaction extends TdFunction
 {

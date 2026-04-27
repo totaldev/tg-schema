@@ -151,6 +151,10 @@ class Message extends TdObject
          */
         protected MessageSender            $senderId,
         /**
+         * Tag of the sender of the message in the supergroup at the time the message was sent; may be empty if none or unknown. For messages sent in basic groups or supergroup administrators, the current custom title or tag must be used instead.
+         */
+        protected string                   $senderTag,
+        /**
          * The sending state of the message; may be null if the message isn't being sent and didn't fail to be sent.
          */
         protected ?MessageSendingState     $sendingState,
@@ -159,7 +163,11 @@ class Message extends TdObject
          */
         protected ?SuggestedPostInfo       $suggestedPostInfo,
         /**
-         * Identifier of the topic within the chat to which the message belongs; may be null if none.
+         * IETF language tag of the message language on which it can be summarized; empty if summary isn't available for the message.
+         */
+        protected string                   $summaryLanguageCode,
+        /**
+         * Identifier of the topic within the chat to which the message belongs; may be null if none; may change when the chat is converted to a forum or back.
          */
         protected ?MessageTopic            $topicId,
         /**
@@ -209,8 +217,10 @@ class Message extends TdObject
             senderBoostCount       : $array['sender_boost_count'],
             senderBusinessBotUserId: $array['sender_business_bot_user_id'],
             senderId               : TdSchemaRegistry::fromArray($array['sender_id']),
+            senderTag              : $array['sender_tag'],
             sendingState           : (isset($array['sending_state']) ? TdSchemaRegistry::fromArray($array['sending_state']) : null),
             suggestedPostInfo      : (isset($array['suggested_post_info']) ? TdSchemaRegistry::fromArray($array['suggested_post_info']) : null),
+            summaryLanguageCode    : $array['summary_language_code'],
             topicId                : (isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null),
             unreadReactions        : array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['unread_reactions']),
             viaBotUserId           : $array['via_bot_user_id'],
@@ -377,6 +387,11 @@ class Message extends TdObject
         return $this->senderId;
     }
 
+    public function getSenderTag(): string
+    {
+        return $this->senderTag;
+    }
+
     public function getSendingState(): ?MessageSendingState
     {
         return $this->sendingState;
@@ -385,6 +400,11 @@ class Message extends TdObject
     public function getSuggestedPostInfo(): ?SuggestedPostInfo
     {
         return $this->suggestedPostInfo;
+    }
+
+    public function getSummaryLanguageCode(): string
+    {
+        return $this->summaryLanguageCode;
     }
 
     public function getTopicId(): ?MessageTopic
@@ -626,6 +646,13 @@ class Message extends TdObject
         return $this;
     }
 
+    public function setSenderTag(string $value): static
+    {
+        $this->senderTag = $value;
+
+        return $this;
+    }
+
     public function setSendingState(?MessageSendingState $value): static
     {
         $this->sendingState = $value;
@@ -636,6 +663,13 @@ class Message extends TdObject
     public function setSuggestedPostInfo(?SuggestedPostInfo $value): static
     {
         $this->suggestedPostInfo = $value;
+
+        return $this;
+    }
+
+    public function setSummaryLanguageCode(string $value): static
+    {
+        $this->summaryLanguageCode = $value;
 
         return $this;
     }
@@ -697,8 +731,10 @@ class Message extends TdObject
             'sender_boost_count'          => $this->senderBoostCount,
             'sender_business_bot_user_id' => $this->senderBusinessBotUserId,
             'sender_id'                   => $this->senderId->jsonSerialize(),
+            'sender_tag'                  => $this->senderTag,
             'sending_state'               => (null !== $this->sendingState ? $this->sendingState->jsonSerialize() : null),
             'suggested_post_info'         => (null !== $this->suggestedPostInfo ? $this->suggestedPostInfo->jsonSerialize() : null),
+            'summary_language_code'       => $this->summaryLanguageCode,
             'topic_id'                    => (null !== $this->topicId ? $this->topicId->jsonSerialize() : null),
             'unread_reactions'            => array_map(static fn($x) => $x->jsonSerialize(), $this->unreadReactions),
             'via_bot_user_id'             => $this->viaBotUserId,

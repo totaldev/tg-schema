@@ -15,7 +15,7 @@ class ChatRevenueTransactionTypeSuggestedPostEarnings extends ChatRevenueTransac
 
     public function __construct(
         /**
-         * Identifier of the user that paid for the suggested post.
+         * Identifier of the user who paid for the suggested post.
          */
         protected int $userId
     ) {

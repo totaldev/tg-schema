@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Set;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Application or reCAPTCHA verification has been completed. Can be called before authorization.
+ * Informs TDLib that application or reCAPTCHA verification has been completed. Can be called before authorization.
  */
 class SetApplicationVerificationToken extends TdFunction
 {

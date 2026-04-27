@@ -1,0 +1,54 @@
+<?php
+
+/**
+ * This phpFile is auto-generated.
+ */
+
+namespace Totaldev\TgSchema\Ton;
+
+use Totaldev\TgSchema\Revenue\RevenueWithdrawalState;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
+/**
+ * The transaction is a withdrawal of earned Toncoins to Fragment.
+ */
+class TonTransactionTypeFragmentWithdrawal extends TonTransactionType
+{
+    public const string TYPE_NAME = 'tonTransactionTypeFragmentWithdrawal';
+
+    public function __construct(
+        /**
+         * State of the withdrawal; may be null for refunds from Fragment.
+         */
+        protected ?RevenueWithdrawalState $withdrawalState
+    ) {
+        parent::__construct();
+    }
+
+    public static function fromArray(array $array): TonTransactionTypeFragmentWithdrawal
+    {
+        return new static(
+            withdrawalState: (isset($array['withdrawal_state']) ? TdSchemaRegistry::fromArray($array['withdrawal_state']) : null),
+        );
+    }
+
+    public function getWithdrawalState(): ?RevenueWithdrawalState
+    {
+        return $this->withdrawalState;
+    }
+
+    public function setWithdrawalState(?RevenueWithdrawalState $value): static
+    {
+        $this->withdrawalState = $value;
+
+        return $this;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'            => static::TYPE_NAME,
+            'withdrawal_state' => (null !== $this->withdrawalState ? $this->withdrawalState->jsonSerialize() : null),
+        ];
+    }
+}

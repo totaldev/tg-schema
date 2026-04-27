@@ -34,7 +34,7 @@ class MessageDice extends MessageContent
          */
         protected int           $successAnimationFrameNumber,
         /**
-         * The dice value. If the value is 0, the dice don't have final state yet.
+         * The dice value. If the value is 0, then the dice don't have final state yet.
          */
         protected int           $value,
     ) {

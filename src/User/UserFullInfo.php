@@ -147,6 +147,10 @@ class UserFullInfo extends TdObject
          * True, if a video call can be created with the user.
          */
         protected bool             $supportsVideoCalls,
+        /**
+         * True, if the user uses an unofficial application that poses a security risk.
+         */
+        protected bool             $usesUnofficialApp,
     ) {}
 
     public static function fromArray(array $array): UserFullInfo
@@ -182,6 +186,7 @@ class UserFullInfo extends TdObject
             rating                                : (isset($array['rating']) ? TdSchemaRegistry::fromArray($array['rating']) : null),
             setChatBackground                     : $array['set_chat_background'],
             supportsVideoCalls                    : $array['supports_video_calls'],
+            usesUnofficialApp                     : $array['uses_unofficial_app'],
         );
     }
 
@@ -333,6 +338,11 @@ class UserFullInfo extends TdObject
     public function getSupportsVideoCalls(): bool
     {
         return $this->supportsVideoCalls;
+    }
+
+    public function getUsesUnofficialApp(): bool
+    {
+        return $this->usesUnofficialApp;
     }
 
     public function setBio(?FormattedText $value): static
@@ -545,6 +555,13 @@ class UserFullInfo extends TdObject
         return $this;
     }
 
+    public function setUsesUnofficialApp(bool $value): static
+    {
+        $this->usesUnofficialApp = $value;
+
+        return $this;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -579,6 +596,7 @@ class UserFullInfo extends TdObject
             'rating'                                       => (null !== $this->rating ? $this->rating->jsonSerialize() : null),
             'set_chat_background'                          => $this->setChatBackground,
             'supports_video_calls'                         => $this->supportsVideoCalls,
+            'uses_unofficial_app'                          => $this->usesUnofficialApp,
         ];
     }
 }

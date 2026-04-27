@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Transfer;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Transfer Telegram Stars from the business account to the business bot; for bots only.
+ * Transfers Telegram Stars from the business account to the business bot; for bots only.
  */
 class TransferBusinessAccountStars extends TdFunction
 {

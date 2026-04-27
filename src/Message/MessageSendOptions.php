@@ -27,7 +27,7 @@ class MessageSendOptions extends TdObject
          */
         protected bool                    $disableNotification,
         /**
-         * Identifier of the effect to apply to the message; pass 0 if none; applicable only to sendMessage and sendMessageAlbum in private chats.
+         * Identifier of the effect to apply to the message; pass 0 if none; applicable only to sendMessage, sendMessageAlbum in private chats and forwardMessages with one message to private chats.
          */
         protected int                     $effectId,
         /**

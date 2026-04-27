@@ -61,6 +61,10 @@ class ForumTopic extends TdObject
          */
         protected int                      $unreadMentionCount,
         /**
+         * Number of messages with unread poll votes in the topic.
+         */
+        protected int                      $unreadPollVoteCount,
+        /**
          * Number of messages with unread reactions in the topic.
          */
         protected int                      $unreadReactionCount,
@@ -79,6 +83,7 @@ class ForumTopic extends TdObject
             order                  : $array['order'],
             unreadCount            : $array['unread_count'],
             unreadMentionCount     : $array['unread_mention_count'],
+            unreadPollVoteCount    : $array['unread_poll_vote_count'],
             unreadReactionCount    : $array['unread_reaction_count'],
         );
     }
@@ -131,6 +136,11 @@ class ForumTopic extends TdObject
     public function getUnreadMentionCount(): int
     {
         return $this->unreadMentionCount;
+    }
+
+    public function getUnreadPollVoteCount(): int
+    {
+        return $this->unreadPollVoteCount;
     }
 
     public function getUnreadReactionCount(): int
@@ -208,6 +218,13 @@ class ForumTopic extends TdObject
         return $this;
     }
 
+    public function setUnreadPollVoteCount(int $value): static
+    {
+        $this->unreadPollVoteCount = $value;
+
+        return $this;
+    }
+
     public function setUnreadReactionCount(int $value): static
     {
         $this->unreadReactionCount = $value;
@@ -229,6 +246,7 @@ class ForumTopic extends TdObject
             'order'                       => $this->order,
             'unread_count'                => $this->unreadCount,
             'unread_mention_count'        => $this->unreadMentionCount,
+            'unread_poll_vote_count'      => $this->unreadPollVoteCount,
             'unread_reaction_count'       => $this->unreadReactionCount,
         ];
     }

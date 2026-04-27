@@ -19,11 +19,11 @@ class InputMessageText extends InputMessageContent
 
     public function __construct(
         /**
-         * True, if a chat message draft must be deleted.
+         * True, if the chat message draft must be deleted.
          */
         protected bool                $clearDraft,
         /**
-         * Formatted text to be sent; 0-getOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually.
+         * Formatted text to be sent; 0-getOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl, MentionName, and DateTime entities are allowed to be specified manually.
          */
         protected FormattedText       $text,
         /**

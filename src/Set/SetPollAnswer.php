@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Set;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Changes the user answer to a poll. A poll in quiz mode can be answered only once.
+ * Changes the user answer to a poll.
  */
 class SetPollAnswer extends TdFunction
 {

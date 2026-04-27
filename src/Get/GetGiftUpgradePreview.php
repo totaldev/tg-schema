@@ -17,26 +17,26 @@ class GetGiftUpgradePreview extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the gift.
+         * Identifier of the regular gift.
          */
-        protected int $giftId
+        protected int $regularGiftId
     ) {}
 
     public static function fromArray(array $array): GetGiftUpgradePreview
     {
         return new static(
-            giftId: $array['gift_id'],
+            regularGiftId: $array['regular_gift_id'],
         );
     }
 
-    public function getGiftId(): int
+    public function getRegularGiftId(): int
     {
-        return $this->giftId;
+        return $this->regularGiftId;
     }
 
-    public function setGiftId(int $value): static
+    public function setRegularGiftId(int $value): static
     {
-        $this->giftId = $value;
+        $this->regularGiftId = $value;
 
         return $this;
     }
@@ -44,8 +44,8 @@ class GetGiftUpgradePreview extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
-            'gift_id' => $this->giftId,
+            '@type'           => static::TYPE_NAME,
+            'regular_gift_id' => $this->regularGiftId,
         ];
     }
 }

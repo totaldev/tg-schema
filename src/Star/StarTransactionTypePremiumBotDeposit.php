@@ -7,7 +7,7 @@
 namespace Totaldev\TgSchema\Star;
 
 /**
- * The transaction is a deposit of Telegram Stars from the Premium bot; for regular users only.
+ * The transaction is a deposit of Telegram Stars from the Premium bot; relevant for regular users only.
  */
 class StarTransactionTypePremiumBotDeposit extends StarTransactionType
 {

@@ -18,7 +18,7 @@ class InternalLinkTypePremiumFeatures extends InternalLinkType
         /**
          * Referrer specified in the link.
          */
-        protected string $referrer
+        protected string $referrer,
     ) {
         parent::__construct();
     }

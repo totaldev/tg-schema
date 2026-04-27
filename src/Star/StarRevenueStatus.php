@@ -18,11 +18,11 @@ class StarRevenueStatus extends TdObject
 
     public function __construct(
         /**
-         * The amount of Telegram Stars that are available for withdrawal.
+         * The Telegram Star amount that is available for withdrawal.
          */
         protected StarAmount $availableAmount,
         /**
-         * The amount of Telegram Stars that aren't withdrawn yet.
+         * The Telegram Star amount that isn't withdrawn yet.
          */
         protected StarAmount $currentAmount,
         /**
@@ -30,7 +30,7 @@ class StarRevenueStatus extends TdObject
          */
         protected int        $nextWithdrawalIn,
         /**
-         * Total amount of Telegram Stars earned.
+         * Total Telegram Star amount earned.
          */
         protected StarAmount $totalAmount,
         /**

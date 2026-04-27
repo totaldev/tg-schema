@@ -11,7 +11,7 @@ use Totaldev\TgSchema\Product\ProductInfo;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The transaction is a sale of a product by the bot; for bots only.
+ * The transaction is a sale of a product by the bot; relevant for bots only.
  */
 class StarTransactionTypeBotInvoiceSale extends StarTransactionType
 {
@@ -31,7 +31,7 @@ class StarTransactionTypeBotInvoiceSale extends StarTransactionType
          */
         protected ProductInfo    $productInfo,
         /**
-         * Identifier of the user that bought the product.
+         * Identifier of the user who bought the product.
          */
         protected int            $userId,
     ) {

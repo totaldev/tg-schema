@@ -8,6 +8,7 @@ namespace Totaldev\TgSchema\Paid;
 
 use Totaldev\TgSchema\Photo\Photo;
 use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Video\Video;
 
 /**
  * The media is a photo.
@@ -20,7 +21,11 @@ class PaidMediaPhoto extends PaidMedia
         /**
          * The photo.
          */
-        protected Photo $photo
+        protected Photo  $photo,
+        /**
+         * The video representing the live photo; may be null if the photo is static.
+         */
+        protected ?Video $video,
     ) {
         parent::__construct();
     }
@@ -29,12 +34,18 @@ class PaidMediaPhoto extends PaidMedia
     {
         return new static(
             photo: TdSchemaRegistry::fromArray($array['photo']),
+            video: (isset($array['video']) ? TdSchemaRegistry::fromArray($array['video']) : null),
         );
     }
 
     public function getPhoto(): Photo
     {
         return $this->photo;
+    }
+
+    public function getVideo(): ?Video
+    {
+        return $this->video;
     }
 
     public function setPhoto(Photo $value): static
@@ -44,11 +55,19 @@ class PaidMediaPhoto extends PaidMedia
         return $this;
     }
 
+    public function setVideo(?Video $value): static
+    {
+        $this->video = $value;
+
+        return $this;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'photo' => $this->photo->jsonSerialize(),
+            'video' => (null !== $this->video ? $this->video->jsonSerialize() : null),
         ];
     }
 }

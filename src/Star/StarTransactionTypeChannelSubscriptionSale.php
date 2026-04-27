@@ -7,7 +7,7 @@
 namespace Totaldev\TgSchema\Star;
 
 /**
- * The transaction is a sale of a subscription by the channel chat; for channel chats only.
+ * The transaction is a sale of a subscription by the channel chat; relevant for channel chats only.
  */
 class StarTransactionTypeChannelSubscriptionSale extends StarTransactionType
 {
@@ -19,7 +19,7 @@ class StarTransactionTypeChannelSubscriptionSale extends StarTransactionType
          */
         protected int $subscriptionPeriod,
         /**
-         * Identifier of the user that bought the subscription.
+         * Identifier of the user who bought the subscription.
          */
         protected int $userId,
     ) {

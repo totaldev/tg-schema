@@ -7,7 +7,7 @@
 namespace Totaldev\TgSchema\Star;
 
 /**
- * The transaction is a sending of a paid reaction to a message in a channel chat by the current user; for regular users only.
+ * The transaction is a sending of a paid reaction to a message in a channel chat by the current user; relevant for regular users only.
  */
 class StarTransactionTypeChannelPaidReactionSend extends StarTransactionType
 {
@@ -19,7 +19,7 @@ class StarTransactionTypeChannelPaidReactionSend extends StarTransactionType
          */
         protected int $chatId,
         /**
-         * Identifier of the reacted message; can be 0 or an identifier of a deleted message.
+         * Identifier of the reacted message; may be 0 or an identifier of a deleted message.
          */
         protected int $messageId,
     ) {

@@ -20,7 +20,7 @@ class Sticker extends TdObject
 
     public function __construct(
         /**
-         * Emoji corresponding to the sticker.
+         * Emoji corresponding to the sticker; may be empty if unknown.
          */
         protected string          $emoji,
         /**

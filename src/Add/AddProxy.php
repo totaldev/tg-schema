@@ -6,7 +6,7 @@
 
 namespace Totaldev\TgSchema\Add;
 
-use Totaldev\TgSchema\Proxy\ProxyType;
+use Totaldev\TgSchema\Proxy\Proxy;
 use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
@@ -21,28 +21,18 @@ class AddProxy extends TdFunction
         /**
          * Pass true to immediately enable the proxy.
          */
-        protected bool      $enable,
+        protected bool  $enable,
         /**
-         * Proxy server port.
+         * The proxy to add.
          */
-        protected int       $port,
-        /**
-         * Proxy server domain or IP address.
-         */
-        protected string    $server,
-        /**
-         * Proxy type.
-         */
-        protected ProxyType $type,
+        protected Proxy $proxy,
     ) {}
 
     public static function fromArray(array $array): AddProxy
     {
         return new static(
             enable: $array['enable'],
-            port  : $array['port'],
-            server: $array['server'],
-            type  : TdSchemaRegistry::fromArray($array['type']),
+            proxy : TdSchemaRegistry::fromArray($array['proxy']),
         );
     }
 
@@ -51,19 +41,9 @@ class AddProxy extends TdFunction
         return $this->enable;
     }
 
-    public function getPort(): int
+    public function getProxy(): Proxy
     {
-        return $this->port;
-    }
-
-    public function getServer(): string
-    {
-        return $this->server;
-    }
-
-    public function getType(): ProxyType
-    {
-        return $this->type;
+        return $this->proxy;
     }
 
     public function setEnable(bool $value): static
@@ -73,23 +53,9 @@ class AddProxy extends TdFunction
         return $this;
     }
 
-    public function setPort(int $value): static
+    public function setProxy(Proxy $value): static
     {
-        $this->port = $value;
-
-        return $this;
-    }
-
-    public function setServer(string $value): static
-    {
-        $this->server = $value;
-
-        return $this;
-    }
-
-    public function setType(ProxyType $value): static
-    {
-        $this->type = $value;
+        $this->proxy = $value;
 
         return $this;
     }
@@ -99,9 +65,7 @@ class AddProxy extends TdFunction
         return [
             '@type'  => static::TYPE_NAME,
             'enable' => $this->enable,
-            'port'   => $this->port,
-            'server' => $this->server,
-            'type'   => $this->type->jsonSerialize(),
+            'proxy'  => $this->proxy->jsonSerialize(),
         ];
     }
 }

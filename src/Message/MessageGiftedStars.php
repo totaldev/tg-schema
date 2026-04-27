@@ -34,11 +34,11 @@ class MessageGiftedStars extends MessageContent
          */
         protected string   $currency,
         /**
-         * The identifier of a user that gifted Telegram Stars; 0 if the gift was anonymous or is outgoing.
+         * The identifier of a user who gifted Telegram Stars; 0 if the gift was anonymous or is outgoing.
          */
         protected int      $gifterUserId,
         /**
-         * The identifier of a user that received Telegram Stars; 0 if the gift is incoming.
+         * The identifier of a user who received Telegram Stars; 0 if the gift is incoming.
          */
         protected int      $receiverUserId,
         /**

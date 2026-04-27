@@ -27,6 +27,10 @@ class MessageGift extends MessageContent
          */
         protected Gift           $gift,
         /**
+         * True, if the message is a notification about a gift won on an auction.
+         */
+        protected bool           $isFromAuction,
+        /**
          * True, if the message is about prepaid upgrade of the gift by another user.
          */
         protected bool           $isPrepaidUpgrade,
@@ -71,6 +75,10 @@ class MessageGift extends MessageContent
          */
         protected FormattedText  $text,
         /**
+         * Unique number of the gift among gifts upgraded from the same gift after upgrade; 0 if yet unassigned.
+         */
+        protected int            $uniqueGiftNumber,
+        /**
          * Identifier of the corresponding upgraded gift; may be empty if unknown. Use getReceivedGift to get information about the gift.
          */
         protected string         $upgradedReceivedGiftId,
@@ -95,6 +103,7 @@ class MessageGift extends MessageContent
         return new static(
             canBeUpgraded          : $array['can_be_upgraded'],
             gift                   : TdSchemaRegistry::fromArray($array['gift']),
+            isFromAuction          : $array['is_from_auction'],
             isPrepaidUpgrade       : $array['is_prepaid_upgrade'],
             isPrivate              : $array['is_private'],
             isSaved                : $array['is_saved'],
@@ -106,6 +115,7 @@ class MessageGift extends MessageContent
             sellStarCount          : $array['sell_star_count'],
             senderId               : (isset($array['sender_id']) ? TdSchemaRegistry::fromArray($array['sender_id']) : null),
             text                   : TdSchemaRegistry::fromArray($array['text']),
+            uniqueGiftNumber       : $array['unique_gift_number'],
             upgradedReceivedGiftId : $array['upgraded_received_gift_id'],
             wasConverted           : $array['was_converted'],
             wasRefunded            : $array['was_refunded'],
@@ -121,6 +131,11 @@ class MessageGift extends MessageContent
     public function getGift(): Gift
     {
         return $this->gift;
+    }
+
+    public function getIsFromAuction(): bool
+    {
+        return $this->isFromAuction;
     }
 
     public function getIsPrepaidUpgrade(): bool
@@ -178,6 +193,11 @@ class MessageGift extends MessageContent
         return $this->text;
     }
 
+    public function getUniqueGiftNumber(): int
+    {
+        return $this->uniqueGiftNumber;
+    }
+
     public function getUpgradedReceivedGiftId(): string
     {
         return $this->upgradedReceivedGiftId;
@@ -208,6 +228,13 @@ class MessageGift extends MessageContent
     public function setGift(Gift $value): static
     {
         $this->gift = $value;
+
+        return $this;
+    }
+
+    public function setIsFromAuction(bool $value): static
+    {
+        $this->isFromAuction = $value;
 
         return $this;
     }
@@ -289,6 +316,13 @@ class MessageGift extends MessageContent
         return $this;
     }
 
+    public function setUniqueGiftNumber(int $value): static
+    {
+        $this->uniqueGiftNumber = $value;
+
+        return $this;
+    }
+
     public function setUpgradedReceivedGiftId(string $value): static
     {
         $this->upgradedReceivedGiftId = $value;
@@ -323,6 +357,7 @@ class MessageGift extends MessageContent
             '@type'                      => static::TYPE_NAME,
             'can_be_upgraded'            => $this->canBeUpgraded,
             'gift'                       => $this->gift->jsonSerialize(),
+            'is_from_auction'            => $this->isFromAuction,
             'is_prepaid_upgrade'         => $this->isPrepaidUpgrade,
             'is_private'                 => $this->isPrivate,
             'is_saved'                   => $this->isSaved,
@@ -334,6 +369,7 @@ class MessageGift extends MessageContent
             'sell_star_count'            => $this->sellStarCount,
             'sender_id'                  => (null !== $this->senderId ? $this->senderId->jsonSerialize() : null),
             'text'                       => $this->text->jsonSerialize(),
+            'unique_gift_number'         => $this->uniqueGiftNumber,
             'upgraded_received_gift_id'  => $this->upgradedReceivedGiftId,
             'was_converted'              => $this->wasConverted,
             'was_refunded'               => $this->wasRefunded,

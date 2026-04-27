@@ -10,7 +10,7 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about notification settings for reactions.
+ * Contains information about notification settings for reactions and poll votes.
  */
 class ReactionNotificationSettings extends TdObject
 {
@@ -21,6 +21,10 @@ class ReactionNotificationSettings extends TdObject
          * Source of message reactions for which notifications are shown.
          */
         protected ReactionNotificationSource $messageReactionSource,
+        /**
+         * Source of poll votes for which notifications are shown.
+         */
+        protected ReactionNotificationSource $pollVoteSource,
         /**
          * True, if reaction sender and emoji must be displayed in notifications.
          */
@@ -39,6 +43,7 @@ class ReactionNotificationSettings extends TdObject
     {
         return new static(
             messageReactionSource: TdSchemaRegistry::fromArray($array['message_reaction_source']),
+            pollVoteSource       : TdSchemaRegistry::fromArray($array['poll_vote_source']),
             showPreview          : $array['show_preview'],
             soundId              : $array['sound_id'],
             storyReactionSource  : TdSchemaRegistry::fromArray($array['story_reaction_source']),
@@ -48,6 +53,11 @@ class ReactionNotificationSettings extends TdObject
     public function getMessageReactionSource(): ReactionNotificationSource
     {
         return $this->messageReactionSource;
+    }
+
+    public function getPollVoteSource(): ReactionNotificationSource
+    {
+        return $this->pollVoteSource;
     }
 
     public function getShowPreview(): bool
@@ -68,6 +78,13 @@ class ReactionNotificationSettings extends TdObject
     public function setMessageReactionSource(ReactionNotificationSource $value): static
     {
         $this->messageReactionSource = $value;
+
+        return $this;
+    }
+
+    public function setPollVoteSource(ReactionNotificationSource $value): static
+    {
+        $this->pollVoteSource = $value;
 
         return $this;
     }
@@ -98,6 +115,7 @@ class ReactionNotificationSettings extends TdObject
         return [
             '@type'                   => static::TYPE_NAME,
             'message_reaction_source' => $this->messageReactionSource->jsonSerialize(),
+            'poll_vote_source'        => $this->pollVoteSource->jsonSerialize(),
             'show_preview'            => $this->showPreview,
             'sound_id'                => $this->soundId,
             'story_reaction_source'   => $this->storyReactionSource->jsonSerialize(),

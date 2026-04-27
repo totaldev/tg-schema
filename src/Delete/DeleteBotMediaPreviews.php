@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Delete;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Delete media previews from the list of media previews of a bot.
+ * Deletes media previews from the list of media previews of a bot.
  */
 class DeleteBotMediaPreviews extends TdFunction
 {

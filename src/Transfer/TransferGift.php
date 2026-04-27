@@ -31,7 +31,7 @@ class TransferGift extends TdFunction
          */
         protected string        $receivedGiftId,
         /**
-         * The amount of Telegram Stars required to pay for the transfer.
+         * The Telegram Star amount required to pay for the transfer.
          */
         protected int           $starCount,
     ) {}

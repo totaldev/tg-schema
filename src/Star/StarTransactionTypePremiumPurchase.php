@@ -10,7 +10,7 @@ use Totaldev\TgSchema\Sticker\Sticker;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The transaction is a purchase of Telegram Premium subscription; for regular users and bots only.
+ * The transaction is a purchase of Telegram Premium subscription; relevant for regular users and bots only.
  */
 class StarTransactionTypePremiumPurchase extends StarTransactionType
 {
@@ -26,7 +26,7 @@ class StarTransactionTypePremiumPurchase extends StarTransactionType
          */
         protected ?Sticker $sticker,
         /**
-         * Identifier of the user that received the Telegram Premium subscription.
+         * Identifier of the user who received the Telegram Premium subscription.
          */
         protected int      $userId,
     ) {

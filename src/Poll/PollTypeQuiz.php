@@ -7,10 +7,11 @@
 namespace Totaldev\TgSchema\Poll;
 
 use Totaldev\TgSchema\Formatted\FormattedText;
+use Totaldev\TgSchema\Message\MessageContent;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A poll in quiz mode, which has exactly one correct answer option and can be answered only once.
+ * A poll in quiz mode, which has predefined correct answers.
  */
 class PollTypeQuiz extends PollType
 {
@@ -18,13 +19,19 @@ class PollTypeQuiz extends PollType
 
     public function __construct(
         /**
-         * 0-based identifier of the correct answer option; -1 for a yet unanswered poll.
+         * Increasing list of 0-based identifiers of the correct answer options; empty for a yet unanswered poll.
+         *
+         * @var int[]
          */
-        protected int           $correctOptionId,
+        protected array           $correctOptionIds,
         /**
-         * Text that is shown when the user chooses an incorrect answer or taps on the lamp icon; 0-200 characters with at most 2 line feeds; empty for a yet unanswered poll.
+         * Text that is shown when the user chooses an incorrect answer or taps on the lamp icon; empty for a yet unanswered poll.
          */
-        protected FormattedText $explanation,
+        protected FormattedText   $explanation,
+        /**
+         * Media that is shown when the user chooses an incorrect answer or taps on the lamp icon; may be null if none or the poll is unanswered yet. Currently, can be only of the types messageAnimation, messageAudio, messageDocument, messageLocation, messagePhoto, messageVenue, or messageVideo without caption.
+         */
+        protected ?MessageContent $explanationMedia,
     ) {
         parent::__construct();
     }
@@ -32,14 +39,15 @@ class PollTypeQuiz extends PollType
     public static function fromArray(array $array): PollTypeQuiz
     {
         return new static(
-            correctOptionId: $array['correct_option_id'],
-            explanation    : TdSchemaRegistry::fromArray($array['explanation']),
+            correctOptionIds: $array['correct_option_ids'],
+            explanation     : TdSchemaRegistry::fromArray($array['explanation']),
+            explanationMedia: (isset($array['explanation_media']) ? TdSchemaRegistry::fromArray($array['explanation_media']) : null),
         );
     }
 
-    public function getCorrectOptionId(): int
+    public function getCorrectOptionIds(): array
     {
-        return $this->correctOptionId;
+        return $this->correctOptionIds;
     }
 
     public function getExplanation(): FormattedText
@@ -47,9 +55,14 @@ class PollTypeQuiz extends PollType
         return $this->explanation;
     }
 
-    public function setCorrectOptionId(int $value): static
+    public function getExplanationMedia(): ?MessageContent
     {
-        $this->correctOptionId = $value;
+        return $this->explanationMedia;
+    }
+
+    public function setCorrectOptionIds(array $value): static
+    {
+        $this->correctOptionIds = $value;
 
         return $this;
     }
@@ -61,12 +74,20 @@ class PollTypeQuiz extends PollType
         return $this;
     }
 
+    public function setExplanationMedia(?MessageContent $value): static
+    {
+        $this->explanationMedia = $value;
+
+        return $this;
+    }
+
     public function typeSerialize(): array
     {
         return [
-            '@type'             => static::TYPE_NAME,
-            'correct_option_id' => $this->correctOptionId,
-            'explanation'       => $this->explanation->jsonSerialize(),
+            '@type'              => static::TYPE_NAME,
+            'correct_option_ids' => $this->correctOptionIds,
+            'explanation'        => $this->explanation->jsonSerialize(),
+            'explanation_media'  => (null !== $this->explanationMedia ? $this->explanationMedia->jsonSerialize() : null),
         ];
     }
 }

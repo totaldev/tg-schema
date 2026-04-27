@@ -7,7 +7,7 @@
 namespace Totaldev\TgSchema\Star;
 
 /**
- * The transaction is a receiving of a commission from an affiliate program; for regular users, bots and channel chats only.
+ * The transaction is a receiving of a commission from an affiliate program; relevant for regular users, bots and channel chats only.
  */
 class StarTransactionTypeAffiliateProgramCommission extends StarTransactionType
 {

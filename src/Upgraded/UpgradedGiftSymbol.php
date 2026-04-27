@@ -21,23 +21,23 @@ class UpgradedGiftSymbol extends TdObject
         /**
          * Name of the symbol.
          */
-        protected string  $name,
+        protected string                      $name,
         /**
-         * The number of upgraded gifts that receive this symbol for each 1000 gifts upgraded.
+         * The rarity of the symbol.
          */
-        protected int     $rarityPerMille,
+        protected UpgradedGiftAttributeRarity $rarity,
         /**
          * The sticker representing the symbol.
          */
-        protected Sticker $sticker,
+        protected Sticker                     $sticker,
     ) {}
 
     public static function fromArray(array $array): UpgradedGiftSymbol
     {
         return new static(
-            name          : $array['name'],
-            rarityPerMille: $array['rarity_per_mille'],
-            sticker       : TdSchemaRegistry::fromArray($array['sticker']),
+            name   : $array['name'],
+            rarity : TdSchemaRegistry::fromArray($array['rarity']),
+            sticker: TdSchemaRegistry::fromArray($array['sticker']),
         );
     }
 
@@ -46,9 +46,9 @@ class UpgradedGiftSymbol extends TdObject
         return $this->name;
     }
 
-    public function getRarityPerMille(): int
+    public function getRarity(): UpgradedGiftAttributeRarity
     {
-        return $this->rarityPerMille;
+        return $this->rarity;
     }
 
     public function getSticker(): Sticker
@@ -63,9 +63,9 @@ class UpgradedGiftSymbol extends TdObject
         return $this;
     }
 
-    public function setRarityPerMille(int $value): static
+    public function setRarity(UpgradedGiftAttributeRarity $value): static
     {
-        $this->rarityPerMille = $value;
+        $this->rarity = $value;
 
         return $this;
     }
@@ -80,10 +80,10 @@ class UpgradedGiftSymbol extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type'            => static::TYPE_NAME,
-            'name'             => $this->name,
-            'rarity_per_mille' => $this->rarityPerMille,
-            'sticker'          => $this->sticker->jsonSerialize(),
+            '@type'   => static::TYPE_NAME,
+            'name'    => $this->name,
+            'rarity'  => $this->rarity->jsonSerialize(),
+            'sticker' => $this->sticker->jsonSerialize(),
         ];
     }
 }

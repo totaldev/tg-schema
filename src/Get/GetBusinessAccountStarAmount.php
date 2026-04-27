@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Get;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns the amount of Telegram Stars owned by a business account; for bots only.
+ * Returns the Telegram Star amount owned by a business account; for bots only.
  */
 class GetBusinessAccountStarAmount extends TdFunction
 {

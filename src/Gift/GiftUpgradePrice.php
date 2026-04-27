@@ -21,7 +21,7 @@ class GiftUpgradePrice extends TdObject
          */
         protected int $date,
         /**
-         * The amount of Telegram Stars required to pay to upgrade the gift.
+         * The Telegram Star amount required to pay to upgrade the gift.
          */
         protected int $starCount,
     ) {}

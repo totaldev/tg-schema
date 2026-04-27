@@ -41,7 +41,7 @@ class UpgradedGiftValueInfo extends TdObject
          */
         protected int    $initialSalePrice,
         /**
-         * Amount of Telegram Stars that were paid for the gift.
+         * The Telegram Star amount that was paid for the gift.
          */
         protected int    $initialSaleStarCount,
         /**

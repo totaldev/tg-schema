@@ -6,7 +6,7 @@
 
 namespace Totaldev\TgSchema\Internal;
 
-use Totaldev\TgSchema\Proxy\ProxyType;
+use Totaldev\TgSchema\Proxy\Proxy;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
@@ -18,17 +18,9 @@ class InternalLinkTypeProxy extends InternalLinkType
 
     public function __construct(
         /**
-         * Proxy server port.
+         * The proxy; may be null if the proxy is unsupported, in which case an alert can be shown to the user.
          */
-        protected int       $port,
-        /**
-         * Proxy server domain or IP address.
-         */
-        protected string    $server,
-        /**
-         * Type of the proxy.
-         */
-        protected ProxyType $type,
+        protected ?Proxy $proxy
     ) {
         parent::__construct();
     }
@@ -36,44 +28,18 @@ class InternalLinkTypeProxy extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeProxy
     {
         return new static(
-            port  : $array['port'],
-            server: $array['server'],
-            type  : TdSchemaRegistry::fromArray($array['type']),
+            proxy: (isset($array['proxy']) ? TdSchemaRegistry::fromArray($array['proxy']) : null),
         );
     }
 
-    public function getPort(): int
+    public function getProxy(): ?Proxy
     {
-        return $this->port;
+        return $this->proxy;
     }
 
-    public function getServer(): string
+    public function setProxy(?Proxy $value): static
     {
-        return $this->server;
-    }
-
-    public function getType(): ProxyType
-    {
-        return $this->type;
-    }
-
-    public function setPort(int $value): static
-    {
-        $this->port = $value;
-
-        return $this;
-    }
-
-    public function setServer(string $value): static
-    {
-        $this->server = $value;
-
-        return $this;
-    }
-
-    public function setType(ProxyType $value): static
-    {
-        $this->type = $value;
+        $this->proxy = $value;
 
         return $this;
     }
@@ -81,10 +47,8 @@ class InternalLinkTypeProxy extends InternalLinkType
     public function typeSerialize(): array
     {
         return [
-            '@type'  => static::TYPE_NAME,
-            'port'   => $this->port,
-            'server' => $this->server,
-            'type'   => $this->type->jsonSerialize(),
+            '@type' => static::TYPE_NAME,
+            'proxy' => (null !== $this->proxy ? $this->proxy->jsonSerialize() : null),
         ];
     }
 }

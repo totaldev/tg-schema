@@ -25,7 +25,7 @@ class ProcessChatJoinRequest extends TdFunction
          */
         protected int  $chatId,
         /**
-         * Identifier of the user that sent the request.
+         * Identifier of the user who sent the request.
          */
         protected int  $userId,
     ) {}

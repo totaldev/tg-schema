@@ -19,7 +19,7 @@ class GetProxyLink extends TdFunction
         /**
          * Proxy identifier.
          */
-        protected int $proxyId
+        protected int $proxyId,
     ) {}
 
     public static function fromArray(array $array): GetProxyLink

@@ -6,7 +6,7 @@
 
 namespace Totaldev\TgSchema\Test;
 
-use Totaldev\TgSchema\Proxy\ProxyType;
+use Totaldev\TgSchema\Proxy\Proxy;
 use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
@@ -21,33 +21,23 @@ class TestProxy extends TdFunction
         /**
          * Identifier of a datacenter with which to test connection.
          */
-        protected int       $dcId,
+        protected int   $dcId,
         /**
-         * Proxy server port.
+         * The proxy to test.
          */
-        protected int       $port,
-        /**
-         * Proxy server domain or IP address.
-         */
-        protected string    $server,
+        protected Proxy $proxy,
         /**
          * The maximum overall timeout for the request.
          */
-        protected float     $timeout,
-        /**
-         * Proxy type.
-         */
-        protected ProxyType $type,
+        protected float $timeout,
     ) {}
 
     public static function fromArray(array $array): TestProxy
     {
         return new static(
             dcId   : $array['dc_id'],
-            port   : $array['port'],
-            server : $array['server'],
+            proxy  : TdSchemaRegistry::fromArray($array['proxy']),
             timeout: $array['timeout'],
-            type   : TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -56,24 +46,14 @@ class TestProxy extends TdFunction
         return $this->dcId;
     }
 
-    public function getPort(): int
+    public function getProxy(): Proxy
     {
-        return $this->port;
-    }
-
-    public function getServer(): string
-    {
-        return $this->server;
+        return $this->proxy;
     }
 
     public function getTimeout(): float
     {
         return $this->timeout;
-    }
-
-    public function getType(): ProxyType
-    {
-        return $this->type;
     }
 
     public function setDcId(int $value): static
@@ -83,16 +63,9 @@ class TestProxy extends TdFunction
         return $this;
     }
 
-    public function setPort(int $value): static
+    public function setProxy(Proxy $value): static
     {
-        $this->port = $value;
-
-        return $this;
-    }
-
-    public function setServer(string $value): static
-    {
-        $this->server = $value;
+        $this->proxy = $value;
 
         return $this;
     }
@@ -104,22 +77,13 @@ class TestProxy extends TdFunction
         return $this;
     }
 
-    public function setType(ProxyType $value): static
-    {
-        $this->type = $value;
-
-        return $this;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type'   => static::TYPE_NAME,
             'dc_id'   => $this->dcId,
-            'port'    => $this->port,
-            'server'  => $this->server,
+            'proxy'   => $this->proxy->jsonSerialize(),
             'timeout' => $this->timeout,
-            'type'    => $this->type->jsonSerialize(),
         ];
     }
 }

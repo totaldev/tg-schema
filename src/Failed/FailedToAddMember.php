@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Failed;
 use Totaldev\TgSchema\TdObject;
 
 /**
- * Contains information about a user that has failed to be added to a chat.
+ * Contains information about a user who has failed to be added to a chat.
  */
 class FailedToAddMember extends TdObject
 {

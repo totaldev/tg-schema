@@ -7,7 +7,7 @@
 namespace Totaldev\TgSchema\Star;
 
 /**
- * The transaction is a deposit of Telegram Stars from a giveaway; for regular users only.
+ * The transaction is a deposit of Telegram Stars from a giveaway; relevant for regular users only.
  */
 class StarTransactionTypeGiveawayDeposit extends StarTransactionType
 {
@@ -19,7 +19,7 @@ class StarTransactionTypeGiveawayDeposit extends StarTransactionType
          */
         protected int $chatId,
         /**
-         * Identifier of the message with the giveaway; can be 0 or an identifier of a deleted message.
+         * Identifier of the message with the giveaway; may be 0 or an identifier of a deleted message.
          */
         protected int $giveawayMessageId,
     ) {

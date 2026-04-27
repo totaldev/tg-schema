@@ -9,6 +9,7 @@ namespace Totaldev\TgSchema\Message;
 use Totaldev\TgSchema\Formatted\FormattedText;
 use Totaldev\TgSchema\Photo\Photo;
 use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Video\Video;
 
 /**
  * A photo message.
@@ -38,6 +39,10 @@ class MessagePhoto extends MessageContent
          * True, if the caption must be shown above the photo; otherwise, the caption must be shown below the photo.
          */
         protected bool          $showCaptionAboveMedia,
+        /**
+         * The video representing the live photo; may be null if the photo is static.
+         */
+        protected ?Video        $video,
     ) {
         parent::__construct();
     }
@@ -50,6 +55,7 @@ class MessagePhoto extends MessageContent
             isSecret             : $array['is_secret'],
             photo                : TdSchemaRegistry::fromArray($array['photo']),
             showCaptionAboveMedia: $array['show_caption_above_media'],
+            video                : (isset($array['video']) ? TdSchemaRegistry::fromArray($array['video']) : null),
         );
     }
 
@@ -76,6 +82,11 @@ class MessagePhoto extends MessageContent
     public function getShowCaptionAboveMedia(): bool
     {
         return $this->showCaptionAboveMedia;
+    }
+
+    public function getVideo(): ?Video
+    {
+        return $this->video;
     }
 
     public function setCaption(FormattedText $value): static
@@ -113,6 +124,13 @@ class MessagePhoto extends MessageContent
         return $this;
     }
 
+    public function setVideo(?Video $value): static
+    {
+        $this->video = $value;
+
+        return $this;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -122,6 +140,7 @@ class MessagePhoto extends MessageContent
             'is_secret'                => $this->isSecret,
             'photo'                    => $this->photo->jsonSerialize(),
             'show_caption_above_media' => $this->showCaptionAboveMedia,
+            'video'                    => (null !== $this->video ? $this->video->jsonSerialize() : null),
         ];
     }
 }

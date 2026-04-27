@@ -11,7 +11,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Upgraded\UpgradedGift;
 
 /**
- * The transaction is a drop of original details of an upgraded gift; for regular users only.
+ * The transaction is a drop of original details of an upgraded gift; relevant for regular users only.
  */
 class StarTransactionTypeGiftOriginalDetailsDrop extends StarTransactionType
 {

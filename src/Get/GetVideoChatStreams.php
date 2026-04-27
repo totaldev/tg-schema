@@ -19,7 +19,7 @@ class GetVideoChatStreams extends TdFunction
         /**
          * Group call identifier.
          */
-        protected int $groupCallId
+        protected int $groupCallId,
     ) {}
 
     public static function fromArray(array $array): GetVideoChatStreams

@@ -19,6 +19,14 @@ class Gift extends TdObject
 
     public function __construct(
         /**
+         * Information about the auction on which the gift can be purchased; may be null if the gift can be purchased directly.
+         */
+        protected ?GiftAuction        $auctionInfo,
+        /**
+         * Background of the gift.
+         */
+        protected GiftBackground      $background,
+        /**
          * Number of Telegram Stars that can be claimed by the receiver instead of the regular gift by default. If the gift was paid with just bought Telegram Stars, then full value can be claimed.
          */
         protected int                 $defaultSellStarCount,
@@ -47,7 +55,7 @@ class Gift extends TdObject
          */
         protected int                 $lastSendDate,
         /**
-         * Point in time (Unix timestamp) when the gift can be sent next time by the current user; can be 0 or a date in the past. If the date is in the future, then call canSendGift to get the reason, why the gift can't be sent now.
+         * Point in time (Unix timestamp) when the gift can be sent next time by the current user; may be 0 or a date in the past. If the date is in the future, then call canSendGift to get the reason, why the gift can't be sent now.
          */
         protected int                 $nextSendDate,
         /**
@@ -71,6 +79,10 @@ class Gift extends TdObject
          */
         protected int                 $upgradeStarCount,
         /**
+         * Number of unique gift variants that are available for the upgraded gift; 0 if unknown.
+         */
+        protected int                 $upgradeVariantCount,
+        /**
          * Number of times the gift can be purchased by the current user; may be null if not limited.
          */
         protected ?GiftPurchaseLimits $userLimits,
@@ -79,6 +91,8 @@ class Gift extends TdObject
     public static function fromArray(array $array): Gift
     {
         return new static(
+            auctionInfo         : (isset($array['auction_info']) ? TdSchemaRegistry::fromArray($array['auction_info']) : null),
+            background          : TdSchemaRegistry::fromArray($array['background']),
             defaultSellStarCount: $array['default_sell_star_count'],
             firstSendDate       : $array['first_send_date'],
             hasColors           : $array['has_colors'],
@@ -92,8 +106,19 @@ class Gift extends TdObject
             starCount           : $array['star_count'],
             sticker             : TdSchemaRegistry::fromArray($array['sticker']),
             upgradeStarCount    : $array['upgrade_star_count'],
+            upgradeVariantCount : $array['upgrade_variant_count'],
             userLimits          : (isset($array['user_limits']) ? TdSchemaRegistry::fromArray($array['user_limits']) : null),
         );
+    }
+
+    public function getAuctionInfo(): ?GiftAuction
+    {
+        return $this->auctionInfo;
+    }
+
+    public function getBackground(): GiftBackground
+    {
+        return $this->background;
     }
 
     public function getDefaultSellStarCount(): int
@@ -161,9 +186,28 @@ class Gift extends TdObject
         return $this->upgradeStarCount;
     }
 
+    public function getUpgradeVariantCount(): int
+    {
+        return $this->upgradeVariantCount;
+    }
+
     public function getUserLimits(): ?GiftPurchaseLimits
     {
         return $this->userLimits;
+    }
+
+    public function setAuctionInfo(?GiftAuction $value): static
+    {
+        $this->auctionInfo = $value;
+
+        return $this;
+    }
+
+    public function setBackground(GiftBackground $value): static
+    {
+        $this->background = $value;
+
+        return $this;
     }
 
     public function setDefaultSellStarCount(int $value): static
@@ -257,6 +301,13 @@ class Gift extends TdObject
         return $this;
     }
 
+    public function setUpgradeVariantCount(int $value): static
+    {
+        $this->upgradeVariantCount = $value;
+
+        return $this;
+    }
+
     public function setUserLimits(?GiftPurchaseLimits $value): static
     {
         $this->userLimits = $value;
@@ -268,6 +319,8 @@ class Gift extends TdObject
     {
         return [
             '@type'                   => static::TYPE_NAME,
+            'auction_info'            => (null !== $this->auctionInfo ? $this->auctionInfo->jsonSerialize() : null),
+            'background'              => $this->background->jsonSerialize(),
             'default_sell_star_count' => $this->defaultSellStarCount,
             'first_send_date'         => $this->firstSendDate,
             'has_colors'              => $this->hasColors,
@@ -281,6 +334,7 @@ class Gift extends TdObject
             'star_count'              => $this->starCount,
             'sticker'                 => $this->sticker->jsonSerialize(),
             'upgrade_star_count'      => $this->upgradeStarCount,
+            'upgrade_variant_count'   => $this->upgradeVariantCount,
             'user_limits'             => (null !== $this->userLimits ? $this->userLimits->jsonSerialize() : null),
         ];
     }

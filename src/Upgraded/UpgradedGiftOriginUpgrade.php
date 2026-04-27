@@ -15,7 +15,7 @@ class UpgradedGiftOriginUpgrade extends UpgradedGiftOrigin
 
     public function __construct(
         /**
-         * Identifier of the message with the regular gift that was upgraded; can be 0 or an identifier of a deleted message.
+         * Identifier of the message with the regular gift that was upgraded; may be 0 or an identifier of a deleted message.
          */
         protected int $giftMessageId
     ) {

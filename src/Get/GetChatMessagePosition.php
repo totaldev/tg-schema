@@ -25,7 +25,7 @@ class GetChatMessagePosition extends TdFunction
          */
         protected int                  $chatId,
         /**
-         * Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterFailedToSend are unsupported in this function.
+         * Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterUnreadPollVote, and searchMessagesFilterFailedToSend are unsupported in this function.
          */
         protected SearchMessagesFilter $filter,
         /**

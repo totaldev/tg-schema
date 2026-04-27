@@ -22,10 +22,6 @@ class ChatMemberStatusAdministrator extends ChatMemberStatus
          */
         protected bool                    $canBeEdited,
         /**
-         * A custom title of the administrator; 0-16 characters without emoji; applicable to supergroups only.
-         */
-        protected string                  $customTitle,
-        /**
          * Rights of the administrator.
          */
         protected ChatAdministratorRights $rights,
@@ -37,7 +33,6 @@ class ChatMemberStatusAdministrator extends ChatMemberStatus
     {
         return new static(
             canBeEdited: $array['can_be_edited'],
-            customTitle: $array['custom_title'],
             rights     : TdSchemaRegistry::fromArray($array['rights']),
         );
     }
@@ -45,11 +40,6 @@ class ChatMemberStatusAdministrator extends ChatMemberStatus
     public function getCanBeEdited(): bool
     {
         return $this->canBeEdited;
-    }
-
-    public function getCustomTitle(): string
-    {
-        return $this->customTitle;
     }
 
     public function getRights(): ChatAdministratorRights
@@ -60,13 +50,6 @@ class ChatMemberStatusAdministrator extends ChatMemberStatus
     public function setCanBeEdited(bool $value): static
     {
         $this->canBeEdited = $value;
-
-        return $this;
-    }
-
-    public function setCustomTitle(string $value): static
-    {
-        $this->customTitle = $value;
 
         return $this;
     }
@@ -83,7 +66,6 @@ class ChatMemberStatusAdministrator extends ChatMemberStatus
         return [
             '@type'         => static::TYPE_NAME,
             'can_be_edited' => $this->canBeEdited,
-            'custom_title'  => $this->customTitle,
             'rights'        => $this->rights->jsonSerialize(),
         ];
     }

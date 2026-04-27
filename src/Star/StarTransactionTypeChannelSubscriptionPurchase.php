@@ -7,7 +7,7 @@
 namespace Totaldev\TgSchema\Star;
 
 /**
- * The transaction is a purchase of a subscription to a channel chat by the current user; for regular users only.
+ * The transaction is a purchase of a subscription to a channel chat by the current user; relevant for regular users only.
  */
 class StarTransactionTypeChannelSubscriptionPurchase extends StarTransactionType
 {

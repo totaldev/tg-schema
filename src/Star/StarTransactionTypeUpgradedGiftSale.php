@@ -10,7 +10,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Upgraded\UpgradedGift;
 
 /**
- * The transaction is a sale of an upgraded gift; for regular users only.
+ * The transaction is a sale of an upgraded gift; relevant for regular users only.
  */
 class StarTransactionTypeUpgradedGiftSale extends StarTransactionType
 {
@@ -22,7 +22,7 @@ class StarTransactionTypeUpgradedGiftSale extends StarTransactionType
          */
         protected int          $commissionPerMille,
         /**
-         * The amount of Telegram Stars that were received by Telegram; can be negative for refunds.
+         * The Telegram Star amount that was received by Telegram; can be negative for refunds.
          */
         protected StarAmount   $commissionStarAmount,
         /**
@@ -30,9 +30,13 @@ class StarTransactionTypeUpgradedGiftSale extends StarTransactionType
          */
         protected UpgradedGift $gift,
         /**
-         * Identifier of the user that bought the gift.
+         * Identifier of the user who bought the gift.
          */
         protected int          $userId,
+        /**
+         * True, if the gift was sold through a purchase offer.
+         */
+        protected bool         $viaOffer,
     ) {
         parent::__construct();
     }
@@ -44,6 +48,7 @@ class StarTransactionTypeUpgradedGiftSale extends StarTransactionType
             commissionStarAmount: TdSchemaRegistry::fromArray($array['commission_star_amount']),
             gift                : TdSchemaRegistry::fromArray($array['gift']),
             userId              : $array['user_id'],
+            viaOffer            : $array['via_offer'],
         );
     }
 
@@ -65,6 +70,11 @@ class StarTransactionTypeUpgradedGiftSale extends StarTransactionType
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function getViaOffer(): bool
+    {
+        return $this->viaOffer;
     }
 
     public function setCommissionPerMille(int $value): static
@@ -95,6 +105,13 @@ class StarTransactionTypeUpgradedGiftSale extends StarTransactionType
         return $this;
     }
 
+    public function setViaOffer(bool $value): static
+    {
+        $this->viaOffer = $value;
+
+        return $this;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -103,6 +120,7 @@ class StarTransactionTypeUpgradedGiftSale extends StarTransactionType
             'commission_star_amount' => $this->commissionStarAmount->jsonSerialize(),
             'gift'                   => $this->gift->jsonSerialize(),
             'user_id'                => $this->userId,
+            'via_offer'              => $this->viaOffer,
         ];
     }
 }

@@ -32,7 +32,7 @@ class BanChatMember extends TdFunction
          */
         protected MessageSender $memberId,
         /**
-         * Pass true to delete all messages in the chat for the user that is being removed. Always true for supergroups and channels.
+         * Pass true to delete all messages in the chat for the user who is being removed. Always true for supergroups and channels.
          */
         protected bool          $revokeMessages,
     ) {}

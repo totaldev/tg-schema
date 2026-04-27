@@ -8,6 +8,7 @@ namespace Totaldev\TgSchema\Link;
 
 use Totaldev\TgSchema\Photo\Photo;
 use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Video\Video;
 
 /**
  * The link is a link to a video player.
@@ -34,6 +35,10 @@ class LinkPreviewTypeEmbeddedVideoPlayer extends LinkPreviewType
          */
         protected string $url,
         /**
+         * The cached video; may be null if unknown.
+         */
+        protected ?Video $video,
+        /**
          * Expected width of the embedded player.
          */
         protected int    $width,
@@ -48,6 +53,7 @@ class LinkPreviewTypeEmbeddedVideoPlayer extends LinkPreviewType
             height   : $array['height'],
             thumbnail: (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
             url      : $array['url'],
+            video    : (isset($array['video']) ? TdSchemaRegistry::fromArray($array['video']) : null),
             width    : $array['width'],
         );
     }
@@ -70,6 +76,11 @@ class LinkPreviewTypeEmbeddedVideoPlayer extends LinkPreviewType
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function getVideo(): ?Video
+    {
+        return $this->video;
     }
 
     public function getWidth(): int
@@ -105,6 +116,13 @@ class LinkPreviewTypeEmbeddedVideoPlayer extends LinkPreviewType
         return $this;
     }
 
+    public function setVideo(?Video $value): static
+    {
+        $this->video = $value;
+
+        return $this;
+    }
+
     public function setWidth(int $value): static
     {
         $this->width = $value;
@@ -120,6 +138,7 @@ class LinkPreviewTypeEmbeddedVideoPlayer extends LinkPreviewType
             'height'    => $this->height,
             'thumbnail' => (null !== $this->thumbnail ? $this->thumbnail->jsonSerialize() : null),
             'url'       => $this->url,
+            'video'     => (null !== $this->video ? $this->video->jsonSerialize() : null),
             'width'     => $this->width,
         ];
     }

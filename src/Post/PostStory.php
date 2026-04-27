@@ -27,7 +27,7 @@ class PostStory extends TdFunction
          */
         protected int                  $activePeriod,
         /**
-         * Identifiers of story albums to which the story will be added upon posting. An album can have up to getOption("story_album_story_count_max").
+         * Identifiers of story albums to which the story will be added upon posting. An album can have up to getOption("story_album_size_max") stories.
          *
          * @var int[]
          */

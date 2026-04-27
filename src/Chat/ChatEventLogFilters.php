@@ -49,6 +49,10 @@ class ChatEventLogFilters extends TdObject
          */
         protected bool $memberRestrictions,
         /**
+         * True, if member tag and custom title change events need to be returned.
+         */
+        protected bool $memberTagChanges,
+        /**
          * True, if message deletions need to be returned.
          */
         protected bool $messageDeletions,
@@ -85,6 +89,7 @@ class ChatEventLogFilters extends TdObject
             memberLeaves          : $array['member_leaves'],
             memberPromotions      : $array['member_promotions'],
             memberRestrictions    : $array['member_restrictions'],
+            memberTagChanges      : $array['member_tag_changes'],
             messageDeletions      : $array['message_deletions'],
             messageEdits          : $array['message_edits'],
             messagePins           : $array['message_pins'],
@@ -132,6 +137,11 @@ class ChatEventLogFilters extends TdObject
     public function getMemberRestrictions(): bool
     {
         return $this->memberRestrictions;
+    }
+
+    public function getMemberTagChanges(): bool
+    {
+        return $this->memberTagChanges;
     }
 
     public function getMessageDeletions(): bool
@@ -220,6 +230,13 @@ class ChatEventLogFilters extends TdObject
         return $this;
     }
 
+    public function setMemberTagChanges(bool $value): static
+    {
+        $this->memberTagChanges = $value;
+
+        return $this;
+    }
+
     public function setMessageDeletions(bool $value): static
     {
         $this->messageDeletions = $value;
@@ -274,6 +291,7 @@ class ChatEventLogFilters extends TdObject
             'member_leaves'           => $this->memberLeaves,
             'member_promotions'       => $this->memberPromotions,
             'member_restrictions'     => $this->memberRestrictions,
+            'member_tag_changes'      => $this->memberTagChanges,
             'message_deletions'       => $this->messageDeletions,
             'message_edits'           => $this->messageEdits,
             'message_pins'            => $this->messagePins,

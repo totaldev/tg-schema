@@ -7,7 +7,7 @@
 namespace Totaldev\TgSchema\Star;
 
 /**
- * The transaction is a deposit of Telegram Stars from Google Play; for regular users only.
+ * The transaction is a deposit of Telegram Stars from Google Play; relevant for regular users only.
  */
 class StarTransactionTypeGooglePlayDeposit extends StarTransactionType
 {

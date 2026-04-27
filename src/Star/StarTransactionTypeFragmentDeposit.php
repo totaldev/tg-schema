@@ -7,7 +7,7 @@
 namespace Totaldev\TgSchema\Star;
 
 /**
- * The transaction is a deposit of Telegram Stars from Fragment; for regular users and bots only.
+ * The transaction is a deposit of Telegram Stars from Fragment; relevant for regular users and bots only.
  */
 class StarTransactionTypeFragmentDeposit extends StarTransactionType
 {

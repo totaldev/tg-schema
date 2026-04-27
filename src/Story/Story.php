@@ -33,7 +33,7 @@ class Story extends TdObject
          */
         protected array                 $areas,
         /**
-         * True, if the story can be added to an album.
+         * True, if the story can be added to an album using createStoryAlbum and addStoryAlbumStories.
          */
         protected bool                  $canBeAddedToAlbum,
         /**
@@ -49,7 +49,7 @@ class Story extends TdObject
          */
         protected bool                  $canBeForwarded,
         /**
-         * True, if the story can be replied in the chat with the user that posted the story.
+         * True, if the story can be replied in the chat with the user who posted the story.
          */
         protected bool                  $canBeReplied,
         /**
@@ -60,6 +60,10 @@ class Story extends TdObject
          * True, if the story statistics are available through getStoryStatistics.
          */
         protected bool                  $canGetStatistics,
+        /**
+         * True, if the story privacy settings can be changed.
+         */
+        protected bool                  $canSetPrivacySettings,
         /**
          * True, if the story's is_posted_to_chat_page value can be changed.
          */
@@ -142,6 +146,7 @@ class Story extends TdObject
             canBeReplied               : $array['can_be_replied'],
             canGetInteractions         : $array['can_get_interactions'],
             canGetStatistics           : $array['can_get_statistics'],
+            canSetPrivacySettings      : $array['can_set_privacy_settings'],
             canToggleIsPostedToChatPage: $array['can_toggle_is_posted_to_chat_page'],
             caption                    : TdSchemaRegistry::fromArray($array['caption']),
             chosenReactionType         : (isset($array['chosen_reaction_type']) ? TdSchemaRegistry::fromArray($array['chosen_reaction_type']) : null),
@@ -205,6 +210,11 @@ class Story extends TdObject
     public function getCanGetStatistics(): bool
     {
         return $this->canGetStatistics;
+    }
+
+    public function getCanSetPrivacySettings(): bool
+    {
+        return $this->canSetPrivacySettings;
     }
 
     public function getCanToggleIsPostedToChatPage(): bool
@@ -355,6 +365,13 @@ class Story extends TdObject
         return $this;
     }
 
+    public function setCanSetPrivacySettings(bool $value): static
+    {
+        $this->canSetPrivacySettings = $value;
+
+        return $this;
+    }
+
     public function setCanToggleIsPostedToChatPage(bool $value): static
     {
         $this->canToggleIsPostedToChatPage = $value;
@@ -487,6 +504,7 @@ class Story extends TdObject
             'can_be_replied'                    => $this->canBeReplied,
             'can_get_interactions'              => $this->canGetInteractions,
             'can_get_statistics'                => $this->canGetStatistics,
+            'can_set_privacy_settings'          => $this->canSetPrivacySettings,
             'can_toggle_is_posted_to_chat_page' => $this->canToggleIsPostedToChatPage,
             'caption'                           => $this->caption->jsonSerialize(),
             'chosen_reaction_type'              => (null !== $this->chosenReactionType ? $this->chosenReactionType->jsonSerialize() : null),

@@ -7,7 +7,7 @@
 namespace Totaldev\TgSchema\Star;
 
 /**
- * The transaction is a receiving of a payment for a suggested post by the channel chat; for channel chats only.
+ * The transaction is a receiving of a payment for a suggested post by the channel chat; relevant for channel chats only.
  */
 class StarTransactionTypeSuggestedPostPaymentReceive extends StarTransactionType
 {
@@ -15,7 +15,7 @@ class StarTransactionTypeSuggestedPostPaymentReceive extends StarTransactionType
 
     public function __construct(
         /**
-         * Identifier of the user that paid for the suggested post.
+         * Identifier of the user who paid for the suggested post.
          */
         protected int $userId
     ) {

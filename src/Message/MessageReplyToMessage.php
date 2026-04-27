@@ -26,7 +26,7 @@ class MessageReplyToMessage extends MessageReplyTo
          */
         protected int             $checklistTaskId,
         /**
-         * Media content of the message if the message was from another chat or topic; may be null for messages from the same chat and messages without media. Can be only one of the following types: messageAnimation, messageAudio, messageChecklist, messageContact, messageDice, messageDocument, messageGame, messageGiveaway, messageGiveawayWinners, messageInvoice, messageLocation, messagePaidMedia, messagePhoto, messagePoll, messageSticker, messageStory, messageText (for link preview), messageVenue, messageVideo, messageVideoNote, or messageVoiceNote.
+         * Media content of the message if the message was from another chat or topic; may be null for messages from the same chat and messages without media. Can be only one of the following types: messageAnimation, messageAudio, messageChecklist, messageContact, messageDice, messageDocument, messageGame, messageGiveaway, messageGiveawayWinners, messageInvoice, messageLocation, messagePaidMedia, messagePhoto, messagePoll, messageStakeDice, messageSticker, messageStory, messageText (for link preview), messageVenue, messageVideo, messageVideoNote, or messageVoiceNote.
          */
         protected ?MessageContent $content,
         /**
@@ -41,6 +41,10 @@ class MessageReplyToMessage extends MessageReplyTo
          * Point in time (Unix timestamp) when the message was sent if the message was from another chat or topic; 0 for messages from the same chat.
          */
         protected int             $originSendDate,
+        /**
+         * Identifier of the poll option in the original message that was replied; empty if none.
+         */
+        protected string          $pollOptionId,
         /**
          * Chosen quote from the replied message; may be null if none.
          */
@@ -58,6 +62,7 @@ class MessageReplyToMessage extends MessageReplyTo
             messageId      : $array['message_id'],
             origin         : (isset($array['origin']) ? TdSchemaRegistry::fromArray($array['origin']) : null),
             originSendDate : $array['origin_send_date'],
+            pollOptionId   : $array['poll_option_id'],
             quote          : (isset($array['quote']) ? TdSchemaRegistry::fromArray($array['quote']) : null),
         );
     }
@@ -90,6 +95,11 @@ class MessageReplyToMessage extends MessageReplyTo
     public function getOriginSendDate(): int
     {
         return $this->originSendDate;
+    }
+
+    public function getPollOptionId(): string
+    {
+        return $this->pollOptionId;
     }
 
     public function getQuote(): ?TextQuote
@@ -139,6 +149,13 @@ class MessageReplyToMessage extends MessageReplyTo
         return $this;
     }
 
+    public function setPollOptionId(string $value): static
+    {
+        $this->pollOptionId = $value;
+
+        return $this;
+    }
+
     public function setQuote(?TextQuote $value): static
     {
         $this->quote = $value;
@@ -156,6 +173,7 @@ class MessageReplyToMessage extends MessageReplyTo
             'message_id'        => $this->messageId,
             'origin'            => (null !== $this->origin ? $this->origin->jsonSerialize() : null),
             'origin_send_date'  => $this->originSendDate,
+            'poll_option_id'    => $this->pollOptionId,
             'quote'             => (null !== $this->quote ? $this->quote->jsonSerialize() : null),
         ];
     }

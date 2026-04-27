@@ -48,7 +48,7 @@ class SearchMessages extends TdFunction
          */
         protected ?SearchMessagesChatTypeFilter $chatTypeFilter = null,
         /**
-         * Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterFailedToSend, and searchMessagesFilterPinned are unsupported in this function.
+         * Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterUnreadPollVote, searchMessagesFilterFailedToSend, and searchMessagesFilterPinned are unsupported in this function.
          */
         protected ?SearchMessagesFilter         $filter = null,
     ) {}
